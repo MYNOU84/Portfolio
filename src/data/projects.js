@@ -1,6 +1,7 @@
+const BASE = import.meta.env.BASE_URL
 const imgs = (slug, count, ext = 'jpg') =>
   Array.from({ length: count }, (_, i) =>
-    `/projects/${slug}/img-${String(i + 1).padStart(3, '0')}.${ext}`
+    `${BASE}projects/${slug}/img-${String(i + 1).padStart(3, '0')}.${ext}`
   )
 
 export const PROJECTS = [

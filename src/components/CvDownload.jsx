@@ -2,6 +2,8 @@ import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 import { Download, Quote } from 'lucide-react'
 
+const BASE = import.meta.env.BASE_URL
+
 export default function CvDownload() {
   const ref    = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-80px' })
@@ -49,7 +51,7 @@ export default function CvDownload() {
             16+ years · 50+ projects · Available for Senior Architect, Lead Architect & BIM Coordinator roles
           </p>
           <a
-            href="/cv/M-Amine-Berchache-CV.pdf"
+            href={`${BASE}cv/M-Amine-Berchache-CV.pdf`}
             download
             className="group inline-flex items-center gap-4 bg-gold text-deep-black px-10 py-4 text-xs tracking-[0.4em] uppercase font-semibold hover:bg-beige transition-all duration-300"
           >
