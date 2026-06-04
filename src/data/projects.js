@@ -7,7 +7,7 @@ const imgs = (slug, count, ext = 'jpg') =>
 export const PROJECTS = [
   {
     id: 'oasis-pavilion',
-    cover: 0,
+    cover: 5,
     title: 'Oasis Pavilion',
     location: 'Dubai, UAE',
     category: 'Masterplan',
@@ -19,7 +19,7 @@ export const PROJECTS = [
   },
   {
     id: 'chadi-tower',
-    cover: 0,
+    cover: 9,
     title: 'CHADI Tower',
     location: 'Dubai Downtown, UAE',
     category: 'High-Rise',
@@ -32,7 +32,7 @@ export const PROJECTS = [
   },
   {
     id: 'cal-capital-tower',
-    cover: 0,
+    cover: 5,
     title: 'CAL Capital Tower',
     location: 'Dubai Downtown, UAE',
     category: 'High-Rise',
@@ -45,7 +45,7 @@ export const PROJECTS = [
   },
   {
     id: 'interior-dubai',
-    cover: 0,
+    cover: 5,
     title: 'Interior Design — Dubai',
     location: 'Dubai, UAE',
     category: 'Interior',
@@ -58,7 +58,7 @@ export const PROJECTS = [
   },
   {
     id: 'anti-cancer-center',
-    cover: 0,
+    cover: 15,
     title: 'Anti-Cancer Centre',
     location: 'Algeria',
     category: 'Healthcare',
@@ -71,7 +71,7 @@ export const PROJECTS = [
   },
   {
     id: 'saudi-mixed-use',
-    cover: 0,
+    cover: 1,
     title: 'Saudi Mixed-Use Development',
     location: 'Saudi Arabia',
     category: 'Mixed-Use',
@@ -84,7 +84,7 @@ export const PROJECTS = [
   },
   {
     id: 'terrace-garden',
-    cover: 0,
+    cover: 1,
     title: "Terrace Garden — Kings' Square",
     location: 'Abu Dhabi, UAE',
     category: 'Masterplan',
@@ -97,7 +97,7 @@ export const PROJECTS = [
   },
   {
     id: 'horizon-restaurant',
-    cover: 0,
+    cover: 18,
     title: 'The Horizon Restaurant',
     location: 'UAE',
     category: 'Interior',
@@ -110,7 +110,7 @@ export const PROJECTS = [
   },
   {
     id: 'renovation-flat',
-    cover: 0,
+    cover: 8,
     title: 'Apartment Renovation',
     location: 'Algeria',
     category: 'Interior',
@@ -123,7 +123,7 @@ export const PROJECTS = [
   },
   {
     id: 'healthcare-detail',
-    cover: 0,
+    cover: 17,
     title: 'Hospital Detail Drawings',
     subtitle: 'Technical Detail Package — Healthcare',
     location: 'Algeria',
@@ -137,7 +137,7 @@ export const PROJECTS = [
   },
   {
     id: 'surgery-room',
-    cover: 0,
+    cover: 73,
     title: 'Surgery Room — Site Documentation',
     subtitle: 'Surgical Suites · 240-Bed Hospital',
     location: 'Algeria',
@@ -151,7 +151,7 @@ export const PROJECTS = [
   },
   {
     id: 'detaill-surgery-room',
-    cover: 0,
+    cover: 2,
     title: 'Detaill Surgery Room',
     subtitle: 'Detailed Surgical Suite Documentation',
     location: 'Algeria',
@@ -165,7 +165,7 @@ export const PROJECTS = [
   },
   {
     id: 'varian-halcyon',
-    cover: 0,
+    cover: 20,
     title: 'Varian Halcyon — Radiotherapy',
     location: 'Algeria',
     category: 'Healthcare',
@@ -191,7 +191,7 @@ export const PROJECTS = [
   },
   {
     id: 'villa-youssef',
-    cover: 0,
+    cover: 23,
     title: 'Villa Youssef B',
     subtitle: 'Exterior & Interior Design',
     location: 'Dubai, UAE',
@@ -205,7 +205,7 @@ export const PROJECTS = [
   },
   {
     id: 'autres-dubai',
-    cover: 0,
+    cover: 1,
     title: 'Dubai Projects — Selected Works',
     location: 'Dubai, UAE',
     category: 'Mixed-Use',
