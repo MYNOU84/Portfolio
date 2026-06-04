@@ -1,0 +1,18 @@
+export const SKILLS = [
+  { id: 'revit',       label: 'Revit (BIM)',              icon: 'Layers',       level: 95 },
+  { id: 'navisworks',  label: 'Navisworks',               icon: 'GitMerge',     level: 92 },
+  { id: 'autocad',     label: 'AutoCAD',                  icon: 'PenTool',      level: 95 },
+  { id: 'bim360',      label: 'BIM 360 / ACC',            icon: 'Cloud',        level: 88 },
+  { id: 'iso19650',    label: 'ISO 19650',                icon: 'Shield',       level: 92 },
+  { id: 'bim-mgmt',    label: 'BIM Management',           icon: 'LayoutGrid',   level: 90 },
+  { id: 'coord',       label: 'Design Coordination',      icon: 'Share2',       level: 95 },
+  { id: 'clash',       label: 'Clash Detection',          icon: 'ScanLine',     level: 92 },
+  { id: 'dm-dcd',      label: 'DM / DCD / DEWA',         icon: 'Stamp',        level: 90 },
+  { id: 'arch-design', label: 'Architectural Design',     icon: 'Building2',    level: 95 },
+  { id: 'healthcare',  label: 'Healthcare Architecture',  icon: 'Stethoscope',  level: 88 },
+  { id: 'highrise',    label: 'High-Rise Design',         icon: 'TowerControl', level: 90 },
+  { id: 'twinmotion',  label: 'Twinmotion / Enscape',    icon: 'Camera',       level: 82 },
+  { id: 'bluebeam',    label: 'Bluebeam Revu',            icon: 'FileCheck',    level: 85 },
+  { id: 'site-sup',    label: 'Site Supervision',         icon: 'HardHat',      level: 90 },
+  { id: 'ai-viz',      label: 'AI Visualization',         icon: 'Sparkles',     level: 85 },
+]

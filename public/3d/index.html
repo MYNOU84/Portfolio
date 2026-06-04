@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>M. Amine Berchache — Architecture Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- THREE.JS CANVAS -->
+<canvas id="c"></canvas>
+
+<!-- CROSSHAIR (visible while in experience) -->
+<div id="crosshair">
+  <div class="ch-h"></div>
+  <div class="ch-v"></div>
+</div>
+
+<!-- HOTSPOT TOOLTIP -->
+<div id="tooltip"></div>
+
+<!-- ═══ ENTRANCE SCREEN ═══ -->
+<div id="entrance">
+  <div class="ent-bg"></div>
+  <div class="ent-inner">
+    <div class="ent-eyebrow">
+      <div class="g-line"></div><span>Senior Architect & BIM Coordinator</span><div class="g-line"></div>
+    </div>
+    <h1 class="ent-name">M. Amine<br><em>Berchache</em></h1>
+    <p class="ent-sub">Architecture · BIM · Interior Design · Dubai · Algeria</p>
+    <div class="ent-stats">
+      <div class="stat"><span class="sv">16+</span><span class="sl">Years</span></div>
+      <div class="sdiv"></div>
+      <div class="stat"><span class="sv">50+</span><span class="sl">Projects</span></div>
+      <div class="sdiv"></div>
+      <div class="stat"><span class="sv">3</span><span class="sl">Countries</span></div>
+    </div>
+    <button id="enter-btn" class="btn-enter">
+      Enter Experience
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+        <path d="M4 9h10M10 5l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+    <p class="ent-hint">Click · W A S D to move · Mouse to look · Scroll to zoom</p>
+  </div>
+</div>
+
+<!-- ═══ RESUME OVERLAY (shown on ESC) ═══ -->
+<div id="resume-overlay" class="hidden">
+  <div class="res-box">
+    <div class="res-logo">AB</div>
+    <h3>M. Amine Berchache</h3>
+    <p>Architecture Portfolio</p>
+    <button id="resume-btn">Continue Experience</button>
+    <button id="exit-btn">← Back to Menu</button>
+  </div>
+</div>
+
+<!-- ═══ CONTROLS HINT ═══ -->
+<div id="ctrl-hint">
+  <div class="ch-row"><span class="ch-key">W A S D</span><span>Move</span></div>
+  <div class="ch-row"><span class="ch-key">Mouse</span><span>Look</span></div>
+  <div class="ch-row"><span class="ch-key">Scroll</span><span>Zoom</span></div>
+  <div class="ch-row"><span class="ch-key">Click</span><span>Interact</span></div>
+  <div class="ch-row"><span class="ch-key">ESC</span><span>Menu</span></div>
+</div>
+
+<!-- ═══ SECTION OVERLAY ═══ -->
+<div id="sec-overlay" class="hidden">
+  <button id="sec-close">✕ Close</button>
+  <div id="sec-inner"></div>
+</div>
+
+<!-- ═══ IMAGE MODAL ═══ -->
+<div id="img-modal" class="hidden">
+  <div id="modal-back"></div>
+  <div id="modal-box">
+    <button id="m-close">✕</button>
+    <div id="m-img-wrap">
+      <button id="m-prev" class="m-nav">‹</button>
+      <div id="m-viewport">
+        <img id="m-img" src="" alt="" draggable="false">
+      </div>
+      <button id="m-next" class="m-nav">›</button>
+    </div>
+    <div id="m-footer">
+      <div id="m-meta">
+        <span id="m-cat"></span>
+        <h3 id="m-title"></h3>
+        <p id="m-loc"></p>
+      </div>
+      <div id="m-zoom-row">
+        <button id="z-out">−</button>
+        <span id="z-val">100%</span>
+        <button id="z-in">+</button>
+        <button id="z-rst">⟲</button>
+      </div>
+      <div id="m-count"></div>
+    </div>
+    <div id="m-thumbs"></div>
+  </div>
+</div>
+
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+    "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+  }
+}
+</script>
+<script type="module" src="script.js"></script>
+</body>
+</html>
