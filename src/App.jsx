@@ -123,7 +123,7 @@ export default function App() {
           <About />
           <Experience />
           <Portfolio />
-          <VideoSection />
+          <VideoSection isAdmin={authenticated} />
           <Services />
           {adminOpen && <CvDownload />}
           <Contact />

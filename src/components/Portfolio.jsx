@@ -3,7 +3,7 @@ import { motion, useInView, AnimatePresence } from 'framer-motion'
 import { Folder, Tag, Maximize2, LayoutGrid } from 'lucide-react'
 import { PROJECTS, CATEGORIES, PROJECT_ORDER } from '../data/projects'
 import { loadAdminData } from './AdminPanel'
-import { loadDynamicProjects, loadProjectOrder } from '../utils/dynamicProjects'
+import { loadDynamicProjects, loadProjectOrder, loadHiddenProjects, loadProjectOverrides } from '../utils/dynamicProjects'
 import { getBlobUrl } from '../utils/imageDb'
 import ProjectModal from './ProjectModal'
 import ImmersiveView from './ImmersiveView'
@@ -131,6 +131,8 @@ export default function Portfolio() {
   const [adminData] = useState(() => loadAdminData())
   const [dynamicProjects, setDynamicProjects] = useState([])
   const [projectOrder, setProjectOrder]       = useState(() => loadProjectOrder())
+  const [hiddenProjects, setHiddenProjects]     = useState(() => loadHiddenProjects())
+  const [projectOverrides, setProjectOverrides] = useState(() => loadProjectOverrides())
   const ref    = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-80px' })
 
@@ -157,13 +159,29 @@ export default function Portfolio() {
     return () => window.removeEventListener('project-order-updated', handler)
   }, [])
 
+  useEffect(() => {
+    const handler = () => setHiddenProjects(loadHiddenProjects())
+    window.addEventListener('project-visibility-updated', handler)
+    return () => window.removeEventListener('project-visibility-updated', handler)
+  }, [])
+
+  useEffect(() => {
+    const handler = () => setProjectOverrides(loadProjectOverrides())
+    window.addEventListener('project-overrides-updated', handler)
+    return () => window.removeEventListener('project-overrides-updated', handler)
+  }, [])
+
   const allProjects = (() => {
-    const base  = [...dynamicProjects, ...PROJECTS]
-    const order = projectOrder ?? PROJECT_ORDER  // localStorage → hardcoded fallback
-    if (!order) return base
-    const map       = new Map(base.map(p => [p.id, p]))
+    const base    = [...dynamicProjects, ...PROJECTS].map(p => {
+      const ov = projectOverrides[p.id]
+      return ov ? { ...p, ...ov } : p
+    })
+    const visible = base.filter(p => !hiddenProjects.includes(p.id))
+    const order   = projectOrder ?? PROJECT_ORDER  // localStorage → hardcoded fallback
+    if (!order) return visible
+    const map       = new Map(visible.map(p => [p.id, p]))
     const ordered   = order.filter(id => map.has(id)).map(id => map.get(id))
-    const remaining = base.filter(p => !order.includes(p.id))
+    const remaining = visible.filter(p => !order.includes(p.id))
     return [...ordered, ...remaining]
   })()
 

@@ -145,7 +145,7 @@ function EnableSoundBtn({ videoRef }) {
 }
 
 // ── Main modal ────────────────────────────────────────────────────────────────
-function VideoModal({ onClose, localUrl, setLocalUrl }) {
+function VideoModal({ onClose, localUrl, setLocalUrl, isAdmin }) {
   const saved = loadSaved()
 
   const [tab, setTab]               = useState('youtube')
@@ -207,9 +207,9 @@ function VideoModal({ onClose, localUrl, setLocalUrl }) {
     : videoGallery.filter(v => v.category === activeCategory)
 
   const TABS = [
-    { id: 'youtube',  label: 'YouTube',       Icon: Link   },
+    ...(isAdmin ? [{ id: 'youtube', label: 'YouTube', Icon: Link }] : []),
     { id: 'gallery',  label: 'Video Gallery', Icon: Film   },
-    { id: 'upload',   label: 'Upload',         Icon: Upload },
+    ...(isAdmin ? [{ id: 'upload',  label: 'Upload',  Icon: Upload }] : []),
   ]
 
   return (
@@ -527,19 +527,7 @@ function VideoModal({ onClose, localUrl, setLocalUrl }) {
                     preload="metadata"
                     className="w-full"
                     style={{ maxHeight: '52vh', background: '#000' }}
-                    onLoadedMetadata={(e) => {
-                      e.currentTarget.muted = false
-                      e.currentTarget.defaultMuted = false
-                      e.currentTarget.volume = 1
-                    }}
-                    onCanPlay={(e) => {
-                      e.currentTarget.muted = false
-                      e.currentTarget.defaultMuted = false
-                      e.currentTarget.volume = 1
-                    }}
                   />
-
-                  <EnableSoundBtn videoRef={uploadedVideoRef} />
 
                   {confirmRemove
                     ? <RemoveConfirm onCancel={() => setConfirmRemove(false)} onConfirm={doRemove} />
@@ -573,7 +561,7 @@ function VideoModal({ onClose, localUrl, setLocalUrl }) {
 }
 
 // ── Section ───────────────────────────────────────────────────────────────────
-export default function VideoSection() {
+export default function VideoSection({ isAdmin = false }) {
   const [open, setOpen]         = useState(false)
   const [localUrl, setLocalUrl] = useState(null)
 
@@ -636,6 +624,7 @@ export default function VideoSection() {
             onClose={() => setOpen(false)}
             localUrl={localUrl}
             setLocalUrl={setLocalUrl}
+            isAdmin={isAdmin}
           />
         )}
       </AnimatePresence>
