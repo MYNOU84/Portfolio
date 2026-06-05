@@ -1,6 +1,9 @@
 import { useState, useRef, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { X, Play, Upload, Link, Trash2, Film, ChevronLeft } from 'lucide-react'
+import { storeBlob, getBlobUrl } from '../utils/imageDb'
+
+const VIDEO_DB_KEY = 'showreel-video'
 
 // ── YouTube URL → privacy-enhanced embed URL ──────────────────────────────────
 const getYouTubeEmbedUrl = (input) => {
@@ -182,16 +185,21 @@ function VideoModal({ onClose, localUrl, setLocalUrl, isAdmin }) {
   }
 
   // ── Upload ─────────────────────────────────────────────────────────────────
-  const handleFile = (e) => {
+  const handleFile = async (e) => {
     const file = e.target.files[0]
     if (!file) return
-    setLocalUrl(URL.createObjectURL(file))
+    const url = URL.createObjectURL(file)
+    setLocalUrl(url)
     setConfirmRemove(false)
+    // Persist to IndexedDB so it survives page refresh
+    try { await storeBlob(VIDEO_DB_KEY, file) } catch (err) { console.error('Video save failed', err) }
   }
 
-  const clearLocal = () => {
+  const clearLocal = async () => {
     setLocalUrl(null)
     if (fileRef.current) fileRef.current.value = ''
+    // Remove from IndexedDB
+    try { await storeBlob(VIDEO_DB_KEY, new Blob([])) } catch {}
   }
 
   // ── Remove (YouTube only) ──────────────────────────────────────────────────
@@ -527,6 +535,7 @@ function VideoModal({ onClose, localUrl, setLocalUrl, isAdmin }) {
                     preload="metadata"
                     className="w-full"
                     style={{ maxHeight: '52vh', background: '#000' }}
+                    onLoadedMetadata={e => { e.currentTarget.muted = false; e.currentTarget.volume = 1 }}
                   />
 
                   {confirmRemove
@@ -564,6 +573,11 @@ function VideoModal({ onClose, localUrl, setLocalUrl, isAdmin }) {
 export default function VideoSection({ isAdmin = false }) {
   const [open, setOpen]         = useState(false)
   const [localUrl, setLocalUrl] = useState(null)
+
+  // Load saved video from IndexedDB on mount
+  useEffect(() => {
+    getBlobUrl(VIDEO_DB_KEY).then(url => { if (url) setLocalUrl(url) }).catch(() => {})
+  }, [])
 
   return (
     <section id="showreel" className="py-32 bg-deep-black relative overflow-hidden">
