@@ -25,8 +25,19 @@ const ytWatch  = (id) => `https://www.youtube.com/watch?v=${id}`
 // ── Storage ───────────────────────────────────────────────────────────────────
 const GALLERY_KEY = 'portfolio-yt-gallery'
 
+const DEFAULT_VIDEOS = [
+  { id: 'yt-1', ytId: 'Pwz_uhkKWBE', title: 'The Horizon Restaurant 2', category: 'Interior'     },
+  { id: 'yt-2', ytId: 'id3AaDUa7Z0', title: '08 juillet 2020',          category: 'Construction' },
+  { id: 'yt-3', ytId: 'P9c5iYk33YQ', title: 'Visite du Minister',       category: 'Construction' },
+  { id: 'yt-4', ytId: 'H0uOx2WuHqg', title: 'Preparation',              category: 'Construction' },
+  { id: 'yt-5', ytId: 'T-AbnGhcrbU', title: 'CAC CHELEF',               category: 'Construction' },
+]
+
 const loadGallery = () => {
-  try { return JSON.parse(localStorage.getItem(GALLERY_KEY) || '[]') } catch { return [] }
+  try {
+    const saved = JSON.parse(localStorage.getItem(GALLERY_KEY))
+    return saved && saved.length > 0 ? saved : DEFAULT_VIDEOS
+  } catch { return DEFAULT_VIDEOS }
 }
 const saveGallery = (list) => localStorage.setItem(GALLERY_KEY, JSON.stringify(list))
 
