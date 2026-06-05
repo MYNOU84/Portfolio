@@ -32,7 +32,8 @@ const getYouTubeEmbedUrl = (input) => {
   }
 }
 
-const STORAGE_KEY = 'portfolio-video'
+const STORAGE_KEY      = 'portfolio-video'
+const GALLERY_META_KEY = 'portfolio-custom-videos'
 
 function loadSaved() {
   try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || null } catch { return null }
@@ -44,6 +45,14 @@ function getValidSavedEmbedUrl(saved) {
   if (u.includes('/embed/')) return u
   localStorage.removeItem(STORAGE_KEY)
   return null
+}
+
+function loadCustomVideosMeta() {
+  try { return JSON.parse(localStorage.getItem(GALLERY_META_KEY) || '[]') } catch { return [] }
+}
+
+function saveCustomVideosMeta(list) {
+  localStorage.setItem(GALLERY_META_KEY, JSON.stringify(list))
 }
 
 // ── Video gallery data ────────────────────────────────────────────────────────
@@ -160,11 +169,26 @@ function VideoModal({ onClose, localUrl, setLocalUrl, isAdmin }) {
   const [activeCategory, setActiveCategory]     = useState('All')
   const [activeGalleryVideo, setActiveGalleryVideo] = useState(null)
 
-  const [confirmRemove, setConfirmRemove] = useState(false)
+  const [confirmRemove, setConfirmRemove]   = useState(false)
+  const [uploading, setUploading]           = useState(false)
+  const [uploadProgress, setUploadProgress] = useState(0)
+  const [customVideos, setCustomVideos]     = useState([])
 
   const fileRef          = useRef(null)
   const uploadedVideoRef = useRef(null)
   const galleryVideoRef  = useRef(null)
+
+  // Load custom gallery videos from IndexedDB on mount
+  useEffect(() => {
+    const meta = loadCustomVideosMeta()
+    if (!meta.length) return
+    Promise.all(
+      meta.map(async m => {
+        const url = await getBlobUrl(m.key).catch(() => null)
+        return url ? { ...m, src: url, type: 'local' } : null
+      })
+    ).then(results => setCustomVideos(results.filter(Boolean)))
+  }, [])
 
   useEffect(() => {
     const fn = (e) => { if (e.key === 'Escape') onClose() }
@@ -191,15 +215,46 @@ function VideoModal({ onClose, localUrl, setLocalUrl, isAdmin }) {
     const url = URL.createObjectURL(file)
     setLocalUrl(url)
     setConfirmRemove(false)
-    // Persist to IndexedDB so it survives page refresh
-    try { await storeBlob(VIDEO_DB_KEY, file) } catch (err) { console.error('Video save failed', err) }
+    setUploading(true)
+    setUploadProgress(0)
+
+    // Animate progress 0 → 90 while saving
+    let prog = 0
+    const interval = setInterval(() => {
+      prog = Math.min(prog + 10, 90)
+      setUploadProgress(prog)
+    }, 80)
+
+    const key = `gallery-video-${Date.now()}`
+    try {
+      await storeBlob(key, file)
+      clearInterval(interval)
+      setUploadProgress(100)
+
+      // Add to gallery metadata
+      const name = file.name.replace(/\.[^/.]+$/, '').replace(/[-_]/g, ' ')
+      const meta = { id: key, key, title: name, category: 'Other' }
+      const updated = [...loadCustomVideosMeta(), meta]
+      saveCustomVideosMeta(updated)
+      setCustomVideos(prev => [...prev, { ...meta, src: url, type: 'local' }])
+
+      setTimeout(() => { setUploading(false); setUploadProgress(0) }, 600)
+    } catch (err) {
+      clearInterval(interval)
+      console.error('Video save failed', err)
+      setUploading(false)
+    }
   }
 
   const clearLocal = async () => {
     setLocalUrl(null)
     if (fileRef.current) fileRef.current.value = ''
-    // Remove from IndexedDB
-    try { await storeBlob(VIDEO_DB_KEY, new Blob([])) } catch {}
+  }
+
+  const removeCustomVideo = async (id) => {
+    const updated = loadCustomVideosMeta().filter(m => m.id !== id)
+    saveCustomVideosMeta(updated)
+    setCustomVideos(prev => prev.filter(v => v.id !== id))
   }
 
   // ── Remove (YouTube only) ──────────────────────────────────────────────────
@@ -209,10 +264,11 @@ function VideoModal({ onClose, localUrl, setLocalUrl, isAdmin }) {
     setConfirmRemove(false)
   }
 
-  // ── Filtered gallery ───────────────────────────────────────────────────────
+  // ── Filtered gallery (static + custom uploads) ────────────────────────────
+  const allGallery = [...videoGallery, ...customVideos]
   const filtered = activeCategory === 'All'
-    ? videoGallery
-    : videoGallery.filter(v => v.category === activeCategory)
+    ? allGallery
+    : allGallery.filter(v => v.category === activeCategory)
 
   const TABS = [
     ...(isAdmin ? [{ id: 'youtube', label: 'YouTube', Icon: Link }] : []),
@@ -485,14 +541,24 @@ function VideoModal({ onClose, localUrl, setLocalUrl, isAdmin }) {
                           </div>
 
                           {/* Card info */}
-                          <div className="px-3 py-2.5">
-                            <p className="text-white-warm/85 text-xs font-medium leading-tight
-                              group-hover:text-gold transition-colors duration-300 line-clamp-1">
-                              {video.title}
-                            </p>
-                            <p className="text-gold/45 text-[8px] tracking-[0.25em] uppercase mt-1">
-                              {video.category}
-                            </p>
+                          <div className="px-3 py-2.5 flex items-start justify-between gap-2">
+                            <div className="min-w-0">
+                              <p className="text-white-warm/85 text-xs font-medium leading-tight
+                                group-hover:text-gold transition-colors duration-300 line-clamp-1">
+                                {video.title}
+                              </p>
+                              <p className="text-gold/45 text-[8px] tracking-[0.25em] uppercase mt-1">
+                                {video.category}
+                              </p>
+                            </div>
+                            {video.id?.startsWith('gallery-video-') && isAdmin && (
+                              <button
+                                onClick={e => { e.stopPropagation(); removeCustomVideo(video.id) }}
+                                className="flex-shrink-0 text-white-warm/20 hover:text-red-400/70 transition-colors cursor-pointer mt-0.5"
+                                title="Remove video">
+                                <Trash2 size={11} />
+                              </button>
+                            )}
                           </div>
                         </button>
                       ))}
@@ -513,6 +579,21 @@ function VideoModal({ onClose, localUrl, setLocalUrl, isAdmin }) {
                 className="hidden"
                 onChange={handleFile}
               />
+
+              {uploading && (
+                <div className="mb-5">
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-white-warm/50 text-[10px] tracking-wider">Saving to gallery…</span>
+                    <span className="text-gold text-[10px]">{uploadProgress}%</span>
+                  </div>
+                  <div className="h-px bg-white-warm/10 overflow-hidden">
+                    <div className="h-full bg-gold transition-all duration-150" style={{ width: `${uploadProgress}%` }} />
+                  </div>
+                  {uploadProgress === 100 && (
+                    <p className="text-green-400/70 text-[10px] mt-2 tracking-wider">✓ Saved to Video Gallery</p>
+                  )}
+                </div>
+              )}
 
               {!localUrl ? (
                 <button
