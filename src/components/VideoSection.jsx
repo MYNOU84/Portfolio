@@ -33,13 +33,17 @@ const DEFAULT_VIDEOS = [
   { id: 'yt-5', ytId: 'T-AbnGhcrbU', title: 'CAC CHELEF',               category: 'Construction' },
 ]
 
+// Only user-added videos (not defaults) are stored in localStorage
+const EXTRA_KEY = 'portfolio-yt-extra'
+
 const loadGallery = () => {
   try {
-    const saved = JSON.parse(localStorage.getItem(GALLERY_KEY))
-    return saved && saved.length > 0 ? saved : DEFAULT_VIDEOS
+    const extra = JSON.parse(localStorage.getItem(EXTRA_KEY) || '[]')
+    return [...DEFAULT_VIDEOS, ...extra]
   } catch { return DEFAULT_VIDEOS }
 }
-const saveGallery = (list) => localStorage.setItem(GALLERY_KEY, JSON.stringify(list))
+const saveExtra = (list) => localStorage.setItem(EXTRA_KEY, JSON.stringify(list))
+const loadExtra = () => { try { return JSON.parse(localStorage.getItem(EXTRA_KEY) || '[]') } catch { return [] } }
 
 // ── Categories ────────────────────────────────────────────────────────────────
 const CATEGORIES = ['All', 'Render', 'BIM', 'Construction', 'Interior', 'Walkthrough', 'Other']
@@ -125,18 +129,19 @@ function VideoModal({ onClose, isAdmin }) {
     if (!ytId) { setError('Could not find a YouTube video ID in this URL.'); return }
     if (!title.trim()) { setError('Please enter a title.'); return }
     const entry = { id: `yt-${Date.now()}`, ytId, url: ytUrl.trim(), title: title.trim(), category }
-    const updated = [...gallery, entry]
-    setGallery(updated)
-    saveGallery(updated)
+    const updatedExtra = [...loadExtra(), entry]
+    saveExtra(updatedExtra)
+    setGallery([...DEFAULT_VIDEOS, ...updatedExtra])
     setYtUrl(''); setTitle(''); setCategory('Other')
     setAdded(true)
     setTimeout(() => setAdded(false), 2000)
   }
 
   const handleRemove = (id) => {
-    const updated = gallery.filter(v => v.id !== id)
-    setGallery(updated)
-    saveGallery(updated)
+    // Only user-added videos can be removed (not defaults)
+    const updatedExtra = loadExtra().filter(v => v.id !== id)
+    saveExtra(updatedExtra)
+    setGallery([...DEFAULT_VIDEOS, ...updatedExtra])
   }
 
   const filtered = activeCategory === 'All'
@@ -287,26 +292,31 @@ function VideoModal({ onClose, isAdmin }) {
               </button>
 
               {/* Current gallery list */}
-              {gallery.length > 0 && (
-                <div className="mt-8 pt-6 border-t border-white-warm/8">
-                  <p className="text-white-warm/30 text-[9px] tracking-[0.3em] uppercase mb-3">Current videos ({gallery.length})</p>
-                  <div className="space-y-2">
-                    {gallery.map(v => (
+              <div className="mt-8 pt-6 border-t border-white-warm/8">
+                <p className="text-white-warm/30 text-[9px] tracking-[0.3em] uppercase mb-3">All videos ({gallery.length})</p>
+                <div className="space-y-2">
+                  {gallery.map(v => {
+                    const isDefault = DEFAULT_VIDEOS.some(d => d.id === v.id)
+                    return (
                       <div key={v.id} className="flex items-center gap-3 py-2 border-b border-white-warm/5">
                         <img src={ytThumb(v.ytId)} alt="" className="w-14 h-9 object-cover flex-shrink-0" />
                         <div className="flex-1 min-w-0">
                           <p className="text-white-warm/70 text-xs truncate">{v.title}</p>
                           <p className="text-gold/40 text-[8px] tracking-wider uppercase">{v.category}</p>
                         </div>
-                        <button onClick={() => handleRemove(v.id)}
-                          className="text-white-warm/20 hover:text-red-400/70 transition-colors cursor-pointer flex-shrink-0">
-                          <Trash2 size={13} />
-                        </button>
+                        {!isDefault ? (
+                          <button onClick={() => handleRemove(v.id)}
+                            className="text-white-warm/20 hover:text-red-400/70 transition-colors cursor-pointer flex-shrink-0">
+                            <Trash2 size={13} />
+                          </button>
+                        ) : (
+                          <span className="text-white-warm/15 text-[8px] tracking-wider">built-in</span>
+                        )}
                       </div>
-                    ))}
-                  </div>
+                    )
+                  })}
                 </div>
-              )}
+              </div>
             </div>
           )}
 
