@@ -551,7 +551,7 @@ function VideoModal({ onClose, localUrl, setLocalUrl, isAdmin }) {
                                 {video.category}
                               </p>
                             </div>
-                            {video.id?.startsWith('gallery-video-') && isAdmin && (
+                            {String(video.id).startsWith('gallery-video-') && isAdmin && (
                               <button
                                 onClick={e => { e.stopPropagation(); removeCustomVideo(video.id) }}
                                 className="flex-shrink-0 text-white-warm/20 hover:text-red-400/70 transition-colors cursor-pointer mt-0.5"
