@@ -6,6 +6,7 @@ const NAV_LINKS = [
   { label: 'About',      href: '#about' },
   { label: 'Experience', href: '#experience' },
   { label: 'Portfolio',  href: '#portfolio' },
+  { label: 'MEP System', href: '/mep-system-bim-coordination.html' },
   { label: 'Services',   href: '#services' },
   { label: 'Contact',    href: '#contact' },
 ]
