@@ -52,7 +52,7 @@ export default function Navbar({ isAdmin = false, onAdminToggle }) {
     return () => observer.disconnect()
   }, [])
 
-  const scrollTo = (href) => {
+  const scrollTo = (href) => { if (!href || href.startsWith('http')) { window.location.href = href; return; }
     setMenuOpen(false)
     document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' })
   }
