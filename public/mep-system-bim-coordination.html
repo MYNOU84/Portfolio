@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="M. Amine Berchache">
+<meta name="description" content="MEP System BIM Coordination Reference — UAE/GCC construction standard. Interactive coordination guide by M. Amine Berchache, Senior Architect & BIM Coordinator.">
+<title>MEP System_ BIM Coordination — M. Amine Berchache</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=IBM+Plex+Mono:wght@300;400;500&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --black:#0a0a0a;
+  --black2:#111111;
+  --black3:#171717;
+  --black4:#1e1e1e;
+  --black5:#252525;
+  --gold:#c9a84c;
+  --gold2:#e2c068;
+  --gold3:#a8872e;
+  --gold-dim:rgba(201,168,76,0.12);
+  --gold-line:rgba(201,168,76,0.22);
+  --gold-line2:rgba(201,168,76,0.08);
+  --white:#f5f0e8;
+  --white2:#c8c0b0;
+  --white3:#7a7268;
+  --white4:#3a3530;
+  --line:rgba(255,255,255,0.06);
+  --line2:rgba(255,255,255,0.1);
+}
+html{scroll-behavior:smooth}
+body{
+  background:var(--black);
+  color:var(--white);
+  font-family:'Montserrat',sans-serif;
+  font-weight:300;
+  min-height:100vh;
+  overflow-x:hidden;
+}
+
+/* ── NOISE TEXTURE OVERLAY ── */
+body::before{
+  content:'';
+  position:fixed;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events:none;z-index:0;opacity:0.4;
+}
+
+/* ── NAV ── */
+nav{
+  position:sticky;top:0;z-index:100;
+  background:rgba(10,10,10,0.92);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--gold-line);
+  padding:0 40px;
+  display:flex;align-items:center;justify-content:space-between;
+  height:60px;
+}
+.nav-logo{
+  font-family:'Cormorant Garamond',serif;
+  font-size:16px;font-weight:400;
+  color:var(--gold2);
+  letter-spacing:0.08em;
+  text-decoration:none;
+}
+.nav-logo span{color:var(--white3);font-size:12px;margin-left:10px;font-family:'IBM Plex Mono',monospace;letter-spacing:0.06em;text-transform:uppercase}
+.nav-back{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:10px;text-transform:uppercase;letter-spacing:0.1em;
+  color:var(--white3);text-decoration:none;
+  border:1px solid var(--white4);
+  padding:6px 14px;border-radius:2px;
+  transition:all .2s;
+}
+.nav-back:hover{border-color:var(--gold);color:var(--gold)}
+.nav-tag{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:9px;text-transform:uppercase;letter-spacing:0.1em;
+  color:var(--gold3);
+  border:1px solid var(--gold-line);
+  padding:4px 10px;border-radius:2px;
+  background:var(--gold-dim);
+}
+
+/* ── HERO ── */
+.hero{
+  position:relative;
+  padding:70px 40px 50px;
+  border-bottom:1px solid var(--gold-line);
+  overflow:hidden;
+}
+.hero::after{
+  content:'';
+  position:absolute;bottom:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,var(--gold),transparent);
+}
+.hero-eyebrow{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:10px;text-transform:uppercase;letter-spacing:0.16em;
+  color:var(--gold);margin-bottom:16px;
+  display:flex;align-items:center;gap:12px;
+}
+.hero-eyebrow::before{content:'';width:30px;height:1px;background:var(--gold)}
+.hero-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(32px,5vw,54px);
+  font-weight:300;
+  line-height:1.1;
+  letter-spacing:-0.02em;
+  color:var(--white);
+  margin-bottom:8px;
+}
+.hero-title em{
+  color:var(--gold2);
+  font-style:normal;
+  font-weight:400;
+}
+.hero-sub{
+  font-size:12px;
+  color:var(--white3);
+  letter-spacing:0.04em;
+  margin-bottom:28px;
+  max-width:600px;
+  line-height:1.7;
+}
+.hero-badges{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:32px}
+.hb{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:9px;text-transform:uppercase;letter-spacing:0.08em;
+  padding:4px 12px;border-radius:2px;
+}
+.hb-gold{background:var(--gold-dim);color:var(--gold2);border:1px solid var(--gold-line)}
+.hb-dim{background:rgba(255,255,255,0.04);color:var(--white3);border:1px solid var(--line2)}
+.hero-stats{display:flex;gap:0;border:1px solid var(--gold-line);border-radius:2px;overflow:hidden;max-width:520px}
+.hstat{flex:1;padding:16px 20px;border-right:1px solid var(--gold-line)}
+.hstat:last-child{border-right:none}
+.hstat-n{
+  font-family:'Cormorant Garamond',serif;
+  font-size:26px;font-weight:400;
+  color:var(--gold2);line-height:1;
+  margin-bottom:4px;
+}
+.hstat-l{font-family:'IBM Plex Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:0.08em;color:var(--white3)}
+.hero-deco{
+  position:absolute;right:40px;top:50%;transform:translateY(-50%);
+  font-family:'Cormorant Garamond',serif;
+  font-size:160px;font-weight:300;
+  color:rgba(201,168,76,0.04);
+  letter-spacing:-0.05em;
+  pointer-events:none;
+  user-select:none;
+  line-height:1;
+}
+
+/* ── TOOLBAR ── */
+.toolbar{
+  display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:12px;
+  padding:16px 40px;
+  background:var(--black2);
+  border-bottom:1px solid var(--line);
+  position:sticky;top:60px;z-index:90;
+  backdrop-filter:blur(8px);
+}
+.filter-group{display:flex;gap:6px;flex-wrap:wrap}
+.fbt{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:9px;text-transform:uppercase;letter-spacing:0.08em;
+  padding:6px 14px;border-radius:2px;
+  border:1px solid var(--white4);
+  background:transparent;
+  color:var(--white3);
+  cursor:pointer;
+  transition:all .18s;
+}
+.fbt:hover{border-color:var(--gold);color:var(--gold)}
+.fbt.active{background:var(--gold);color:var(--black);border-color:var(--gold);font-weight:500}
+.toolbar-actions{display:flex;gap:8px}
+.tact{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:9px;text-transform:uppercase;letter-spacing:0.06em;
+  padding:6px 12px;border-radius:2px;
+  border:1px solid var(--gold-line);
+  background:var(--gold-dim);
+  color:var(--gold2);cursor:pointer;
+  transition:all .18s;
+}
+.tact:hover{background:var(--gold);color:var(--black)}
+
+/* ── STATS ROW ── */
+.stats-bar{
+  display:flex;gap:0;
+  background:var(--black3);
+  border-bottom:1px solid var(--line);
+}
+.sbt{flex:1;padding:14px 24px;border-right:1px solid var(--line);text-align:center}
+.sbt:last-child{border-right:none}
+.sbt-n{
+  font-family:'Cormorant Garamond',serif;
+  font-size:22px;font-weight:400;
+  color:var(--gold2);line-height:1;margin-bottom:3px;
+}
+.sbt-l{font-family:'IBM Plex Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:0.08em;color:var(--white3)}
+
+/* ── CONTENT ── */
+.content{padding:32px 40px 60px;position:relative;z-index:1}
+.section-rule{
+  display:flex;align-items:center;gap:12px;
+  margin:28px 0 16px;
+}
+.section-rule span{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:9px;text-transform:uppercase;letter-spacing:0.14em;color:var(--white3);
+  white-space:nowrap;
+}
+.section-rule::before,.section-rule::after{content:'';flex:1;height:1px;background:var(--line2)}
+.section-rule::before{width:20px;flex:none}
+
+/* ── DETAIL PANEL ── */
+.detail-panel{
+  display:none;
+  background:var(--black3);
+  border:1px solid var(--gold);
+  border-radius:2px;
+  padding:28px;
+  margin-bottom:24px;
+  animation:fadeSlide .25s ease;
+  position:relative;
+}
+.detail-panel::before{
+  content:'';
+  position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,transparent,var(--gold),transparent);
+}
+.detail-panel.visible{display:block}
+@keyframes fadeSlide{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:translateY(0)}}
+.dp-head{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:20px;gap:16px}
+.dp-icon{
+  width:48px;height:48px;border-radius:2px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:22px;flex-shrink:0;
+  border:1px solid var(--gold-line);
+  background:var(--gold-dim);
+}
+.dp-title-block{flex:1}
+.dp-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:24px;font-weight:400;
+  color:var(--white);margin-bottom:4px;
+}
+.dp-sub{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:9px;text-transform:uppercase;letter-spacing:0.1em;
+  color:var(--gold3);
+}
+.close-dp{
+  font-family:'IBM Plex Mono',monospace;font-size:9px;text-transform:uppercase;
+  letter-spacing:0.08em;padding:6px 12px;border-radius:2px;
+  border:1px solid var(--white4);background:transparent;
+  color:var(--white3);cursor:pointer;transition:all .18s;flex-shrink:0;
+}
+.close-dp:hover{border-color:#c0392b;color:#e74c3c}
+.uae-banner{
+  background:rgba(201,168,76,0.07);
+  border-left:3px solid var(--gold);
+  border-right:1px solid var(--gold-line);
+  border-top:1px solid var(--gold-line);
+  border-bottom:1px solid var(--gold-line);
+  border-radius:2px;
+  padding:12px 16px;
+  margin-bottom:20px;
+  font-size:12px;color:var(--gold2);
+  line-height:1.6;
+  display:flex;gap:10px;
+}
+.uae-banner strong{
+  font-family:'IBM Plex Mono',monospace;font-size:9px;
+  text-transform:uppercase;letter-spacing:0.08em;
+  white-space:nowrap;flex-shrink:0;margin-top:2px;
+}
+.dp-cols{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+@media(max-width:640px){.dp-cols{grid-template-columns:1fr}}
+.dp-col h3{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:9px;text-transform:uppercase;letter-spacing:0.12em;
+  color:var(--gold);margin-bottom:12px;
+  padding-bottom:6px;
+  border-bottom:1px solid var(--gold-line2);
+}
+.dp-list{list-style:none;display:flex;flex-direction:column;gap:7px}
+.dp-list li{
+  font-size:12px;color:var(--white2);
+  padding-left:16px;position:relative;line-height:1.6;
+}
+.dp-list li::before{content:'—';position:absolute;left:0;color:var(--white4)}
+.dp-list li.flag{color:var(--gold2)}
+.dp-list li.flag::before{content:'⚑';color:var(--gold);font-size:10px}
+.lod-row{
+  display:flex;align-items:center;gap:8px;
+  margin-top:20px;padding-top:16px;
+  border-top:1px solid var(--line2);
+  flex-wrap:wrap;
+}
+.lod-label{font-family:'IBM Plex Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:0.08em;color:var(--white3)}
+.lod-pill{
+  font-family:'IBM Plex Mono',monospace;font-size:9px;
+  padding:4px 10px;border-radius:2px;
+  border:1px solid var(--white4);color:var(--white3);
+}
+.lod-pill.active{background:var(--gold-dim);border-color:var(--gold);color:var(--gold2)}
+.all-coords{margin-top:20px;padding-top:16px;border-top:1px solid var(--line2)}
+.all-coords h3{
+  font-family:'IBM Plex Mono',monospace;font-size:9px;text-transform:uppercase;
+  letter-spacing:0.12em;color:var(--gold);margin-bottom:12px;
+}
+.coord-full-list{list-style:none;display:flex;flex-direction:column;gap:8px}
+.coord-full-list li{
+  font-size:12px;color:var(--white2);
+  padding:8px 12px 8px 20px;
+  border-left:1px solid var(--gold-line2);
+  position:relative;line-height:1.6;
+  background:rgba(201,168,76,0.03);
+}
+.coord-full-list li::before{
+  content:'›';
+  position:absolute;left:8px;
+  color:var(--gold);font-weight:600;
+}
+
+/* ── CARD GRID ── */
+.card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
+.card{
+  background:var(--black3);
+  border:1px solid var(--line2);
+  border-radius:2px;
+  overflow:hidden;
+  cursor:pointer;
+  transition:border-color .2s,transform .18s;
+  position:relative;
+}
+.card::before{
+  content:'';
+  position:absolute;top:0;left:0;right:0;height:1px;
+  background:transparent;
+  transition:background .2s;
+}
+.card:hover{border-color:var(--gold-line);transform:translateY(-2px)}
+.card:hover::before{background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.card.selected{border-color:var(--gold)!important}
+.card.selected::before{background:linear-gradient(90deg,transparent,var(--gold),transparent)!important}
+.card-header{
+  padding:16px 18px 12px;
+  display:flex;align-items:flex-start;gap:12px;
+  border-bottom:1px solid var(--line);
+}
+.sys-icon{
+  width:36px;height:36px;border-radius:2px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:16px;flex-shrink:0;
+  border:1px solid var(--gold-line);
+  background:var(--gold-dim);
+}
+.card-meta{flex:1;min-width:0}
+.card-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:16px;font-weight:400;
+  color:var(--white);margin-bottom:3px;line-height:1.3;
+}
+.card-cat{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:9px;text-transform:uppercase;letter-spacing:0.08em;
+  color:var(--white3);display:flex;align-items:center;gap:6px;
+}
+.uae-flag-tag{color:var(--gold);font-size:9px}
+.card-body{padding:14px 18px 12px}
+.coord-list{list-style:none;display:flex;flex-direction:column;gap:6px}
+.coord-item{
+  display:flex;align-items:flex-start;gap:8px;
+  font-size:11px;color:var(--white3);line-height:1.5;
+}
+.coord-item::before{content:'›';color:var(--gold3);flex-shrink:0;font-weight:600}
+.coord-more{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:9px;color:var(--white4);
+  text-transform:uppercase;letter-spacing:0.06em;
+  padding-left:14px;margin-top:2px;
+}
+.card-footer{
+  padding:10px 18px;
+  border-top:1px solid var(--line);
+  display:flex;gap:5px;flex-wrap:wrap;
+}
+.tag{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:8px;text-transform:uppercase;letter-spacing:0.05em;
+  padding:2px 8px;border-radius:1px;
+}
+.tag-dim{color:var(--white4);border:1px solid var(--line2);background:transparent}
+.tag-gold{color:var(--gold3);border:1px solid var(--gold-line);background:var(--gold-dim)}
+.tag-hot{color:#c0392b;border:1px solid rgba(192,57,43,0.25);background:rgba(192,57,43,0.07)}
+
+/* ── CHECKLIST ── */
+.checklist-wrap{
+  background:var(--black3);
+  border:1px solid var(--line2);
+  border-radius:2px;
+  overflow:hidden;
+  margin-bottom:24px;
+}
+.cl-header{
+  padding:14px 20px;
+  border-bottom:1px solid var(--line);
+  display:flex;align-items:center;justify-content:space-between;
+}
+.cl-header h3{
+  font-family:'Cormorant Garamond',serif;
+  font-size:16px;font-weight:400;color:var(--white);
+}
+.cl-progress{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:9px;text-transform:uppercase;letter-spacing:0.08em;
+  color:var(--gold);
+}
+.checklist{display:flex;flex-direction:column}
+.check-item{
+  display:flex;align-items:center;gap:12px;
+  padding:10px 20px;
+  border-bottom:1px solid var(--line);
+  cursor:pointer;
+  transition:background .15s;
+  font-size:12px;color:var(--white2);
+}
+.check-item:last-child{border-bottom:none}
+.check-item:hover{background:rgba(201,168,76,0.04)}
+.check-item.done{color:var(--white4)}
+.check-item.done .check-text{text-decoration:line-through}
+.chk-box{
+  width:16px;height:16px;
+  border:1px solid var(--white4);
+  border-radius:1px;
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;transition:all .15s;
+  font-size:10px;color:var(--black);
+}
+.check-item.done .chk-box{background:var(--gold);border-color:var(--gold)}
+.progress-bar-wrap{
+  height:2px;background:var(--line);
+}
+.progress-bar{
+  height:2px;background:var(--gold);
+  transition:width .3s ease;
+}
+
+/* ── FOOTER ── */
+footer{
+  border-top:1px solid var(--gold-line);
+  padding:28px 40px;
+  display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:12px;
+  position:relative;
+}
+footer::before{
+  content:'';
+  position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,var(--gold),transparent);
+}
+.footer-name{
+  font-family:'Cormorant Garamond',serif;
+  font-size:14px;font-weight:400;color:var(--gold2);
+  letter-spacing:0.05em;
+}
+.footer-meta{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:9px;text-transform:uppercase;letter-spacing:0.1em;
+  color:var(--white3);
+}
+.footer-link{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:9px;text-transform:uppercase;letter-spacing:0.08em;
+  color:var(--gold3);text-decoration:none;
+  border:1px solid var(--gold-line);
+  padding:5px 12px;border-radius:2px;
+  background:var(--gold-dim);
+  transition:all .18s;
+}
+.footer-link:hover{background:var(--gold);color:var(--black)}
+
+/* ── RESPONSIVE ── */
+@media(max-width:768px){
+  nav{padding:0 20px}
+  .hero{padding:50px 20px 36px}
+  .hero-deco{display:none}
+  .toolbar{padding:14px 20px}
+  .stats-bar .sbt{padding:12px 16px}
+  .content{padding:24px 20px 48px}
+  .hero-stats{flex-wrap:wrap}
+  footer{padding:20px}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="https://portfolio-five-kappa-d7gqte5vgz.vercel.app" class="nav-logo">
+    M. Amine Berchache
+    <span>Senior Architect & BIM Coordinator</span>
+  </a>
+  <div style="display:flex;align-items:center;gap:10px">
+    <span class="nav-tag">BIM Reference</span>
+    <a href="https://portfolio-five-kappa-d7gqte5vgz.vercel.app" class="nav-back">← Portfolio</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-deco">MEP</div>
+  <div class="hero-eyebrow">Interactive BIM Reference — UAE / GCC</div>
+  <h1 class="hero-title">MEP System_<br><em>BIM Coordination</em></h1>
+  <p class="hero-sub">Comprehensive multidisciplinary MEP coordination requirements. Authority obligations, LOD stages, clash coordination, and UAE-specific approval flags — compiled for BIM-driven project delivery.</p>
+  <div class="hero-badges">
+    <span class="hb hb-gold">ISO 19650</span>
+    <span class="hb hb-gold">LOD 300 → 500</span>
+    <span class="hb hb-gold">DCD · DEWA · DM</span>
+    <span class="hb hb-dim">IFC Compliant</span>
+    <span class="hb hb-dim">Revit · Navisworks</span>
+    <span class="hb hb-dim">UAE / GCC Standard</span>
+  </div>
+  <div class="hero-stats">
+    <div class="hstat"><div class="hstat-n" id="total-count">12</div><div class="hstat-l">MEP Systems</div></div>
+    <div class="hstat"><div class="hstat-n" id="uae-count">9</div><div class="hstat-l">UAE Authority Flags</div></div>
+    <div class="hstat"><div class="hstat-n">5</div><div class="hstat-l">Disciplines</div></div>
+    <div class="hstat"><div class="hstat-n">LOD 500</div><div class="hstat-l">As-Built Ready</div></div>
+  </div>
+</section>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="sbt"><div class="sbt-n" id="s-show">12</div><div class="sbt-l">Showing</div></div>
+  <div class="sbt"><div class="sbt-n" id="s-uae">9</div><div class="sbt-l">UAE Critical</div></div>
+  <div class="sbt"><div class="sbt-n" id="s-check">0/19</div><div class="sbt-l">Sign-off</div></div>
+  <div class="sbt"><div class="sbt-n" id="s-sel">—</div><div class="sbt-l">Selected</div></div>
+</div>
+
+<!-- TOOLBAR -->
+<div class="toolbar">
+  <div class="filter-group">
+    <button class="fbt active" onclick="filter(this,'all')">All</button>
+    <button class="fbt" onclick="filter(this,'mechanical')">Mechanical</button>
+    <button class="fbt" onclick="filter(this,'electrical')">Electrical</button>
+    <button class="fbt" onclick="filter(this,'plumbing')">Plumbing</button>
+    <button class="fbt" onclick="filter(this,'fire')">Fire Protection</button>
+    <button class="fbt" onclick="filter(this,'elv')">ELV / LV</button>
+    <button class="fbt" onclick="filter(this,'renewable')">Renewable</button>
+    <button class="fbt" onclick="filter(this,'uae')">UAE Critical</button>
+  </div>
+  <div class="toolbar-actions">
+    <button class="tact" onclick="toggleChecklist()">Sign-off checklist</button>
+  </div>
+</div>
+
+<!-- CONTENT -->
+<main class="content">
+
+  <!-- CHECKLIST (hidden by default) -->
+  <div id="checklist-section" style="display:none">
+    <div class="section-rule"><span>BIM Coordinator Sign-off Checklist</span></div>
+    <div class="checklist-wrap">
+      <div class="cl-header">
+        <h3>Pre-approval coordination checklist</h3>
+        <span class="cl-progress" id="cl-progress">0 / 19 complete</span>
+      </div>
+      <div class="progress-bar-wrap"><div class="progress-bar" id="progress-bar" style="width:0%"></div></div>
+      <div class="checklist" id="checklist"></div>
+    </div>
+  </div>
+
+  <!-- DETAIL PANEL -->
+  <div id="detail-panel" class="detail-panel"></div>
+
+  <!-- SECTION LABEL -->
+  <div class="section-rule" id="section-rule"><span id="section-label">All MEP Systems</span></div>
+
+  <!-- CARD GRID -->
+  <div class="card-grid" id="card-grid"></div>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="footer-name">M. Amine Berchache</div>
+    <div class="footer-meta" style="margin-top:4px">Senior Architect & BIM Coordinator · UAE & Algeria · 16+ years</div>
+  </div>
+  <div class="footer-meta">MEP System_ BIM Coordination Reference · ISO 19650 · UAE/GCC Standard</div>
+  <a href="https://portfolio-five-kappa-d7gqte5vgz.vercel.app" class="footer-link">View full portfolio →</a>
+</footer>
+
+<script>
+const SYSTEMS=[
+{id:'hvac',cat:'mechanical',label:'Mechanical',title:'HVAC System',icon:'🌡',uae:true,
+ coords:['Model all main equipment — chillers, AHUs, FCUs, VRF outdoor units, exhaust fans','Coordinate plant room layout with maintenance clearance and equipment replacement paths','Maintain ductwork clearance from cable trays, pipes, and structural beams at all coordination zones','Coordinate chilled water, condensate, refrigerant pipes, and ventilation duct routes','Provide access panels for fire/volume dampers, VAV boxes, FCUs, filters and valves','Check ceiling void height before approving all duct and pipe routing — no assumptions','Ensure exhaust ducts from toilets, kitchens, parking, and garbage rooms are correctly separated'],
+ lod:['300','350','400','500'],
+ detail:{
+   params:['System classification: Mechanical','Size, elevation, insulation, fire rating on all elements','Equipment tag, asset code, zone, level parameters','COBie data mandatory if FM handover is contractual','Flow direction specified on all ductwork elements'],
+   coord:['Clash check against all beams and slabs required before LOD 350 freeze','Structural approval required for any duct or pipe openings through beams','Civil Defence NOC required for smoke extract systems — separate track','DEWA-compliant electrical supply specified for all plant','District cooling interface coordination if applicable — EMICOOL, Tabreed, or POMA'],
+   uaeBanner:'Smoke management and stair pressurization are separate Mechanical systems requiring independent DCD NOC — they are not sub-items of HVAC and cannot be bundled under this system scope.'
+ },
+ tags:[{t:'DCD NOC',c:'hot'},{t:'DEWA supply',c:'gold'},{t:'District cooling',c:'gold'},{t:'Ceiling void',c:'dim'}]},
+
+{id:'smoke',cat:'mechanical',label:'Mechanical / Fire',title:'Smoke Management & Pressurization',icon:'🌫',uae:true,
+ coords:['Smoke management and stair pressurization are standalone systems — not sub-items of HVAC','Model smoke extract ducts, fans, dampers, and pressurization fans separately from HVAC systems','Stair pressurization fans require dedicated AHUs, ductwork, and control — separate from general ventilation','Coordinate smoke extract zones with fire compartmentation boundaries and architectural fire strategy','All smoke management systems require DCD NOC — separate track from fire sprinkler approval'],
+ lod:['300','350','400','500'],
+ detail:{
+   params:['Fan type, duty, and standby configuration','Fire-rated ductwork specification on all smoke routes','Damper type — fire, smoke, combined — as parameters','Pressurization fan capacity, duty/standby, and control logic','DCD NOC reference number to be embedded on model elements'],
+   coord:['DCD NOC is mandatory — completely separate track from fire sprinkler NOC','Smoke compartmentation zones must match the architectural fire strategy report exactly','Pressurization duct routes through fire-rated shafts — structural coordination required','Interface with fire alarm system for automatic activation must be specified','Cannot be coordinated in isolation from the fire engineer — joint design required at all stages'],
+   uaeBanner:'Missing from most standard MEP diagrams. In Dubai, smoke management and stair pressurization carry a completely separate DCD NOC track. Omitting this from the BIM scope is a project risk.'
+ },
+ tags:[{t:'DCD NOC critical',c:'hot'},{t:'Separate system',c:'hot'},{t:'Fire strategy',c:'gold'},{t:'Pressurization',c:'dim'}]},
+
+{id:'bms',cat:'mechanical',label:'Mechanical / All Disciplines',title:'BMS — Building Management System',icon:'🖥',uae:true,
+ coords:['BMS integrates HVAC, electrical, fire, ELV, plumbing, and renewable — it is not a sub-system of any discipline','Model BMS panels, field devices, network infrastructure, and all integration interface points','Confirm BMS integration points list with all MEP consultants before LOD 350 freeze','Coordinate BMS controller and panel locations within plant rooms and service areas','BMS elements must carry correct zone, level, and system classification parameters in the model'],
+ lod:['300','350','400','500'],
+ detail:{
+   params:['Controller and panel ID reference on all elements','Integration protocol — BACnet, Modbus, LonWorks — as parameter','Zone and system classification per BEP','Network topology reference and IP addressing scheme','COBie FM handover data — mandatory on most UAE developer projects'],
+   coord:['BMS integration list is a contract document — must be issued before MEP LOD 350','All MEP consultants must confirm and sign off BMS points list for their systems','Coordinate BMS panel locations with both plant room and electrical room layouts','Network cabling containment routed and coordinated as separate ELV system','COBie asset data requirements for FM handover to be agreed with developer from Stage 2'],
+   uaeBanner:'BMS is absent from the original diagram but is a standalone critical system on all UAE projects. COBie data handover is a contract obligation on DEWA-connected and DM-registered assets — not optional.'
+ },
+ tags:[{t:'BACnet / Modbus',c:'dim'},{t:'COBie mandatory',c:'gold'},{t:'FM handover',c:'gold'},{t:'Integration list',c:'dim'}]},
+
+{id:'electrical',cat:'electrical',label:'Electrical',title:'Main Electrical Service',icon:'⚡',uae:true,
+ coords:['Model main electrical room with transformers, MDB, SMDB, DB panels, ATS, and capacitor banks','Maintain minimum clearance in front of all panels and switchgear — no compromises','Never route plumbing or drainage pipes above electrical panels under any circumstance','Coordinate cable trenches, cable ladders, cable trays, and all slab sleeve penetrations','Electrical rooms must be dry, ventilated, accessible, and structurally protected from water ingress'],
+ lod:['300','350','400','500'],
+ detail:{
+   params:['Panel schedule reference linked in model parameters','Circuit breaker ratings as typed parameters','Zone and level classification on all panel elements','Emergency vs normal power designation clearly distinguished','DEWA metering point reference number on model'],
+   coord:['DEWA authority coordination required from RIBA Stage 2 — not at detailed design','Substation sizing affects plant room footprint — must be frozen early','Generator backup scope to be confirmed with developer before design development','Fire-rated cable routes specified for all emergency power distribution','Civil Defence coordination for emergency power supply to all fire and life safety systems'],
+   uaeBanner:'DEWA approval is required for main substation sizing, LV room layout, and metering. This process must be initiated at concept stage — initiating at detailed design causes programme delays of 8–12 weeks minimum.'
+ },
+ tags:[{t:'DEWA NOC',c:'hot'},{t:'MDB / ATS',c:'dim'},{t:'Emergency power',c:'gold'},{t:'Fire-rated cables',c:'gold'}]},
+
+{id:'power',cat:'electrical',label:'Electrical',title:'Power Distribution',icon:'🔌',uae:false,
+ coords:['Model cable trays, trunking, conduits, bus ducts, and all electrical riser containment','Coordinate vertical risers with shaft sizes and slab penetration openings','Separate normal power, emergency power, ELV, and fire alarm cable routes — no co-routing','Avoid physical conflict with ductwork, chilled water pipes, drainage, and fire sprinkler pipes','Maintain required minimum spacing between power containment and low voltage cable trays'],
+ lod:['300','350','400'],
+ detail:{
+   params:['Cable tray size, material, and load capacity','Segregation zone classification as parameter','Slab penetration reference number coordinated with structure','Fire-rating of containment enclosures where required','Panel schedule and circuit reference on all elements'],
+   coord:['Riser coordination must be fully resolved before structural concrete pours — retroactive coring is a programme and cost risk','Emergency power distribution routes must be in fire-rated enclosures end-to-end','ELV containment separated minimum 300mm from power containment — client to confirm exact requirement','Bus duct installation sequence must be coordinated with structural programme','Shaft sizing to accommodate all services including future provision'],
+   uaeBanner:null
+ },
+ tags:[{t:'Riser coordination',c:'gold'},{t:'ELV separation',c:'dim'},{t:'Bus duct',c:'dim'},{t:'Slab openings',c:'gold'}]},
+
+{id:'lighting',cat:'electrical',label:'Electrical',title:'Lighting Systems',icon:'💡',uae:true,
+ coords:['Model all light fixtures with correct type, location, mounting height, and orientation','Coordinate all ceiling-mounted services — lighting, AC diffusers, sprinklers, smoke detectors, speakers, CCTV','Emergency lighting layout must follow escape routes — Civil Defence requirement in all UAE buildings','Exit signs to be visible at all angles — coordinate with architectural ceiling and bulkhead features','Exterior and landscape lights coordinated with façade waterproofing, irrigation, and landscape works'],
+ lod:['300','350','400'],
+ detail:{
+   params:['Fixture type, wattage, and lamp specification','Circuit reference linked to panel schedule','Emergency or maintained classification as parameter','IP rating for all wet area and external zone fixtures','Photometric calculation reference number'],
+   coord:['Ceiling coordination drawing required and approved before any fixture is installed','Emergency lighting layout requires Civil Defence approval — this is an authority submission deliverable','Smart lighting controls interface point to BMS must be confirmed in integration list','Façade lighting structural fixings to be confirmed with structural engineer','DEWA sub-metered circuits for energy monitoring where developer requires Green Building compliance'],
+   uaeBanner:'Civil Defence approval is required for emergency lighting layout and exit sign positioning in all occupied buildings in the UAE. This must be submitted as part of the DCD file, not assumed as a design decision.'
+ },
+ tags:[{t:'DCD approval',c:'hot'},{t:'BMS interface',c:'gold'},{t:'IP rating',c:'dim'},{t:'Ceiling coordination',c:'gold'}]},
+
+{id:'elv',cat:'elv',label:'ELV / Low Voltage',title:'ELV / Low Voltage Systems',icon:'📡',uae:true,
+ coords:['Separate ELV cable trays minimum 300mm from power trays — never share containment','Model main ELV room, IDF, MDF, server racks, panels, and all containment routes through the building','Coordinate all ceiling-mounted devices with lights, sprinklers, diffusers, and architectural ceiling pattern','Fire alarm devices must not be blocked by beams, bulkheads, or decorative ceiling features','CCTV camera locations must have clear and unobstructed viewing angles per the security strategy document'],
+ lod:['300','350','400'],
+ detail:{
+   params:['Device type and coverage zone as parameters','Panel ID and rack reference','Cable containment route, tray size, and fill ratio','Fire alarm zone classification matching compartment boundaries','BMS integration point reference for all controlled devices'],
+   coord:['Fire alarm system requires DCD NOC — completely separate approval track from structure and MEP','CCTV and access control strategy document must be issued by security consultant before modeling begins','Voice evacuation system interfaces with fire alarm — both consultants must coordinate together','Data and telecom infrastructure requires TRA approval in UAE for licensed works','BMS integration points list for all ELV systems to be confirmed before LOD 350 freeze'],
+   uaeBanner:'Fire alarm, CCTV, access control, and voice evacuation systems all require separate DCD approval tracks in Dubai. These are authority-gated deliverables, not simply MEP coordination items.'
+ },
+ tags:[{t:'DCD NOC',c:'hot'},{t:'TRA approval',c:'hot'},{t:'BMS integration',c:'gold'},{t:'Security strategy',c:'dim'}]},
+
+{id:'fire',cat:'fire',label:'Fire Protection',title:'Fire Protection Systems',icon:'🔥',uae:true,
+ coords:['Model sprinkler pipes, heads, valves, risers, flow switches, test drains, and zone control valves','Coordinate sprinkler heads with ceiling layout, lighting, AC diffusers, speakers, and access panels','Maintain correct sprinkler coverage and spacing per NFPA 13 or approved authority standard','Coordinate fire hose reels, landing valves, dry/wet risers inside fire-rated shafts','Model gaseous suppression systems separately for electrical rooms, server rooms, and generator rooms'],
+ lod:['300','350','400','500'],
+ detail:{
+   params:['Sprinkler type, K-factor, and coverage area','Fire zone reference and compartment boundary','Pipe size, material, and pressure rating as parameters','Flow switch and alarm valve reference numbers','DCD NOC reference number to be embedded on all model elements'],
+   coord:['DCD NOC is mandatory — design cannot be physically implemented before approval is received','Fire compartmentation boundaries must be agreed with architect before sprinkler zone layout is produced','All penetrations through fire-rated walls require tested and approved fire stopping specification','Fire pump room location drives all riser routing — this must be frozen at schematic stage','Gaseous suppression cylinder room sizing and discharge ventilation must be coordinated with structure and architect'],
+   uaeBanner:'All fire protection systems in Dubai require DCD NOC. Sprinkler, standpipe, fire alarm, and gaseous suppression are separate NOC tracks. Budget minimum 8–12 weeks per track in your programme.'
+ },
+ tags:[{t:'DCD NOC critical',c:'hot'},{t:'NFPA 13',c:'dim'},{t:'Fire stopping',c:'gold'},{t:'Gaseous suppression',c:'gold'}]},
+
+{id:'plumbing',cat:'plumbing',label:'Plumbing',title:'Water Supply & Plumbing',icon:'💧',uae:false,
+ coords:['Model water tanks, transfer pumps, booster pumps, pressure vessels, valves, meters, and water heaters','Separate potable water from non-potable systems — this is mandatory, not advisory','Coordinate risers, shafts, pipe sleeves, and valve access boxes at every floor level','Provide isolation valves for all zones, apartments, toilets, kitchens, and connected equipment','Never route water pipes above electrical panels, switchgear, or any sensitive room — no exceptions'],
+ lod:['300','350','400'],
+ detail:{
+   params:['Pipe diameter, material, and pressure rating','Insulation specification on hot water elements','Slope and drainage direction on all cold water runs','Fixture unit loading reference for sizing','System classification — potable vs non-potable — on all elements'],
+   coord:['DEWA water meter location and connection must be coordinated directly with DEWA authority','Booster pump room structural loading must be confirmed with structural engineer before room is sized','Hot water circulation return loops require additional riser space — coordinate in shaft design','Dubai Municipality requirements for water storage tank sizing to be confirmed early','Water meter positions must be accessible for DM and DEWA inspection and reading'],
+   uaeBanner:null
+ },
+ tags:[{t:'DEWA water meter',c:'gold'},{t:'DM tank sizing',c:'gold'},{t:'Potable separation',c:'dim'},{t:'Booster pumps',c:'dim'}]},
+
+{id:'drainage',cat:'plumbing',label:'Plumbing',title:'Drainage & Stormwater',icon:'🌊',uae:true,
+ coords:['Maintain correct pipe slope — minimum 1:80 for soil pipes, 1:50 recommended for waste','Coordinate drainage invert levels carefully and confirm before finalizing slab soffit levels','Separate sanitary drainage from stormwater drainage — complete separation, no cross-connections','Coordinate all condensate drainage from AC units — must connect to correct drainage system','Basement drainage requires sump pits and lifting stations — structural coordination is mandatory'],
+ lod:['300','350','400'],
+ detail:{
+   params:['Invert level as parameter at every node','Slope value as typed parameter on each pipe element','Fixture unit loading on collection pipes','Stack and zone reference on all vertical elements','Cleanout and rodding access point locations on model'],
+   coord:['Invert levels must be coordinated against structural beam zones before LOD 350 is frozen','Slab penetration sleeves must appear in structural drawings before concrete pour — no exceptions','Dubai Municipality approval required for connection point to the public drainage network','Grease traps required for all commercial kitchens — sized and positioned per DM requirements','Kitchen waste discharge may require separate DM approval for commercial developments'],
+   uaeBanner:'Dubai Municipality approval is required for connection to public drainage infrastructure. Grease traps for commercial kitchens are a DM compliance requirement — they must be shown in authority submission drawings.'
+ },
+ tags:[{t:'DM approval',c:'hot'},{t:'Grease trap',c:'gold'},{t:'Invert levels',c:'dim'},{t:'Slab sleeves',c:'gold'}]},
+
+{id:'renewable',cat:'renewable',label:'Renewable Energy',title:'Solar PV Systems',icon:'☀',uae:true,
+ coords:['Model PV panels, mounting frames, inverters, DC combiner boxes, cable trays, isolators, and monitoring panels','Coordinate roof space allocation with HVAC equipment, access paths, parapets, skylights, and maintenance zones','Avoid all shading sources — parapets, adjacent plant, nearby buildings, and projecting architectural features','Coordinate structural loading of PV arrays with structural engineer — these are not lightweight elements','Provide compliant fire access routes around PV arrays on roof — Civil Defence requirement in UAE'],
+ lod:['300','350','400'],
+ detail:{
+   params:['PV panel type, wattage, orientation, and tilt angle','String and array reference number','Inverter capacity, brand, and location','DC cable route and isolator positions','System yield output value for DEWA Net Metering submission'],
+   coord:['DEWA Net Metering application must be submitted before installation commences in Dubai','Structural engineer to formally confirm roof loading capacity for full PV array configuration','Waterproofing coordination — all mounting penetrations to be detailed by waterproofing consultant','Civil Defence may specify minimum access path width around roof-mounted PV arrays','Export protection relay coordination with DEWA — technical submission required'],
+   uaeBanner:'DEWA Net Metering approval is mandatory for any grid-connected PV system in Dubai. This is a separate approval track from the building permit. Initiate early — not at construction stage.'
+ },
+ tags:[{t:'DEWA Net Metering',c:'hot'},{t:'DCD roof access',c:'gold'},{t:'Structural load',c:'dim'},{t:'Waterproofing',c:'gold'}]},
+
+{id:'mech-gen',cat:'mechanical',label:'Mechanical',title:'Mechanical — Pumps & Plant',icon:'⚙',uae:false,
+ coords:['Model pumps, tanks, heat exchangers, pressurization units, expansion vessels, and control valves in correct locations','All equipment must have minimum working clearance on all sides — confirm against manufacturer data sheets','Plant rooms must have safe, clear access routes and sufficient space for equipment replacement during operation','Pipe slopes, insulation specification, valve access, and support spacing must be considered in coordination','All rotating equipment to have vibration isolation specified — type and detail to be confirmed with consultant'],
+ lod:['300','350','400'],
+ detail:{
+   params:['Equipment type, size, and installed capacity','Manufacturer reference if required for FM','Maintenance zone dimensions as model parameters','Insulation specification on all pipe elements','Vibration isolation type on all rotating equipment'],
+   coord:['Plant room layout to be agreed and frozen before MEP LOD 350 is issued','Large equipment requires a designated installation route from building exterior — confirm with architect','Replacement route must be clear of all permanent structure — verify this against structural drawings','Pipe slope parameters are coordination-critical as they drive drainage invert levels in adjacent systems','Structural loads for all plant to be submitted to structural engineer before slab design is finalized'],
+   uaeBanner:null
+ },
+ tags:[{t:'Plant room',c:'dim'},{t:'Vibration isolation',c:'dim'},{t:'Pipe slope',c:'gold'},{t:'Equipment clearance',c:'dim'}]},
+];
+
+const CHECKS=[
+  'All systems classified and placed at correct level and zone in the model',
+  'All major equipment items tagged with asset codes per asset register',
+  'Plant rooms coordinated — maintenance clearances confirmed against manufacturer data',
+  'Shafts sized correctly to accommodate all risers including future capacity',
+  'Risers aligned vertically from basement to roof — no uncoordinated offsets',
+  'Ceiling coordination complete — all services coordinated within available void',
+  'Access panels provided for all items requiring regular or periodic maintenance',
+  'Fire-rated penetrations coordinated and fire stopping specification confirmed',
+  'Drainage slopes and invert levels checked — confirmed clear of all beams',
+  'Electrical panels protected — no water services routed above any panel',
+  'Equipment maintenance clearances respected and modeled as exclusion zones',
+  'All systems declared clash-free — formal clash report issued and signed off',
+  'Shop drawings reviewed and confirmed consistent with the coordination model',
+  'Schedules extracted correctly from model — quantities and types verified',
+  'COBie and asset data requirements confirmed with client and developer',
+  'DCD NOC status confirmed for all fire and life safety systems',
+  'DEWA coordination completed for main electrical service and water metering',
+  'Dubai Municipality drainage connection approval obtained',
+  'BMS integration list reviewed and signed off by all MEP consultants',
+];
+
+let selectedId=null;
+let activeFilter='all';
+let checkStates=Array(CHECKS.length).fill(false);
+let checklistVisible=false;
+
+function filter(btn,f){
+  document.querySelectorAll('.fbt').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  activeFilter=f;
+  renderCards();
+  if(selectedId){
+    const s=SYSTEMS.find(x=>x.id===selectedId);
+    if(s&&!isVisible(s)){closeDetail();}
+  }
+}
+function isVisible(s){
+  if(activeFilter==='all')return true;
+  if(activeFilter==='uae')return s.uae;
+  return s.cat===activeFilter;
+}
+function renderCards(){
+  const grid=document.getElementById('card-grid');
+  grid.innerHTML='';
+  const vis=SYSTEMS.filter(isVisible);
+  document.getElementById('s-show').textContent=vis.length;
+  document.getElementById('s-uae').textContent=vis.filter(s=>s.uae).length;
+  const label=activeFilter==='all'?'All MEP Systems':
+    activeFilter==='uae'?'UAE Authority Critical Systems':
+    activeFilter.charAt(0).toUpperCase()+activeFilter.slice(1)+' Systems';
+  document.getElementById('section-label').textContent=label;
+  vis.forEach(s=>{
+    const c=document.createElement('div');
+    c.className='card'+(s.id===selectedId?' selected':'');
+    c.onclick=()=>selectCard(s.id);
+    c.innerHTML=`
+      <div class="card-header">
+        <div class="sys-icon">${s.icon}</div>
+        <div class="card-meta">
+          <div class="card-title">${s.title}</div>
+          <div class="card-cat">${s.label}${s.uae?`<span class="uae-flag-tag">⚑ UAE flag</span>`:''}</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <ul class="coord-list">
+          ${s.coords.slice(0,3).map(c=>`<li class="coord-item">${c}</li>`).join('')}
+          ${s.coords.length>3?`<p class="coord-more">+ ${s.coords.length-3} more — select to expand</p>`:''}
+        </ul>
+      </div>
+      <div class="card-footer">
+        ${s.tags.map(t=>`<span class="tag tag-${t.c==='hot'?'hot':t.c==='gold'?'gold':'dim'}">${t.t}</span>`).join('')}
+      </div>`;
+    grid.appendChild(c);
+  });
+}
+function selectCard(id){
+  if(selectedId===id){closeDetail();return;}
+  selectedId=id;
+  document.getElementById('s-sel').textContent=SYSTEMS.find(x=>x.id===id)?.title||'—';
+  renderCards();
+  renderDetail(id);
+  document.getElementById('detail-panel').scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+function renderDetail(id){
+  const s=SYSTEMS.find(x=>x.id===id);
+  if(!s)return;
+  const dp=document.getElementById('detail-panel');
+  dp.innerHTML=`
+    <div class="dp-head">
+      <div class="dp-icon">${s.icon}</div>
+      <div class="dp-title-block">
+        <div class="dp-title">${s.title}</div>
+        <div class="dp-sub">${s.label} — Full coordination requirements</div>
+      </div>
+      <button class="close-dp" onclick="closeDetail()">✕ Close</button>
+    </div>
+    ${s.detail.uaeBanner?`<div class="uae-banner"><strong>⚑ UAE</strong>${s.detail.uaeBanner}</div>`:''}
+    <div class="dp-cols">
+      <div class="dp-col">
+        <h3>Model parameters required</h3>
+        <ul class="dp-list">${s.detail.params.map(p=>`<li>${p}</li>`).join('')}</ul>
+      </div>
+      <div class="dp-col">
+        <h3>Authority & coordination actions</h3>
+        <ul class="dp-list">${s.detail.coord.map(c=>`<li class="${/DEWA|DCD|Municipality|NOC|TRA|Civil Defence/.test(c)?'flag':''}">${c}</li>`).join('')}</ul>
+      </div>
+    </div>
+    <div class="lod-row">
+      <span class="lod-label">LOD stages</span>
+      ${['300','350','400','500'].map(l=>`<span class="lod-pill${s.lod.includes(l)?' active':''}">${l}</span>`).join('')}
+    </div>
+    <div class="all-coords">
+      <h3>All coordination requirements</h3>
+      <ul class="coord-full-list">${s.coords.map(c=>`<li>${c}</li>`).join('')}</ul>
+    </div>`;
+  dp.classList.add('visible');
+}
+function closeDetail(){
+  selectedId=null;
+  document.getElementById('s-sel').textContent='—';
+  renderCards();
+  document.getElementById('detail-panel').classList.remove('visible');
+}
+function toggleChecklist(){
+  checklistVisible=!checklistVisible;
+  document.getElementById('checklist-section').style.display=checklistVisible?'block':'none';
+  if(checklistVisible)renderChecklist();
+}
+function toggleCheck(i){
+  checkStates[i]=!checkStates[i];
+  renderChecklist();
+}
+function renderChecklist(){
+  const done=checkStates.filter(Boolean).length;
+  document.getElementById('cl-progress').textContent=`${done} / ${CHECKS.length} complete`;
+  document.getElementById('s-check').textContent=`${done}/${CHECKS.length}`;
+  const pct=Math.round(done/CHECKS.length*100);
+  document.getElementById('progress-bar').style.width=pct+'%';
+  const cl=document.getElementById('checklist');
+  cl.innerHTML=CHECKS.map((c,i)=>`
+    <div class="check-item${checkStates[i]?' done':''}" onclick="toggleCheck(${i})">
+      <div class="chk-box">${checkStates[i]?'✓':''}</div>
+      <span class="check-text">${c}</span>
+    </div>`).join('');
+}
+document.getElementById('total-count').textContent=SYSTEMS.length;
+document.getElementById('uae-count').textContent=SYSTEMS.filter(s=>s.uae).length;
+renderCards();
+</script>
+</body>
+</html>
