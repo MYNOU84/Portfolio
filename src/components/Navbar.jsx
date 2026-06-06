@@ -46,13 +46,15 @@ export default function Navbar({ isAdmin = false, onAdminToggle }) {
       { threshold: 0.3 }
     )
     NAV_LINKS.forEach(l => {
+      if (l.external) return
       const el = document.querySelector(l.href)
       if (el) observer.observe(el)
     })
     return () => observer.disconnect()
   }, [])
 
-  const scrollTo = (href) => { if (!href || href.startsWith('http')) { window.location.href = href; return; }
+  const scrollTo = (href) => {
+    if (!href || href.startsWith('http')) { window.location.href = href; return; }
     setMenuOpen(false)
     document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' })
   }
@@ -88,7 +90,7 @@ export default function Navbar({ isAdmin = false, onAdminToggle }) {
             {NAV_LINKS.map(link => (
               <button
                 key={link.href}
-                onClick={() => link.external ? window.location.href = link.href : scrollTo(link.href)}
+                onClick={() => link.external ? window.open(link.href, '_blank') : scrollTo(link.href)}
                 className="relative text-grey-muted hover:text-white-warm text-[11px] tracking-[0.25em] uppercase transition-colors duration-300 group pb-1 cursor-pointer"
               >
                 {link.label}
@@ -143,7 +145,7 @@ export default function Navbar({ isAdmin = false, onAdminToggle }) {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.07 }}
-                onClick={() => link.external ? window.location.href = link.href : scrollTo(link.href)}
+                onClick={() => link.external ? window.open(link.href, '_blank') : scrollTo(link.href)}
                 className="text-white-warm hover:text-gold font-display text-3xl tracking-wider transition-colors duration-200 cursor-pointer"
               >
                 {link.label}
