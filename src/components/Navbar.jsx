@@ -6,7 +6,7 @@ const NAV_LINKS = [
   { label: 'About',      href: '#about' },
   { label: 'Experience', href: '#experience' },
   { label: 'Portfolio',  href: '#portfolio' },
-  { label: 'MEP System', href: '/mep-system-bim-coordination.html' },
+  { label: 'MEP System', href: 'https://portfolio-five-kappa-d7gqte5vgz.vercel.app/mep-system-bim-coordination.html', external: true },
   { label: 'Services',   href: '#services' },
   { label: 'Contact',    href: '#contact' },
 ]
@@ -88,7 +88,7 @@ export default function Navbar({ isAdmin = false, onAdminToggle }) {
             {NAV_LINKS.map(link => (
               <button
                 key={link.href}
-                onClick={() => scrollTo(link.href)}
+                onClick={() => link.external ? window.location.href = link.href : scrollTo(link.href)}
                 className="relative text-grey-muted hover:text-white-warm text-[11px] tracking-[0.25em] uppercase transition-colors duration-300 group pb-1 cursor-pointer"
               >
                 {link.label}
@@ -143,7 +143,7 @@ export default function Navbar({ isAdmin = false, onAdminToggle }) {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.07 }}
-                onClick={() => scrollTo(link.href)}
+                onClick={() => link.external ? window.location.href = link.href : scrollTo(link.href)}
                 className="text-white-warm hover:text-gold font-display text-3xl tracking-wider transition-colors duration-200 cursor-pointer"
               >
                 {link.label}
