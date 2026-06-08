@@ -6,6 +6,19 @@ const imgs = (slug, count, ext = 'jpg') =>
 
 export const PROJECTS = [
   {
+    id: 'villa-youssef-b',
+    cover: 0,
+    title: 'Villa Youssef B',
+    subtitle: 'Guest Bedroom Suite',
+    location: 'Algeria',
+    category: 'Interior',
+    year: '2026',
+    role: 'Interior Designer',
+    description: 'Interior design concept for a private villa guest bedroom suite. Full 3D visualization with AI-enhanced renders.',
+    tags: ['Interior', 'Residential', 'Villa', '3D Visualization'],
+    images: imgs('villa-youssef-b', 28, 'jpg'),
+  },
+  {
     id: 'oasis-pavilion',
     cover: 5,
     title: 'Oasis Pavilion',
