@@ -1,4 +1,4 @@
-import { useState, useCallback, useRef } from 'react'
+import { useState, useCallback, useRef, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { X, Star, GripVertical, Check, Plus, Trash2, Upload, Folder, RotateCcw, Pencil, EyeOff, Eye } from 'lucide-react'
 import { PROJECTS, CATEGORIES } from '../data/projects'
@@ -37,12 +37,25 @@ function InfoRow({ label, value }) {
   )
 }
 
-function DynamicProjectPanel({ project, onDelete, onSave, onAddImages }) {
+function DynamicProjectPanel({ project, onDelete, onSave, onAddImages, onSetCover }) {
   const [editing, setEditing]   = useState(false)
   const [confirm, setConfirm]   = useState(false)
   const [addingImgs, setAddingImgs] = useState(false)
   const [dragActive, setDragActive] = useState(false)
+  const [thumbs, setThumbs]     = useState([])
   const addFileRef = useRef(null)
+
+  useEffect(() => {
+    let cancelled = false
+    const load = async () => {
+      if (!project.imageKeys?.length) return
+      const { getBlobUrl } = await import('../utils/imageDb')
+      const urls = await Promise.all(project.imageKeys.map(k => getBlobUrl(k)))
+      if (!cancelled) setThumbs(urls.filter(Boolean))
+    }
+    load()
+    return () => { cancelled = true }
+  }, [project.id, project.imageCount])
 
   const FORM_CATS = CATEGORIES.filter(c => c !== 'All')
   const [form, setForm] = useState({
@@ -113,6 +126,34 @@ function DynamicProjectPanel({ project, onDelete, onSave, onAddImages }) {
           </div>
           {project.description && (
             <p className="text-white/40 text-xs mt-5 leading-relaxed">{project.description}</p>
+          )}
+
+          {/* Cover picker */}
+          {thumbs.length > 0 && (
+            <div className="mt-6">
+              <p className="text-white/30 text-[9px] tracking-[0.3em] uppercase mb-3">Cover Image — click ★ to select</p>
+              <div className="grid grid-cols-4 sm:grid-cols-5 lg:grid-cols-6 gap-2">
+                {thumbs.map((url, idx) => {
+                  const isCover = idx === (project.coverIdx ?? 0)
+                  return (
+                    <div key={idx}
+                      className={`relative group aspect-[4/3] overflow-hidden bg-dark-grey cursor-pointer ${isCover ? 'ring-2 ring-gold' : ''}`}
+                      onClick={() => onSetCover(idx)}>
+                      <img src={url} alt="" className="w-full h-full object-cover pointer-events-none" draggable={false} />
+                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-all duration-200 flex items-center justify-center">
+                        <Star size={16}
+                          className={`transition-all ${isCover ? 'text-gold opacity-100' : 'text-white/70 opacity-0 group-hover:opacity-100'}`}
+                          fill={isCover ? 'currentColor' : 'none'} />
+                      </div>
+                      {isCover && (
+                        <div className="absolute top-1 left-1 bg-gold text-deep-black text-[8px] tracking-wider px-1.5 py-0.5 font-semibold">COVER</div>
+                      )}
+                      <div className="absolute bottom-0.5 right-0.5 bg-black/60 text-white/50 text-[7px] px-1">{idx + 1}</div>
+                    </div>
+                  )
+                })}
+              </div>
+            </div>
           )}
 
           {/* Add more images */}
@@ -591,6 +632,17 @@ export default function AdminPanel({ onClose }) {
     showSaved()
   }
 
+  /* ── set cover for custom (dynamic) project ─────────────────── */
+  const handleSetDynamicCover = (projectId, coverIdx) => {
+    const project = dynamicMeta.find(p => p.id === projectId)
+    if (!project) return
+    const updated = { ...project, coverIdx }
+    saveDynamicProject(updated)
+    window.dispatchEvent(new CustomEvent('dynamic-projects-updated'))
+    setDynamicMeta(loadDynamicProjects())
+    showSaved()
+  }
+
   /* ── hide / show built-in project ────────────────────────────── */
   const handleToggleHidden = (id) => {
     const updated = toggleHiddenProject(id)
@@ -952,6 +1004,7 @@ export default function AdminPanel({ onClose }) {
               onDelete={() => handleDeleteDynamic(dynamicProject.id)}
               onSave={handleSaveDynamic}
               onAddImages={handleAddImages}
+              onSetCover={(idx) => handleSetDynamicCover(dynamicProject.id, idx)}
             />
           )}
 

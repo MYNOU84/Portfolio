@@ -18,6 +18,7 @@ function getProjectImages(project, adminData) {
 }
 
 function getCoverImage(project, adminData) {
+  if (project.isDynamic) return project.images[project.coverIdx ?? 0] || project.images[0]
   const d = adminData[project.id]
   const coverIdx = d?.cover ?? 0
   return project.images[coverIdx] || project.images[0]
