@@ -69,15 +69,21 @@ export default function Services() {
           <div>
             {SERVICES.map((service, i) => {
               const Icon = Icons[service.iconName] || Icons.Star
+              const Wrapper = service.href ? motion.a : motion.div
+              const wrapperProps = service.href
+                ? { href: service.href }
+                : {}
               return (
-                <motion.div
+                <Wrapper
                   key={service.id}
+                  {...wrapperProps}
                   initial={{ opacity: 0, x: 40 }}
                   animate={inView ? { opacity: 1, x: 0 } : {}}
                   transition={{ duration: 0.6, delay: 0.1 + i * 0.08 }}
-                  className="group flex items-start gap-5 py-5 border-b border-white-warm/6
-                    hover:border-gold/20 cursor-default transition-all duration-300
-                    hover:bg-dark-grey/30 px-4 -mx-4"
+                  className={`group flex items-start gap-5 py-5 border-b border-white-warm/6
+                    hover:border-gold/20 transition-all duration-300
+                    hover:bg-dark-grey/30 px-4 -mx-4 no-underline
+                    ${service.href ? 'cursor-pointer' : 'cursor-default'}`}
                 >
                   <div className="shrink-0 w-10 h-10 border border-gold/25 flex items-center justify-center
                     group-hover:border-gold/60 group-hover:bg-gold/5 transition-all duration-300 mt-0.5">
@@ -88,11 +94,11 @@ export default function Services() {
                       <h3 className="text-white-warm font-medium text-sm tracking-wide group-hover:text-gold transition-colors duration-300">
                         {service.title}
                       </h3>
-                      <span className="text-gold/0 group-hover:text-gold/60 text-xs transition-all duration-300 shrink-0 ml-3">→</span>
+                      <span className={`text-xs transition-all duration-300 shrink-0 ml-3 ${service.href ? 'text-gold/50 group-hover:text-gold' : 'text-gold/0 group-hover:text-gold/60'}`}>→</span>
                     </div>
                     <p className="text-grey-muted/70 text-xs leading-6">{service.description}</p>
                   </div>
-                </motion.div>
+                </Wrapper>
               )
             })}
           </div>

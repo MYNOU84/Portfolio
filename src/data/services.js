@@ -5,6 +5,7 @@ export const SERVICES = [
     description:
       'Independent pre-purchase and pre-fit-out space planning audits for residential and commercial units. Area efficiency assessment, Dubai Building Code compliance check, zoning and circulation analysis, ergonomic clearance review, and ranked weakness report with actionable layout improvement proposals.',
     iconName: 'Ruler',
+    href: '/space-planning/',
   },
   {
     id: 'arch-design',
