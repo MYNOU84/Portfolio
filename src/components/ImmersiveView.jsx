@@ -1,6 +1,7 @@
 import { useState, useRef, useCallback, useEffect } from 'react'
 import { motion, AnimatePresence, useSpring } from 'framer-motion'
 import { X, ChevronLeft, ChevronRight, Grid3x3, Compass, ZoomIn, ZoomOut } from 'lucide-react'
+import RotateIcon from './RotateIcon'
 
 const PAN_SPRING  = { stiffness: 80, damping: 22, mass: 1 }
 const MIN_ZOOM    = 0.25
@@ -11,6 +12,7 @@ export default function ImmersiveView({ project, onClose, onOpenGallery }) {
   const [hintVisible, setHintVisible] = useState(true)
   const [transitioning, setTransitioning] = useState(false)
   const [zoom, setZoom]               = useState(1)
+  const [rotation, setRotation]       = useState(0)
   const [isDragging, setIsDragging]   = useState(false)
   const containerRef  = useRef(null)
   const dragStart     = useRef({ x: 0, y: 0, px: 0, py: 0 })
@@ -32,7 +34,8 @@ export default function ImmersiveView({ project, onClose, onOpenGallery }) {
   const resetPan  = useCallback(() => { panX.set(0); panY.set(0) }, [panX, panY])
   const zoomIn    = useCallback(() => setZoom(z => Math.min(+(z + 0.25).toFixed(2), MAX_ZOOM)), [])
   const zoomOut   = useCallback(() => setZoom(z => Math.max(+(z - 0.25).toFixed(2), MIN_ZOOM)), [])
-  const resetZoom = useCallback(() => { setZoom(1); panX.set(0); panY.set(0) }, [panX, panY])
+  const resetZoom = useCallback(() => { setZoom(1); setRotation(0); panX.set(0); panY.set(0) }, [panX, panY])
+  const rotate    = useCallback(() => setRotation(r => r - 90), [])
 
   /* max pan range — allow panning at any zoom level */
   const maxPan = () => Math.max(Math.abs(zoom - 1) * 500, 200)
@@ -97,6 +100,7 @@ export default function ImmersiveView({ project, onClose, onOpenGallery }) {
       if (e.key === '+' || e.key === '=') zoomIn()
       if (e.key === '-')                 zoomOut()
       if (e.key === '0')                 resetZoom()
+      if (e.key === 'r' || e.key === 'R') rotate()
     }
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
@@ -109,7 +113,7 @@ export default function ImmersiveView({ project, onClose, onOpenGallery }) {
     if (imgIndex > 0 && !transitioning) {
       directionRef.current = 'prev'
       setTransitioning(true); setImgIndex(i => i - 1)
-      setZoom(1); resetPan(); resetMotion()
+      setZoom(1); setRotation(0); resetPan(); resetMotion()
       setTimeout(() => setTransitioning(false), 500)
     }
   }
@@ -117,7 +121,7 @@ export default function ImmersiveView({ project, onClose, onOpenGallery }) {
     if (imgIndex < images.length - 1 && !transitioning) {
       directionRef.current = 'next'
       setTransitioning(true); setImgIndex(i => i + 1)
-      setZoom(1); resetPan(); resetMotion()
+      setZoom(1); setRotation(0); resetPan(); resetMotion()
       setTimeout(() => setTransitioning(false), 500)
     }
   }
@@ -155,6 +159,8 @@ export default function ImmersiveView({ project, onClose, onOpenGallery }) {
         {/* Main image — zoom + pan only (no rotation) */}
         <motion.div
           className="absolute inset-0"
+          animate={{ rotate: rotation }}
+          transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
           style={{
             scale: zoom,
             x: panX,
@@ -187,7 +193,7 @@ export default function ImmersiveView({ project, onClose, onOpenGallery }) {
               animate="center"
               exit="exit"
               transition={{ duration: 0.48, ease: [0.4, 0, 0.2, 1] }}
-              className="absolute inset-0 w-full h-full object-cover"
+              className="absolute inset-0 w-full h-full object-contain"
               draggable={false}
               onContextMenu={e => e.preventDefault()}
               style={{ pointerEvents: 'none', backfaceVisibility: 'hidden' }}
@@ -242,6 +248,10 @@ export default function ImmersiveView({ project, onClose, onOpenGallery }) {
         <button onClick={zoomOut} disabled={zoom <= MIN_ZOOM}
           className="w-9 h-9 border border-white-warm/20 flex items-center justify-center text-white-warm hover:border-gold hover:text-gold transition-all duration-200 disabled:opacity-20 cursor-pointer">
           <ZoomOut size={14} />
+        </button>
+        <button onClick={rotate} title="Rotate 90° (key: R)"
+          className="w-9 h-9 border border-white-warm/20 flex items-center justify-center text-white-warm hover:border-gold hover:text-gold transition-all duration-200 cursor-pointer">
+          <RotateIcon size={14} />
         </button>
       </div>
 

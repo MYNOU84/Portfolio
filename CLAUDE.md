@@ -25,10 +25,14 @@ All project content lives in `src/data/projects.js`. The `imgs(slug, count, ext=
 
 **Important:** `Oasis_pavilion` uses `.png` extension: `imgs('Oasis_pavilion', 92, 'png')`. All other projects use `.jpg`.
 
-### Built-in projects (16 total)
+### Built-in projects (28 total)
+
+Categories mirror the source folder structure of the parent directory:
+`Concept & Detail Design` / `Interior Presentation` / `Interior 3D View` / `Site Construction` / `BIM`.
 
 | id | folder | images |
 |---|---|---|
+| villa-youssef-b | villa-youssef-b | 28 |
 | oasis-pavilion | Oasis_pavilion | 92 (.png) |
 | chadi-tower | CHADI_Tower_Dubai_Downtown | 16 |
 | cal-capital-tower | CAL_Capital_Tower_Dubai_Downtown | 14 |
@@ -45,6 +49,29 @@ All project content lives in `src/data/projects.js`. The `imgs(slug, count, ext=
 | construction-site | Presentation_Algeria | 33 |
 | villa-youssef | Villa_youssef_B | 50 |
 | autres-dubai | Autre_Dubai | 20 |
+| concept-h-01 | Concept_H-01 | 4 |
+| concept-h-01-set2 | Concept_H_01 | 12 |
+| concept-p-21049 | Concept_P-21049 | 11 |
+| concept-p-2329 | Concept_P-2329 | 8 |
+| concept-p-35052 | Concept_P-35052 | 9 |
+| concept-p-45099 | Concept_P-45099 | 10 |
+| concept-p-4699 | Concept_P-4699 | 13 |
+| concept-p-49237 | Concept_P-49237 | 12 |
+| concept-p-550 | Concept_P-550 | 12 |
+| concept-p-59224 | Concept_P-59224 | 6 |
+| bim-h-02 | BIM_H-02 | 8 |
+
+Concept_* and BIM_* images were downsampled from print-resolution plots
+(3200 px long edge, JPEG q85→q90) and rotated to landscape orientation.
+The coded projects (H-xx / P-xxxxx) intentionally have **no location/year** —
+both viewers render these fields conditionally. Fill in `projects.js` when verified.
+
+### Image viewers
+
+- `ImmersiveView.jsx` — pan/zoom viewer. Main image uses `object-contain`
+  (full sheet always visible, no cropping). Rotate button (`RotateIcon.jsx`)
+  rotates 90° CCW per click, key `R`, resets on image change.
+- `ProjectModal.jsx` — gallery. Same rotate control next to the zoom buttons.
 
 ### Two project types
 

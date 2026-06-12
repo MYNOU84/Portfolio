@@ -100,7 +100,9 @@ function ProjectCard({ project, onImmersive, onGallery, adminData }) {
             <LayoutGrid size={11} />
           </button>
         </div>
-        <p className="text-grey-muted text-xs mb-3 tracking-wide">{project.location} · {project.year}</p>
+        {(project.location || project.year) && (
+          <p className="text-grey-muted text-xs mb-3 tracking-wide">{[project.location, project.year].filter(Boolean).join(' · ')}</p>
+        )}
         <p className="text-white-warm/55 text-sm leading-6 line-clamp-2">{project.description}</p>
 
         <div className="flex flex-wrap gap-2 mt-3">

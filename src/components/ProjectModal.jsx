@@ -1,21 +1,23 @@
 import { useState, useEffect, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { X, ZoomIn, ZoomOut, ChevronLeft, ChevronRight, MapPin, Calendar, Tag } from 'lucide-react'
+import RotateIcon from './RotateIcon'
 
 export default function ProjectModal({ project, onClose }) {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [zoom, setZoom]                 = useState(1)
+  const [rotation, setRotation]         = useState(0)
   const [imgErrors, setImgErrors]       = useState({})
 
   const validImages = project.images.filter((_, i) => !imgErrors[i])
 
   const prev = useCallback(() => {
-    setZoom(1)
+    setZoom(1); setRotation(0)
     setCurrentIndex(i => (i - 1 + validImages.length) % validImages.length)
   }, [validImages.length])
 
   const next = useCallback(() => {
-    setZoom(1)
+    setZoom(1); setRotation(0)
     setCurrentIndex(i => (i + 1) % validImages.length)
   }, [validImages.length])
 
@@ -26,6 +28,7 @@ export default function ProjectModal({ project, onClose }) {
       if (e.key === 'ArrowRight')  next()
       if (e.key === '+')           setZoom(z => Math.min(z + 0.3, 3))
       if (e.key === '-')           setZoom(z => Math.max(z - 0.3, 1))
+      if (e.key === 'r' || e.key === 'R') setRotation(r => r - 90)
     }
     window.addEventListener('keydown', handleKey)
     return () => window.removeEventListener('keydown', handleKey)
@@ -53,14 +56,18 @@ export default function ProjectModal({ project, onClose }) {
         <div className="min-w-0">
           <h2 className="font-display text-lg sm:text-xl text-white-warm truncate">{project.title}</h2>
           <div className="flex items-center gap-3 mt-0.5 flex-wrap">
-            <span className="flex items-center gap-1 text-grey-muted text-xs">
-              <MapPin size={10} className="text-gold shrink-0" />
-              {project.location}
-            </span>
-            <span className="flex items-center gap-1 text-grey-muted text-xs">
-              <Calendar size={10} className="text-gold shrink-0" />
-              {project.year}
-            </span>
+            {project.location && (
+              <span className="flex items-center gap-1 text-grey-muted text-xs">
+                <MapPin size={10} className="text-gold shrink-0" />
+                {project.location}
+              </span>
+            )}
+            {project.year && (
+              <span className="flex items-center gap-1 text-grey-muted text-xs">
+                <Calendar size={10} className="text-gold shrink-0" />
+                {project.year}
+              </span>
+            )}
             <span className="text-grey-muted text-xs">
               {currentIndex + 1}<span className="text-gold mx-1">/</span>{validImages.length}
             </span>
@@ -84,6 +91,13 @@ export default function ProjectModal({ project, onClose }) {
             title="Zoom in (+)"
           >
             <ZoomIn size={13} />
+          </button>
+          <button
+            onClick={() => setRotation(r => r - 90)}
+            title="Rotate 90° (R)"
+            className="w-8 h-8 border border-white-warm/15 flex items-center justify-center text-grey-muted hover:border-gold hover:text-gold transition-all duration-200"
+          >
+            <RotateIcon size={13} />
           </button>
           <div className="w-px h-5 bg-white-warm/10 mx-1" />
           <button
@@ -122,7 +136,7 @@ export default function ProjectModal({ project, onClose }) {
               draggable={false}
               onContextMenu={e => e.preventDefault()}
               style={{
-                transform: `scale(${zoom})`,
+                transform: `scale(${zoom}) rotate(${rotation}deg)`,
                 transformOrigin: 'center',
                 transition: 'transform 0.2s ease',
                 maxHeight: 'calc(100vh - 200px)',
@@ -150,7 +164,7 @@ export default function ProjectModal({ project, onClose }) {
           {validImages.map((src, i) => (
             <button
               key={i}
-              onClick={() => { setCurrentIndex(i); setZoom(1) }}
+              onClick={() => { setCurrentIndex(i); setZoom(1); setRotation(0) }}
               className={`shrink-0 w-14 h-10 overflow-hidden border-2 transition-all duration-200 ${
                 i === currentIndex ? 'border-gold opacity-100' : 'border-transparent opacity-40 hover:opacity-70'
               }`}
