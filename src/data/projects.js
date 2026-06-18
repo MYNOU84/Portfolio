@@ -388,10 +388,10 @@ export const PROJECTS = [
 export const CATEGORIES = [
   'All',
   'Concept & Detail Design',
+  'BIM',
   'Interior Presentation',
   'Interior 3D View',
   'Site Construction',
-  'BIM',
 ]
 
 // Permanent display order — edit this array to reorder projects before deployment.
