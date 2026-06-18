@@ -346,6 +346,30 @@ export const PROJECTS = [
 
   /* ── 4_BIM ─────────────────────────────────────────────────────────── */
   {
+    id: 'bim-villa',
+    cover: 0,
+    title: 'Villa — BIM Authoring',
+    subtitle: 'Architectural BIM Model · Residential Villa',
+    category: 'BIM',
+    role: 'BIM Architect',
+    description:
+      'Full BIM authoring for a private residential villa. Architectural model built in Revit covering floor plans, sections, elevations, and 3D coordination views. Deliverables include construction-stage documentation and family content.',
+    tags: ['BIM', 'Revit', 'Residential', 'Villa', 'ARCH'],
+    images: imgs('BIM_Villa', 14),
+  },
+  {
+    id: 'bim-clash-detection',
+    cover: 0,
+    title: 'MEP Clash Detection',
+    subtitle: 'Navisworks Coordination · MEP / ARCH',
+    category: 'BIM',
+    role: 'BIM Coordinator',
+    description:
+      'MEP clash detection workflow using Navisworks. Federated model review identifying hard and soft clashes across architectural, structural, mechanical, and electrical disciplines. AI-enhanced visualisation of clash reports for consultant coordination.',
+    tags: ['BIM', 'Clash Detection', 'Navisworks', 'MEP', 'Coordination'],
+    images: imgs('BIM_Clash_Detection', 18),
+  },
+  {
     id: 'bim-h-02',
     cover: 0,
     title: 'H-02 — BIM Coordination Sheets',
@@ -353,9 +377,9 @@ export const PROJECTS = [
     category: 'BIM',
     role: 'BIM Architect',
     description:
-      'BIM coordination drawing set — project H-02. Site plan (plan de masse), ground floor and basement levels SS1/SS2: architectural layouts with MEP overlay sheets and legends.',
-    tags: ['BIM', 'Coordination', 'ARCH/MEP'],
-    images: imgs('BIM_H-02', 8),
+      'BIM coordination drawing set — project H-02. Site plan (plan de masse), ground floor and basement levels SS1/SS2: architectural layouts with MEP overlay sheets and legends. LOD 300 coordination views for corridors, rooms, and reflected ceiling plans.',
+    tags: ['BIM', 'Coordination', 'ARCH/MEP', 'LOD 300'],
+    images: imgs('BIM_H-02', 28),
   },
 ]
 
@@ -399,5 +423,7 @@ export const PROJECT_ORDER = [
   'concept-p-49237',
   'concept-p-550',
   'concept-p-59224',
+  'bim-villa',
+  'bim-clash-detection',
   'bim-h-02',
 ]
