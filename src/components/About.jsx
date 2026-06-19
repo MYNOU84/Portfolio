@@ -73,10 +73,11 @@ export default function About() {
               and interior design projects.
             </p>
             <p className="text-white-warm/60 leading-8 mb-6">
-              Currently coordinating two major Dubai high-rise projects: a 90-storey residential tower
-              in Downtown Dubai and a 50-storey tower on Sheikh Zayed Road (GFA 130,000 m²). Strong
-              background in ISO 19650-aligned BIM workflows, BEP, MIDP, TIDP, CDE governance, federated
-              model coordination and clash resolution using Revit, Navisworks and Autodesk Construction Cloud.
+              Currently practising independently as a Freelance Interior Designer and 3D Visualization
+              specialist, applying AI-assisted visualization and prompt engineering to concept development
+              and client presentations. Previously led design coordination on two flagship Dubai towers —
+              a 90-storey residential tower in Downtown Dubai (GFA uncapped) and a 50-storey tower on
+              Sheikh Zayed Road (GFA: 130,000 m²) at Model Engineering Consultant.
             </p>
             <p className="text-white-warm/60 leading-8 mb-10">
               Hands-on contractor-side and consultant-side experience with strong knowledge of Dubai
