@@ -1,0 +1,1487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Space Planning Report — 3 Bed + Maid · The Chedi Private Residences</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0A0A0A;
+    --surface: #111111;
+    --card: #161616;
+    --border: rgba(255,255,255,0.07);
+    --border-strong: rgba(255,255,255,0.13);
+    --gold: #C4922A;
+    --gold-dim: rgba(196,146,42,0.15);
+    --gold-border: rgba(196,146,42,0.3);
+    --text: #F0EBE0;
+    --text-mid: #9A9388;
+    --text-dim: #5A5650;
+    --red: #C94040;
+    --red-bg: rgba(201,64,64,0.1);
+    --red-border: rgba(201,64,64,0.25);
+    --amber: #C4882A;
+    --amber-bg: rgba(196,136,42,0.1);
+    --amber-border: rgba(196,136,42,0.25);
+    --green: #3D8C5E;
+    --green-bg: rgba(61,140,94,0.1);
+    --green-border: rgba(61,140,94,0.25);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.018) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.018) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .container { max-width: 900px; margin: 0 auto; padding: 0 40px; position: relative; z-index: 1; }
+
+  /* ─── COVER ─── */
+  .cover {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding-bottom: 80px;
+    border-bottom: 1px solid var(--border-strong);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cover::after {
+    content: 'SPACE PLANNING';
+    position: absolute;
+    top: 50%;
+    left: -20px;
+    transform: translateY(-50%);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(80px, 14vw, 160px);
+    font-weight: 300;
+    color: rgba(255,255,255,0.025);
+    white-space: nowrap;
+    pointer-events: none;
+    letter-spacing: 0.05em;
+    line-height: 1;
+  }
+
+  .cover-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--gold);
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    margin-bottom: 32px;
+  }
+
+  .cover-label span { color: var(--text-dim); margin: 0 12px; }
+
+  .cover-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(42px, 7vw, 72px);
+    font-weight: 300;
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+    margin-bottom: 8px;
+  }
+
+  .cover-title em { font-style: italic; color: var(--gold); }
+
+  .cover-subtitle {
+    font-size: 15px;
+    color: var(--text-mid);
+    margin-bottom: 60px;
+    font-weight: 300;
+    letter-spacing: 0.02em;
+  }
+
+  .cover-meta {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+
+  .meta-cell { background: var(--bg); padding: 20px 24px; }
+
+  .meta-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 8px;
+  }
+
+  .meta-value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--text);
+    line-height: 1;
+  }
+
+  .meta-value.highlight { color: var(--gold); }
+  .meta-value.warn { color: var(--amber); }
+  .meta-value.danger { color: var(--red); }
+
+  /* ─── SECTION ─── */
+  .section { padding: 80px 0; border-bottom: 1px solid var(--border); }
+
+  .section-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--gold);
+    letter-spacing: 0.2em;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .section-num::after { content: ''; flex: 1; height: 1px; background: var(--gold-border); }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(28px, 4vw, 40px);
+    font-weight: 300;
+    line-height: 1.1;
+    margin-bottom: 8px;
+    letter-spacing: -0.01em;
+  }
+
+  .section-title em { font-style: italic; color: var(--gold); }
+
+  .section-intro {
+    font-size: 14px;
+    color: var(--text-mid);
+    margin-bottom: 48px;
+    max-width: 620px;
+    line-height: 1.8;
+  }
+
+  /* ─── VERDICT BADGES ─── */
+  .verdict {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 12px;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  .verdict-pass { background: var(--green-bg); border: 1px solid var(--green-border); color: var(--green); }
+  .verdict-warn { background: var(--amber-bg); border: 1px solid var(--amber-border); color: var(--amber); }
+  .verdict-fail { background: var(--red-bg); border: 1px solid var(--red-border); color: var(--red); }
+
+  .dot { width: 5px; height: 5px; border-radius: 50%; background: currentColor; }
+
+  /* ─── SCORE ─── */
+  .score-display { display: flex; align-items: baseline; gap: 4px; font-family: 'Cormorant Garamond', serif; }
+  .score-big { font-size: 64px; font-weight: 400; line-height: 1; color: var(--gold); }
+  .score-denom { font-size: 24px; color: var(--text-dim); }
+  .score-label { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--text-dim); letter-spacing: 0.15em; text-transform: uppercase; margin-left: 8px; }
+
+  /* ─── AREA BREAKDOWN ─── */
+  .area-breakdown { margin: 40px 0; }
+
+  .area-bar-track {
+    height: 48px;
+    display: flex;
+    overflow: hidden;
+    margin-bottom: 20px;
+    gap: 1px;
+  }
+
+  .area-segment {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    transition: opacity 0.2s;
+  }
+
+  .area-segment:hover { opacity: 0.85; }
+
+  .area-legend { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+
+  .legend-item { display: flex; align-items: flex-start; gap: 10px; }
+  .legend-dot { width: 10px; height: 10px; flex-shrink: 0; margin-top: 4px; }
+  .legend-label { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.1em; }
+  .legend-value { font-size: 15px; font-weight: 500; color: var(--text); margin-top: 2px; }
+  .legend-pct { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--text-mid); }
+
+  /* ─── COMPARE ─── */
+  .compare-block { margin: 32px 0; }
+
+  .compare-row {
+    display: grid;
+    grid-template-columns: 200px 1fr 80px;
+    align-items: center;
+    gap: 20px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .compare-row:first-child { border-top: 1px solid var(--border); }
+  .compare-label { font-size: 13px; color: var(--text-mid); }
+  .compare-label strong { color: var(--text); display: block; font-weight: 500; font-size: 14px; }
+
+  .bar-wrap { position: relative; height: 4px; background: rgba(255,255,255,0.06); }
+  .bar-fill { height: 100%; position: absolute; left: 0; top: 0; }
+  .bar-std-line { position: absolute; top: -6px; height: 16px; width: 1px; background: var(--text-dim); }
+  .bar-std-label { position: absolute; top: 12px; font-family: 'DM Mono', monospace; font-size: 8px; color: var(--text-dim); letter-spacing: 0.1em; transform: translateX(-50%); white-space: nowrap; }
+
+  .compare-val { text-align: right; font-family: 'Cormorant Garamond', serif; font-size: 22px; }
+
+  /* ─── ROOM TABLE ─── */
+  .room-table { width: 100%; border-collapse: collapse; margin: 32px 0; }
+  .room-table thead tr { border-bottom: 1px solid var(--gold-border); }
+  .room-table th { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); font-weight: 400; padding: 0 0 14px; text-align: left; }
+  .room-table th:last-child { text-align: right; }
+  .room-table td { padding: 16px 0; border-bottom: 1px solid var(--border); vertical-align: top; font-size: 13px; }
+  .room-table td:last-child { text-align: right; }
+  .room-name { font-weight: 500; color: var(--text); font-size: 14px; }
+  .room-dim { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--text-mid); margin-top: 3px; }
+  .room-note { font-size: 11px; color: var(--text-dim); font-style: italic; margin-top: 3px; }
+  .room-standard { color: var(--text-dim); font-size: 12px; }
+  .room-area { font-family: 'Cormorant Garamond', serif; font-size: 20px; color: var(--text); }
+  .room-area small { font-family: 'DM Sans', sans-serif; font-size: 11px; color: var(--text-dim); }
+
+  /* ─── ISSUE CARDS ─── */
+  .issues-grid { display: flex; flex-direction: column; gap: 2px; margin: 32px 0; }
+
+  .issue-card {
+    padding: 22px 28px;
+    border-left: 2px solid transparent;
+    background: var(--card);
+    position: relative;
+    transition: background 0.2s;
+  }
+
+  .issue-card:hover { background: var(--surface); }
+  .issue-card.critical { border-left-color: var(--red); }
+  .issue-card.warning { border-left-color: var(--amber); }
+  .issue-card.positive { border-left-color: var(--green); }
+
+  .issue-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
+  .issue-title { font-size: 15px; font-weight: 500; color: var(--text); }
+  .issue-body { font-size: 13px; color: var(--text-mid); line-height: 1.75; }
+  .issue-body strong { color: var(--text); font-weight: 500; }
+  .issue-metric { font-family: 'Cormorant Garamond', serif; font-size: 32px; font-weight: 400; line-height: 1; }
+  .issue-card.critical .issue-metric { color: var(--red); }
+  .issue-card.warning .issue-metric { color: var(--amber); }
+  .issue-card.positive .issue-metric { color: var(--green); }
+
+  /* ─── SCORE GRID ─── */
+  .score-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    margin: 40px 0;
+  }
+
+  .score-cell { background: var(--bg); padding: 24px 20px; }
+  .score-cell-label { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 12px; }
+  .score-cell-num { font-family: 'Cormorant Garamond', serif; font-size: 36px; font-weight: 400; line-height: 1; }
+  .score-cell-bar { height: 2px; background: rgba(255,255,255,0.06); margin-top: 12px; }
+  .score-cell-fill { height: 100%; }
+
+  /* ─── FINAL VERDICT ─── */
+  .final-verdict { padding: 60px 0; display: grid; grid-template-columns: 1fr 2fr; gap: 60px; align-items: start; }
+
+  .verdict-score-huge { font-family: 'Cormorant Garamond', serif; font-size: clamp(80px, 12vw, 120px); font-weight: 300; line-height: 0.9; color: var(--gold); letter-spacing: -0.02em; }
+  .verdict-denom { font-family: 'Cormorant Garamond', serif; font-size: 32px; color: var(--text-dim); }
+  .verdict-category { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-mid); margin-top: 16px; }
+  .verdict-text { font-size: 14px; color: var(--text-mid); line-height: 1.85; }
+  .verdict-text p { margin-bottom: 16px; }
+  .verdict-text strong { color: var(--text); font-weight: 500; }
+  .verdict-recommendation { margin-top: 32px; padding: 20px 24px; background: var(--gold-dim); border: 1px solid var(--gold-border); font-size: 13px; color: var(--text-mid); line-height: 1.75; }
+  .verdict-recommendation strong { color: var(--gold); font-weight: 500; }
+
+  /* ─── FLOOR PLAN IMAGE (Section 00) ─── */
+  .floorplan-img { width: 100%; display: block; border: 1px solid var(--border); }
+  .floorplan-caption { margin-top: 14px; display: flex; justify-content: space-between; align-items: center; }
+  .floorplan-source { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--text-dim); letter-spacing: 0.1em; }
+  .floorplan-tags { display: flex; gap: 8px; }
+  .floorplan-tag { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase; padding: 3px 10px; border: 1px solid var(--border-strong); color: var(--text-dim); }
+
+  /* ─── ZONE MAP ─── */
+  .zone-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); margin: 32px 0; }
+  .zone-cell { background: var(--bg); padding: 22px 24px; }
+  .zone-cell-label { font-family: 'DM Mono', monospace; font-size: 9px; color: var(--text-dim); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 12px; }
+  .zone-cell-rooms { font-size: 13px; color: var(--text-mid); line-height: 2; }
+  .zone-cell-rooms span { display: block; color: var(--text); font-weight: 500; }
+  .zone-color-pub { color: var(--green); }
+  .zone-color-semi { color: var(--amber); }
+  .zone-color-priv { color: var(--gold); }
+
+  /* ─── BACK LINK ─── */
+  .back-link { display: inline-flex; align-items: center; gap: 8px; font-family: 'DM Mono', monospace; font-size: 10px; color: var(--text-dim); text-decoration: none; letter-spacing: 0.15em; text-transform: uppercase; padding: 32px 0 0; border: none; transition: color 0.2s; }
+  .back-link:hover { color: var(--gold); }
+
+  /* ─── FOOTER ─── */
+  .footer { padding: 60px 0 80px; display: flex; justify-content: space-between; align-items: flex-end; }
+  .footer-name { font-family: 'Cormorant Garamond', serif; font-size: 18px; font-weight: 300; color: var(--text-mid); }
+  .footer-meta { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--text-dim); text-align: right; line-height: 1.8; letter-spacing: 0.1em; }
+
+  /* ─── DETAIL CARD ─── */
+  .detail-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin: 32px 0; }
+  .detail-card { background: var(--card); padding: 28px; border: 1px solid var(--border); }
+  .detail-card-label { font-family: 'DM Mono', monospace; font-size: 9px; color: var(--gold); letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 16px; }
+  .detail-card p { font-size: 13px; color: var(--text-mid); line-height: 1.8; }
+  .detail-card p strong { color: var(--text); font-weight: 500; }
+  .detail-metric { font-family: 'Cormorant Garamond', serif; font-size: 40px; font-weight: 300; color: var(--text); line-height: 1; margin-bottom: 4px; }
+  .detail-metric-label { font-family: 'DM Mono', monospace; font-size: 9px; color: var(--text-dim); letter-spacing: 0.15em; text-transform: uppercase; }
+
+  @media (max-width: 680px) {
+    .container { padding: 0 20px; }
+    .cover-meta { grid-template-columns: repeat(3, 1fr); }
+    .area-legend { grid-template-columns: repeat(2, 1fr); }
+    .score-grid { grid-template-columns: repeat(2, 1fr); }
+    .final-verdict { grid-template-columns: 1fr; }
+    .zone-row { grid-template-columns: 1fr; }
+    .detail-2col { grid-template-columns: 1fr; }
+    .compare-row { grid-template-columns: 140px 1fr 60px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <a href="/space-planning/" class="back-link">← Space Planning</a>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     COVER
+════════════════════════════════════════════ -->
+<div class="container">
+  <div class="cover">
+    <div class="cover-label">
+      Space Planning Analysis Report
+      <span>·</span>
+      3-Bedroom + Maid
+      <span>·</span>
+      Jun 2026
+    </div>
+
+    <h1 class="cover-title">
+      The Chedi<br>
+      <em>Private Residences</em>
+    </h1>
+
+    <p class="cover-subtitle">
+      Sheikh Zayed Road, Dubai &nbsp;·&nbsp; Al Seeb Development &nbsp;·&nbsp; Sanctuary Type Unit (Left) &nbsp;·&nbsp; Handover Q1 2029
+    </p>
+
+    <div class="cover-meta">
+      <div class="meta-cell">
+        <div class="meta-label">Typology</div>
+        <div class="meta-value highlight">3BR + Maid</div>
+      </div>
+      <div class="meta-cell">
+        <div class="meta-label">GFA</div>
+        <div class="meta-value">360 m²</div>
+      </div>
+      <div class="meta-cell">
+        <div class="meta-label">Built-up Area</div>
+        <div class="meta-value">480 m²</div>
+      </div>
+      <div class="meta-cell">
+        <div class="meta-label">DBC Status</div>
+        <div class="meta-value danger">1 Fail · 2 Marginal</div>
+      </div>
+      <div class="meta-cell">
+        <div class="meta-label">Overall Score</div>
+        <div class="meta-value highlight">78 / 100</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     SECTION 00 · DEVELOPER FLOOR PLAN
+════════════════════════════════════════════ -->
+<div class="container">
+  <div class="section">
+    <div class="section-num">00</div>
+    <h2 class="section-title">Developer <em>Floor Plan</em></h2>
+    <p class="section-intro">Reference drawing — Sanctuary Type Unit (left). This plan forms the basis for all dimensional analysis in this report. All dimensions read directly from the drawing. Confirmed: GFA = 360 m² (3,875 sqft) · Built-up area = 480 m². Net internal floor areas measured from plan for zone-by-zone analysis in Section 01.</p>
+
+    <div class="floorplan-caption" style="margin-bottom:14px;">
+      <div class="floorplan-source">Source: Al Seeb / The Chedi Private Residences — Typical Floor Plan</div>
+      <div class="floorplan-tags">
+        <div class="floorplan-tag">FFL +42,700</div>
+        <div class="floorplan-tag">3BR + Maid</div>
+        <div class="floorplan-tag">Sanctuary Type</div>
+      </div>
+    </div>
+
+    <div style="background:var(--card); border:1px solid var(--border); overflow:hidden;">
+      <img src="Flat%20mood%20board.png" alt="The Chedi Private Residences — Sanctuary Type 3BR + Maid — Floor Plan" style="width:100%; display:block;" loading="lazy" />
+    </div>
+
+    <div class="floorplan-caption" style="margin-top:14px;">
+      <div class="floorplan-source">Al Seeb · The Chedi Private Residences · Sheikh Zayed Road, Dubai</div>
+      <div class="floorplan-tags">
+        <div class="floorplan-tag">360 m² GFA</div>
+        <div class="floorplan-tag">480 m² Built-up</div>
+        <div class="floorplan-tag">3,875 sqft</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     SECTION 01 · AREA EFFICIENCY
+════════════════════════════════════════════ -->
+<div class="container">
+  <div class="section">
+    <div class="section-num">01</div>
+    <h2 class="section-title">Area <em>Efficiency Analysis</em></h2>
+    <p class="section-intro">Breakdown of the unit's usable interior by zone. Confirmed unit figures: GFA = 360 m² (3,875 sqft) · Built-up area = 480 m² (includes balconies, external walls, shared area allocation). Net internal room areas measured from plan = ~228 m². Circulation is measured as a proportion of total net internal floor area. At this price and typology tier, branded residences should target ≥70% primary-use area with ≤12% lost to unactivated circulation.</p>
+
+    <div style="display:flex; align-items:baseline; gap:16px; margin-bottom:40px;">
+      <div class="score-display">
+        <span class="score-big">5.3</span>
+        <span class="score-denom">%</span>
+      </div>
+      <div>
+        <div style="font-family:'DM Mono',monospace; font-size:10px; color:var(--text-dim); letter-spacing:0.15em; text-transform:uppercase;">Circulation Loss</div>
+        <div style="font-size:12px; color:var(--green); margin-top:4px;">Benchmark ≤ 12% · Well Within</div>
+      </div>
+    </div>
+
+    <div class="area-breakdown">
+      <div class="area-bar-track">
+        <div class="area-segment" style="width:44.1%; background:#C4922A; color:#0A0A0A;" title="Living/Dining/Kitchen: 100.5m²">44%</div>
+        <div class="area-segment" style="width:21.7%; background:#8A6520; color:#F0EBE0;" title="Master Bed + Ensuite: 49.5m²">22%</div>
+        <div class="area-segment" style="width:14.6%; background:#3A5568; color:#F0EBE0;" title="Bedrooms 01+02: 33.4m²">15%</div>
+        <div class="area-segment" style="width:5.0%; background:#2A3D4A; color:#9A9388;" title="Dressing: 11.5m²"> </div>
+        <div class="area-segment" style="width:5.9%; background:#222222; color:#5A5650;" title="Maid + Store: 13.4m²"> </div>
+        <div class="area-segment" style="width:3.4%; background:#1E1E1E; color:#5A5650;" title="Lobby: 7.7m²"> </div>
+        <div class="area-segment" style="width:5.3%; background:#3A1A1A; color:#C94040;" title="Circulation: 12m²"> </div>
+      </div>
+
+      <div class="area-legend">
+        <div class="legend-item">
+          <div class="legend-dot" style="background:#C4922A;"></div>
+          <div>
+            <div class="legend-label">Living / Dining / Kitchen</div>
+            <div class="legend-value">100.5 m²</div>
+            <div class="legend-pct">44.1% of interior</div>
+          </div>
+        </div>
+        <div class="legend-item">
+          <div class="legend-dot" style="background:#8A6520;"></div>
+          <div>
+            <div class="legend-label">Master Bed + Ensuite</div>
+            <div class="legend-value">49.5 m²</div>
+            <div class="legend-pct">21.7% of interior</div>
+          </div>
+        </div>
+        <div class="legend-item">
+          <div class="legend-dot" style="background:#3A5568;"></div>
+          <div>
+            <div class="legend-label">Bedrooms 01 + 02</div>
+            <div class="legend-value">33.4 m²</div>
+            <div class="legend-pct">14.6% of interior</div>
+          </div>
+        </div>
+        <div class="legend-item">
+          <div class="legend-dot" style="background:#2A3D4A;"></div>
+          <div>
+            <div class="legend-label">Dressing Rooms</div>
+            <div class="legend-value">11.5 m²</div>
+            <div class="legend-pct">5.0% of interior</div>
+          </div>
+        </div>
+        <div class="legend-item">
+          <div class="legend-dot" style="background:#444;"></div>
+          <div>
+            <div class="legend-label">Maid + Store</div>
+            <div class="legend-value">13.4 m²</div>
+            <div class="legend-pct">5.9% of interior</div>
+          </div>
+        </div>
+        <div class="legend-item">
+          <div class="legend-dot" style="background:#333;"></div>
+          <div>
+            <div class="legend-label">Entry Lobby</div>
+            <div class="legend-value">7.7 m²</div>
+            <div class="legend-pct">3.4% of interior</div>
+          </div>
+        </div>
+        <div class="legend-item">
+          <div class="legend-dot" style="background:#3A1A1A;"></div>
+          <div>
+            <div class="legend-label">Internal Circulation</div>
+            <div class="legend-value" style="color:var(--amber);">12.0 m²</div>
+            <div class="legend-pct">5.3% of interior</div>
+          </div>
+        </div>
+        <div class="legend-item">
+          <div class="legend-dot" style="background:#1A2A1A;"></div>
+          <div>
+            <div class="legend-label">Balconies (exc.)</div>
+            <div class="legend-value">~45 m²</div>
+            <div class="legend-pct">Outdoor / not counted</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="compare-block" style="margin-top:48px;">
+      <div class="compare-row">
+        <div class="compare-label"><strong>Primary Use Area</strong>Rooms (excl. circ.)</div>
+        <div class="bar-wrap">
+          <div class="bar-fill" style="width:79%; background:var(--green);"></div>
+          <div class="bar-std-line" style="left:65%;"></div>
+          <div class="bar-std-label" style="left:65%;">Min 65%</div>
+        </div>
+        <div class="compare-val" style="color:var(--green);">79%</div>
+      </div>
+      <div class="compare-row">
+        <div class="compare-label"><strong>Circulation Loss</strong>Dead corridor area</div>
+        <div class="bar-wrap">
+          <div class="bar-fill" style="width:44%; background:var(--green);"></div>
+          <div class="bar-std-line" style="left:100%;"></div>
+          <div class="bar-std-label" style="left:100%;">Max 12%</div>
+        </div>
+        <div class="compare-val" style="color:var(--green);">5.3%</div>
+      </div>
+      <div class="compare-row">
+        <div class="compare-label"><strong>Living / Dining Share</strong>Entertaining zone</div>
+        <div class="bar-wrap">
+          <div class="bar-fill" style="width:88%; background:var(--gold);"></div>
+          <div class="bar-std-line" style="left:50%;"></div>
+          <div class="bar-std-label" style="left:50%;">Typical 35%</div>
+        </div>
+        <div class="compare-val" style="color:var(--gold);">44%</div>
+      </div>
+    </div>
+
+    <div style="margin-top:32px; padding:20px 24px; background:var(--green-bg); border:1px solid var(--green-border); font-size:13px; color:var(--text-mid);">
+      <strong style="color:var(--green);">VERDICT:</strong> Area efficiency is strong. The 79% primary-use ratio and 5.3% circulation loss reflect a well-resolved plan. The oversized living/dining zone (44% of interior) is appropriate for a branded luxury residence — it signals entertainment-first programming aligned with The Chedi brand positioning.
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     SECTION 02 · PUBLIC / PRIVATE ZONING
+════════════════════════════════════════════ -->
+<div class="container">
+  <div class="section">
+    <div class="section-num">02</div>
+    <h2 class="section-title">Public / Private <em>Zoning</em></h2>
+    <p class="section-intro">Assessment of how the plan separates public entertaining zones, semi-private service zones, and private sleeping zones. A properly zoned unit ensures a guest can move from entry to living without passing through the bedroom corridor.</p>
+
+    <div class="zone-row">
+      <div class="zone-cell">
+        <div class="zone-cell-label zone-color-pub">● Public Zone</div>
+        <div class="zone-cell-rooms">
+          <span>Entry Lobby / Vestibule</span>
+          <span>Family / Living / Dining</span>
+          <span>Open Kitchen</span>
+          <span>Main Balcony (Top)</span>
+        </div>
+      </div>
+      <div class="zone-cell">
+        <div class="zone-cell-label zone-color-semi">● Semi-Private Zone</div>
+        <div class="zone-cell-rooms">
+          <span>Internal Corridor</span>
+          <span>Maid Room</span>
+          <span>Store</span>
+          <span>Lower Balcony</span>
+        </div>
+      </div>
+      <div class="zone-cell">
+        <div class="zone-cell-label zone-color-priv">● Private Zone</div>
+        <div class="zone-cell-rooms">
+          <span>Master Bedroom</span>
+          <span>Master Ensuite</span>
+          <span>Bedroom 01</span>
+          <span>Bedroom 02</span>
+          <span>Dressing Rooms</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="issues-grid">
+      <div class="issue-card positive">
+        <div class="issue-header">
+          <span class="issue-title">Entry Lobby Transition — Correctly Buffered</span>
+          <span class="verdict verdict-pass"><span class="dot"></span>Pass</span>
+        </div>
+        <div class="issue-body">The entry vestibule (3,500 × 2,200mm) provides a proper decompression buffer between the building corridor and the living space. Guests enter through a defined lobby before reaching the living/dining zone. This is a fundamental requirement for a branded residence and it is met.</div>
+      </div>
+      <div class="issue-card positive">
+        <div class="issue-header">
+          <span class="issue-title">Bedroom Corridor Separation from Living Zone</span>
+          <span class="verdict verdict-pass"><span class="dot"></span>Pass</span>
+        </div>
+        <div class="issue-body">The internal corridor clearly demarcates the transition from public to private. A guest in the living/dining zone cannot directly access or view the bedroom wing without intentional movement through the corridor. This is correctly resolved.</div>
+      </div>
+      <div class="issue-card positive">
+        <div class="issue-header">
+          <span class="issue-title">Maid Room Access — Direct from Building Lobby Corridor</span>
+          <span class="verdict verdict-pass"><span class="dot"></span>Pass</span>
+        </div>
+        <div class="issue-body">Confirmed from floor plan: the maid room has a <strong>direct door opening onto the building's shared lobby / lift corridor</strong> — staff access does not require transit through the private bedroom zone. This is the correct service access arrangement for a branded residence. Previous flag was incorrect and is withdrawn.</div>
+      </div>
+      <div class="issue-card critical">
+        <div class="issue-header">
+          <span class="issue-title">Maid Room — No Natural Daylighting · DBC B.6.5.2.1 FAIL</span>
+          <span class="verdict verdict-fail"><span class="dot"></span>DBC Fail</span>
+        </div>
+        <div class="issue-body">The maid room is an <strong>internal room with no external window</strong>. DBC 2021 <strong>B.6.5.2.1</strong> explicitly states: <em>"Housekeeper's rooms shall be provided with adequate daylighting similar to living spaces as shown in Table B.8."</em> Table B.8 requires a minimum window glazing area of <strong>10% of the room floor area</strong>. For this maid room (8.4m²) → minimum glazed window area = <strong>0.84m²</strong>. No window = no daylighting = <strong>mandatory DBC violation</strong>. Note: DBC H.4.11 confirms that natural ventilation alone is never relied upon in Dubai — HVAC is mandatory regardless. The fail here is specifically about <strong>natural light (daylighting)</strong>, which cannot be replaced by mechanical systems. <strong>Recommendation:</strong> Coordinate with architect and façade engineer to introduce a window to an external wall or light well. If structurally impossible, a skylight or borrowed light solution requires DM pre-approval before authority submission.</div>
+      </div>
+      <div class="issue-card positive">
+        <div class="issue-header">
+          <span class="issue-title">Guest Powder Room — Confirmed at Internal Lobby</span>
+          <span class="verdict verdict-pass"><span class="dot"></span>Pass</span>
+        </div>
+        <div class="issue-body">Confirmed from floor plan (June 2026 review): a dedicated guest WC is positioned directly off the internal unit lobby (LOB.) — accessible from the entry sequence before reaching the living/dining zone. This is a correct and considered placement for a branded residence: guests pass through the lobby, powder room access is discreet without requiring entry deeper into the unit. The lobby-adjacent position also separates it from the bedroom zone. Adjacency to a store room confirms the service core logic is resolved. DBC B.8.1 satisfied (min 1 bathroom per unit confirmed beyond this).</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     SECTION 03 · CIRCULATION ANALYSIS
+════════════════════════════════════════════ -->
+<div class="container">
+  <div class="section">
+    <div class="section-num">03</div>
+    <h2 class="section-title">Circulation <em>Analysis</em></h2>
+    <p class="section-intro">Measurement of internal corridor and transition widths against DBC minimums and GCC best-practice standards. At The Chedi's brand tier, circulation should exceed minimum thresholds and support dignified movement with furniture and luggage clearances.</p>
+
+    <table class="room-table">
+      <thead>
+        <tr>
+          <th>Circulation Element</th>
+          <th>Design Width</th>
+          <th>DBC Min</th>
+          <th>GCC Best Practice</th>
+          <th style="text-align:right;">Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <div class="room-name">Main Bedroom Corridor</div>
+            <div class="room-note">Links lobby to all bedrooms + maid</div>
+          </td>
+          <td><span class="room-dim">1,100 mm</span></td>
+          <td class="room-standard">1,000 mm</td>
+          <td class="room-standard">1,200 mm</td>
+          <td><span class="verdict verdict-warn"><span class="dot"></span>Marginal</span></td>
+        </tr>
+        <tr>
+          <td>
+            <div class="room-name">Entry Lobby (Left)</div>
+            <div class="room-note">Primary vestibule from lift lobby</div>
+          </td>
+          <td><span class="room-dim">3,500 × 2,200 mm</span></td>
+          <td class="room-standard">—</td>
+          <td class="room-standard">Min 1,500 × 1,500</td>
+          <td><span class="verdict verdict-pass"><span class="dot"></span>Pass</span></td>
+        </tr>
+        <tr>
+          <td>
+            <div class="room-name">Entry Lobby (Right)</div>
+            <div class="room-note">Secondary vestibule</div>
+          </td>
+          <td><span class="room-dim">3,456 × 2,200 mm</span></td>
+          <td class="room-standard">—</td>
+          <td class="room-standard">Min 1,500 × 1,500</td>
+          <td><span class="verdict verdict-pass"><span class="dot"></span>Pass</span></td>
+        </tr>
+        <tr>
+          <td>
+            <div class="room-name">Kitchen Passage</div>
+            <div class="room-note">Working clearance at open kitchen</div>
+          </td>
+          <td><span class="room-dim">1,500 mm</span></td>
+          <td class="room-standard">—</td>
+          <td class="room-standard">Min 1,200 mm</td>
+          <td><span class="verdict verdict-pass"><span class="dot"></span>Pass</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="issues-grid">
+      <div class="issue-card warning">
+        <div class="issue-header">
+          <span class="issue-title">Bedroom Corridor at 1,100mm — Below GCC Best Practice</span>
+          <div class="issue-metric">−100mm</div>
+        </div>
+        <div class="issue-body">The bedroom corridor width of <strong>1,100mm</strong> clears the DBC minimum of 1,000mm but falls 100mm short of the GCC best-practice standard of 1,200mm. For a branded residence targeting international HNW buyers, corridor widths below 1,200mm read as compact. Luggage trolley clearance, double-sided movement, and wheelchair access are all constrained at 1,100mm. <strong>Recommendation:</strong> Review structural possibility of widening corridor by 100mm — likely achievable if party walls allow minor adjustment.</div>
+      </div>
+    </div>
+
+    <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:1px; background:var(--border); border:1px solid var(--border); margin-top:40px;">
+      <div style="background:var(--bg); padding:24px;">
+        <div style="font-family:'DM Mono',monospace; font-size:9px; color:var(--text-dim); letter-spacing:0.15em; text-transform:uppercase; margin-bottom:10px;">Total Circulation</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:36px; color:var(--text);">12 m²</div>
+      </div>
+      <div style="background:var(--bg); padding:24px;">
+        <div style="font-family:'DM Mono',monospace; font-size:9px; color:var(--text-dim); letter-spacing:0.15em; text-transform:uppercase; margin-bottom:10px;">% of Interior</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:36px; color:var(--green);">5.3%</div>
+      </div>
+      <div style="background:var(--bg); padding:24px;">
+        <div style="font-family:'DM Mono',monospace; font-size:9px; color:var(--text-dim); letter-spacing:0.15em; text-transform:uppercase; margin-bottom:10px;">Benchmark</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:36px; color:var(--text-mid);">≤ 12%</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     SECTION 04 · ROOM-BY-ROOM DIMENSIONAL AUDIT
+════════════════════════════════════════════ -->
+<div class="container">
+  <div class="section">
+    <div class="section-num">04</div>
+    <h2 class="section-title">Room-by-Room <em>Dimensional Audit</em></h2>
+    <p class="section-intro">Every room measured against the Dubai Building Code minimum dimension requirement and GCC luxury residential best-practice standards. Dimensions read directly from the developer floor plan drawing.</p>
+
+    <table class="room-table">
+      <thead>
+        <tr>
+          <th style="width:35%;">Room</th>
+          <th>Design Dim.</th>
+          <th>Area</th>
+          <th>DBC Min</th>
+          <th>GCC Standard</th>
+          <th style="text-align:right;">Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <div class="room-name">Family / Living / Dining</div>
+            <div class="room-dim">8,500 × 11,820 mm</div>
+            <div class="room-note">Open-plan incl. kitchen zone</div>
+          </td>
+          <td class="room-dim">8,500 × 11,820</td>
+          <td>
+            <div class="room-area">100.5 m²</div>
+            <div style="font-size:11px; color:var(--text-dim);">1,082 sqft</div>
+          </td>
+          <td class="room-standard">Min 3.0m dim</td>
+          <td class="room-standard">Min 4.0m depth</td>
+          <td><span class="verdict verdict-pass"><span class="dot"></span>Pass</span></td>
+        </tr>
+        <tr>
+          <td>
+            <div class="room-name">Master Bedroom</div>
+            <div class="room-dim">5,550 × 5,320 mm</div>
+            <div class="room-note">With dedicated dressing access</div>
+          </td>
+          <td class="room-dim">5,550 × 5,320</td>
+          <td>
+            <div class="room-area">29.5 m²</div>
+            <div style="font-size:11px; color:var(--text-dim);">318 sqft</div>
+          </td>
+          <td class="room-standard">Min 3.0m dim</td>
+          <td class="room-standard">Min 3.5m dim</td>
+          <td><span class="verdict verdict-pass"><span class="dot"></span>Pass</span></td>
+        </tr>
+        <tr>
+          <td>
+            <div class="room-name">Master Ensuite (Wash)</div>
+            <div class="room-dim">5,400mm wide, complex layout</div>
+            <div class="room-note">Double basin · shower · WC · bidet zones</div>
+          </td>
+          <td class="room-dim">5,400 × ~3,700</td>
+          <td>
+            <div class="room-area">~20 m²</div>
+            <div style="font-size:11px; color:var(--text-dim);">~215 sqft</div>
+          </td>
+          <td class="room-standard">Min 2.5m²</td>
+          <td class="room-standard">Multi-fixture</td>
+          <td><span class="verdict verdict-pass"><span class="dot"></span>Pass</span></td>
+        </tr>
+        <tr>
+          <td>
+            <div class="room-name">Bedroom 01</div>
+            <div class="room-dim">3,095 × 5,295 mm</div>
+            <div class="room-note">Adjacent dressing room</div>
+          </td>
+          <td class="room-dim">3,095 × 5,295</td>
+          <td>
+            <div class="room-area">16.4 m²</div>
+            <div style="font-size:11px; color:var(--text-dim);">176 sqft</div>
+          </td>
+          <td class="room-standard">Min 3.0m dim</td>
+          <td class="room-standard">Min 3.5m dim</td>
+          <td><span class="verdict verdict-warn"><span class="dot"></span>Marginal</span></td>
+        </tr>
+        <tr>
+          <td>
+            <div class="room-name">Bedroom 02</div>
+            <div class="room-dim">3,200 × 5,295 mm</div>
+            <div class="room-note">Adjacent dressing room</div>
+          </td>
+          <td class="room-dim">3,200 × 5,295</td>
+          <td>
+            <div class="room-area">17.0 m²</div>
+            <div style="font-size:11px; color:var(--text-dim);">183 sqft</div>
+          </td>
+          <td class="room-standard">Min 3.0m dim</td>
+          <td class="room-standard">Min 3.5m dim</td>
+          <td><span class="verdict verdict-warn"><span class="dot"></span>Marginal</span></td>
+        </tr>
+        <tr>
+          <td>
+            <div class="room-name">Dressing Rooms (x2)</div>
+            <div class="room-dim">~2,156 × ~5,315 mm each</div>
+            <div class="room-note">Shared across both secondary bedrooms</div>
+          </td>
+          <td class="room-dim">~2,156 × ~5,315</td>
+          <td>
+            <div class="room-area">~11.5 m²</div>
+            <div style="font-size:11px; color:var(--text-dim);">combined</div>
+          </td>
+          <td class="room-standard">No min</td>
+          <td class="room-standard">Min 1.5m width</td>
+          <td><span class="verdict verdict-pass"><span class="dot"></span>Pass</span></td>
+        </tr>
+        <tr>
+          <td>
+            <div class="room-name">Maid Room</div>
+            <div class="room-dim">3,491 × 2,401 mm</div>
+            <div class="room-note">Domestic staff accommodation</div>
+          </td>
+          <td class="room-dim">3,491 × 2,401</td>
+          <td>
+            <div class="room-area">8.4 m²</div>
+            <div style="font-size:11px; color:var(--text-dim);">90 sqft</div>
+          </td>
+          <td class="room-standard">Min 7.0m² · Window req.</td>
+          <td class="room-standard">Natural light + ventilation</td>
+          <td><span class="verdict verdict-fail"><span class="dot"></span>DBC Fail — No Window</span></td>
+        </tr>
+        <tr>
+          <td>
+            <div class="room-name">Open Kitchen</div>
+            <div class="room-dim">~3,800 × 3,000 mm counter run</div>
+            <div class="room-note">Integrated within open-plan living zone</div>
+          </td>
+          <td class="room-dim">3,800 × 3,000</td>
+          <td>
+            <div class="room-area">~11.4 m²</div>
+            <div style="font-size:11px; color:var(--text-dim);">~123 sqft</div>
+          </td>
+          <td class="room-standard">Min 5.4m² <span style="font-size:10px;color:var(--text-dim);">(DBC 2021 Table B.3)</span></td>
+          <td class="room-standard">Passage min 1,200mm</td>
+          <td><span class="verdict verdict-pass"><span class="dot"></span>Pass</span></td>
+        </tr>
+        <tr>
+          <td>
+            <div class="room-name">Balcony — Top (Main)</div>
+            <div class="room-dim">Full unit width × ~2,500mm deep</div>
+            <div class="room-note">Direct access from living zone</div>
+          </td>
+          <td class="room-dim">~13,500 × ~2,500</td>
+          <td>
+            <div class="room-area">~33.8 m²</div>
+            <div style="font-size:11px; color:var(--text-dim);">~364 sqft</div>
+          </td>
+          <td class="room-standard">Min 1.0m depth</td>
+          <td class="room-standard">Min 1.5m depth</td>
+          <td><span class="verdict verdict-pass"><span class="dot"></span>Pass</span></td>
+        </tr>
+        <tr>
+          <td>
+            <div class="room-name">Balcony — Bottom</div>
+            <div class="room-dim">Accessible from lower zone</div>
+            <div class="room-note">Side balcony / secondary outdoor space</div>
+          </td>
+          <td class="room-dim">~4,000 × ~2,500</td>
+          <td>
+            <div class="room-area">~10.0 m²</div>
+            <div style="font-size:11px; color:var(--text-dim);">~108 sqft</div>
+          </td>
+          <td class="room-standard">Min 1.0m depth</td>
+          <td class="room-standard">Min 1.5m depth</td>
+          <td><span class="verdict verdict-pass"><span class="dot"></span>Pass</span></td>
+        </tr>
+        <tr>
+          <td>
+            <div class="room-name">Store Room</div>
+            <div class="room-dim">Lower zone, right side</div>
+            <div class="room-note">Adjacent to bottom balcony</div>
+          </td>
+          <td class="room-dim">~2,000 × ~2,500</td>
+          <td>
+            <div class="room-area">~5.0 m²</div>
+            <div style="font-size:11px; color:var(--text-dim);">~54 sqft</div>
+          </td>
+          <td class="room-standard">No min</td>
+          <td class="room-standard">—</td>
+          <td><span class="verdict verdict-pass"><span class="dot"></span>Pass</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div style="padding:16px 24px; background:var(--amber-bg); border:1px solid var(--amber-border); font-size:13px; color:var(--text-mid); margin-top:8px;">
+      <strong style="color:var(--red);">DBC Summary:</strong> 8 Pass · 2 Marginal · <strong style="color:var(--red);">1 Fail</strong>. The maid room fails DBC 2021 B.6.5.2.1 — no natural daylighting (no external window). Minimum glazed area required = 10% of room floor area (0.84m²). Ventilation is addressed by mandatory HVAC per DBC H.4.11, but the absence of a window cannot be substituted by mechanical means. The two marginal items (Bedrooms 01 and 02) clear the DBC 3,000mm minimum but fall below the GCC luxury standard of 3,500mm. Maid room daylighting failure requires resolution before Dubai Municipality authority submission.
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     SECTION 05 · LIVING / DINING ANALYSIS
+════════════════════════════════════════════ -->
+<div class="container">
+  <div class="section">
+    <div class="section-num">05</div>
+    <h2 class="section-title">Living / Dining <em>Analysis</em></h2>
+    <p class="section-intro">The open-plan living, dining, and kitchen zone is the signature space of this unit. At 100.5m², it represents the primary investment thesis for a buyer — this is where The Chedi brand promise is spatially expressed or broken.</p>
+
+    <div class="detail-2col">
+      <div class="detail-card">
+        <div class="detail-card-label">Living Zone Width</div>
+        <div class="detail-metric">8,500 mm</div>
+        <div class="detail-metric-label">Across entertaining zone</div>
+        <p style="margin-top:16px;">At 8.5m, the living zone width allows simultaneous formal dining, lounge seating, and informal sitting without overlap. Minimum recommended for this typology is 4,000mm — this unit clears it by more than double.</p>
+      </div>
+      <div class="detail-card">
+        <div class="detail-card-label">Living Zone Depth</div>
+        <div class="detail-metric">11,820 mm</div>
+        <div class="detail-metric-label">Front balcony wall to kitchen zone</div>
+        <p style="margin-top:16px;">An 11.82m depth gives exceptional layering potential: formal dining near balcony, transition zone, TV lounge, kitchen peninsula — all in a flowing, uninterrupted open plan. GCC benchmark for luxury living depth is 4,000mm minimum; this exceeds by nearly 3×.</p>
+      </div>
+    </div>
+
+    <div class="issues-grid" style="margin-top:8px;">
+      <div class="issue-card positive">
+        <div class="issue-header">
+          <span class="issue-title">Direct Balcony Connection from Living Zone</span>
+          <span class="verdict verdict-pass"><span class="dot"></span>Pass</span>
+        </div>
+        <div class="issue-body">The main living zone connects directly to the top balcony (≈33.8m²), creating an indoor-outdoor living continuum critical on Sheikh Zayed Road. This is the primary view axis and the plan exploits it correctly — the living zone is oriented towards the balcony connection rather than pointing away from it.</div>
+      </div>
+      <div class="issue-card positive">
+        <div class="issue-header">
+          <span class="issue-title">Multiple Entertainment Zones — Enabled</span>
+          <span class="verdict verdict-pass"><span class="dot"></span>Pass</span>
+        </div>
+        <div class="issue-body">The 8,500mm width × 11,820mm depth format allows the interior designer to program at least three distinct zones within the open plan: <strong>formal dining (8-10 pax)</strong>, <strong>primary lounge</strong>, and <strong>secondary sitting or library zone</strong>. This is the correct spatial programming response for a Chedi-branded product targeting HNW owner-occupiers.</div>
+      </div>
+      <div class="issue-card warning">
+        <div class="issue-header">
+          <span class="issue-title">SZR West-Facing Solar Exposure — Design Consideration</span>
+          <span class="verdict verdict-warn"><span class="dot"></span>Note</span>
+        </div>
+        <div class="issue-body">Sheikh Zayed Road runs roughly north-south. Units facing west (typical for towers on the eastern side of the road) receive intense afternoon solar gain in the UAE climate. The main balcony and living zone's direct solar orientation will require high-performance glazing (SHGC ≤ 0.25), automated blinds, or deep overhangs. This is a design management issue, not a planning failure — but it must be addressed in the façade specification.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     SECTION 06 · OPEN KITCHEN ANALYSIS
+════════════════════════════════════════════ -->
+<div class="container">
+  <div class="section">
+    <div class="section-num">06</div>
+    <h2 class="section-title">Open Kitchen <em>Analysis</em></h2>
+    <p class="section-intro">The kitchen is integrated into the open-plan living zone with a PANTRY AREA noted in the overview plan. Key metrics are the counter run length, kitchen passage clearance, and total kitchen area relative to DBC and GCC standards.</p>
+
+    <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--border); border:1px solid var(--border); margin-bottom:40px;">
+      <div style="background:var(--bg); padding:24px 20px;">
+        <div style="font-family:'DM Mono',monospace; font-size:9px; color:var(--text-dim); letter-spacing:0.15em; text-transform:uppercase; margin-bottom:10px;">Counter Run</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:32px; color:var(--text);">3,800mm</div>
+        <div style="font-size:11px; color:var(--green); margin-top:4px;">GCC rec. 3,000mm min</div>
+      </div>
+      <div style="background:var(--bg); padding:24px 20px;">
+        <div style="font-family:'DM Mono',monospace; font-size:9px; color:var(--text-dim); letter-spacing:0.15em; text-transform:uppercase; margin-bottom:10px;">Kitchen Depth</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:32px; color:var(--text);">3,000mm</div>
+        <div style="font-size:11px; color:var(--text-dim); margin-top:4px;">Work zone + passage</div>
+      </div>
+      <div style="background:var(--bg); padding:24px 20px;">
+        <div style="font-family:'DM Mono',monospace; font-size:9px; color:var(--text-dim); letter-spacing:0.15em; text-transform:uppercase; margin-bottom:10px;">Kitchen Passage</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:32px; color:var(--green);">1,500mm</div>
+        <div style="font-size:11px; color:var(--green); margin-top:4px;">GCC min 1,200mm ✓</div>
+      </div>
+      <div style="background:var(--bg); padding:24px 20px;">
+        <div style="font-family:'DM Mono',monospace; font-size:9px; color:var(--text-dim); letter-spacing:0.15em; text-transform:uppercase; margin-bottom:10px;">Kitchen Area</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:32px; color:var(--green);">~11.4m²</div>
+        <div style="font-size:11px; color:var(--green); margin-top:4px;">DBC 2021 Table B.3 min 5.4m² ✓</div>
+      </div>
+    </div>
+
+    <div class="issues-grid">
+      <div class="issue-card positive">
+        <div class="issue-header">
+          <span class="issue-title">DBC & GCC Kitchen Compliance — Confirmed</span>
+          <span class="verdict verdict-pass"><span class="dot"></span>Pass</span>
+        </div>
+        <div class="issue-body">Kitchen area at ~11.4m² is 128% above DBC minimum. The 1,500mm kitchen passage allows two people to work simultaneously without conflict, exceeding the 1,200mm GCC minimum. The 3,800mm counter run supports an island or peninsula configuration with adequate appliance integration (hob, oven, integrated fridge, dishwasher).</div>
+      </div>
+      <div class="issue-card positive">
+        <div class="issue-header">
+          <span class="issue-title">Pantry Area — Present</span>
+          <span class="verdict verdict-pass"><span class="dot"></span>Pass</span>
+        </div>
+        <div class="issue-body">A dedicated PANTRY AREA is noted in the floor plan overview. This is a critical functional element for a 3BR unit serving family occupation — it separates dry storage and appliance overflow from the main kitchen counter zone. Exact dimensions of the pantry could not be read directly from the detail plan but its presence is confirmed.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     SECTION 07 · BEDROOM ANALYSIS
+════════════════════════════════════════════ -->
+<div class="container">
+  <div class="section">
+    <div class="section-num">07</div>
+    <h2 class="section-title">Bedroom <em>Analysis</em></h2>
+    <p class="section-intro">Each bedroom assessed individually for minimum dimension compliance, furniture clearance, and brand-level expectation. At The Chedi's positioning, even secondary bedrooms should be able to accommodate a 1,800mm bed with 750mm clearance on at least two sides.</p>
+
+    <!-- MASTER -->
+    <div style="margin-bottom:32px; padding:28px; background:var(--card); border:1px solid var(--border);">
+      <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:20px;">
+        <div>
+          <div style="font-family:'DM Mono',monospace; font-size:9px; color:var(--gold); letter-spacing:0.2em; text-transform:uppercase; margin-bottom:8px;">Master Bedroom</div>
+          <div style="font-family:'Cormorant Garamond',serif; font-size:28px;">5,550 × 5,320mm · 29.5 m²</div>
+        </div>
+        <span class="verdict verdict-pass"><span class="dot"></span>Exceptional</span>
+      </div>
+      <p style="font-size:13px; color:var(--text-mid); line-height:1.8;">At 5,550mm width, the master bedroom accommodates a super king bed (2,100mm wide) with <strong>1,725mm clear on each side</strong> — well above the 750mm GCC minimum. The 5,320mm depth allows a dedicated lounge/sitting area beyond the bed zone, which is expected at this brand tier. Dressing access appears integrated. The master ensuite at ~20m² with confirmed double wash basins, separate shower, and WC/bidet zoning is among the strongest in this asset class on SZR.</p>
+    </div>
+
+    <!-- BED 01 -->
+    <div style="margin-bottom:32px; padding:28px; background:var(--card); border:1px solid var(--amber-border);">
+      <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:20px;">
+        <div>
+          <div style="font-family:'DM Mono',monospace; font-size:9px; color:var(--amber); letter-spacing:0.2em; text-transform:uppercase; margin-bottom:8px;">Bedroom 01</div>
+          <div style="font-family:'Cormorant Garamond',serif; font-size:28px;">3,095 × 5,295mm · 16.4 m²</div>
+        </div>
+        <span class="verdict verdict-warn"><span class="dot"></span>Marginal</span>
+      </div>
+      <p style="font-size:13px; color:var(--text-mid); line-height:1.8;">The 3,095mm width clears DBC minimum (3,000mm) by only 95mm. A standard double bed (1,600mm) can be placed with 747mm clearance per side — technically within GCC minimum but with zero margin. A king bed (1,800mm) is achievable but reduces each side clearance to 647mm, which is below the 750mm GCC clearance standard. <strong>At the Chedi's brand level, a secondary bedroom accommodating king-size furniture is an expectation, not a luxury.</strong> This bedroom reads as compact relative to the master.</p>
+    </div>
+
+    <!-- BED 02 -->
+    <div style="margin-bottom:32px; padding:28px; background:var(--card); border:1px solid var(--amber-border);">
+      <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:20px;">
+        <div>
+          <div style="font-family:'DM Mono',monospace; font-size:9px; color:var(--amber); letter-spacing:0.2em; text-transform:uppercase; margin-bottom:8px;">Bedroom 02</div>
+          <div style="font-family:'Cormorant Garamond',serif; font-size:28px;">3,200 × 5,295mm · 17.0 m²</div>
+        </div>
+        <span class="verdict verdict-warn"><span class="dot"></span>Marginal</span>
+      </div>
+      <p style="font-size:13px; color:var(--text-mid); line-height:1.8;">At 3,200mm width, Bedroom 02 offers marginally more clearance than Bedroom 01. A 1,800mm king bed leaves 700mm per side — still 50mm short of the 750mm GCC standard but functionally workable. The 5,295mm depth is generous, enabling a small reading or desk zone beyond the bed. Same conclusion as Bedroom 01: DBC compliant, GCC borderline.</p>
+    </div>
+
+    <!-- MAID -->
+    <div style="padding:28px; background:var(--card); border:1px solid var(--border);">
+      <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:20px;">
+        <div>
+          <div style="font-family:'DM Mono',monospace; font-size:9px; color:var(--text-dim); letter-spacing:0.2em; text-transform:uppercase; margin-bottom:8px;">Maid Room</div>
+          <div style="font-family:'Cormorant Garamond',serif; font-size:28px;">3,491 × 2,401mm · 8.4 m²</div>
+        </div>
+        <span class="verdict verdict-pass"><span class="dot"></span>Pass</span>
+      </div>
+      <p style="font-size:13px; color:var(--text-mid); line-height:1.8;">At 8.4m², the maid room exceeds the Dubai domestic staff accommodation minimum. The 2,401mm dimension provides adequate clearance for a single bed, wardrobe, and movement. Adequate, though positioning within the private bedroom zone (rather than near a service corridor) is flagged in the zoning section.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     SECTION 08 · BATHROOM / WC ANALYSIS
+════════════════════════════════════════════ -->
+<div class="container">
+  <div class="section">
+    <div class="section-num">08</div>
+    <h2 class="section-title">Bathroom / WC <em>Analysis</em></h2>
+    <p class="section-intro">Assessment of bathroom provision quantity and sizing. The master ensuite is confirmed at ~20m² with complex multi-fixture layout. Secondary bathroom and guest WC provision is reviewed against the 3BR + Maid typology expectation for a branded luxury residence.</p>
+
+    <table class="room-table">
+      <thead>
+        <tr>
+          <th>Facility</th>
+          <th>Location</th>
+          <th>Est. Area</th>
+          <th>Fixtures Noted</th>
+          <th style="text-align:right;">Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <div class="room-name">Master Ensuite</div>
+            <div class="room-note">Total width 5,400mm · complex layout</div>
+          </td>
+          <td class="room-standard">Master Bedroom wing</td>
+          <td>
+            <div class="room-area">~20 m²</div>
+          </td>
+          <td class="room-standard">Double basin · shower · WC · bidet (inferred)</td>
+          <td><span class="verdict verdict-pass"><span class="dot"></span>Exceptional</span></td>
+        </tr>
+        <tr>
+          <td>
+            <div class="room-name">Secondary Bathroom</div>
+            <div class="room-note">Shared for Bed 01 + Bed 02</div>
+          </td>
+          <td class="room-standard">Bedroom zone corridor</td>
+          <td>
+            <div class="room-area">— *</div>
+          </td>
+          <td class="room-standard">Confirmed in overview plan (TOI / WASH noted)</td>
+          <td><span class="verdict verdict-pass"><span class="dot"></span>Present</span></td>
+        </tr>
+        <tr>
+          <td>
+            <div class="room-name">Guest Powder Room</div>
+            <div class="room-note">WC + basin · accessed from unit lobby</div>
+          </td>
+          <td class="room-standard">Internal lobby (LOB.) — entry sequence</td>
+          <td>
+            <div class="room-area">— *</div>
+          </td>
+          <td class="room-standard">Confirmed at internal lobby (LOB.) — off entry sequence</td>
+          <td><span class="verdict verdict-pass"><span class="dot"></span>Confirmed ✓</span></td>
+        </tr>
+      </tbody>
+    </table>
+    <div style="font-size:11px; color:var(--text-dim); margin-top:-16px; margin-bottom:32px;">* Exact dimensions of secondary bathroom not readable from detail plan. Guest powder room (WC) confirmed at internal lobby (LOB.) — June 2026 floor plan review.</div>
+
+    <div class="issues-grid">
+      <div class="issue-card positive">
+        <div class="issue-header">
+          <span class="issue-title">Master Ensuite at ~20m² — Market-Leading</span>
+          <span class="verdict verdict-pass"><span class="dot"></span>Exceptional</span>
+        </div>
+        <div class="issue-body">The master ensuite layout at 5,400mm total width with confirmed sub-zones for shower (1,875mm), double wash basins (2,276mm zone), and separate WC/bidet is among the most generous in the Dubai residential market for a 3BR unit. This is consistent with The Chedi's spa-hospitality brand DNA and is a strong market differentiator.</div>
+      </div>
+      <div class="issue-card warning">
+        <div class="issue-header">
+          <span class="issue-title">Guest Powder Room in Living Zone — Needs Confirmation</span>
+          <span class="verdict verdict-warn"><span class="dot"></span>Flag</span>
+        </div>
+        <div class="issue-body">A guest powder room adjacent to the living/dining/kitchen zone is not confirmed in the detailed plan provided. For a 3BR branded residence with a 100m² entertaining zone, the absence of a guest WC within the public zone is a functional and brand-perception issue. <strong>Developer to confirm if a guest WC exists within the kitchen or lobby area.</strong> If absent, this is a programming oversight that needs to be addressed before sales launch.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     SECTION 09 · BALCONY ANALYSIS
+════════════════════════════════════════════ -->
+<div class="container">
+  <div class="section">
+    <div class="section-num">09</div>
+    <h2 class="section-title">Balcony <em>Analysis</em></h2>
+    <p class="section-intro">Two balconies are present: a primary balcony (top, connected to living zone) and a secondary balcony (bottom, connected to lower zone). Total outdoor area is approximately 44m² — a significant proportion of the overall unit footprint.</p>
+
+    <div class="detail-2col">
+      <div class="detail-card">
+        <div class="detail-card-label">Primary Balcony (Top)</div>
+        <div class="detail-metric">~33.8 m²</div>
+        <div class="detail-metric-label">Full unit width × ~2,500mm deep</div>
+        <p style="margin-top:16px;">Spans the full width of the unit, providing an outdoor entertaining extension to the living/dining zone. At ~2,500mm depth, accommodates dining table + lounge seating in sequence. DBC minimum depth is 1,000mm — this exceeds by 150%. Direct SZR and skyline views at this elevation.</p>
+      </div>
+      <div class="detail-card">
+        <div class="detail-card-label">Secondary Balcony (Bottom)</div>
+        <div class="detail-metric">~10 m²</div>
+        <div class="detail-metric-label">~4,000mm × ~2,500mm</div>
+        <p style="margin-top:16px;">Secondary outdoor space at the lower zone of the unit. Accessible from the bedroom corridor or lobby. Suitable for a small bistro set or planted area. Orientation likely differs from the primary balcony — confirm for solar and view exposure.</p>
+      </div>
+    </div>
+
+    <div class="issues-grid">
+      <div class="issue-card warning">
+        <div class="issue-header">
+          <span class="issue-title">SZR Solar Orientation — Afternoon Heat Load</span>
+          <span class="verdict verdict-warn"><span class="dot"></span>Design Consideration</span>
+        </div>
+        <div class="issue-body">Sheikh Zayed Road's alignment means units on the west-facing podium (looking toward DIFC / Trade Centre side) receive direct afternoon solar load from approximately 13:00–19:00 daily. The primary balcony and living zone glazing will require <strong>SHGC ≤ 0.25, UV-rated glass, automated shading systems, and possibly recessed balcony design</strong> to manage thermal comfort. This is an Estidama / DGBC performance issue as much as a comfort one. The current plan does not show balcony overhangs or shading elements — these must be resolved in the façade and MEP coordination.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     SECTION 10 · STORAGE ANALYSIS
+════════════════════════════════════════════ -->
+<div class="container">
+  <div class="section">
+    <div class="section-num">10</div>
+    <h2 class="section-title">Storage <em>Analysis</em></h2>
+    <p class="section-intro">Storage provision assessed across all zones. The plan provides dedicated dressing rooms for secondary bedrooms, master dressing access, a store room, and maid room with inherent storage. No standalone linen closet or luggage store is confirmed in the detail plan.</p>
+
+    <table class="room-table">
+      <thead>
+        <tr>
+          <th>Storage Element</th>
+          <th>Location</th>
+          <th>Est. Area</th>
+          <th style="text-align:right;">Assessment</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <div class="room-name">Master Dressing</div>
+            <div class="room-note">Integrated with master bedroom zone</div>
+          </td>
+          <td class="room-standard">Master Bed wing</td>
+          <td><div class="room-area">— *</div></td>
+          <td><span class="verdict verdict-pass"><span class="dot"></span>Present</span></td>
+        </tr>
+        <tr>
+          <td>
+            <div class="room-name">Dressing Room — Bed 01</div>
+            <div class="room-note">Adjacent to Bedroom 01</div>
+          </td>
+          <td class="room-standard">Bedroom zone</td>
+          <td><div class="room-area">~5.7 m²</div></td>
+          <td><span class="verdict verdict-pass"><span class="dot"></span>Pass</span></td>
+        </tr>
+        <tr>
+          <td>
+            <div class="room-name">Dressing Room — Bed 02</div>
+            <div class="room-note">Adjacent to Bedroom 02</div>
+          </td>
+          <td class="room-standard">Bedroom zone</td>
+          <td><div class="room-area">~5.8 m²</div></td>
+          <td><span class="verdict verdict-pass"><span class="dot"></span>Pass</span></td>
+        </tr>
+        <tr>
+          <td>
+            <div class="room-name">Store Room</div>
+            <div class="room-note">Lower zone adjacent to bottom balcony</div>
+          </td>
+          <td class="room-standard">Lower zone</td>
+          <td><div class="room-area">~5.0 m²</div></td>
+          <td><span class="verdict verdict-pass"><span class="dot"></span>Pass</span></td>
+        </tr>
+        <tr>
+          <td>
+            <div class="room-name">Linen / Utility Closet</div>
+            <div class="room-note">Within bedroom corridor</div>
+          </td>
+          <td class="room-standard">Corridor / lobby</td>
+          <td><div class="room-area">— *</div></td>
+          <td><span class="verdict verdict-warn"><span class="dot"></span>Unconfirmed</span></td>
+        </tr>
+      </tbody>
+    </table>
+    <div style="font-size:11px; color:var(--text-dim); margin-top:-16px; margin-bottom:24px;">* Exact dressing room dimensions and linen closet presence to be confirmed on full drawing set.</div>
+
+    <div style="padding:20px 24px; background:var(--gold-dim); border:1px solid var(--gold-border); font-size:13px; color:var(--text-mid);">
+      <strong style="color:var(--gold);">Assessment:</strong> Storage provision is adequate. Each secondary bedroom has a dedicated dressing room, which is above market standard for a 3BR. The store room provides overflow capacity. The absence of a confirmed linen closet within the bedroom corridor is a minor gap — at this typology, a linen store accessed from the bedroom corridor is a practical necessity for housekeeping without requiring access to individual rooms.
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     SECTION 11 · MAIN WEAKNESSES RANKED
+════════════════════════════════════════════ -->
+<div class="container">
+  <div class="section">
+    <div class="section-num">11</div>
+    <h2 class="section-title">Main Weaknesses <em>Ranked by Severity</em></h2>
+    <p class="section-intro">Issues ordered by impact on buyer perception, DBC compliance risk, and construction-stage remediation difficulty. Red items require immediate design response. Amber items are manageable within the current scheme with targeted adjustments.</p>
+
+    <div class="issues-grid">
+
+      <div class="issue-card warning">
+        <div class="issue-header">
+          <span class="issue-title">#1 · Secondary Bedroom Widths Below GCC Luxury Standard</span>
+          <div class="issue-metric">3,095mm</div>
+        </div>
+        <div class="issue-body">
+          Bedrooms 01 and 02 are <strong>DBC compliant</strong> (3,000mm min met) but fall below the GCC luxury standard of 3,500mm minimum width. In the context of a Chedi-branded product starting from 3,556 sqft, buyers purchasing at this price point will compare to Four Seasons Residences, BVLGARI Residences, and Dorchester Collection where secondary bedrooms are consistently 3,500–4,200mm wide. <strong>Recommendation:</strong> Review structural grid for possibility of widening both rooms by 250–400mm by reducing the dressing room width or redistributing the corridor allocation.
+        </div>
+      </div>
+
+      <div class="issue-card positive">
+        <div class="issue-header">
+          <span class="issue-title">#2 · Guest Powder Room — Confirmed at Lobby · Correct Placement</span>
+          <div class="issue-metric" style="color:var(--green);">Confirmed</div>
+        </div>
+        <div class="issue-body">
+          Guest powder room confirmed from floor plan review: dedicated WC positioned off the internal unit lobby (LOB.), directly adjacent to the store room — forming a clean service core at the unit entry. This resolves the previous flag. The lobby-facing position is correct for a luxury branded residence: guests access the powder room discreetly before entering the living zone, without transiting through the bedroom corridor. This is consistent with 5-star hospitality planning logic. <strong>Previous flag withdrawn — no programming gap.</strong>
+        </div>
+      </div>
+
+      <div class="issue-card warning">
+        <div class="issue-header">
+          <span class="issue-title">#3 · Bedroom Corridor at 1,100mm — Below GCC Best Practice</span>
+          <div class="issue-metric">−100mm</div>
+        </div>
+        <div class="issue-body">
+          The 1,100mm corridor connecting the lobby to all bedrooms and maid room is DBC compliant (≥1,000mm) but fails GCC best practice (1,200mm) and is not suitable for wheelchair access (1,200mm min) or two-person passing with luggage. <strong>Recommendation:</strong> Coordinate structural feasibility for 100mm widening. If structural walls prevent this, ensure corridor is at least activated with art niches or wall lighting to reduce its perceived narrowness.
+        </div>
+      </div>
+
+      <div class="issue-card critical">
+        <div class="issue-header">
+          <span class="issue-title">#4 · Maid Room — No Natural Daylighting · DBC 2021 B.6.5.2.1 FAIL</span>
+          <div class="issue-metric">DBC Fail</div>
+        </div>
+        <div class="issue-body">
+          The maid room has no external window. DBC 2021 <strong>B.6.5.2.1</strong> explicitly requires housekeeper's rooms to have natural daylighting equivalent to living spaces, per Table B.8: minimum glazed window area = <strong>10% of room floor area</strong>. For this maid room (8.4m²) → minimum required glazed area = <strong>0.84m²</strong>. No window = no daylighting = mandatory DBC violation. Note: DBC <strong>H.4.11</strong> confirms mechanical HVAC is mandatory in Dubai regardless — natural ventilation cannot be relied upon and is not the issue here. This failure is specifically about <strong>natural light</strong>, which cannot be replaced by any mechanical system. This will not pass Dubai Municipality authority submission. <strong>Recommendation:</strong> Introduce a window to an external wall or light well. If structurally impossible, a compliant borrowed-light solution or skylight requires DM pre-approval before submission.
+        </div>
+      </div>
+
+      <div class="issue-card warning">
+        <div class="issue-header">
+          <span class="issue-title">#5 · SZR West-Facing Solar Load on Primary Balcony</span>
+          <div class="issue-metric">Façade Risk</div>
+        </div>
+        <div class="issue-body">
+          The primary balcony and living zone direct view toward Sheikh Zayed Road. Depending on tower orientation (west-facing = afternoon sun in UAE), the glazing and balcony without confirmed shading elements will result in significant thermal discomfort and energy load. <strong>Recommendation:</strong> Confirm solar orientation with MEP team. Specify façade SHGC ≤ 0.25, automated external blinds on balcony glazing, and review whether the balcony soffit provides adequate overhang depth for summer equinox sun angles.
+        </div>
+      </div>
+
+      <div class="issue-card warning">
+        <div class="issue-header">
+          <span class="issue-title">#6 · Linen / Utility Closet Not Confirmed in Bedroom Zone</span>
+          <div class="issue-metric">Minor Gap</div>
+        </div>
+        <div class="issue-body">
+          A linen closet or utility cupboard within the bedroom corridor is not identifiable in the detail plan provided. For a 3BR + Maid unit, housekeeping without a centralized linen store requires cross-unit movement with linens. <strong>Recommendation:</strong> Introduce a min. 1.0m² linen cupboard within the bedroom corridor. This is typically achievable by adjusting corridor termination at the lobby zone.
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     SECTION 12 · FINAL PROFESSIONAL VERDICT
+════════════════════════════════════════════ -->
+<div class="container">
+  <div class="section" style="border-bottom:none;">
+    <div class="section-num">12</div>
+    <h2 class="section-title">Final Professional <em>Verdict</em></h2>
+
+    <div class="score-grid">
+      <div class="score-cell">
+        <div class="score-cell-label">Area Efficiency</div>
+        <div class="score-cell-num" style="color:var(--green);">8<span style="font-size:18px; color:var(--text-dim);">/10</span></div>
+        <div class="score-cell-bar"><div class="score-cell-fill" style="width:80%; background:var(--green);"></div></div>
+      </div>
+      <div class="score-cell">
+        <div class="score-cell-label">Public/Private Zoning</div>
+        <div class="score-cell-num" style="color:var(--amber);">7<span style="font-size:18px; color:var(--text-dim);">/10</span></div>
+        <div class="score-cell-bar"><div class="score-cell-fill" style="width:70%; background:var(--amber);"></div></div>
+      </div>
+      <div class="score-cell">
+        <div class="score-cell-label">Circulation</div>
+        <div class="score-cell-num" style="color:var(--green);">8<span style="font-size:18px; color:var(--text-dim);">/10</span></div>
+        <div class="score-cell-bar"><div class="score-cell-fill" style="width:80%; background:var(--green);"></div></div>
+      </div>
+      <div class="score-cell">
+        <div class="score-cell-label">Room Dimensions</div>
+        <div class="score-cell-num" style="color:var(--amber);">7<span style="font-size:18px; color:var(--text-dim);">/10</span></div>
+        <div class="score-cell-bar"><div class="score-cell-fill" style="width:70%; background:var(--amber);"></div></div>
+      </div>
+      <div class="score-cell">
+        <div class="score-cell-label">Living / Dining</div>
+        <div class="score-cell-num" style="color:var(--green);">9<span style="font-size:18px; color:var(--text-dim);">/10</span></div>
+        <div class="score-cell-bar"><div class="score-cell-fill" style="width:90%; background:var(--green);"></div></div>
+      </div>
+      <div class="score-cell">
+        <div class="score-cell-label">Kitchen</div>
+        <div class="score-cell-num" style="color:var(--green);">8<span style="font-size:18px; color:var(--text-dim);">/10</span></div>
+        <div class="score-cell-bar"><div class="score-cell-fill" style="width:80%; background:var(--green);"></div></div>
+      </div>
+      <div class="score-cell">
+        <div class="score-cell-label">Bedrooms</div>
+        <div class="score-cell-num" style="color:var(--amber);">7<span style="font-size:18px; color:var(--text-dim);">/10</span></div>
+        <div class="score-cell-bar"><div class="score-cell-fill" style="width:70%; background:var(--amber);"></div></div>
+      </div>
+      <div class="score-cell">
+        <div class="score-cell-label">Bathrooms</div>
+        <div class="score-cell-num" style="color:var(--green);">8<span style="font-size:18px; color:var(--text-dim);">/10</span></div>
+        <div class="score-cell-bar"><div class="score-cell-fill" style="width:80%; background:var(--green);"></div></div>
+      </div>
+      <div class="score-cell">
+        <div class="score-cell-label">Balconies</div>
+        <div class="score-cell-num" style="color:var(--green);">8<span style="font-size:18px; color:var(--text-dim);">/10</span></div>
+        <div class="score-cell-bar"><div class="score-cell-fill" style="width:80%; background:var(--green);"></div></div>
+      </div>
+      <div class="score-cell">
+        <div class="score-cell-label">Storage</div>
+        <div class="score-cell-num" style="color:var(--amber);">7<span style="font-size:18px; color:var(--text-dim);">/10</span></div>
+        <div class="score-cell-bar"><div class="score-cell-fill" style="width:70%; background:var(--amber);"></div></div>
+      </div>
+    </div>
+
+    <div class="final-verdict">
+      <div>
+        <div class="verdict-score-huge">78</div>
+        <div class="verdict-denom">/ 100</div>
+        <div class="verdict-category">Qualified Luxury</div>
+      </div>
+      <div>
+        <div class="verdict-text">
+          <p>The Chedi Sanctuary 3BR + Maid unit delivers <strong>an exceptionally strong living and entertaining proposition</strong>. The open-plan living/dining/kitchen at 100.5m² and a master bedroom suite at 49.5m² combined (bedroom + ensuite) are among the strongest spatial offers in the 3BR branded residence segment on SZR. The 33.8m² primary balcony reinforces the outdoor-living positioning fundamental to The Chedi brand identity.</p>
+          <p>However, the unit has two material weaknesses for its price tier: <strong>secondary bedrooms at 3,095–3,200mm width</strong> that clear DBC but fall below the GCC luxury standard of 3,500mm, and an <strong>unconfirmed guest powder room</strong> in the public zone — a functional gap that reads poorly against comparable branded products. These are pre-construction-stage issues, meaning they are still resolvable through minor structural-grid adjustments if actioned now.</p>
+          <p>The corridor at 1,100mm and the maid room positioning represent lower-tier concerns that can be managed through interior design without structural change. The solar orientation risk is a façade engineering issue, not a planning failure.</p>
+        </div>
+        <div class="verdict-recommendation">
+          <strong>Professional Recommendation:</strong> This unit is a strong product with a commercially viable layout. Before sales launch, three items require developer action: (1) confirm or introduce a guest powder room in the public zone; (2) review feasibility of widening secondary bedrooms by 250–400mm; (3) brief the MEP and façade team on the solar load mitigation strategy for the primary balcony elevation. These are pre-design-freeze corrections — cost-of-change is low now and prohibitive post-contract.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     FOOTER
+════════════════════════════════════════════ -->
+<div class="container">
+  <div class="footer">
+    <div>
+      <div class="footer-name">M. Amine Berchache</div>
+      <div style="font-family:'DM Mono',monospace; font-size:10px; color:var(--text-dim); margin-top:4px; letter-spacing:0.1em;">Senior Architect · BIM Director · Space Planning Analyst</div>
+    </div>
+    <div class="footer-meta">
+      <div>The Chedi Private Residences — Al Seeb</div>
+      <div>Sanctuary Type · 3BR + Maid · Typical Floor</div>
+      <div>Analysis Date: June 2026</div>
+      <div><a href="https://portfolio-five-kappa-d7gqte5vgz.vercel.app/space-planning/" style="color:var(--gold); text-decoration:none;">portfolio → space planning</a></div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
