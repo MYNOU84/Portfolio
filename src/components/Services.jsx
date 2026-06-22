@@ -59,7 +59,7 @@ export default function Services() {
               >
                 Get In Touch
               </button>
-              <a href="/cv/M-Amine-Berchache-CV.pdf" download className="btn-outline text-center">
+              <a href="/cv/Berchache_Amine_CV_ATS_v5.pdf" download className="btn-outline text-center">
                 Download CV
               </a>
             </motion.div>

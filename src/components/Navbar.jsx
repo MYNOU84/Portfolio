@@ -107,7 +107,7 @@ export default function Navbar({ isAdmin = false, onAdminToggle }) {
           <div className="flex items-center gap-3">
             {isAdmin && (
               <a
-                href="/cv/M-Amine-Berchache-CV.pdf"
+                href="/cv/Berchache_Amine_CV_ATS_v5.pdf"
                 download
                 className="hidden md:flex items-center gap-2 text-[11px] tracking-[0.25em] uppercase px-5 py-2 border border-gold/60 text-gold hover:bg-gold hover:text-deep-black hover:border-gold transition-all duration-300"
               >
@@ -157,7 +157,7 @@ export default function Navbar({ isAdmin = false, onAdminToggle }) {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.5 }}
-                href="/cv/M-Amine-Berchache-CV.pdf"
+                href="/cv/Berchache_Amine_CV_ATS_v5.pdf"
                 download
                 onClick={() => setMenuOpen(false)}
                 className="mt-4 btn-outline flex items-center gap-2"

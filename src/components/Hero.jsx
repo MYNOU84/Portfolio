@@ -120,7 +120,7 @@ export default function Hero() {
           <button onClick={() => document.querySelector('#portfolio')?.scrollIntoView({ behavior: 'smooth' })} className="group btn-primary flex items-center gap-3 w-full sm:w-auto justify-center">
             View Portfolio <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform duration-300" />
           </button>
-          <a href={`${BASE}cv/M-Amine-Berchache-CV.pdf`} download className="btn-outline flex items-center gap-3 w-full sm:w-auto justify-center">
+          <a href={`${BASE}cv/Berchache_Amine_CV_ATS_v5.pdf`} download className="btn-outline flex items-center gap-3 w-full sm:w-auto justify-center">
             <Download size={14} /> Download CV
           </a>
           <button onClick={() => document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' })} className="text-grey-muted hover:text-white-warm text-xs tracking-[0.3em] uppercase px-8 py-3 flex items-center gap-3 transition-colors duration-300 w-full sm:w-auto justify-center cursor-pointer">

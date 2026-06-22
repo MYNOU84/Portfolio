@@ -192,7 +192,7 @@ export default function About() {
               <div key={i} className="border-l border-gold/30 pl-4">
                 <p className="text-white-warm/65 text-sm leading-7">{h}</p>
               </div>
-            ))}
+                 ))}
           </div>
         </motion.div>
 
