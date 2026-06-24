@@ -1,0 +1,1200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FDG-18 Production Unit — Functional Technical Brief | M. Amine Berchache</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0d0d0d;--bg2:#111;--bg3:#161616;--bg4:#1c1c1c;
+  --gold:#c9a84c;--gold2:#e2c068;--gold3:#a8872e;
+  --gold-dim:rgba(201,168,76,0.07);--gold-line:rgba(201,168,76,0.20);
+  --text:#e8e4dc;--text2:#b8b2a8;--text3:#787068;--text4:#484440;
+  --line:rgba(255,255,255,0.06);--line2:rgba(255,255,255,0.10);
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Montserrat',sans-serif;font-weight:300;font-size:13px;line-height:1.7;overflow-x:hidden}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:100;background:rgba(13,13,13,0.96);backdrop-filter:blur(20px);border-bottom:1px solid var(--gold-line);padding:0 56px;display:flex;align-items:center;justify-content:space-between;height:62px}
+.nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none}
+.nav-box{width:34px;height:34px;border:1px solid rgba(201,168,76,0.45);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:var(--gold);font-family:'Montserrat',sans-serif}
+.nav-txt p:first-child{font-size:10px;font-weight:500;letter-spacing:0.28em;text-transform:uppercase;color:var(--text);line-height:1.2}
+.nav-txt p:last-child{font-size:9px;letter-spacing:0.35em;text-transform:uppercase;color:var(--gold);line-height:1.2}
+.nav-r{display:flex;align-items:center;gap:10px}
+.nav-tag{font-size:9px;text-transform:uppercase;letter-spacing:0.12em;color:var(--gold3);border:1px solid var(--gold-line);padding:5px 12px;background:var(--gold-dim)}
+.nav-back{font-size:9px;text-transform:uppercase;letter-spacing:0.12em;color:var(--text3);text-decoration:none;border:1px solid var(--text4);padding:5px 14px;transition:all .2s}
+.nav-back:hover{border-color:var(--gold);color:var(--gold)}
+
+/* HERO */
+.hero{position:relative;height:68vh;min-height:500px;overflow:hidden}
+.hero img{width:100%;height:100%;object-fit:cover;filter:brightness(0.42)}
+.hero-ov{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(13,13,13,0.1) 0%,rgba(13,13,13,0.88) 100%)}
+.hero-c{position:absolute;bottom:0;left:0;right:0;padding:60px 80px}
+.breadcrumb{font-size:9px;text-transform:uppercase;letter-spacing:0.35em;color:var(--gold3);margin-bottom:14px}
+h1{font-family:'Cormorant Garamond',serif;font-size:clamp(30px,5vw,56px);font-weight:300;line-height:1.1;color:var(--text);margin-bottom:8px}
+h1 span{color:var(--gold2)}
+.hero-sub{font-size:10px;text-transform:uppercase;letter-spacing:0.25em;color:var(--text2)}
+.tags{display:flex;gap:8px;margin-top:18px;flex-wrap:wrap}
+.tag{font-size:9px;text-transform:uppercase;letter-spacing:0.12em;color:var(--gold);border:1px solid var(--gold-line);padding:4px 12px;background:var(--gold-dim)}
+
+/* NOTICE */
+.notice{background:rgba(160,50,50,0.12);border:1px solid rgba(160,50,50,0.32);border-left:3px solid rgba(160,50,50,0.7);padding:14px 22px;margin:24px 80px 0;font-size:11px;color:#d4a0a0;line-height:1.65}
+.notice strong{color:#e8b0b0}
+
+/* LAYOUT */
+.wrap{max-width:1200px;margin:0 auto;padding:0 80px}
+section{padding:72px 0;border-bottom:1px solid var(--line)}
+
+/* SECTION HEADER */
+.sn{font-size:9px;text-transform:uppercase;letter-spacing:0.35em;color:var(--gold3);margin-bottom:8px}
+h2{font-family:'Cormorant Garamond',serif;font-size:clamp(20px,2.8vw,32px);font-weight:300;color:var(--text)}
+h2 span{color:var(--gold2)}
+.rule{width:44px;height:1px;background:var(--gold);margin:14px 0 28px}
+p.body{font-size:12px;color:var(--text2);line-height:1.8;max-width:820px}
+
+/* TABLES */
+table{width:100%;border-collapse:collapse}
+th{background:var(--bg3);color:var(--gold3);font-size:9px;text-transform:uppercase;letter-spacing:0.14em;font-weight:500;padding:11px 14px;text-align:left;border-bottom:1px solid var(--gold-line)}
+td{padding:10px 14px;border-bottom:1px solid var(--line);color:var(--text2);vertical-align:top}
+tr:hover td{background:rgba(201,168,76,0.025)}
+td.k{color:var(--text);font-weight:400}
+td.yes{color:#7ec87e}
+td.no{color:var(--text4)}
+td.tbc{color:var(--gold3);font-style:italic}
+
+/* GRID TABLES */
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--gold-line);border:1px solid var(--gold-line)}
+.gl{background:var(--bg3);padding:12px 18px;font-size:10px;text-transform:uppercase;letter-spacing:0.13em;color:var(--gold3)}
+.gv{background:var(--bg2);padding:12px 18px;font-size:12px;color:var(--text2)}
+
+/* CHAIN */
+.chain-wrap{overflow-x:auto;padding:8px 0}
+.chain{display:flex;align-items:center;flex-wrap:nowrap;min-width:max-content}
+.cs{background:var(--bg3);border:1px solid var(--gold-line);padding:11px 16px;font-size:10px;color:var(--text2);text-align:center;min-width:100px}
+.cs.k{background:var(--gold-dim);border-color:var(--gold);color:var(--gold2);font-weight:500}
+.cl{font-size:8px;text-transform:uppercase;letter-spacing:0.08em;color:var(--text3);margin-top:3px;display:block}
+.ca{color:var(--gold3);font-size:15px;padding:0 5px;flex-shrink:0}
+
+/* ZONE CARDS */
+.zones{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line2);margin-bottom:28px}
+.zc{padding:18px;background:var(--bg2)}
+.zd{width:9px;height:9px;border-radius:50%;margin-bottom:9px}
+.zn{font-size:10px;text-transform:uppercase;letter-spacing:0.08em;font-weight:500;color:var(--text);margin-bottom:5px}
+.zt{font-size:11px;color:var(--text3);line-height:1.6}
+
+/* IMAGES */
+.img2{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin:22px 0}
+.img2 img{width:100%;aspect-ratio:16/9;object-fit:cover;filter:brightness(0.8);transition:filter .3s;display:block}
+.img2 img:hover,.imgf:hover{filter:brightness(1)}
+.imgf{width:100%;max-height:380px;object-fit:cover;filter:brightness(0.78);display:block;margin:22px 0;transition:filter .3s}
+.ic{font-size:10px;color:var(--text3);text-align:center;margin-top:5px;letter-spacing:0.04em}
+
+/* AREA TABLE */
+.area td:last-child{color:var(--gold2);font-family:'Cormorant Garamond',serif;font-size:14px;text-align:right}
+
+/* SOURCES */
+.src{border:1px solid var(--line2)}
+.si{display:grid;grid-template-columns:56px 1fr;border-bottom:1px solid var(--line)}
+.si:last-child{border-bottom:none}
+.sc{background:var(--bg3);padding:14px;display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:14px;color:var(--gold3);border-right:1px solid var(--line2)}
+.sb{background:var(--bg2);padding:12px 16px}
+.sn2{font-size:12px;color:var(--text);margin-bottom:3px}
+.sl{font-size:10px;color:var(--gold3);word-break:break-all}
+
+/* RDS CARDS */
+.rds-list{display:flex;flex-direction:column;gap:56px}
+.rds{border:1px solid var(--line2);background:var(--bg2)}
+
+/* RDS HEADER */
+.rds-hdr{display:flex;align-items:stretch;border-bottom:1px solid var(--gold-line)}
+.rds-num{background:var(--gold-dim);border-right:1px solid var(--gold-line);padding:22px 26px;display:flex;flex-direction:column;align-items:center;justify-content:center;min-width:90px}
+.rds-num span:first-child{font-family:'Cormorant Garamond',serif;font-size:34px;font-weight:300;color:var(--gold2);line-height:1}
+.rds-num span:last-child{font-size:8px;text-transform:uppercase;letter-spacing:0.15em;color:var(--gold3);margin-top:3px}
+.rds-ttl{padding:22px 26px;flex:1}
+.rds-room{font-family:'Cormorant Garamond',serif;font-size:21px;font-weight:400;color:var(--text);margin-bottom:4px}
+
+/* RDS BODY */
+.rds-img{width:100%;max-height:260px;object-fit:cover;filter:brightness(0.82);display:block;border-bottom:1px solid var(--line)}
+.rds-img:hover{filter:brightness(1);transition:filter .3s}
+.rds-section{padding:18px 22px;border-bottom:1px solid var(--line)}
+.rds-section:last-child{border-bottom:none}
+.rds-sec-title{font-size:9px;text-transform:uppercase;letter-spacing:0.2em;color:var(--gold3);margin-bottom:12px;font-weight:500}
+.rds-coord{background:var(--bg3);border-top:1px solid var(--gold-line);padding:14px 22px}
+.rds-coord ul{list-style:none}
+.rds-coord ul li{font-size:11px;color:var(--text3);padding:3px 0 3px 14px;position:relative}
+.rds-coord ul li::before{content:'—';position:absolute;left:0;color:var(--gold3)}
+.rds-coord .coord-title{font-size:9px;text-transform:uppercase;letter-spacing:0.2em;color:var(--gold3);margin-bottom:10px}
+
+/* RDS TABLES — compact */
+.rds table{font-size:11px}
+.rds th{font-size:8px;padding:9px 12px}
+.rds td{padding:8px 12px}
+
+/* LIMITS */
+.limits{background:rgba(201,168,76,0.04);border:1px solid var(--gold-line);border-left:3px solid var(--gold3);padding:16px 24px;font-size:11px;color:var(--text3);line-height:1.8;margin-top:0}
+
+/* FOOTER */
+footer{padding:38px 80px;display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--gold-line)}
+.f-brand{font-family:'Cormorant Garamond',serif;font-size:14px;color:var(--text3)}
+.f-note{font-size:10px;color:var(--text4);text-align:right;max-width:480px;line-height:1.6}
+
+@media(max-width:900px){
+  .wrap,.notice{padding:0 22px}
+  nav{padding:0 22px}
+  .hero-c{padding:36px 22px}
+  .zones{grid-template-columns:1fr 1fr}
+  .g2{grid-template-columns:1fr}
+  footer{padding:28px 22px;flex-direction:column;gap:14px;text-align:center}
+  .f-note{text-align:center}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="/" class="nav-logo">
+    <div class="nav-box">AB</div>
+    <div class="nav-txt">
+      <p>M. Amine Berchache</p>
+      <p>Architect · BIM Director</p>
+    </div>
+  </a>
+  <div class="nav-r">
+    <span class="nav-tag">FTB · Room Data Sheets</span>
+    <a href="/" class="nav-back">← Portfolio</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <img src="projects/FDG18-Cyclotron/hero-bunker.png" alt="IBA Cyclone KIUBE 180 — Cyclotron Bunker">
+  <div class="hero-ov"></div>
+  <div class="hero-c">
+    <p class="breadcrumb">Anti-Cancer Centre Constantine · 5th Military Region · Nuclear Medicine</p>
+    <h1>FDG-18 Production Unit<br><span>by Cyclotron</span></h1>
+    <p class="hero-sub">Functional Technical Brief &amp; Room Data Sheets — Pre-Programme Stage</p>
+    <div class="tags">
+      <span class="tag">IBA Cyclone KIUBE 180</span>
+      <span class="tag">PET Radiopharmacy</span>
+      <span class="tag">IAEA · EU GMP · ISO 14644</span>
+      <span class="tag">Technical Pre-Programme</span>
+    </div>
+  </div>
+</div>
+
+<!-- NOTICE -->
+<div class="notice">
+  <strong>Technical Pre-Programme Document.</strong> Areas, electrical loads, HVAC airflows, shielding thicknesses, cleanroom classifications and gas requirements must be confirmed by the radiation protection study, the cyclotron manufacturer (IBA) requirements and the applicable national regulations. This document is a presentation and architectural/technical scoping reference only.
+</div>
+
+<!-- S1: PURPOSE -->
+<section>
+  <div class="wrap">
+    <p class="sn">01</p>
+    <h2>Purpose &amp; <span>Functional Position</span></h2>
+    <div class="rule"></div>
+
+    <div class="g2" style="margin-bottom:28px">
+      <div class="gl">Project</div><div class="gv">Completion of the Anti-Cancer Centre Constantine — 5th Military Region</div>
+      <div class="gl">Document</div><div class="gv">Presentation Report + Room Data Sheets</div>
+      <div class="gl">Status</div><div class="gv">Technical pre-programme — to be validated by the cyclotron supplier, medical physicist, radiation protection specialist, radiopharmacy team and specialist engineers</div>
+      <div class="gl">Country</div><div class="gv">People's Democratic Republic of Algeria</div>
+      <div class="gl">Client</div><div class="gv">DPR-IHS / DCIM / Ministry of National Defence (MDN)</div>
+      <div class="gl">Main Contractor</div><div class="gv">Joint Venture: GBC SPA / ILK Indjazet El Djazair SPA</div>
+      <div class="gl">Cyclotron Supplier</div><div class="gv">IBA (Ion Beam Applications) — Cyclone KIUBE 180</div>
+      <div class="gl">Date</div><div class="gv">June 2026</div>
+      <div class="gl">Language</div><div class="gv">English</div>
+    </div>
+
+    <p style="font-size:12px;color:var(--text2);margin-bottom:24px">This document presents the recommended functional organization for an FDG-18 production unit integrated into the Nuclear Medicine Department of an Anti-Cancer Centre. The objective of the unit is to ensure local production of Fluorine-18, followed by synthesis of ¹⁸F-FDG, a radiopharmaceutical used for PET-CT examinations, particularly in oncology.</p>
+
+    <p style="font-size:10px;text-transform:uppercase;letter-spacing:0.15em;color:var(--gold3);margin-bottom:12px">Recommended Hospital Position</p>
+    <table>
+      <thead><tr><th>Level</th><th>Designation</th></tr></thead>
+      <tbody>
+        <tr><td class="k">Department / Pole</td><td>Medical Imaging</td></tr>
+        <tr><td class="k">Service</td><td>Nuclear Medicine</td></tr>
+        <tr><td class="k">Sub-service</td><td>PET Radiopharmacy / Cyclotron Unit</td></tr>
+        <tr><td class="k">Main function</td><td>Production of Fluorine-18, synthesis of FDG-18, quality control, dose dispensing and support to PET-CT activity</td></tr>
+      </tbody>
+    </table>
+
+    <p style="font-size:12px;color:var(--text2);margin-top:20px">The unit must be designed as a complete technical, radiopharmaceutical and regulatory environment integrating radiation protection, good manufacturing practice, quality control, staff safety, flow control and continuity of service.</p>
+  </div>
+</section>
+
+<!-- S2: PRODUCTION PRINCIPLE -->
+<section>
+  <div class="wrap">
+    <p class="sn">02</p>
+    <h2>General FDG-18 <span>Production Principle</span></h2>
+    <div class="rule"></div>
+
+    <p class="body" style="margin-bottom:22px">This organization must ensure radiological safety, pharmaceutical quality, batch traceability, separation of flows, radioactive waste management and regulatory compliance.</p>
+
+    <div class="chain-wrap">
+      <div class="chain">
+        <div class="cs k">Cyclotron<span class="cl">IBA KIUBE 180</span></div><div class="ca">→</div>
+        <div class="cs k">Fluorine-18<span class="cl">Radionuclide</span></div><div class="ca">→</div>
+        <div class="cs">Shielded Transfer<span class="cl">Transfer Line</span></div><div class="ca">→</div>
+        <div class="cs k">FDG Synthesis<span class="cl">Synthera+ / Hot Cell</span></div><div class="ca">→</div>
+        <div class="cs">Purification<span class="cl">Formulation</span></div><div class="ca">→</div>
+        <div class="cs k">Quality Control<span class="cl">QC Lab</span></div><div class="ca">→</div>
+        <div class="cs">Batch Release<span class="cl">Radiopharmacist</span></div><div class="ca">→</div>
+        <div class="cs">Dispensing<span class="cl">Dose Prep</span></div><div class="ca">→</div>
+        <div class="cs">Patient Injection<span class="cl">Hot Waiting</span></div><div class="ca">→</div>
+        <div class="cs k">PET-CT Scan<span class="cl">Imaging</span></div>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1.6fr;gap:2px;margin-top:28px;background:var(--bg3);border:1px solid var(--gold-line)">
+      <div style="background:#101010;display:flex;align-items:center;justify-content:center;padding:12px">
+        <img src="projects/FDG18-Cyclotron/kiube-3d.png"
+             alt="IBA Cyclone KIUBE 180 — full 3D model"
+             style="width:100%;height:auto;display:block;max-height:480px;object-fit:contain">
+      </div>
+      <div style="display:flex;flex-direction:column">
+        <img src="projects/FDG18-Cyclotron/hero-bunker.png"
+             alt="IBA Cyclone KIUBE 180 installed in cyclotron bunker"
+             style="width:100%;height:auto;display:block;object-fit:contain;background:#0d0d0d">
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1.6fr;gap:2px;background:var(--bg3)">
+      <p class="ic" style="padding:8px 4px">IBA Cyclone KIUBE 180 — Full 3D equipment model showing target ports, proton source and cable management</p>
+      <p class="ic" style="padding:8px 4px">Cyclone KIUBE 180 installed in real cyclotron bunker — labyrinth entrance, CCTV, radiation warning light, shielded transfer line and RADIATION CONTROLLED AREA sign</p>
+    </div>
+  </div>
+</section>
+
+<!-- S3: SERVICES & SPACES -->
+<section>
+  <div class="wrap">
+    <p class="sn">03</p>
+    <h2>Services &amp; <span>Spaces</span></h2>
+    <div class="rule"></div>
+    <table>
+      <thead><tr><th>Sub-System</th><th>Spaces / Rooms</th><th>Function</th></tr></thead>
+      <tbody>
+        <tr><td class="k">Cyclotron Zone</td><td>Cyclotron bunker, control room, technical room, gas room, cooling, electrical cabinets, maintenance access</td><td>Primary production of Fluorine-18 radionuclide</td></tr>
+        <tr><td class="k">PET Radiochemistry Zone</td><td>Hot Lab, shielded cells, synthesis modules, transfer line, purification, formulation, filtration</td><td>Conversion of Fluorine-18 into injectable FDG-18</td></tr>
+        <tr><td class="k">Quality Control</td><td>QC laboratory, HPLC/GC, pH, endotoxins, radiochemical purity, quality documentation</td><td>Verification and batch release per pharmaceutical requirements</td></tr>
+        <tr><td class="k">Dispensing</td><td>Dispensing station, dose calibrator, shielded dose pass-through, temporary dose storage</td><td>Preparation of patient doses</td></tr>
+        <tr><td class="k">Radioactive Waste</td><td>Decay storage, shielded containers, solid/liquid waste per process</td><td>Management and traceability of short-lived waste</td></tr>
+        <tr><td class="k">Staff and Safety</td><td>Personnel/material airlock, changing area, PPE, dosimetry, emergency decontamination, access control</td><td>Staff protection and access control</td></tr>
+        <tr><td class="k">Technical Support</td><td>Dedicated electrical supply, UPS if required, HVAC, exhaust, BMS, maintenance, hot-zone housekeeping room</td><td>Technical continuity and safe operation</td></tr>
+      </tbody>
+    </table>
+    <img src="projects/FDG18-Cyclotron/isometric-layout.jpg" class="imgf" alt="FDG-18 Unit — Isometric layout">
+    <p class="ic" style="margin-top:-14px">Isometric Layout — FDG-18 Production Unit / Cyclotron Zone</p>
+  </div>
+</section>
+
+<!-- S4: ZONING -->
+<section>
+  <div class="wrap">
+    <p class="sn">04</p>
+    <h2>Functional Relationships <span>&amp; Zoning</span></h2>
+    <div class="rule"></div>
+
+    <div class="zones">
+      <div class="zc"><div class="zd" style="background:#3a3a3a;border:1px solid #555"></div><p class="zn">Cold Zone</p><p class="zt">Uncontrolled area. No restriction on access.</p></div>
+      <div class="zc"><div class="zd" style="background:#2d4a2d;border:1px solid #5a8a5a"></div><p class="zn">Controlled / Hot Zone</p><p class="zt">Cyclotron bunker, Hot Lab, Hot Cells. Authorised access, radiation monitoring mandatory.</p></div>
+      <div class="zc"><div class="zd" style="background:#2a3a4a;border:1px solid #5a7a9a"></div><p class="zn">Clean / GMP Zone</p><p class="zt">Synthesis, QC, dispensing. ISO 14644 + EU GMP Annex 1 compliance.</p></div>
+      <div class="zc"><div class="zd" style="background:#3a2a1a;border:1px solid #8a6a3a"></div><p class="zn">Technical Zone</p><p class="zt">Electrical, HVAC, cooling. Maintenance without entering controlled zone.</p></div>
+    </div>
+
+    <table style="margin-bottom:28px">
+      <thead><tr><th>Main Room</th><th>Strong Relationship</th><th>Proximity Objective</th></tr></thead>
+      <tbody>
+        <tr><td class="k">Cyclotron Bunker</td><td>Cyclotron control room</td><td>Supervision, interlock, emergency stop, CCTV and alarms</td></tr>
+        <tr><td class="k">Cyclotron Bunker</td><td>Cyclotron technical room</td><td>Equipment connection, maintenance and utilities</td></tr>
+        <tr><td class="k">Cyclotron Bunker</td><td>Technical gas room</td><td>Gas supply per supplier requirements</td></tr>
+        <tr><td class="k">Cyclotron Bunker</td><td>Hot Lab / PET Radiochemistry</td><td>Fast and shielded transfer of Fluorine-18</td></tr>
+        <tr><td class="k">Hot Lab / Radiochemistry</td><td>QC Lab</td><td>Quality control before batch release</td></tr>
+        <tr><td class="k">QC / Dispensing</td><td>PET injection</td><td>Rapid dose availability and reduction of delays</td></tr>
+        <tr><td class="k">Hot Lab / Dispensing</td><td>Radioactive waste</td><td>Management and decay of short-lived waste</td></tr>
+        <tr><td class="k">Personnel airlock</td><td>Controlled zone entry</td><td>Access control and staff protection</td></tr>
+      </tbody>
+    </table>
+
+    <p style="font-size:12px;color:var(--text2);margin-bottom:22px">The cyclotron zone must remain within a controlled technical zone, with a short relationship to PET radiochemistry and controlled access.</p>
+
+    <!-- IBA Floor Plan -->
+    <p style="font-size:10px;text-transform:uppercase;letter-spacing:0.15em;color:var(--gold3);margin-bottom:12px">IBA Facility Layout — Drawing Ref. 0746770004b</p>
+    <div style="border:1px solid var(--gold-line);background:var(--bg3);padding:2px;margin-bottom:6px">
+      <img src="projects/FDG18-Cyclotron/iba-floor-plan.png"
+           alt="IBA Cyclone KIUBE — complete facility layout plan"
+           style="width:100%;display:block;filter:brightness(0.92);transition:filter .3s"
+           onmouseover="this.style.filter='brightness(1)'" onmouseout="this.style.filter='brightness(0.92)'">
+    </div>
+    <p class="ic" style="margin-bottom:28px">IBA (Ion Beam Applications) — FDG-18 Production Unit Spatial Layout. Drawing 0746770004b — indicative, shielding thicknesses shown for reference only, to be confirmed by radiation protection specialist.</p>
+
+    <div class="img2">
+      <div>
+        <img src="projects/FDG18-Cyclotron/transfer-line.jpg" alt="Shielded transfer line — radiation controlled area">
+        <p class="ic">Shielded Transfer Line Penetration — Radiation Controlled Area</p>
+      </div>
+      <div>
+        <img src="projects/FDG18-Cyclotron/bunker-angle2.png" alt="Cyclotron bunker secondary view">
+        <p class="ic">Cyclotron Bunker — Maintenance Access &amp; Equipment Connections</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- S5: STANDARDS -->
+<section>
+  <div class="wrap">
+    <p class="sn">05</p>
+    <h2>Reference <span>Standards</span></h2>
+    <div class="rule"></div>
+    <table>
+      <thead><tr><th>Reference</th><th>Application in the Project</th></tr></thead>
+      <tbody>
+        <tr><td class="k">IAEA TRS 471</td><td>Planning and implementation of a cyclotron facility for production of radionuclides and radiopharmaceuticals.</td></tr>
+        <tr><td class="k">IAEA FDG Facility Design</td><td>Facility design, FDG production, laboratory organisation, layout, equipment and quality requirements.</td></tr>
+        <tr><td class="k">IAEA GSR Part 3</td><td>Radiation protection and safety of ionizing radiation sources — International Basic Safety Standards.</td></tr>
+        <tr><td class="k">EU GMP Vol. 4 Annex 1</td><td>Manufacture of sterile products: controlled environment, contamination control strategy and qualification.</td></tr>
+        <tr><td class="k">EU GMP Vol. 4 Annex 3</td><td>Specific requirements for the manufacture of radiopharmaceuticals.</td></tr>
+        <tr><td class="k">ISO 14644-1:2015</td><td>Classification of air cleanliness in cleanrooms and clean zones.</td></tr>
+        <tr><td class="k">WHO GMP Radiopharmaceuticals</td><td>Good manufacturing practices for radiopharmaceutical products.</td></tr>
+        <tr><td class="k">USP &lt;825&gt;</td><td>Preparation, compounding, dispensing and repackaging of radiopharmaceuticals.</td></tr>
+        <tr><td class="k">AERB Medical Cyclotron Guide</td><td>Specialised regulatory guide for design, operation and decommissioning of a medical cyclotron facility.</td></tr>
+        <tr><td class="k">Cyclotron Supplier (IBA)</td><td>Mandatory data: footprint, loads, power, cooling, gases, shielding, maintenance, openings and installation route.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- S5b: IBA EQUIPMENT REFERENCE -->
+<section>
+  <div class="wrap">
+    <p class="sn">05b</p>
+    <h2>IBA Equipment <span>Item List Reference</span></h2>
+    <div class="rule"></div>
+    <p style="font-size:11px;color:var(--text3);margin-bottom:16px">IBA (Ion Beam Applications) — Drawing 0746770410b Rev. B, 25.10.2021. This document establishes the confirmed equipment scope for the Cyclone KIUBE 180 installation: cyclotron, targets, synthesis modules (Synthera+), hot cells, quality control suite and radiation monitoring. All item references (Cy.xx, Hc.xx, Ch.xx, Qc.xx, Re.xx) used in the Room Data Sheets below trace back to this list.</p>
+    <div style="border:1px solid var(--gold-line);background:var(--bg3);padding:2px">
+      <img src="projects/FDG18-Cyclotron/iba-itemlist-p1.png"
+           alt="IBA Item List 0746770410b — Cyclone KIUBE 180 equipment scope"
+           style="width:100%;display:block;filter:brightness(0.92);transition:filter .3s"
+           onmouseover="this.style.filter='brightness(1)'" onmouseout="this.style.filter='brightness(0.92)'">
+    </div>
+    <p class="ic" style="margin-top:6px">IBA Item List Ref. 0746770410b Rev. B — Cyclone KIUBE 180 complete equipment scope. Proprietary document — shown for architectural coordination reference only.</p>
+  </div>
+</section>
+
+<!-- S6: AREAS -->
+<section>
+  <div class="wrap">
+    <p class="sn">06</p>
+    <h2>Indicative <span>Programming Areas</span></h2>
+    <div class="rule"></div>
+    <p style="font-size:11px;color:var(--text3);margin-bottom:18px;font-style:italic">Pre-programme values — to be adjusted per cyclotron model, radiopharmacy concept, shielding calculations, GMP requirements and site constraints.</p>
+    <table class="area">
+      <tbody>
+        <tr><td class="k">Cyclotron Bunker / Cyclotron Casemate</td><td>35 – 50 m²</td></tr>
+        <tr><td class="k">Cyclotron Control Room</td><td>8 – 12 m²</td></tr>
+        <tr><td class="k">Cyclotron Technical Room</td><td>12 – 25 m²</td></tr>
+        <tr><td class="k">Technical Gas Room</td><td>6 – 12 m²</td></tr>
+        <tr><td class="k">Hot Lab / PET Radiochemistry / FDG Synthesis</td><td>15 – 30 m²</td></tr>
+        <tr><td class="k">Hot Cells / Shielded Cells</td><td>Per equipment</td></tr>
+        <tr><td class="k">FDG Quality Control Laboratory</td><td>10 – 15 m²</td></tr>
+        <tr><td class="k">FDG Dose Dispensing</td><td>8 – 12 m²</td></tr>
+        <tr><td class="k">Personnel / Material Airlock</td><td>4 – 8 m²</td></tr>
+        <tr><td class="k">Radioactive Waste / Decay Storage</td><td>4 – 8 m²</td></tr>
+        <tr><td class="k">Hot-Zone Housekeeping Room</td><td>3 – 5 m²</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- S7: RDS -->
+<section>
+  <div class="wrap">
+    <p class="sn">07</p>
+    <h2>Room Data Sheets — <span>Strong Relationship to Cyclotron Bunker</span></h2>
+    <div class="rule"></div>
+    <p class="body" style="margin-bottom:44px">Values are to be used during the pre-programme stage and must be validated by specialist studies.</p>
+
+    <div class="rds-list">
+
+      <!-- ═══════════════════════════════ RDS 01 ═══════════════════════════════ -->
+      <div class="rds">
+        <div class="rds-hdr">
+          <div class="rds-num"><span>01</span><span>RDS</span></div>
+          <div class="rds-ttl"><p class="rds-room">Cyclotron Bunker / Cyclotron Casemate</p><p style="font-size:10px;color:var(--text3)">Nuclear Medicine · PET Radiopharmacy / FDG-18 Production</p></div>
+        </div>
+        <div style="display:grid;grid-template-columns:2fr 1fr;gap:2px;border-bottom:1px solid var(--line)">
+          <img src="projects/FDG18-Cyclotron/hero-bunker.png" style="width:100%;height:240px;object-fit:cover;filter:brightness(0.82);display:block;transition:filter .3s" onmouseover="this.style.filter='brightness(1)'" onmouseout="this.style.filter='brightness(0.82)'" alt="Cyclotron Bunker — labyrinth entrance">
+          <div>
+            <img src="projects/FDG18-Cyclotron/kiube-logo.jpg" style="width:100%;height:120px;object-fit:cover;filter:brightness(0.82);display:block;border-bottom:2px solid var(--bg);transition:filter .3s" onmouseover="this.style.filter='brightness(1)'" onmouseout="this.style.filter='brightness(0.82)'" alt="IBA Cyclone KIUBE nameplate">
+            <img src="projects/FDG18-Cyclotron/bunker-services.jpg" style="width:100%;height:118px;object-fit:cover;filter:brightness(0.82);display:block;transition:filter .3s" onmouseover="this.style.filter='brightness(1)'" onmouseout="this.style.filter='brightness(0.82)'" alt="Cyclotron bunker services">
+          </div>
+        </div>
+        <p class="ic" style="padding:6px 22px;border-bottom:1px solid var(--line)">Cyclotron Bunker — Labyrinth entrance / IBA KIUBE nameplate / Internal services view</p>
+
+        <!-- General Info -->
+        <div class="rds-section">
+          <p class="rds-sec-title">General Information</p>
+          <table>
+            <thead><tr><th>Field</th><th>Data</th></tr></thead>
+            <tbody>
+              <tr><td class="k">Room name</td><td>Cyclotron Bunker / Cyclotron Casemate</td></tr>
+              <tr><td class="k">Room code</td><td>To be created per project codification — example: 3J-1J-CYC-2.001</td></tr>
+              <tr><td class="k">Service</td><td>Nuclear Medicine</td></tr>
+              <tr><td class="k">Sub-service</td><td>PET Radiopharmacy / FDG-18 Production</td></tr>
+              <tr><td class="k">Indicative area</td><td>40.00 m² — pre-programme value</td></tr>
+              <tr><td class="k">Service hours</td><td>24 hours / per production schedule</td></tr>
+              <tr><td class="k">Occupation</td><td>Technical room in controlled radiological zone</td></tr>
+              <tr><td class="k">Staffing</td><td>0 permanent; occasional access by authorised personnel only</td></tr>
+              <tr><td class="k">Description</td><td>Shielded room intended to house the IBA Cyclone KIUBE 180 medical cyclotron for production of Fluorine-18 used in FDG-18 synthesis. The room provides radiation protection, access safety, controlled ventilation, cooling, gas networks and shielded transfer to the Hot Lab. Labyrinth or shielded door access per radiation protection study.</td></tr>
+              <tr><td class="k">Acoustic insulation</td><td>≥ 45 dB recommended or per acoustic study</td></tr>
+              <tr><td class="k">Strong relationships</td><td>Control room, technical room, gas room, Hot Lab / PET Radiochemistry, radioactive waste</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Finishes -->
+        <div class="rds-section">
+          <p class="rds-sec-title">Appearance and Finishes</p>
+          <table>
+            <thead><tr><th>Element</th><th>Specification</th><th>Observation</th></tr></thead>
+            <tbody>
+              <tr><td class="k">Ceiling</td><td>Shielded reinforced concrete</td><td>Thickness per radiation protection calculation</td></tr>
+              <tr><td class="k">Ceiling</td><td>Washable epoxy paint</td><td>Decontaminable surface</td></tr>
+              <tr><td class="k">Walls</td><td>High-density reinforced concrete</td><td>Gamma/neutron shielding per study</td></tr>
+              <tr><td class="k">Walls</td><td>Washable epoxy paint</td><td>Smooth, resistant, decontaminable surface</td></tr>
+              <tr><td class="k">Floor</td><td>Continuous industrial epoxy resin</td><td>Resistant to heavy and rolling loads</td></tr>
+              <tr><td class="k">Floor</td><td>Anti-slip, non-porous</td><td>Cleaning and decontamination</td></tr>
+              <tr><td class="k">Skirting</td><td>Coved skirting 10 to 15 cm</td><td>Sealed and washable</td></tr>
+              <tr><td class="k">Access</td><td>Radiological shielded / labyrinth per approved layout</td><td>Interlock, access control and signage where required</td></tr>
+              <tr><td class="k">Signage</td><td>Radiation / controlled access</td><td>Warning light and alarm</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Furniture -->
+        <div class="rds-section">
+          <p class="rds-sec-title">Furniture and Utilities</p>
+          <table>
+            <thead><tr><th>Description</th><th>Category</th><th>Qty</th><th>Observation</th></tr></thead>
+            <tbody>
+              <tr><td class="k">Safety procedure box</td><td>Utility</td><td>01</td><td>Emergency procedures and lockout/tagout</td></tr>
+              <tr><td class="k">Radiation protection PPE cabinet</td><td>Utility</td><td>01</td><td>Preferably outside bunker</td></tr>
+              <tr><td class="k">Decontamination kit</td><td>Safety</td><td>01</td><td>In adjacent zone</td></tr>
+              <tr><td class="k">Suitable fire extinguisher</td><td>Safety</td><td>01</td><td>To be validated by fire safety</td></tr>
+              <tr><td class="k">Emergency lighting</td><td>Safety</td><td>As required</td><td>Mandatory</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Equipment -->
+        <div class="rds-section">
+          <p class="rds-sec-title">Equipment and Networks</p>
+          <table>
+            <thead><tr><th>Description</th><th>Ref. IBA</th><th>QTY</th><th>ELE</th><th>HVAC/Cool.</th><th>GAS/DRN</th><th>DATA/BMS</th><th>Power / Obs.</th></tr></thead>
+            <tbody>
+              <tr><td class="k">PET medical cyclotron — Cyclone KIUBE 180</td><td>Cy.01</td><td>01</td><td class="yes">Yes</td><td class="yes">Yes</td><td class="yes">Yes</td><td class="yes">Yes</td><td>Per supplier TDS</td></tr>
+              <tr><td class="k">Second proton source</td><td>Cy.02</td><td>01</td><td class="yes">Yes</td><td class="no">—</td><td class="no">—</td><td class="yes">Yes</td><td>Included</td></tr>
+              <tr><td class="k">18F target line switching box</td><td>Cy.12</td><td>01</td><td class="yes">Yes</td><td class="no">—</td><td class="yes">Yes</td><td class="yes">Yes</td><td>Low</td></tr>
+              <tr><td class="k">18F conical targets (Nirta)</td><td>Cy.14</td><td>2×</td><td class="yes">Yes</td><td class="yes">Yes</td><td class="yes">Yes</td><td class="yes">Yes</td><td>Per supplier</td></tr>
+              <tr><td class="k">Shielded transfer line (to Hot Lab)</td><td>—</td><td>01</td><td class="yes">Yes</td><td class="no">—</td><td class="no">—</td><td class="yes">Yes</td><td>Low</td></tr>
+              <tr><td class="k">Internal CCTV</td><td>Re.02</td><td>01</td><td class="yes">Yes</td><td class="no">—</td><td class="no">—</td><td class="yes">Yes</td><td>50 W</td></tr>
+              <tr><td class="k">Intercom</td><td>—</td><td>01</td><td class="yes">Yes</td><td class="no">—</td><td class="no">—</td><td class="yes">Yes</td><td>50 W</td></tr>
+              <tr><td class="k">Emergency stops</td><td>—</td><td>Several</td><td class="yes">Yes</td><td class="no">—</td><td class="no">—</td><td class="yes">Yes</td><td>Low</td></tr>
+              <tr><td class="k">Gamma dose rate monitor</td><td>Re.02</td><td>Per study</td><td class="yes">Yes</td><td class="no">—</td><td class="no">—</td><td class="yes">Yes</td><td>Low</td></tr>
+              <tr><td class="k">Radiation / controlled access signage</td><td>—</td><td>01 lot</td><td class="yes">Yes</td><td class="no">—</td><td class="no">—</td><td class="yes">Yes</td><td>Low</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="rds-coord">
+          <p class="coord-title">Coordination Notes</p>
+          <ul>
+            <li>All shielding thicknesses must be calculated by a radiation protection specialist — no penetration through shielded walls without protection and prior coordination</li>
+            <li>Power, gases and cooling must follow the IBA Cyclone KIUBE 180 technical data sheet exactly</li>
+            <li>GMP and ISO 14644 requirements to be validated per selected radiopharmaceutical process</li>
+            <li>Confirm labyrinth or shielded door configuration with supplier and radiation protection study before finalising layout</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- ═══════════════════════════════ RDS 02 ═══════════════════════════════ -->
+      <div class="rds">
+        <div class="rds-hdr">
+          <div class="rds-num"><span>02</span><span>RDS</span></div>
+          <div class="rds-ttl"><p class="rds-room">Cyclotron Control Room</p><p style="font-size:10px;color:var(--text3)">Nuclear Medicine · PET Radiopharmacy</p></div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:2px;border-bottom:1px solid var(--line)">
+          <img src="projects/FDG18-Cyclotron/cctv.png" style="width:100%;height:220px;object-fit:cover;filter:brightness(0.82);display:block;transition:filter .3s" onmouseover="this.style.filter='brightness(1)'" onmouseout="this.style.filter='brightness(0.82)'" alt="CCTV dome — bunker surveillance">
+          <img src="projects/FDG18-Cyclotron/ceiling-lighting.png" style="width:100%;height:220px;object-fit:cover;filter:brightness(0.82);display:block;transition:filter .3s" onmouseover="this.style.filter='brightness(1)'" onmouseout="this.style.filter='brightness(0.82)'" alt="Linear LED lighting — control room ceiling">
+        </div>
+        <p class="ic" style="padding:6px 22px;border-bottom:1px solid var(--line)">CCTV surveillance of cyclotron bunker / Linear LED ceiling lighting — control station environment</p>
+
+        <div class="rds-section">
+          <p class="rds-sec-title">General Information</p>
+          <table>
+            <thead><tr><th>Field</th><th>Data</th></tr></thead>
+            <tbody>
+              <tr><td class="k">Room name</td><td>Cyclotron Control Room</td></tr>
+              <tr><td class="k">Indicative area</td><td>8 to 12 m²</td></tr>
+              <tr><td class="k">Service hours</td><td>Per production / supervision</td></tr>
+              <tr><td class="k">Occupation</td><td>Authorised technical personnel</td></tr>
+              <tr><td class="k">Staffing</td><td>1 to 2 persons</td></tr>
+              <tr><td class="k">Description</td><td>Room intended for cyclotron operation, control, monitoring and emergency shutdown. Receives the Zephiros control interfaces (Cy.07–09), alarms, radiation monitors, CCTV displays and communication systems. No direct glazed opening to bunker — visibility via CCTV only.</td></tr>
+              <tr><td class="k">Acoustic insulation</td><td>≥ 35 to 40 dB recommended</td></tr>
+              <tr><td class="k">Strong relationships</td><td>Cyclotron bunker, technical room, radiation protection</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="rds-section">
+          <p class="rds-sec-title">Appearance and Finishes</p>
+          <table>
+            <thead><tr><th>Element</th><th>Specification</th><th>Observation</th></tr></thead>
+            <tbody>
+              <tr><td class="k">Ceiling</td><td>Washable technical suspended ceiling</td><td>Maintenance access if necessary</td></tr>
+              <tr><td class="k">Walls</td><td>Washable paint</td><td>Control station environment</td></tr>
+              <tr><td class="k">Floor</td><td>Conductive PVC or technical resin</td><td>Easy maintenance</td></tr>
+              <tr><td class="k">Skirting</td><td>10 to 15 cm</td><td>Washable</td></tr>
+              <tr><td class="k">Door</td><td>Access control</td><td>Authorised personnel only</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="rds-section">
+          <p class="rds-sec-title">Furniture and Utilities</p>
+          <table>
+            <thead><tr><th>Description</th><th>Category</th><th>Qty</th><th>Observation</th></tr></thead>
+            <tbody>
+              <tr><td class="k">Worktop / console</td><td>Furniture</td><td>01</td><td>Supervision station</td></tr>
+              <tr><td class="k">Operator chairs</td><td>Furniture</td><td>02</td><td>Ergonomic</td></tr>
+              <tr><td class="k">Documentation cabinet</td><td>Utility</td><td>01</td><td>Procedures and registers</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="rds-section">
+          <p class="rds-sec-title">Equipment and Networks</p>
+          <table>
+            <thead><tr><th>Description</th><th>Ref. IBA</th><th>QTY</th><th>ELE</th><th>HVAC/Cool.</th><th>GAS/DRN</th><th>DATA/BMS</th><th>Power / Obs.</th></tr></thead>
+            <tbody>
+              <tr><td class="k">Cyclotron control console (Zephiros)</td><td>Cy.07–09</td><td>01</td><td class="yes">Yes</td><td class="no">—</td><td class="no">—</td><td class="yes">Yes</td><td>Per supplier</td></tr>
+              <tr><td class="k">CCTV monitors</td><td>Re.05</td><td>01 lot</td><td class="yes">Yes</td><td class="no">—</td><td class="no">—</td><td class="yes">Yes</td><td>Per system</td></tr>
+              <tr><td class="k">Radiation monitor display</td><td>Re.05</td><td>01 lot</td><td class="yes">Yes</td><td class="no">—</td><td class="no">—</td><td class="yes">Yes</td><td>Low</td></tr>
+              <tr><td class="k">Intercom</td><td>—</td><td>01</td><td class="yes">Yes</td><td class="no">—</td><td class="no">—</td><td class="yes">Yes</td><td>—</td></tr>
+              <tr><td class="k">Emergency stop</td><td>—</td><td>01</td><td class="yes">Yes</td><td class="no">—</td><td class="no">—</td><td class="yes">Yes</td><td>Low</td></tr>
+              <tr><td class="k">BMS / alarms panel</td><td>—</td><td>01 lot</td><td class="yes">Yes</td><td class="no">—</td><td class="no">—</td><td class="yes">Yes</td><td>Low</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="rds-coord">
+          <p class="coord-title">Coordination Notes</p>
+          <ul>
+            <li>Provide operational visibility to bunker by CCTV — no direct glazed opening to bunker permitted</li>
+            <li>Coordinate interlock, alarms and emergency stop with IBA supplier specifications</li>
+            <li>Zephiros software (Cy.07) and automatic start-up (Cy.08) require dedicated data infrastructure</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- ═══════════════════════════════ RDS 03 ═══════════════════════════════ -->
+      <div class="rds">
+        <div class="rds-hdr">
+          <div class="rds-num"><span>03</span><span>RDS</span></div>
+          <div class="rds-ttl"><p class="rds-room">Cyclotron Technical Room</p><p style="font-size:10px;color:var(--text3)">Nuclear Medicine · PET Radiopharmacy</p></div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:2px;border-bottom:1px solid var(--line)">
+          <img src="projects/FDG18-Cyclotron/cable-trays.png" style="width:100%;height:220px;object-fit:cover;filter:brightness(0.82);display:block;transition:filter .3s" onmouseover="this.style.filter='brightness(1)'" onmouseout="this.style.filter='brightness(0.82)'" alt="Cable trays — technical room ceiling">
+          <img src="projects/FDG18-Cyclotron/hvac.png" style="width:100%;height:220px;object-fit:cover;filter:brightness(0.82);display:block;transition:filter .3s" onmouseover="this.style.filter='brightness(1)'" onmouseout="this.style.filter='brightness(0.82)'" alt="HVAC ductwork — ventilation">
+        </div>
+        <p class="ic" style="padding:6px 22px;border-bottom:1px solid var(--line)">Cable trays and service routes on structural ceiling / HVAC ductwork and controlled ventilation</p>
+
+        <div class="rds-section">
+          <p class="rds-sec-title">General Information</p>
+          <table>
+            <thead><tr><th>Field</th><th>Data</th></tr></thead>
+            <tbody>
+              <tr><td class="k">Room name</td><td>Cyclotron Technical Room</td></tr>
+              <tr><td class="k">Indicative area</td><td>12 to 25 m²</td></tr>
+              <tr><td class="k">Service hours</td><td>24 hours</td></tr>
+              <tr><td class="k">Occupation</td><td>Occasional maintenance</td></tr>
+              <tr><td class="k">Staffing</td><td>0 permanent; 1 to 2 persons during intervention</td></tr>
+              <tr><td class="k">Description</td><td>Room intended for electrical cabinets, control equipment, cooling circuits, technical interfaces and utilities required for cyclotron operation. Access for maintenance only — no permanent occupation. Door width compatible with equipment access.</td></tr>
+              <tr><td class="k">Acoustic insulation</td><td>Per equipment and acoustic study</td></tr>
+              <tr><td class="k">Strong relationships</td><td>Cyclotron bunker, control room, electrical room, HVAC</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="rds-section">
+          <p class="rds-sec-title">Appearance and Finishes</p>
+          <table>
+            <thead><tr><th>Element</th><th>Specification</th><th>Observation</th></tr></thead>
+            <tbody>
+              <tr><td class="k">Ceiling</td><td>Painted concrete or technical ceiling</td><td>Robust and accessible</td></tr>
+              <tr><td class="k">Walls</td><td>Resistant washable paint</td><td>Technical room</td></tr>
+              <tr><td class="k">Floor</td><td>Industrial resin or technical floor</td><td>Loads and maintenance</td></tr>
+              <tr><td class="k">Skirting</td><td>10 to 15 cm</td><td>Resistant</td></tr>
+              <tr><td class="k">Door</td><td>Width compatible with equipment maintenance</td><td>Equipment access</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="rds-section">
+          <p class="rds-sec-title">Furniture and Utilities</p>
+          <table>
+            <thead><tr><th>Description</th><th>Category</th><th>Qty</th><th>Observation</th></tr></thead>
+            <tbody>
+              <tr><td class="k">Spare parts / tools storage</td><td>Utility</td><td>As required</td><td>Authorised spare parts and tools only</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="rds-section">
+          <p class="rds-sec-title">Equipment and Networks</p>
+          <table>
+            <thead><tr><th>Description</th><th>Ref. IBA</th><th>QTY</th><th>ELE</th><th>HVAC/Cool.</th><th>GAS/DRN</th><th>DATA/BMS</th><th>Power / Obs.</th></tr></thead>
+            <tbody>
+              <tr><td class="k">Electrical cabinets (Cy.01 auxiliaries)</td><td>—</td><td>01 lot</td><td class="yes">Yes</td><td class="no">—</td><td class="no">—</td><td class="yes">Yes</td><td>To be confirmed</td></tr>
+              <tr><td class="k">Control panels</td><td>—</td><td>01 lot</td><td class="yes">Yes</td><td class="no">—</td><td class="no">—</td><td class="yes">Yes</td><td>To be confirmed</td></tr>
+              <tr><td class="k">Associated cooling circuits</td><td>—</td><td>Per supplier</td><td class="yes">Yes</td><td class="yes">Yes</td><td>DRN if req.</td><td class="yes">Yes</td><td>Per supplier</td></tr>
+              <tr><td class="k">Temperature detection</td><td>—</td><td>01 lot</td><td class="yes">Yes</td><td class="yes">Yes</td><td class="no">—</td><td class="yes">Yes</td><td>BMS</td></tr>
+              <tr><td class="k">Fire detection</td><td>—</td><td>01 lot</td><td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="yes">Yes</td><td>Fire alarm system</td></tr>
+              <tr><td class="k">Maintenance sockets</td><td>—</td><td>As required</td><td class="yes">Yes</td><td class="no">—</td><td class="no">—</td><td class="no">—</td><td>Per ELE</td></tr>
+              <tr><td class="k">Technical ventilation</td><td>—</td><td>01 lot</td><td class="yes">Yes</td><td class="yes">Yes</td><td class="no">—</td><td class="yes">Yes</td><td>Per HVAC</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="rds-coord">
+          <p class="coord-title">Coordination Notes</p>
+          <ul>
+            <li>Provide maintenance clearances per IBA manufacturer requirements</li>
+            <li>Avoid conflicts between cable routes, ventilation risers and shielding penetrations</li>
+            <li>Cooling drain connection required if specified by supplier data sheet</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- ═══════════════════════════════ RDS 04 ═══════════════════════════════ -->
+      <div class="rds">
+        <div class="rds-hdr">
+          <div class="rds-num"><span>04</span><span>RDS</span></div>
+          <div class="rds-ttl"><p class="rds-room">Cyclotron Technical Gas Room</p><p style="font-size:10px;color:var(--text3)">Nuclear Medicine · PET Radiopharmacy</p></div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:2px;border-bottom:1px solid var(--line)">
+          <img src="projects/FDG18-Cyclotron/electrical-services.png" style="width:100%;height:220px;object-fit:cover;filter:brightness(0.82);display:block;transition:filter .3s" onmouseover="this.style.filter='brightness(1)'" onmouseout="this.style.filter='brightness(0.82)'" alt="Electrical panels and distribution">
+          <img src="projects/FDG18-Cyclotron/kiube-targets-top.png" style="width:100%;height:220px;object-fit:cover;filter:brightness(0.82);display:block;transition:filter .3s" onmouseover="this.style.filter='brightness(1)'" onmouseout="this.style.filter='brightness(0.82)'" alt="Cyclone KIUBE — target ports top view">
+        </div>
+        <p class="ic" style="padding:6px 22px;border-bottom:1px solid var(--line)">Electrical distribution panels / Cyclone KIUBE target ports requiring process gas supply (18F, 68Ga, 11C, 15O, 64Cu)</p>
+
+        <div class="rds-section">
+          <p class="rds-sec-title">General Information</p>
+          <table>
+            <thead><tr><th>Field</th><th>Data</th></tr></thead>
+            <tbody>
+              <tr><td class="k">Room name</td><td>Cyclotron Technical Gas Room</td></tr>
+              <tr><td class="k">Indicative area</td><td>6 to 12 m²</td></tr>
+              <tr><td class="k">Service hours</td><td>24 hours</td></tr>
+              <tr><td class="k">Occupation</td><td>Occasional maintenance</td></tr>
+              <tr><td class="k">Staffing</td><td>0 permanent</td></tr>
+              <tr><td class="k">Description</td><td>Room intended for storage, manifolds and controlled distribution of gases required for the IBA Cyclone KIUBE 180 and associated processes. Gas list to be confirmed with IBA supplier — includes process gases for 18F, 68Ga, 13N, 11C, 15O and 64Cu targets per equipment list ref. 0746770410b.</td></tr>
+              <tr><td class="k">Acoustic insulation</td><td>Standard, per equipment</td></tr>
+              <tr><td class="k">Strong relationships</td><td>Cyclotron bunker, technical room, PET radiochemistry</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="rds-section">
+          <p class="rds-sec-title">Appearance and Finishes</p>
+          <table>
+            <thead><tr><th>Element</th><th>Specification</th><th>Observation</th></tr></thead>
+            <tbody>
+              <tr><td class="k">Ceiling</td><td>Washable / technical</td><td>Suitable ventilation</td></tr>
+              <tr><td class="k">Walls</td><td>Resistant paint</td><td>Gas safety</td></tr>
+              <tr><td class="k">Floor</td><td>Resin or treated concrete</td><td>Resistant</td></tr>
+              <tr><td class="k">Door</td><td>Per gas safety requirements</td><td>Ventilated if required</td></tr>
+              <tr><td class="k">Signage</td><td>Technical gases / safety</td><td>Mandatory</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="rds-section">
+          <p class="rds-sec-title">Furniture and Utilities</p>
+          <table>
+            <thead><tr><th>Description</th><th>Category</th><th>Qty</th><th>Observation</th></tr></thead>
+            <tbody>
+              <tr><td class="k">Cylinder rack</td><td>Utility</td><td>Per supplier</td><td>Secure fixing</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="rds-section">
+          <p class="rds-sec-title">Equipment and Networks — IBA Target Gas Requirements</p>
+          <table>
+            <thead><tr><th>Description</th><th>Ref. IBA</th><th>QTY</th><th>ELE</th><th>HVAC/Cool.</th><th>GAS/DRN</th><th>DATA/BMS</th><th>Power / Obs.</th></tr></thead>
+            <tbody>
+              <tr><td class="k">Manifolds / pressure regulators</td><td>—</td><td>Per supplier</td><td class="no">—</td><td class="no">—</td><td class="yes">Yes</td><td class="yes">Yes</td><td>Per supplier</td></tr>
+              <tr><td class="k">18F target gas supply</td><td>Cy.12–16</td><td>01</td><td class="no">—</td><td class="no">—</td><td class="yes">Yes</td><td class="yes">Yes</td><td>BMS</td></tr>
+              <tr><td class="k">68Ga / 13N / 11C / 15O / 64Cu target gases</td><td>Cy.17–24</td><td>Per targets</td><td class="no">—</td><td class="no">—</td><td class="yes">Yes</td><td class="yes">Yes</td><td>Per supplier</td></tr>
+              <tr><td class="k">Safety ventilation</td><td>—</td><td>01 lot</td><td class="yes">Yes</td><td class="yes">Yes</td><td class="no">—</td><td class="yes">Yes</td><td>Per HVAC</td></tr>
+              <tr><td class="k">Earthing</td><td>—</td><td>01 lot</td><td class="yes">Yes</td><td class="no">—</td><td class="no">—</td><td class="no">—</td><td>Per ELE</td></tr>
+              <tr><td class="k">Safety signage</td><td>—</td><td>01 lot</td><td class="yes">Yes</td><td class="no">—</td><td class="yes">Yes</td><td class="yes">Yes</td><td>Low</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="rds-coord">
+          <p class="coord-title">Coordination Notes</p>
+          <ul>
+            <li>Confirm complete gas list with IBA supplier before spatial and MEP design</li>
+            <li>Fire safety and ventilation requirements per gas type and local Algerian regulations</li>
+            <li>Cylinder fixing and manifold arrangement per supplier data sheet</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- ═══════════════════════════════ RDS 05 ═══════════════════════════════ -->
+      <div class="rds">
+        <div class="rds-hdr">
+          <div class="rds-num"><span>05</span><span>RDS</span></div>
+          <div class="rds-ttl"><p class="rds-room">PET Hot Lab / FDG-18 Radiochemistry</p><p style="font-size:10px;color:var(--text3)">Nuclear Medicine · PET Radiopharmacy — GMP Zone</p></div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:2px;border-bottom:1px solid var(--line)">
+          <img src="projects/FDG18-Cyclotron/transfer-line.jpg" style="width:100%;height:220px;object-fit:cover;filter:brightness(0.82);display:block;transition:filter .3s" onmouseover="this.style.filter='brightness(1)'" onmouseout="this.style.filter='brightness(0.82)'" alt="Shielded 18F transfer line — wall penetration">
+          <img src="projects/FDG18-Cyclotron/kiube-nameplate.jpg" style="width:100%;height:220px;object-fit:cover;filter:brightness(0.82);display:block;transition:filter .3s" onmouseover="this.style.filter='brightness(1)'" onmouseout="this.style.filter='brightness(0.82)'" alt="IBA KIUBE control panel — hot lab interface">
+        </div>
+        <p class="ic" style="padding:6px 22px;border-bottom:1px solid var(--line)">Shielded 18F transfer line wall penetration — RADIATION CONTROLLED AREA / IBA KIUBE wall control panel and synthesis interface</p>
+
+        <div class="rds-section">
+          <p class="rds-sec-title">General Information</p>
+          <table>
+            <thead><tr><th>Field</th><th>Data</th></tr></thead>
+            <tbody>
+              <tr><td class="k">Room name</td><td>PET Hot Lab / FDG-18 Radiochemistry</td></tr>
+              <tr><td class="k">Indicative area</td><td>15 to 30 m²</td></tr>
+              <tr><td class="k">Service hours</td><td>Per production schedule</td></tr>
+              <tr><td class="k">Occupation</td><td>Radiopharmacy / radiochemistry personnel</td></tr>
+              <tr><td class="k">Staffing</td><td>1 to 3 persons</td></tr>
+              <tr><td class="k">Description</td><td>Room intended for receiving Fluorine-18 from the cyclotron via shielded transfer line, automated FDG-18 synthesis using Synthera+ platform (IBA), purification, formulation and transfer to quality control or dispensing. Cleanroom classification per contamination control strategy and GMP validation.</td></tr>
+              <tr><td class="k">Acoustic insulation</td><td>≥ 35 dB recommended</td></tr>
+              <tr><td class="k">Strong relationships</td><td>Cyclotron bunker, Hot Cells, QC lab, dispensing, radioactive waste</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="rds-section">
+          <p class="rds-sec-title">Appearance and Finishes</p>
+          <table>
+            <thead><tr><th>Element</th><th>Specification</th><th>Observation</th></tr></thead>
+            <tbody>
+              <tr><td class="k">Ceiling</td><td>Washable, cleanroom-compatible</td><td>Class per GMP/ISO</td></tr>
+              <tr><td class="k">Walls</td><td>Smooth, antibacterial, washable</td><td>Decontaminable</td></tr>
+              <tr><td class="k">Floor</td><td>Cleanroom resin or PVC</td><td>Decontaminable</td></tr>
+              <tr><td class="k">Skirting</td><td>Coved 10 to 15 cm</td><td>Sealed</td></tr>
+              <tr><td class="k">Door</td><td>Access control</td><td>Controlled zone</td></tr>
+              <tr><td class="k">Surfaces</td><td>Non-porous, chemical-resistant</td><td>Validated cleaning protocol</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="rds-section">
+          <p class="rds-sec-title">Furniture and Utilities</p>
+          <table>
+            <thead><tr><th>Description</th><th>Category</th><th>Qty</th><th>Observation</th></tr></thead>
+            <tbody>
+              <tr><td class="k">Technical workbenches</td><td>Furniture</td><td>As required</td><td>Chemical-resistant</td></tr>
+              <tr><td class="k">Consumables cabinets</td><td>Utility</td><td>As required</td><td>Limited storage</td></tr>
+              <tr><td class="k">Waste collectors</td><td>Safety</td><td>As required</td><td>Radioactive waste</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="rds-section">
+          <p class="rds-sec-title">Equipment and Networks</p>
+          <table>
+            <thead><tr><th>Description</th><th>Ref. IBA</th><th>QTY</th><th>ELE</th><th>HVAC/Cool.</th><th>GAS/DRN</th><th>DATA/BMS</th><th>Power / Obs.</th></tr></thead>
+            <tbody>
+              <tr><td class="k">Hot Cells — double vertical production</td><td>Hc.01</td><td>3×</td><td class="yes">Yes</td><td class="yes">Yes</td><td>DRN if req.</td><td class="yes">Yes</td><td>Per equipment</td></tr>
+              <tr><td class="k">Class A dispensing hot cell (75mm Pb)</td><td>Hc.03</td><td>01</td><td class="yes">Yes</td><td class="yes">Yes</td><td class="no">—</td><td class="yes">Yes</td><td>Per equipment</td></tr>
+              <tr><td class="k">Synthera+ synthesis module</td><td>Ch.10–11</td><td>3×</td><td class="yes">Yes</td><td class="yes">Yes</td><td class="tbc">TBC</td><td class="yes">Yes</td><td>Per manufacturer</td></tr>
+              <tr><td class="k">Synthera+ HPLC purification</td><td>Ch.12</td><td>01</td><td class="yes">Yes</td><td class="no">—</td><td class="no">—</td><td class="yes">Yes</td><td>Per equipment</td></tr>
+              <tr><td class="k">18F transfer line (from bunker)</td><td>Cy.12</td><td>01</td><td class="yes">Yes</td><td class="no">—</td><td class="no">—</td><td class="yes">Yes</td><td>Low</td></tr>
+              <tr><td class="k">Semi-automatic open vial dispenser</td><td>Hc.13</td><td>01</td><td class="yes">Yes</td><td class="no">—</td><td class="no">—</td><td class="yes">Yes</td><td>Per equipment</td></tr>
+              <tr><td class="k">Dose calibrator</td><td>Hc.10</td><td>01</td><td class="yes">Yes</td><td class="no">—</td><td class="no">—</td><td class="yes">Yes</td><td>Low</td></tr>
+              <tr><td class="k">Controlled exhaust</td><td>—</td><td>01 lot</td><td class="yes">Yes</td><td class="yes">Yes</td><td class="no">—</td><td class="yes">Yes</td><td>Per HVAC</td></tr>
+              <tr><td class="k">Radiation monitoring</td><td>Re.01</td><td>01 lot</td><td class="yes">Yes</td><td class="no">—</td><td class="no">—</td><td class="yes">Yes</td><td>Low</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="rds-coord">
+          <p class="coord-title">Coordination Notes</p>
+          <ul>
+            <li>Cleanroom classification must be defined by process and contamination control strategy — validate with GMP dossier</li>
+            <li>Hot cells must be coordinated with transfer line routing and dispensing room position</li>
+            <li>Stainless steel internal covering to ceiling for hot cells (Hc.09) — coordinate with structure and finishes</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- ═══════════════════════════════ RDS 06 ═══════════════════════════════ -->
+      <div class="rds">
+        <div class="rds-hdr">
+          <div class="rds-num"><span>06</span><span>RDS</span></div>
+          <div class="rds-ttl"><p class="rds-room">FDG-18 Quality Control Laboratory</p><p style="font-size:10px;color:var(--text3)">Nuclear Medicine · PET Radiopharmacy</p></div>
+        </div>
+        <div style="border-bottom:1px solid var(--line)">
+          <img src="projects/FDG18-Cyclotron/kiube-logo.jpg" style="width:100%;height:220px;object-fit:cover;filter:brightness(0.82);display:block;transition:filter .3s" onmouseover="this.style.filter='brightness(1)'" onmouseout="this.style.filter='brightness(0.82)'" alt="IBA Cyclone KIUBE — equipment identity">
+        </div>
+        <p class="ic" style="padding:6px 22px;border-bottom:1px solid var(--line)">IBA Cyclone KIUBE 180 — equipment identity and installation reference (Cy.01). QC suite (Qc.01–Qc.32) validates every batch produced by this machine.</p>
+
+        <div class="rds-section">
+          <p class="rds-sec-title">General Information</p>
+          <table>
+            <thead><tr><th>Field</th><th>Data</th></tr></thead>
+            <tbody>
+              <tr><td class="k">Room name</td><td>FDG-18 Quality Control Laboratory</td></tr>
+              <tr><td class="k">Indicative area</td><td>10 to 15 m²</td></tr>
+              <tr><td class="k">Service hours</td><td>Per production schedule</td></tr>
+              <tr><td class="k">Occupation</td><td>QC personnel / radiopharmacist</td></tr>
+              <tr><td class="k">Staffing</td><td>1 to 2 persons</td></tr>
+              <tr><td class="k">Description</td><td>Room intended for FDG-18 quality controls before batch release: radiochemical purity, identification, pH, endotoxins, radioactivity, sterility per procedure and regulation. Houses HPLC (Qc.01), GC (Qc.04), TLC (Qc.05), dose calibrator (Qc.09), endotoxin test (Qc.10), sterility test (Qc.11) and documentation workstation.</td></tr>
+              <tr><td class="k">Acoustic insulation</td><td>≥ 35 dB recommended</td></tr>
+              <tr><td class="k">Strong relationships</td><td>Hot Lab, dispensing, quality documentation</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="rds-section">
+          <p class="rds-sec-title">Appearance and Finishes</p>
+          <table>
+            <thead><tr><th>Element</th><th>Specification</th><th>Observation</th></tr></thead>
+            <tbody>
+              <tr><td class="k">Ceiling</td><td>Washable</td><td>Laboratory-compatible</td></tr>
+              <tr><td class="k">Walls</td><td>Washable, antibacterial</td><td>Decontaminable</td></tr>
+              <tr><td class="k">Floor</td><td>PVC or technical resin</td><td>Resistant</td></tr>
+              <tr><td class="k">Skirting</td><td>10 to 15 cm</td><td>Washable</td></tr>
+              <tr><td class="k">Workbenches</td><td>Chemical-resistant</td><td>Easy cleaning</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="rds-section">
+          <p class="rds-sec-title">Furniture and Utilities</p>
+          <table>
+            <thead><tr><th>Description</th><th>Category</th><th>Qty</th><th>Observation</th></tr></thead>
+            <tbody>
+              <tr><td class="k">QC workbench with storage</td><td>Furniture</td><td>01 lot</td><td>Chemical-resistant</td></tr>
+              <tr><td class="k">Chemical cabinet</td><td>Utility</td><td>01</td><td>Ventilated if required</td></tr>
+              <tr><td class="k">Laboratory refrigerator</td><td>Equipment</td><td>01</td><td>Per procedure / temperature monitoring</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="rds-section">
+          <p class="rds-sec-title">Equipment and Networks</p>
+          <table>
+            <thead><tr><th>Description</th><th>Ref. IBA</th><th>QTY</th><th>ELE</th><th>HVAC/Cool.</th><th>GAS/DRN</th><th>DATA/BMS</th><th>Power / Obs.</th></tr></thead>
+            <tbody>
+              <tr><td class="k">HPLC for FDG (minimum config)</td><td>Qc.01</td><td>Per process</td><td class="yes">Yes</td><td class="no">—</td><td class="no">—</td><td class="yes">Yes</td><td>Per equipment</td></tr>
+              <tr><td class="k">Radioactivity detector for HPLC</td><td>Qc.02</td><td>01</td><td class="yes">Yes</td><td class="no">—</td><td class="no">—</td><td class="yes">Yes</td><td>Per equipment</td></tr>
+              <tr><td class="k">GC for PET</td><td>Qc.04</td><td>01</td><td class="yes">Yes</td><td class="no">—</td><td class="no">—</td><td class="yes">Yes</td><td>Per equipment</td></tr>
+              <tr><td class="k">TLC system</td><td>Qc.05</td><td>01</td><td class="yes">Yes</td><td class="no">—</td><td class="no">—</td><td class="no">—</td><td>Low</td></tr>
+              <tr><td class="k">pH meter + micro probe</td><td>Qc.07</td><td>01</td><td class="yes">Yes</td><td class="no">—</td><td class="no">—</td><td class="no">—</td><td>Low</td></tr>
+              <tr><td class="k">Dose calibrator (QC)</td><td>Qc.09</td><td>01</td><td class="yes">Yes</td><td class="no">—</td><td class="no">—</td><td class="yes">Yes</td><td>Low</td></tr>
+              <tr><td class="k">LAL endotoxin test system</td><td>Qc.10</td><td>01</td><td class="yes">Yes</td><td class="no">—</td><td class="no">—</td><td class="yes">Yes</td><td>Per equipment</td></tr>
+              <tr><td class="k">Sterility test equipment</td><td>Qc.11</td><td>01</td><td class="yes">Yes</td><td class="no">—</td><td class="no">—</td><td class="yes">Yes</td><td>Per equipment</td></tr>
+              <tr><td class="k">Osmometer</td><td>Qc.32</td><td>01</td><td class="yes">Yes</td><td class="no">—</td><td class="no">—</td><td class="no">—</td><td>Per equipment</td></tr>
+              <tr><td class="k">QC PC system + printer</td><td>Qc.12–13</td><td>01</td><td class="yes">Yes</td><td class="no">—</td><td class="no">—</td><td class="yes">Yes</td><td>500 W</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="rds-coord">
+          <p class="coord-title">Coordination Notes</p>
+          <ul>
+            <li>Provide document traceability and quality archiving — data connection to QC PC</li>
+            <li>Confirm separation of tests per local Algerian pharmaceutical authority requirements</li>
+            <li>IQ/OQ validation for all QC equipment (Qc.15–16) — allow commissioning access time</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- ═══════════════════════════════ RDS 07 ═══════════════════════════════ -->
+      <div class="rds">
+        <div class="rds-hdr">
+          <div class="rds-num"><span>07</span><span>RDS</span></div>
+          <div class="rds-ttl"><p class="rds-room">FDG-18 Dose Dispensing</p><p style="font-size:10px;color:var(--text3)">Nuclear Medicine · PET Radiopharmacy</p></div>
+        </div>
+        <div style="border-bottom:1px solid var(--line)">
+          <img src="projects/FDG18-Cyclotron/services-corridor.png" style="width:100%;height:220px;object-fit:cover;filter:brightness(0.82);display:block;transition:filter .3s" onmouseover="this.style.filter='brightness(1)'" onmouseout="this.style.filter='brightness(0.82)'" alt="Services corridor — dispensing zone access">
+        </div>
+        <p class="ic" style="padding:6px 22px;border-bottom:1px solid var(--line)">Services corridor providing controlled access between dispensing, QC and Hot Lab — short physical relationship required</p>
+
+        <div class="rds-section">
+          <p class="rds-sec-title">General Information</p>
+          <table>
+            <thead><tr><th>Field</th><th>Data</th></tr></thead>
+            <tbody>
+              <tr><td class="k">Room name</td><td>FDG-18 Dose Dispensing</td></tr>
+              <tr><td class="k">Indicative area</td><td>8 to 12 m²</td></tr>
+              <tr><td class="k">Service hours</td><td>Per PET-CT schedule</td></tr>
+              <tr><td class="k">Occupation</td><td>Radiopharmacy personnel</td></tr>
+              <tr><td class="k">Staffing</td><td>1 to 2 persons</td></tr>
+              <tr><td class="k">Description</td><td>Room intended for preparation, measurement, fractionation and availability of FDG-18 doses for PET-CT patients. Short physical relationship to PET injection required. Shielded dispensing station, dose calibrator and traceability workstation. Shielded dose pass-through to injection area if required by layout.</td></tr>
+              <tr><td class="k">Acoustic insulation</td><td>Standard</td></tr>
+              <tr><td class="k">Strong relationships</td><td>QC lab, Hot Lab, PET injection room, radioactive waste</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="rds-section">
+          <p class="rds-sec-title">Appearance and Finishes</p>
+          <table>
+            <thead><tr><th>Element</th><th>Specification</th><th>Observation</th></tr></thead>
+            <tbody>
+              <tr><td class="k">Ceiling</td><td>Washable</td><td>Clean zone per process</td></tr>
+              <tr><td class="k">Walls</td><td>Washable, antibacterial</td><td>Decontaminable</td></tr>
+              <tr><td class="k">Floor</td><td>Decontaminable resin or PVC</td><td>Resistant</td></tr>
+              <tr><td class="k">Skirting</td><td>Coved 10 to 15 cm</td><td>Sealed</td></tr>
+              <tr><td class="k">Door</td><td>Access control</td><td>Controlled zone</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="rds-section">
+          <p class="rds-sec-title">Furniture and Utilities</p>
+          <table>
+            <thead><tr><th>Description</th><th>Category</th><th>Qty</th><th>Observation</th></tr></thead>
+            <tbody>
+              <tr><td class="k">Worktop</td><td>Furniture</td><td>01 lot</td><td>Decontaminable</td></tr>
+              <tr><td class="k">Consumables cabinet</td><td>Utility</td><td>01</td><td>Limited storage</td></tr>
+              <tr><td class="k">Shielded waste collector</td><td>Safety</td><td>01</td><td>Short-lived waste</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="rds-section">
+          <p class="rds-sec-title">Equipment and Networks</p>
+          <table>
+            <thead><tr><th>Description</th><th>Ref. IBA</th><th>QTY</th><th>ELE</th><th>HVAC/Cool.</th><th>GAS/DRN</th><th>DATA/BMS</th><th>Power / Obs.</th></tr></thead>
+            <tbody>
+              <tr><td class="k">Shielded dispensing station (Class A)</td><td>—</td><td>01</td><td class="yes">Yes</td><td class="tbc">If req.</td><td class="no">—</td><td class="yes">Yes</td><td>Per equipment</td></tr>
+              <tr><td class="k">Dose calibrator</td><td>Hc.10</td><td>01</td><td class="yes">Yes</td><td class="no">—</td><td class="no">—</td><td class="yes">Yes</td><td>Low</td></tr>
+              <tr><td class="k">Shielded safe / container</td><td>—</td><td>01</td><td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="no">—</td><td>N/A</td></tr>
+              <tr><td class="k">Shielded dose pass-through</td><td>—</td><td>If req.</td><td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="no">—</td><td>N/A</td></tr>
+              <tr><td class="k">Traceability PC</td><td>—</td><td>01</td><td class="yes">Yes</td><td class="no">—</td><td class="no">—</td><td class="yes">Yes</td><td>500 W</td></tr>
+              <tr><td class="k">Radiation monitoring</td><td>Re.01</td><td>01</td><td class="yes">Yes</td><td class="no">—</td><td class="no">—</td><td class="yes">Yes</td><td>Low</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="rds-coord">
+          <p class="coord-title">Coordination Notes</p>
+          <ul>
+            <li>Position with short relationship to PET injection room — confirm layout with nuclear medicine operational brief</li>
+            <li>Define dose release and transfer procedure before fixing pass-through location</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- ═══════════════════════════════ RDS 08 ═══════════════════════════════ -->
+      <div class="rds">
+        <div class="rds-hdr">
+          <div class="rds-num"><span>08</span><span>RDS</span></div>
+          <div class="rds-ttl"><p class="rds-room">Radioactive Waste / FDG Decay Storage</p><p style="font-size:10px;color:var(--text3)">Nuclear Medicine · Controlled Zone</p></div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:2px;border-bottom:1px solid var(--line)">
+          <img src="projects/FDG18-Cyclotron/bunker-angle2.png" style="width:100%;height:220px;object-fit:cover;filter:brightness(0.82);display:block;transition:filter .3s" onmouseover="this.style.filter='brightness(1)'" onmouseout="this.style.filter='brightness(0.82)'" alt="Cyclotron bunker — maintenance access and shielding">
+          <img src="projects/FDG18-Cyclotron/electrical-services.png" style="width:100%;height:220px;object-fit:cover;filter:brightness(0.82);display:block;transition:filter .3s" onmouseover="this.style.filter='brightness(1)'" onmouseout="this.style.filter='brightness(0.82)'" alt="Controlled zone services — decay storage vicinity">
+        </div>
+        <p class="ic" style="padding:6px 22px;border-bottom:1px solid var(--line)">Controlled zone — maintenance access in shielded area / Services distribution in controlled perimeter adjacent to decay storage</p>
+
+        <div class="rds-section">
+          <p class="rds-sec-title">General Information</p>
+          <table>
+            <thead><tr><th>Field</th><th>Data</th></tr></thead>
+            <tbody>
+              <tr><td class="k">Room name</td><td>Radioactive Waste / FDG Decay Storage</td></tr>
+              <tr><td class="k">Indicative area</td><td>4 to 8 m²</td></tr>
+              <tr><td class="k">Service hours</td><td>24 hours</td></tr>
+              <tr><td class="k">Occupation</td><td>Occasional access by authorised personnel</td></tr>
+              <tr><td class="k">Staffing</td><td>0 permanent</td></tr>
+              <tr><td class="k">Description</td><td>Room intended for temporary storage of short-lived radioactive waste generated by FDG production, radiochemistry, dispensing and PET activities. ¹⁸F half-life ≈ 110 min — decay storage before approved removal. Separation of solid and liquid waste per procedure.</td></tr>
+              <tr><td class="k">Acoustic insulation</td><td>Not a priority</td></tr>
+              <tr><td class="k">Strong relationships</td><td>Hot Lab, dispensing, PET injection, waste zone</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="rds-section">
+          <p class="rds-sec-title">Appearance and Finishes</p>
+          <table>
+            <thead><tr><th>Element</th><th>Specification</th><th>Observation</th></tr></thead>
+            <tbody>
+              <tr><td class="k">Ceiling</td><td>Washable</td><td>Decontaminable</td></tr>
+              <tr><td class="k">Walls</td><td>Washable, decontaminable</td><td>Mandatory signage</td></tr>
+              <tr><td class="k">Floor</td><td>Decontaminable resin or PVC</td><td>Sealed</td></tr>
+              <tr><td class="k">Skirting</td><td>Coved</td><td>Easy cleaning</td></tr>
+              <tr><td class="k">Door</td><td>Access control</td><td>Controlled zone</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="rds-section">
+          <p class="rds-sec-title">Furniture and Utilities</p>
+          <table>
+            <thead><tr><th>Description</th><th>Category</th><th>Qty</th><th>Observation</th></tr></thead>
+            <tbody>
+              <tr><td class="k">Shielded waste containers</td><td>Safety</td><td>As required</td><td>Decay storage — Cy.27</td></tr>
+              <tr><td class="k">Resistant shelves</td><td>Furniture</td><td>01 lot</td><td>Container support</td></tr>
+              <tr><td class="k">Waste register</td><td>Utility</td><td>01</td><td>Paper or digital — traceability</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="rds-section">
+          <p class="rds-sec-title">Equipment and Networks</p>
+          <table>
+            <thead><tr><th>Description</th><th>Ref. IBA</th><th>QTY</th><th>ELE</th><th>HVAC/Cool.</th><th>GAS/DRN</th><th>DATA/BMS</th><th>Power / Obs.</th></tr></thead>
+            <tbody>
+              <tr><td class="k">Controlled ventilation</td><td>—</td><td>01 lot</td><td class="yes">Yes</td><td class="yes">Yes</td><td class="no">—</td><td class="yes">Yes</td><td>Per HVAC</td></tr>
+              <tr><td class="k">NaI stack monitoring</td><td>Re.03–04</td><td>01</td><td class="yes">Yes</td><td class="no">—</td><td class="no">—</td><td class="yes">Yes</td><td>Low</td></tr>
+              <tr><td class="k">Waste register PC (if required)</td><td>—</td><td>01</td><td class="yes">Yes</td><td class="no">—</td><td class="no">—</td><td class="yes">Yes</td><td>500 W</td></tr>
+              <tr><td class="k">Cleaning point / drain (if authorised)</td><td>—</td><td>Per study</td><td class="no">—</td><td class="no">—</td><td>DRN/EFS</td><td class="no">—</td><td>To be validated</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="rds-coord">
+          <p class="coord-title">Coordination Notes</p>
+          <ul>
+            <li>Separate solid and liquid waste per procedure and local authority requirements</li>
+            <li>Ensure traceability and decay time recording before any waste removal</li>
+            <li>Stack monitoring (Re.03–04) to be coordinated with HVAC exhaust routing</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- ═══════════════════════════════ RDS 09 ═══════════════════════════════ -->
+      <div class="rds">
+        <div class="rds-hdr">
+          <div class="rds-num"><span>09</span><span>RDS</span></div>
+          <div class="rds-ttl"><p class="rds-room">Personnel / Material Airlock — Controlled Zone</p><p style="font-size:10px;color:var(--text3)">Nuclear Medicine · Zone Boundary</p></div>
+        </div>
+        <div style="border-bottom:1px solid var(--line)">
+          <img src="projects/FDG18-Cyclotron/access-control.png" style="width:100%;height:220px;object-fit:cover;filter:brightness(0.82);display:block;transition:filter .3s" onmouseover="this.style.filter='brightness(1)'" onmouseout="this.style.filter='brightness(0.82)'" alt="Access control — controlled zone boundary">
+        </div>
+        <p class="ic" style="padding:6px 22px;border-bottom:1px solid var(--line)">Zone boundary — access control system at entry to controlled radiological zone. Interlock logic and dosimetry point per radiation protection study.</p>
+
+        <div class="rds-section">
+          <p class="rds-sec-title">General Information</p>
+          <table>
+            <thead><tr><th>Field</th><th>Data</th></tr></thead>
+            <tbody>
+              <tr><td class="k">Room name</td><td>Personnel / Material Airlock — Controlled Zone</td></tr>
+              <tr><td class="k">Indicative area</td><td>4 to 8 m²</td></tr>
+              <tr><td class="k">Service hours</td><td>Per production schedule</td></tr>
+              <tr><td class="k">Occupation</td><td>Authorised personnel</td></tr>
+              <tr><td class="k">Staffing</td><td>1 to 2 persons occasionally</td></tr>
+              <tr><td class="k">Description</td><td>Airlock enabling access control, gowning, transition between cold zone and controlled zone, and management of personnel or material flows. Interlock doors if required by radiation protection study. Clean/dirty separation if GMP zone requires it.</td></tr>
+              <tr><td class="k">Acoustic insulation</td><td>Standard</td></tr>
+              <tr><td class="k">Strong relationships</td><td>Cyclotron bunker, Hot Lab, QC lab, radioactive waste</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="rds-section">
+          <p class="rds-sec-title">Appearance and Finishes</p>
+          <table>
+            <thead><tr><th>Element</th><th>Specification</th><th>Observation</th></tr></thead>
+            <tbody>
+              <tr><td class="k">Ceiling</td><td>Washable</td><td>Hygiene</td></tr>
+              <tr><td class="k">Walls</td><td>Washable</td><td>Decontaminable</td></tr>
+              <tr><td class="k">Floor</td><td>Decontaminable PVC or resin</td><td>Anti-slip</td></tr>
+              <tr><td class="k">Skirting</td><td>10 to 15 cm</td><td>Washable</td></tr>
+              <tr><td class="k">Door</td><td>Access control / interlock if required</td><td>Zone separation</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="rds-section">
+          <p class="rds-sec-title">Furniture and Utilities</p>
+          <table>
+            <thead><tr><th>Description</th><th>Category</th><th>Qty</th><th>Observation</th></tr></thead>
+            <tbody>
+              <tr><td class="k">Changing bench</td><td>Furniture</td><td>01</td><td>Clean/dirty separation if required</td></tr>
+              <tr><td class="k">PPE cabinet</td><td>Furniture</td><td>01</td><td>Gowns, gloves, protections</td></tr>
+              <tr><td class="k">Dosimetry support</td><td>Safety</td><td>01</td><td>Personal dosimeters (Re.07)</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="rds-section">
+          <p class="rds-sec-title">Equipment and Networks</p>
+          <table>
+            <thead><tr><th>Description</th><th>Ref. IBA</th><th>QTY</th><th>ELE</th><th>HVAC/Cool.</th><th>GAS/DRN</th><th>DATA/BMS</th><th>Power / Obs.</th></tr></thead>
+            <tbody>
+              <tr><td class="k">Access control system</td><td>—</td><td>01</td><td class="yes">Yes</td><td class="no">—</td><td class="no">—</td><td class="yes">Yes</td><td>Low</td></tr>
+              <tr><td class="k">Controlled zone signage</td><td>—</td><td>01 lot</td><td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="no">—</td><td>N/A</td></tr>
+              <tr><td class="k">Handwash basin (if required)</td><td>—</td><td>01</td><td class="no">—</td><td class="no">—</td><td>EFS/DRN</td><td class="no">—</td><td>To be validated</td></tr>
+              <tr><td class="k">Contamination monitor (if required)</td><td>—</td><td>01</td><td class="yes">Yes</td><td class="no">—</td><td class="no">—</td><td class="yes">Yes</td><td>Per radiation protection</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="rds-coord">
+          <p class="coord-title">Coordination Notes</p>
+          <ul>
+            <li>Clarify personnel and material flow separation before fixing the layout</li>
+            <li>The airlock must serve as the definitive functional boundary between cold zone and controlled zone</li>
+            <li>Interlock door logic to be confirmed with radiation protection specialist</li>
+          </ul>
+        </div>
+      </div>
+
+    </div><!-- end rds-list -->
+  </div>
+</section>
+
+<!-- S8: SOURCES -->
+<section style="border-bottom:none">
+  <div class="wrap">
+    <p class="sn">08</p>
+    <h2>Sources <span>&amp; References</span></h2>
+    <div class="rule"></div>
+    <p style="font-size:11px;color:var(--text3);margin-bottom:20px">The references below are included as scoping resources. Final compliance must be verified with the applicable national regulations and competent authorities.</p>
+
+    <div class="src">
+      <div class="si"><div class="sc">S1</div><div class="sb"><p class="sn2">IAEA — Cyclotron Produced Radionuclides: Guidelines for Setting Up a Facility (TRS 471)</p><p class="sl">https://www-pub.iaea.org/MTCD/Publications/PDF/trs471_web.pdf</p></div></div>
+      <div class="si"><div class="sc">S2</div><div class="sb"><p class="sn2">IAEA — Cyclotron Produced Radionuclides: Guidance on Facility Design and Production of [18F]FDG</p><p class="sl">https://www-pub.iaea.org/MTCD/Publications/PDF/Pub1515_Web.pdf</p></div></div>
+      <div class="si"><div class="sc">S3</div><div class="sb"><p class="sn2">IAEA — Radiation Protection and Safety of Radiation Sources: International Basic Safety Standards, GSR Part 3</p><p class="sl">https://www-pub.iaea.org/MTCD/Publications/PDF/Pub1578_web-57265295.pdf</p></div></div>
+      <div class="si"><div class="sc">S4</div><div class="sb"><p class="sn2">European Commission — EudraLex Volume 4, EU GMP Guidelines, Annex 1 and Annex 3</p><p class="sl">https://health.ec.europa.eu/medicinal-products/eudralex/eudralex-volume-4_en</p></div></div>
+      <div class="si"><div class="sc">S5</div><div class="sb"><p class="sn2">ISO 14644-1:2015 — Cleanrooms and Associated Controlled Environments: Classification of Air Cleanliness</p><p class="sl">https://www.iso.org/standard/53394.html</p></div></div>
+      <div class="si"><div class="sc">S6</div><div class="sb"><p class="sn2">WHO — Good Manufacturing Practices for Radiopharmaceutical Products (TRS 1025 Annex 2)</p><p class="sl">https://cdn.who.int/media/docs/default-source/medicines/who-technical-report-series-who-expert-committee-on-specifications-for-pharmaceutical-preparations/trs1025-annex2.pdf</p></div></div>
+      <div class="si"><div class="sc">S7</div><div class="sb"><p class="sn2">USP General Chapter &lt;825&gt; — Radiopharmaceuticals: Preparation, Compounding, Dispensing and Repackaging</p><p class="sl">https://www.usp.org/small-molecules/general-chapter-825</p></div></div>
+      <div class="si"><div class="sc">S8</div><div class="sb"><p class="sn2">AERB — Safety Guide No. AERB/RF-RS/SG-3: Medical Cyclotron Facilities</p><p class="sl">https://aerb.gov.in/storage/uploads/documents/regdocnEFpk.pdf</p></div></div>
+      <div class="si"><div class="sc">S9</div><div class="sb"><p class="sn2">IBA (Ion Beam Applications) — Cyclone KIUBE 180 Technical Documentation &amp; Item List</p><p class="sl">Drawing Ref. 0746770004b / Item List Ref. 0746770410b Rev. B — IBA proprietary document, 25.10.2021</p></div></div>
+    </div>
+
+    <div class="limits" style="margin-top:28px">
+      <strong style="color:var(--gold3);font-size:10px;text-transform:uppercase;letter-spacing:0.15em">Document Limitations</strong><br><br>
+      This report does not replace a radiation protection study, a GMP dossier, a pharmaceutical validation file, an HVAC study, a structural calculation note or the supplier technical documentation. It is a presentation and programming framework intended to support correct integration of the FDG-18 unit within the Nuclear Medicine Department.
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p class="f-brand">M. Amine Berchache — Architect &amp; BIM Director</p>
+  <p class="f-note">Technical pre-programme scoping reference — Anti-Cancer Centre Constantine, 5th Military Region, Algeria. All values to be validated by specialist disciplines before use.</p>
+</footer>
+
+</body>
+</html>
