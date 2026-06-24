@@ -81,6 +81,8 @@ export const PROJECTS = [
       '140-bed Anti-Cancer Center in Algeria. Full programmatic and technical ownership from concept through tender documentation. Architectural design of oncology wards, operating suites, radiology and outpatient facilities. BIM-based quantity extraction, BOQ validation and on-site construction coordination.',
     tags: ['Healthcare', 'BIM', 'Algeria', '140 Beds'],
     images: imgs('Hospital_Anti_Cancer_Algeria', 23),
+    reportUrl: 'https://mynou84.github.io/Portfolio/ftb-rds-fdg18.html',
+    reportLabel: 'FTB-RDS — FDG-18 Production Unit',
   },
   {
     id: 'saudi-mixed-use',

@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { X, ZoomIn, ZoomOut, ChevronLeft, ChevronRight, MapPin, Calendar, Tag } from 'lucide-react'
+import { X, ZoomIn, ZoomOut, ChevronLeft, ChevronRight, MapPin, Calendar, Tag, ExternalLink } from 'lucide-react'
 import RotateIcon from './RotateIcon'
 
 export default function ProjectModal({ project, onClose }) {
@@ -195,6 +195,21 @@ export default function ProjectModal({ project, onClose }) {
             ))}
           </div>
         </div>
+
+        {/* Technical report link */}
+        {project.reportUrl && (
+          <div className="mt-3 pt-3 border-t border-white-warm/8">
+            <a
+              href={project.reportUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-4 py-2 border border-gold/40 text-gold hover:bg-gold hover:text-deep-black transition-all duration-300 text-[10px] tracking-[0.2em] uppercase font-semibold"
+            >
+              <ExternalLink size={10} />
+              {project.reportLabel || 'View Technical Report'}
+            </a>
+          </div>
+        )}
       </div>
     </motion.div>
   )
