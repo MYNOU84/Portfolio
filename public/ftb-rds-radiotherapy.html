@@ -1,0 +1,1137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Radiotherapy Department — Functional Technical Brief | M. Amine Berchache</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0d0d0d;--bg2:#111;--bg3:#161616;--bg4:#1c1c1c;
+  --gold:#c9a84c;--gold2:#e2c068;--gold3:#a8872e;
+  --gold-dim:rgba(201,168,76,0.07);--gold-line:rgba(201,168,76,0.20);
+  --text:#e8e4dc;--text2:#b8b2a8;--text3:#787068;--text4:#484440;
+  --line:rgba(255,255,255,0.06);--line2:rgba(255,255,255,0.10);
+  --green:#5a9e6f;--red:#9e5a5a;--blue:#5a7a9e;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Montserrat',sans-serif;font-weight:300;font-size:13px;line-height:1.7;overflow-x:hidden}
+nav{position:sticky;top:0;z-index:100;background:rgba(13,13,13,0.96);backdrop-filter:blur(20px);border-bottom:1px solid var(--gold-line);padding:0 56px;display:flex;align-items:center;justify-content:space-between;height:62px}
+.nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none}
+.nav-box{width:34px;height:34px;border:1px solid rgba(201,168,76,0.45);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:var(--gold);font-family:'Montserrat',sans-serif}
+.nav-txt p:first-child{font-size:10px;font-weight:500;letter-spacing:0.28em;text-transform:uppercase;color:var(--text);line-height:1.2}
+.nav-txt p:last-child{font-size:9px;letter-spacing:0.35em;text-transform:uppercase;color:var(--gold);line-height:1.2}
+.nav-r{display:flex;align-items:center;gap:10px}
+.nav-tag{font-size:9px;text-transform:uppercase;letter-spacing:0.12em;color:var(--gold3);border:1px solid var(--gold-line);padding:5px 12px;background:var(--gold-dim)}
+.nav-back{font-size:9px;text-transform:uppercase;letter-spacing:0.12em;color:var(--text3);text-decoration:none;border:1px solid var(--text4);padding:5px 14px;transition:all .2s}
+.nav-back:hover{border-color:var(--gold);color:var(--gold)}
+.hero{position:relative;height:68vh;min-height:500px;overflow:hidden}
+.hero img{width:100%;height:100%;object-fit:cover;filter:brightness(0.38)}
+.hero-ov{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(13,13,13,0.1) 0%,rgba(13,13,13,0.88) 100%)}
+.hero-c{position:absolute;bottom:0;left:0;right:0;padding:60px 80px}
+.breadcrumb{font-size:9px;text-transform:uppercase;letter-spacing:0.35em;color:var(--gold3);margin-bottom:14px}
+h1{font-family:'Cormorant Garamond',serif;font-size:clamp(30px,5vw,56px);font-weight:300;line-height:1.1;color:var(--text);margin-bottom:8px}
+h1 span{color:var(--gold2)}
+.hero-sub{font-size:10px;text-transform:uppercase;letter-spacing:0.25em;color:var(--text2)}
+.tags{display:flex;gap:8px;margin-top:18px;flex-wrap:wrap}
+.tag{font-size:9px;text-transform:uppercase;letter-spacing:0.12em;color:var(--gold);border:1px solid var(--gold-line);padding:4px 12px;background:var(--gold-dim)}
+.notice{background:rgba(160,50,50,0.12);border:1px solid rgba(160,50,50,0.32);border-left:3px solid rgba(160,50,50,0.7);padding:14px 22px;margin:24px 80px 0;font-size:11px;color:#d4a0a0;line-height:1.65}
+.notice strong{color:#e8b0b0}
+.wrap{max-width:1200px;margin:0 auto;padding:0 80px}
+section{padding:72px 0;border-bottom:1px solid var(--line)}
+.sn{font-size:9px;text-transform:uppercase;letter-spacing:0.35em;color:var(--gold3);margin-bottom:8px}
+h2{font-family:'Cormorant Garamond',serif;font-size:clamp(20px,2.8vw,32px);font-weight:300;color:var(--text)}
+h2 span{color:var(--gold2)}
+.rule{width:44px;height:1px;background:var(--gold);margin:14px 0 28px}
+p.body{font-size:12px;color:var(--text2);line-height:1.8;max-width:820px}
+table{width:100%;border-collapse:collapse}
+th{background:var(--bg3);color:var(--gold3);font-size:9px;text-transform:uppercase;letter-spacing:0.14em;font-weight:500;padding:11px 14px;text-align:left;border-bottom:1px solid var(--gold-line)}
+td{padding:10px 14px;border-bottom:1px solid var(--line);color:var(--text2);vertical-align:top}
+tr:hover td{background:rgba(201,168,76,0.025)}
+td.k{color:var(--text);font-weight:400}
+td.yes{color:#7ec87e}
+td.no{color:var(--text4)}
+td.tbc{color:var(--gold3);font-style:italic}
+td.h{color:var(--gold2);font-weight:500}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--gold-line);border:1px solid var(--gold-line)}
+.gl{background:var(--bg3);padding:12px 18px;font-size:10px;text-transform:uppercase;letter-spacing:0.13em;color:var(--gold3)}
+.gv{background:var(--bg2);padding:12px 18px;font-size:12px;color:var(--text2)}
+.chain-wrap{overflow-x:auto;padding:8px 0}
+.chain{display:flex;align-items:center;flex-wrap:nowrap;min-width:max-content}
+.cs{background:var(--bg3);border:1px solid var(--gold-line);padding:11px 16px;font-size:10px;color:var(--text2);text-align:center;min-width:110px}
+.cs.k{background:var(--gold-dim);border-color:var(--gold);color:var(--gold2);font-weight:500}
+.cl{font-size:8px;text-transform:uppercase;letter-spacing:0.08em;color:var(--text3);margin-top:3px;display:block}
+.ca{color:var(--gold3);font-size:15px;padding:0 5px;flex-shrink:0}
+.zones{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line2);margin-bottom:28px}
+.zc{padding:18px;background:var(--bg2)}
+.zd{width:9px;height:9px;border-radius:50%;margin-bottom:9px}
+.zn{font-size:10px;text-transform:uppercase;letter-spacing:0.08em;font-weight:500;color:var(--text);margin-bottom:5px}
+.zt{font-size:11px;color:var(--text3);line-height:1.6}
+.img2{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin:22px 0}
+.img2 img{width:100%;aspect-ratio:16/9;object-fit:cover;filter:brightness(0.82);transition:filter .3s;display:block}
+.img2 img:hover,.imgf:hover,.img1 img:hover{filter:brightness(1)}
+.imgf{width:100%;max-height:400px;object-fit:cover;filter:brightness(0.78);display:block;margin:22px 0;transition:filter .3s}
+.img1{margin:22px 0}
+.img1 img{width:100%;max-height:340px;object-fit:cover;filter:brightness(0.82);display:block;transition:filter .3s}
+.ic{font-size:10px;color:var(--text3);text-align:center;margin-top:5px;letter-spacing:0.04em}
+.area td:last-child{color:var(--gold2);font-family:'Cormorant Garamond',serif;font-size:14px;text-align:right}
+.src{border:1px solid var(--line2)}
+.si{display:grid;grid-template-columns:56px 1fr;border-bottom:1px solid var(--line)}
+.si:last-child{border-bottom:none}
+.sc{background:var(--bg3);padding:14px;display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:14px;color:var(--gold3);border-right:1px solid var(--line2)}
+.sb{background:var(--bg2);padding:12px 16px}
+.sn2{font-size:12px;color:var(--text);margin-bottom:3px}
+.sl{font-size:10px;color:var(--gold3);word-break:break-all}
+.rds-list{display:flex;flex-direction:column;gap:56px}
+.rds{border:1px solid var(--line2);background:var(--bg2)}
+.rds-hdr{display:flex;align-items:stretch;border-bottom:1px solid var(--gold-line)}
+.rds-num{background:var(--gold-dim);border-right:1px solid var(--gold-line);padding:22px 26px;display:flex;flex-direction:column;align-items:center;justify-content:center;min-width:90px}
+.rds-num span:first-child{font-family:'Cormorant Garamond',serif;font-size:34px;font-weight:300;color:var(--gold2);line-height:1}
+.rds-num span:last-child{font-size:8px;text-transform:uppercase;letter-spacing:0.15em;color:var(--gold3);margin-top:3px}
+.rds-ttl{padding:22px 26px;flex:1}
+.rds-room{font-family:'Cormorant Garamond',serif;font-size:21px;font-weight:400;color:var(--text);margin-bottom:4px}
+.rds-img{width:100%;max-height:260px;object-fit:cover;filter:brightness(0.82);display:block;border-bottom:1px solid var(--line);transition:filter .3s}
+.rds-img:hover{filter:brightness(1)}
+.rds-img2{display:grid;grid-template-columns:1fr 1fr;gap:1px;border-bottom:1px solid var(--line)}
+.rds-img2 img{width:100%;height:200px;object-fit:cover;filter:brightness(0.82);display:block;transition:filter .3s}
+.rds-img2 img:hover{filter:brightness(1)}
+.rds-sub{font-size:9px;text-transform:uppercase;letter-spacing:0.22em;color:var(--gold3);padding:18px 26px 6px;border-bottom:1px solid var(--line);background:var(--bg3);margin-top:0}
+.rds-body{padding:0 26px 26px}
+.rds-note{background:var(--gold-dim);border:1px solid var(--gold-line);border-left:3px solid var(--gold);padding:12px 16px;margin-top:18px;font-size:11px;color:var(--text2);line-height:1.7}
+.cmp{display:grid;grid-template-columns:200px 1fr 1fr;gap:1px;background:var(--gold-line);border:1px solid var(--gold-line);margin:22px 0}
+.cmp-h{background:var(--bg3);padding:11px 14px;font-size:9px;text-transform:uppercase;letter-spacing:0.12em;color:var(--gold3);font-weight:500}
+.cmp-k{background:var(--bg2);padding:10px 14px;font-size:11px;color:var(--text);font-weight:400}
+.cmp-a{background:rgba(90,154,111,0.06);padding:10px 14px;font-size:11px;color:var(--text2)}
+.cmp-b{background:rgba(90,122,158,0.06);padding:10px 14px;font-size:11px;color:var(--text2)}
+.cmp-adv{color:#7ec87e;font-size:10px;margin-top:3px}
+.badge-e{display:inline-block;font-size:8px;text-transform:uppercase;letter-spacing:0.1em;padding:2px 8px;background:rgba(0,56,101,0.3);border:1px solid rgba(0,156,166,0.3);color:#009CA6;margin-left:6px}
+.badge-v{display:inline-block;font-size:8px;text-transform:uppercase;letter-spacing:0.1em;padding:2px 8px;background:rgba(0,47,108,0.3);border:1px solid rgba(99,163,232,0.3);color:#63a3e8;margin-left:6px}
+.lim{border:1px solid var(--line2);background:var(--bg3);padding:28px 32px;margin-top:48px}
+.lim h3{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:400;color:var(--text);margin-bottom:14px}
+.lim p{font-size:11px;color:var(--text3);line-height:1.8}
+footer{padding:40px 80px;border-top:1px solid var(--line2);display:flex;align-items:center;justify-content:space-between}
+.ft{font-size:9px;text-transform:uppercase;letter-spacing:0.2em;color:var(--text4)}
+@media(max-width:768px){
+  nav,.hero-c,.wrap,.notice,footer{padding-left:24px;padding-right:24px}
+  .zones{grid-template-columns:1fr 1fr}
+  .img2,.rds-img2{grid-template-columns:1fr}
+  .cmp{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="/">
+    <div class="nav-box">AB</div>
+    <div class="nav-txt">
+      <p>Berchache</p>
+      <p>Senior Architect</p>
+    </div>
+  </a>
+  <div class="nav-r">
+    <span class="nav-tag">FTB-RDS</span>
+    <a class="nav-back" href="/">← Portfolio</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <img src="projects/Radiotherapy/img-026.jpg" alt="Radiotherapy Treatment Vault">
+  <div class="hero-ov"></div>
+  <div class="hero-c">
+    <div class="breadcrumb">Anti-Cancer Centre Constantine &nbsp;/&nbsp; Functional Technical Brief &nbsp;/&nbsp; Radiotherapy</div>
+    <h1>Radiotherapy<br><span>Department</span></h1>
+    <div class="hero-sub">Functional Technical Brief &amp; Room Data Sheets — Linear Accelerator Unit</div>
+    <div class="tags">
+      <span class="tag">Radiotherapy</span>
+      <span class="tag">LINAC</span>
+      <span class="tag">Varian Halcyon</span>
+      <span class="tag">Elekta Harmony</span>
+      <span class="tag">FANR Compliant</span>
+      <span class="tag">Pre-Programme</span>
+    </div>
+  </div>
+</div>
+
+<div class="notice">
+  <strong>Pre-Programme Document — Not for Construction.</strong> This Functional Technical Brief is issued at pre-programme stage for spatial planning and briefing purposes only. All areas, specifications and equipment data are indicative. Final design shall be coordinated with the appointed radiation physicist, equipment vendor, and FANR authority prior to construction.
+</div>
+
+<div class="wrap">
+
+<!-- SECTION 01 -->
+<section>
+  <div class="sn">Section 01</div>
+  <h2>Purpose &amp; <span>Functional Position</span></h2>
+  <div class="rule"></div>
+  <p class="body" style="margin-bottom:28px">The Radiotherapy Department is a clinical radiation oncology unit delivering external beam radiation therapy (EBRT) to oncology patients using medical linear accelerators (LINACs). Within the Anti-Cancer Centre Constantine, this department forms the primary treatment modality for solid tumours, operating in close functional relationship with the Nuclear Medicine Department, Oncology Consultation, and Medical Imaging.</p>
+
+  <div class="g2" style="margin-bottom:28px">
+    <div class="gl">Project</div><div class="gv">Anti-Cancer Centre Constantine — Algeria</div>
+    <div class="gl">Service</div><div class="gv">Radiotherapy — External Beam Radiation Therapy (EBRT)</div>
+    <div class="gl">Document Type</div><div class="gv">Functional Technical Brief &amp; Room Data Sheets (FTB-RDS)</div>
+    <div class="gl">Document Stage</div><div class="gv">Pre-Programme — Indicative</div>
+    <div class="gl">Equipment Options</div><div class="gv">Varian Halcyon v2/v3 &nbsp;|&nbsp; Elekta Harmony</div>
+    <div class="gl">Regulatory Authority</div><div class="gv">FANR — Federal Authority for Nuclear Regulation (UAE ref) / Algerian CRNA</div>
+    <div class="gl">Author</div><div class="gv">M. Amine Berchache — Senior Architect / BIM Coordinator</div>
+    <div class="gl">Reference Standards</div><div class="gv">IEC 60601-2-1 &nbsp;|&nbsp; NCRP 151 &nbsp;|&nbsp; IAEA Safety Reports</div>
+  </div>
+
+  <table>
+    <thead><tr><th>Position in Hospital</th><th>Functional Relationship</th><th>Criticality</th></tr></thead>
+    <tbody>
+      <tr><td class="k">Nuclear Medicine / FDG-18 Unit</td><td>PET-CT imaging feeds radiotherapy target volumes (RT planning)</td><td class="yes">Direct</td></tr>
+      <tr><td class="k">Oncology Consultation</td><td>Patient referral, treatment prescription, multi-disciplinary team review</td><td class="yes">Direct</td></tr>
+      <tr><td class="k">Medical Imaging (CT / MRI)</td><td>CT Simulation for treatment planning; MRI for soft tissue delineation</td><td class="yes">Direct</td></tr>
+      <tr><td class="k">Haematology / Chemotherapy</td><td>Combined chemo-radiation protocols; shared patient pathway</td><td class="tbc">Close</td></tr>
+      <tr><td class="k">Pharmacy</td><td>Radiosensitiser and supportive drug supply</td><td class="tbc">Close</td></tr>
+      <tr><td class="k">Patient Transport / Circulation</td><td>Daily fractionated treatment — patient access multiple times/week</td><td class="yes">Critical</td></tr>
+      <tr><td class="k">Emergency Services</td><td>Emergency beam termination procedures; patient emergency exit</td><td class="yes">Critical</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- SECTION 02 -->
+<section>
+  <div class="sn">Section 02</div>
+  <h2>Radiotherapy Treatment <span>Principle</span></h2>
+  <div class="rule"></div>
+  <p class="body" style="margin-bottom:28px">External beam radiotherapy delivers precisely shaped high-energy photon beams to tumour targets whilst minimising dose to surrounding healthy tissue. The treatment chain spans clinical prescription through beam delivery, supported by image guidance at each fraction.</p>
+
+  <div class="chain-wrap">
+    <div class="chain">
+      <div class="cs"><span>Oncology<br>Consultation</span><span class="cl">MDT Prescription</span></div>
+      <div class="ca">→</div>
+      <div class="cs"><span>CT Simulation</span><span class="cl">Target Delineation</span></div>
+      <div class="ca">→</div>
+      <div class="cs k"><span>Treatment Planning</span><span class="cl">TPS / Monaco / Eclipse</span></div>
+      <div class="ca">→</div>
+      <div class="cs"><span>Physics QA</span><span class="cl">Plan Verification</span></div>
+      <div class="ca">→</div>
+      <div class="cs k"><span>LINAC Vault</span><span class="cl">EBRT Delivery</span></div>
+      <div class="ca">→</div>
+      <div class="cs"><span>IGRT Imaging</span><span class="cl">Daily Setup Verification</span></div>
+      <div class="ca">→</div>
+      <div class="cs"><span>Fraction<br>Complete</span><span class="cl">Patient Departs</span></div>
+    </div>
+  </div>
+
+  <div class="img2" style="margin-top:28px">
+    <div>
+      <img src="projects/Radiotherapy/img-001.jpg" alt="Varian Halcyon Gantry">
+      <p class="ic">Varian Halcyon — Ring-Gantry Treatment Head</p>
+    </div>
+    <div>
+      <img src="projects/Radiotherapy/img-026.jpg" alt="Radiotherapy Treatment Room">
+      <p class="ic">Modern Radiotherapy Vault — Treatment Position</p>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 03 -->
+<section>
+  <div class="sn">Section 03</div>
+  <h2>Equipment Selection — <span>LINAC Options</span></h2>
+  <div class="rule"></div>
+  <p class="body" style="margin-bottom:28px">Two LINAC platforms have been evaluated for the Anti-Cancer Centre Constantine. The comparative analysis below is extracted from the Technical Comparative Analysis Report (May 2024) and serves as the primary briefing reference for facility spatial requirements.</p>
+
+  <div class="cmp">
+    <div class="cmp-h">Parameter</div>
+    <div class="cmp-h" style="color:#009CA6">Elekta Harmony <span class="badge-e">Option A</span></div>
+    <div class="cmp-h" style="color:#63a3e8">Varian Halcyon v2/v3 <span class="badge-v">Option B</span></div>
+
+    <div class="cmp-k">Gantry Architecture</div>
+    <div class="cmp-a">C-arm rotating gantry (conventional)</div>
+    <div class="cmp-b">O-ring / ring-gantry (continuous rotation)</div>
+
+    <div class="cmp-k">Photon Energies</div>
+    <div class="cmp-a">6 MV, 10 MV, 15 MV, 6 MV FFF, 10 MV FFF</div>
+    <div class="cmp-b">6 MV FFF only — single energy fixed<div class="cmp-adv">No neutron production — simplified shielding</div></div>
+
+    <div class="cmp-k">Max Dose Rate</div>
+    <div class="cmp-a">Up to 2,400 MU/min (FFF mode)</div>
+    <div class="cmp-b">600 MU/min (clinical ceiling)</div>
+
+    <div class="cmp-k">MLC System</div>
+    <div class="cmp-a">Agility — 160-leaf, 5 mm, max 40×40 cm</div>
+    <div class="cmp-b">Dual-layer staggered — 5 mm effective, max 28×28 cm</div>
+
+    <div class="cmp-k">Vault Area (typical)</div>
+    <div class="cmp-a">~35–45 m² treatment room</div>
+    <div class="cmp-b">~32–38 m² <div class="cmp-adv">~65% less concrete vs C-arm</div></div>
+
+    <div class="cmp-k">Min. Room Width</div>
+    <div class="cmp-a">~610 cm wall-to-wall</div>
+    <div class="cmp-b">~554 cm wall-to-wall<div class="cmp-adv">Smaller footprint</div></div>
+
+    <div class="cmp-k">Ceiling Height</div>
+    <div class="cmp-a">3,200 mm minimum</div>
+    <div class="cmp-b">2,740 mm minimum<div class="cmp-adv">Lower ceiling acceptable</div></div>
+
+    <div class="cmp-k">Primary Wall Shielding</div>
+    <div class="cmp-a">1,500–2,000 mm ordinary concrete</div>
+    <div class="cmp-b">750–900 mm (TVL₁ = 33 cm @ 6 MV FFF)<div class="cmp-adv">Significant shielding saving</div></div>
+
+    <div class="cmp-k">Neutron Shielding</div>
+    <div class="cmp-a">Required at ≥10 MV energy</div>
+    <div class="cmp-b" style="color:#7ec87e">Not required — 6 MV only</div>
+
+    <div class="cmp-k">System Weight</div>
+    <div class="cmp-a">~10,000–12,000 kg (system)</div>
+    <div class="cmp-b">~14,000 kg (ring structure + electronics)</div>
+
+    <div class="cmp-k">Electrical Supply (UAE/Algeria)</div>
+    <div class="cmp-a">3-phase 380/220V, 50 Hz — direct</div>
+    <div class="cmp-b">Requires mains isolation transformer (380V → 440V)</div>
+
+    <div class="cmp-k">Cooling (Chilled Water)</div>
+    <div class="cmp-a">7–23 LPM, 10–25°C inlet, 7 kW max</div>
+    <div class="cmp-b">7–23 LPM, 10–25°C inlet, 7 kW max</div>
+
+    <div class="cmp-k">Installation Time</div>
+    <div class="cmp-a">~2–3 weeks</div>
+    <div class="cmp-b">12 days<div class="cmp-adv">Faster commissioning</div></div>
+
+    <div class="cmp-k">Key Treatment Techniques</div>
+    <div class="cmp-a">3D-CRT, IMRT, VMAT, SRS/SBRT, Electron IORT</div>
+    <div class="cmp-b">3D-CRT, IMRT, VMAT, SBRT — SRS limited</div>
+
+    <div class="cmp-k">Upgrade Path</div>
+    <div class="cmp-a">XVI, Monaco TPS, Elekta Unity MR-Linac</div>
+    <div class="cmp-b">Ethos AI-adaptive (same vault geometry)</div>
+
+    <div class="cmp-k">UAE Regulatory Ref.</div>
+    <div class="cmp-a">FANR vault approval — NCRP 151</div>
+    <div class="cmp-b">FANR vault approval — NCRP 151</div>
+  </div>
+
+  <div class="img2">
+    <div>
+      <img src="projects/Radiotherapy/img-012.jpg" alt="Control Room">
+      <p class="ic">LINAC Control Room — Console &amp; Monitoring Station</p>
+    </div>
+    <div>
+      <img src="projects/Radiotherapy/img-002.jpg" alt="Gantry Detail">
+      <p class="ic">Ring-Gantry Detail — Integrated OBI Imaging System</p>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 04 -->
+<section>
+  <div class="sn">Section 04</div>
+  <h2>Services &amp; <span>Spaces</span></h2>
+  <div class="rule"></div>
+
+  <div class="zones">
+    <div class="zc">
+      <div class="zd" style="background:#9e5a5a"></div>
+      <div class="zn">Controlled Zone</div>
+      <div class="zt">Treatment Vault + Maze + Direct access areas — FANR restricted access</div>
+    </div>
+    <div class="zc">
+      <div class="zd" style="background:#c9a84c"></div>
+      <div class="zn">Supervised Zone</div>
+      <div class="zt">Control Room + CT Sim + Physics Lab — staff only, monitored</div>
+    </div>
+    <div class="zc">
+      <div class="zd" style="background:#5a7a9e"></div>
+      <div class="zn">Clinical Zone</div>
+      <div class="zt">Consultation + Planning + Mould Room — clinical staff</div>
+    </div>
+    <div class="zc">
+      <div class="zd" style="background:#5a9e6f"></div>
+      <div class="zn">Public Zone</div>
+      <div class="zt">Patient waiting + reception + changing — general access</div>
+    </div>
+  </div>
+
+  <table class="area">
+    <thead><tr><th>Room</th><th>Code</th><th>Zone</th><th>Occupancy</th><th>Indicative Area (m²)</th></tr></thead>
+    <tbody>
+      <tr><td class="k">Treatment Vault — LINAC Bunker</td><td>RT-01</td><td style="color:#9e5a5a">Controlled</td><td>Patient + RT Therapist</td><td>35–45</td></tr>
+      <tr><td class="k">Control Room</td><td>RT-02</td><td style="color:#c9a84c">Supervised</td><td>2–3 RT Therapists</td><td>18–24</td></tr>
+      <tr><td class="k">Patient Waiting (Pre-Treatment)</td><td>RT-03</td><td style="color:#5a9e6f">Public</td><td>6–10 Patients</td><td>20–28</td></tr>
+      <tr><td class="k">CT Simulation Room</td><td>RT-04</td><td style="color:#c9a84c">Supervised</td><td>Patient + 2 Staff</td><td>28–35</td></tr>
+      <tr><td class="k">Treatment Planning Room</td><td>RT-05</td><td style="color:#5a7a9e">Clinical</td><td>2–4 Dosimetrists</td><td>18–24</td></tr>
+      <tr><td class="k">Medical Physics / QA Room</td><td>RT-06</td><td style="color:#5a7a9e">Clinical</td><td>1–2 Physicists</td><td>16–20</td></tr>
+      <tr><td class="k">Mould Room / Immobilisation Lab</td><td>RT-07</td><td style="color:#5a7a9e">Clinical</td><td>1–2 Therapists</td><td>14–18</td></tr>
+      <tr><td class="k">Patient Changing / Preparation</td><td>RT-08</td><td style="color:#5a9e6f">Public</td><td>2–4 Patients</td><td>10–14</td></tr>
+      <tr><td class="k">Staff Room / Dosimetry Office</td><td>RT-09</td><td style="color:#5a7a9e">Clinical</td><td>3–5 Staff</td><td>14–18</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- SECTION 05 -->
+<section>
+  <div class="sn">Section 05</div>
+  <h2>Functional Relationships <span>&amp; Zoning</span></h2>
+  <div class="rule"></div>
+
+  <table style="margin-bottom:28px">
+    <thead><tr><th>From</th><th>To</th><th>Relationship Type</th><th>Observation</th></tr></thead>
+    <tbody>
+      <tr><td class="k">Treatment Vault (RT-01)</td><td>Control Room (RT-02)</td><td class="yes">Direct — adjacent</td><td>Shielded observation window + intercom mandatory</td></tr>
+      <tr><td class="k">Treatment Vault (RT-01)</td><td>Maze / Entry</td><td class="yes">Direct — shielded</td><td>Maze or direct-shielded door — per physicist design</td></tr>
+      <tr><td class="k">Control Room (RT-02)</td><td>CT Simulation (RT-04)</td><td class="tbc">Close — same floor</td><td>Shared console access preferred</td></tr>
+      <tr><td class="k">Patient Waiting (RT-03)</td><td>Treatment Vault Entry</td><td class="yes">Direct</td><td>Patient flow — no staff cross-circulation</td></tr>
+      <tr><td class="k">CT Simulation (RT-04)</td><td>Treatment Planning (RT-05)</td><td class="yes">Direct — data link</td><td>DICOM network — same oncology domain</td></tr>
+      <tr><td class="k">Treatment Planning (RT-05)</td><td>Physics QA (RT-06)</td><td class="yes">Direct</td><td>Plan verification before beam delivery</td></tr>
+      <tr><td class="k">Mould Room (RT-07)</td><td>Treatment Vault (RT-01)</td><td class="tbc">Close</td><td>Immobilisation devices transferred to vault</td></tr>
+      <tr><td class="k">Changing (RT-08)</td><td>Patient Waiting (RT-03)</td><td class="yes">Direct</td><td>Patient-side flow — gowned patient to vault</td></tr>
+    </tbody>
+  </table>
+
+  <div class="img2">
+    <div>
+      <img src="projects/Radiotherapy/img-020.jpg" alt="Vault Interior">
+      <p class="ic">Treatment Vault — Patient Couch &amp; Gantry Position</p>
+    </div>
+    <div>
+      <img src="projects/Radiotherapy/img-017.jpg" alt="Radiotherapy Room">
+      <p class="ic">Modern LINAC Room — Spatial Configuration</p>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 06 -->
+<section>
+  <div class="sn">Section 06</div>
+  <h2>Reference <span>Standards</span></h2>
+  <div class="rule"></div>
+
+  <table>
+    <thead><tr><th>Standard / Document</th><th>Organisation</th><th>Scope</th></tr></thead>
+    <tbody>
+      <tr><td class="k">IEC 60601-2-1</td><td>IEC</td><td>Medical electrical equipment — particular requirements for linacs</td></tr>
+      <tr><td class="k">IEC 60976</td><td>IEC</td><td>Functional performance of medical electron accelerators</td></tr>
+      <tr><td class="k">IEC 60977</td><td>IEC</td><td>Guidelines for functional performance of linacs</td></tr>
+      <tr><td class="k">IEC 61217</td><td>IEC</td><td>Coordinates, motions and scales — radiotherapy equipment</td></tr>
+      <tr><td class="k">NCRP Report No. 151</td><td>NCRP</td><td>Structural shielding design methodology — radiotherapy facilities</td></tr>
+      <tr><td class="k">IAEA Safety Reports Series No. 47</td><td>IAEA</td><td>Radiation protection in design of radiotherapy facilities</td></tr>
+      <tr><td class="k">IAEA-TECDOC-1040</td><td>IAEA</td><td>Design and implementation of a radiotherapy programme</td></tr>
+      <tr><td class="k">ANSI/ESD S20.20</td><td>ANSI</td><td>ESD control programme — flooring specification for linac vaults</td></tr>
+      <tr><td class="k">ISO 4463-1</td><td>ISO</td><td>Measurement and setting out — dimensional tolerances for vault construction</td></tr>
+      <tr><td class="k">FANR Regulation</td><td>FANR UAE</td><td>Federal Authority for Nuclear Regulation — vault shielding approval (UAE reference)</td></tr>
+      <tr><td class="k">CRNA Algeria</td><td>Algeria</td><td>Centre de Radioprotection et de Nucléaire d'Algérie — regulatory authority</td></tr>
+      <tr><td class="k">Elekta Site Planning Doc 1008405 05</td><td>Elekta AB</td><td>Elekta Harmony site planning and construction information</td></tr>
+      <tr><td class="k">Varian Halcyon PPG P1029751-02</td><td>Varian / Siemens</td><td>Halcyon Product Planning Guide — vault and facility requirements</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- SECTION 07 — RDS -->
+<section>
+  <div class="sn">Section 07</div>
+  <h2>Room Data <span>Sheets</span></h2>
+  <div class="rule"></div>
+  <p class="body" style="margin-bottom:48px">Nine Room Data Sheets covering the complete Radiotherapy Department. Each sheet follows the standard four-part FTB-RDS structure: General Information, Appearance &amp; Finishes, Furniture &amp; Utilities, and Equipment &amp; Networks.</p>
+
+  <div class="rds-list">
+
+    <!-- RDS RT-01 -->
+    <div class="rds">
+      <div class="rds-hdr">
+        <div class="rds-num"><span>01</span><span>RDS</span></div>
+        <div class="rds-ttl">
+          <div class="rds-room">Treatment Vault — LINAC Bunker</div>
+          <div style="font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:0.15em">RT-01 &nbsp;|&nbsp; Controlled Zone &nbsp;|&nbsp; 35–45 m²</div>
+        </div>
+      </div>
+      <div class="rds-img2">
+        <img src="projects/Radiotherapy/img-021.jpg" alt="Vault">
+        <img src="projects/Radiotherapy/img-003.jpg" alt="Gantry">
+      </div>
+
+      <div class="rds-sub">Part 1 — General Information</div>
+      <div class="rds-body">
+        <table>
+          <thead><tr><th>Field</th><th>Data</th></tr></thead>
+          <tbody>
+            <tr><td class="k">Room Name</td><td>Treatment Vault — Linear Accelerator Bunker</td></tr>
+            <tr><td class="k">Room Code</td><td>RT-01</td></tr>
+            <tr><td class="k">Service</td><td>Radiotherapy</td></tr>
+            <tr><td class="k">Sub-Service</td><td>External Beam Radiation Therapy (EBRT)</td></tr>
+            <tr><td class="k">Indicative Area</td><td>35–45 m² (Elekta) &nbsp;|&nbsp; 32–38 m² (Halcyon) — excluding maze</td></tr>
+            <tr><td class="k">Ceiling Height</td><td>≥ 3,200 mm (Elekta) &nbsp;|&nbsp; ≥ 2,740 mm (Halcyon)</td></tr>
+            <tr><td class="k">Service Hours</td><td>07:00–20:00 — 5 days/week (extendable per patient load)</td></tr>
+            <tr><td class="k">Occupation</td><td>1 Patient on couch + 1–2 RT Therapists (setup only — staff exit before beam)</td></tr>
+            <tr><td class="k">Staffing</td><td>RT Therapist (×2 minimum per session)</td></tr>
+            <tr><td class="k">Description</td><td>Primary radiation treatment space housing the LINAC gantry, treatment couch, on-board imaging system, and associated cable/cooling infrastructure. Shielded vault with maze or direct-door entry. No staff present during beam-on.</td></tr>
+            <tr><td class="k">Acoustic Insulation</td><td>Concrete shielding provides inherent acoustic mass. Intercom system mandatory between vault and control room.</td></tr>
+            <tr><td class="k">Strong Relationships</td><td>RT-02 Control Room (direct adjacent) — RT-03 Patient Waiting (vault entry)</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="rds-sub">Part 2 — Appearance &amp; Finishes</div>
+      <div class="rds-body">
+        <table>
+          <thead><tr><th>Element</th><th>Specification</th><th>Observation</th></tr></thead>
+          <tbody>
+            <tr><td class="k">Floor</td><td>ESD-safe vinyl sheet / VCT — static dissipative 1 MΩ–1,000 MΩ (ANSI/ESD S20.20)</td><td>No flooring in hatched areas either side of floor pit</td></tr>
+            <tr><td class="k">Walls</td><td>Painted concrete — minimum 30 MN/m² (28-day cube strength). All penetrations sealed.</td><td>All concrete sealed before equipment delivery</td></tr>
+            <tr><td class="k">Ceiling</td><td>Lay-in acoustical tile 600×1,200 mm or 600×600 mm</td><td>Photo-electric or heat detectors preferred — NOT ionisation type</td></tr>
+            <tr><td class="k">Fascia Wall</td><td>Elekta: total 4,000 mm width — Elekta panel + client finish panel. Halcyon: vendor-defined fascia.</td><td>Non-structural — shielded concrete behind fascia</td></tr>
+            <tr><td class="k">Lighting</td><td>Dimmable LED — patient positioning lighting separate from working light</td><td>No fluorescent near warning lights — interference risk</td></tr>
+            <tr><td class="k">Warning Lights</td><td>BEAM ON (mandatory) + X-RAY ON (mandatory) above entry door. BEAM OFF optional.</td><td>Max 60W incandescent or LED — no fluorescent</td></tr>
+            <tr><td class="k">Fire Sprinklers</td><td>Discouraged inside vault. If required: dry pre-action system, high-temperature heads, not above equipment.</td><td>Coordinate with fire engineer and equipment vendor</td></tr>
+            <tr><td class="k">Doors</td><td>Shielded primary door (motorised, interlocked) or shielded maze entry</td><td>Interlock: primary 48VDC NC + secondary 24VDC NC — both must operate within 500ms</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="rds-sub">Part 3 — Furniture &amp; Utilities</div>
+      <div class="rds-body">
+        <table>
+          <thead><tr><th>Description</th><th>Category</th><th>Qty</th><th>Observation</th></tr></thead>
+          <tbody>
+            <tr><td class="k">LINAC Treatment Couch (6-DOF)</td><td>Fixed Equipment</td><td>1</td><td>Supplied by equipment vendor — Halcyon Exact Couch / Elekta Precise Couch</td></tr>
+            <tr><td class="k">Immobilisation Device Storage</td><td>Custom Millwork</td><td>1 set</td><td>Custom cabinetry for masks, cushions, bolus materials</td></tr>
+            <tr><td class="k">Laser Positioning System</td><td>Fixed Equipment</td><td>3 axes</td><td>Ceiling + side wall lasers for patient setup — vendor-specified positions</td></tr>
+            <tr><td class="k">CCTV Camera</td><td>Fixed Equipment</td><td>2 min.</td><td>Patient monitoring during beam-on — feed to control room</td></tr>
+            <tr><td class="k">Intercom Speaker/Mic</td><td>Fixed Equipment</td><td>1 set</td><td>Two-way communication vault ↔ control room</td></tr>
+            <tr><td class="k">Emergency Off (EMO) Switch</td><td>Safety Equipment</td><td>3+</td><td>Allen-Bradley 800T-FX6AV or equivalent — at door, in room, at console</td></tr>
+            <tr><td class="k">Fire Extinguisher</td><td>Safety Equipment</td><td>1</td><td>Type C — inside treatment room</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="rds-sub">Part 4 — Equipment &amp; Networks</div>
+      <div class="rds-body">
+        <table>
+          <thead><tr><th>Description</th><th>QTY</th><th>ELE</th><th>HVAC / Cooling</th><th>GAS / DRN</th><th>DATA / BMS</th><th>Power Observation</th></tr></thead>
+          <tbody>
+            <tr><td class="k">LINAC Gantry + Stand</td><td>1</td><td class="yes">Yes</td><td class="yes">7 kW chilled water</td><td>Drain stub</td><td class="yes">DICOM / Oncology LAN</td><td>16–18 kVA beam-on (Halcyon) / 3-phase 380V (Elekta)</td></tr>
+            <tr><td class="k">Treatment Couch (6-DOF)</td><td>1</td><td class="yes">Yes</td><td class="no">No</td><td class="no">No</td><td class="yes">BMS interlock</td><td>Vendor cable — via floor pit</td></tr>
+            <tr><td class="k">On-Board Imager (kV OBI)</td><td>1</td><td class="yes">Integrated</td><td class="no">No</td><td class="no">No</td><td class="yes">DICOM imaging</td><td>Integrated with gantry power</td></tr>
+            <tr><td class="k">MV EPID (portal imager)</td><td>1</td><td class="yes">Integrated</td><td class="no">No</td><td class="no">No</td><td class="yes">DICOM dosimetry</td><td>Integrated with gantry</td></tr>
+            <tr><td class="k">Laser Positioning (3-axis)</td><td>1 set</td><td class="yes">Yes</td><td class="no">No</td><td class="no">No</td><td class="yes">BMS</td><td>Low voltage — wall/ceiling conduit</td></tr>
+            <tr><td class="k">CCTV System</td><td>2 cam</td><td class="yes">Yes</td><td class="no">No</td><td class="no">No</td><td class="yes">CCTV LAN to control room</td><td>PoE — CAT6 to control room</td></tr>
+            <tr><td class="k">Chilled Water Supply/Return</td><td>1 pair</td><td class="no">No</td><td class="yes">Closed-loop chiller</td><td class="yes">DN25 FNPT</td><td class="no">No</td><td>Isolation valves + FNPT — rear of Stand</td></tr>
+            <tr><td class="k">HVAC Supply/Extract</td><td>1 sys</td><td class="yes">Yes</td><td class="yes">4–6 ACH / 16–27°C</td><td class="no">No</td><td class="yes">BMS</td><td>Ozone clearance — positive pressure vault</td></tr>
+          </tbody>
+        </table>
+        <div class="rds-note"><strong>Coordination Note:</strong> All cable containment (power, data, safety interlock, cooling) routed through floor pit → wall penetrations → control room. Conduit: dry watertight PVC (glued) or sealed metal. Max 270° total bends per run. Penetrations perpendicular to isocenter to minimise radiation scatter leakage. Physicist of Record to verify all penetrations before construction.</div>
+      </div>
+    </div>
+
+    <!-- RDS RT-02 -->
+    <div class="rds">
+      <div class="rds-hdr">
+        <div class="rds-num"><span>02</span><span>RDS</span></div>
+        <div class="rds-ttl">
+          <div class="rds-room">Control Room</div>
+          <div style="font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:0.15em">RT-02 &nbsp;|&nbsp; Supervised Zone &nbsp;|&nbsp; 18–24 m²</div>
+        </div>
+      </div>
+      <img class="rds-img" src="projects/Radiotherapy/img-013.jpg" alt="Control Room">
+
+      <div class="rds-sub">Part 1 — General Information</div>
+      <div class="rds-body">
+        <table>
+          <thead><tr><th>Field</th><th>Data</th></tr></thead>
+          <tbody>
+            <tr><td class="k">Room Name</td><td>Radiotherapy Control Room</td></tr>
+            <tr><td class="k">Room Code</td><td>RT-02</td></tr>
+            <tr><td class="k">Indicative Area</td><td>18–24 m²</td></tr>
+            <tr><td class="k">Service Hours</td><td>Match vault operating hours</td></tr>
+            <tr><td class="k">Occupation</td><td>2–3 RT Therapists (during treatment) + visiting physicist</td></tr>
+            <tr><td class="k">Description</td><td>Houses the LINAC console cabinet, ARIA/MOSAIQ workstations, CCTV monitors, MDP panel, RJB panel, dosimetry reference equipment. Adjacent to vault with direct visual and intercom link. Staff operate all treatments from this room.</td></tr>
+            <tr><td class="k">Strong Relationships</td><td>RT-01 Treatment Vault (direct adjacent) — RT-04 CT Sim (network link)</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="rds-sub">Part 2 — Appearance &amp; Finishes</div>
+      <div class="rds-body">
+        <table>
+          <thead><tr><th>Element</th><th>Specification</th><th>Observation</th></tr></thead>
+          <tbody>
+            <tr><td class="k">Floor</td><td>ESD-safe vinyl or carpet tile — anti-static</td><td>Consistent with equipment room requirements</td></tr>
+            <tr><td class="k">Walls</td><td>Painted plasterboard or block — no radiation shielding required</td><td>Cable management trunking at desk height</td></tr>
+            <tr><td class="k">Ceiling</td><td>Lay-in acoustic tile — access panel above MDP/RJB location</td><td>Ceiling height ≥ 2,700 mm</td></tr>
+            <tr><td class="k">Observation Window</td><td>Shielded leaded glass — direct view into vault (if no maze)</td><td>Minimum 15 mm Pb equivalent — per physicist calculation</td></tr>
+            <tr><td class="k">Lighting</td><td>LED adjustable — low glare at workstation positions</td><td>Blackout blinds if window present</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="rds-sub">Part 3 — Furniture &amp; Utilities</div>
+      <div class="rds-body">
+        <table>
+          <thead><tr><th>Description</th><th>Category</th><th>Qty</th><th>Observation</th></tr></thead>
+          <tbody>
+            <tr><td class="k">Operator Desk (L-shape)</td><td>Furniture</td><td>1</td><td>Ergonomic height — accommodate console + 2 additional monitors</td></tr>
+            <tr><td class="k">Ergonomic Operator Chair</td><td>Furniture</td><td>2–3</td><td>Long-duration seating for treatment sessions</td></tr>
+            <tr><td class="k">CCTV Monitor (patient view)</td><td>AV Equipment</td><td>2</td><td>Direct view of patient during beam delivery</td></tr>
+            <tr><td class="k">Intercom Panel</td><td>Communication</td><td>1</td><td>Two-way vault ↔ control room</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="rds-sub">Part 4 — Equipment &amp; Networks</div>
+      <div class="rds-body">
+        <table>
+          <thead><tr><th>Description</th><th>QTY</th><th>ELE</th><th>HVAC</th><th>GAS / DRN</th><th>DATA / BMS</th><th>Power Observation</th></tr></thead>
+          <tbody>
+            <tr><td class="k">LINAC Console Cabinet</td><td>1</td><td class="yes">Yes</td><td class="yes">1.1 kW heat load</td><td class="no">No</td><td class="yes">Oncology LAN — static IP</td><td>Single-phase 208–240V, 2 kVA</td></tr>
+            <tr><td class="k">MDP (Mains Disconnect Panel)</td><td>1</td><td class="yes">Yes</td><td class="no">No</td><td class="no">No</td><td class="yes">BMS interlock</td><td>Within sight + ≤3 m of console — surface/semi-recessed, 82 kg</td></tr>
+            <tr><td class="k">RJB (Remote Junction Box)</td><td>1</td><td class="yes">Yes</td><td class="no">No</td><td class="no">No</td><td class="yes">Interlock circuit</td><td>Wall-mounted, service access maintained — 22.5 kg</td></tr>
+            <tr><td class="k">OIS Workstation (ARIA/MOSAIQ)</td><td>2</td><td class="yes">Yes</td><td class="no">No</td><td class="no">No</td><td class="yes">Oncology domain LAN — 1 Gbps</td><td>Standard 230V — UPS protected</td></tr>
+            <tr><td class="k">CCTV Monitor Array</td><td>1 set</td><td class="yes">Yes</td><td class="no">No</td><td class="no">No</td><td class="yes">CCTV LAN</td><td>PoE or standard 230V</td></tr>
+          </tbody>
+        </table>
+        <div class="rds-note"><strong>Coordination Note:</strong> MDP must be within sight and ≤3 m of console cabinet. Network: CAT6 minimum, 100 Mbps min / 1 Gbps recommended. Oncology LAN must be isolated from hospital enterprise network. Static IP required for console cabinet. IEC 60309 outlet (Blue, 230V, 16A) adjacent to console cabinet.</div>
+      </div>
+    </div>
+
+    <!-- RDS RT-03 -->
+    <div class="rds">
+      <div class="rds-hdr">
+        <div class="rds-num"><span>03</span><span>RDS</span></div>
+        <div class="rds-ttl">
+          <div class="rds-room">Patient Waiting — Pre-Treatment</div>
+          <div style="font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:0.15em">RT-03 &nbsp;|&nbsp; Public Zone &nbsp;|&nbsp; 20–28 m²</div>
+        </div>
+      </div>
+      <img class="rds-img" src="projects/Radiotherapy/img-015.jpg" alt="Patient Waiting">
+
+      <div class="rds-sub">Part 1 — General Information</div>
+      <div class="rds-body">
+        <table>
+          <thead><tr><th>Field</th><th>Data</th></tr></thead>
+          <tbody>
+            <tr><td class="k">Room Name</td><td>Patient Waiting Area — Pre-Treatment</td></tr>
+            <tr><td class="k">Room Code</td><td>RT-03</td></tr>
+            <tr><td class="k">Indicative Area</td><td>20–28 m²</td></tr>
+            <tr><td class="k">Occupation</td><td>6–10 patients simultaneously (daily fractionated treatment)</td></tr>
+            <tr><td class="k">Description</td><td>Patient waiting area immediately adjacent to vault entry. Patients arrive already changed and ready for treatment. Calming environment — consider acoustic comfort, natural or simulated light, distraction art or displays. Companion seating included.</td></tr>
+            <tr><td class="k">Strong Relationships</td><td>RT-08 Changing (upstream) — RT-01 Vault Entry (downstream)</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="rds-sub">Part 2 — Appearance &amp; Finishes</div>
+      <div class="rds-body">
+        <table>
+          <thead><tr><th>Element</th><th>Specification</th><th>Observation</th></tr></thead>
+          <tbody>
+            <tr><td class="k">Floor</td><td>Vinyl or porcelain tile — easy clean, slip-resistant</td><td>Warm neutral tones — calming patient environment</td></tr>
+            <tr><td class="k">Walls</td><td>Painted gypsum — feature wall with artwork or projected nature imagery</td><td>Acoustic panels to reduce reverberation</td></tr>
+            <tr><td class="k">Ceiling</td><td>Acoustic tile or plasterboard — sky/nature imagery possible</td><td>Indirect lighting preferred — reduce clinical feeling</td></tr>
+            <tr><td class="k">Lighting</td><td>Warm white LED 2,700–3,000K — dimmable. No harsh overhead fluorescent.</td><td>Patient anxiety reduction — biophilic lighting strategy</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="rds-sub">Part 3 — Furniture &amp; Utilities</div>
+      <div class="rds-body">
+        <table>
+          <thead><tr><th>Description</th><th>Category</th><th>Qty</th><th>Observation</th></tr></thead>
+          <tbody>
+            <tr><td class="k">Patient Chair (upholstered)</td><td>Furniture</td><td>8–10</td><td>Comfortable — suitable for frail oncology patients</td></tr>
+            <tr><td class="k">Companion Seating</td><td>Furniture</td><td>4</td><td>Adjacent to patient chairs</td></tr>
+            <tr><td class="k">Info Display / Digital Screen</td><td>AV Equipment</td><td>1</td><td>Patient call system + appointment info</td></tr>
+            <tr><td class="k">Patient Call System</td><td>Communication</td><td>1</td><td>Link to control room</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="rds-sub">Part 4 — Equipment &amp; Networks</div>
+      <div class="rds-body">
+        <table>
+          <thead><tr><th>Description</th><th>QTY</th><th>ELE</th><th>HVAC</th><th>GAS / DRN</th><th>DATA / BMS</th><th>Observation</th></tr></thead>
+          <tbody>
+            <tr><td class="k">Patient Call Display</td><td>1</td><td class="yes">Yes</td><td class="no">No</td><td class="no">No</td><td class="yes">BMS / Nurse Call</td><td>230V — wall mounted</td></tr>
+            <tr><td class="k">HVAC (comfort cooling)</td><td>1 sys</td><td class="yes">Yes</td><td class="yes">22–24°C / 4–6 ACH</td><td class="no">No</td><td class="yes">BMS</td><td>Patient comfort — independent zone</td></tr>
+          </tbody>
+        </table>
+        <div class="rds-note"><strong>Coordination Note:</strong> Separate HVAC zone from controlled radiation areas. Positive air flow away from vault. Patient-dignity design — no direct sightlines into vault or changing areas from waiting.</div>
+      </div>
+    </div>
+
+    <!-- RDS RT-04 -->
+    <div class="rds">
+      <div class="rds-hdr">
+        <div class="rds-num"><span>04</span><span>RDS</span></div>
+        <div class="rds-ttl">
+          <div class="rds-room">CT Simulation Room</div>
+          <div style="font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:0.15em">RT-04 &nbsp;|&nbsp; Supervised Zone &nbsp;|&nbsp; 28–35 m²</div>
+        </div>
+      </div>
+      <img class="rds-img" src="projects/Radiotherapy/img-018.jpg" alt="CT Simulation">
+
+      <div class="rds-sub">Part 1 — General Information</div>
+      <div class="rds-body">
+        <table>
+          <thead><tr><th>Field</th><th>Data</th></tr></thead>
+          <tbody>
+            <tr><td class="k">Room Name</td><td>CT Simulation Room</td></tr>
+            <tr><td class="k">Room Code</td><td>RT-04</td></tr>
+            <tr><td class="k">Indicative Area</td><td>28–35 m² (scanner room + control alcove)</td></tr>
+            <tr><td class="k">Occupation</td><td>1 Patient + 2 RT Therapists / dosimetrist</td></tr>
+            <tr><td class="k">Description</td><td>Large-bore CT scanner (≥80 cm bore) dedicated to radiotherapy treatment planning. Patient simulated in treatment position using immobilisation devices. Laser alignment system integrated. DICOM data transmitted directly to treatment planning system.</td></tr>
+            <tr><td class="k">Acoustic Insulation</td><td>Sound attenuation between scanner room and control alcove — shielded screen</td></tr>
+            <tr><td class="k">Strong Relationships</td><td>RT-05 Treatment Planning (DICOM link) — RT-07 Mould Room (immobilisation supply)</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="rds-sub">Part 2 — Appearance &amp; Finishes</div>
+      <div class="rds-body">
+        <table>
+          <thead><tr><th>Element</th><th>Specification</th><th>Observation</th></tr></thead>
+          <tbody>
+            <tr><td class="k">Floor</td><td>Smooth vinyl — ESD rated — continuous from scanner room to control alcove</td><td>No floor pit required (CT sim couch uses rails)</td></tr>
+            <tr><td class="k">Walls</td><td>Leaded gypsum or structural shielding per radiation physicist design</td><td>CT radiation — lower shielding than LINAC vault but required</td></tr>
+            <tr><td class="k">Ceiling</td><td>Acoustic tile with radiation-shielding provision if required</td><td>Physicist to calculate above-ceiling shielding requirement</td></tr>
+            <tr><td class="k">Lighting</td><td>Dimmable LED — laser alignment visible requires low ambient light</td><td>Red/green laser alignment system — ambient light control critical</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="rds-sub">Part 3 — Furniture &amp; Utilities</div>
+      <div class="rds-body">
+        <table>
+          <thead><tr><th>Description</th><th>Category</th><th>Qty</th><th>Observation</th></tr></thead>
+          <tbody>
+            <tr><td class="k">Large-Bore CT Scanner (≥80 cm)</td><td>Major Equipment</td><td>1</td><td>RT-dedicated — not shared with diagnostic CT if possible</td></tr>
+            <tr><td class="k">Flat-Top RT Treatment Couch</td><td>Fixed Equipment</td><td>1</td><td>Interchangeable with LINAC couch top — positional reproducibility</td></tr>
+            <tr><td class="k">Laser Positioning System (3-axis)</td><td>Fixed Equipment</td><td>1 set</td><td>Ceiling + side wall lasers — matches LINAC vault setup</td></tr>
+            <tr><td class="k">CT Console Workstation</td><td>IT Equipment</td><td>1</td><td>In control alcove — DICOM export to TPS</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="rds-sub">Part 4 — Equipment &amp; Networks</div>
+      <div class="rds-body">
+        <table>
+          <thead><tr><th>Description</th><th>QTY</th><th>ELE</th><th>HVAC / Cooling</th><th>GAS / DRN</th><th>DATA / BMS</th><th>Observation</th></tr></thead>
+          <tbody>
+            <tr><td class="k">CT Scanner (large-bore)</td><td>1</td><td class="yes">Yes</td><td class="yes">Chilled water — vendor spec</td><td class="yes">Drain</td><td class="yes">DICOM / PACS / TPS</td><td>3-phase — per vendor planning guide</td></tr>
+            <tr><td class="k">Laser Positioning System</td><td>1 set</td><td class="yes">Yes</td><td class="no">No</td><td class="no">No</td><td class="yes">BMS</td><td>Low voltage — wall/ceiling conduit</td></tr>
+            <tr><td class="k">HVAC</td><td>1 sys</td><td class="yes">Yes</td><td class="yes">20–22°C / 6 ACH</td><td class="no">No</td><td class="yes">BMS</td><td>Patient comfort + equipment cooling</td></tr>
+          </tbody>
+        </table>
+        <div class="rds-note"><strong>Coordination Note:</strong> DICOM network must connect CT Sim directly to TPS workstations in RT-05. Minimum 1 Gbps — large DICOM datasets. Radiation shielding calculation by physicist — separate from LINAC vault calculation. Laser system alignment must be calibrated to match LINAC vault lasers for positional reproducibility.</div>
+      </div>
+    </div>
+
+    <!-- RDS RT-05 -->
+    <div class="rds">
+      <div class="rds-hdr">
+        <div class="rds-num"><span>05</span><span>RDS</span></div>
+        <div class="rds-ttl">
+          <div class="rds-room">Treatment Planning Room</div>
+          <div style="font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:0.15em">RT-05 &nbsp;|&nbsp; Clinical Zone &nbsp;|&nbsp; 18–24 m²</div>
+        </div>
+      </div>
+      <img class="rds-img" src="projects/Radiotherapy/img-014.jpg" alt="Planning">
+
+      <div class="rds-sub">Part 1 — General Information</div>
+      <div class="rds-body">
+        <table>
+          <thead><tr><th>Field</th><th>Data</th></tr></thead>
+          <tbody>
+            <tr><td class="k">Room Name</td><td>Radiotherapy Treatment Planning Room</td></tr>
+            <tr><td class="k">Room Code</td><td>RT-05</td></tr>
+            <tr><td class="k">Indicative Area</td><td>18–24 m²</td></tr>
+            <tr><td class="k">Occupation</td><td>2–4 Dosimetrists / Medical Physicists</td></tr>
+            <tr><td class="k">Description</td><td>Workroom housing Treatment Planning System (TPS) workstations — Monaco (Elekta) or Eclipse (Varian). Dosimetrists delineate target volumes, define beam parameters, and calculate dose distributions. High-performance computing workstations with dual-screen displays.</td></tr>
+            <tr><td class="k">Strong Relationships</td><td>RT-04 CT Sim (DICOM import) — RT-06 Physics QA (plan transfer for verification)</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="rds-sub">Part 2 — Appearance &amp; Finishes</div>
+      <div class="rds-body">
+        <table>
+          <thead><tr><th>Element</th><th>Specification</th><th>Observation</th></tr></thead>
+          <tbody>
+            <tr><td class="k">Floor</td><td>Carpet tile or vinyl — anti-static</td><td>Acoustic comfort for focused work environment</td></tr>
+            <tr><td class="k">Walls</td><td>Painted gypsum — screen blackout blind if windows present</td><td>Dual-monitor workstations require low ambient glare</td></tr>
+            <tr><td class="k">Lighting</td><td>Dimmable LED — task lighting at workstations. Target 300 lux at desk.</td><td>Avoid glare on monitors — indirect lighting preferred</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="rds-sub">Part 3 — Furniture &amp; Utilities</div>
+      <div class="rds-body">
+        <table>
+          <thead><tr><th>Description</th><th>Category</th><th>Qty</th><th>Observation</th></tr></thead>
+          <tbody>
+            <tr><td class="k">TPS Workstation (high-performance)</td><td>IT Equipment</td><td>3–4</td><td>Monaco / Eclipse — GPU-accelerated, dual 24" monitor minimum</td></tr>
+            <tr><td class="k">Ergonomic Desk + Chair</td><td>Furniture</td><td>3–4 sets</td><td>Adjustable height — long sessions</td></tr>
+            <tr><td class="k">Server/UPS Rack</td><td>IT Equipment</td><td>1</td><td>In-room or adjacent server room — UPS mandatory</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="rds-sub">Part 4 — Equipment &amp; Networks</div>
+      <div class="rds-body">
+        <table>
+          <thead><tr><th>Description</th><th>QTY</th><th>ELE</th><th>HVAC</th><th>GAS / DRN</th><th>DATA / BMS</th><th>Observation</th></tr></thead>
+          <tbody>
+            <tr><td class="k">TPS Workstations</td><td>3–4</td><td class="yes">Yes</td><td class="yes">Supplemental cooling if server rack in room</td><td class="no">No</td><td class="yes">Oncology LAN — 1 Gbps — DICOM</td><td>UPS protected — 230V single phase</td></tr>
+            <tr><td class="k">HVAC (office comfort)</td><td>1 sys</td><td class="yes">Yes</td><td class="yes">21–23°C / 4 ACH</td><td class="no">No</td><td class="yes">BMS</td><td>Server heat load — supplement with split unit if needed</td></tr>
+          </tbody>
+        </table>
+        <div class="rds-note"><strong>Coordination Note:</strong> Oncology network domain must be isolated from hospital enterprise network. TPS servers require static IP. All plan data transmitted over DICOM RT — plan, RT dose, RT structure, RT image. UPS minimum 30-min runtime per workstation.</div>
+      </div>
+    </div>
+
+    <!-- RDS RT-06 -->
+    <div class="rds">
+      <div class="rds-hdr">
+        <div class="rds-num"><span>06</span><span>RDS</span></div>
+        <div class="rds-ttl">
+          <div class="rds-room">Medical Physics / QA Room</div>
+          <div style="font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:0.15em">RT-06 &nbsp;|&nbsp; Clinical Zone &nbsp;|&nbsp; 16–20 m²</div>
+        </div>
+      </div>
+      <img class="rds-img" src="projects/Radiotherapy/img-004.jpg" alt="Physics QA">
+
+      <div class="rds-sub">Part 1 — General Information</div>
+      <div class="rds-body">
+        <table>
+          <thead><tr><th>Field</th><th>Data</th></tr></thead>
+          <tbody>
+            <tr><td class="k">Room Name</td><td>Medical Physics &amp; QA Room</td></tr>
+            <tr><td class="k">Room Code</td><td>RT-06</td></tr>
+            <tr><td class="k">Indicative Area</td><td>16–20 m²</td></tr>
+            <tr><td class="k">Occupation</td><td>1–2 Medical Physicists</td></tr>
+            <tr><td class="k">Description</td><td>Physics workroom for plan verification, patient-specific QA, machine QA (daily, monthly, annual), and dosimetry equipment storage. Houses ion chambers, electrometers, phantom equipment, ArcCheck/MatriXX arrays and DailyQA device. Access to vault for in-room measurements.</td></tr>
+            <tr><td class="k">Strong Relationships</td><td>RT-05 Planning (plan import for verification) — RT-01 Vault (physics measurements access)</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="rds-sub">Part 2 — Appearance &amp; Finishes</div>
+      <div class="rds-body">
+        <table>
+          <thead><tr><th>Element</th><th>Specification</th><th>Observation</th></tr></thead>
+          <tbody>
+            <tr><td class="k">Floor</td><td>Vinyl — easy clean for equipment staging</td><td>Benchtop access around perimeter</td></tr>
+            <tr><td class="k">Walls</td><td>Painted gypsum — shelving for dosimetry equipment</td><td>Adequate storage for phantom equipment (bulky)</td></tr>
+            <tr><td class="k">Worktop</td><td>Chemical-resistant laminate — 900 mm height workbench</td><td>Ion chamber calibration requires stable flat surface</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="rds-sub">Part 3 — Furniture &amp; Utilities</div>
+      <div class="rds-body">
+        <table>
+          <thead><tr><th>Description</th><th>Category</th><th>Qty</th><th>Observation</th></tr></thead>
+          <tbody>
+            <tr><td class="k">Physics Workstation</td><td>IT Equipment</td><td>1–2</td><td>Plan verification software — RayStation / MPC / SNC Patient</td></tr>
+            <tr><td class="k">Perimeter Workbench</td><td>Furniture</td><td>Linear m</td><td>900 mm height — chemical resistant — 3-phase power strip</td></tr>
+            <tr><td class="k">Equipment Storage Shelving</td><td>Furniture</td><td>1 set</td><td>Open shelf for phantom storage (ArcCheck, ion chamber phantom)</td></tr>
+            <tr><td class="k">DailyQA Device Storage</td><td>Equipment</td><td>1</td><td>Daily QA device (Sun Nuclear or equivalent) — transport to vault daily</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="rds-sub">Part 4 — Equipment &amp; Networks</div>
+      <div class="rds-body">
+        <table>
+          <thead><tr><th>Description</th><th>QTY</th><th>ELE</th><th>HVAC</th><th>GAS / DRN</th><th>DATA / BMS</th><th>Observation</th></tr></thead>
+          <tbody>
+            <tr><td class="k">Physics Workstations</td><td>2</td><td class="yes">Yes</td><td class="no">No</td><td class="no">No</td><td class="yes">Oncology LAN — DICOM</td><td>230V UPS protected</td></tr>
+            <tr><td class="k">Power Strip / 3-phase outlet</td><td>2</td><td class="yes">Yes</td><td class="no">No</td><td class="no">No</td><td class="no">No</td><td>Benchtop — electrometer and measurement equipment</td></tr>
+            <tr><td class="k">HVAC</td><td>1 sys</td><td class="yes">Yes</td><td class="yes">21–23°C / 4 ACH</td><td class="no">No</td><td class="yes">BMS</td><td>Temperature stability important for ion chamber measurements</td></tr>
+          </tbody>
+        </table>
+        <div class="rds-note"><strong>Coordination Note:</strong> Temperature and pressure stability essential for ion chamber calibration (ADCL-calibrated chambers require controlled environment). Direct door access to vault preferred for daily QA transport. Electrometer cables must not be routed through areas with electromagnetic interference.</div>
+      </div>
+    </div>
+
+    <!-- RDS RT-07 -->
+    <div class="rds">
+      <div class="rds-hdr">
+        <div class="rds-num"><span>07</span><span>RDS</span></div>
+        <div class="rds-ttl">
+          <div class="rds-room">Mould Room — Immobilisation Lab</div>
+          <div style="font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:0.15em">RT-07 &nbsp;|&nbsp; Clinical Zone &nbsp;|&nbsp; 14–18 m²</div>
+        </div>
+      </div>
+      <img class="rds-img" src="projects/Radiotherapy/img-005.jpg" alt="Mould Room">
+
+      <div class="rds-sub">Part 1 — General Information</div>
+      <div class="rds-body">
+        <table>
+          <thead><tr><th>Field</th><th>Data</th></tr></thead>
+          <tbody>
+            <tr><td class="k">Room Name</td><td>Mould Room — Immobilisation Laboratory</td></tr>
+            <tr><td class="k">Room Code</td><td>RT-07</td></tr>
+            <tr><td class="k">Indicative Area</td><td>14–18 m²</td></tr>
+            <tr><td class="k">Occupation</td><td>1–2 RT Therapists</td></tr>
+            <tr><td class="k">Description</td><td>Fabrication and storage of patient immobilisation devices — thermoplastic shells (head, neck, thorax), vacuum bags, bite blocks, and customised bolus materials. Hot water bath for thermoplastic forming. Ventilation required for thermoplastic fumes. Storage racks for patient-labelled devices.</td></tr>
+            <tr><td class="k">Strong Relationships</td><td>RT-04 CT Sim (device supply) — RT-01 Vault (device transfer to treatment)</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="rds-sub">Part 2 — Appearance &amp; Finishes</div>
+      <div class="rds-body">
+        <table>
+          <thead><tr><th>Element</th><th>Specification</th><th>Observation</th></tr></thead>
+          <tbody>
+            <tr><td class="k">Floor</td><td>Vinyl — slip-resistant — water-tolerant (hot water bath spills)</td><td>Coving to walls minimum 100 mm</td></tr>
+            <tr><td class="k">Walls</td><td>Painted block or tiled to splash-back height (1,200 mm) at sink</td><td>Thermoplastic fume extraction — wall exhaust grille</td></tr>
+            <tr><td class="k">Worktop</td><td>Chemical-resistant — 900 mm height with sink</td><td>Sink with hot/cold water — thermoplastic bath filling</td></tr>
+            <tr><td class="k">Ventilation</td><td>Enhanced local exhaust ventilation (LEV) at forming bench</td><td>Thermoplastic fumes — COSHH compliance</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="rds-sub">Part 3 — Furniture &amp; Utilities</div>
+      <div class="rds-body">
+        <table>
+          <thead><tr><th>Description</th><th>Category</th><th>Qty</th><th>Observation</th></tr></thead>
+          <tbody>
+            <tr><td class="k">Thermoplastic Hot Water Bath</td><td>Major Equipment</td><td>1</td><td>70–75°C thermostatically controlled — 230V / plumbed</td></tr>
+            <tr><td class="k">Device Storage Rack (floor)</td><td>Furniture</td><td>2</td><td>Patient-labelled device storage — masks + vacuum bags</td></tr>
+            <tr><td class="k">Workbench</td><td>Furniture</td><td>Linear m</td><td>900 mm height — chemical resistant</td></tr>
+            <tr><td class="k">Sink (deep, clinical)</td><td>Plumbing</td><td>1</td><td>Hot/cold — for device rinsing and cooling</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="rds-sub">Part 4 — Equipment &amp; Networks</div>
+      <div class="rds-body">
+        <table>
+          <thead><tr><th>Description</th><th>QTY</th><th>ELE</th><th>HVAC</th><th>GAS / DRN</th><th>DATA / BMS</th><th>Observation</th></tr></thead>
+          <tbody>
+            <tr><td class="k">Thermoplastic Hot Water Bath</td><td>1</td><td class="yes">Yes</td><td class="no">No</td><td class="yes">HW/CW + drain</td><td class="no">No</td><td>230V / 2 kW — thermostatically controlled</td></tr>
+            <tr><td class="k">Local Exhaust Ventilation</td><td>1</td><td class="yes">Yes</td><td class="yes">Dedicated LEV extract</td><td class="no">No</td><td class="yes">BMS extract fan</td><td>Minimum 10 ACH local extract at forming bench</td></tr>
+            <tr><td class="k">Sink / Plumbing</td><td>1</td><td class="no">No</td><td class="no">No</td><td class="yes">HW + CW + drain</td><td class="no">No</td><td>Clinical sink — isolation valve</td></tr>
+          </tbody>
+        </table>
+        <div class="rds-note"><strong>Coordination Note:</strong> Thermoplastic fume extraction mandatory — coordinate with MEP for dedicated LEV duct to exterior. Hot water supply to thermoplastic bath requires isolation valve and thermostatic mixing valve. Device storage must accommodate patient loads for 5+ concurrent treatment courses.</div>
+      </div>
+    </div>
+
+    <!-- RDS RT-08 -->
+    <div class="rds">
+      <div class="rds-hdr">
+        <div class="rds-num"><span>08</span><span>RDS</span></div>
+        <div class="rds-ttl">
+          <div class="rds-room">Patient Changing — Preparation</div>
+          <div style="font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:0.15em">RT-08 &nbsp;|&nbsp; Public Zone &nbsp;|&nbsp; 10–14 m²</div>
+        </div>
+      </div>
+      <img class="rds-img" src="projects/Radiotherapy/img-016.jpg" alt="Changing">
+
+      <div class="rds-sub">Part 1 — General Information</div>
+      <div class="rds-body">
+        <table>
+          <thead><tr><th>Field</th><th>Data</th></tr></thead>
+          <tbody>
+            <tr><td class="k">Room Name</td><td>Patient Changing &amp; Preparation Area</td></tr>
+            <tr><td class="k">Room Code</td><td>RT-08</td></tr>
+            <tr><td class="k">Indicative Area</td><td>10–14 m² (2 cubicles minimum)</td></tr>
+            <tr><td class="k">Occupation</td><td>2–4 Patients simultaneously</td></tr>
+            <tr><td class="k">Description</td><td>Private changing cubicles for patients to change into gowns prior to daily treatment. Lockers for clothing and personal items. Accessible cubicle mandatory for wheelchair users and patients with reduced mobility (common in frail oncology population). Direct link to pre-treatment waiting area.</td></tr>
+            <tr><td class="k">Strong Relationships</td><td>RT-03 Patient Waiting (downstream) — Main Department Reception (upstream)</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="rds-sub">Part 2 — Appearance &amp; Finishes</div>
+      <div class="rds-body">
+        <table>
+          <thead><tr><th>Element</th><th>Specification</th><th>Observation</th></tr></thead>
+          <tbody>
+            <tr><td class="k">Floor</td><td>Non-slip vinyl — accessible drainage if required</td><td>Accessible cubicle: turning circle ≥1,500 mm diameter</td></tr>
+            <tr><td class="k">Cubicle Partitions</td><td>Full-height privacy screens — lockable cubicle door</td><td>Patient dignity — no gaps at base or top</td></tr>
+            <tr><td class="k">Lighting</td><td>LED warm white — 200 lux minimum in cubicle</td><td>Dimmable preferred — patient comfort</td></tr>
+            <tr><td class="k">Lockers</td><td>Coin-return or key lockers</td><td>Secure clothing storage during treatment session</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="rds-sub">Part 3 — Furniture &amp; Utilities</div>
+      <div class="rds-body">
+        <table>
+          <thead><tr><th>Description</th><th>Category</th><th>Qty</th><th>Observation</th></tr></thead>
+          <tbody>
+            <tr><td class="k">Changing Cubicle (standard)</td><td>Fixed</td><td>2</td><td>Min 1,200×1,200 mm — hook + seat + mirror</td></tr>
+            <tr><td class="k">Changing Cubicle (accessible)</td><td>Fixed</td><td>1</td><td>Min 1,800×2,000 mm — grab rails + fold-down seat + alarm pull</td></tr>
+            <tr><td class="k">Patient Locker Bank</td><td>Furniture</td><td>6–8 units</td><td>Coin-return or RFID key — clothing + valuables</td></tr>
+            <tr><td class="k">Emergency Pull Cord / Alarm</td><td>Safety</td><td>Per cubicle</td><td>Linked to nurse call system — frail oncology patients</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="rds-sub">Part 4 — Equipment &amp; Networks</div>
+      <div class="rds-body">
+        <table>
+          <thead><tr><th>Description</th><th>QTY</th><th>ELE</th><th>HVAC</th><th>GAS / DRN</th><th>DATA / BMS</th><th>Observation</th></tr></thead>
+          <tbody>
+            <tr><td class="k">Emergency Pull Cord Alarm</td><td>3</td><td class="yes">Yes</td><td class="no">No</td><td class="no">No</td><td class="yes">Nurse call BMS</td><td>Each cubicle — link to control room / staff station</td></tr>
+            <tr><td class="k">HVAC (comfort)</td><td>1 sys</td><td class="yes">Yes</td><td class="yes">22–24°C / 4 ACH</td><td class="no">No</td><td class="yes">BMS</td><td>Warm environment — patients partially undressed</td></tr>
+          </tbody>
+        </table>
+        <div class="rds-note"><strong>Coordination Note:</strong> Accessibility mandatory — daily treatment means patients with declining physical condition use this space repeatedly over 5–7 week courses. Nurse call links directly to RT control room (RT-02). Gown supply and laundry logistics to be coordinated with Hospital Linen Management.</div>
+      </div>
+    </div>
+
+    <!-- RDS RT-09 -->
+    <div class="rds">
+      <div class="rds-hdr">
+        <div class="rds-num"><span>09</span><span>RDS</span></div>
+        <div class="rds-ttl">
+          <div class="rds-room">Staff Room — Dosimetry Office</div>
+          <div style="font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:0.15em">RT-09 &nbsp;|&nbsp; Clinical Zone &nbsp;|&nbsp; 14–18 m²</div>
+        </div>
+      </div>
+      <img class="rds-img" src="projects/Radiotherapy/img-024.jpg" alt="Staff Room">
+
+      <div class="rds-sub">Part 1 — General Information</div>
+      <div class="rds-body">
+        <table>
+          <thead><tr><th>Field</th><th>Data</th></tr></thead>
+          <tbody>
+            <tr><td class="k">Room Name</td><td>RT Staff Room &amp; Dosimetry Administration Office</td></tr>
+            <tr><td class="k">Room Code</td><td>RT-09</td></tr>
+            <tr><td class="k">Indicative Area</td><td>14–18 m²</td></tr>
+            <tr><td class="k">Occupation</td><td>3–5 RT Therapists + Dosimetrists</td></tr>
+            <tr><td class="k">Description</td><td>Combined staff break room and dosimetry administrative workroom. Houses personal dosimetry monitoring equipment, TLD/OSL reader, staff scheduling, treatment record filing, and OIS administrative functions. Staff rest area with kitchenette.</td></tr>
+            <tr><td class="k">Strong Relationships</td><td>RT-02 Control Room — RT-05 Planning Room</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="rds-sub">Part 2 — Appearance &amp; Finishes</div>
+      <div class="rds-body">
+        <table>
+          <thead><tr><th>Element</th><th>Specification</th><th>Observation</th></tr></thead>
+          <tbody>
+            <tr><td class="k">Floor</td><td>Vinyl or carpet tile — comfortable staff environment</td><td>Easy clean — kitchenette zone vinyl only</td></tr>
+            <tr><td class="k">Walls</td><td>Painted gypsum — pin board / whiteboard on one wall</td><td>Treatment schedule display area</td></tr>
+            <tr><td class="k">Kitchenette</td><td>Stainless steel sink + base units + wall cabinets</td><td>Staff rest — refrigerator + microwave provision</td></tr>
+            <tr><td class="k">Lighting</td><td>LED 300 lux at desk — warm white for rest area</td><td>Dual zone — office bright / rest warm</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="rds-sub">Part 3 — Furniture &amp; Utilities</div>
+      <div class="rds-body">
+        <table>
+          <thead><tr><th>Description</th><th>Category</th><th>Qty</th><th>Observation</th></tr></thead>
+          <tbody>
+            <tr><td class="k">Admin Workstation</td><td>IT Equipment</td><td>2</td><td>OIS administration — patient scheduling, record management</td></tr>
+            <tr><td class="k">TLD / OSL Dosimetry Reader</td><td>Equipment</td><td>1</td><td>Personal dosimetry monitoring — staff radiation exposure records</td></tr>
+            <tr><td class="k">Staff Locker</td><td>Furniture</td><td>6–8</td><td>Personal dosimetry badge storage + personal items</td></tr>
+            <tr><td class="k">Rest Seating</td><td>Furniture</td><td>4–6</td><td>Break room function — comfortable seating</td></tr>
+            <tr><td class="k">Kitchenette Unit</td><td>Fixed</td><td>1</td><td>Sink + base cabinets + wall cabinets + refrigerator space</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="rds-sub">Part 4 — Equipment &amp; Networks</div>
+      <div class="rds-body">
+        <table>
+          <thead><tr><th>Description</th><th>QTY</th><th>ELE</th><th>HVAC</th><th>GAS / DRN</th><th>DATA / BMS</th><th>Observation</th></tr></thead>
+          <tbody>
+            <tr><td class="k">Admin Workstations</td><td>2</td><td class="yes">Yes</td><td class="no">No</td><td class="no">No</td><td class="yes">Hospital LAN + OIS</td><td>230V UPS — treatment record access</td></tr>
+            <tr><td class="k">Sink / Kitchenette</td><td>1</td><td class="yes">Yes</td><td class="no">No</td><td class="yes">CW + drain</td><td class="no">No</td><td>Standard kitchen sink — isolation valve</td></tr>
+            <tr><td class="k">HVAC</td><td>1 sys</td><td class="yes">Yes</td><td class="yes">21–23°C / 4 ACH</td><td class="no">No</td><td class="yes">BMS</td><td>Standard office/staff comfort level</td></tr>
+          </tbody>
+        </table>
+        <div class="rds-note"><strong>Coordination Note:</strong> Personal dosimetry monitoring records (TLD/OSL) are regulatory mandatory — FANR/CRNA. Storage for staff radiation badges must be away from any radiation source. OIS access from admin workstations requires secure oncology network credentials.</div>
+      </div>
+    </div>
+
+  </div><!-- /rds-list -->
+</section>
+
+<!-- SECTION 08 -->
+<section>
+  <div class="sn">Section 08</div>
+  <h2>Sources &amp; <span>References</span></h2>
+  <div class="rule"></div>
+
+  <div class="src">
+    <div class="si">
+      <div class="sc">S1</div>
+      <div class="sb">
+        <div class="sn2">Elekta Harmony Product Data Sheet</div>
+        <div class="sl">https://www.eygsa.cl/wp-content/uploads/2023/08/Harmony-Product-Data.pdf</div>
+      </div>
+    </div>
+    <div class="si">
+      <div class="sc">S2</div>
+      <div class="sb">
+        <div class="sn2">Elekta Site Planning Construction Information — Doc ID 1008405 05</div>
+        <div class="sl">http://www.onk.ns.ac.rs/jn/JN-69-2015-P-01-SitePlanningConstructionInformation.pdf</div>
+      </div>
+    </div>
+    <div class="si">
+      <div class="sc">S3</div>
+      <div class="sb">
+        <div class="sn2">Varian Halcyon Product Planning Guide — P1029751-02</div>
+        <div class="sl">https://cancercare.siemens-healthineers.com/en/linear-accelerators/halcyon</div>
+      </div>
+    </div>
+    <div class="si">
+      <div class="sc">S4</div>
+      <div class="sb">
+        <div class="sn2">Commissioning and QA of Halcyon 2.0 — Ryznycky et al., PMC8281907</div>
+        <div class="sl">https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8281907/</div>
+      </div>
+    </div>
+    <div class="si">
+      <div class="sc">S5</div>
+      <div class="sb">
+        <div class="sn2">Early Clinical Experience Halcyon V2 — Kim et al., PMC6839386</div>
+        <div class="sl">https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6839386/</div>
+      </div>
+    </div>
+    <div class="si">
+      <div class="sc">S6</div>
+      <div class="sb">
+        <div class="sn2">Optimization of Shielding — Halcyon Vault — Kaur, Sahani et al., PMC10277303</div>
+        <div class="sl">https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10277303/</div>
+      </div>
+    </div>
+    <div class="si">
+      <div class="sc">S7</div>
+      <div class="sb">
+        <div class="sn2">NCRP Report No. 151 — Structural Shielding Design for Medical X-Ray Imaging Facilities</div>
+        <div class="sl">https://ncrponline.org/publications/reports/ncrp-report-151/</div>
+      </div>
+    </div>
+    <div class="si">
+      <div class="sc">S8</div>
+      <div class="sb">
+        <div class="sn2">IEC 60601-2-1 — Medical Electrical Equipment — Linacs</div>
+        <div class="sl">https://www.iec.ch/homepage</div>
+      </div>
+    </div>
+    <div class="si">
+      <div class="sc">S9</div>
+      <div class="sb">
+        <div class="sn2">IAEA Safety Reports Series No. 47 — Radiation Protection in Radiotherapy</div>
+        <div class="sl">https://www.iaea.org/publications/7230/radiation-protection-in-the-design-of-radiotherapy-facilities</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="lim" style="margin-top:40px">
+    <h3>Document Limitations</h3>
+    <p>This Functional Technical Brief is prepared at pre-programme stage using publicly available manufacturer planning documents, peer-reviewed literature, and UAE/GCC regulatory reference standards. All spatial dimensions, shielding thicknesses, equipment specifications, and area schedules are indicative only and subject to revision following formal site planning engagement with equipment vendor, Physicist of Record, and regulatory authority. No construction, procurement, or regulatory submission action shall be taken based solely on this document. Equipment selection (Elekta Harmony vs. Varian Halcyon) remains subject to client decision, clinical programme review, and capital cost assessment.</p>
+  </div>
+</section>
+
+</div><!-- /wrap -->
+
+<footer>
+  <div class="ft">M. Amine Berchache — Senior Architect / BIM Coordinator</div>
+  <div class="ft">Radiotherapy FTB-RDS &nbsp;·&nbsp; Anti-Cancer Centre Constantine &nbsp;·&nbsp; Pre-Programme 2024–2026</div>
+</footer>
+
+</body>
+</html>
