@@ -203,7 +203,7 @@ export const PROJECTS = [
     description:
       'Architectural and BIM documentation for Varian Halcyon linear accelerator radiotherapy facilities. Specialised shielded vault design, radiation protection compliance, and medical equipment integration for oncology departments.',
     tags: ['Healthcare', 'BIM', 'Radiotherapy', 'Medical Equipment'],
-    images: imgs('Varian_Halcyon', 27),
+    images: imgs('Radiotherapy', 30),
   },
   {
     id: 'construction-site',

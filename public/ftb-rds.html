@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FTB-RDS — Functional Technical Briefs | M. Amine Berchache</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0d0d0d;--bg2:#111;--bg3:#161616;--bg4:#1c1c1c;
+  --gold:#c9a84c;--gold2:#e2c068;--gold3:#a8872e;
+  --gold-dim:rgba(201,168,76,0.07);--gold-line:rgba(201,168,76,0.20);
+  --text:#e8e4dc;--text2:#b8b2a8;--text3:#787068;--text4:#484440;
+  --line:rgba(255,255,255,0.06);--line2:rgba(255,255,255,0.10);
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Montserrat',sans-serif;font-weight:300;font-size:13px;line-height:1.7;overflow-x:hidden;min-height:100vh}
+nav{position:sticky;top:0;z-index:100;background:rgba(13,13,13,0.96);backdrop-filter:blur(20px);border-bottom:1px solid var(--gold-line);padding:0 56px;display:flex;align-items:center;justify-content:space-between;height:62px}
+.nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none}
+.nav-box{width:34px;height:34px;border:1px solid rgba(201,168,76,0.45);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:var(--gold)}
+.nav-txt p:first-child{font-size:10px;font-weight:500;letter-spacing:0.28em;text-transform:uppercase;color:var(--text);line-height:1.2}
+.nav-txt p:last-child{font-size:9px;letter-spacing:0.35em;text-transform:uppercase;color:var(--gold);line-height:1.2}
+.nav-back{font-size:9px;text-transform:uppercase;letter-spacing:0.12em;color:var(--text3);text-decoration:none;border:1px solid var(--text4);padding:5px 14px;transition:all .2s}
+.nav-back:hover{border-color:var(--gold);color:var(--gold)}
+
+/* HERO */
+.hero{padding:100px 80px 60px;border-bottom:1px solid var(--line)}
+.breadcrumb{font-size:9px;text-transform:uppercase;letter-spacing:0.35em;color:var(--gold3);margin-bottom:16px}
+h1{font-family:'Cormorant Garamond',serif;font-size:clamp(36px,5vw,64px);font-weight:300;line-height:1.05;color:var(--text);margin-bottom:10px}
+h1 span{color:var(--gold2)}
+.hero-sub{font-size:10px;text-transform:uppercase;letter-spacing:0.25em;color:var(--text3);margin-bottom:20px}
+.hero-desc{font-size:12px;color:var(--text2);max-width:680px;line-height:1.8}
+.rule{width:44px;height:1px;background:var(--gold);margin:18px 0 24px}
+
+/* STATS ROW */
+.stats{display:flex;gap:48px;margin-top:40px;padding-top:32px;border-top:1px solid var(--line)}
+.stat-n{font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:300;color:var(--gold2);line-height:1}
+.stat-l{font-size:9px;text-transform:uppercase;letter-spacing:0.2em;color:var(--text3);margin-top:4px}
+
+/* GRID */
+.wrap{max-width:1200px;margin:0 auto;padding:72px 80px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line2)}
+.card{background:var(--bg2);text-decoration:none;display:flex;flex-direction:column;transition:background .25s}
+.card:hover{background:var(--bg3)}
+.card-img{width:100%;height:200px;overflow:hidden;position:relative}
+.card-img img{width:100%;height:100%;object-fit:cover;filter:brightness(0.72);transition:filter .3s,transform .4s}
+.card:hover .card-img img{filter:brightness(0.9);transform:scale(1.03)}
+.card-img-ph{width:100%;height:200px;background:var(--bg3);display:flex;align-items:center;justify-content:center}
+.card-body{padding:22px 24px;flex:1;border-top:1px solid var(--gold-line)}
+.card-num{font-size:9px;text-transform:uppercase;letter-spacing:0.25em;color:var(--gold3);margin-bottom:8px}
+.card-title{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:400;color:var(--text);margin-bottom:6px;line-height:1.2}
+.card-sub{font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:0.12em;margin-bottom:12px}
+.card-desc{font-size:11px;color:var(--text2);line-height:1.7;margin-bottom:16px}
+.card-tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px}
+.card-tag{font-size:8px;text-transform:uppercase;letter-spacing:0.1em;color:var(--gold3);border:1px solid var(--gold-line);padding:3px 8px;background:var(--gold-dim)}
+.card-cta{display:flex;align-items:center;gap:8px;font-size:9px;text-transform:uppercase;letter-spacing:0.18em;color:var(--gold);margin-top:auto}
+.card-cta::after{content:'→';font-size:12px;transition:transform .2s}
+.card:hover .card-cta::after{transform:translateX(4px)}
+
+/* COMING SOON CARD */
+.card.soon{opacity:0.4;pointer-events:none;cursor:default}
+.card.soon .card-cta{color:var(--text4)}
+.card.soon .card-cta::after{content:''}
+.soon-badge{position:absolute;top:12px;right:12px;font-size:8px;text-transform:uppercase;letter-spacing:0.12em;padding:4px 10px;background:var(--bg);border:1px solid var(--text4);color:var(--text4)}
+
+/* BOTTOM */
+.bottom{padding:40px 80px;border-top:1px solid var(--line2);display:flex;align-items:center;justify-content:space-between}
+.ft{font-size:9px;text-transform:uppercase;letter-spacing:0.2em;color:var(--text4)}
+
+@media(max-width:900px){
+  .grid{grid-template-columns:1fr 1fr}
+  nav,.hero,.wrap,.bottom{padding-left:24px;padding-right:24px}
+}
+@media(max-width:600px){
+  .grid{grid-template-columns:1fr}
+  .stats{flex-wrap:wrap;gap:28px}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="/">
+    <div class="nav-box">AB</div>
+    <div class="nav-txt">
+      <p>Berchache</p>
+      <p>Senior Architect</p>
+    </div>
+  </a>
+  <a class="nav-back" href="/">← Portfolio</a>
+</nav>
+
+<div class="hero">
+  <div style="max-width:1200px;margin:0 auto">
+    <div class="breadcrumb">Anti-Cancer Centre Constantine &nbsp;/&nbsp; Technical Documentation</div>
+    <h1>Functional Technical<br><span>Brief — RDS</span></h1>
+    <div class="hero-sub">Room Data Sheets &amp; Space Programming — All Services</div>
+    <div class="rule"></div>
+    <p class="hero-desc">Pre-programme spatial and technical documentation for the Anti-Cancer Centre Constantine. Each FTB-RDS covers the full four-part Room Data Sheet structure: General Information, Appearance &amp; Finishes, Furniture &amp; Utilities, and Equipment &amp; Networks.</p>
+    <div class="stats">
+      <div><div class="stat-n">2</div><div class="stat-l">Services Complete</div></div>
+      <div><div class="stat-n">18</div><div class="stat-l">Room Data Sheets</div></div>
+      <div><div class="stat-n">140</div><div class="stat-l">Bed Hospital</div></div>
+      <div><div class="stat-n">Pre</div><div class="stat-l">Programme Stage</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="grid">
+
+    <!-- SERVICE 01 — FDG-18 -->
+    <a class="card" href="/ftb-rds-fdg18.html">
+      <div class="card-img">
+        <img src="projects/FDG18-Cyclotron/hero-bunker.png" alt="FDG-18 Cyclotron">
+      </div>
+      <div class="card-body">
+        <div class="card-num">Service 01</div>
+        <div class="card-title">FDG-18 Production Unit</div>
+        <div class="card-sub">Nuclear Medicine &amp; PET Radiopharmacy</div>
+        <div class="card-desc">IBA Cyclone KIUBE 180 cyclotron facility. 9 Room Data Sheets covering cyclotron bunker, hot lab, QC lab, chemistry, gas room, control room, and support spaces.</div>
+        <div class="card-tags">
+          <span class="card-tag">IBA KIUBE 180</span>
+          <span class="card-tag">IAEA</span>
+          <span class="card-tag">EU GMP</span>
+          <span class="card-tag">9 Rooms</span>
+        </div>
+        <div class="card-cta">View Technical Brief</div>
+      </div>
+    </a>
+
+    <!-- SERVICE 02 — RADIOTHERAPY -->
+    <a class="card" href="/ftb-rds-radiotherapy.html">
+      <div class="card-img">
+        <img src="projects/Radiotherapy/img-026.jpg" alt="Radiotherapy">
+      </div>
+      <div class="card-body">
+        <div class="card-num">Service 02</div>
+        <div class="card-title">Radiotherapy Department</div>
+        <div class="card-sub">Linear Accelerator — EBRT Unit</div>
+        <div class="card-desc">Varian Halcyon v2/v3 and Elekta Harmony comparative analysis. 9 Room Data Sheets covering LINAC vault, control room, CT simulation, treatment planning, physics QA, and support spaces.</div>
+        <div class="card-tags">
+          <span class="card-tag">Varian Halcyon</span>
+          <span class="card-tag">Elekta Harmony</span>
+          <span class="card-tag">NCRP 151</span>
+          <span class="card-tag">9 Rooms</span>
+        </div>
+        <div class="card-cta">View Technical Brief</div>
+      </div>
+    </a>
+
+    <!-- SERVICE 03 — NUCLEAR MEDICINE (COMING SOON) -->
+    <div class="card soon">
+      <div class="card-img">
+        <div class="card-img-ph">
+          <span style="font-size:9px;text-transform:uppercase;letter-spacing:0.2em;color:var(--text4)">In Preparation</span>
+        </div>
+        <span class="soon-badge">Coming Soon</span>
+      </div>
+      <div class="card-body">
+        <div class="card-num">Service 03</div>
+        <div class="card-title">Nuclear Medicine Department</div>
+        <div class="card-sub">PET-CT &amp; Clinical Imaging</div>
+        <div class="card-desc">PET-CT rooms, hot injection rooms, patient uptake areas, and functional relationship with FDG-18 production unit.</div>
+        <div class="card-tags">
+          <span class="card-tag">PET-CT</span>
+          <span class="card-tag">IAEA</span>
+          <span class="card-tag">In Progress</span>
+        </div>
+        <div class="card-cta">In Preparation</div>
+      </div>
+    </div>
+
+    <!-- SERVICE 04 — PLACEHOLDER -->
+    <div class="card soon">
+      <div class="card-img">
+        <div class="card-img-ph"></div>
+        <span class="soon-badge">Planned</span>
+      </div>
+      <div class="card-body">
+        <div class="card-num">Service 04</div>
+        <div class="card-title">Surgical Oncology</div>
+        <div class="card-sub">Operating Theatres &amp; Recovery</div>
+        <div class="card-desc">Oncology operating suites including laparoscopic, open surgery, and IORT-capable theatres.</div>
+        <div class="card-tags"><span class="card-tag">Planned</span></div>
+        <div class="card-cta">Planned</div>
+      </div>
+    </div>
+
+    <!-- SERVICE 05 — PLACEHOLDER -->
+    <div class="card soon">
+      <div class="card-img">
+        <div class="card-img-ph"></div>
+        <span class="soon-badge">Planned</span>
+      </div>
+      <div class="card-body">
+        <div class="card-num">Service 05</div>
+        <div class="card-title">Medical Imaging</div>
+        <div class="card-sub">CT, MRI &amp; Diagnostic Radiology</div>
+        <div class="card-desc">Diagnostic imaging department feeding radiotherapy simulation and oncology staging workflows.</div>
+        <div class="card-tags"><span class="card-tag">Planned</span></div>
+        <div class="card-cta">Planned</div>
+      </div>
+    </div>
+
+    <!-- SERVICE 06 — PLACEHOLDER -->
+    <div class="card soon">
+      <div class="card-img">
+        <div class="card-img-ph"></div>
+        <span class="soon-badge">Planned</span>
+      </div>
+      <div class="card-body">
+        <div class="card-num">Service 06</div>
+        <div class="card-title">Haematology &amp; Chemotherapy</div>
+        <div class="card-sub">Day Treatment &amp; Infusion Unit</div>
+        <div class="card-desc">Chemotherapy infusion bays, day treatment unit, pharmacy preparation, and patient flow coordination.</div>
+        <div class="card-tags"><span class="card-tag">Planned</span></div>
+        <div class="card-cta">Planned</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="bottom">
+  <div class="ft">M. Amine Berchache — Senior Architect / BIM Coordinator</div>
+  <div class="ft">Anti-Cancer Centre Constantine &nbsp;·&nbsp; Pre-Programme 2024–2026</div>
+</div>
+
+</body>
+</html>
