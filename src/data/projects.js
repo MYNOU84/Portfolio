@@ -124,6 +124,20 @@ export const PROJECTS = [
     images: imgs('The_Horizon_Restaurant', 26),
   },
   {
+    id: 'fdg18-renders',
+    cover: 5,
+    title: 'FDG-18 Cyclotron Production Unit',
+    subtitle: '3D Visualisation & AI Renders',
+    location: 'Algeria',
+    category: 'Interior 3D View',
+    year: '2024–2026',
+    role: 'Technical Architect / BIM Coordinator',
+    description:
+      'AI-enhanced 3D visualisation of the FDG-18 Cyclotron Production Unit for the Anti-Cancer Centre Constantine. Cyclotron bunker, hot lab, QC lab and support spaces rendered using Magnific AI upscaling from technical reference imagery.',
+    tags: ['Healthcare', 'Nuclear Medicine', 'AI Visualization'],
+    images: imgs('FDG18_Renders', 16),
+  },
+  {
     id: 'renovation-flat',
     cover: 8,
     title: 'Apartment Renovation',
