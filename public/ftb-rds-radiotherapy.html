@@ -69,11 +69,14 @@ td.h{color:var(--gold2);font-weight:500}
 .zn{font-size:10px;text-transform:uppercase;letter-spacing:0.08em;font-weight:500;color:var(--text);margin-bottom:5px}
 .zt{font-size:11px;color:var(--text3);line-height:1.6}
 .img2{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin:22px 0}
-.img2 img{width:100%;aspect-ratio:16/9;object-fit:cover;filter:brightness(0.82);transition:filter .3s;display:block}
+.img2 img{width:100%;aspect-ratio:16/9;object-fit:contain;background:var(--bg3);filter:brightness(0.92);transition:filter .3s;display:block}
 .img2 img:hover,.imgf:hover,.img1 img:hover{filter:brightness(1)}
-.imgf{width:100%;max-height:400px;object-fit:cover;filter:brightness(0.78);display:block;margin:22px 0;transition:filter .3s}
+.imgf{width:100%;max-height:500px;object-fit:contain;background:var(--bg3);filter:brightness(0.92);display:block;margin:22px 0;transition:filter .3s}
 .img1{margin:22px 0}
-.img1 img{width:100%;max-height:340px;object-fit:cover;filter:brightness(0.82);display:block;transition:filter .3s}
+.img1 img{width:100%;max-height:500px;object-fit:contain;background:var(--bg3);filter:brightness(0.92);display:block;transition:filter .3s}
+.img4{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin:22px 0}
+.img4 img{width:100%;aspect-ratio:16/9;object-fit:contain;background:var(--bg3);filter:brightness(0.92);display:block;transition:filter .3s}
+.img4 img:hover{filter:brightness(1)}
 .ic{font-size:10px;color:var(--text3);text-align:center;margin-top:5px;letter-spacing:0.04em}
 .area td:last-child{color:var(--gold2);font-family:'Cormorant Garamond',serif;font-size:14px;text-align:right}
 .src{border:1px solid var(--line2)}
@@ -91,10 +94,10 @@ td.h{color:var(--gold2);font-weight:500}
 .rds-num span:last-child{font-size:8px;text-transform:uppercase;letter-spacing:0.15em;color:var(--gold3);margin-top:3px}
 .rds-ttl{padding:22px 26px;flex:1}
 .rds-room{font-family:'Cormorant Garamond',serif;font-size:21px;font-weight:400;color:var(--text);margin-bottom:4px}
-.rds-img{width:100%;max-height:260px;object-fit:cover;filter:brightness(0.82);display:block;border-bottom:1px solid var(--line);transition:filter .3s}
+.rds-img{width:100%;max-height:400px;object-fit:contain;background:var(--bg3);filter:brightness(0.92);display:block;border-bottom:1px solid var(--line);transition:filter .3s}
 .rds-img:hover{filter:brightness(1)}
 .rds-img2{display:grid;grid-template-columns:1fr 1fr;gap:1px;border-bottom:1px solid var(--line)}
-.rds-img2 img{width:100%;height:200px;object-fit:cover;filter:brightness(0.82);display:block;transition:filter .3s}
+.rds-img2 img{width:100%;height:300px;object-fit:contain;background:var(--bg3);filter:brightness(0.92);display:block;transition:filter .3s}
 .rds-img2 img:hover{filter:brightness(1)}
 .rds-sub{font-size:9px;text-transform:uppercase;letter-spacing:0.22em;color:var(--gold3);padding:18px 26px 6px;border-bottom:1px solid var(--line);background:var(--bg3);margin-top:0}
 .rds-body{padding:0 26px 26px}
@@ -223,8 +226,8 @@ footer{padding:40px 80px;border-top:1px solid var(--line2);display:flex;align-it
       <p class="ic">Varian Halcyon — Ring-Gantry Treatment Head</p>
     </div>
     <div>
-      <img src="projects/Radiotherapy/img-026.jpg" alt="Radiotherapy Treatment Room">
-      <p class="ic">Modern Radiotherapy Vault — Treatment Position</p>
+      <img src="projects/Radiotherapy/img-007.jpg" alt="Radiotherapy Treatment Room">
+      <p class="ic">LINAC Vault — Patient Couch &amp; Beam Delivery Position</p>
     </div>
   </div>
 </section>
@@ -308,12 +311,32 @@ footer{padding:40px 80px;border-top:1px solid var(--line2);display:flex;align-it
 
   <div class="img2">
     <div>
-      <img src="projects/Radiotherapy/img-012.jpg" alt="Control Room">
-      <p class="ic">LINAC Control Room — Console &amp; Monitoring Station</p>
-    </div>
-    <div>
       <img src="projects/Radiotherapy/img-002.jpg" alt="Gantry Detail">
       <p class="ic">Ring-Gantry Detail — Integrated OBI Imaging System</p>
+    </div>
+    <div>
+      <img src="projects/Radiotherapy/img-006.jpg" alt="LINAC Vault View">
+      <p class="ic">LINAC Treatment Vault — Clinical Spatial Configuration</p>
+    </div>
+  </div>
+  <div class="img2">
+    <div>
+      <img src="projects/Radiotherapy/img-008.jpg" alt="Treatment Room Detail">
+      <p class="ic">Treatment Room — Gantry Clearance &amp; Patient Positioning Zone</p>
+    </div>
+    <div>
+      <img src="projects/Radiotherapy/img-009.jpg" alt="Equipment Installation">
+      <p class="ic">LINAC Installation — Mechanical &amp; Structural Interface</p>
+    </div>
+  </div>
+  <div class="img2">
+    <div>
+      <img src="projects/Radiotherapy/img-010.jpg" alt="Vault Structure">
+      <p class="ic">Vault Primary Wall — Shielding Concrete Construction</p>
+    </div>
+    <div>
+      <img src="projects/Radiotherapy/img-011.jpg" alt="Maze Entry">
+      <p class="ic">Shielded Maze Entry — Radiation Scatter Control</p>
     </div>
   </div>
 </section>
@@ -361,6 +384,16 @@ footer{padding:40px 80px;border-top:1px solid var(--line2);display:flex;align-it
       <tr><td class="k">Staff Room / Dosimetry Office</td><td>RT-09</td><td style="color:#5a7a9e">Clinical</td><td>3–5 Staff</td><td>14–18</td></tr>
     </tbody>
   </table>
+  <div class="img2" style="margin-top:28px">
+    <div>
+      <img src="projects/Radiotherapy/img-019.jpg" alt="Department Entrance">
+      <p class="ic">Radiotherapy Department — Entrance &amp; Patient Reception Zone</p>
+    </div>
+    <div>
+      <img src="projects/Radiotherapy/img-022.jpg" alt="Clinical Zone Corridor">
+      <p class="ic">Clinical Zone — Controlled Area Corridor &amp; Staff Circulation</p>
+    </div>
+  </div>
 </section>
 
 <!-- SECTION 05 -->
@@ -390,7 +423,17 @@ footer{padding:40px 80px;border-top:1px solid var(--line2);display:flex;align-it
     </div>
     <div>
       <img src="projects/Radiotherapy/img-017.jpg" alt="Radiotherapy Room">
-      <p class="ic">Modern LINAC Room — Spatial Configuration</p>
+      <p class="ic">LINAC Room — Spatial Configuration &amp; Beam Direction</p>
+    </div>
+  </div>
+  <div class="img2">
+    <div>
+      <img src="projects/Radiotherapy/img-023.jpg" alt="Patient Flow">
+      <p class="ic">Patient Pathway — Public to Controlled Zone Transition</p>
+    </div>
+    <div>
+      <img src="projects/Radiotherapy/img-025.jpg" alt="Department Overview">
+      <p class="ic">Department Overview — Zone Separation &amp; Staff Circulation</p>
     </div>
   </div>
 </section>
@@ -526,7 +569,10 @@ footer{padding:40px 80px;border-top:1px solid var(--line2);display:flex;align-it
           <div style="font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:0.15em">RT-02 &nbsp;|&nbsp; Supervised Zone &nbsp;|&nbsp; 18–24 m²</div>
         </div>
       </div>
-      <img class="rds-img" src="projects/Radiotherapy/img-013.jpg" alt="Control Room">
+      <div class="rds-img2">
+        <img src="projects/Radiotherapy/img-012.jpg" alt="Control Room Console">
+        <img src="projects/Radiotherapy/img-013.jpg" alt="Control Room">
+      </div>
 
       <div class="rds-sub">Part 1 — General Information</div>
       <div class="rds-body">
@@ -661,7 +707,10 @@ footer{padding:40px 80px;border-top:1px solid var(--line2);display:flex;align-it
           <div style="font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:0.15em">RT-04 &nbsp;|&nbsp; Supervised Zone &nbsp;|&nbsp; 28–35 m²</div>
         </div>
       </div>
-      <img class="rds-img" src="projects/Radiotherapy/img-018.jpg" alt="CT Simulation">
+      <div class="rds-img2">
+        <img src="projects/Radiotherapy/img-018.jpg" alt="CT Simulation">
+        <img src="projects/Radiotherapy/img-027.jpg" alt="CT Sim Room Detail">
+      </div>
 
       <div class="rds-sub">Part 1 — General Information</div>
       <div class="rds-body">
@@ -1127,6 +1176,28 @@ footer{padding:40px 80px;border-top:1px solid var(--line2);display:flex;align-it
 </section>
 
 </div><!-- /wrap -->
+
+<!-- PRESENTATION BOARDS -->
+<div style="background:var(--bg2);border-top:1px solid var(--gold-line);padding:72px 0">
+  <div class="wrap">
+    <div class="sn">Visual Documentation</div>
+    <h2>Project <span>Presentation Boards</span></h2>
+    <div class="rule"></div>
+    <p class="body" style="margin-bottom:36px">Full-format presentation boards produced for the Anti-Cancer Centre Constantine — Radiotherapy Department. These boards summarise the spatial brief, equipment selection rationale, and departmental zoning strategy for client and authority review.</p>
+    <div class="img1" style="margin-bottom:4px">
+      <img src="projects/Radiotherapy/img-028.jpg" alt="Presentation Board 1">
+      <p class="ic" style="margin-bottom:20px">Presentation Board 01 — Radiotherapy Department Overview &amp; Programme Brief</p>
+    </div>
+    <div class="img1" style="margin-bottom:4px">
+      <img src="projects/Radiotherapy/img-029.jpg" alt="Presentation Board 2">
+      <p class="ic" style="margin-bottom:20px">Presentation Board 02 — LINAC Equipment Comparative Analysis</p>
+    </div>
+    <div class="img1">
+      <img src="projects/Radiotherapy/img-030.jpg" alt="Presentation Board 3">
+      <p class="ic">Presentation Board 03 — Departmental Zoning, Room Data &amp; Technical Standards</p>
+    </div>
+  </div>
+</div>
 
 <footer>
   <div class="ft">M. Amine Berchache — Senior Architect / BIM Coordinator</div>
