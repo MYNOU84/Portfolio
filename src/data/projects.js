@@ -441,4 +441,5 @@ export const PROJECT_ORDER = [
   'concept-p-59224',
   'bim-villa',
   'bim-clash-detection',
-  'bim
+  'bim-h-02',
+]
