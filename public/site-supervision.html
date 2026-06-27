@@ -619,21 +619,24 @@ footer{
 
 /* STEP CARD */
 .step-card{display:flex;margin-bottom:2px;min-height:500px;position:relative;overflow:hidden}
-.step-card.reverse .step-img{order:2}
+.step-card.reverse .step-img{cursor:zoom-in;order:2}
 .step-card.reverse .step-content{order:1}
 
 /* IMAGE SIDE */
-.step-img{position:relative;overflow:hidden;background:var(--bg4);flex:0 0 50%;width:50%}
+.step-img{cursor:zoom-in;position:relative;overflow:hidden;background:var(--bg4);flex:0 0 50%;width:50%}
 .step-img img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block;filter:brightness(.80);transition:filter .5s,transform .6s}
 .step-card:hover .step-img img{filter:brightness(.9);transform:scale(1.03)}
+
+.step-img::after{content:"⊕";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:48px;color:rgba(201,168,76,.0);transition:color .25s ease,transform .25s ease;pointer-events:none;z-index:10;line-height:1}
+.step-img:hover::after{color:rgba(201,168,76,.85);transform:translate(-50%,-50%) scale(1.1)}
 .step-img-overlay{
-  position:absolute;inset:0;
+  position:absolute;inset:0;pointer-events:none;
   background:
     linear-gradient(135deg,rgba(13,13,13,.6) 0%,transparent 45%),
     linear-gradient(to top,rgba(13,13,13,.92) 0%,rgba(13,13,13,.5) 20%,transparent 45%),
     linear-gradient(to left,rgba(13,13,13,.88) 0%,rgba(13,13,13,.4) 20%,transparent 45%);
 }
-.ref-badge{position:absolute;top:20px;right:20px;background:rgba(13,13,13,.88);border:1px solid rgba(201,168,76,.5);backdrop-filter:blur(8px);padding:8px 14px;display:flex;flex-direction:column;align-items:center;z-index:2}
+.ref-badge{position:absolute;top:20px;right:20px;background:rgba(13,13,13,.88);border:1px solid rgba(201,168,76,.5);backdrop-filter:blur(8px);padding:8px 14px;display:flex;flex-direction:column;align-items:center;z-index:2;pointer-events:none}
 .ref-badge-label{font-size:7px;text-transform:uppercase;letter-spacing:.2em;color:var(--gold3);font-weight:600;line-height:1}
 .ref-badge-num{font-family:'Cormorant Garamond',serif;font-size:26px;color:var(--gold2);line-height:1.1;font-weight:400}
 .step-num-bg{position:absolute;bottom:-10px;left:20px;font-family:'Cormorant Garamond',serif;font-size:140px;font-weight:300;color:rgba(201,168,76,.06);line-height:1;pointer-events:none;user-select:none;z-index:1}
@@ -667,9 +670,9 @@ footer{
 @media(max-width:768px){
   .process-section{padding:48px 20px}
   .step-card{flex-direction:column}
-  .step-card.reverse .step-img{order:0}
+  .step-card.reverse .step-img{cursor:zoom-in;order:0}
   .step-card.reverse .step-content{order:0}
-  .step-img{flex:none;width:100%;height:280px}
+  .step-img{cursor:zoom-in;flex:none;width:100%;height:280px}
   .step-content{flex:none;width:100%;padding:32px 24px}
   .step-number{font-size:48px}
   .step-connector{margin:0 20px}
