@@ -287,7 +287,7 @@ function buildSection(id) {
         <div class="tl-item"><div class="tl-year">2023 — Present</div><div class="tl-role">Lead Architect & BIM Coordinator</div><div class="tl-company">EAS Consultant — Dubai, UAE</div><p class="tl-desc">Leading BIM coordination for 90-storey towers in Dubai Downtown. ISO 19650, DM/DCD/DEWA submissions for CHADI Tower and CAL Capital Tower.</p></div>
         <div class="tl-item"><div class="tl-year">2022 — 2023</div><div class="tl-role">Senior Architect — James Cubitt & Partners</div><div class="tl-company">Abu Dhabi, UAE</div><p class="tl-desc">8-tower mixed-use masterplan. Facade strategy, BMU systems, 1,500+ clashes resolved prior to tender.</p></div>
         <div class="tl-item"><div class="tl-year">2019 — 2023</div><div class="tl-role">BIM Architect — Healthcare Specialist</div><div class="tl-company">GB Construction — Algeria</div><p class="tl-desc">140-bed Anti-Cancer Center and 240-bed hospital. Surgical suites, radiotherapy vault design, Varian Halcyon integration.</p></div>
-        <div class="tl-item"><div class="tl-year">2013 — 2019</div><div class="tl-role">Site Architect / Project Manager</div><div class="tl-company">Algeria</div><p class="tl-desc">Site supervision, team coordination, quality control across major architectural and infrastructure projects.</p></div>
+        <div class="tl-item"><div class="tl-year">2013 — 2019</div><div class="tl-role">Site Technical Architect / Project Manager</div><div class="tl-company">Algeria</div><p class="tl-desc">Site supervision, team coordination, quality control across major architectural and infrastructure projects.</p></div>
       </div>`
 
     case 'services': return `
@@ -485,4 +485,3 @@ function animate() {
 
   renderer.render(scene, camera)
 }
-animate()

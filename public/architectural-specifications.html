@@ -1,0 +1,1740 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Architectural Specifications — Meydan Avenue, Dubai — M. Amine Berchache</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0d0d0d;--bg2:#111;--bg3:#161616;--bg4:#1c1c1c;
+  --gold:#c9a84c;--gold2:#e2c068;--gold3:#a8872e;
+  --gold-dim:rgba(201,168,76,0.10);--gold-line:rgba(201,168,76,0.20);
+  --text:#e8e4dc;--text2:#b8b2a8;--text3:#787068;--text4:#484440;
+  --line:rgba(255,255,255,0.06);--line2:rgba(255,255,255,0.10);
+  --red-dim:rgba(192,57,43,0.12);--green-dim:rgba(39,174,96,0.10);
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Montserrat',sans-serif;font-weight:300;font-size:13px;line-height:1.7;overflow-x:hidden}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:100;background:rgba(13,13,13,0.96);backdrop-filter:blur(20px);border-bottom:1px solid var(--gold-line);padding:0 48px;display:flex;align-items:center;justify-content:space-between;height:64px}
+.nav-logo{text-decoration:none;display:flex;align-items:center;gap:12px}
+.nav-box{width:36px;height:36px;border:1px solid rgba(201,168,76,0.5);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;letter-spacing:.1em;color:var(--gold)}
+.nav-text p:first-child{font-size:10px;font-weight:500;letter-spacing:.3em;text-transform:uppercase;color:var(--text);line-height:1.2}
+.nav-text p:last-child{font-size:9px;letter-spacing:.4em;text-transform:uppercase;color:var(--gold);line-height:1.2}
+.nav-right{display:flex;align-items:center;gap:10px}
+.nav-tag{font-size:9px;text-transform:uppercase;letter-spacing:.12em;color:var(--gold3);border:1px solid var(--gold-line);padding:4px 10px;background:var(--gold-dim);font-weight:500}
+.nav-back{font-size:9px;text-transform:uppercase;letter-spacing:.12em;color:var(--text3);text-decoration:none;border:1px solid var(--text4);padding:4px 12px;transition:all .2s;font-weight:500}
+.nav-back:hover{border-color:var(--gold);color:var(--gold)}
+
+/* HERO */
+.hero{position:relative;padding:72px 48px 56px;border-bottom:1px solid var(--gold-line);overflow:hidden}
+.hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.hero-eyebrow{font-size:10px;text-transform:uppercase;letter-spacing:.25em;color:var(--gold);margin-bottom:16px;display:flex;align-items:center;gap:12px;font-weight:500}
+.hero-eyebrow::before,.hero-eyebrow::after{content:'';width:36px;height:1px;background:var(--gold)}
+.hero-title{font-family:'Cormorant Garamond',serif;font-size:clamp(34px,5vw,64px);font-weight:300;line-height:1.05;color:#fff;margin-bottom:6px}
+.hero-title em{color:var(--gold2);font-style:italic;display:block}
+.hero-sub{font-size:13px;color:var(--text2);max-width:640px;line-height:1.8;margin-bottom:28px}
+.hero-proj{display:inline-flex;align-items:center;gap:12px;background:var(--gold-dim);border:1px solid var(--gold-line);padding:12px 20px;margin-bottom:28px}
+.hp-label{font-size:9px;text-transform:uppercase;letter-spacing:.15em;color:var(--gold3);font-weight:500}
+.hp-value{font-size:12px;color:var(--text);margin-top:2px}
+.hero-badges{display:flex;gap:8px;flex-wrap:wrap}
+.hb{font-size:9px;text-transform:uppercase;letter-spacing:.1em;padding:4px 12px;font-weight:500}
+.hb-g{background:var(--gold-dim);color:var(--gold2);border:1px solid var(--gold-line)}
+.hb-d{background:rgba(255,255,255,.03);color:var(--text3);border:1px solid var(--line2)}
+.hero-deco{position:absolute;right:48px;top:50%;transform:translateY(-50%);font-family:'Cormorant Garamond',serif;font-size:160px;font-weight:300;color:rgba(201,168,76,.025);pointer-events:none;user-select:none;line-height:1}
+
+/* STATS BAR */
+.stats-bar{display:flex;background:var(--bg2);border-bottom:1px solid var(--line)}
+.sb{flex:1;padding:14px 20px;border-right:1px solid var(--line);text-align:center}
+.sb:last-child{border-right:none}
+.sb-n{font-family:'Cormorant Garamond',serif;font-size:24px;color:var(--gold2);line-height:1;margin-bottom:3px}
+.sb-l{font-size:9px;text-transform:uppercase;letter-spacing:.1em;color:var(--text3);font-weight:500}
+
+/* TOOLBAR */
+.toolbar{position:sticky;top:64px;z-index:90;background:rgba(17,17,17,.97);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding:12px 48px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.tb-label{font-size:9px;text-transform:uppercase;letter-spacing:.15em;color:var(--text4);font-weight:500;margin-right:4px}
+.div-btn{font-size:9px;text-transform:uppercase;letter-spacing:.08em;font-weight:500;padding:5px 12px;border:1px solid var(--text4);background:transparent;color:var(--text3);cursor:pointer;transition:all .15s;white-space:nowrap}
+.div-btn:hover{border-color:var(--gold);color:var(--gold)}
+.div-btn.active{background:var(--gold);color:var(--bg);border-color:var(--gold);font-weight:600}
+.search-box{margin-left:auto;background:transparent;border:1px solid var(--text4);color:var(--text);padding:5px 12px;font-size:11px;font-family:'Montserrat',sans-serif;width:200px;outline:none;transition:border .2s}
+.search-box:focus{border-color:var(--gold)}
+.search-box::placeholder{color:var(--text4)}
+
+/* CONTENT */
+.content{padding:36px 48px 72px}
+.div-section{margin-bottom:48px}
+.div-header{display:flex;align-items:center;gap:16px;margin-bottom:20px}
+.div-num{font-family:'Cormorant Garamond',serif;font-size:13px;color:var(--gold3);font-weight:500}
+.div-title{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:300;color:#fff}
+.div-line{flex:1;height:1px;background:var(--gold-line)}
+.div-count{font-size:9px;text-transform:uppercase;letter-spacing:.12em;color:var(--text4);font-weight:500}
+
+/* SPEC CARDS GRID */
+.spec-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:12px}
+
+/* SPEC CARD */
+.spec-card{background:var(--bg3);border:1px solid var(--line);transition:border-color .2s;position:relative}
+.spec-card:hover{border-color:var(--gold-line)}
+.sc-head{padding:20px 22px;cursor:pointer;display:flex;align-items:flex-start;gap:14px}
+.sc-code{font-size:9px;text-transform:uppercase;letter-spacing:.12em;color:var(--gold3);font-weight:600;white-space:nowrap;margin-top:3px}
+.sc-info{flex:1}
+.sc-title{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:400;color:#fff;margin-bottom:4px;line-height:1.2}
+.sc-plain{font-size:11px;color:var(--text3);line-height:1.6}
+.sc-arrow{font-size:14px;color:var(--text4);margin-top:4px;transition:transform .2s;flex-shrink:0}
+.spec-card.open .sc-arrow{transform:rotate(180deg)}
+.spec-card.open{border-color:var(--gold-line)}
+.spec-card.open .sc-head{border-bottom:1px solid var(--line)}
+
+/* EXPANDED BODY */
+.sc-body{display:none;padding:0}
+.spec-card.open .sc-body{display:block}
+
+.sc-block{padding:16px 22px;border-bottom:1px solid var(--line)}
+.sc-block:last-child{border-bottom:none}
+.sc-block-label{font-size:9px;text-transform:uppercase;letter-spacing:.15em;color:var(--gold3);font-weight:600;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.sc-block-label::after{content:'';flex:1;height:1px;background:var(--line)}
+
+/* SPEC ROWS */
+.spec-row{display:flex;gap:10px;margin-bottom:7px;font-size:11px;line-height:1.6;align-items:baseline}
+.spec-key{color:var(--text3);flex-shrink:0;min-width:120px;font-weight:500}
+.spec-val{color:var(--text2)}
+.spec-val strong{color:var(--gold2);font-weight:500}
+
+/* TAGS */
+.tag-row{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+.tag{font-size:8px;text-transform:uppercase;letter-spacing:.08em;font-weight:600;padding:3px 8px}
+.tag-std{background:rgba(201,168,76,.08);color:var(--gold3);border:1px solid var(--gold-line)}
+.tag-site{background:var(--red-dim);color:#e57373;border:1px solid rgba(192,57,43,.3)}
+.tag-ok{background:var(--green-dim);color:#66bb6a;border:1px solid rgba(39,174,96,.3)}
+
+/* SITE CHECK LIST */
+.check-list{list-style:none}
+.check-list li{font-size:11px;color:var(--text2);line-height:1.6;padding:4px 0 4px 18px;position:relative}
+.check-list li::before{content:'✓';position:absolute;left:0;color:var(--gold3);font-size:10px;top:5px}
+
+/* WARNING BOX */
+.warn-box{background:var(--red-dim);border-left:2px solid #c0392b;padding:10px 14px;margin-top:10px;font-size:11px;color:#e57373;line-height:1.6}
+.note-box{background:var(--gold-dim);border-left:2px solid var(--gold);padding:10px 14px;margin-top:10px;font-size:11px;color:var(--gold2);line-height:1.6}
+
+/* HIDDEN */
+.div-section.hidden{display:none}
+.spec-card.hidden{display:none}
+
+/* FOOTER */
+footer{background:var(--bg);border-top:1px solid var(--gold-line);padding:28px 48px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.fl{font-size:11px;color:var(--text3)}
+.fl span{color:var(--gold2);font-family:'Cormorant Garamond',serif;font-size:13px}
+.fr{display:flex;gap:10px}
+.flink{font-size:9px;text-transform:uppercase;letter-spacing:.1em;color:var(--text3);text-decoration:none;border:1px solid var(--text4);padding:4px 12px;transition:all .2s;font-weight:500}
+.flink:hover{border-color:var(--gold);color:var(--gold)}
+
+@media(max-width:768px){
+  nav,.hero,.content,footer{padding-left:20px;padding-right:20px}
+  .toolbar{padding-left:20px;padding-right:20px}
+  .spec-grid{grid-template-columns:1fr}
+  .stats-bar{flex-wrap:wrap}
+  .sb{min-width:50%}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="/">
+    <div class="nav-box">AB</div>
+    <div class="nav-text"><p>Berchache</p><p>Senior Architect</p></div>
+  </a>
+  <div class="nav-right">
+    <span class="nav-tag">Arch Specifications</span>
+    <a class="nav-back" href="/site-supervision.html">← Supervision</a>
+    <a class="nav-back" href="/">Portfolio</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-eyebrow">Project Specifications</div>
+  <h1 class="hero-title">Architectural Specifications<em>Supervision Reference</em></h1>
+  <p class="hero-sub">Complete CSI MasterFormat specification reference for site supervision. Every section translated into plain language — what the material is, what it must achieve, what tests apply, and what the Architect on Site must verify before approving any work.</p>
+  <div class="hero-proj">
+    <div style="border-right:1px solid var(--gold-line);padding-right:20px;margin-right:20px">
+      <div class="hp-label">Project</div>
+      <div class="hp-value">B+G+5+Roof Mixed-Use Residential</div>
+    </div>
+    <div style="border-right:1px solid var(--gold-line);padding-right:20px;margin-right:20px">
+      <div class="hp-label">Location</div>
+      <div class="hp-value">Meydan Avenue, Dubai, UAE</div>
+    </div>
+    <div>
+      <div class="hp-label">Reference</div>
+      <div class="hp-value">Avenue-A-DP-29</div>
+    </div>
+  </div>
+  <div class="hero-badges">
+    <span class="hb hb-g">CSI MasterFormat</span>
+    <span class="hb hb-g">Dubai Municipality</span>
+    <span class="hb hb-g">Al Sa'fat Compliant</span>
+    <span class="hb hb-d">ASTM · ISO · ACI · AWS</span>
+    <span class="hb hb-d">10 Divisions · 50+ Sections</span>
+  </div>
+  <div class="hero-deco">SPEC</div>
+</section>
+
+<div class="stats-bar">
+  <div class="sb"><div class="sb-n">12</div><div class="sb-l">Divisions</div></div>
+  <div class="sb"><div class="sb-n">50+</div><div class="sb-l">Spec Sections</div></div>
+  <div class="sb"><div class="sb-n">3</div><div class="sb-l">Parts per Section</div></div>
+  <div class="sb"><div class="sb-n">UAE</div><div class="sb-l">Authority Standard</div></div>
+  <div class="sb"><div class="sb-n">100%</div><div class="sb-l">IR Verified</div></div>
+</div>
+
+<div class="toolbar">
+  <span class="tb-label">Division:</span>
+  <button class="div-btn active" onclick="filterDiv('all',this)">All</button>
+  <button class="div-btn" onclick="filterDiv('03',this)">03 Concrete</button>
+  <button class="div-btn" onclick="filterDiv('04',this)">04 Masonry</button>
+  <button class="div-btn" onclick="filterDiv('05',this)">05 Metals</button>
+  <button class="div-btn" onclick="filterDiv('06',this)">06 Wood</button>
+  <button class="div-btn" onclick="filterDiv('07',this)">07 Envelope</button>
+  <button class="div-btn" onclick="filterDiv('08',this)">08 Openings</button>
+  <button class="div-btn" onclick="filterDiv('09',this)">09 Finishes</button>
+  <button class="div-btn" onclick="filterDiv('10',this)">10 Specialties</button>
+  <button class="div-btn" onclick="filterDiv('11',this)">11 Equipment</button>
+  <button class="div-btn" onclick="filterDiv('12',this)">12 Furnishings</button>
+  <button class="div-btn" onclick="filterDiv('14',this)">14 Conveying</button>
+  <button class="div-btn" onclick="filterDiv('32',this)">32 Exterior</button>
+  <input class="search-box" type="text" placeholder="Search sections..." oninput="searchSpecs(this.value)">
+</div>
+
+<div class="content">
+
+<!-- ═══════════════════════════════════════════
+     DIVISION 03 — CONCRETE
+════════════════════════════════════════════ -->
+<div class="div-section" data-div="03">
+  <div class="div-header">
+    <span class="div-num">Division 03</span>
+    <h2 class="div-title">Concrete</h2>
+    <div class="div-line"></div>
+    <span class="div-count">1 Section</span>
+  </div>
+  <div class="spec-grid">
+
+    <div class="spec-card" data-search="cast underlayment screed floor base concrete 035440">
+      <div class="sc-head" onclick="toggle(this)">
+        <div class="sc-code">035440</div>
+        <div class="sc-info">
+          <div class="sc-title">Cast Underlayment Screeds</div>
+          <div class="sc-plain">The levelling layer poured over the structural slab to create a flat, accurate base for all floor finishes — tiles, stone, timber, or vinyl.</div>
+        </div>
+        <div class="sc-arrow">▾</div>
+      </div>
+      <div class="sc-body">
+        <div class="sc-block">
+          <div class="sc-block-label">What It Is</div>
+          <p style="font-size:11px;color:var(--text2);line-height:1.7">A cement-sand mortar layer laid on the structural concrete slab. Its job is purely functional: create the correct floor level and a smooth, bonded surface for the final finish. There are three types used on this project: standard aggregate screed, lightweight screed (for roof/balcony areas where dead load matters), and aerated screed (interior only).</p>
+        </div>
+        <div class="sc-block">
+          <div class="sc-block-label">Key Technical Requirements</div>
+          <div class="spec-row"><span class="spec-key">Compressive Strength</span><span class="spec-val">Min <strong>20 MPa at 28 days</strong> (ASTM C109M)</span></div>
+          <div class="spec-row"><span class="spec-key">Max Density</span><span class="spec-val"><strong>12 kN/m²</strong></span></div>
+          <div class="spec-row"><span class="spec-key">Water/Cement Ratio</span><span class="spec-val">Max <strong>0.45</strong></span></div>
+          <div class="spec-row"><span class="spec-key">Max Slump</span><span class="spec-val"><strong>125 mm</strong></span></div>
+          <div class="spec-row"><span class="spec-key">Min Cement:Sand Ratio</span><span class="spec-val"><strong>1:4 by volume</strong></span></div>
+          <div class="spec-row"><span class="spec-key">Thickness &gt; 70mm</span><span class="spec-val">Steel reinforcement <strong>required</strong></span></div>
+          <div class="spec-row"><span class="spec-key">Application Temp</span><span class="spec-val"><strong>10°C – 30°C</strong> ambient and slab surface</span></div>
+          <div class="spec-row"><span class="spec-key">Curing</span><span class="spec-val">Continuous moisture <strong>minimum 7 days</strong></span></div>
+          <div class="spec-row"><span class="spec-key">Flatness Tolerance</span><span class="spec-val">Max <strong>6 mm gap</strong> under 3m straightedge</span></div>
+          <div class="spec-row"><span class="spec-key">Fibre Reinforcement</span><span class="spec-val">Min <strong>0.90 kg/m³</strong> polypropylene fibre</span></div>
+        </div>
+        <div class="sc-block">
+          <div class="sc-block-label">Submittals Required Before Work</div>
+          <ul class="check-list">
+            <li>Product data and technical datasheets for all materials</li>
+            <li>Design mix with 28-day compressive strength data</li>
+            <li>Material test reports from independent testing agency</li>
+            <li>Manufacturer certificates for cement, aggregates, admixtures</li>
+            <li>Mockup of 9.3 m² — approved by Engineer before mass pour</li>
+          </ul>
+        </div>
+        <div class="sc-block">
+          <div class="sc-block-label">Site Technical Architect — Supervision Checkpoints</div>
+          <ul class="check-list">
+            <li>Verify slab is dry: plastic sheet test (ASTM D4263) before application</li>
+            <li>Confirm ambient and slab temperature is within 10°C–30°C range</li>
+            <li>Witness bonding slurry application (1 part cement : 2 parts sand + acrylic agent)</li>
+            <li>Check pour is continuous — no cold joints within a strip</li>
+            <li>Test surface flatness with 3m straightedge — reject if gap &gt;6mm</li>
+            <li>Sample sets: 3 cube specimens per 93 m² (min 6/day) tested at 28 days</li>
+            <li>Chain-drag test for delamination before floor finish begins</li>
+            <li>No construction traffic for <strong>28 days</strong> after placement</li>
+          </ul>
+          <div class="warn-box">Critical: Do not allow floor finishes to commence until screed achieves 28-day strength and passes chain-drag delamination test. Any failure = remove and replace at contractor's cost.</div>
+        </div>
+        <div class="sc-block">
+          <div class="sc-block-label">Standards</div>
+          <div class="tag-row">
+            <span class="tag tag-std">ASTM C150</span><span class="tag tag-std">ASTM C109M</span><span class="tag tag-std">ACI 211.1</span><span class="tag tag-std">ACI 301</span><span class="tag tag-std">Al Sa'fat</span><span class="tag tag-std">Dubai Green Bldg</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     DIVISION 04 — MASONRY
+════════════════════════════════════════════ -->
+<div class="div-section" data-div="04">
+  <div class="div-header">
+    <span class="div-num">Division 04</span>
+    <h2 class="div-title">Masonry</h2>
+    <div class="div-line"></div>
+    <span class="div-count">1 Section</span>
+  </div>
+  <div class="spec-grid">
+
+    <div class="spec-card" data-search="stone cladding exterior facade 044200">
+      <div class="sc-head" onclick="toggle(this)">
+        <div class="sc-code">044200</div>
+        <div class="sc-info">
+          <div class="sc-title">Exterior Stone Cladding</div>
+          <div class="sc-plain">Natural stone panels fixed to the building's outer face on a metal grid system — the premium exterior skin that defines the building's appearance and must resist wind, seismic load, and UAE weather for the building's lifetime.</div>
+        </div>
+        <div class="sc-arrow">▾</div>
+      </div>
+      <div class="sc-body">
+        <div class="sc-block">
+          <div class="sc-block-label">What It Is</div>
+          <p style="font-size:11px;color:var(--text2);line-height:1.7">Stone panels mechanically anchored (not glued) to a steel sub-frame attached to the building structure. Includes stone trim: bands, copings, sills, jambs, and soffits. All anchors, sub-frame, sealant joints, and sheathing are part of this system — not just the visible stone face.</p>
+        </div>
+        <div class="sc-block">
+          <div class="sc-block-label">Key Technical Requirements</div>
+          <div class="spec-row"><span class="spec-key">Anchor Strength</span><span class="spec-val">Min <strong>2× weight of stone</strong> in compression AND tension (ASTM C1242)</span></div>
+          <div class="spec-row"><span class="spec-key">Stone Source</span><span class="spec-val"><strong>Single quarry</strong> per variety — no mixing of sources</span></div>
+          <div class="spec-row"><span class="spec-key">Temp Movement</span><span class="spec-val">Allow for <strong>67°C ambient</strong> / <strong>100°C surface</strong> change</span></div>
+          <div class="spec-row"><span class="spec-key">Interstory Drift</span><span class="spec-val">Floor height ÷ <strong>400</strong> max horizontal movement</span></div>
+          <div class="spec-row"><span class="spec-key">Anchor Safety Factor</span><span class="spec-val">Design ultimate strength ÷ safety factor per ASTM C1242</span></div>
+          <div class="spec-row"><span class="spec-key">Hot Weather</span><span class="spec-val">Comply with TMS 602/ACI 530.1 — cover tops daily</span></div>
+        </div>
+        <div class="sc-block">
+          <div class="sc-block-label">Submittals Required Before Work</div>
+          <ul class="check-list">
+            <li>Stone samples: min 5 pieces of 300×300mm per variety (showing full colour range)</li>
+            <li>Shop drawings signed by PE: anchor locations, joint details, metal grid layout</li>
+            <li>Stone test reports: flexural strength wet &amp; dry (ASTM C880), anchorage (ASTM C1354)</li>
+            <li>Anchoring system lab mockup test: 3× design load (ASTM C1201, Procedure B)</li>
+            <li>Sealant compatibility test from joint sealant manufacturer</li>
+            <li>Welding procedure and personnel qualifications (AWS D1.1, D1.6)</li>
+          </ul>
+        </div>
+        <div class="sc-block">
+          <div class="sc-block-label">Site Technical Architect — Supervision Checkpoints</div>
+          <ul class="check-list">
+            <li>Verify stone delivery matches approved sample set — reject any unit outside approved range</li>
+            <li>Do not allow sealant installation below 5°C or when substrate is wet</li>
+            <li>Check anchor type: interior = zinc-plated carbon steel; exterior = <strong>SS316 only</strong></li>
+            <li>Confirm each stone unit is marked with shop drawing designation before installation</li>
+            <li>Verify veining/grain direction matches approved sequence on shop drawing</li>
+            <li>Inspect mockup of typical exterior wall panel including window return before mass installation</li>
+            <li>Protect stone tops daily with non-staining waterproof sheeting (extend 600mm down)</li>
+          </ul>
+          <div class="warn-box">Never substitute stone variety or source without formal Engineer approval. Different quarry batches create visible colour banding that cannot be corrected after installation.</div>
+        </div>
+        <div class="sc-block">
+          <div class="sc-block-label">Standards</div>
+          <div class="tag-row"><span class="tag tag-std">ASTM C119</span><span class="tag tag-std">ASTM C1242</span><span class="tag tag-std">ASTM C880</span><span class="tag tag-std">ASTM C1354</span><span class="tag tag-std">AWS D1.1</span><span class="tag tag-std">TMS 602</span></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     DIVISION 05 — METALS
+════════════════════════════════════════════ -->
+<div class="div-section" data-div="05">
+  <div class="div-header">
+    <span class="div-num">Division 05</span>
+    <h2 class="div-title">Metals</h2>
+    <div class="div-line"></div>
+    <span class="div-count">6 Sections</span>
+  </div>
+  <div class="spec-grid">
+
+    <div class="spec-card" data-search="post installed anchors bolts fixings concrete 050519">
+      <div class="sc-head" onclick="toggle(this)">
+        <div class="sc-code">050519</div>
+        <div class="sc-info">
+          <div class="sc-title">Post-Installed Anchors</div>
+          <div class="sc-plain">Bolts, rods, and inserts drilled into hardened concrete after the structural work is complete — used to fix any secondary element (stone brackets, handrails, MEP supports, façade sub-frames) to the structure.</div>
+        </div>
+        <div class="sc-arrow">▾</div>
+      </div>
+      <div class="sc-body">
+        <div class="sc-block">
+          <div class="sc-block-label">Anchor Types on This Project</div>
+          <div class="spec-row"><span class="spec-key">Expansion/Wedge</span><span class="spec-val">Torque-controlled, ICC-ES evaluated, cracked &amp; uncracked concrete rated</span></div>
+          <div class="spec-row"><span class="spec-key">Screw Anchors</span><span class="spec-val">Pre-drill + impact install; Hilti Kwik-HUS-EZ or equal (ICC-ESR 3027)</span></div>
+          <div class="spec-row"><span class="spec-key">Sleeve Anchors</span><span class="spec-val">Follow-up expansion under load; Hilti HSL-3 or equal</span></div>
+          <div class="spec-row"><span class="spec-key">Adhesive Anchors</span><span class="spec-val">Two-part injectable epoxy; Hilti HIT RE 500 SD or equal (ICC-ESR 2322)</span></div>
+        </div>
+        <div class="sc-block">
+          <div class="sc-block-label">Material Rule: Interior vs Exterior</div>
+          <div class="spec-row"><span class="spec-key">Interior</span><span class="spec-val">Carbon steel with zinc plating — ASTM B633 Fe/Zn 5</span></div>
+          <div class="spec-row"><span class="spec-key">Exterior</span><span class="spec-val"><strong>AISI Type 316 stainless steel only</strong> — no galvanic contact with dissimilar metals</span></div>
+          <div class="spec-row"><span class="spec-key">Overhead adhesive</span><span class="spec-val">Must use Hilti Profi System — installer ACI/CRSI certified</span></div>
+        </div>
+        <div class="sc-block">
+          <div class="sc-block-label">Site Technical Architect — Supervision Checkpoints</div>
+          <ul class="check-list">
+            <li>Concrete must be minimum <strong>21 days old</strong> and at full design strength before drilling</li>
+            <li>Scan for rebar with Hilti Ferroscan, GPR, or X-Ray before drilling — <strong>no chipping</strong></li>
+            <li>Verify hole diameter matches anchor manufacturer's exact specification</li>
+            <li>Confirm hole cleaning procedure followed per MPII (brush + blow minimum)</li>
+            <li>Check anchor type against drawing: expansion, adhesive, or undercut as specified</li>
+            <li>Verify exterior anchors are SS316 — reject any zinc-plated anchor in exterior locations</li>
+          </ul>
+          <div class="warn-box">Using wrong anchor type or skipping the concrete curing period are the two most common structural failures on site. Both are NCR-worthy — stop work immediately.</div>
+        </div>
+        <div class="sc-block">
+          <div class="sc-block-label">Standards</div>
+          <div class="tag-row"><span class="tag tag-std">ACI 355.2</span><span class="tag tag-std">ICC-ES AC308</span><span class="tag tag-std">ASTM A615</span><span class="tag tag-std">ASTM B633</span><span class="tag tag-std">ISO 3506</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="spec-card" data-search="metal fabrications steel 055000">
+      <div class="sc-head" onclick="toggle(this)">
+        <div class="sc-code">055000</div>
+        <div class="sc-info">
+          <div class="sc-title">Metal Fabrications</div>
+          <div class="sc-plain">Custom-fabricated steel items not covered by standard sections — lintels, shelf angles, ladder rungs, floor plates, miscellaneous brackets, and supports that are purpose-built for this project.</div>
+        </div>
+        <div class="sc-arrow">▾</div>
+      </div>
+      <div class="sc-body">
+        <div class="sc-block">
+          <div class="sc-block-label">Key Requirements</div>
+          <div class="spec-row"><span class="spec-key">Welding Code</span><span class="spec-val">AWS D1.1 — procedures and personnel qualified</span></div>
+          <div class="spec-row"><span class="spec-key">Exterior Finish</span><span class="spec-val">Hot-dip galvanising per ASTM A123 or SS316</span></div>
+          <div class="spec-row"><span class="spec-key">Shop Drawings</span><span class="spec-val">Required before any fabrication begins</span></div>
+        </div>
+        <div class="sc-block">
+          <div class="sc-block-label">Site Supervision Checkpoints</div>
+          <ul class="check-list">
+            <li>Verify welding certificates on site before any welder starts work</li>
+            <li>Check galvanising thickness and continuity — no bare spots at welds</li>
+            <li>Confirm embedded items set in concrete before pour — coordinate with structural sequence</li>
+            <li>Touch-up field welds immediately with zinc-rich primer (min 0.05mm DFT)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="spec-card" data-search="pipe tube railings handrail balustrade 055213">
+      <div class="sc-head" onclick="toggle(this)">
+        <div class="sc-code">055213</div>
+        <div class="sc-info">
+          <div class="sc-title">Pipe and Tube Railings</div>
+          <div class="sc-plain">Metal handrails and balustrades using round or rectangular hollow sections — on stairs, balconies, ramps, and roof edges. Must resist the lateral loads people exert and comply with Civil Defense height requirements.</div>
+        </div>
+        <div class="sc-arrow">▾</div>
+      </div>
+      <div class="sc-body">
+        <div class="sc-block">
+          <div class="sc-block-label">Key Requirements</div>
+          <div class="spec-row"><span class="spec-key">Warranty</span><span class="spec-val"><strong>5 years</strong> — all metal works and welding</span></div>
+          <div class="spec-row"><span class="spec-key">Exterior</span><span class="spec-val">SS316 or hot-dip galvanised</span></div>
+          <div class="spec-row"><span class="spec-key">Field Welds</span><span class="spec-val">Touch-up with matching shop paint — min 0.05mm DFT</span></div>
+          <div class="spec-row"><span class="spec-key">Protection</span><span class="spec-val">Temporary covers until Substantial Completion</span></div>
+        </div>
+        <div class="sc-block">
+          <div class="sc-block-label">Site Supervision Checkpoints</div>
+          <ul class="check-list">
+            <li>Verify heights comply with Dubai Civil Defense requirements (min 1100mm for balconies)</li>
+            <li>Check base plate anchor bolt torque against approved method statement</li>
+            <li>Inspect all field welds visually — no porosity, undercut, or incomplete fusion</li>
+            <li>Test installed railing with lateral load per approved ITP before releasing area</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="spec-card" data-search="bar grating floor drain 055313">
+      <div class="sc-head" onclick="toggle(this)">
+        <div class="sc-code">055313</div>
+        <div class="sc-info">
+          <div class="sc-title">Bar Gratings</div>
+          <div class="sc-plain">Open metal grating panels used over drainage channels, mechanical pits, and service trenches — allowing water or air through while supporting foot or vehicle traffic above.</div>
+        </div>
+        <div class="sc-arrow">▾</div>
+      </div>
+      <div class="sc-body">
+        <div class="sc-block">
+          <div class="sc-block-label">Structural Load Requirements</div>
+          <div class="spec-row"><span class="spec-key">Walkways / Exits</span><span class="spec-val"><strong>4.79 kN/m²</strong> uniform load</span></div>
+          <div class="spec-row"><span class="spec-key">Vehicular Driveways</span><span class="spec-val"><strong>11.97 kN/m²</strong> or 35.6 kN concentrated — whichever governs</span></div>
+          <div class="spec-row"><span class="spec-key">Max Deflection</span><span class="spec-val"><strong>L/360</strong> or 6.4mm — whichever is less</span></div>
+          <div class="spec-row"><span class="spec-key">Bearing Bar Spacing</span><span class="spec-val"><strong>24mm o.c.</strong> standard</span></div>
+          <div class="spec-row"><span class="spec-key">Crossbar Spacing</span><span class="spec-val"><strong>102mm o.c.</strong> standard</span></div>
+          <div class="spec-row"><span class="spec-key">Seismic</span><span class="spec-val">ASCE 7-16: Z=0.15, SS=0.51, S1=0.18</span></div>
+          <div class="spec-row"><span class="spec-key">Fasteners</span><span class="spec-val">Exterior: SS316 only</span></div>
+          <div class="spec-row"><span class="spec-key">Warranty</span><span class="spec-val">5 years — all metal works and welding</span></div>
+        </div>
+        <div class="sc-block">
+          <div class="sc-block-label">Site Supervision Checkpoints</div>
+          <ul class="check-list">
+            <li>Confirm grating load class matches actual use (pedestrian vs vehicular)</li>
+            <li>Verify frame is level — no more than 2mm deviation before grating installed</li>
+            <li>Check weld lug quantity: min 4 per heavy-duty section</li>
+            <li>Anti-slip surface: confirm abrasive applied if in wet or traffic area</li>
+          </ul>
+        </div>
+        <div class="sc-block">
+          <div class="sc-block-label">Standards</div>
+          <div class="tag-row"><span class="tag tag-std">NAAMM MBG 531</span><span class="tag tag-std">NAAMM MBG 532</span><span class="tag tag-std">AWS D1.6</span><span class="tag tag-std">ASCE 7-16</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="spec-card" data-search="decorative metal ornamental 057000 057313 glazed railing">
+      <div class="sc-head" onclick="toggle(this)">
+        <div class="sc-code">057000 / 057313</div>
+        <div class="sc-info">
+          <div class="sc-title">Decorative Metal &amp; Glazed Metal Railings</div>
+          <div class="sc-plain">Ornamental metalwork providing architectural character — feature screens, decorative grilles, and glass-infill balustrade systems where the visual quality is as critical as structural performance.</div>
+        </div>
+        <div class="sc-arrow">▾</div>
+      </div>
+      <div class="sc-body">
+        <div class="sc-block">
+          <div class="sc-block-label">Site Supervision Checkpoints</div>
+          <ul class="check-list">
+            <li>Shop drawing approval mandatory before fabrication — check glass panel sizes, fin positions, tolerances</li>
+            <li>Mockup required — approve finish, weld quality, and glass edge detail before mass fabrication</li>
+            <li>Verify glass specification in glazed railings matches Section 088000 (Glazing) requirements</li>
+            <li>Check all exposed welds are ground flush and finished to approved standard</li>
+            <li>Protective film on all decorative metal until Substantial Completion</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     DIVISION 06 — WOOD, PLASTICS, COMPOSITES
+════════════════════════════════════════════ -->
+<div class="div-section" data-div="06">
+  <div class="div-header">
+    <span class="div-num">Division 06</span>
+    <h2 class="div-title">Wood, Plastics &amp; Composites</h2>
+    <div class="div-line"></div>
+    <span class="div-count">7 Sections</span>
+  </div>
+  <div class="spec-grid">
+
+    <div class="spec-card" data-search="rough carpentry timber blocking 061000">
+      <div class="sc-head" onclick="toggle(this)">
+        <div class="sc-code">061000</div>
+        <div class="sc-info">
+          <div class="sc-title">Rough Carpentry</div>
+          <div class="sc-plain">Hidden structural timber work — blocking inside walls, nailers on roof edges, and backing panels that allow finishes and fixtures to be fixed securely. Never visible but essential for everything mounted on walls and ceilings.</div>
+        </div>
+        <div class="sc-arrow">▾</div>
+      </div>
+      <div class="sc-body">
+        <div class="sc-block">
+          <div class="sc-block-label">Site Supervision Checkpoints</div>
+          <ul class="check-list">
+            <li>Confirm blocking location coordinates with MEP, joinery, and FF&amp;E drawings before concealment</li>
+            <li>Verify moisture content is below 19% — do not install damp timber</li>
+            <li>Fire-retardant treatment required where indicated — check certification label</li>
+            <li>Photograph all blocking in walls before gypsum board closes the cavity — record for as-built</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="spec-card" data-search="interior woodwork millwork joinery 064023 064113 064116">
+      <div class="sc-head" onclick="toggle(this)">
+        <div class="sc-code">064023 / 064113 / 064116</div>
+        <div class="sc-info">
+          <div class="sc-title">Interior Architectural Woodwork &amp; Cabinets</div>
+          <div class="sc-plain">All custom-made interior joinery — fitted wardrobes, kitchen units, reception desks, vanity units, and display cabinets. Three types: solid architectural woodwork, wood-veneer faced cabinets, and plastic-laminate cabinets.</div>
+        </div>
+        <div class="sc-arrow">▾</div>
+      </div>
+      <div class="sc-body">
+        <div class="sc-block">
+          <div class="sc-block-label">Key Requirements</div>
+          <div class="spec-row"><span class="spec-key">Quality Standard</span><span class="spec-val">Architectural Woodwork Standards (AWS) — Premium Grade</span></div>
+          <div class="spec-row"><span class="spec-key">Moisture Content</span><span class="spec-val"><strong>4–9%</strong> for solid wood components</span></div>
+          <div class="spec-row"><span class="spec-key">Environment at Install</span><span class="spec-val">HVAC operating, RH <strong>43–70%</strong>, temp <strong>16–32°C</strong></span></div>
+          <div class="spec-row"><span class="spec-key">Finish Sheen</span><span class="spec-val">Satin — 31–45 gloss units (ASTM D523 at 60°)</span></div>
+        </div>
+        <div class="sc-block">
+          <div class="sc-block-label">Site Supervision Checkpoints</div>
+          <ul class="check-list">
+            <li><strong>Do not deliver joinery</strong> until building is enclosed and HVAC is running continuously</li>
+            <li>Check moisture content on delivery with calibrated moisture meter — reject if outside 4–9%</li>
+            <li>Inspect shop finish quality before delivery — reject defects in colour, sheen, or edge profile</li>
+            <li>Verify cabinet alignment: plumb and level to 3mm in 2400mm tolerance</li>
+            <li>Check door/drawer gaps are uniform — max 2mm variation across all units</li>
+          </ul>
+          <div class="warn-box">Delivering joinery to a wet building or uncontrolled RH environment causes warping, delamination, and finish cracking that cannot be reversed. Only release after HVAC is stable.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="spec-card" data-search="flush wood paneling wall veneer 064216">
+      <div class="sc-head" onclick="toggle(this)">
+        <div class="sc-code">064216</div>
+        <div class="sc-info">
+          <div class="sc-title">Flush Wood Paneling</div>
+          <div class="sc-plain">Full-height wall panels with natural wood veneer finish — creates the refined, seamless wall surface in key spaces such as lobbies, lift interiors, and executive areas.</div>
+        </div>
+        <div class="sc-arrow">▾</div>
+      </div>
+      <div class="sc-body">
+        <div class="sc-block">
+          <div class="sc-block-label">Key Technical Requirements</div>
+          <div class="spec-row"><span class="spec-key">Grade</span><span class="spec-val"><strong>Premium</strong></span></div>
+          <div class="spec-row"><span class="spec-key">Veneer Matching</span><span class="spec-val">Sequence match between panels; slip/book/centre-balance within panel</span></div>
+          <div class="spec-row"><span class="spec-key">Vertical Matching</span><span class="spec-val">Continuous end-match: veneer leaves continue from lower to upper panels</span></div>
+          <div class="spec-row"><span class="spec-key">Reveals</span><span class="spec-val">10mm black aluminium horizontal &amp; vertical groove inlays at joints</span></div>
+          <div class="spec-row"><span class="spec-key">Install Tolerance</span><span class="spec-val">Plumb &amp; level to <strong>3mm in 2400mm</strong>; reveal variation max <strong>1.5mm</strong></span></div>
+          <div class="spec-row"><span class="spec-key">Fire Retardant</span><span class="spec-val">Flame-spread index <strong>≤ 25</strong> (ASTM E84); no toxic fumes</span></div>
+          <div class="spec-row"><span class="spec-key">Fixings</span><span class="spec-val">Concealed hanger clips only — no face fastening</span></div>
+        </div>
+        <div class="sc-block">
+          <div class="sc-block-label">Site Supervision Checkpoints</div>
+          <ul class="check-list">
+            <li>Panel layout must be approved by Engineer in shop/lay-up yard before shipping — attend layout review</li>
+            <li>Verify reveal inlays are factory-integrated — reject site-applied reveals</li>
+            <li>Check panel cup/bow: max 1.6mm in 2400mm vertical, 3mm in 2400mm horizontal</li>
+            <li>Inspect fire-retardant label on every panel — retain for QA record</li>
+            <li>Confirm HVAC-controlled environment before and throughout installation</li>
+          </ul>
+        </div>
+        <div class="sc-block">
+          <div class="sc-block-label">Standards</div>
+          <div class="tag-row"><span class="tag tag-std">AWS Premium Grade</span><span class="tag tag-std">HPVA HP-1</span><span class="tag tag-std">ASTM E84</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="spec-card" data-search="GRP fiberglass cast plastic cladding 066200 068320">
+      <div class="sc-head" onclick="toggle(this)">
+        <div class="sc-code">066200 / 068320</div>
+        <div class="sc-info">
+          <div class="sc-title">GRP (Glass-Reinforced Plastic) Fabrications &amp; Lining</div>
+          <div class="sc-plain">Moulded fibreglass components for complex curved shapes that cannot be formed in stone or metal — decorative cornices, dome elements, and wet-area lining panels. Lightweight and corrosion-resistant.</div>
+        </div>
+        <div class="sc-arrow">▾</div>
+      </div>
+      <div class="sc-body">
+        <div class="sc-block">
+          <div class="sc-block-label">Site Supervision Checkpoints</div>
+          <ul class="check-list">
+            <li>Verify wall thickness is uniform — lamp test or knock test for consistency</li>
+            <li>Check gel coat colour matches approved sample under natural and artificial light</li>
+            <li>Fixings: stainless steel only — GRP is incompatible with carbon steel fasteners</li>
+            <li>Inspect joints between GRP and adjacent materials — sealant bead required, no gaps</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     DIVISION 07 — THERMAL & MOISTURE PROTECTION
+════════════════════════════════════════════ -->
+<div class="div-section" data-div="07">
+  <div class="div-header">
+    <span class="div-num">Division 07</span>
+    <h2 class="div-title">Thermal &amp; Moisture Protection</h2>
+    <div class="div-line"></div>
+    <span class="div-count">14 Sections</span>
+  </div>
+  <div class="spec-grid">
+
+    <div class="spec-card" data-search="waterproofing schedule 070615 071351 071416 071613 bituminous fluid applied polymer">
+      <div class="sc-head" onclick="toggle(this)">
+        <div class="sc-code">070615 / 071351 / 071416 / 071613</div>
+        <div class="sc-info">
+          <div class="sc-title">Waterproofing Systems</div>
+          <div class="sc-plain">The watertight barrier protecting all below-ground, wet-area, and roof surfaces. Three technologies are used: bituminous sheet (torch-applied), cold fluid-applied membrane, and polymer-modified cement — each applied in the right location for the right conditions.</div>
+        </div>
+        <div class="sc-arrow">▾</div>
+      </div>
+      <div class="sc-body">
+        <div class="sc-block">
+          <div class="sc-block-label">System Types &amp; Locations</div>
+          <div class="spec-row"><span class="spec-key">071351 Bituminous Sheet</span><span class="spec-val">Below-grade slabs, basement walls, podium deck — torch-applied SBS/APP modified</span></div>
+          <div class="spec-row"><span class="spec-key">071416 Cold Fluid</span><span class="spec-val">Wet rooms, planters, balconies — brush/roller applied acrylic or polyurethane</span></div>
+          <div class="spec-row"><span class="spec-key">071613 Polymer Cement</span><span class="spec-val">Wet areas with tile finish — crystalline or cementitious slurry coat</span></div>
+        </div>
+        <div class="sc-block">
+          <div class="sc-block-label">Critical Rules for All Waterproofing</div>
+          <div class="spec-row"><span class="spec-key">Substrate</span><span class="spec-val">Dry, clean, free of fins, voids, and honeycombing before application</span></div>
+          <div class="spec-row"><span class="spec-key">Single Source</span><span class="spec-val">All components from one manufacturer — no mixing of brands</span></div>
+          <div class="spec-row"><span class="spec-key">Upstands</span><span class="spec-val">Min <strong>150mm</strong> above finished floor level at all perimeters</span></div>
+          <div class="spec-row"><span class="spec-key">Curing</span><span class="spec-val">No subsequent work on membrane until manufacturer's cure time confirmed</span></div>
+        </div>
+        <div class="sc-block">
+          <div class="sc-block-label">Site Supervision Checkpoints</div>
+          <ul class="check-list">
+            <li>Witness substrate preparation and primer application before membrane — photograph</li>
+            <li>Check membrane thickness with wet-film gauge during application</li>
+            <li>Inspect all laps, corners, pipe penetrations, and drain sumps — these are the failure points</li>
+            <li>Raise IR before any screed or tile covers the waterproofing — it must be inspected open</li>
+            <li>Flood test all wet rooms: 24–48 hours minimum, 50mm water depth — <strong>witness and sign off</strong></li>
+            <li>Pressure hose test any area that cannot be flood tested</li>
+          </ul>
+          <div class="warn-box">Any waterproofing covered without an approved IR is a buried unknown defect. If a leak appears post-handover, the contractor has no defence. Enforce the inspection hold point with zero exceptions.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="spec-card" data-search="traffic coatings car park deck 071800">
+      <div class="sc-head" onclick="toggle(this)">
+        <div class="sc-code">071800</div>
+        <div class="sc-info">
+          <div class="sc-title">Traffic Coatings</div>
+          <div class="sc-plain">Heavy-duty polyurethane or epoxy coating systems applied to car park decks and podium slabs that carry vehicle traffic — must resist tyre wear, fuel spills, and deflection from moving loads while remaining watertight.</div>
+        </div>
+        <div class="sc-arrow">▾</div>
+      </div>
+      <div class="sc-body">
+        <div class="sc-block">
+          <div class="sc-block-label">Site Supervision Checkpoints</div>
+          <ul class="check-list">
+            <li>Concrete surface must be shot-blasted to Sa 2.5 — verify with tape adhesion test</li>
+            <li>Check slab moisture content: max 5% (CM method) before coating application</li>
+            <li>DFT (dry film thickness) measured per coat — retain gauge records</li>
+            <li>Apply anti-skid aggregate to wet top coat — check aggregate embedment depth</li>
+            <li>No vehicle access for minimum 7 days post application</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="spec-card" data-search="thermal insulation UAE heat 072100">
+      <div class="sc-head" onclick="toggle(this)">
+        <div class="sc-code">072100</div>
+        <div class="sc-info">
+          <div class="sc-title">Thermal Insulation</div>
+          <div class="sc-plain">Insulation boards or batts installed in walls, roofs, and floors to reduce heat transfer — critical in the UAE climate to meet Al Sa'fat energy performance requirements and reduce cooling loads.</div>
+        </div>
+        <div class="sc-arrow">▾</div>
+      </div>
+      <div class="sc-body">
+        <div class="sc-block">
+          <div class="sc-block-label">Site Supervision Checkpoints</div>
+          <ul class="check-list">
+            <li>Verify insulation R-value and U-value calculations match Al Sa'fat submission</li>
+            <li>Check for continuous insulation — no gaps, thermal bridges, or compression</li>
+            <li>Penetrations through insulation layer must be sealed and insulated individually</li>
+            <li>Confirm vapour barrier orientation (warm side = interior in UAE)</li>
+            <li>Photograph all insulation before concealment — critical for energy compliance record</li>
+          </ul>
+          <div class="note-box">Al Sa'fat compliance for insulation must be verified before the building envelope is closed. Once walls are finished, non-compliance cannot be corrected without major demolition.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="spec-card" data-search="metal composite panel MCM aluminium cladding facade 074213">
+      <div class="sc-head" onclick="toggle(this)">
+        <div class="sc-code">074213.23</div>
+        <div class="sc-info">
+          <div class="sc-title">Metal Composite Material (MCM) Wall Panels</div>
+          <div class="sc-plain">Aluminium composite panels (ACM) used as the rainscreen cladding layer — the flat, smooth metal face panels seen on the exterior. A sandwich of two aluminium skins bonded to a mineral or fire-retardant core.</div>
+        </div>
+        <div class="sc-arrow">▾</div>
+      </div>
+      <div class="sc-body">
+        <div class="sc-block">
+          <div class="sc-block-label">Critical: Fire Safety</div>
+          <div class="warn-box">Following Grenfell (2017), UAE Civil Defense requires FR (fire-retardant mineral core) ACM on all buildings above 15m. Standard polyethylene core ACM is banned on this project. Verify core material certificates before ANY panel is fixed to the building.</div>
+        </div>
+        <div class="sc-block">
+          <div class="sc-block-label">Site Supervision Checkpoints</div>
+          <ul class="check-list">
+            <li>Demand fire test certificate for every panel batch — FR core confirmed by manufacturer</li>
+            <li>Check panel fixing to sub-frame: rivets or screws per approved shop drawing only</li>
+            <li>Joint widths: verify match to approved shop drawing (typically 8–12mm for sealant)</li>
+            <li>Sealant colour must match approved sample before site application</li>
+            <li>Check corner and reveal details — no exposed raw aluminium edge in final condition</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="spec-card" data-search="PU foam roofing sprayed polyurethane 075700">
+      <div class="sc-head" onclick="toggle(this)">
+        <div class="sc-code">075700</div>
+        <div class="sc-info">
+          <div class="sc-title">Sprayed Polyurethane Foam Roofing System</div>
+          <div class="sc-plain">A two-component foam sprayed directly onto the roof deck — expands on contact to form a seamless insulating and waterproofing layer. Covered with a protective coating. Only effective if applied in the right conditions and by trained operators.</div>
+        </div>
+        <div class="sc-arrow">▾</div>
+      </div>
+      <div class="sc-body">
+        <div class="sc-block">
+          <div class="sc-block-label">Key Technical Requirements</div>
+          <div class="spec-row"><span class="spec-key">Warranty</span><span class="spec-val"><strong>25 years</strong> from Substantial Completion</span></div>
+          <div class="spec-row"><span class="spec-key">Min Temp</span><span class="spec-val">Do not apply below <strong>10°C</strong></span></div>
+          <div class="spec-row"><span class="spec-key">Max RH</span><span class="spec-val">Do not apply above <strong>85% relative humidity</strong></span></div>
+          <div class="spec-row"><span class="spec-key">No Application</span><span class="spec-val">Rain, fog, mist, snow, or wind affecting surface finish</span></div>
+          <div class="spec-row"><span class="spec-key">Solar Reflectance</span><span class="spec-val"><strong>75% of paving areas SRI ≥ 78</strong> (Al Sa'fat requirement)</span></div>
+          <div class="spec-row"><span class="spec-key">Water Tightness</span><span class="spec-val">Zero leakage — absolute requirement</span></div>
+        </div>
+        <div class="sc-block">
+          <div class="sc-block-label">Mandatory Tests</div>
+          <div class="spec-row"><span class="spec-key">Flood Test</span><span class="spec-val">50mm water depth for <strong>24–48 hours</strong> — witnessed by Engineer</span></div>
+          <div class="spec-row"><span class="spec-key">Simulated Rain</span><span class="spec-val">15-minute spray hose test on designated areas</span></div>
+          <div class="spec-row"><span class="spec-key">Timing</span><span class="spec-val">Before any ballast, paving, or overburden is placed</span></div>
+        </div>
+        <div class="sc-block">
+          <div class="sc-block-label">Site Supervision Checkpoints</div>
+          <ul class="check-list">
+            <li>Confirm trained operatives on site — request training certificates</li>
+            <li>Check ambient conditions log before and during application — stop if outside limits</li>
+            <li>Inspect foam thickness at multiple points with calibrated probe — reject areas below spec</li>
+            <li>Raise hold-point IR before protective coating — inspect foam surface for voids or craters</li>
+            <li>Personally witness flood test — certify watertight integrity before releasing roof for finishes</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="spec-card" data-search="sheet metal flashing trim coping 076200">
+      <div class="sc-head" onclick="toggle(this)">
+        <div class="sc-code">076200</div>
+        <div class="sc-info">
+          <div class="sc-title">Sheet Metal Flashing &amp; Trim</div>
+          <div class="sc-plain">Thin metal pieces — usually aluminium or stainless — folded to direct water away from junctions: roof edges, window heads, parapet copings, and where two different materials meet. Small in size, critical in function.</div>
+        </div>
+        <div class="sc-arrow">▾</div>
+      </div>
+      <div class="sc-body">
+        <div class="sc-block">
+          <div class="sc-block-label">Site Supervision Checkpoints</div>
+          <ul class="check-list">
+            <li>Check all laps shed water downward — no reverse laps</li>
+            <li>Sealant applied at all end joints and penetrations — no dry joints</li>
+            <li>Coping joints: closed-cell backing rod + sealant — not open to weather</li>
+            <li>Check thermal expansion gaps at long runs — every 3m typically</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="spec-card" data-search="intumescent fire protection board firestopping penetration joint 078123 078200 078413 078443">
+      <div class="sc-head" onclick="toggle(this)">
+        <div class="sc-code">078123 / 078200 / 078413 / 078443</div>
+        <div class="sc-info">
+          <div class="sc-title">Fire Protection — Intumescent, Board, Penetrations &amp; Joints</div>
+          <div class="sc-plain">Passive fire protection systems that seal gaps around pipes, cables, ducts, and joints in fire-rated walls and floors — expanding under heat to prevent fire and smoke spreading between compartments for the rated time period.</div>
+        </div>
+        <div class="sc-arrow">▾</div>
+      </div>
+      <div class="sc-body">
+        <div class="sc-block">
+          <div class="sc-block-label">What Each Section Covers</div>
+          <div class="spec-row"><span class="spec-key">078123 Intumescent</span><span class="spec-val">Spray or brush-applied coating on steel columns and beams to achieve fire rating</span></div>
+          <div class="spec-row"><span class="spec-key">078200 Board</span><span class="spec-val">Calcium silicate or vermiculite board encasement for structural steel</span></div>
+          <div class="spec-row"><span class="spec-key">078413 Penetrations</span><span class="spec-val">Firestop collars, pillows, or mortar where pipes/cables/ducts pass through rated walls/floors</span></div>
+          <div class="spec-row"><span class="spec-key">078443 Joints</span><span class="spec-val">Firestop sealant in movement joints between fire-rated assemblies</span></div>
+        </div>
+        <div class="sc-block">
+          <div class="sc-block-label">Site Supervision Checkpoints</div>
+          <ul class="check-list">
+            <li>All firestopping products must have Civil Defense approved certification</li>
+            <li><strong>Hold point IR mandatory</strong> before any penetration is concealed by finishes</li>
+            <li>Intumescent DFT must be checked with calibrated gauge against fire rating requirement</li>
+            <li>Check firestop collar type matches pipe material (plastic pipe = intumescent collar; steel = mineral wool)</li>
+            <li>Photo-record every penetration firestop with location reference — Civil Defense inspection document</li>
+          </ul>
+          <div class="warn-box">An unsealed penetration through a fire-rated wall can allow fire to spread from one compartment to another in minutes. This is a life-safety item. No exceptions to the IR hold point.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="spec-card" data-search="joint sealants silicone polyurethane 079200">
+      <div class="sc-head" onclick="toggle(this)">
+        <div class="sc-code">079200</div>
+        <div class="sc-info">
+          <div class="sc-title">Joint Sealants</div>
+          <div class="sc-plain">Flexible sealants that fill movement joints between different materials — between façade panels, at window perimeters, between floor and wall tiles, and at expansion joints. Must accommodate movement without cracking or delaminating.</div>
+        </div>
+        <div class="sc-arrow">▾</div>
+      </div>
+      <div class="sc-body">
+        <div class="sc-block">
+          <div class="sc-block-label">Key Requirements</div>
+          <div class="spec-row"><span class="spec-key">Joint Preparation</span><span class="spec-val">Closed-cell backing rod + primer as required by manufacturer</span></div>
+          <div class="spec-row"><span class="spec-key">Depth:Width Ratio</span><span class="spec-val">Sealant depth = <strong>½ × joint width</strong> (never fill full depth)</span></div>
+          <div class="spec-row"><span class="spec-key">Application Temp</span><span class="spec-val">Do not apply below 5°C or on wet substrate</span></div>
+          <div class="spec-row"><span class="spec-key">Tool Finish</span><span class="spec-val">Tooled concave profile — not flat or convex</span></div>
+        </div>
+        <div class="sc-block">
+          <div class="sc-block-label">Site Supervision Checkpoints</div>
+          <ul class="check-list">
+            <li>Check that sealant type matches substrate: silicone for glass/aluminium; polyurethane for concrete; hybrid for movement joints</li>
+            <li>Verify backing rod diameter is correct (must be 25% larger than joint width)</li>
+            <li>Confirm colour matches approved sample before any application</li>
+            <li>Do not accept sealant applied without backing rod — it will fail in movement</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     DIVISION 08 — OPENINGS
+════════════════════════════════════════════ -->
+<div class="div-section" data-div="08">
+  <div class="div-header">
+    <span class="div-num">Division 08</span>
+    <h2 class="div-title">Openings</h2>
+    <div class="div-line"></div>
+    <span class="div-count">13 Sections</span>
+  </div>
+  <div class="spec-grid">
+
+    <div class="spec-card" data-search="hollow metal doors steel frames fire rated 081113">
+      <div class="sc-head" onclick="toggle(this)">
+        <div class="sc-code">081113</div>
+        <div class="sc-info">
+          <div class="sc-title">Hollow Metal Doors &amp; Frames</div>
+          <div class="sc-plain">Steel doors and frames used at stairwells, plant rooms, service areas, and fire exits — required because they are fire-rated, robust, and security-grade. The workhorse door of any building core.</div>
+        </div>
+        <div class="sc-arrow">▾</div>
+      </div>
+      <div class="sc-body">
+        <div class="sc-block">
+          <div class="sc-block-label">Key Requirements</div>
+          <div class="spec-row"><span class="spec-key">Fire Rating</span><span class="spec-val">As per door schedule — typically 60 or 120 minutes, Civil Defense certified</span></div>
+          <div class="spec-row"><span class="spec-key">Frame Anchors</span><span class="spec-val">Min 3 anchors per jamb into masonry or concrete</span></div>
+          <div class="spec-row"><span class="spec-key">Clearances</span><span class="spec-val">Max 3mm at head and latch jamb; 6mm at threshold</span></div>
+          <div class="spec-row"><span class="spec-key">Hardware Prep</span><span class="spec-val">Reinforced cutouts for all hardware — factory prepared, not site cut</span></div>
+        </div>
+        <div class="sc-block">
+          <div class="sc-block-label">Site Supervision Checkpoints</div>
+          <ul class="check-list">
+            <li>Verify fire rating certificate matches door schedule before installation</li>
+            <li>Check frame is plumb, square, and level before door is hung</li>
+            <li>Confirm intumescent strip is factory-fitted to fire doors — never field-applied</li>
+            <li>Test self-closing mechanism closes door fully from any position</li>
+            <li>Verify door clearances match spec — measure at head, latch, and threshold</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="spec-card" data-search="flush wood door timber interior 081416">
+      <div class="sc-head" onclick="toggle(this)">
+        <div class="sc-code">081416</div>
+        <div class="sc-info">
+          <div class="sc-title">Flush Wood Doors</div>
+          <div class="sc-plain">Flat-faced timber doors for residential apartments, hotel rooms, and office suites — veneered or painted, with solid or hollow cores depending on acoustic and fire rating requirements.</div>
+        </div>
+        <div class="sc-arrow">▾</div>
+      </div>
+      <div class="sc-body">
+        <div class="sc-block">
+          <div class="sc-block-label">Site Supervision Checkpoints</div>
+          <ul class="check-list">
+            <li>Check door fits frame with consistent 3mm clearance — no binding or tight spots</li>
+            <li>Verify veneer grain/colour matches approved sample and adjacent doors in same area</li>
+            <li>Acoustic doors: check perimeter seals are continuous with no gaps</li>
+            <li>Do not install doors until painting and wet trades are complete — prevents humidity damage</li>
+            <li>Inspect hardware prep accuracy before hanging — realigning after hanging causes damage</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="spec-card" data-search="curtain wall glazed aluminum facade 084413 storefront entrance 084113 all glass 084226">
+      <div class="sc-head" onclick="toggle(this)">
+        <div class="sc-code">084113 / 084226 / 084413</div>
+        <div class="sc-info">
+          <div class="sc-title">Aluminium Storefronts, All-Glass Entrances &amp; Curtain Walls</div>
+          <div class="sc-plain">The transparent glass envelope of the building — ground floor retail fronts, main lobby all-glass doors, and the multi-storey curtain wall system covering the tower face. The most technically demanding enclosure work on the project.</div>
+        </div>
+        <div class="sc-arrow">▾</div>
+      </div>
+      <div class="sc-body">
+        <div class="sc-block">
+          <div class="sc-block-label">Key Requirements</div>
+          <div class="spec-row"><span class="spec-key">Wind Load</span><span class="spec-val">ASCE 7-16: 105 mph, Exposure C — structural PE to sign off design</span></div>
+          <div class="spec-row"><span class="spec-key">Air Infiltration</span><span class="spec-val">Maximum rates per AAMA/ASTM E283 — tested at design pressure</span></div>
+          <div class="spec-row"><span class="spec-key">Water Penetration</span><span class="spec-val">Zero at test pressure per ASTM E331 — no leakage allowed</span></div>
+          <div class="spec-row"><span class="spec-key">Thermal Break</span><span class="spec-val">Required at all aluminium profiles — verify polyamide strip is present</span></div>
+          <div class="spec-row"><span class="spec-key">U-Value</span><span class="spec-val">Comply with Al Sa'fat energy requirements for UAE climate</span></div>
+          <div class="spec-row"><span class="spec-key">Anchor</span><span class="spec-val">Structural anchor at each floor slab — allow for ±25mm adjustment</span></div>
+        </div>
+        <div class="sc-block">
+          <div class="sc-block-label">Site Supervision Checkpoints</div>
+          <ul class="check-list">
+            <li>Check structural anchor embedment depth and bolt torque at every slab level</li>
+            <li>Verify mullion plumb and alignment before any glass is installed — max 2mm in 3m</li>
+            <li>Inspect glass IGU (insulated glass unit) serial numbers match approved spec</li>
+            <li>Witness water test per storey before moving to next level</li>
+            <li>Check all weep holes in transom are open — critical drainage path</li>
+            <li>Inspect backer rod and sealant at all perimeter joints to structure</li>
+          </ul>
+          <div class="warn-box">Curtain wall water leakage at completed stages is one of the most expensive defects to remedy. Enforce hold-point inspections per floor before glass is installed above.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="spec-card" data-search="aluminum windows sliding 081816 085113 fixed">
+      <div class="sc-head" onclick="toggle(this)">
+        <div class="sc-code">081816 / 085113</div>
+        <div class="sc-info">
+          <div class="sc-title">Aluminium Windows (Fixed &amp; Sliding)</div>
+          <div class="sc-plain">All residential and commercial window units — both fixed lights and openable sliding or casement windows. The primary interface between the conditioned interior and the harsh UAE exterior environment.</div>
+        </div>
+        <div class="sc-arrow">▾</div>
+      </div>
+      <div class="sc-body">
+        <div class="sc-block">
+          <div class="sc-block-label">Site Supervision Checkpoints</div>
+          <ul class="check-list">
+            <li>Verify sill is level and packed correctly before frame is fixed</li>
+            <li>Check perimeter sealant continuity — no gaps at head, sill, and jambs</li>
+            <li>Thermal break: probe for polyamide insert — reject all-aluminium profiles</li>
+            <li>Test sliding mechanism: smooth operation, no binding, locks engage fully</li>
+            <li>Verify glass specification: min 6mm tempered in all openable units (Civil Defense)</li>
+            <li>Check drainage slots at sill are clear and directed to exterior</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="spec-card" data-search="door hardware locks handles hinges 087100">
+      <div class="sc-head" onclick="toggle(this)">
+        <div class="sc-code">087100</div>
+        <div class="sc-info">
+          <div class="sc-title">Door Hardware</div>
+          <div class="sc-plain">All mechanical hardware — hinges, locksets, closers, panic bars, door stops, and access control strikes. Must match the door type, fire rating, and security zone for each location across the project.</div>
+        </div>
+        <div class="sc-arrow">▾</div>
+      </div>
+      <div class="sc-body">
+        <div class="sc-block">
+          <div class="sc-block-label">Site Supervision Checkpoints</div>
+          <ul class="check-list">
+            <li>Verify hardware schedule against door schedule — every door number must match</li>
+            <li>Fire door hardware must be fire-rated and Civil Defense approved (closer, hinges, seals)</li>
+            <li>Test all panic bars: operates under 67N force max (life safety)</li>
+            <li>Verify access control strike plates are flush — protruding edges are a security gap</li>
+            <li>Check closer adjustment: full close in 3–5 seconds from 90° open position</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="spec-card" data-search="glazing glass IGU tempered laminated 088000 mirrors 088300">
+      <div class="sc-head" onclick="toggle(this)">
+        <div class="sc-code">088000 / 088300</div>
+        <div class="sc-info">
+          <div class="sc-title">Glazing &amp; Mirrors</div>
+          <div class="sc-plain">The specification for all glass used across the project — the actual glass product, not the frame. Covers thermal performance, safety classification, solar control, and mirror backing quality.</div>
+        </div>
+        <div class="sc-arrow">▾</div>
+      </div>
+      <div class="sc-body">
+        <div class="sc-block">
+          <div class="sc-block-label">Key Requirements</div>
+          <div class="spec-row"><span class="spec-key">Safety Glass</span><span class="spec-val">Toughened or laminated as per location — Civil Defense requirement</span></div>
+          <div class="spec-row"><span class="spec-key">IGU Argon Fill</span><span class="spec-val">Verify seal integrity before installation — failed units visible as fogging</span></div>
+          <div class="spec-row"><span class="spec-key">Mirror Backing</span><span class="spec-val">Copper-free backing — prevents black edge spots in humid UAE conditions</span></div>
+          <div class="spec-row"><span class="spec-key">Setting Blocks</span><span class="spec-val">EPDM at sill, min 100mm long — no glass on glass contact</span></div>
+        </div>
+        <div class="sc-block">
+          <div class="sc-block-label">Site Supervision Checkpoints</div>
+          <ul class="check-list">
+            <li>Check glass type label (laminated/toughened) on each pane before glazing</li>
+            <li>Inspect IGU edge for silver/gold desiccant — if not visible, spacer is compromised</li>
+            <li>Verify face clearance between glass and frame: min 5mm each side</li>
+            <li>Mirrors: check backing is continuous — no bare silver edge exposed to moisture</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="spec-card" data-search="access door panel hatch 083113 louver 089119">
+      <div class="sc-head" onclick="toggle(this)">
+        <div class="sc-code">083113 / 089119</div>
+        <div class="sc-info">
+          <div class="sc-title">Access Doors &amp; Fixed Louvers</div>
+          <div class="sc-plain">Access doors provide discrete entry to concealed MEP zones (duct shafts, valve chambers). Louvers provide controlled ventilation through the facade while rejecting rain and maintaining the building aesthetic.</div>
+        </div>
+        <div class="sc-arrow">▾</div>
+      </div>
+      <div class="sc-body">
+        <div class="sc-block">
+          <div class="sc-block-label">Site Supervision Checkpoints</div>
+          <ul class="check-list">
+            <li>Access doors: confirm size allows required equipment removal for maintenance</li>
+            <li>Fire-rated access doors: verify fire rating matches wall/ceiling assembly rating</li>
+            <li>Louvers: confirm blade angle sheds rain — test with hose if accessible</li>
+            <li>Louver free area must match MEP engineer's ventilation calculation</li>
+            <li>Check bird/insect mesh is fitted to all exterior louvers</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     DIVISION 09 — FINISHES
+════════════════════════════════════════════ -->
+<div class="div-section" data-div="09">
+  <div class="div-header">
+    <span class="div-num">Division 09</span>
+    <h2 class="div-title">Finishes</h2>
+    <div class="div-line"></div>
+    <span class="div-count">15 Sections</span>
+  </div>
+  <div class="spec-grid">
+
+    <div class="spec-card" data-search="metal stud framing partition wall 092216">
+      <div class="sc-head" onclick="toggle(this)">
+        <div class="sc-code">092216</div>
+        <div class="sc-info">
+          <div class="sc-title">Non-Structural Metal Framing</div>
+          <div class="sc-plain">The hidden steel stud and track skeleton inside all drywall partitions and ceiling systems — sets out room dimensions, carries the gypsum board, and provides the substrate for all wall finishes.</div>
+        </div>
+        <div class="sc-arrow">▾</div>
+      </div>
+      <div class="sc-body">
+        <div class="sc-block">
+          <div class="sc-block-label">Site Supervision Checkpoints</div>
+          <ul class="check-list">
+            <li>Confirm stud gauge matches specification — 0.55mm min for standard, 0.75mm for impact areas</li>
+            <li>Check stud spacing: 400mm or 600mm o.c. per spec — greater spacing requires heavier board</li>
+            <li>Acoustic walls: verify resilient channels are used (break the direct stud-to-board contact)</li>
+            <li>Hold-point IR before gypsum board — check framing for plumb, blocking at all fixture locations</li>
+            <li>Verify floor and ceiling tracks are fully continuous — no gaps at junctions</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="spec-card" data-search="cement plaster render external internal wall 092400">
+      <div class="sc-head" onclick="toggle(this)">
+        <div class="sc-code">092400</div>
+        <div class="sc-info">
+          <div class="sc-title">Cement Plastering</div>
+          <div class="sc-plain">The base coat applied directly to masonry and concrete walls to create a flat, smooth surface ready for paint or tiles. In the UAE, this is the standard substrate for most interior and exterior wall surfaces on concrete/block construction.</div>
+        </div>
+        <div class="sc-arrow">▾</div>
+      </div>
+      <div class="sc-body">
+        <div class="sc-block">
+          <div class="sc-block-label">Key Requirements</div>
+          <div class="spec-row"><span class="spec-key">Mix</span><span class="spec-val">Typically 1:4 cement:sand; 1:3 for external</span></div>
+          <div class="spec-row"><span class="spec-key">Thickness</span><span class="spec-val">Min 10mm; max 25mm single coat — thicker = two coats with scratch key</span></div>
+          <div class="spec-row"><span class="spec-key">Flatness</span><span class="spec-val">Max 5mm deviation under 3m straightedge</span></div>
+          <div class="spec-row"><span class="spec-key">Curing</span><span class="spec-val">Keep damp for minimum 7 days — critical in UAE heat</span></div>
+        </div>
+        <div class="sc-block">
+          <div class="sc-block-label">Site Supervision Checkpoints</div>
+          <ul class="check-list">
+            <li>Check substrate is hacked and cleaned — no oil, dust, or loose material</li>
+            <li>Bonding agent applied and tacky before scratch coat — no plastering over dry primer</li>
+            <li>Knock test completed before tile or paint — hollow sound = delamination = reject</li>
+            <li>No plaster in direct sun during UAE summer without shading</li>
+            <li>Check vertical alignment with 2m level — tolerance 5mm max</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="spec-card" data-search="gypsum board drywall plasterboard 092900">
+      <div class="sc-head" onclick="toggle(this)">
+        <div class="sc-code">092900</div>
+        <div class="sc-info">
+          <div class="sc-title">Gypsum Board</div>
+          <div class="sc-plain">Drywall sheets fixed to metal stud framing for all internal partition walls and suspended ceilings in the project. Different board types (standard, moisture-resistant, fire-rated) are used depending on location.</div>
+        </div>
+        <div class="sc-arrow">▾</div>
+      </div>
+      <div class="sc-body">
+        <div class="sc-block">
+          <div class="sc-block-label">Board Types</div>
+          <div class="spec-row"><span class="spec-key">Standard (GWB)</span><span class="spec-val">Dry areas — offices, corridors, bedrooms</span></div>
+          <div class="spec-row"><span class="spec-key">Moisture-Resistant (MR)</span><span class="spec-val">Kitchens, bathrooms — green or blue board</span></div>
+          <div class="spec-row"><span class="spec-key">Fire-Rated (Type X)</span><span class="spec-val">Fire compartment walls and ceilings — check rating matches assembly</span></div>
+          <div class="spec-row"><span class="spec-key">Thickness</span><span class="spec-val">12.5mm standard; 15mm or double-layer for fire/acoustic</span></div>
+        </div>
+        <div class="sc-block">
+          <div class="sc-block-label">Site Supervision Checkpoints</div>
+          <ul class="check-list">
+            <li>Verify board type matches location — do not accept standard board in wet areas</li>
+            <li>Check screw pattern: 300mm o.c. maximum — no overdriven screws (dimple, not tear)</li>
+            <li>All joints must be taped and feathered — no dry joints in finished work</li>
+            <li>Check fire wall penetrations are firestopped before taping</li>
+            <li>No board touching floor — minimum 13mm gap (prevent moisture wicking)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="spec-card" data-search="ceramic tile floor wall wet area 093013 093035 concrete">
+      <div class="sc-head" onclick="toggle(this)">
+        <div class="sc-code">093013 / 093035</div>
+        <div class="sc-info">
+          <div class="sc-title">Ceramic &amp; Concrete Tiling</div>
+          <div class="sc-plain">The tile finish covering bathrooms, kitchens, service areas, and external hardscape areas. Must be laid flat, properly bonded, and jointed — any deviation becomes a call-back defect the client will live with for decades.</div>
+        </div>
+        <div class="sc-arrow">▾</div>
+      </div>
+      <div class="sc-body">
+        <div class="sc-block">
+          <div class="sc-block-label">Key Requirements</div>
+          <div class="spec-row"><span class="spec-key">Substrate</span><span class="spec-val">Screed or substrate flatness: max 3mm in 3m before tiling</span></div>
+          <div class="spec-row"><span class="spec-key">Adhesive Coverage</span><span class="spec-val">Min <strong>80% bed coverage</strong> under each tile — 95% for wet areas</span></div>
+          <div class="spec-row"><span class="spec-key">Lippage</span><span class="spec-val">Max 1mm between adjacent tiles (less on large format)</span></div>
+          <div class="spec-row"><span class="spec-key">Joint Width</span><span class="spec-val">As per approved sample board — consistent across entire area</span></div>
+          <div class="spec-row"><span class="spec-key">Movement Joints</span><span class="spec-val">Every 4.5m or at column lines, wall-floor junction, and door frames</span></div>
+          <div class="spec-row"><span class="spec-key">Slope to Drain</span><span class="spec-val">Wet areas: min 1:100 fall to drain — verify with water test</span></div>
+        </div>
+        <div class="sc-block">
+          <div class="sc-block-label">Site Supervision Checkpoints</div>
+          <ul class="check-list">
+            <li>Verify adhesive coverage by lifting a freshly set tile within 15 minutes — measure bed</li>
+            <li>Check lippage with straightedge and feeler gauge — reject if &gt;1mm</li>
+            <li>Hollow-sound test all tiles after grouting — any hollow areas must be removed and re-set</li>
+            <li>Check movement joint location matches structural joints or specified grid</li>
+            <li>Wet area water test: flood to drain level for 24 hours before grouting</li>
+            <li>Grout colour: verify matches approved sample in natural light</li>
+          </ul>
+          <div class="warn-box">Hollow tiles in wet areas are the single most common handover defect on UAE residential projects. Enforce the adhesive coverage check before grout conceals the result.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="spec-card" data-search="stone flooring marble granite 096340 wall facing 097513">
+      <div class="sc-head" onclick="toggle(this)">
+        <div class="sc-code">096340 / 097513</div>
+        <div class="sc-info">
+          <div class="sc-title">Stone Flooring &amp; Stone Wall Facing</div>
+          <div class="sc-plain">Natural marble, granite, or limestone used for premium floor and wall finishes in lobbies, lift interiors, amenity areas, and high-end residential spaces. Premium material requiring precise installation and careful protection.</div>
+        </div>
+        <div class="sc-arrow">▾</div>
+      </div>
+      <div class="sc-body">
+        <div class="sc-block">
+          <div class="sc-block-label">Key Requirements</div>
+          <div class="spec-row"><span class="spec-key">Source</span><span class="spec-val">Single quarry per stone variety — no batch mixing</span></div>
+          <div class="spec-row"><span class="spec-key">Thickness</span><span class="spec-val">Floor: min 18mm; Wall: as indicated — verify before order</span></div>
+          <div class="spec-row"><span class="spec-key">Lippage</span><span class="spec-val">Max 0.8mm between adjacent slabs</span></div>
+          <div class="spec-row"><span class="spec-key">Adhesive</span><span class="spec-key">White cement or specialist stone adhesive — no grey cement (stains light stone)</span></div>
+          <div class="spec-row"><span class="spec-key">Sealer</span><span class="spec-val">Penetrating stone sealer applied before grouting and again after polishing</span></div>
+        </div>
+        <div class="sc-block">
+          <div class="sc-block-label">Site Supervision Checkpoints</div>
+          <ul class="check-list">
+            <li>Verify trial layout (dry lay) approved by Engineer before adhesive setting begins</li>
+            <li>Check all stone matches approved sample set — colour variation outside range = reject</li>
+            <li>No grey cement adhesive on any white or cream stone — iron staining is permanent</li>
+            <li>Protection: heavy-duty board from installation until Substantial Completion — no exceptions</li>
+            <li>Grout colour: non-sanded for joints under 3mm in stone</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="spec-card" data-search="metal pan ceiling specialty suspended wood 095133 095400 095426">
+      <div class="sc-head" onclick="toggle(this)">
+        <div class="sc-code">095133 / 095400 / 095426</div>
+        <div class="sc-info">
+          <div class="sc-title">Metal Pan, Specialty &amp; Suspended Wood Ceilings</div>
+          <div class="sc-plain">Designed ceiling systems providing acoustic control, MEP integration, and architectural character. Metal pans for car parks and service areas; specialty systems (linear, curved, perforated) for public areas; suspended timber for amenity spaces.</div>
+        </div>
+        <div class="sc-arrow">▾</div>
+      </div>
+      <div class="sc-body">
+        <div class="sc-block">
+          <div class="sc-block-label">Site Supervision Checkpoints</div>
+          <ul class="check-list">
+            <li>Coordinate final ceiling grid with MEP drawings before any suspension work starts</li>
+            <li>Check hanger wire spacing: max 1200mm o.c. — no improvised hangers from reinforcement</li>
+            <li>Verify access panel locations match maintenance requirements before ceiling is completed</li>
+            <li>Acoustic performance: check rated assemblies have correct mass and air gap</li>
+            <li>Wood ceiling: verify moisture content on delivery — same rules as interior woodwork</li>
+            <li>Level check: max 3mm deviation in 3m in any direction</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="spec-card" data-search="resilient sheet flooring vinyl 096516">
+      <div class="sc-head" onclick="toggle(this)">
+        <div class="sc-code">096516</div>
+        <div class="sc-info">
+          <div class="sc-title">Resilient Sheet Flooring</div>
+          <div class="sc-plain">Vinyl or rubber sheet flooring in healthcare areas, back-of-house, and utility rooms — continuous sheet with heat-welded joints to create a seamless, hygienic, and easy-clean surface.</div>
+        </div>
+        <div class="sc-arrow">▾</div>
+      </div>
+      <div class="sc-body">
+        <div class="sc-block">
+          <div class="sc-block-label">Site Supervision Checkpoints</div>
+          <ul class="check-list">
+            <li>Substrate must be perfectly flat: max 3mm in 3m — any high spot telegraphs through vinyl</li>
+            <li>Adhesive coverage: 100% on back of sheet — no voids</li>
+            <li>Welded seams: verify heat gun temperature is correct — cold weld fails; overheated weld burns</li>
+            <li>Coved skirting: verify sheet turns up wall min 100mm and is fully bonded</li>
+            <li>Roll out and condition material 24 hours before installation — eliminate memory curl</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="spec-card" data-search="paint exterior interior MPI standard 099114 099124 099300 staining 099600 high performance coatings">
+      <div class="sc-head" onclick="toggle(this)">
+        <div class="sc-code">099114 / 099124 / 099300 / 099600</div>
+        <div class="sc-info">
+          <div class="sc-title">Painting, Staining &amp; High-Performance Coatings</div>
+          <div class="sc-plain">All paint systems from basic interior emulsion to high-performance exterior coatings. MPI (Master Painters Institute) standards govern every coating specification — guaranteeing compatibility, film build, and performance life.</div>
+        </div>
+        <div class="sc-arrow">▾</div>
+      </div>
+      <div class="sc-body">
+        <div class="sc-block">
+          <div class="sc-block-label">System Types</div>
+          <div class="spec-row"><span class="spec-key">099114 Exterior</span><span class="spec-val">Elastomeric or silicone-modified paint — UV, salt, and heat resistant for UAE exterior</span></div>
+          <div class="spec-row"><span class="spec-key">099124 Interior</span><span class="spec-val">Minimum 2 coats over primer — eggshell or matt depending on area</span></div>
+          <div class="spec-row"><span class="spec-key">099300 Staining</span><span class="spec-val">Transparent finish for natural woodwork — must not obscure grain</span></div>
+          <div class="spec-row"><span class="spec-key">099600 High-Perf</span><span class="spec-val">Epoxy or polyurethane for car parks, plant rooms, industrial floors</span></div>
+        </div>
+        <div class="sc-block">
+          <div class="sc-block-label">Site Supervision Checkpoints</div>
+          <ul class="check-list">
+            <li>Verify surface preparation grade matches MPI requirement — no painting over bare rust or chalking paint</li>
+            <li>Check DFT (dry film thickness) of each coat with calibrated gauge — record per area</li>
+            <li>Apply test panels in representative areas — approve colour, sheen, and coverage before mass application</li>
+            <li>Exterior paint: do not apply when humidity &gt;85%, temp &lt;10°C, or rain expected within 4 hours</li>
+            <li>High-performance coatings: verify correct pot-life is not exceeded during mixing and application</li>
+          </ul>
+          <div class="note-box">All paints must be MPI-listed products. Substitution with non-listed products voids the specification compliance and may void the warranty.</div>
+        </div>
+        <div class="sc-block">
+          <div class="sc-block-label">Standards</div>
+          <div class="tag-row"><span class="tag tag-std">MPI Standards</span><span class="tag tag-std">SSPC SP6</span><span class="tag tag-std">ASTM D4228</span></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     DIVISION 10 — SPECIALTIES
+════════════════════════════════════════════ -->
+<div class="div-section" data-div="10">
+  <div class="div-header">
+    <span class="div-num">Division 10</span>
+    <h2 class="div-title">Specialties</h2>
+    <div class="div-line"></div>
+    <span class="div-count">7 Sections</span>
+  </div>
+  <div class="spec-grid">
+
+    <div class="spec-card" data-search="signage letters panel dimensional 101419 101423">
+      <div class="sc-head" onclick="toggle(this)">
+        <div class="sc-code">101419 / 101423</div>
+        <div class="sc-info">
+          <div class="sc-title">Dimensional Letter &amp; Panel Signage</div>
+          <div class="sc-plain">All building identification and wayfinding signage — mounted letters on the facade, room identification plates, and directional panels inside the building. Must comply with UAE Civil Defense building numbering requirements.</div>
+        </div>
+        <div class="sc-arrow">▾</div>
+      </div>
+      <div class="sc-body">
+        <div class="sc-block">
+          <div class="sc-block-label">Site Supervision Checkpoints</div>
+          <ul class="check-list">
+            <li>Verify signage layout is approved by authority (DM building numbering) before installation</li>
+            <li>Check mounting: concealed fixings only on premium finishes — no exposed screw heads</li>
+            <li>Illuminated signs: verify LED driver is accessible for maintenance</li>
+            <li>Fire exit signage: Civil Defense approved emergency lighting units — test operation</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="spec-card" data-search="demountable partitions operable 102219">
+      <div class="sc-head" onclick="toggle(this)">
+        <div class="sc-code">102219</div>
+        <div class="sc-info">
+          <div class="sc-title">Demountable Partitions</div>
+          <div class="sc-plain">Relocatable partition systems in commercial spaces that can be disassembled and reconfigured without major construction works — allows tenant flexibility without structural alterations.</div>
+        </div>
+        <div class="sc-arrow">▾</div>
+      </div>
+      <div class="sc-body">
+        <div class="sc-block">
+          <div class="sc-block-label">Site Supervision Checkpoints</div>
+          <ul class="check-list">
+            <li>Check acoustic STC rating of system matches specification for the space</li>
+            <li>Verify ceiling track is level and continuous — no gaps at structural beams</li>
+            <li>Glazed panels: confirm glass thickness per specification</li>
+            <li>Test panel removal and reinstall — must be achievable by two persons without specialist tools</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="spec-card" data-search="toilet accessories bathroom 102800 tub shower enclosures 102819 wall door protection 102600 sun control 107350">
+      <div class="sc-head" onclick="toggle(this)">
+        <div class="sc-code">102600 / 102800 / 102819 / 107350</div>
+        <div class="sc-info">
+          <div class="sc-title">Wall Protection, Toilet Accessories, Shower Enclosures &amp; Sun Control</div>
+          <div class="sc-plain">The range of fitted items completing each space: handrails in bathrooms, towel bars, paper holders, shower screens, corner guards in corridors, and external sun shading devices reducing solar heat gain.</div>
+        </div>
+        <div class="sc-arrow">▾</div>
+      </div>
+      <div class="sc-body">
+        <div class="sc-block">
+          <div class="sc-block-label">Site Supervision Checkpoints</div>
+          <ul class="check-list">
+            <li>Verify accessible bathroom accessories match UAE Accessibility Standards heights</li>
+            <li>All grab rails: load-tested to 1.3 kN — confirm blocking is in wall before tiling</li>
+            <li>Shower screens: toughened glass minimum 8mm — check certification label</li>
+            <li>Wall protection corner guards: verify height and material (SS in high-traffic zones)</li>
+            <li>Sun shading devices: verify angle matches thermal calculation submission</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     DIVISION 11 — EQUIPMENT
+════════════════════════════════════════════ -->
+<div class="div-section" data-div="11">
+  <div class="div-header">
+    <span class="div-num">Division 11</span>
+    <h2 class="div-title">Equipment</h2>
+    <div class="div-line"></div>
+    <span class="div-count">2 Sections</span>
+  </div>
+  <div class="spec-grid">
+
+    <div class="spec-card" data-search="parking traffic control equipment 111200 111244">
+      <div class="sc-head" onclick="toggle(this)">
+        <div class="sc-code">111200 / 111244</div>
+        <div class="sc-info">
+          <div class="sc-title">Parking &amp; Traffic Control Equipment</div>
+          <div class="sc-plain">Boom barriers, ticket machines, ANPR cameras, and floor-mounted traffic guides for the basement car park and entry/exit points. Interface between architectural, electrical, and security systems.</div>
+        </div>
+        <div class="sc-arrow">▾</div>
+      </div>
+      <div class="sc-body">
+        <div class="sc-block">
+          <div class="sc-block-label">What It Is</div>
+          <p style="font-size:11px;color:var(--text2);line-height:1.7">Automated parking management equipment: entry/exit boom barriers with ticket dispensers, ANPR (automatic number plate recognition) cameras, in-floor inductive vehicle detection loops, intercom units, and floor-painted traffic guides. Architectural scope = slab sleeves, builder's work openings, and signage coordination. Equipment itself is a specialist supply-and-install contract.</p>
+        </div>
+        <div class="sc-block">
+          <div class="sc-block-label">Key Requirements</div>
+          <div class="spec-row"><span class="spec-key">Boom Clearance</span><span class="spec-val">Verify height clearance per approved car park section drawing</span></div>
+          <div class="spec-row"><span class="spec-key">Detection Loops</span><span class="spec-val">In-floor inductive loops embedded in slab — test before concrete sealing</span></div>
+          <div class="spec-row"><span class="spec-key">Bollards</span><span class="spec-val">Post-installed anchors must match impact load requirement per spec 050519</span></div>
+          <div class="spec-row"><span class="spec-key">ANPR Cameras</span><span class="spec-val">FOV verified before fixing — conduit routing coordinated with electrical</span></div>
+        </div>
+        <div class="sc-block">
+          <div class="sc-block-label">Site Supervision Checkpoints</div>
+          <ul class="check-list">
+            <li>Verify conduit routing and floor sleeve locations match equipment supplier drawings — coordinate before slab pour</li>
+            <li>Check boom barrier height clearance meets project car park section</li>
+            <li>Bollards: verify post-installed anchor specification matches impact load requirement</li>
+            <li>Test all traffic loops embedded in slab before epoxy sealing — loops are inaccessible after</li>
+            <li>Confirm ANPR camera coverage: must capture full number plate at entry/exit angles</li>
+          </ul>
+        </div>
+        <div class="sc-block">
+          <div class="sc-block-label">Submittals Before Work</div>
+          <ul class="check-list">
+            <li>Equipment supplier shop drawings — co-ordinated with structural and electrical</li>
+            <li>Manufacturer's installation sequence — especially slab cast-ins</li>
+            <li>Dubai Municipality car park compliance letter</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     DIVISION 12 — FURNISHINGS
+════════════════════════════════════════════ -->
+<div class="div-section" data-div="12">
+  <div class="div-header">
+    <span class="div-num">Division 12</span>
+    <h2 class="div-title">Furnishings</h2>
+    <div class="div-line"></div>
+    <span class="div-count">2 Sections</span>
+  </div>
+  <div class="spec-grid">
+
+    <div class="spec-card" data-search="stone countertops kitchen worktop vanity 123640">
+      <div class="sc-head" onclick="toggle(this)">
+        <div class="sc-code">123640</div>
+        <div class="sc-info">
+          <div class="sc-title">Stone Countertops</div>
+          <div class="sc-plain">Natural stone kitchen worktops, bathroom vanity tops, and feature counter surfaces. Require precision templating from the actual installed cabinet before fabrication — not from drawings.</div>
+        </div>
+        <div class="sc-arrow">▾</div>
+      </div>
+      <div class="sc-body">
+        <div class="sc-block">
+          <div class="sc-block-label">What It Is</div>
+          <p style="font-size:11px;color:var(--text2);line-height:1.7">Stone countertops are cut-to-size slabs of natural stone (marble, granite, quartzite) or engineered stone fitted to kitchen cabinets, bathroom vanities, and bar counters. Each slab is cut in a factory to match a physical site template taken from the already-installed cabinets. Critical: never fabricate from drawings — real-site cabinet positions always differ from shop drawings by several millimetres.</p>
+        </div>
+        <div class="sc-block">
+          <div class="sc-block-label">Key Requirements</div>
+          <div class="spec-row"><span class="spec-key">Templating</span><span class="spec-val">Site template from installed cabinets — never from shop drawings</span></div>
+          <div class="spec-row"><span class="spec-key">Edge Profile</span><span class="spec-val">As per approved sample — eased, bullnose, or mitre per room schedule</span></div>
+          <div class="spec-row"><span class="spec-key">Joint</span><span class="spec-val">Colour-matched epoxy — hairline joint, invisible from standing position</span></div>
+          <div class="spec-row"><span class="spec-key">Sealer</span><span class="spec-val">Penetrating sealer applied in factory before delivery</span></div>
+          <div class="spec-row"><span class="spec-key">Thickness</span><span class="spec-val">As per approved sample — typically 20mm or 30mm</span></div>
+          <div class="spec-row"><span class="spec-key">Source</span><span class="spec-val">Single quarry / batch — entire project must match</span></div>
+        </div>
+        <div class="sc-block">
+          <div class="sc-block-label">Site Supervision Checkpoints</div>
+          <ul class="check-list">
+            <li>Cabinets must be fully installed, level, and plumb before templating is allowed</li>
+            <li>Check stone slab on delivery matches approved sample under natural light — reject mismatched batches</li>
+            <li>Verify cutouts for sinks and hobs match fixture dimensions — no site cutting of granite</li>
+            <li>Inspect joint quality at installation: no visible gaps, colour match must be exact</li>
+            <li>Sealer applied before delivery — verify factory certificate</li>
+          </ul>
+          <div class="warn-box">Never approve templating from drawings. If the slab arrives and the cabinet is not level, reject the installation — resetting the slab is impossible without cracking.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="spec-card" data-search="entrance mat frame lobby floor 124813">
+      <div class="sc-head" onclick="toggle(this)">
+        <div class="sc-code">124813</div>
+        <div class="sc-info">
+          <div class="sc-title">Entrance Floor Mats &amp; Frames</div>
+          <div class="sc-plain">Recessed aluminium frames with carpet or rubber inserts at all building entrances — traps dirt and moisture from footwear before it reaches internal premium floor finishes.</div>
+        </div>
+        <div class="sc-arrow">▾</div>
+      </div>
+      <div class="sc-body">
+        <div class="sc-block">
+          <div class="sc-block-label">What It Is</div>
+          <p style="font-size:11px;color:var(--text2);line-height:1.7">A recessed tray built into the floor slab or screed at every main entrance. An extruded aluminium frame holds carpet-strip or rubber-link inserts. When people walk in, the mat scrapes dirt and moisture off shoes before they walk onto polished stone or timber floors. The recess must be formed in the slab/screed during construction — it cannot be cut in later without cracking adjacent tiles.</p>
+        </div>
+        <div class="sc-block">
+          <div class="sc-block-label">Key Requirements</div>
+          <div class="spec-row"><span class="spec-key">Recess Depth</span><span class="spec-val">Must exactly match mat assembly thickness — no proud or recessed mat surface</span></div>
+          <div class="spec-row"><span class="spec-key">Frame Corners</span><span class="spec-val">Mitre-welded — no visible joints visible at main entrance</span></div>
+          <div class="spec-row"><span class="spec-key">Drainage</span><span class="spec-val">Drain slot or gap below mat allows water to escape to nearest floor drain</span></div>
+          <div class="spec-row"><span class="spec-key">Flush Tolerance</span><span class="spec-val">Mat surface flush with adjacent finished floor within ±2mm</span></div>
+        </div>
+        <div class="sc-block">
+          <div class="sc-block-label">Site Supervision Checkpoints</div>
+          <ul class="check-list">
+            <li>Recess depth must match mat thickness exactly — check with manufacturer data sheet before screed pour</li>
+            <li>Frame corners: mitre-welded — no visible joints at entries</li>
+            <li>Drainage: verify drain slot or gap allows water to escape below mat</li>
+            <li>Mat surface flush with adjacent floor within ±2mm — check with straight edge</li>
+            <li>Install mat only after adjacent floor finishes are complete — prevents differential settlement</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     DIVISION 14 — CONVEYING EQUIPMENT
+════════════════════════════════════════════ -->
+<div class="div-section" data-div="14">
+  <div class="div-header">
+    <span class="div-num">Division 14</span>
+    <h2 class="div-title">Conveying Equipment</h2>
+    <div class="div-line"></div>
+    <span class="div-count">1 Section</span>
+  </div>
+  <div class="spec-grid">
+
+    <div class="spec-card" data-search="trash chute rubbish garbage vertical 149182">
+      <div class="sc-head" onclick="toggle(this)">
+        <div class="sc-code">149182</div>
+        <div class="sc-info">
+          <div class="sc-title">Trash Chutes</div>
+          <div class="sc-plain">Vertical stainless steel chute running through floor-to-floor slabs from upper residential floors to the ground-level refuse room. Each floor has an intake door; the ground floor has a discharge unit.</div>
+        </div>
+        <div class="sc-arrow">▾</div>
+      </div>
+      <div class="sc-body">
+        <div class="sc-block">
+          <div class="sc-block-label">What It Is</div>
+          <p style="font-size:11px;color:var(--text2);line-height:1.7">A continuous vertical stainless steel tube running through a fire-rated shaft from the top residential floor down to a refuse room at ground or basement level. Each residential floor has a self-closing, fire-rated intake door in the shaft wall. Residents deposit waste bags; gravity carries them to the discharge hopper at the bottom. The refuse room requires mechanical extraction ventilation and direct vehicle access for waste collection.</p>
+        </div>
+        <div class="sc-block">
+          <div class="sc-block-label">Key Requirements</div>
+          <div class="spec-row"><span class="spec-key">Material</span><span class="spec-val">Stainless steel — min 1.2mm gauge, smooth interior finish</span></div>
+          <div class="spec-row"><span class="spec-key">Shaft</span><span class="spec-val">Fire-rated shaft enclosure — Civil Defense approval required</span></div>
+          <div class="spec-row"><span class="spec-key">Intake Doors</span><span class="spec-val">Self-closing, fire-rated — verify FRL at each floor</span></div>
+          <div class="spec-row"><span class="spec-key">Plumb Tolerance</span><span class="spec-val">Max 5mm deviation over full height — misalignment causes blockages</span></div>
+          <div class="spec-row"><span class="spec-key">Refuse Room</span><span class="spec-val">Mechanical ventilation active before commissioning</span></div>
+          <div class="spec-row"><span class="spec-key">Fire Sealing</span><span class="spec-val">All slab penetrations fire-sealed at every floor — firestopping certificate required</span></div>
+        </div>
+        <div class="sc-block">
+          <div class="sc-block-label">Site Supervision Checkpoints</div>
+          <ul class="check-list">
+            <li>Verify chute penetrations through slabs are fire-sealed at every floor — check certificate for each</li>
+            <li>Check chute is plumb with theodolite — misalignment accumulates and causes blockages</li>
+            <li>Intake doors: self-closing mechanism functional and fire-rated — verify Civil Defense approval</li>
+            <li>Refuse room: mechanical ventilation must be fully active and tested before chute is commissioned</li>
+            <li>Discharge hopper: verify refuse container access route and door clearances meet collection vehicle requirements</li>
+          </ul>
+          <div class="warn-box">Chute penetrations through fire-rated slabs are IR hold points — no concrete topping or ceiling closure until firestopping is inspected and certified.</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     DIVISION 32 — EXTERIOR IMPROVEMENTS
+════════════════════════════════════════════ -->
+<div class="div-section" data-div="32">
+  <div class="div-header">
+    <span class="div-num">Division 32</span>
+    <h2 class="div-title">Exterior Improvements</h2>
+    <div class="div-line"></div>
+    <span class="div-count">2 Sections</span>
+  </div>
+  <div class="spec-grid">
+
+    <div class="spec-card" data-search="unit paving pavement exterior hardscape podium 321400 markings 321723">
+      <div class="sc-head" onclick="toggle(this)">
+        <div class="sc-code">321400 / 321723</div>
+        <div class="sc-info">
+          <div class="sc-title">Unit Paving &amp; Pavement Markings</div>
+          <div class="sc-plain">The external hardscape — precast concrete paving blocks, natural stone pavers, or porcelain tiles on the ground floor podium, arrival court, and pedestrian areas. Pavement markings cover car park bay lines, directional arrows, and fire-lane striping.</div>
+        </div>
+        <div class="sc-arrow">▾</div>
+      </div>
+      <div class="sc-body">
+        <div class="sc-block">
+          <div class="sc-block-label">What It Is</div>
+          <p style="font-size:11px;color:var(--text2);line-height:1.7">Unit paving covers all external hardscape surfaces at ground level: the building arrival court, pedestrian walkways, podium terraces, car park ramps, and access roads. Paving units can be precast concrete blocks, natural stone (granite, limestone), or large-format porcelain tiles. Pavement markings are thermoplastic or epoxy lines applied on top of traffic coatings — bay lines, arrows, disabled bays, fire-lane hatching, and pedestrian crossings.</p>
+        </div>
+        <div class="sc-block">
+          <div class="sc-block-label">Key Requirements</div>
+          <div class="spec-row"><span class="spec-key">Solar Reflectance</span><span class="spec-val">75% of paved areas must have <strong>SRI ≥ 78</strong> (Al Sa'fat / Dubai heat island)</span></div>
+          <div class="spec-row"><span class="spec-key">Falls</span><span class="spec-val">Min 1:100 to all drainage outlets — no ponding permitted</span></div>
+          <div class="spec-row"><span class="spec-key">Edge Restraint</span><span class="spec-val">Concrete haunching at all perimeter edges — no mortar-only edge restraint</span></div>
+          <div class="spec-row"><span class="spec-key">Movement Joints</span><span class="spec-val">Max 5m grid — no skipping in external paving</span></div>
+          <div class="spec-row"><span class="spec-key">Pavement Markings</span><span class="spec-val">Thermoplastic or epoxy paint — retroreflective for car park; applied after full traffic coating cure (min 7 days)</span></div>
+          <div class="spec-row"><span class="spec-key">Bedding</span><span class="spec-val">Mortar or sand bed as per manufacturer — no variation without approval</span></div>
+        </div>
+        <div class="sc-block">
+          <div class="sc-block-label">Site Supervision Checkpoints</div>
+          <ul class="check-list">
+            <li>Check SRI certificate for every paving product on delivery — maintain Al Sa'fat compliance record for handover</li>
+            <li>Verify falls with level before and after laying — ponding water will appear at handover inspection</li>
+            <li>Movement joints at max 5m grid in external paving — do not skip or reduce spacing</li>
+            <li>Pavement markings: apply only after traffic coating is fully cured (min 7 days) — premature marking fails within months</li>
+            <li>Verify bay dimensions match Dubai Municipality car park standards before marking — incorrect bays require complete restriping</li>
+            <li>Disabled parking bays: verify count, dimensions, and signage meet UAE standards before project handover</li>
+          </ul>
+        </div>
+        <div class="sc-block">
+          <div class="sc-block-label">Standards</div>
+          <div class="tag-row"><span class="tag tag-std">Al Sa'fat SRI</span><span class="tag tag-std">Dubai Municipality</span><span class="tag tag-std">ASCE 7-16</span></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+</div><!-- /content -->
+
+<footer>
+  <div class="fl">&copy; 2026 — <span>M. Amine Berchache</span> — Senior Architect / BIM Coordinator — Dubai, UAE</div>
+  <div class="fr">
+    <a class="flink" href="/">Portfolio</a>
+    <a class="flink" href="/site-supervision.html">Site Supervision</a>
+    <a class="flink" href="/mep-system-bim-coordination.html">MEP / BIM</a>
+    <a class="flink" href="mailto:berchache.mohamedamine@gmail.com">Contact</a>
+  </div>
+</footer>
+
+<script>
+// Toggle card open/close
+function toggle(head) {
+  const card = head.closest('.spec-card')
+  card.classList.toggle('open')
+}
+
+// Division filter
+function filterDiv(div, btn) {
+  document.querySelectorAll('.div-btn').forEach(b => b.classList.remove('active'))
+  btn.classList.add('active')
+  document.querySelectorAll('.div-section').forEach(s => {
+    if (div === 'all') { s.classList.remove('hidden') }
+    else { s.classList.toggle('hidden', s.dataset.div !== div) }
+  })
+}
+
+// Search
+function searchSpecs(query) {
+  const q = query.toLowerCase().trim()
+  document.querySelectorAll('.spec-card').forEach(card => {
+    const text = (card.dataset.search || '') + ' ' + (card.querySelector('.sc-title')?.textContent || '') + ' ' + (card.querySelector('.sc-code')?.textContent || '')
+    card.classList.toggle('hidden', q.length > 0 && !text.toLowerCase().includes(q))
+  })
+  // Show all sections when searching
+  if (q.length > 0) {
+    document.querySelectorAll('.div-section').forEach(s => s.classList.remove('hidden'))
+    document.querySelectorAll('.div-btn').forEach(b => b.classList.remove('active'))
+  }
+}
+
+// Open card if linked via hash (e.g. #035440)
+window.addEventListener('DOMContentLoaded', () => {
+  const hash = location.hash.replace('#','')
+  if (hash) {
+    const card = document.querySelector(`[data-search*="${hash}"]`)
+    if (card) {
+      card.classList.add('open')
+      card.scrollIntoView({ behavior: 'smooth', block: 'center' })
+    }
+  }
+})
+</script>
+</body>
+</html>

@@ -1,0 +1,1517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="M. Amine Berchache">
+<meta name="description" content="Site Technical Architect — Construction Supervision Blueprint. From baseline establishment to final handover, safeguarding compliance, preventing failures, and ensuring drawn reality. By M. Amine Berchache.">
+<title>Site Supervision Process — Architect on Site — M. Amine Berchache</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0d0d0d;
+  --bg2:#111111;
+  --bg3:#161616;
+  --bg4:#1c1c1c;
+  --gold:#c9a84c;
+  --gold2:#e2c068;
+  --gold3:#a8872e;
+  --gold-dim:rgba(201,168,76,0.10);
+  --gold-line:rgba(201,168,76,0.20);
+  --text:#e8e4dc;
+  --text2:#b8b2a8;
+  --text3:#787068;
+  --text4:#484440;
+  --line:rgba(255,255,255,0.06);
+  --line2:rgba(255,255,255,0.10);
+  --red:#c0392b;
+  --red-dim:rgba(192,57,43,0.12);
+  --green:#27ae60;
+  --green-dim:rgba(39,174,96,0.10);
+}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:'Montserrat',sans-serif;
+  font-weight:300;
+  font-size:14px;
+  line-height:1.7;
+  min-height:100vh;
+  overflow-x:hidden;
+}
+
+/* ── NAV ── */
+nav{
+  position:sticky;top:0;z-index:100;
+  background:rgba(13,13,13,0.95);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--gold-line);
+  padding:0 48px;
+  display:flex;align-items:center;justify-content:space-between;
+  height:64px;
+}
+.nav-logo{
+  font-family:'Cormorant Garamond',serif;
+  font-size:17px;font-weight:400;
+  color:var(--gold2);
+  letter-spacing:0.06em;
+  text-decoration:none;
+  display:flex;align-items:center;gap:12px;
+}
+.nav-logo-box{
+  width:36px;height:36px;
+  border:1px solid rgba(201,168,76,0.5);
+  display:flex;align-items:center;justify-content:center;
+  font-size:12px;font-weight:600;letter-spacing:0.1em;
+  color:var(--gold);font-family:'Montserrat',sans-serif;
+}
+.nav-logo-text p:first-child{font-size:11px;font-weight:500;letter-spacing:0.3em;text-transform:uppercase;color:var(--text);line-height:1.2}
+.nav-logo-text p:last-child{font-size:9px;font-weight:400;letter-spacing:0.4em;text-transform:uppercase;color:var(--gold);line-height:1.2}
+.nav-right{display:flex;align-items:center;gap:10px}
+.nav-tag{
+  font-size:9px;text-transform:uppercase;letter-spacing:0.12em;
+  color:var(--gold3);border:1px solid var(--gold-line);
+  padding:5px 12px;background:var(--gold-dim);font-weight:500;
+}
+.nav-back{
+  font-size:9px;text-transform:uppercase;letter-spacing:0.12em;
+  color:var(--text3);text-decoration:none;
+  border:1px solid var(--text4);
+  padding:5px 14px;transition:all .2s;font-weight:500;
+}
+.nav-back:hover{border-color:var(--gold);color:var(--gold)}
+
+/* ── HERO ── */
+.hero{
+  position:relative;
+  padding:80px 48px 60px;
+  border-bottom:1px solid var(--gold-line);
+  overflow:hidden;
+}
+.hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.hero-eyebrow{
+  font-size:10px;text-transform:uppercase;letter-spacing:0.25em;
+  color:var(--gold);margin-bottom:20px;
+  display:flex;align-items:center;gap:14px;font-weight:500;
+}
+.hero-eyebrow::before{content:'';width:40px;height:1px;background:var(--gold)}
+.hero-eyebrow::after{content:'';flex:0 0 40px;height:1px;background:var(--gold)}
+.hero-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(38px,5.5vw,70px);
+  font-weight:300;line-height:1.05;letter-spacing:-0.02em;
+  color:#ffffff;margin-bottom:6px;
+}
+.hero-title em{color:var(--gold2);font-style:italic;font-weight:400;display:block}
+.hero-sub{
+  font-size:13px;font-weight:300;
+  color:var(--text2);letter-spacing:0.02em;
+  margin-bottom:32px;max-width:620px;line-height:1.8;
+}
+.hero-badges{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:36px}
+.hb{font-size:9px;text-transform:uppercase;letter-spacing:0.1em;padding:5px 14px;font-weight:500}
+.hb-gold{background:var(--gold-dim);color:var(--gold2);border:1px solid var(--gold-line)}
+.hb-dim{background:rgba(255,255,255,0.03);color:var(--text3);border:1px solid var(--line2)}
+.hero-stats{display:flex;border:1px solid var(--gold-line);max-width:600px}
+.hstat{flex:1;padding:18px 22px;border-right:1px solid var(--gold-line)}
+.hstat:last-child{border-right:none}
+.hstat-n{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:400;color:var(--gold2);line-height:1;margin-bottom:5px}
+.hstat-l{font-size:9px;text-transform:uppercase;letter-spacing:0.12em;color:var(--text3);font-weight:500}
+.hero-deco{
+  position:absolute;right:48px;top:50%;transform:translateY(-50%);
+  font-family:'Cormorant Garamond',serif;
+  font-size:200px;font-weight:300;
+  color:rgba(201,168,76,0.025);
+  letter-spacing:-0.05em;pointer-events:none;user-select:none;line-height:1;
+}
+
+/* ── ZONE PIPELINE BAR ── */
+.pipeline{
+  display:flex;background:var(--bg2);
+  border-bottom:1px solid var(--line);
+  overflow-x:auto;
+}
+.pz{
+  flex:1;min-width:160px;
+  padding:14px 20px;
+  border-right:1px solid var(--line);
+  cursor:pointer;transition:all .2s;
+  position:relative;
+}
+.pz:last-child{border-right:none}
+.pz:hover,.pz.active{background:var(--gold-dim)}
+.pz.active::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--gold)}
+.pz-num{font-size:9px;text-transform:uppercase;letter-spacing:0.15em;color:var(--gold3);font-weight:500;margin-bottom:4px}
+.pz-label{font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:400;color:var(--text);line-height:1.2}
+.pz-sub{font-size:9px;color:var(--text3);letter-spacing:0.05em;margin-top:3px}
+
+/* ── CONTENT WRAPPER ── */
+.content{padding:40px 48px 80px}
+.section-divider{
+  display:flex;align-items:center;gap:16px;
+  margin:48px 0 28px;
+}
+.section-divider .sd-line{flex:1;height:1px;background:var(--line2)}
+.section-divider .sd-label{
+  font-size:9px;text-transform:uppercase;letter-spacing:0.2em;
+  color:var(--text3);font-weight:500;white-space:nowrap;
+}
+.section-divider .sd-num{
+  font-family:'Cormorant Garamond',serif;
+  font-size:13px;color:var(--gold3);margin-right:4px;
+}
+
+/* ── ZONE PANEL ── */
+.zone-panel{display:none;animation:fadeUp .3s ease}
+.zone-panel.active{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+
+.zone-header{
+  background:var(--bg3);
+  border:1px solid var(--gold-line);
+  border-left:3px solid var(--gold);
+  padding:28px 32px;
+  margin-bottom:32px;
+  position:relative;overflow:hidden;
+}
+.zone-header::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,var(--gold),transparent)}
+.zh-zone{font-size:9px;text-transform:uppercase;letter-spacing:0.2em;color:var(--gold3);font-weight:500;margin-bottom:8px}
+.zh-title{font-family:'Cormorant Garamond',serif;font-size:clamp(26px,3.5vw,40px);font-weight:300;color:#fff;margin-bottom:10px;line-height:1.1}
+.zh-desc{font-size:13px;color:var(--text2);line-height:1.8;max-width:720px}
+.zh-deco{
+  position:absolute;right:32px;top:50%;transform:translateY(-50%);
+  font-family:'Cormorant Garamond',serif;
+  font-size:120px;font-weight:300;
+  color:rgba(201,168,76,0.04);
+  pointer-events:none;user-select:none;line-height:1;
+}
+
+/* ── GATEWAY CARDS ── */
+.gateway-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;margin-bottom:32px}
+.gcard{
+  background:var(--bg3);
+  border:1px solid var(--line);
+  padding:24px;
+  transition:all .2s;
+  position:relative;overflow:hidden;
+}
+.gcard::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:var(--line2);transition:background .2s}
+.gcard:hover{border-color:var(--gold-line)}
+.gcard:hover::before{background:var(--gold)}
+.gc-num{
+  font-family:'Cormorant Garamond',serif;
+  font-size:32px;font-weight:300;color:var(--gold-line);
+  line-height:1;margin-bottom:12px;
+}
+.gc-title{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:400;color:#fff;margin-bottom:8px}
+.gc-sub{font-size:9px;text-transform:uppercase;letter-spacing:0.12em;color:var(--gold3);font-weight:500;margin-bottom:12px}
+.gc-body{font-size:12px;color:var(--text3);line-height:1.7}
+.gc-tag{
+  display:inline-flex;margin-top:14px;
+  font-size:9px;text-transform:uppercase;letter-spacing:0.1em;font-weight:500;
+  padding:4px 10px;background:var(--gold-dim);color:var(--gold2);border:1px solid var(--gold-line);
+}
+.gc-warn{
+  display:inline-flex;margin-top:14px;
+  font-size:9px;text-transform:uppercase;letter-spacing:0.1em;font-weight:500;
+  padding:4px 10px;background:var(--red-dim);color:#e74c3c;border:1px solid rgba(192,57,43,0.3);
+}
+
+/* ── IR CYCLE ── */
+.ir-cycle{
+  background:var(--bg3);border:1px solid var(--gold-line);
+  padding:32px;margin-bottom:32px;
+  position:relative;
+}
+.ir-cycle::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.ir-title{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:400;color:#fff;margin-bottom:6px}
+.ir-sub{font-size:11px;color:var(--gold3);text-transform:uppercase;letter-spacing:0.12em;font-weight:500;margin-bottom:24px}
+.ir-steps{display:flex;gap:0;flex-wrap:wrap}
+.ir-step{
+  flex:1;min-width:160px;
+  padding:20px 18px;
+  border:1px solid var(--line);
+  border-right:none;
+  position:relative;transition:background .2s;
+}
+.ir-step:last-child{border-right:1px solid var(--line)}
+.ir-step:hover{background:rgba(201,168,76,0.04)}
+.ir-step::after{
+  content:'→';
+  position:absolute;right:-12px;top:50%;transform:translateY(-50%);
+  color:var(--gold3);font-size:14px;z-index:1;
+}
+.ir-step:last-child::after{display:none}
+.ir-step-n{font-family:'Cormorant Garamond',serif;font-size:13px;color:var(--gold3);margin-bottom:6px;font-weight:500}
+.ir-step-title{font-size:12px;font-weight:500;color:var(--text);margin-bottom:4px}
+.ir-step-desc{font-size:11px;color:var(--text3);line-height:1.6}
+.ir-note{
+  margin-top:20px;
+  background:rgba(201,168,76,0.06);
+  border-left:2px solid var(--gold);
+  padding:12px 16px;
+  font-size:12px;color:var(--gold2);line-height:1.6;
+}
+
+/* ── DUAL TRACK ── */
+.dual-track{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:32px}
+.track-card{
+  background:var(--bg3);border:1px solid var(--line);padding:28px;position:relative;
+}
+.track-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px}
+.track-card.coord::before{background:linear-gradient(90deg,var(--gold),transparent)}
+.track-card.qa::before{background:linear-gradient(90deg,#27ae60,transparent)}
+.track-label{font-size:9px;text-transform:uppercase;letter-spacing:0.15em;font-weight:500;margin-bottom:10px}
+.track-card.coord .track-label{color:var(--gold3)}
+.track-card.qa .track-label{color:#27ae60}
+.track-title{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:400;color:#fff;margin-bottom:12px}
+.track-item{
+  display:flex;gap:10px;margin-bottom:10px;align-items:flex-start;
+  font-size:12px;color:var(--text2);line-height:1.6;
+}
+.track-item::before{content:'—';color:var(--gold3);flex-shrink:0;margin-top:1px}
+.track-card.qa .track-item::before{color:#27ae60}
+
+/* ── IMAGE GALLERY ── */
+.gallery-section{margin:32px 0}
+.gallery-header{
+  display:flex;align-items:center;gap:16px;margin-bottom:20px;
+}
+.gallery-header .gh-line{flex:1;height:1px;background:var(--line2)}
+.gallery-header .gh-label{font-size:9px;text-transform:uppercase;letter-spacing:0.18em;color:var(--text3);font-weight:500;white-space:nowrap}
+.img-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
+  gap:6px;
+}
+.img-item{
+  position:relative;
+  overflow:hidden;
+  aspect-ratio:4/3;
+  cursor:pointer;
+  background:var(--bg3);
+  border:1px solid var(--line);
+}
+.img-item img{
+  width:100%;height:100%;
+  object-fit:cover;
+  transition:transform .4s ease, filter .4s ease;
+  filter:brightness(0.85) saturate(0.8);
+}
+.img-item:hover img{transform:scale(1.04);filter:brightness(1) saturate(1)}
+.img-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 50%);
+  opacity:0;transition:opacity .3s;
+  display:flex;align-items:flex-end;padding:12px;
+}
+.img-item:hover .img-overlay{opacity:1}
+.img-overlay-tag{font-size:8px;text-transform:uppercase;letter-spacing:0.1em;color:var(--gold);font-weight:600}
+
+/* ── LIGHTBOX ── */
+#lightbox{
+  display:none;position:fixed;inset:0;z-index:9999;
+  background:rgba(5,5,5,0.96);
+  align-items:center;justify-content:center;
+  backdrop-filter:blur(12px);
+}
+#lightbox.open{display:flex}
+#lightbox img{
+  max-width:90vw;max-height:88vh;
+  object-fit:contain;border:1px solid var(--gold-line);
+}
+#lightbox-close{
+  position:absolute;top:20px;right:24px;
+  font-size:9px;text-transform:uppercase;letter-spacing:0.12em;
+  color:var(--text3);border:1px solid var(--text4);
+  background:transparent;padding:6px 14px;cursor:pointer;
+  transition:all .2s;font-weight:500;
+}
+#lightbox-close:hover{border-color:var(--gold);color:var(--gold)}
+#lightbox-nav{
+  position:absolute;bottom:24px;left:50%;transform:translateX(-50%);
+  display:flex;gap:12px;
+}
+.lb-btn{
+  font-size:9px;text-transform:uppercase;letter-spacing:0.1em;font-weight:500;
+  padding:7px 18px;border:1px solid var(--text4);background:transparent;
+  color:var(--text3);cursor:pointer;transition:all .2s;
+}
+.lb-btn:hover{border-color:var(--gold);color:var(--gold)}
+#lightbox-counter{
+  position:absolute;bottom:28px;left:50%;transform:translateX(-50%);
+  font-size:9px;letter-spacing:0.1em;color:var(--text3);
+  display:none;
+}
+
+/* ── HANDOVER FUNNEL ── */
+.handover-funnel{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:32px}
+.hf-step{
+  background:var(--bg3);border:1px solid var(--line);
+  padding:28px 24px;text-align:center;position:relative;
+}
+.hf-step::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--gold-line)}
+.hf-icon{
+  width:52px;height:52px;
+  border:1px solid var(--gold-line);
+  background:var(--gold-dim);
+  margin:0 auto 16px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:20px;
+}
+.hf-num{font-family:'Cormorant Garamond',serif;font-size:13px;color:var(--gold3);margin-bottom:6px;font-weight:500}
+.hf-title{font-family:'Cormorant Garamond',serif;font-size:19px;font-weight:400;color:#fff;margin-bottom:8px}
+.hf-desc{font-size:11px;color:var(--text3);line-height:1.7}
+.hf-note{
+  grid-column:1/-1;
+  background:rgba(201,168,76,0.06);
+  border:1px solid var(--gold-line);border-left:3px solid var(--gold);
+  padding:16px 20px;
+  font-size:12px;color:var(--gold2);line-height:1.7;
+}
+
+/* ── RISK MATRIX ── */
+.risk-table{width:100%;border-collapse:collapse;margin-bottom:32px}
+.risk-table th{
+  font-size:9px;text-transform:uppercase;letter-spacing:0.15em;font-weight:600;
+  color:var(--text3);padding:12px 16px;
+  background:var(--bg3);border:1px solid var(--line);text-align:left;
+}
+.risk-table td{
+  padding:16px 16px;border:1px solid var(--line);
+  font-size:12px;color:var(--text2);line-height:1.6;vertical-align:top;
+}
+.risk-table tr:hover td{background:rgba(255,255,255,0.02)}
+.risk-num{
+  font-family:'Cormorant Garamond',serif;
+  font-size:22px;font-weight:400;color:var(--gold3);
+}
+.fp-label{font-weight:500;color:var(--text);margin-bottom:3px;display:block}
+.consequence{color:var(--text3)}
+.severity-critical{
+  display:inline-flex;
+  font-size:8px;text-transform:uppercase;letter-spacing:0.1em;font-weight:600;
+  padding:3px 8px;background:var(--red-dim);color:#e74c3c;border:1px solid rgba(192,57,43,0.3);
+}
+
+/* ── CAREER SECTION ── */
+.career-section{
+  background:var(--bg2);
+  border-top:1px solid var(--gold-line);
+  border-bottom:1px solid var(--gold-line);
+  padding:56px 0;margin:0 -48px;
+}
+.career-inner{padding:0 48px}
+.career-eyebrow{
+  font-size:9px;text-transform:uppercase;letter-spacing:0.25em;color:var(--gold);
+  margin-bottom:12px;font-weight:500;
+  display:flex;align-items:center;gap:12px;
+}
+.career-eyebrow::before{content:'';width:32px;height:1px;background:var(--gold)}
+.career-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(30px,4vw,50px);font-weight:300;
+  color:#fff;margin-bottom:12px;
+}
+.career-title em{color:var(--gold2);font-style:italic}
+.career-desc{font-size:13px;color:var(--text2);max-width:680px;line-height:1.8;margin-bottom:36px}
+
+/* Career image grid — masonry feel */
+.career-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(240px,1fr));
+  gap:6px;
+}
+.career-item{
+  position:relative;overflow:hidden;cursor:pointer;
+  background:var(--bg3);border:1px solid var(--line);
+}
+.career-item img{
+  width:100%;height:100%;
+  object-fit:cover;display:block;
+  transition:transform .4s ease, filter .4s ease;
+  filter:brightness(0.8) saturate(0.75);
+}
+.career-item:hover img{transform:scale(1.05);filter:brightness(0.95) saturate(1)}
+.career-item:nth-child(3n+1){aspect-ratio:4/3}
+.career-item:nth-child(3n+2){aspect-ratio:3/4}
+.career-item:nth-child(3n){aspect-ratio:4/3}
+.career-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(0,0,0,0.65) 0%,transparent 55%);
+  opacity:0;transition:opacity .3s;
+  display:flex;align-items:flex-end;padding:14px;
+}
+.career-item:hover .career-overlay{opacity:1}
+.career-overlay-label{font-size:8px;text-transform:uppercase;letter-spacing:0.1em;color:var(--gold);font-weight:600}
+
+/* Career placeholder — shown when no images */
+.career-placeholder{
+  border:1px dashed var(--text4);
+  padding:48px;text-align:center;
+  color:var(--text3);
+}
+.career-placeholder p:first-child{font-size:11px;text-transform:uppercase;letter-spacing:0.15em;font-weight:500;color:var(--text4);margin-bottom:8px}
+.career-placeholder p:last-child{font-size:12px}
+
+/* ── KEY PRINCIPLES BAR ── */
+.principles-bar{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  border:1px solid var(--gold-line);margin-bottom:32px;
+}
+.pb-item{
+  padding:24px 20px;border-right:1px solid var(--gold-line);
+  transition:background .2s;
+}
+.pb-item:last-child{border-right:none}
+.pb-item:hover{background:var(--gold-dim)}
+.pb-icon{font-size:18px;margin-bottom:10px}
+.pb-title{font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:400;color:#fff;margin-bottom:4px}
+.pb-desc{font-size:11px;color:var(--text3);line-height:1.6}
+
+/* ── FOOTER ── */
+footer{
+  background:var(--bg);
+  border-top:1px solid var(--gold-line);
+  padding:32px 48px;
+  display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:16px;
+}
+.footer-left{font-size:11px;color:var(--text3)}
+.footer-left span{color:var(--gold2);font-family:'Cormorant Garamond',serif;font-size:13px}
+.footer-right{display:flex;gap:12px}
+.footer-link{
+  font-size:9px;text-transform:uppercase;letter-spacing:0.1em;
+  color:var(--text3);text-decoration:none;border:1px solid var(--text4);
+  padding:5px 14px;transition:all .2s;font-weight:500;
+}
+.footer-link:hover{border-color:var(--gold);color:var(--gold)}
+
+/* ── RESPONSIVE ── */
+@media(max-width:768px){
+  nav{padding:0 20px}
+  .hero,.content{padding-left:20px;padding-right:20px}
+  .career-section{margin:0 -20px}
+  .career-inner{padding:0 20px}
+  footer{padding:24px 20px}
+  .gateway-grid{grid-template-columns:1fr}
+  .dual-track{grid-template-columns:1fr}
+  .handover-funnel{grid-template-columns:1fr}
+  .principles-bar{grid-template-columns:1fr 1fr}
+  .ir-steps{flex-direction:column}
+  .ir-step::after{display:none}
+  .pipeline{flex-wrap:nowrap;overflow-x:auto}
+  .pz{min-width:140px}
+  .career-grid{grid-template-columns:1fr 1fr}
+  .career-item:nth-child(n){aspect-ratio:4/3}
+}
+@media(max-width:480px){
+  .img-grid{grid-template-columns:1fr 1fr}
+  .career-grid{grid-template-columns:1fr}
+  .principles-bar{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="/">
+    <div class="nav-logo-box">AB</div>
+    <div class="nav-logo-text">
+      <p>Berchache</p>
+      <p>Senior Architect</p>
+    </div>
+  </a>
+  <div class="nav-right">
+    <span class="nav-tag">Site Supervision</span>
+    <a class="nav-back" href="/">← Portfolio</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-eyebrow">Architect on Site</div>
+  <h1 class="hero-title">
+    Site Supervision
+    <em>Process</em>
+  </h1>
+  <p class="hero-sub">
+    The Architect's role does not end at design delivery. From baseline establishment to final handover, the Site Technical Architect safeguards compliance, prevents technical failures, coordinates disciplines, and ensures that approved drawings are transformed into built reality with accuracy, accountability, and controlled execution.
+  </p>
+  <div class="hero-badges">
+    <span class="hb hb-gold">UAE / GCC Standards</span>
+    <span class="hb hb-gold">Dubai Municipality</span>
+    <span class="hb hb-gold">ISO 9001 QA/QC</span>
+    <span class="hb hb-dim">IFC Compliance</span>
+    <span class="hb hb-dim">IR / NCR Workflow</span>
+    <span class="hb hb-dim">Active Disaster Prevention</span>
+  </div>
+  <div class="hero-stats">
+    <div class="hstat">
+      <div class="hstat-n">4</div>
+      <div class="hstat-l">Supervision Zones</div>
+    </div>
+    <div class="hstat">
+      <div class="hstat-n">11</div>
+      <div class="hstat-l">Gateway Checkpoints</div>
+    </div>
+    <div class="hstat">
+      <div class="hstat-n">0</div>
+      <div class="hstat-l">Tolerance for NCR</div>
+    </div>
+    <div class="hstat">
+      <div class="hstat-n">∞</div>
+      <div class="hstat-l">Verification Cycles</div>
+    </div>
+  </div>
+  <div class="hero-deco">SITE</div>
+</section>
+
+<!-- KEY PRINCIPLES -->
+<div class="content" style="padding-bottom:0;padding-top:40px">
+  <div class="principles-bar">
+    <div class="pb-item">
+      <div class="pb-icon">⬡</div>
+      <div class="pb-title">Sequence is Law</div>
+      <div class="pb-desc">No work advances before each gateway is formally cleared. Sequence deviation is a critical non-conformance.</div>
+    </div>
+    <div class="pb-item">
+      <div class="pb-icon">◈</div>
+      <div class="pb-title">Documentation is Defence</div>
+      <div class="pb-desc">Every IR, NCR, material approval, and SI forms the legal and technical shield of the project.</div>
+    </div>
+    <div class="pb-item">
+      <div class="pb-icon">△</div>
+      <div class="pb-title">Active Failure Prevention</div>
+      <div class="pb-desc">Supervision is not passive observation. It is the systematic elimination of catastrophic failure points before they manifest.</div>
+    </div>
+    <div class="pb-item">
+      <div class="pb-icon">◉</div>
+      <div class="pb-title">Baseline is Non-Negotiable</div>
+      <div class="pb-desc">Any execution deviating from the approved baseline without formal authority authorization is a critical NCR.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════
+     11-STEP PROCESS — STEPS 01 TO 06
+══════════════════════════════════════════════════════ -->
+<style>
+/* ── PROCESS SECTION ── */
+.process-section{padding:72px 48px;background:var(--bg)}
+.process-header{text-align:center;margin-bottom:64px}
+.process-eyebrow{font-size:10px;text-transform:uppercase;letter-spacing:.35em;color:var(--gold);font-weight:500;margin-bottom:14px;display:flex;align-items:center;justify-content:center;gap:16px}
+.process-eyebrow::before,.process-eyebrow::after{content:'';width:48px;height:1px;background:rgba(201,168,76,.35)}
+.process-headline{font-family:'Cormorant Garamond',serif;font-size:clamp(28px,4vw,52px);font-weight:300;color:#fff;line-height:1.1;margin-bottom:12px}
+.process-headline em{color:var(--gold2);font-style:italic}
+.process-sub{font-size:12px;color:var(--text3);max-width:560px;margin:0 auto;line-height:1.8}
+
+/* STEP CARD */
+.step-card{display:flex;margin-bottom:2px;min-height:500px;position:relative;overflow:hidden}
+.step-card.reverse .step-img{order:2}
+.step-card.reverse .step-content{order:1}
+
+/* IMAGE SIDE */
+.step-img{position:relative;overflow:hidden;background:var(--bg4);flex:0 0 50%;width:50%}
+.step-img img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block;filter:brightness(.80);transition:filter .5s,transform .6s}
+.step-card:hover .step-img img{filter:brightness(.9);transform:scale(1.03)}
+.step-img-overlay{
+  position:absolute;inset:0;
+  background:
+    linear-gradient(135deg,rgba(13,13,13,.6) 0%,transparent 45%),
+    linear-gradient(to top,rgba(13,13,13,.92) 0%,rgba(13,13,13,.5) 20%,transparent 45%),
+    linear-gradient(to left,rgba(13,13,13,.88) 0%,rgba(13,13,13,.4) 20%,transparent 45%);
+}
+.ref-badge{position:absolute;top:20px;right:20px;background:rgba(13,13,13,.88);border:1px solid rgba(201,168,76,.5);backdrop-filter:blur(8px);padding:8px 14px;display:flex;flex-direction:column;align-items:center;z-index:2}
+.ref-badge-label{font-size:7px;text-transform:uppercase;letter-spacing:.2em;color:var(--gold3);font-weight:600;line-height:1}
+.ref-badge-num{font-family:'Cormorant Garamond',serif;font-size:26px;color:var(--gold2);line-height:1.1;font-weight:400}
+.step-num-bg{position:absolute;bottom:-10px;left:20px;font-family:'Cormorant Garamond',serif;font-size:140px;font-weight:300;color:rgba(201,168,76,.06);line-height:1;pointer-events:none;user-select:none;z-index:1}
+
+/* CONTENT SIDE */
+.step-content{background:var(--bg3);padding:52px 48px;display:flex;flex-direction:column;justify-content:center;flex:0 0 50%;width:50%;position:relative;border-left:1px solid var(--line2)}
+.step-zone-tag{font-size:9px;text-transform:uppercase;letter-spacing:.2em;color:var(--gold3);font-weight:600;background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.18);display:inline-flex;align-items:center;gap:6px;padding:4px 12px;margin-bottom:20px;width:fit-content}
+.step-number{font-family:'Cormorant Garamond',serif;font-size:72px;font-weight:300;color:rgba(201,168,76,.15);line-height:.85;margin-bottom:4px;letter-spacing:-.02em}
+.step-title{font-family:'Cormorant Garamond',serif;font-size:clamp(22px,2.5vw,34px);font-weight:400;color:#fff;line-height:1.15;margin-bottom:6px}
+.step-tagline{font-size:9px;text-transform:uppercase;letter-spacing:.2em;color:var(--gold3);font-weight:600;margin-bottom:20px;padding-bottom:20px;border-bottom:1px solid var(--line)}
+.step-desc{font-size:12px;color:var(--text2);line-height:1.85;margin-bottom:24px}
+
+/* KEY ACTIONS */
+.step-actions{margin-bottom:24px}
+.step-actions-label{font-size:9px;text-transform:uppercase;letter-spacing:.15em;color:var(--text4);font-weight:600;margin-bottom:10px}
+.step-action-list{list-style:none}
+.step-action-list li{font-size:11px;color:var(--text2);padding:5px 0 5px 18px;position:relative;line-height:1.55;border-bottom:1px solid rgba(255,255,255,.03)}
+.step-action-list li::before{content:'→';position:absolute;left:0;color:var(--gold3);font-size:10px}
+
+/* ON-SCREEN TAGS */
+.onscreen-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto;padding-top:20px;border-top:1px solid var(--line)}
+.ost-label{font-size:8px;text-transform:uppercase;letter-spacing:.12em;color:var(--text4);font-weight:600;width:100%;margin-bottom:4px}
+.ost{font-size:8px;text-transform:uppercase;letter-spacing:.1em;font-weight:600;padding:4px 10px;background:rgba(201,168,76,.06);color:var(--gold3);border:1px solid rgba(201,168,76,.18)}
+
+/* CONNECTOR LINE BETWEEN STEPS */
+.step-connector{height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:.15;margin:0 48px}
+
+/* GATEWAY CLEARED BADGE */
+.gateway-badge{position:absolute;bottom:20px;right:20px;background:rgba(39,174,96,.1);border:1px solid rgba(39,174,96,.3);padding:5px 12px;font-size:8px;text-transform:uppercase;letter-spacing:.15em;color:#66bb6a;font-weight:600}
+
+@media(max-width:768px){
+  .process-section{padding:48px 20px}
+  .step-card{flex-direction:column}
+  .step-card.reverse .step-img{order:0}
+  .step-card.reverse .step-content{order:0}
+  .step-img{flex:none;width:100%;height:280px}
+  .step-content{flex:none;width:100%;padding:32px 24px}
+  .step-number{font-size:48px}
+  .step-connector{margin:0 20px}
+}
+</style>
+
+<section class="process-section">
+  <div class="process-header">
+    <div class="process-eyebrow">Site Supervision Blueprint</div>
+    <h2 class="process-headline">The 11-Step Process<em>Zone 01 — 07</em></h2>
+    <p class="process-sub">A rigid sequence of gateways. Advancing to the next step before clearing the current one guarantees site failure. Every step is a technical authority decision — not an administrative formality.</p>
+  </div>
+
+  <!-- ── STEP 01 ── -->
+  <div class="step-card">
+    <div class="step-img">
+      <img src="/site-supervision-images/01.png" alt="Step 01 — Contract Documents & Specifications" loading="lazy" style="object-position:center center">
+      <div class="step-img-overlay"></div>
+      <div class="ref-badge"><span class="ref-badge-label">REF</span><span class="ref-badge-num">01</span></div>
+      <div class="step-num-bg">01</div>
+    </div>
+    <div class="step-content">
+      <span class="step-zone-tag">◈ Zone 01 — The Baseline</span>
+      <div class="step-number">01</div>
+      <h3 class="step-title">Contract Documents & Specifications</h3>
+      <div class="step-tagline">The Legal & Technical Foundation</div>
+      <p class="step-desc">The signed contract and project specifications define every quality standard, material grade, workmanship requirement, and performance benchmark for the project. The Site Technical Architect must have command of every clause before a single trade mobilizes. This document is the non-negotiable ground truth.</p>
+      <div class="step-actions">
+        <div class="step-actions-label">Key Actions</div>
+        <ul class="step-action-list">
+          <li>Review and extract all specification clauses relevant to each trade</li>
+          <li>Cross-reference authority-approved drawings with contract drawings</li>
+          <li>Identify performance benchmarks: strengths, tolerances, test requirements</li>
+          <li>Map BOQ quantities against material specs before procurement begins</li>
+        </ul>
+      </div>
+      <div class="onscreen-tags">
+        <span class="ost-label">On-Site Reference</span>
+        <span class="ost">Contract Documents</span>
+        <span class="ost">Project Specs</span>
+        <span class="ost">Authority Drawings</span>
+        <span class="ost">BOQ</span>
+      </div>
+      <span class="gateway-badge">✓ Baseline Established</span>
+    </div>
+  </div>
+
+  <div class="step-connector"></div>
+
+  <!-- ── STEP 02 ── -->
+  <div class="step-card reverse">
+    <div class="step-img">
+      <img src="/site-supervision-images/02.png" alt="Step 02 — Material Submittals" loading="lazy" style="object-position:center center">
+      <div class="step-img-overlay"></div>
+      <div class="ref-badge"><span class="ref-badge-label">REF</span><span class="ref-badge-num">02</span></div>
+      <div class="step-num-bg">02</div>
+    </div>
+    <div class="step-content">
+      <span class="step-zone-tag">◈ Zone 02 — Pre-Execution Gateway</span>
+      <div class="step-number">02</div>
+      <h3 class="step-title">Material Submittals</h3>
+      <div class="step-tagline">Verify the Substance Before Approving the Form</div>
+      <p class="step-desc">Material submittals are the first technical filter — verifying that what the contractor proposes to install matches the specification in substance, not just in name. Every submittal is reviewed against IFC drawings, technical datasheets, and physical samples. The output is binary: Approved, Approved with Comments, or Rejected. No intermediate status exists on a well-run site.</p>
+      <div class="step-actions">
+        <div class="step-actions-label">Key Actions</div>
+        <ul class="step-action-list">
+          <li>Verify IFC alignment — does the proposed material match the approved spec?</li>
+          <li>Review technical datasheets against performance requirements</li>
+          <li>Inspect physical samples under site-representative lighting conditions</li>
+          <li>Issue formal Approved / Approved with Comments / Rejected status</li>
+        </ul>
+      </div>
+      <div class="onscreen-tags">
+        <span class="ost-label">On-Site Reference</span>
+        <span class="ost">IFC Alignment</span>
+        <span class="ost">Technical Datasheets</span>
+        <span class="ost">Physical Samples</span>
+        <span class="ost">Approve / Comment / Reject</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="step-connector"></div>
+
+  <!-- ── STEP 03 ── -->
+  <div class="step-card">
+    <div class="step-img">
+      <img src="/site-supervision-images/03.png" alt="Step 03 — Shop Drawings" loading="lazy" style="object-position:center center">
+      <div class="step-img-overlay"></div>
+      <div class="ref-badge"><span class="ref-badge-label">REF</span><span class="ref-badge-num">03</span></div>
+      <div class="step-num-bg">03</div>
+    </div>
+    <div class="step-content">
+      <span class="step-zone-tag">◈ Zone 02 — Pre-Execution Gateway</span>
+      <div class="step-number">03</div>
+      <h3 class="step-title">Shop Drawings</h3>
+      <div class="step-tagline">Where It Goes — Coordination & Alignment</div>
+      <p class="step-desc">Shop drawings translate the design intent into fabrication and installation reality. They show exact dimensions, fixing details, coordination with adjacent trades, and buildability logic. The architect's review focuses on IFC alignment and multidisciplinary coordination — not re-engineering the contractor's method, but confirming that what is drawn can be built without clashing or deviating from the approved design.</p>
+      <div class="step-actions">
+        <div class="step-actions-label">Key Actions</div>
+        <ul class="step-action-list">
+          <li>Verify drawings against IFC set — dimensions, levels, and clearances must match</li>
+          <li>Check coordination with structural, MEP, and facade drawings</li>
+          <li>Identify clash points before they become site RFIs</li>
+          <li>Confirm buildability — sequence must be physically achievable</li>
+        </ul>
+      </div>
+      <div class="onscreen-tags">
+        <span class="ost-label">On-Site Reference</span>
+        <span class="ost">Shop Drawings</span>
+        <span class="ost">IFC Alignment</span>
+        <span class="ost">Coordination</span>
+        <span class="ost">Buildability</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="step-connector"></div>
+
+  <!-- ── STEP 04 ── -->
+  <div class="step-card reverse">
+    <div class="step-img">
+      <img src="/site-supervision-images/04.png" alt="Step 04 — Method Statement" loading="lazy" style="object-position:center center">
+      <div class="step-img-overlay"></div>
+      <div class="ref-badge"><span class="ref-badge-label">REF</span><span class="ref-badge-num">04</span></div>
+      <div class="step-num-bg">04</div>
+    </div>
+    <div class="step-content">
+      <span class="step-zone-tag">◈ Zone 02 — Pre-Execution Gateway</span>
+      <div class="step-number">04</div>
+      <h3 class="step-title">Method Statement</h3>
+      <div class="step-tagline">How It Will Be Done — Safe, Sequenced, Controlled</div>
+      <p class="step-desc">The Method Statement defines the complete execution strategy before a single worker mobilizes. It must specify the step-by-step construction sequence, protective safety measures, required equipment and manpower, and integration with the Inspection and Test Plan (ITP). If the method is wrong, the output will be wrong — regardless of material quality. The architect reviews for compliance with specifications, safety, and sequence logic.</p>
+      <div class="step-actions">
+        <div class="step-actions-label">Key Actions</div>
+        <ul class="step-action-list">
+          <li>Verify construction sequence complies strictly with specifications</li>
+          <li>Review safety plan: protective measures and risk mitigation confirmed</li>
+          <li>Confirm equipment and manpower allocations are adequate for scope</li>
+          <li>Map ITP inspection checkpoints against method statement milestones</li>
+        </ul>
+      </div>
+      <div class="onscreen-tags">
+        <span class="ost-label">On-Site Reference</span>
+        <span class="ost">Sequence of Work</span>
+        <span class="ost">Safety & Protection</span>
+        <span class="ost">Equipment & Manpower</span>
+        <span class="ost">ITP / Inspection Points</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="step-connector"></div>
+
+  <!-- ── STEP 05 ── -->
+  <div class="step-card">
+    <div class="step-img">
+      <img src="/site-supervision-images/05.png" alt="Step 05 — Mockup / Sample Approval" loading="lazy" style="object-position:center center">
+      <div class="step-img-overlay"></div>
+      <div class="ref-badge"><span class="ref-badge-label">REF</span><span class="ref-badge-num">05</span></div>
+      <div class="step-num-bg">05</div>
+    </div>
+    <div class="step-content">
+      <span class="step-zone-tag">◈ Zone 02 — Pre-Execution Gateway</span>
+      <div class="step-number">05</div>
+      <h3 class="step-title">Mockup / Sample Approval</h3>
+      <div class="step-tagline">Test Once Before Repeating 1,000 Times</div>
+      <p class="step-desc">The physical mockup is the last filter before mass execution. It translates approved materials and methods into a real, inspectable result at full scale. This is the point where misalignments, finish discrepancies, unseen coordination issues, and workmanship shortfalls are exposed — before they multiply across the entire project. Rejecting a mockup costs days. Rejecting mass-installed work costs months and millions.</p>
+      <div class="step-actions">
+        <div class="step-actions-label">Key Actions</div>
+        <ul class="step-action-list">
+          <li>Inspect alignment: levels, joint widths, and setting-out accuracy</li>
+          <li>Verify finish quality: no defects, scratches, or contamination</li>
+          <li>Assess colour and texture against approved sample under natural and artificial light</li>
+          <li>Evaluate overall workmanship standard — this becomes the benchmark for all future work</li>
+        </ul>
+      </div>
+      <div class="onscreen-tags">
+        <span class="ost-label">On-Site Reference</span>
+        <span class="ost">Alignment</span>
+        <span class="ost">Finish Quality</span>
+        <span class="ost">Color & Texture</span>
+        <span class="ost">Workmanship Standard</span>
+      </div>
+      <div style="margin-top:16px;background:rgba(192,57,43,.08);border-left:2px solid #c0392b;padding:10px 14px;font-size:10px;color:#e57373;line-height:1.6">
+        WARNING: The actual look of the mockup is the only valid acceptance benchmark. Approved samples and drawings are inputs — the mockup is the final authority.
+      </div>
+    </div>
+  </div>
+
+  <div class="step-connector"></div>
+
+  <!-- ── STEP 06 ── -->
+  <div class="step-card reverse">
+    <div class="step-img">
+      <img src="/site-supervision-images/06.png" alt="Step 06 — Site Execution & Handover" loading="lazy" style="object-position:center center">
+      <div class="step-img-overlay"></div>
+      <div class="ref-badge"><span class="ref-badge-label">REF</span><span class="ref-badge-num">06</span></div>
+      <div class="step-num-bg">06</div>
+    </div>
+    <div class="step-content">
+      <span class="step-zone-tag">◈ Zone 03 — On-Site Reality</span>
+      <div class="step-number">06</div>
+      <h3 class="step-title">Site Execution</h3>
+      <div class="step-tagline">Execution Starts Only After All Gates Are Cleared</div>
+      <p class="step-desc">Site execution begins only after Steps 01–05 are formally closed. Workers execute against three fixed references simultaneously: the approved drawings, the approved method statement, and the approved mockup. Any deviation from these three references triggers an immediate IR hold and formal NCR. The Site Technical Architect maintains continuous presence at critical inspection points — execution is never a trusted, unsupervised process.</p>
+      <div class="step-actions">
+        <div class="step-actions-label">Key Actions</div>
+        <ul class="step-action-list">
+          <li>Confirm all gateway approvals (Steps 01–05) are formally closed before mobilization</li>
+          <li>Ensure approved drawings, method, and mockup are physically available on site</li>
+          <li>Activate IR cycle — no work proceeds beyond a hold point without inspection</li>
+          <li>Coordinate with QA/QC team for concurrent documentation</li>
+        </ul>
+      </div>
+      <div class="onscreen-tags">
+        <span class="ost-label">On-Site Reference</span>
+        <span class="ost">Approved Drawings</span>
+        <span class="ost">Approved Method</span>
+        <span class="ost">Approved Mockup</span>
+        <span class="ost">Controlled Execution</span>
+      </div>
+      <span class="gateway-badge">✓ Execution Authorised</span>
+    </div>
+  </div>
+
+  <div class="step-connector"></div>
+
+  <!-- ── STEP 07 ── -->
+  <div class="step-card">
+    <div class="step-img">
+      <img src="/site-supervision-images/07.png" alt="Step 07 — Project Handover" loading="lazy" style="object-position:center center">
+      <div class="step-img-overlay"></div>
+      <div class="ref-badge"><span class="ref-badge-label">REF</span><span class="ref-badge-num">07</span></div>
+      <div class="step-num-bg">07</div>
+    </div>
+    <div class="step-content">
+      <span class="step-zone-tag">◈ Zone 04 — The Handover Sequence</span>
+      <div class="step-number">07</div>
+      <h3 class="step-title">Project Handover & Closeout</h3>
+      <div class="step-tagline">Transfer Verified Quality — Close the Project with Evidence</div>
+      <p class="step-desc">Handover is not an event — it is the culmination of every inspection record, material approval, test report, and as-built update accumulated across the project lifecycle. The Site Technical Architect is responsible for compiling a complete, legally defensible handover package and ensuring client sign-off is based on verified physical and documentary evidence. Nothing is closed without formal confirmation.</p>
+      <div class="step-actions">
+        <div class="step-actions-label">Key Actions</div>
+        <ul class="step-action-list">
+          <li>Compile as-built drawings, O&amp;M manuals, warranties, and certifications into a complete handover package</li>
+          <li>Close all outstanding snagging items, NCRs, and inspection records before sign-off</li>
+          <li>Conduct final client walkthrough — every system demonstrated and accepted</li>
+          <li>Obtain formal handover certificate with client and authority sign-off</li>
+        </ul>
+      </div>
+      <div class="onscreen-tags">
+        <span class="ost-label">On-Site Reference</span>
+        <span class="ost">As-Built Drawings</span>
+        <span class="ost">O&amp;M Manuals</span>
+        <span class="ost">Test Reports</span>
+        <span class="ost">Handover Certificate</span>
+      </div>
+      <span class="gateway-badge">✓ Project Closed</span>
+    </div>
+  </div>
+
+</section>
+
+<!-- ZONE PIPELINE -->
+<div class="pipeline" id="pipeline">
+  <div class="pz active" data-zone="zone1" onclick="switchZone('zone1',this)">
+    <div class="pz-num">Zone 01</div>
+    <div class="pz-label">The Baseline</div>
+    <div class="pz-sub">Contracts · Authority · Specs · BOQ</div>
+  </div>
+  <div class="pz" data-zone="zone2" onclick="switchZone('zone2',this)">
+    <div class="pz-num">Zone 02</div>
+    <div class="pz-label">Pre-Execution Gateways</div>
+    <div class="pz-sub">Submittals · Shop Drawings · Mockups</div>
+  </div>
+  <div class="pz" data-zone="zone3" onclick="switchZone('zone3',this)">
+    <div class="pz-num">Zone 03</div>
+    <div class="pz-label">On-Site Reality</div>
+    <div class="pz-sub">IR Cycle · Coordination · QA/QC</div>
+  </div>
+  <div class="pz" data-zone="zone4" onclick="switchZone('zone4',this)">
+    <div class="pz-num">Zone 04</div>
+    <div class="pz-label">Handover Sequence</div>
+    <div class="pz-sub">Snagging · T&C · As-Built</div>
+  </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="content">
+
+  <!-- ══ ZONE 1 ══ -->
+  <div class="zone-panel active" id="zone1">
+
+    <div class="zone-header">
+      <div class="zh-zone">Zone 01 — Foundation</div>
+      <div class="zh-title">The Baseline</div>
+      <p class="zh-desc">
+        The Baseline establishes the non-negotiable ground truth for every subsequent site decision.
+        It defines the geometric constraints from approved drawings, the qualitative demands from Project
+        Specifications, and the financial and legal boundaries from the BOQ and Contract Conditions.
+        Any execution deviating from this baseline without formal authority authorization is a critical
+        non-conformance — full stop.
+      </p>
+      <div class="zh-deco">01</div>
+    </div>
+
+    <div class="gateway-grid">
+      <div class="gcard">
+        <div class="gc-num">01</div>
+        <div class="gc-title">Contract Documents & Specifications</div>
+        <div class="gc-sub">The Legal & Technical Foundation</div>
+        <div class="gc-body">
+          The signed contract and project specifications define all quality standards, materials, workmanship
+          requirements, and performance benchmarks. The Site Technical Architect must have command of every clause
+          relevant to construction execution before a single trade mobilizes.
+        </div>
+        <span class="gc-tag">Primary Reference</span>
+      </div>
+      <div class="gcard">
+        <div class="gc-num">02</div>
+        <div class="gc-title">Authority Approvals</div>
+        <div class="gc-sub">Dubai Municipality · Civil Defense · DEWA</div>
+        <div class="gc-body">
+          Approved authority drawings define the geometric constraints: setbacks, heights, floor areas, fire
+          egress widths, MEP routes, and structural envelope. Any deviation requires formal NOC/amendment
+          submission before implementation. Authority approval is the ceiling, not the starting point.
+        </div>
+        <span class="gc-tag">Non-Negotiable Boundary</span>
+      </div>
+      <div class="gcard">
+        <div class="gc-num">03</div>
+        <div class="gc-title">BOQ & Contract Conditions</div>
+        <div class="gc-sub">Financial & Legal Boundaries</div>
+        <div class="gc-body">
+          The Bill of Quantities defines scope, material grades, and quantities. Understanding the BOQ protects
+          against contractor substitution of lower-spec materials and ensures variations are properly instructed
+          and documented via formal Variation Orders before execution.
+        </div>
+        <span class="gc-tag">Financial Control</span>
+      </div>
+    </div>
+
+    <!-- Site Images Zone 1 -->
+    <div class="gallery-section">
+      <div class="gallery-header">
+        <div class="gh-line"></div>
+        <span class="gh-label">Site Supervision — Documentation & Baseline</span>
+        <div class="gh-line"></div>
+      </div>
+      <div class="img-grid" id="gallery-z1">
+        <!-- Images injected by JS -->
+      </div>
+    </div>
+
+  </div><!-- /zone1 -->
+
+  <!-- ══ ZONE 2 ══ -->
+  <div class="zone-panel" id="zone2">
+
+    <div class="zone-header">
+      <div class="zh-zone">Zone 02 — Pre-Execution</div>
+      <div class="zh-title">Pre-Execution Gateways</div>
+      <p class="zh-desc">
+        Pre-execution gateways separate substance from form. Each gateway is a mandatory checkpoint —
+        no physical work commences on site until all relevant gateways are closed with formal approval.
+        A single unapproved submittal or unchecked shop drawing released to site represents an open
+        liability that cascades through every subsequent trade.
+      </p>
+      <div class="zh-deco">02</div>
+    </div>
+
+    <div class="gateway-grid">
+      <div class="gcard">
+        <div class="gc-num">02</div>
+        <div class="gc-title">Material Submittals</div>
+        <div class="gc-sub">Substance Review · IFC Alignment</div>
+        <div class="gc-body">
+          Every material requires a formal submittal: technical datasheets, manufacturer certification, and
+          physical samples. Review checks IFC alignment, specification compliance, and authority approval
+          where required. Status: Approved / Approved with Comments / Rejected. No unapproved material
+          enters site.
+        </div>
+        <span class="gc-tag">Gateway 02</span>
+      </div>
+      <div class="gcard">
+        <div class="gc-num">03</div>
+        <div class="gc-title">Shop Drawings</div>
+        <div class="gc-sub">Form Review · Buildability · Coordination</div>
+        <div class="gc-body">
+          Shop drawings translate IFC intent into fabrication and installation geometry. Review confirms
+          buildability, dimensional compliance, MEP coordination clearances, and constructability with
+          adjacent trades. Autodesk Revit and Navisworks federated models are the coordination reference.
+          Approved shop drawings are the only construction reference on site.
+        </div>
+        <span class="gc-tag">Gateway 03</span>
+      </div>
+      <div class="gcard">
+        <div class="gc-num">04</div>
+        <div class="gc-title">Method Statement</div>
+        <div class="gc-sub">Execution Strategy · ITP Integration</div>
+        <div class="gc-body">
+          The Method Statement defines the execution sequence: step-by-step procedure, equipment and
+          manpower requirements, safety checkpoints and risk mitigation, and Inspection & Test Plan (ITP)
+          integration. Does the sequence comply strictly with specifications? If not — rejected before
+          mobilization.
+        </div>
+        <span class="gc-tag">Gateway 04</span>
+      </div>
+      <div class="gcard">
+        <div class="gc-num">05</div>
+        <div class="gc-title">Mockups & Physical Samples</div>
+        <div class="gc-sub">The Real-Scale Filter</div>
+        <div class="gc-body">
+          Physical mockups at real scale absorb risk before mass execution. A signed-off room or panel
+          mockup locks in finish quality, tolerance acceptance, alignment, and the actual appearance under
+          site lighting. Skipping the mockup converts unknown quality risk into mass defect exposure at
+          handover.
+        </div>
+        <span class="gc-warn">Skip = Mass Defect Risk</span>
+      </div>
+    </div>
+
+    <!-- Documen flow note -->
+    <div class="ir-note" style="margin-bottom:24px">
+      <strong>Critical Rule:</strong> The gateway sequence is rigid. Material submittals must be approved before
+      shop drawings are finalized. Shop drawings must be approved before method statements are accepted.
+      Method statements must be accepted before mockups are commissioned. Moving to the next gateway
+      before clearing the current one <em>guarantees site failure.</em>
+    </div>
+
+    <div class="gallery-section">
+      <div class="gallery-header">
+        <div class="gh-line"></div>
+        <span class="gh-label">Site Supervision — Pre-Execution Approvals</span>
+        <div class="gh-line"></div>
+      </div>
+      <div class="img-grid" id="gallery-z2">
+      </div>
+    </div>
+
+  </div><!-- /zone2 -->
+
+  <!-- ══ ZONE 3 ══ -->
+  <div class="zone-panel" id="zone3">
+
+    <div class="zone-header">
+      <div class="zh-zone">Zone 03 — Active Site</div>
+      <div class="zh-title">On-Site Reality</div>
+      <p class="zh-desc">
+        Site execution is not a forward march. It is a continuously verified cycle of work, inspection,
+        and documented approval. The IR (Inspection Request) is the engine. Coordination and QA/QC
+        run as continuous parallel tracks beneath every physical activity — solving clashes in real time
+        and building the legal record simultaneously.
+      </p>
+      <div class="zh-deco">03</div>
+    </div>
+
+    <!-- IR CYCLE -->
+    <div class="ir-cycle">
+      <div class="ir-title">Inspection Request (IR) — The Closed-Loop Engine</div>
+      <div class="ir-sub">Step 06 — Site Execution Verification Cycle</div>
+      <div class="ir-steps">
+        <div class="ir-step">
+          <div class="ir-step-n">01</div>
+          <div class="ir-step-title">Contractor Executes</div>
+          <div class="ir-step-desc">Physical work is carried out per the approved method statement and shop drawings</div>
+        </div>
+        <div class="ir-step">
+          <div class="ir-step-n">02</div>
+          <div class="ir-step-title">Raise IR</div>
+          <div class="ir-step-desc">Contractor formally submits an Inspection Request before the next layer of work begins</div>
+        </div>
+        <div class="ir-step">
+          <div class="ir-step-n">03</div>
+          <div class="ir-step-title">Site Inspection</div>
+          <div class="ir-step-desc">Supervisor verifies dimensional compliance, quality, and approved material usage on site</div>
+        </div>
+        <div class="ir-step">
+          <div class="ir-step-n">04A</div>
+          <div class="ir-step-title">Approved → Advance</div>
+          <div class="ir-step-desc">Work passes. The loop closes and execution advances to the next sequence</div>
+        </div>
+        <div class="ir-step">
+          <div class="ir-step-n">04B</div>
+          <div class="ir-step-title">NCR → Rework</div>
+          <div class="ir-step-desc">Non-Conformance Report issued. Work loops back to rework before a fresh IR is raised</div>
+        </div>
+      </div>
+      <div class="ir-note">
+        <strong>Absolute Rule:</strong> Execution cannot proceed without a closed IR. Work buried beneath subsequent
+        layers without an approved IR is an undocumented defect — invisible at handover but fully attributable.
+      </div>
+    </div>
+
+    <!-- DUAL TRACK -->
+    <div class="dual-track">
+      <div class="track-card coord">
+        <div class="track-label">Track 01 — Active Problem Solving</div>
+        <div class="track-title">Coordination</div>
+        <div class="track-item">Resolving daily site clashes between architectural, structural, and MEP works</div>
+        <div class="track-item">Issuing Site Instructions (SI) for approved minor changes and clarifications</div>
+        <div class="track-item">Responding to RFIs (Requests for Information) from contractors within contractual timeframes</div>
+        <div class="track-item">Managing cross-discipline clashes using federated BIM coordination model</div>
+        <div class="track-item">Escalating design conflicts to the design team with full site documentation</div>
+      </div>
+      <div class="track-card qa">
+        <div class="track-label">Track 02 — The Legal & Technical Ledger</div>
+        <div class="track-title">QA / QC Documentation</div>
+        <div class="track-item">Maintaining complete inspection records — every IR result, approved or rejected</div>
+        <div class="track-item">Tracking all NCRs from issuance through close-out with photographic evidence</div>
+        <div class="track-item">Recording material approvals with delivery docket cross-referencing</div>
+        <div class="track-item">Updating as-built markups continuously — not as a handover exercise</div>
+        <div class="track-item">Test reports, commissioning results, and third-party inspection certificates</div>
+      </div>
+    </div>
+
+    <div class="gallery-section">
+      <div class="gallery-header">
+        <div class="gh-line"></div>
+        <span class="gh-label">Site Supervision — Active Execution & Inspection</span>
+        <div class="gh-line"></div>
+      </div>
+      <div class="img-grid" id="gallery-z3">
+      </div>
+    </div>
+
+  </div><!-- /zone3 -->
+
+  <!-- ══ ZONE 4 ══ -->
+  <div class="zone-panel" id="zone4">
+
+    <div class="zone-header">
+      <div class="zh-zone">Zone 04 — Completion</div>
+      <div class="zh-title">The Handover Sequence</div>
+      <p class="zh-desc">
+        The Handover Sequence is a distillation funnel: physical work is progressively filtered through
+        snagging, tested against design performance, and converted into verified documentation. The physical
+        building is incomplete without its digital and legal counterpart. Handover is the final transfer
+        of verified quality and the transfer of ongoing liability.
+      </p>
+      <div class="zh-deco">04</div>
+    </div>
+
+    <div class="handover-funnel">
+      <div class="hf-step">
+        <div class="hf-icon">✕</div>
+        <div class="hf-num">Step 09</div>
+        <div class="hf-title">Snagging</div>
+        <div class="hf-desc">
+          At 90–95% completion, comprehensive snag lists are issued covering finish defects, alignment
+          failures, incomplete works, and non-compliant installations. Every snag item requires a close-out
+          inspection before handover proceeds.
+        </div>
+      </div>
+      <div class="hf-step">
+        <div class="hf-icon">◎</div>
+        <div class="hf-num">Step 10</div>
+        <div class="hf-title">Testing & Commissioning</div>
+        <div class="hf-desc">
+          Complex systems — HVAC, electrical distribution, plumbing, fire protection, BMS — must demonstrate
+          performance exactly to design specification. T&C is witnessed and documented. Failure at T&C
+          stage triggers immediate investigation and remediation.
+        </div>
+      </div>
+      <div class="hf-step">
+        <div class="hf-icon">▣</div>
+        <div class="hf-num">Step 11</div>
+        <div class="hf-title">As-Built & Handover</div>
+        <div class="hf-desc">
+          Compilation of As-Built drawings reflecting all site deviations, approved SIs, and RFI outcomes.
+          O&M Manuals, warranties, authority completion certificates, and maintenance schedules complete
+          the handover package. This is the final legal transfer.
+        </div>
+      </div>
+      <div class="hf-note">
+        The physical building is incomplete without its digital and legal counterpart. As-Built drawings,
+        O&M Manuals, and completion certificates are not administrative formalities — they are the final
+        deliverable. A building without verified documentation is an unfinished project.
+      </div>
+    </div>
+
+    <div class="gallery-section">
+      <div class="gallery-header">
+        <div class="gh-line"></div>
+        <span class="gh-label">Site Supervision — Handover & Completion Documentation</span>
+        <div class="gh-line"></div>
+      </div>
+      <div class="img-grid" id="gallery-z4">
+      </div>
+    </div>
+
+  </div><!-- /zone4 -->
+
+  <!-- ══ RISK MATRIX (always visible) ══ -->
+  <div class="section-divider">
+    <div class="sd-line"></div>
+    <span class="sd-label"><span class="sd-num">⚠</span> Senior-Level Risk Matrix</span>
+    <div class="sd-line"></div>
+  </div>
+
+  <table class="risk-table">
+    <thead>
+      <tr>
+        <th style="width:60px">#</th>
+        <th>Failure Point</th>
+        <th>Catastrophic Consequence</th>
+        <th style="width:100px">Severity</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><div class="risk-num">01</div></td>
+        <td>
+          <span class="fp-label">Approve the wrong material submittal</span>
+          <span class="consequence">Material or product approved without full IFC alignment and specification cross-check</span>
+        </td>
+        <td>Everything fails. The physical reality diverges fundamentally from the specifications. Mass replacement required — at contractor's cost or disputed between parties.</td>
+        <td><span class="severity-critical">Critical</span></td>
+      </tr>
+      <tr>
+        <td><div class="risk-num">02</div></td>
+        <td>
+          <span class="fp-label">Approve incorrect shop drawings</span>
+          <span class="consequence">Shop drawings released without coordination clash-check or dimensional verification</span>
+        </td>
+        <td>Site chaos. MEP and architectural clashes multiply, buildability collapses, and progress halts. Rework costs and delay claims escalate. Authority non-compliance exposure.</td>
+        <td><span class="severity-critical">Critical</span></td>
+      </tr>
+      <tr>
+        <td><div class="risk-num">03</div></td>
+        <td>
+          <span class="fp-label">Skip the physical mockup</span>
+          <span class="consequence">Mass execution proceeds without a full-scale, approved reference sample</span>
+        </td>
+        <td>Client rejection at handover. Unacceptable finishes, tolerances, and alignment issues multiply at full project scale — requiring mass demolition and reinstatement. No contractual defence.</td>
+        <td><span class="severity-critical">Critical</span></td>
+      </tr>
+      <tr>
+        <td><div class="risk-num">04</div></td>
+        <td>
+          <span class="fp-label">Tolerate weak IR inspections</span>
+          <span class="consequence">IRs approved without physical site verification, or work buried without an open IR</span>
+        </td>
+        <td>Defects multiply. Hidden non-conformances get buried under subsequent work. Snagging at 95% completion reveals systemic failures requiring structural intervention. Legal liability becomes undocumented.</td>
+        <td><span class="severity-critical">Critical</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="ir-note" style="margin-bottom:0">
+    Flawless site management is not about ticking boxes. It is the systemic elimination of catastrophic
+    failure points before they manifest on site. The role of the Architect on Site is not administrative —
+    it is the last line of technical defence between design intent and construction reality.
+  </div>
+
+</div><!-- /content -->
+
+<!-- CAREER SECTION -->
+<section class="career-section" id="career">
+  <div class="career-inner">
+    <div class="career-eyebrow">Field Experience</div>
+    <h2 class="career-title">Site Technical Architect <em>Career Record</em></h2>
+    <p class="career-desc">
+      A selection of construction site documentation from direct supervision roles across
+      high-rise residential, mixed-use, and healthcare projects in the UAE and GCC region.
+      Each image represents active oversight — inspections, material verifications, coordination
+      resolutions, and quality assurance conducted on site.
+    </p>
+
+    <!-- Career images injected by JS — placeholder shown if none loaded -->
+    <div class="career-grid" id="career-grid">
+      <!-- Populated by JS — falls back to placeholder -->
+    </div>
+    <div id="career-placeholder" class="career-placeholder" style="display:none">
+      <p>Career Site Photography</p>
+      <p>Upload your site experience images folder to populate this section.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-left">
+    &copy; 2026 — <span>M. Amine Berchache</span> — Senior Architect / BIM Coordinator — Dubai, UAE
+  </div>
+  <div class="footer-right">
+    <a class="footer-link" href="/">Portfolio</a>
+    <a class="footer-link" href="/mep-system-bim-coordination.html">MEP / BIM</a>
+    <a class="footer-link" href="/ftb-rds.html">FTB / RDS</a>
+    <a class="footer-link" href="mailto:berchache.mohamedamine@gmail.com">Contact</a>
+  </div>
+</footer>
+
+<!-- LIGHTBOX -->
+<div id="lightbox">
+  <button id="lightbox-close" onclick="closeLightbox()">✕ Close</button>
+  <img id="lightbox-img" src="" alt="Site Photo">
+  <div id="lightbox-nav">
+    <button class="lb-btn" onclick="lbPrev()">← Prev</button>
+    <button class="lb-btn" onclick="lbNext()">Next →</button>
+  </div>
+</div>
+
+<script>
+// ── ZONE SWITCHING ──
+function switchZone(zoneId, el) {
+  document.querySelectorAll('.zone-panel').forEach(p => p.classList.remove('active'))
+  document.querySelectorAll('.pz').forEach(p => p.classList.remove('active'))
+  document.getElementById(zoneId).classList.add('active')
+  el.classList.add('active')
+  // scroll pipeline into view on mobile
+  el.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'})
+}
+
+// ── IMAGE DATA ──
+const siteImages = [
+  'IMG_1847.jpg','IMG_1848.jpg','IMG_1849.jpg','IMG_1852.jpg',
+  'IMG_1853.jpg','IMG_1854.jpg','IMG_1855.jpg','IMG_1856.jpg',
+  'IMG_1858.jpg','IMG_1865.jpg','IMG_1867.jpg','IMG_2797.jpg',
+  'IMG_2801.jpg','IMG_2803.jpg','IMG_2807.jpg','IMG_2810.jpg',
+  'IMG_2811.jpg','IMG_2812.jpg','IMG_2813.jpg','IMG_33301.jpg',
+  'IMG_33681.jpg','IMG_33721.jpg','IMG_33861.jpg','IMG_33881.jpg',
+  'IMG_34051.jpg','IMG_3407.jpg','IMG_3413.jpg','IMG_3414.jpg',
+  'IMG_3432.jpg','IMG_3435.jpg','IMG_3642.jpg','IMG_3694.jpg','1.jpg'
+]
+const basePath = '/projects/Site_Construction/'
+
+// Distribute images across zones
+const zoneMap = {
+  'gallery-z1': siteImages.slice(0, 8),
+  'gallery-z2': siteImages.slice(8, 16),
+  'gallery-z3': siteImages.slice(16, 25),
+  'gallery-z4': siteImages.slice(25)
+}
+
+// Career images — same set for now, will be replaced with dedicated folder
+const careerImages = siteImages.slice()
+
+// ── BUILD GALLERIES ──
+let lightboxImages = []
+let lightboxIndex  = 0
+
+function buildGallery(containerId, images, label) {
+  const container = document.getElementById(containerId)
+  if (!container || !images.length) return
+  images.forEach((img, i) => {
+    const item = document.createElement('div')
+    item.className = 'img-item'
+    item.innerHTML = `
+      <img src="${basePath}${img}" alt="Site supervision — ${label}" loading="lazy" onerror="this.parentElement.style.display='none'">
+      <div class="img-overlay"><span class="img-overlay-tag">Site Documentation</span></div>
+    `
+    item.addEventListener('click', () => openLightbox(lightboxImages.length + i, containerId))
+    container.appendChild(item)
+  })
+}
+
+function buildCareerGallery() {
+  const grid = document.getElementById('career-grid')
+  const ph   = document.getElementById('career-placeholder')
+  if (!careerImages.length) { ph.style.display = 'block'; return }
+  careerImages.forEach((img) => {
+    const item = document.createElement('div')
+    item.className = 'career-item'
+    const idx = lightboxImages.length
+    lightboxImages.push({ src: basePath + img, label: 'Site Experience' })
+    item.innerHTML = `
+      <img src="${basePath}${img}" alt="Site experience" loading="lazy" onerror="this.parentElement.style.display='none'">
+      <div class="career-overlay"><span class="career-overlay-label">Site Experience</span></div>
+    `
+    item.addEventListener('click', () => openLightboxDirect(idx))
+    grid.appendChild(item)
+  })
+}
+
+// ── ZONE GALLERY BUILD (lazy — on zone switch) ──
+const builtZones = new Set()
+function ensureGalleryBuilt(zoneId) {
+  if (builtZones.has(zoneId)) return
+  builtZones.add(zoneId)
+  const zoneNum = zoneId.replace('zone','')
+  const galleryId = 'gallery-z' + zoneNum
+  const imgs = zoneMap[galleryId] || []
+  // Add to lightbox pool
+  const startIdx = lightboxImages.length
+  imgs.forEach(img => lightboxImages.push({ src: basePath + img, label: 'Zone ' + zoneNum }))
+  buildGalleryIndexed(galleryId, imgs, startIdx, 'Zone ' + zoneNum)
+}
+
+function buildGalleryIndexed(containerId, images, startIdx, label) {
+  const container = document.getElementById(containerId)
+  if (!container || !images.length) return
+  images.forEach((img, i) => {
+    const item = document.createElement('div')
+    item.className = 'img-item'
+    const lbIdx = startIdx + i
+    item.innerHTML = `
+      <img src="${basePath}${img}" alt="${label}" loading="lazy" onerror="this.parentElement.style.display='none'">
+      <div class="img-overlay"><span class="img-overlay-tag">Site Documentation</span></div>
+    `
+    item.addEventListener('click', () => openLightboxDirect(lbIdx))
+    container.appendChild(item)
+  })
+}
+
+// ── LIGHTBOX ──
+function openLightboxDirect(idx) {
+  lightboxIndex = idx
+  document.getElementById('lightbox-img').src = lightboxImages[idx].src
+  document.getElementById('lightbox').classList.add('open')
+  document.body.style.overflow = 'hidden'
+}
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('open')
+  document.body.style.overflow = ''
+}
+function lbPrev() {
+  lightboxIndex = (lightboxIndex - 1 + lightboxImages.length) % lightboxImages.length
+  document.getElementById('lightbox-img').src = lightboxImages[lightboxIndex].src
+}
+function lbNext() {
+  lightboxIndex = (lightboxIndex + 1) % lightboxImages.length
+  document.getElementById('lightbox-img').src = lightboxImages[lightboxIndex].src
+}
+document.getElementById('lightbox').addEventListener('click', function(e) {
+  if (e.target === this) closeLightbox()
+})
+document.addEventListener('keydown', e => {
+  if (!document.getElementById('lightbox').classList.contains('open')) return
+  if (e.key === 'Escape') closeLightbox()
+  if (e.key === 'ArrowLeft') lbPrev()
+  if (e.key === 'ArrowRight') lbNext()
+})
+
+// ── ZONE SWITCH with lazy load ──
+const origSwitch = switchZone
+window.switchZone = function(zoneId, el) {
+  origSwitch(zoneId, el)
+  ensureGalleryBuilt(zoneId)
+}
+
+// ── INIT ──
+document.addEventListener('DOMContentLoaded', () => {
+  ensureGalleryBuilt('zone1')  // build zone 1 immediately
+  buildCareerGallery()
+})
+</script>
+
+</body>
+</html>

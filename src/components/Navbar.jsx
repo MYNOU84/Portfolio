@@ -8,6 +8,8 @@ const NAV_LINKS = [
   { label: 'Portfolio',  href: '#portfolio' },
   { label: 'MEP System',     href: 'https://portfolio-five-kappa-d7gqte5vgz.vercel.app/mep-system-bim-coordination.html', external: true },
   { label: 'FTB-RDS',         href: 'https://portfolio-five-kappa-d7gqte5vgz.vercel.app/ftb-rds.html', external: true },
+  { label: 'Site Supervision', href: '/site-supervision.html', external: true },
+  { label: 'Arch Specs',      href: '/architectural-specifications.html', external: true },
   { label: 'Space Planning', href: '/space-planning/', external: true },
   { label: 'Services',       href: '#services' },
   { label: 'Contact',    href: '#contact' },

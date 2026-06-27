@@ -212,7 +212,7 @@ export const PROJECTS = [
     location: 'Algeria',
     category: 'Site Construction',
     year: '2013–2023',
-    role: 'Site Architect / Project Manager',
+    role: 'Site Technical Architect / Project Manager',
     description:
       'Field experience across major construction sites in Algeria. Site supervision, team coordination and quality control during execution phases. 15+ years of direct site presence on complex architectural and healthcare projects.',
     tags: ['Construction', 'Site Supervision', 'Algeria'],
@@ -441,5 +441,4 @@ export const PROJECT_ORDER = [
   'concept-p-59224',
   'bim-villa',
   'bim-clash-detection',
-  'bim-h-02',
-]
+  'bim
