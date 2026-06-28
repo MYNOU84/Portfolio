@@ -2044,7 +2044,8 @@ document.querySelectorAll('.gcard').forEach(function(el) {
           <div class="role-focus">Main Focus: 70–80% Technical / Document Review / Coordination</div>
         </div>
       </div>
-      <div class="role-body">
+      <div class="role-body" ondblclick="zoomRole(this)">
+        <button onclick="event.stopPropagation();zoomRole(this)" style="float:right;margin:-4px 0 12px 12px;background:none;border:1px solid rgba(201,168,76,.4);color:var(--gold);font-family:Montserrat,sans-serif;font-size:9px;letter-spacing:.15em;padding:6px 14px;cursor:pointer;text-transform:uppercase">⊕ Read Full</button>
         <div class="role-def">
           The Senior Technical Architect is the consultant-side technical authority for architectural documentation,
           buildability, compliance, detailing, and multidisciplinary coordination during construction.
@@ -2103,7 +2104,8 @@ document.querySelectorAll('.gcard').forEach(function(el) {
           <div class="role-focus">Main Focus: 60–70% Package Management / Coordination / Tracking</div>
         </div>
       </div>
-      <div class="role-body">
+      <div class="role-body" ondblclick="zoomRole(this)">
+        <button onclick="event.stopPropagation();zoomRole(this)" style="float:right;margin:-4px 0 12px 12px;background:none;border:1px solid rgba(201,168,76,.4);color:var(--gold);font-family:Montserrat,sans-serif;font-size:9px;letter-spacing:.15em;padding:6px 14px;cursor:pointer;text-transform:uppercase">⊕ Read Full</button>
         <div class="role-def">
           The Architectural Package Lead owns a defined architectural package and controls it from technical submission
           through approval, procurement, site implementation, inspection, snagging, and handover.
@@ -2158,7 +2160,8 @@ document.querySelectorAll('.gcard').forEach(function(el) {
           <div class="role-focus">Main Focus: 70–80% Site Supervision / Inspection / Installed Quality</div>
         </div>
       </div>
-      <div class="role-body">
+      <div class="role-body" ondblclick="zoomRole(this)">
+        <button onclick="event.stopPropagation();zoomRole(this)" style="float:right;margin:-4px 0 12px 12px;background:none;border:1px solid rgba(201,168,76,.4);color:var(--gold);font-family:Montserrat,sans-serif;font-size:9px;letter-spacing:.15em;padding:6px 14px;cursor:pointer;text-transform:uppercase">⊕ Read Full</button>
         <div class="role-def">
           The Senior Site Architect verifies that architectural works installed on site comply with approved shop drawings,
           specifications, method statements, ITPs, approved materials, authority requirements, and project quality standards.
@@ -2469,6 +2472,36 @@ function switchChapter(id, btn) {
   btn.classList.add('active');
   const target = document.getElementById(id);
   if(target) target.scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+// ── Zoom role body ─────────────────────────────────────────────
+function zoomRole(el) {
+  var block = el.closest ? el.closest('.role-block') : el.parentNode.closest('.role-block');
+  if(!block) return;
+  var tag   = block.querySelector('.role-tag');
+  var title = block.querySelector('.role-title');
+  var focus = block.querySelector('.role-focus');
+  var def   = block.querySelector('.role-def');
+  var items = Array.from(block.querySelectorAll('.role-list li')).map(function(li){ return '<div style="padding:5px 0;border-bottom:1px solid rgba(255,255,255,.05);display:flex;gap:8px"><span style="color:var(--gold3);flex-shrink:0">◆</span>'+li.textContent.trim()+'</div>'; }).join('');
+  var q     = block.querySelector('.role-question');
+  var lb    = document.getElementById('lightbox');
+  var lbImg = document.getElementById('lb-img');
+  var lbTxt = document.getElementById('lb-text');
+  lb.style.display = 'flex';
+  lbImg.style.display = 'none';
+  lbTxt.style.display = 'block';
+  lbTxt.style.maxWidth = '860px';
+  lbTxt.style.maxHeight = '82vh';
+  lbTxt.style.overflowY = 'auto';
+  document.getElementById('lb-zone').textContent  = tag   ? tag.textContent   : '';
+  document.getElementById('lb-title').textContent = title ? title.textContent : '';
+  document.getElementById('lb-body').innerHTML =
+    (focus ? '<div style="font-size:11px;letter-spacing:.08em;color:var(--gold2);margin-bottom:20px;text-transform:uppercase">'+focus.textContent+'</div>' : '') +
+    (def   ? '<p style="font-style:italic;color:var(--text2);line-height:1.8;margin-bottom:24px;font-size:14px">'+def.textContent.trim()+'</p>' : '') +
+    '<div style="font-size:13px;color:var(--text2);line-height:1.7">' + items + '</div>';
+  document.getElementById('lb-tags').innerHTML = '';
+  document.getElementById('lb-caption').textContent = q ? q.textContent : '';
+  document.body.style.overflow = 'hidden';
 }
 
 // ── Double-click — Role images ────────────────────────────────
