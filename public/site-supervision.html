@@ -565,8 +565,9 @@ footer{
 
 /* Role blocks */
 
-.role-img{width:100%;height:580px;overflow:hidden;position:relative;background:#0a0a0a;cursor:zoom-in;display:flex;align-items:center;justify-content:center}
-.role-img img{max-width:100%;max-height:580px;width:auto;height:auto;object-fit:contain;display:block;filter:brightness(.92);transition:transform .3s ease}
+
+.role-img{width:100%;background:#080808;line-height:0}
+.role-img img{width:100%;height:auto;display:block;filter:brightness(.92)}
 .role-block:hover .role-img img{transform:scale(1.01)}
 .role-block{background:var(--bg2);border:1px solid rgba(201,168,76,.15);margin-bottom:32px;overflow:hidden}
 .role-header{display:flex;align-items:stretch;border-bottom:1px solid rgba(201,168,76,.15)}
@@ -860,8 +861,9 @@ footer{
 
 /* Role blocks */
 
-.role-img{width:100%;height:580px;overflow:hidden;position:relative;background:#0a0a0a;cursor:zoom-in;display:flex;align-items:center;justify-content:center}
-.role-img img{max-width:100%;max-height:580px;width:auto;height:auto;object-fit:contain;display:block;filter:brightness(.92);transition:transform .3s ease}
+
+.role-img{width:100%;background:#080808;line-height:0}
+.role-img img{width:100%;height:auto;display:block;filter:brightness(.92)}
 .role-block:hover .role-img img{transform:scale(1.01)}
 .role-block{background:var(--bg2);border:1px solid rgba(201,168,76,.15);margin-bottom:32px;overflow:hidden}
 .role-header{display:flex;align-items:stretch;border-bottom:1px solid rgba(201,168,76,.15)}
@@ -2469,50 +2471,52 @@ function switchChapter(id, btn) {
   if(target) target.scrollIntoView({behavior:'smooth', block:'start'});
 }
 
-// ── Double-click — Role images → full lightbox ────────────────
-document.querySelectorAll('.role-img').forEach(function(el) {
-  el.addEventListener('dblclick', function(e) {
+// ── Double-click — Role images ────────────────────────────────
+document.querySelectorAll('.role-img').forEach(function(el){
+  el.style.cursor='zoom-in';
+  el.addEventListener('dblclick',function(e){
     e.preventDefault();
-    const img = el.querySelector('img');
-    const block = el.closest('.role-block');
-    const title = block ? block.querySelector('.role-title') : null;
-    if(img) openImgLightbox(img.src, title ? title.textContent : '');
+    var img=el.querySelector('img');
+    var block=el.closest('.role-block');
+    var t=block?block.querySelector('.role-title'):null;
+    if(img){openImgLightbox(img.src,t?t.textContent:'');}
   });
 });
 
-// ── Double-click — Role body tasks → readable lightbox ─────────
-document.querySelectorAll('.role-body').forEach(function(el) {
-  el.style.cursor = 'zoom-in';
-  el.addEventListener('dblclick', function(e) {
+// ── Double-click — Role tasks/body ─────────────────────────────
+document.querySelectorAll('.role-body').forEach(function(el){
+  el.style.cursor='zoom-in';
+  el.addEventListener('dblclick',function(e){
     e.preventDefault();
-    e.stopPropagation();
-    const block = el.closest('.role-block');
-    const tag  = block ? block.querySelector('.role-tag') : null;
-    const title = block ? block.querySelector('.role-title') : null;
-    const focus = block ? block.querySelector('.role-focus') : null;
-    const def   = block ? block.querySelector('.role-def') : null;
-    const items = block ? Array.from(block.querySelectorAll('.role-list li')).map(function(li){ return li.textContent.trim(); }) : [];
-    const q     = block ? block.querySelector('.role-question') : null;
-    openCardLightbox(
-      tag ? tag.textContent : '',
-      title ? title.textContent : '',
-      (def ? def.textContent.trim() + '\n\n' : '') +
-      items.join(' · ') +
-      (q ? '\n\n→ ' + q.textContent.trim() : ''),
-      focus ? [focus.textContent] : []
-    );
+    var block=el.closest('.role-block');
+    var tag=block?block.querySelector('.role-tag'):null;
+    var title=block?block.querySelector('.role-title'):null;
+    var def=block?block.querySelector('.role-def'):null;
+    var items=block?Array.from(block.querySelectorAll('.role-list li')).map(function(li){return '▸ '+li.textContent.trim();}).join('<br>'):'';
+    var q=block?block.querySelector('.role-question'):null;
+    var lb=document.getElementById('lightbox');
+    var lbImg=document.getElementById('lb-img');
+    var lbText=document.getElementById('lb-text');
+    var lbZone=document.getElementById('lb-zone');
+    var lbTitle=document.getElementById('lb-title');
+    var lbBody=document.getElementById('lb-body');
+    var lbTags=document.getElementById('lb-tags');
+    var lbCap=document.getElementById('lb-caption');
+    lb.style.display='flex';
+    lbImg.style.display='none';
+    lbText.style.display='block';
+    lbText.style.maxWidth='820px';
+    lbText.style.maxHeight='80vh';
+    lbText.style.overflowY='auto';
+    lbZone.textContent=tag?tag.textContent:'';
+    lbTitle.textContent=title?title.textContent:'';
+    lbBody.innerHTML=(def?'<p style="font-style:italic;color:var(--gold2);margin-bottom:16px">'+def.textContent.trim()+'</p>':'')+items;
+    lbTags.innerHTML='';
+    lbCap.textContent=q?q.textContent:'';
+    document.body.style.overflow='hidden';
   });
 });
 
-// ── Double-click — Role header → same ─────────────────────────
-document.querySelectorAll('.role-header').forEach(function(el) {
-  el.style.cursor = 'zoom-in';
-  el.addEventListener('dblclick', function(e) {
-    e.preventDefault();
-    e.stopPropagation();
-    el.closest('.role-block').querySelector('.role-body').dispatchEvent(new MouseEvent('dblclick',{bubbles:false}));
-  });
-});
 </script>
 
 </body>
