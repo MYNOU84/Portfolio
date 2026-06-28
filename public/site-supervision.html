@@ -565,10 +565,9 @@ footer{
 
 /* Role blocks */
 
-.role-img{width:100%;height:480px;overflow:hidden;position:relative}
-.role-img img{width:100%;height:100%;object-fit:cover;object-position:center center;display:block;filter:brightness(.9);transition:transform .4s ease}
-.role-block:hover .role-img img{transform:scale(1.02)}
-.role-img::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,transparent 50%,rgba(13,13,13,.8) 100%)}
+.role-img{width:100%;height:580px;overflow:hidden;position:relative;background:#0a0a0a;cursor:zoom-in;display:flex;align-items:center;justify-content:center}
+.role-img img{max-width:100%;max-height:580px;width:auto;height:auto;object-fit:contain;display:block;filter:brightness(.92);transition:transform .3s ease}
+.role-block:hover .role-img img{transform:scale(1.01)}
 .role-block{background:var(--bg2);border:1px solid rgba(201,168,76,.15);margin-bottom:32px;overflow:hidden}
 .role-header{display:flex;align-items:stretch;border-bottom:1px solid rgba(201,168,76,.15)}
 .role-num{background:rgba(201,168,76,.08);border-right:1px solid rgba(201,168,76,.15);padding:24px 28px;display:flex;align-items:center;justify-content:center}
@@ -861,10 +860,9 @@ footer{
 
 /* Role blocks */
 
-.role-img{width:100%;height:480px;overflow:hidden;position:relative}
-.role-img img{width:100%;height:100%;object-fit:cover;object-position:center center;display:block;filter:brightness(.9);transition:transform .4s ease}
-.role-block:hover .role-img img{transform:scale(1.02)}
-.role-img::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,transparent 50%,rgba(13,13,13,.8) 100%)}
+.role-img{width:100%;height:580px;overflow:hidden;position:relative;background:#0a0a0a;cursor:zoom-in;display:flex;align-items:center;justify-content:center}
+.role-img img{max-width:100%;max-height:580px;width:auto;height:auto;object-fit:contain;display:block;filter:brightness(.92);transition:transform .3s ease}
+.role-block:hover .role-img img{transform:scale(1.01)}
 .role-block{background:var(--bg2);border:1px solid rgba(201,168,76,.15);margin-bottom:32px;overflow:hidden}
 .role-header{display:flex;align-items:stretch;border-bottom:1px solid rgba(201,168,76,.15)}
 .role-num{background:rgba(201,168,76,.08);border-right:1px solid rgba(201,168,76,.15);padding:24px 28px;display:flex;align-items:center;justify-content:center}
@@ -2470,6 +2468,51 @@ function switchChapter(id, btn) {
   const target = document.getElementById(id);
   if(target) target.scrollIntoView({behavior:'smooth', block:'start'});
 }
+
+// ── Double-click — Role images → full lightbox ────────────────
+document.querySelectorAll('.role-img').forEach(function(el) {
+  el.addEventListener('dblclick', function(e) {
+    e.preventDefault();
+    const img = el.querySelector('img');
+    const block = el.closest('.role-block');
+    const title = block ? block.querySelector('.role-title') : null;
+    if(img) openImgLightbox(img.src, title ? title.textContent : '');
+  });
+});
+
+// ── Double-click — Role body tasks → readable lightbox ─────────
+document.querySelectorAll('.role-body').forEach(function(el) {
+  el.style.cursor = 'zoom-in';
+  el.addEventListener('dblclick', function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    const block = el.closest('.role-block');
+    const tag  = block ? block.querySelector('.role-tag') : null;
+    const title = block ? block.querySelector('.role-title') : null;
+    const focus = block ? block.querySelector('.role-focus') : null;
+    const def   = block ? block.querySelector('.role-def') : null;
+    const items = block ? Array.from(block.querySelectorAll('.role-list li')).map(function(li){ return li.textContent.trim(); }) : [];
+    const q     = block ? block.querySelector('.role-question') : null;
+    openCardLightbox(
+      tag ? tag.textContent : '',
+      title ? title.textContent : '',
+      (def ? def.textContent.trim() + '\n\n' : '') +
+      items.join(' · ') +
+      (q ? '\n\n→ ' + q.textContent.trim() : ''),
+      focus ? [focus.textContent] : []
+    );
+  });
+});
+
+// ── Double-click — Role header → same ─────────────────────────
+document.querySelectorAll('.role-header').forEach(function(el) {
+  el.style.cursor = 'zoom-in';
+  el.addEventListener('dblclick', function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    el.closest('.role-block').querySelector('.role-body').dispatchEvent(new MouseEvent('dblclick',{bubbles:false}));
+  });
+});
 </script>
 
 </body>
