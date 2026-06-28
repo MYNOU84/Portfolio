@@ -514,6 +514,125 @@ footer{
   .career-grid{grid-template-columns:1fr}
   .principles-bar{grid-template-columns:1fr}
 }
+
+/* ── Chapter Nav ─────────────────────────────────── */
+.ch-nav{display:flex;align-items:center;gap:0;background:var(--bg2);border-bottom:1px solid rgba(201,168,76,.15);position:sticky;top:0;z-index:500;padding:0 48px}
+.ch-btn{background:none;border:none;border-bottom:2px solid transparent;padding:18px 32px;cursor:pointer;display:flex;align-items:center;gap:12px;color:var(--text3);transition:all .2s ease;font-family:'Montserrat',sans-serif}
+.ch-btn.active{border-bottom-color:var(--gold);color:var(--text)}
+.ch-btn:hover{color:var(--text2)}
+.ch-btn-n{font-size:9px;letter-spacing:.2em;color:var(--gold3);font-weight:600;text-transform:uppercase}
+.ch-btn.active .ch-btn-n{color:var(--gold)}
+.ch-btn-label{font-size:12px;letter-spacing:.08em;text-transform:uppercase;font-weight:500}
+.ch-divider{width:1px;height:32px;background:rgba(201,168,76,.15);margin:0 8px}
+@media(max-width:768px){.ch-nav{padding:0 16px}.ch-btn{padding:14px 12px}.ch-btn-label{font-size:10px}}
+
+/* ── Chapter 2 ───────────────────────────────────── */
+.ch2{background:var(--bg);color:var(--text);padding:80px 0}
+.ch2-inner{max-width:1200px;margin:0 auto;padding:0 48px}
+@media(max-width:768px){.ch2-inner{padding:0 20px}}
+
+.ch2-header{border-left:3px solid var(--gold);padding-left:32px;margin-bottom:72px}
+.ch2-eyebrow{font-size:9px;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;font-family:'Montserrat',sans-serif;font-weight:600}
+.ch2-title{font-family:'Cormorant Garamond',serif;font-size:clamp(28px,4vw,52px);font-weight:300;color:var(--text);line-height:1.1;margin-bottom:16px}
+.ch2-subtitle{font-size:13px;letter-spacing:.1em;color:var(--gold2);text-transform:uppercase;font-family:'Montserrat',sans-serif;margin-bottom:24px}
+.ch2-intro{font-size:15px;color:var(--text2);line-height:1.8;max-width:760px}
+
+/* Section headings */
+.ch2-sec-label{font-size:9px;letter-spacing:.25em;text-transform:uppercase;color:var(--gold3);font-family:'Montserrat',sans-serif;font-weight:600;margin-bottom:8px}
+.ch2-sec-title{font-family:'Cormorant Garamond',serif;font-size:clamp(22px,3vw,38px);font-weight:300;color:var(--text);margin-bottom:32px}
+.ch2-sec-divider{width:60px;height:1px;background:var(--gold);margin:32px 0 48px}
+.ch2-section{margin-bottom:96px}
+
+/* Organigram */
+.org-wrap{overflow-x:auto;padding-bottom:24px}
+.org-tree{min-width:700px}
+.org-level{display:flex;justify-content:center;position:relative;margin-bottom:0}
+.org-level + .org-level{margin-top:0}
+.org-connector{display:flex;justify-content:center;height:32px;position:relative}
+.org-connector::before{content:'';position:absolute;top:0;left:50%;width:1px;height:100%;background:rgba(201,168,76,.3)}
+.org-box{background:var(--bg3);border:1px solid rgba(201,168,76,.2);padding:10px 20px;text-align:center;position:relative;min-width:200px;max-width:320px}
+.org-box.gold-border{border-color:rgba(201,168,76,.6)}
+.org-box-title{font-family:'Cormorant Garamond',serif;font-size:15px;color:var(--text);font-weight:400}
+.org-box-sub{font-size:9px;letter-spacing:.1em;color:var(--text3);text-transform:uppercase;margin-top:3px}
+.org-teams{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1px;background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.15);margin-top:0}
+.org-team-col{background:var(--bg2);padding:16px}
+.org-team-head{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);font-family:'Montserrat',sans-serif;font-weight:600;margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid rgba(201,168,76,.2)}
+.org-team-item{font-size:11px;color:var(--text2);padding:3px 0;line-height:1.4}
+.org-team-item.highlight{color:var(--gold2);font-weight:500}
+.org-branch{display:flex;justify-content:center;gap:1px;margin-top:0}
+.org-branch-line{display:flex;justify-content:center;position:relative;height:32px}
+.org-branch-line::before{content:'';position:absolute;top:0;left:50%;width:1px;height:100%;background:rgba(201,168,76,.3)}
+
+/* Role blocks */
+
+.role-img{width:100%;height:320px;overflow:hidden;position:relative}
+.role-img img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block;filter:brightness(.85);transition:transform .4s ease}
+.role-block:hover .role-img img{transform:scale(1.02)}
+.role-img::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,transparent 50%,rgba(13,13,13,.8) 100%)}
+.role-block{background:var(--bg2);border:1px solid rgba(201,168,76,.15);margin-bottom:32px;overflow:hidden}
+.role-header{display:flex;align-items:stretch;border-bottom:1px solid rgba(201,168,76,.15)}
+.role-num{background:rgba(201,168,76,.08);border-right:1px solid rgba(201,168,76,.15);padding:24px 28px;display:flex;align-items:center;justify-content:center}
+.role-num-inner{font-family:'Cormorant Garamond',serif;font-size:48px;color:var(--gold3);font-weight:300;line-height:1}
+.role-header-text{padding:24px 32px;flex:1}
+.role-tag{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);font-family:'Montserrat',sans-serif;font-weight:600;margin-bottom:8px}
+.role-title{font-family:'Cormorant Garamond',serif;font-size:26px;color:var(--text);font-weight:300;margin-bottom:6px}
+.role-focus{font-size:11px;color:var(--gold2);letter-spacing:.05em}
+.role-body{padding:32px}
+.role-def{font-size:14px;color:var(--text2);line-height:1.8;margin-bottom:28px;border-left:2px solid var(--gold);padding-left:20px;font-style:italic}
+.role-question{background:rgba(201,168,76,.06);border:1px solid rgba(201,168,76,.2);padding:16px 20px;font-family:'Cormorant Garamond',serif;font-size:18px;color:var(--gold2);text-align:center;margin-top:24px;font-style:italic}
+.role-cols{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-top:24px}
+@media(max-width:768px){.role-cols{grid-template-columns:1fr}}
+.role-col-title{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold3);font-family:'Montserrat',sans-serif;font-weight:600;margin-bottom:12px}
+.role-list{list-style:none;padding:0;margin:0}
+.role-list li{font-size:12px;color:var(--text2);padding:5px 0;border-bottom:1px solid rgba(255,255,255,.04);display:flex;align-items:flex-start;gap:8px;line-height:1.5}
+.role-list li::before{content:'◆';font-size:6px;color:var(--gold3);flex-shrink:0;margin-top:5px}
+
+/* IR Workflow */
+.ir-stages{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:16px}
+@media(max-width:768px){.ir-stages{grid-template-columns:1fr}}
+.ir-stage{background:var(--bg3);border:1px solid rgba(201,168,76,.1);padding:20px}
+.ir-stage-title{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);font-family:'Montserrat',sans-serif;font-weight:600;margin-bottom:12px}
+
+/* Teams grid */
+.teams-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:20px}
+.team-card{background:var(--bg2);border:1px solid rgba(201,168,76,.12);padding:28px}
+.team-card-num{font-size:9px;letter-spacing:.2em;color:var(--gold3);font-family:'Montserrat',sans-serif;font-weight:600;margin-bottom:6px}
+.team-card-title{font-family:'Cormorant Garamond',serif;font-size:20px;color:var(--gold2);margin-bottom:12px;font-weight:400}
+.team-card-body{font-size:12px;color:var(--text2);line-height:1.7}
+.team-card-body p{margin:0 0 8px}
+.team-card-body strong{color:var(--text3);font-weight:600;font-size:10px;letter-spacing:.08em;text-transform:uppercase}
+
+/* Comparison table */
+.comp-table-wrap{overflow-x:auto}
+.comp-table{width:100%;border-collapse:collapse;min-width:700px}
+.comp-table th{background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.2);padding:12px 16px;font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);font-family:'Montserrat',sans-serif;font-weight:600;text-align:left}
+.comp-table td{border:1px solid rgba(255,255,255,.06);padding:12px 16px;font-size:12px;color:var(--text2);line-height:1.6;vertical-align:top}
+.comp-table tr:nth-child(even) td{background:rgba(255,255,255,.02)}
+.comp-table td:first-child{color:var(--text3);font-size:10px;letter-spacing:.08em;text-transform:uppercase;font-family:'Montserrat',sans-serif;font-weight:600;background:rgba(201,168,76,.04)}
+
+/* Workflow table */
+.wf-table{width:100%;border-collapse:collapse;margin-top:8px}
+.wf-stage{background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.2);padding:10px 16px;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);font-family:'Montserrat',sans-serif;font-weight:600;vertical-align:top;width:140px}
+.wf-role{border:1px solid rgba(255,255,255,.06);padding:12px 16px;font-size:12px;color:var(--text2);line-height:1.6;vertical-align:top}
+.wf-role-tag{font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold3);font-family:'Montserrat',sans-serif;font-weight:600;display:block;margin-bottom:4px}
+.wf-table tr:nth-child(even) .wf-role{background:rgba(255,255,255,.02)}
+
+/* References */
+.ref-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:8px}
+.ref-item{background:var(--bg2);border-left:2px solid rgba(201,168,76,.3);padding:10px 16px;font-size:12px;color:var(--text2);display:flex;align-items:center;gap:10px}
+.ref-item::before{content:'◈';color:var(--gold3);font-size:10px;flex-shrink:0}
+
+/* Glossary */
+.glossary-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1px;background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.12)}
+.glossary-item{background:var(--bg2);padding:16px 20px}
+.glossary-term{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);font-family:'Montserrat',sans-serif;font-weight:700;margin-bottom:6px}
+.glossary-def{font-size:12px;color:var(--text2);line-height:1.6}
+
+/* Positioning statement */
+.pos-statement{background:linear-gradient(135deg,rgba(201,168,76,.06) 0%,transparent 60%);border:1px solid rgba(201,168,76,.3);padding:48px;text-align:center;margin-top:48px}
+.pos-label{font-size:9px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);font-family:'Montserrat',sans-serif;font-weight:600;margin-bottom:20px}
+.pos-text{font-family:'Cormorant Garamond',serif;font-size:clamp(16px,2vw,24px);color:var(--text);line-height:1.7;font-weight:300;max-width:860px;margin:0 auto 32px}
+.pos-final-label{display:inline-block;border:1px solid var(--gold);padding:10px 28px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);font-family:'Montserrat',sans-serif;font-weight:600}
 </style>
 </head>
 <body>
@@ -533,8 +652,22 @@ footer{
   </div>
 </nav>
 
-<!-- HERO -->
-<section class="hero">
+
+<!-- CHAPTER NAV -->
+<div class="ch-nav" id="ch-nav">
+  <button class="ch-btn active" onclick="switchChapter('chapter1',this)">
+    <span class="ch-btn-n">01</span>
+    <span class="ch-btn-label">Site Supervision Process</span>
+  </button>
+  <div class="ch-divider"></div>
+  <button class="ch-btn" onclick="switchChapter('chapter2',this)">
+    <span class="ch-btn-n">02</span>
+    <span class="ch-btn-label">Consultant-Side Construction Team Scope</span>
+  </button>
+</div>
+
+<!-- CHAPTER 1 -->
+<section class="hero" id="chapter1">
   <div class="hero-eyebrow">Architect on Site</div>
   <h1 class="hero-title">
     Site Supervision
@@ -677,6 +810,125 @@ footer{
   .step-number{font-size:48px}
   .step-connector{margin:0 20px}
 }
+
+/* ── Chapter Nav ─────────────────────────────────── */
+.ch-nav{display:flex;align-items:center;gap:0;background:var(--bg2);border-bottom:1px solid rgba(201,168,76,.15);position:sticky;top:0;z-index:500;padding:0 48px}
+.ch-btn{background:none;border:none;border-bottom:2px solid transparent;padding:18px 32px;cursor:pointer;display:flex;align-items:center;gap:12px;color:var(--text3);transition:all .2s ease;font-family:'Montserrat',sans-serif}
+.ch-btn.active{border-bottom-color:var(--gold);color:var(--text)}
+.ch-btn:hover{color:var(--text2)}
+.ch-btn-n{font-size:9px;letter-spacing:.2em;color:var(--gold3);font-weight:600;text-transform:uppercase}
+.ch-btn.active .ch-btn-n{color:var(--gold)}
+.ch-btn-label{font-size:12px;letter-spacing:.08em;text-transform:uppercase;font-weight:500}
+.ch-divider{width:1px;height:32px;background:rgba(201,168,76,.15);margin:0 8px}
+@media(max-width:768px){.ch-nav{padding:0 16px}.ch-btn{padding:14px 12px}.ch-btn-label{font-size:10px}}
+
+/* ── Chapter 2 ───────────────────────────────────── */
+.ch2{background:var(--bg);color:var(--text);padding:80px 0}
+.ch2-inner{max-width:1200px;margin:0 auto;padding:0 48px}
+@media(max-width:768px){.ch2-inner{padding:0 20px}}
+
+.ch2-header{border-left:3px solid var(--gold);padding-left:32px;margin-bottom:72px}
+.ch2-eyebrow{font-size:9px;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;font-family:'Montserrat',sans-serif;font-weight:600}
+.ch2-title{font-family:'Cormorant Garamond',serif;font-size:clamp(28px,4vw,52px);font-weight:300;color:var(--text);line-height:1.1;margin-bottom:16px}
+.ch2-subtitle{font-size:13px;letter-spacing:.1em;color:var(--gold2);text-transform:uppercase;font-family:'Montserrat',sans-serif;margin-bottom:24px}
+.ch2-intro{font-size:15px;color:var(--text2);line-height:1.8;max-width:760px}
+
+/* Section headings */
+.ch2-sec-label{font-size:9px;letter-spacing:.25em;text-transform:uppercase;color:var(--gold3);font-family:'Montserrat',sans-serif;font-weight:600;margin-bottom:8px}
+.ch2-sec-title{font-family:'Cormorant Garamond',serif;font-size:clamp(22px,3vw,38px);font-weight:300;color:var(--text);margin-bottom:32px}
+.ch2-sec-divider{width:60px;height:1px;background:var(--gold);margin:32px 0 48px}
+.ch2-section{margin-bottom:96px}
+
+/* Organigram */
+.org-wrap{overflow-x:auto;padding-bottom:24px}
+.org-tree{min-width:700px}
+.org-level{display:flex;justify-content:center;position:relative;margin-bottom:0}
+.org-level + .org-level{margin-top:0}
+.org-connector{display:flex;justify-content:center;height:32px;position:relative}
+.org-connector::before{content:'';position:absolute;top:0;left:50%;width:1px;height:100%;background:rgba(201,168,76,.3)}
+.org-box{background:var(--bg3);border:1px solid rgba(201,168,76,.2);padding:10px 20px;text-align:center;position:relative;min-width:200px;max-width:320px}
+.org-box.gold-border{border-color:rgba(201,168,76,.6)}
+.org-box-title{font-family:'Cormorant Garamond',serif;font-size:15px;color:var(--text);font-weight:400}
+.org-box-sub{font-size:9px;letter-spacing:.1em;color:var(--text3);text-transform:uppercase;margin-top:3px}
+.org-teams{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1px;background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.15);margin-top:0}
+.org-team-col{background:var(--bg2);padding:16px}
+.org-team-head{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);font-family:'Montserrat',sans-serif;font-weight:600;margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid rgba(201,168,76,.2)}
+.org-team-item{font-size:11px;color:var(--text2);padding:3px 0;line-height:1.4}
+.org-team-item.highlight{color:var(--gold2);font-weight:500}
+.org-branch{display:flex;justify-content:center;gap:1px;margin-top:0}
+.org-branch-line{display:flex;justify-content:center;position:relative;height:32px}
+.org-branch-line::before{content:'';position:absolute;top:0;left:50%;width:1px;height:100%;background:rgba(201,168,76,.3)}
+
+/* Role blocks */
+
+.role-img{width:100%;height:320px;overflow:hidden;position:relative}
+.role-img img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block;filter:brightness(.85);transition:transform .4s ease}
+.role-block:hover .role-img img{transform:scale(1.02)}
+.role-img::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,transparent 50%,rgba(13,13,13,.8) 100%)}
+.role-block{background:var(--bg2);border:1px solid rgba(201,168,76,.15);margin-bottom:32px;overflow:hidden}
+.role-header{display:flex;align-items:stretch;border-bottom:1px solid rgba(201,168,76,.15)}
+.role-num{background:rgba(201,168,76,.08);border-right:1px solid rgba(201,168,76,.15);padding:24px 28px;display:flex;align-items:center;justify-content:center}
+.role-num-inner{font-family:'Cormorant Garamond',serif;font-size:48px;color:var(--gold3);font-weight:300;line-height:1}
+.role-header-text{padding:24px 32px;flex:1}
+.role-tag{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);font-family:'Montserrat',sans-serif;font-weight:600;margin-bottom:8px}
+.role-title{font-family:'Cormorant Garamond',serif;font-size:26px;color:var(--text);font-weight:300;margin-bottom:6px}
+.role-focus{font-size:11px;color:var(--gold2);letter-spacing:.05em}
+.role-body{padding:32px}
+.role-def{font-size:14px;color:var(--text2);line-height:1.8;margin-bottom:28px;border-left:2px solid var(--gold);padding-left:20px;font-style:italic}
+.role-question{background:rgba(201,168,76,.06);border:1px solid rgba(201,168,76,.2);padding:16px 20px;font-family:'Cormorant Garamond',serif;font-size:18px;color:var(--gold2);text-align:center;margin-top:24px;font-style:italic}
+.role-cols{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-top:24px}
+@media(max-width:768px){.role-cols{grid-template-columns:1fr}}
+.role-col-title{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold3);font-family:'Montserrat',sans-serif;font-weight:600;margin-bottom:12px}
+.role-list{list-style:none;padding:0;margin:0}
+.role-list li{font-size:12px;color:var(--text2);padding:5px 0;border-bottom:1px solid rgba(255,255,255,.04);display:flex;align-items:flex-start;gap:8px;line-height:1.5}
+.role-list li::before{content:'◆';font-size:6px;color:var(--gold3);flex-shrink:0;margin-top:5px}
+
+/* IR Workflow */
+.ir-stages{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:16px}
+@media(max-width:768px){.ir-stages{grid-template-columns:1fr}}
+.ir-stage{background:var(--bg3);border:1px solid rgba(201,168,76,.1);padding:20px}
+.ir-stage-title{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);font-family:'Montserrat',sans-serif;font-weight:600;margin-bottom:12px}
+
+/* Teams grid */
+.teams-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:20px}
+.team-card{background:var(--bg2);border:1px solid rgba(201,168,76,.12);padding:28px}
+.team-card-num{font-size:9px;letter-spacing:.2em;color:var(--gold3);font-family:'Montserrat',sans-serif;font-weight:600;margin-bottom:6px}
+.team-card-title{font-family:'Cormorant Garamond',serif;font-size:20px;color:var(--gold2);margin-bottom:12px;font-weight:400}
+.team-card-body{font-size:12px;color:var(--text2);line-height:1.7}
+.team-card-body p{margin:0 0 8px}
+.team-card-body strong{color:var(--text3);font-weight:600;font-size:10px;letter-spacing:.08em;text-transform:uppercase}
+
+/* Comparison table */
+.comp-table-wrap{overflow-x:auto}
+.comp-table{width:100%;border-collapse:collapse;min-width:700px}
+.comp-table th{background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.2);padding:12px 16px;font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);font-family:'Montserrat',sans-serif;font-weight:600;text-align:left}
+.comp-table td{border:1px solid rgba(255,255,255,.06);padding:12px 16px;font-size:12px;color:var(--text2);line-height:1.6;vertical-align:top}
+.comp-table tr:nth-child(even) td{background:rgba(255,255,255,.02)}
+.comp-table td:first-child{color:var(--text3);font-size:10px;letter-spacing:.08em;text-transform:uppercase;font-family:'Montserrat',sans-serif;font-weight:600;background:rgba(201,168,76,.04)}
+
+/* Workflow table */
+.wf-table{width:100%;border-collapse:collapse;margin-top:8px}
+.wf-stage{background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.2);padding:10px 16px;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);font-family:'Montserrat',sans-serif;font-weight:600;vertical-align:top;width:140px}
+.wf-role{border:1px solid rgba(255,255,255,.06);padding:12px 16px;font-size:12px;color:var(--text2);line-height:1.6;vertical-align:top}
+.wf-role-tag{font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold3);font-family:'Montserrat',sans-serif;font-weight:600;display:block;margin-bottom:4px}
+.wf-table tr:nth-child(even) .wf-role{background:rgba(255,255,255,.02)}
+
+/* References */
+.ref-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:8px}
+.ref-item{background:var(--bg2);border-left:2px solid rgba(201,168,76,.3);padding:10px 16px;font-size:12px;color:var(--text2);display:flex;align-items:center;gap:10px}
+.ref-item::before{content:'◈';color:var(--gold3);font-size:10px;flex-shrink:0}
+
+/* Glossary */
+.glossary-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1px;background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.12)}
+.glossary-item{background:var(--bg2);padding:16px 20px}
+.glossary-term{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);font-family:'Montserrat',sans-serif;font-weight:700;margin-bottom:6px}
+.glossary-def{font-size:12px;color:var(--text2);line-height:1.6}
+
+/* Positioning statement */
+.pos-statement{background:linear-gradient(135deg,rgba(201,168,76,.06) 0%,transparent 60%);border:1px solid rgba(201,168,76,.3);padding:48px;text-align:center;margin-top:48px}
+.pos-label{font-size:9px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);font-family:'Montserrat',sans-serif;font-weight:600;margin-bottom:20px}
+.pos-text{font-family:'Cormorant Garamond',serif;font-size:clamp(16px,2vw,24px);color:var(--text);line-height:1.7;font-weight:300;max-width:860px;margin:0 auto 32px}
+.pos-final-label{display:inline-block;border:1px solid var(--gold);padding:10px 28px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);font-family:'Montserrat',sans-serif;font-weight:600}
 </style>
 
 <section class="process-section">
@@ -1509,6 +1761,715 @@ document.querySelectorAll('.gcard').forEach(function(el) {
     );
   });
 });
+</script>
+
+<!-- CHAPTER 2 -->
+<div id="chapter2" class="ch2">
+<div class="ch2-inner">
+
+  <!-- Header -->
+  <div class="ch2-header">
+    <div class="ch2-eyebrow">Chapter 02 — Consultant-Side Team</div>
+    <h2 class="ch2-title">Consultant-Side Construction<br>Project Team Scope Report</h2>
+    <div class="ch2-subtitle">Senior Technical Architect · Architectural Package Lead · Senior Site Architect</div>
+    <p class="ch2-intro">
+      This report describes the consultant-side construction supervision structure, starting from project leadership
+      and moving down to discipline teams. It explains how architectural, structural, MEP, QA/QC, document control,
+      BIM, planning, contracts, HSE, authority liaison, testing, commissioning, and handover functions work together
+      to control construction quality.
+      <br><br>
+      The architectural focus is developed through three key roles: Senior Technical Architect, Architectural Package Lead,
+      and Senior Site Architect. On large projects these roles may be held by separate individuals or partially overlap.
+      The professional positioning here is: <strong style="color:var(--gold2)">Senior Technical Architect</strong> as the core function,
+      supported by Architectural Package Coordination and a Site Supervision Interface.
+    </p>
+  </div>
+
+  <!-- 1. Organigram -->
+  <div class="ch2-section">
+    <div class="ch2-sec-label">Section 01</div>
+    <div class="ch2-sec-title">General Consultant-Side Organigram</div>
+    <div class="ch2-sec-divider"></div>
+    <div class="org-wrap">
+      <div class="org-tree">
+        <!-- Level 1 -->
+        <div class="org-level">
+          <div class="org-box gold-border">
+            <div class="org-box-title">Client / Employer / Developer</div>
+          </div>
+        </div>
+        <div class="org-connector"></div>
+        <!-- Level 2 -->
+        <div class="org-level">
+          <div class="org-box">
+            <div class="org-box-title">Project Manager / Client Representative</div>
+          </div>
+        </div>
+        <div class="org-connector"></div>
+        <!-- Level 3 -->
+        <div class="org-level">
+          <div class="org-box">
+            <div class="org-box-title">Engineer / Lead Consultant</div>
+            <div class="org-box-sub">Supervision Consultant</div>
+          </div>
+        </div>
+        <div class="org-connector"></div>
+        <!-- Level 4 -->
+        <div class="org-level">
+          <div class="org-box">
+            <div class="org-box-title">Resident Engineer</div>
+            <div class="org-box-sub">Senior Resident Engineer</div>
+          </div>
+        </div>
+        <div class="org-connector"></div>
+        <!-- Level 5 -->
+        <div class="org-level">
+          <div class="org-box">
+            <div class="org-box-title">Construction Manager</div>
+            <div class="org-box-sub">Site Supervision Manager</div>
+          </div>
+        </div>
+        <div class="org-connector"></div>
+        <!-- Teams grid -->
+        <div class="org-teams">
+          <div class="org-team-col">
+            <div class="org-team-head">Architectural</div>
+            <div class="org-team-item highlight">Senior Technical Architect</div>
+            <div class="org-team-item highlight">Architectural Package Lead</div>
+            <div class="org-team-item highlight">Senior Site Architect</div>
+            <div class="org-team-item">Site Architect / Inspector</div>
+            <div class="org-team-item">Interior / Fit-out Architect</div>
+            <div class="org-team-item">Façade Specialist</div>
+            <div class="org-team-item">Landscape Architect</div>
+          </div>
+          <div class="org-team-col">
+            <div class="org-team-head">Structural</div>
+            <div class="org-team-item">Senior Structural Engineer</div>
+            <div class="org-team-item">Structural Engineer</div>
+            <div class="org-team-item">Structural Inspector</div>
+            <div class="org-team-item">Survey / Setting-Out</div>
+          </div>
+          <div class="org-team-col">
+            <div class="org-team-head">MEP</div>
+            <div class="org-team-item">Mechanical Engineer</div>
+            <div class="org-team-item">Electrical Engineer</div>
+            <div class="org-team-item">Plumbing / Drainage</div>
+            <div class="org-team-item">Fire Fighting Engineer</div>
+            <div class="org-team-item">Fire Alarm / ELV</div>
+            <div class="org-team-item">ICT / Security / BMS</div>
+            <div class="org-team-item">MEP Inspectors</div>
+          </div>
+          <div class="org-team-col">
+            <div class="org-team-head">QA / QC</div>
+            <div class="org-team-item">QA/QC Manager</div>
+            <div class="org-team-item">QA/QC Engineer</div>
+            <div class="org-team-item">ITP Control</div>
+            <div class="org-team-item">Method Statement Control</div>
+            <div class="org-team-item">NCR Control</div>
+            <div class="org-team-item">Inspection Records</div>
+          </div>
+          <div class="org-team-col">
+            <div class="org-team-head">Document Control / CDE</div>
+            <div class="org-team-item">Document Controller</div>
+            <div class="org-team-item">CDE Manager</div>
+            <div class="org-team-item">Drawing Register</div>
+            <div class="org-team-item">Submittal Register</div>
+            <div class="org-team-item">Revision Control</div>
+          </div>
+          <div class="org-team-col">
+            <div class="org-team-head">BIM / Info Mgmt</div>
+            <div class="org-team-item">BIM Coordinator</div>
+            <div class="org-team-item">Information Manager</div>
+            <div class="org-team-item">Federated Coordination</div>
+            <div class="org-team-item">Clash Tracking</div>
+            <div class="org-team-item">As-built / COBie Support</div>
+          </div>
+          <div class="org-team-col">
+            <div class="org-team-head">Additional Support</div>
+            <div class="org-team-item">Planning Engineer</div>
+            <div class="org-team-item">QS / Contracts Engineer</div>
+            <div class="org-team-item">HSE Engineer</div>
+            <div class="org-team-item">Authority Liaison</div>
+            <div class="org-team-item">T&amp;C Coordinator</div>
+            <div class="org-team-item">Handover Coordinator</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. Consultant Teams by Specialty -->
+  <div class="ch2-section">
+    <div class="ch2-sec-label">Section 02</div>
+    <div class="ch2-sec-title">Consultant Team by Specialty</div>
+    <div class="ch2-sec-divider"></div>
+    <div class="teams-grid">
+      <div class="team-card">
+        <div class="team-card-num">01</div>
+        <div class="team-card-title">Architectural Team</div>
+        <div class="team-card-body">
+          <p><strong>Definition</strong></p>
+          <p>Reviews, approves, and supervises all architectural works from IFC stage through handover. Controls shop drawings, material submittals, mock-ups, site execution quality, and as-built documentation for the architectural package.</p>
+          <p><strong>Interface</strong></p>
+          <p>Direct interface with contractor's architectural and fit-out teams, structural engineers, MEP leads, QA/QC, and document control. Authority liaison for compliance items.</p>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="team-card-num">02</div>
+        <div class="team-card-title">Structural Team</div>
+        <div class="team-card-body">
+          <p><strong>Definition</strong></p>
+          <p>Reviews structural shop drawings, connection details, embedded items, and post-tensioning documentation. Controls structural inspection requests, concrete pour approvals, and rebar inspections.</p>
+          <p><strong>Interface with Arch</strong></p>
+          <p>Slab levels, block-out coordination, structural openings, embedded frames, façade attachment points, and ceiling void coordination.</p>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="team-card-num">03</div>
+        <div class="team-card-title">Mechanical Team</div>
+        <div class="team-card-body">
+          <p><strong>Definition</strong></p>
+          <p>Supervises HVAC, plumbing, drainage, and fire suppression systems. Reviews mechanical shop drawings, balancing reports, T&amp;C records, and equipment submittals.</p>
+          <p><strong>Interface with Arch</strong></p>
+          <p>Ceiling void routing, AHU room access, riser shaft coordination, duct penetrations through fire-rated walls, and wet area drainage levels.</p>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="team-card-num">04</div>
+        <div class="team-card-title">Electrical / ELV Team</div>
+        <div class="team-card-body">
+          <p><strong>Definition</strong></p>
+          <p>Supervises power, lighting, fire alarm, ICT, security, BMS, and ELV systems. Controls electrical shop drawings, panel submittals, cable routing, and ELV integration.</p>
+          <p><strong>Interface with Arch</strong></p>
+          <p>Ceiling-mounted fixture coordination, switchroom locations, containment routing in partitions, floor boxes in public areas, and façade lighting integration.</p>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="team-card-num">05</div>
+        <div class="team-card-title">QA / QC Team</div>
+        <div class="team-card-body">
+          <p><strong>Definition</strong></p>
+          <p>Administers and controls the project quality management system. Manages ITP approvals, method statement review, NCR issuance and close-out, and inspection records. Ensures that no work proceeds without the required quality gates.</p>
+          <p><strong>Interface with Arch</strong></p>
+          <p>ITP hold points for architectural finishes, NCR processing for workmanship deviations, and quality surveillance during inspections.</p>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="team-card-num">06</div>
+        <div class="team-card-title">Document Control / CDE Team</div>
+        <div class="team-card-body">
+          <p><strong>Definition</strong></p>
+          <p>Controls all project information — drawing register, submittal register, revision control, correspondence log, and CDE administration. Ensures only current approved revisions are available on site.</p>
+          <p><strong>Interface with Arch</strong></p>
+          <p>Architectural shop drawing transmittal, material submittal tracking, RFI logging, and distribution of approved revisions to the contractor's team.</p>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="team-card-num">07</div>
+        <div class="team-card-title">BIM Coordinator / Information Manager</div>
+        <div class="team-card-body">
+          <p><strong>Definition</strong></p>
+          <p>Manages the federated model, clash detection, information management protocols, and as-built model population. Coordinates BIM deliverables from all disciplines and ensures ISO 19650 compliance.</p>
+          <p><strong>Interface with Arch</strong></p>
+          <p>Architectural model coordination, clash resolution between architectural and MEP/structure, and as-built architectural model update support.</p>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="team-card-num">08</div>
+        <div class="team-card-title">Planning Engineer</div>
+        <div class="team-card-body">
+          <p><strong>Definition</strong></p>
+          <p>Monitors construction programme, reviews contractor's schedule submissions, assesses delay claims, and issues progress reports to the supervision management team.</p>
+          <p><strong>Interface with Arch</strong></p>
+          <p>Architectural package progress tracking, mock-up approval durations, shop drawing review turnaround commitments, and handover sequence planning.</p>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="team-card-num">09</div>
+        <div class="team-card-title">Quantity Surveyor / Contracts Engineer</div>
+        <div class="team-card-body">
+          <p><strong>Definition</strong></p>
+          <p>Administers the contract, processes interim payment certificates, evaluates variation orders, and manages contractual correspondence and claims assessment.</p>
+          <p><strong>Interface with Arch</strong></p>
+          <p>Variation order technical input for architectural changes, BOQ compliance during material substitution evaluation, and as-built quantity reconciliation.</p>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="team-card-num">10</div>
+        <div class="team-card-title">HSE Engineer / Safety Officer</div>
+        <div class="team-card-body">
+          <p><strong>Definition</strong></p>
+          <p>Controls site safety — HSE plan compliance, permit-to-work system, method statement safety review, toolbox talks, incident reporting, and Civil Defence coordination.</p>
+          <p><strong>Interface with Arch</strong></p>
+          <p>Method statement HSE review for architectural works, scaffold and access platform approval, and fire safety coordination during construction.</p>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="team-card-num">11</div>
+        <div class="team-card-title">Authority Liaison / Permits Coordinator</div>
+        <div class="team-card-body">
+          <p><strong>Definition</strong></p>
+          <p>Manages all authority submissions, NOC applications, inspection bookings, and completion certificate applications. Maintains the authority correspondence register.</p>
+          <p><strong>Interface with Arch</strong></p>
+          <p>DM/DCD building inspection coordination, authority NCR response, façade and fire-rated assembly compliance verification, and occupancy certificate support.</p>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="team-card-num">12</div>
+        <div class="team-card-title">Testing &amp; Commissioning / Handover Support</div>
+        <div class="team-card-body">
+          <p><strong>Definition</strong></p>
+          <p>Coordinates system testing, functional commissioning, integrated testing, and handover documentation compilation. Issues the project handover certificate with all required supporting records.</p>
+          <p><strong>Interface with Arch</strong></p>
+          <p>Architectural snagging resolution before handover, as-built drawing submission, O&amp;M manual compilation, and client walkthrough support for architectural finishes and systems.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. Main Architectural Roles -->
+  <div class="ch2-section">
+    <div class="ch2-sec-label">Section 03</div>
+    <div class="ch2-sec-title">Main Architectural Roles</div>
+    <div class="ch2-sec-divider"></div>
+
+    <!-- Role 1 -->
+    <div class="role-block">
+      <div class="role-img"><img src="/site-supervision-images/role-technical-architect.png" alt="Senior Technical Architect" loading="lazy"></div>
+      <div class="role-header">
+        <div class="role-num"><div class="role-num-inner">01</div></div>
+        <div class="role-header-text">
+          <div class="role-tag">Role 01 — Core Function</div>
+          <div class="role-title">Senior Technical Architect</div>
+          <div class="role-focus">Main Focus: 70–80% Technical / Document Review / Coordination</div>
+        </div>
+      </div>
+      <div class="role-body">
+        <div class="role-def">
+          The Senior Technical Architect is the consultant-side technical authority for architectural documentation,
+          buildability, compliance, detailing, and multidisciplinary coordination during construction.
+          This role prevents technical errors before they become site defects.
+        </div>
+        <div class="role-cols">
+          <div>
+            <div class="role-col-title">Deep Scope</div>
+            <ul class="role-list">
+              <li>IFC drawing review</li>
+              <li>Shop drawing technical review</li>
+              <li>Architectural detailing and technical sketches</li>
+              <li>Material submittal technical review</li>
+              <li>RFI review and formal response</li>
+              <li>Method statement technical review</li>
+              <li>Code and specification compliance</li>
+              <li>Structural coordination</li>
+              <li>MEP coordination</li>
+              <li>Fire and life safety coordination</li>
+              <li>Accessibility coordination</li>
+              <li>BIM / clash issue support</li>
+              <li>Technical risk control</li>
+              <li>Mock-up technical review</li>
+              <li>Technical support for NCR closure</li>
+            </ul>
+          </div>
+          <div>
+            <div class="role-col-title">Key Documents Controlled</div>
+            <ul class="role-list">
+              <li>IFC drawings</li>
+              <li>Approved shop drawings</li>
+              <li>Project specifications</li>
+              <li>Material submittals</li>
+              <li>Method statements</li>
+              <li>Requests for Information (RFIs)</li>
+              <li>Technical sketches</li>
+              <li>BIM coordination reports</li>
+              <li>Authority-approved drawings</li>
+              <li>Mock-up records</li>
+              <li>NCR technical records</li>
+            </ul>
+          </div>
+        </div>
+        <div class="role-question">Is this technically correct, coordinated, compliant, and buildable?</div>
+      </div>
+    </div>
+
+    <!-- Role 2 -->
+    <div class="role-block">
+      <div class="role-img"><img src="/site-supervision-images/role-package-lead.png" alt="Architectural Package Lead" loading="lazy"></div>
+      <div class="role-header">
+        <div class="role-num"><div class="role-num-inner">02</div></div>
+        <div class="role-header-text">
+          <div class="role-tag">Role 02 — Package Control</div>
+          <div class="role-title">Architectural Package Lead</div>
+          <div class="role-focus">Main Focus: 60–70% Package Management / Coordination / Tracking</div>
+        </div>
+      </div>
+      <div class="role-body">
+        <div class="role-def">
+          The Architectural Package Lead owns a defined architectural package and controls it from technical submission
+          through approval, procurement, site implementation, inspection, snagging, and handover.
+        </div>
+        <div class="role-cols">
+          <div>
+            <div class="role-col-title">Deep Scope</div>
+            <ul class="role-list">
+              <li>Package scope definition</li>
+              <li>Submittal schedule management</li>
+              <li>Shop drawing tracker</li>
+              <li>Material submittal tracker</li>
+              <li>Method statement tracker</li>
+              <li>Sample and mock-up tracker</li>
+              <li>RFI tracker</li>
+              <li>NCR tracker</li>
+              <li>Procurement tracker</li>
+              <li>Site progress tracker</li>
+              <li>Interface management between packages</li>
+              <li>Mock-up approval coordination</li>
+              <li>Package risk register</li>
+              <li>Package progress reporting</li>
+              <li>Handover documentation tracking</li>
+            </ul>
+          </div>
+          <div>
+            <div class="role-col-title">Example Packages</div>
+            <ul class="role-list">
+              <li>Façade package</li>
+              <li>Interior finishes package</li>
+              <li>Doors and ironmongery package</li>
+              <li>Wet areas package</li>
+              <li>Ceiling and partitions package</li>
+              <li>Public areas package</li>
+              <li>Healthcare architectural package</li>
+              <li>External works / landscape interface</li>
+            </ul>
+          </div>
+        </div>
+        <div class="role-question">Is this package approved, coordinated, procured, installed, inspected, and ready for handover?</div>
+      </div>
+    </div>
+
+    <!-- Role 3 -->
+    <div class="role-block">
+      <div class="role-img"><img src="/site-supervision-images/role-site-architect.png" alt="Senior Site Architect" loading="lazy"></div>
+      <div class="role-header">
+        <div class="role-num"><div class="role-num-inner">03</div></div>
+        <div class="role-header-text">
+          <div class="role-tag">Role 03 — Site Interface</div>
+          <div class="role-title">Senior Site Architect</div>
+          <div class="role-focus">Main Focus: 70–80% Site Supervision / Inspection / Installed Quality</div>
+        </div>
+      </div>
+      <div class="role-body">
+        <div class="role-def">
+          The Senior Site Architect verifies that architectural works installed on site comply with approved shop drawings,
+          specifications, method statements, ITPs, approved materials, authority requirements, and project quality standards.
+        </div>
+        <div class="role-cols">
+          <div>
+            <div class="role-col-title">Deep Scope</div>
+            <ul class="role-list">
+              <li>Daily architectural site supervision</li>
+              <li>IR / WIR inspection</li>
+              <li>MIR material inspection</li>
+              <li>Site observation reports</li>
+              <li>NCR recommendation and follow-up</li>
+              <li>SI recommendation and follow-up</li>
+              <li>Workmanship review</li>
+              <li>Mock-up site inspection</li>
+              <li>Ceiling closure control</li>
+              <li>Waterproofing inspection</li>
+              <li>Fire stopping inspection</li>
+              <li>Door and ironmongery inspection</li>
+              <li>Wet area inspection</li>
+              <li>Finishes inspection</li>
+              <li>Coordination with MEP and structure on site</li>
+              <li>Snagging and de-snagging</li>
+              <li>Handover quality verification</li>
+            </ul>
+          </div>
+          <div>
+            <div class="role-col-title">IR / WIR Inspection Workflow</div>
+            <div class="ir-stages">
+              <div class="ir-stage">
+                <div class="ir-stage-title">Before Inspection</div>
+                <ul class="role-list">
+                  <li>Approved shop drawing available</li>
+                  <li>Approved material submittal available</li>
+                  <li>Approved method statement available</li>
+                  <li>Approved ITP available</li>
+                  <li>Previous inspection approved</li>
+                  <li>Contractor QA/QC checked first</li>
+                  <li>Area ready and accessible</li>
+                  <li>Required test reports attached</li>
+                </ul>
+              </div>
+              <div class="ir-stage">
+                <div class="ir-stage-title">During Inspection</div>
+                <ul class="role-list">
+                  <li>Setting-out</li>
+                  <li>Dimensions</li>
+                  <li>Levels and alignment</li>
+                  <li>Material compliance</li>
+                  <li>Workmanship quality</li>
+                  <li>MEP coordination</li>
+                  <li>Structural coordination</li>
+                  <li>Fire compliance</li>
+                  <li>Waterproofing</li>
+                  <li>Accessibility</li>
+                  <li>Protection of completed works</li>
+                </ul>
+              </div>
+              <div class="ir-stage">
+                <div class="ir-stage-title">After Inspection</div>
+                <ul class="role-list">
+                  <li>Approved</li>
+                  <li>Approved with comments</li>
+                  <li>Rejected</li>
+                  <li>Re-inspection required</li>
+                  <li>Hold</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="role-question">Is the actual installed work correct, compliant, coordinated, and acceptable for the next stage?</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. Comparison Table -->
+  <div class="ch2-section">
+    <div class="ch2-sec-label">Section 04</div>
+    <div class="ch2-sec-title">Role Comparison</div>
+    <div class="ch2-sec-divider"></div>
+    <div class="comp-table-wrap">
+      <table class="comp-table">
+        <thead>
+          <tr>
+            <th>Item</th>
+            <th>Senior Technical Architect</th>
+            <th>Architectural Package Lead</th>
+            <th>Senior Site Architect</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Main Location</td>
+            <td>Office, technical meetings, site visits when required</td>
+            <td>Office + site + package meetings</td>
+            <td>Site</td>
+          </tr>
+          <tr>
+            <td>Main Focus</td>
+            <td>Technical correctness</td>
+            <td>Package delivery and coordination</td>
+            <td>Installed quality</td>
+          </tr>
+          <tr>
+            <td>Main Question</td>
+            <td>Is this technically correct and compliant?</td>
+            <td>Is this package approved, coordinated, procured, installed, and closed?</td>
+            <td>Is this work installed correctly on site?</td>
+          </tr>
+          <tr>
+            <td>Main Documents</td>
+            <td>Shop drawings, materials, RFIs, specs, technical sketches</td>
+            <td>Trackers, approvals, package logs, risk register, mock-up records</td>
+            <td>IR, WIR, MIR, NCR, SI, site reports, snagging lists</td>
+          </tr>
+          <tr>
+            <td>Main Interface</td>
+            <td>Design team, discipline leads, contractor technical team</td>
+            <td>All stakeholders related to the package</td>
+            <td>Contractor site team, QA/QC, inspectors, discipline engineers</td>
+          </tr>
+          <tr>
+            <td>Risk Controlled</td>
+            <td>Wrong technical information</td>
+            <td>Package delay and interface failure</td>
+            <td>Poor workmanship and non-conforming work</td>
+          </tr>
+          <tr>
+            <td>Typical Focus Ratio</td>
+            <td>70–80% technical / document</td>
+            <td>60–70% coordination / management</td>
+            <td>70–80% site supervision</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 5. Workflow Example -->
+  <div class="ch2-section">
+    <div class="ch2-sec-label">Section 05</div>
+    <div class="ch2-sec-title">Workflow Example — Ceiling Package</div>
+    <div class="ch2-sec-divider"></div>
+    <div style="overflow-x:auto">
+      <table class="wf-table">
+        <tbody>
+          <tr>
+            <td class="wf-stage">01<br>Shop Drawing Stage</td>
+            <td class="wf-role"><span class="wf-role-tag">Senior Technical Architect</span>Reviews ceiling details, levels, access panels, fire/acoustic requirements, and MEP coordination.</td>
+            <td class="wf-role"><span class="wf-role-tag">Architectural Package Lead</span>Tracks ceiling shop drawing approval status on package tracker.</td>
+            <td class="wf-role"><span class="wf-role-tag">Senior Site Architect</span>Provides site constraints and checks existing conditions.</td>
+          </tr>
+          <tr>
+            <td class="wf-stage">02<br>Material Stage</td>
+            <td class="wf-role"><span class="wf-role-tag">Senior Technical Architect</span>Reviews gypsum board type, grid system, fire/acoustic requirements, and specification compliance.</td>
+            <td class="wf-role"><span class="wf-role-tag">Architectural Package Lead</span>Tracks material approval and procurement status.</td>
+            <td class="wf-role"><span class="wf-role-tag">Senior Site Architect</span>Checks delivered material through MIR on site.</td>
+          </tr>
+          <tr>
+            <td class="wf-stage">03<br>Mock-up Stage</td>
+            <td class="wf-role"><span class="wf-role-tag">Senior Technical Architect</span>Checks technical compliance of mock-up against specifications.</td>
+            <td class="wf-role"><span class="wf-role-tag">Architectural Package Lead</span>Coordinates approval and manages comments closure.</td>
+            <td class="wf-role"><span class="wf-role-tag">Senior Site Architect</span>Inspects workmanship standard on site.</td>
+          </tr>
+          <tr>
+            <td class="wf-stage">04<br>Installation Stage</td>
+            <td class="wf-role"><span class="wf-role-tag">Senior Technical Architect</span>Supports technical RFIs and coordination issues during execution.</td>
+            <td class="wf-role"><span class="wf-role-tag">Architectural Package Lead</span>Tracks progress and monitors open package issues.</td>
+            <td class="wf-role"><span class="wf-role-tag">Senior Site Architect</span>Inspects framing, board fixing, access panels, and final finish.</td>
+          </tr>
+          <tr>
+            <td class="wf-stage">05<br>NCR / SI Stage</td>
+            <td class="wf-role"><span class="wf-role-tag">Senior Technical Architect</span>Provides technical input for non-conformance response.</td>
+            <td class="wf-role"><span class="wf-role-tag">Architectural Package Lead</span>Tracks issue closure on NCR/SI register.</td>
+            <td class="wf-role"><span class="wf-role-tag">Senior Site Architect</span>Records site condition and follows corrective action.</td>
+          </tr>
+          <tr>
+            <td class="wf-stage">06<br>Handover Stage</td>
+            <td class="wf-role"><span class="wf-role-tag">Senior Technical Architect</span>Supports technical records for as-built documentation if required.</td>
+            <td class="wf-role"><span class="wf-role-tag">Architectural Package Lead</span>Tracks as-built, O&amp;M, warranties, and package closure documents.</td>
+            <td class="wf-role"><span class="wf-role-tag">Senior Site Architect</span>Conducts snagging and verifies final installed quality.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 6. Reference Framework -->
+  <div class="ch2-section">
+    <div class="ch2-sec-label">Section 06</div>
+    <div class="ch2-sec-title">Reference Framework</div>
+    <div class="ch2-sec-divider"></div>
+    <div class="ref-grid">
+      <div class="ref-item">Dubai Building Code</div>
+      <div class="ref-item">Dubai Municipality Procedures</div>
+      <div class="ref-item">UAE Fire and Life Safety Code of Practice</div>
+      <div class="ref-item">Dubai Civil Defence Requirements</div>
+      <div class="ref-item">Al Sa'fat Dubai Green Building System</div>
+      <div class="ref-item">Project Contract Documents</div>
+      <div class="ref-item">IFC Drawings</div>
+      <div class="ref-item">Approved Shop Drawings</div>
+      <div class="ref-item">Project Specifications</div>
+      <div class="ref-item">Approved Material Submittals</div>
+      <div class="ref-item">Approved Method Statements</div>
+      <div class="ref-item">Approved Inspection and Test Plans</div>
+      <div class="ref-item">Approved Mock-ups and Samples</div>
+      <div class="ref-item">ISO 9001 — Quality Management</div>
+      <div class="ref-item">ISO 19650 — Information Management / BIM</div>
+      <div class="ref-item">Project CDE Procedures</div>
+      <div class="ref-item">Authority Approvals, NOCs, Completion Requirements</div>
+      <div class="ref-item">Project Handover and Close-Out Requirements</div>
+    </div>
+  </div>
+
+  <!-- 7. Glossary -->
+  <div class="ch2-section">
+    <div class="ch2-sec-label">Section 07</div>
+    <div class="ch2-sec-title">Glossary</div>
+    <div class="ch2-sec-divider"></div>
+    <div class="glossary-grid">
+      <div class="glossary-item">
+        <div class="glossary-term">IFC — Issued for Construction</div>
+        <div class="glossary-def">The formally approved drawing set released to the contractor for physical execution on site. Supersedes all previous revisions.</div>
+      </div>
+      <div class="glossary-item">
+        <div class="glossary-term">Shop Drawing</div>
+        <div class="glossary-def">Contractor-produced detailed fabrication and installation drawing submitted for consultant review and approval before work commences.</div>
+      </div>
+      <div class="glossary-item">
+        <div class="glossary-term">Material Submittal</div>
+        <div class="glossary-def">Formal submission of proposed materials, products, and systems for consultant review against project specifications and authority requirements.</div>
+      </div>
+      <div class="glossary-item">
+        <div class="glossary-term">MIR — Material Inspection Request</div>
+        <div class="glossary-def">Formal request raised by the contractor for the consultant to verify that materials delivered to site match the approved submittal.</div>
+      </div>
+      <div class="glossary-item">
+        <div class="glossary-term">IR / WIR — Inspection / Work Inspection Request</div>
+        <div class="glossary-def">Formal request by the contractor for the consultant to inspect installed works at a defined hold point before the next stage commences.</div>
+      </div>
+      <div class="glossary-item">
+        <div class="glossary-term">ITP — Inspection and Test Plan</div>
+        <div class="glossary-def">A document that defines hold points, witness points, and record points for a specific work activity, controlling when and how inspections occur.</div>
+      </div>
+      <div class="glossary-item">
+        <div class="glossary-term">Method Statement</div>
+        <div class="glossary-def">Contractor's documented plan describing how a specific work activity will be executed — sequence, equipment, safety measures, and quality controls.</div>
+      </div>
+      <div class="glossary-item">
+        <div class="glossary-term">RFI — Request for Information</div>
+        <div class="glossary-def">Formal query raised by the contractor to the consultant seeking clarification on design intent, specification requirements, or drawing discrepancies.</div>
+      </div>
+      <div class="glossary-item">
+        <div class="glossary-term">NCR — Non-Conformance Report</div>
+        <div class="glossary-def">Formal record issued when work, material, or process deviates from the approved standard. Requires formal response and verified rectification before closure.</div>
+      </div>
+      <div class="glossary-item">
+        <div class="glossary-term">SI — Site Instruction</div>
+        <div class="glossary-def">Formal written instruction issued by the consultant directing the contractor to take a specific action on site. Creates a contractual record.</div>
+      </div>
+      <div class="glossary-item">
+        <div class="glossary-term">CDE — Common Data Environment</div>
+        <div class="glossary-def">The agreed information management platform through which all project documents, drawings, and models are shared, reviewed, and approved.</div>
+      </div>
+      <div class="glossary-item">
+        <div class="glossary-term">O&M Manual</div>
+        <div class="glossary-def">Operation and Maintenance Manual — a complete guide for the client and facilities management team on operating, maintaining, and servicing all installed systems.</div>
+      </div>
+      <div class="glossary-item">
+        <div class="glossary-term">As-Built Drawing</div>
+        <div class="glossary-def">Final drawing set updated to reflect the exact as-constructed condition of all works, submitted as part of the project handover documentation package.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 8. Final Positioning Statement -->
+  <div class="ch2-section">
+    <div class="ch2-sec-label">Section 08</div>
+    <div class="ch2-sec-title">Professional Positioning</div>
+    <div class="ch2-sec-divider"></div>
+    <div class="pos-statement">
+      <div class="pos-label">Professional Position Statement</div>
+      <p class="pos-text">
+        A Senior Technical Architect with architectural package coordination and site supervision interface acts
+        as the technical bridge between design documentation and construction execution.
+        The role controls the quality and compliance of architectural information, coordinates package approvals,
+        resolves technical issues with structure and MEP, supports site inspections, monitors NCR / RFI / SI closure,
+        and ensures that architectural works are executed in accordance with approved drawings, specifications,
+        Dubai Building Code, UAE Fire and Life Safety requirements, Al Sa'fat requirements, and the project QA/QC procedures.
+      </p>
+      <p style="font-size:13px;color:var(--text3);margin-bottom:28px;font-style:italic">
+        This position is not three full-time roles combined into one person.
+        The core function is Senior Technical Architecture, supported by architectural package coordination responsibilities
+        and a site supervision interface.
+      </p>
+      <div class="pos-final-label">Senior Technical Architect — Architectural Package Coordination — Site Supervision Interface</div>
+    </div>
+  </div>
+
+</div><!-- /ch2-inner -->
+</div><!-- /ch2 -->
+
+<script>
+function switchChapter(id, btn) {
+  document.querySelectorAll('.ch-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  const target = document.getElementById(id);
+  if(target) target.scrollIntoView({behavior:'smooth', block:'start'});
+}
 </script>
 
 </body>
