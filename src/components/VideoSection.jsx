@@ -31,6 +31,9 @@ const DEFAULT_VIDEOS = [
   { id: 'yt-3', ytId: 'P9c5iYk33YQ', title: 'Visite du Minister',       category: 'Construction' },
   { id: 'yt-4', ytId: 'H0uOx2WuHqg', title: 'Preparation',              category: 'Construction' },
   { id: 'yt-5', ytId: 'T-AbnGhcrbU', title: 'CAC CHELEF',               category: 'Construction' },
+  { id: 'yt-6', ytId: 'Vq1g-nKacyE', title: 'Site Supervision',         category: 'Other'        },
+  { id: 'yt-7', ytId: 'RhIXHVoouJg', title: 'Construction Team Scope',  category: 'Other'        },
+  { id: 'yt-8', ytId: 'aB6jN8W6lwo', title: 'Day One Orientation',      category: 'Other'        },
 ]
 
 // Only user-added videos (not defaults) are stored in localStorage
