@@ -1699,37 +1699,48 @@ footer{background:var(--bg);border-top:1px solid var(--gold-line);padding:28px 4
 <div id="chapter2" class="ch-wrap" style="display:none">
 
 <section class="hero">
-  <div class="hero-meta">Enabling Works &middot; Shoring Package</div>
-  <h1 class="hero-title">Specifications</h1>
-  <div class="hero-sub">B+G+5+Roof Mixed-Use Residential</div>
-  <div class="hero-tags">
-    <span class="hero-tag">Meydan Avenue, Dubai, UAE</span>
-    <span class="hero-tag">Ref: Avenue-A-DP-29</span>
-    <span class="hero-tag">CSI MasterFormat</span>
-    <span class="hero-tag">ISO 19650 Aligned</span>
+  <div class="hero-eyebrow">Enabling Works &middot; Shoring Package</div>
+  <h1 class="hero-title">Enabling Works Specifications<em>Shoring Package</em></h1>
+  <p class="hero-sub">Complete CSI MasterFormat specification reference for the enabling works and shoring package. Every section translated into plain language &mdash; what the material is, what it must achieve, what tests apply, and what the Site Technical Architect must verify before approving any work.</p>
+  <div class="hero-proj">
+    <div style="border-right:1px solid var(--gold-line);padding-right:20px;margin-right:20px">
+      <div class="hp-label">Project</div>
+      <div class="hp-value">B+G+5+Roof Mixed-Use Residential</div>
+    </div>
+    <div style="border-right:1px solid var(--gold-line);padding-right:20px;margin-right:20px">
+      <div class="hp-label">Location</div>
+      <div class="hp-value">Meydan Avenue, Dubai, UAE</div>
+    </div>
+    <div>
+      <div class="hp-label">Reference</div>
+      <div class="hp-value">Avenue-A-DP-29</div>
+    </div>
   </div>
+  <div class="hero-badges">
+    <span class="hb hb-g">CSI MasterFormat</span>
+    <span class="hb hb-g">DM SCC NOC</span>
+    <span class="hb hb-g">Al Sa&apos;fat Compliant</span>
+    <span class="hb hb-d">BS &middot; ACI &middot; ASTM</span>
+    <span class="hb hb-d">3 Divisions &middot; 8 Sections</span>
+  </div>
+  <div class="hero-deco">ENABLING</div>
 </section>
 
 <div class="stats-bar">
-  <div class="stat"><div class="stat-num">3</div><div class="stat-label">Divisions</div></div>
-  <div class="stat"><div class="stat-num">8</div><div class="stat-label">Sections</div></div>
-  <div class="stat"><div class="stat-num">3</div><div class="stat-label">Parts / Section</div></div>
-  <div class="stat"><div class="stat-num">DM NOC</div><div class="stat-label">Shoring Authority</div></div>
-  <div class="stat"><div class="stat-num">BS &middot; ACI &middot; ASTM</div><div class="stat-label">Standards</div></div>
+  <div class="sb"><div class="sb-n">3</div><div class="sb-l">Divisions</div></div>
+  <div class="sb"><div class="sb-n">8</div><div class="sb-l">Sections</div></div>
+  <div class="sb"><div class="sb-n">3</div><div class="sb-l">Parts / Section</div></div>
+  <div class="sb"><div class="sb-n">DM NOC</div><div class="sb-l">Shoring Authority</div></div>
+  <div class="sb"><div class="sb-n">BS&middot;ACI</div><div class="sb-l">Standards</div></div>
 </div>
 
 <div class="toolbar">
-  <div class="toolbar-inner">
-    <div class="search-wrap">
-      <input class="search-box" type="text" placeholder="Search enabling works specs..." oninput="searchSpecs2(this.value)">
-    </div>
-    <div class="filter-bar" id="filterBar2">
-      <button class="filter-btn active" data-div="all" onclick="filterDiv2(this,'all')">All</button>
-      <button class="filter-btn" data-div="03" onclick="filterDiv2(this,'03')">03 Concrete</button>
-      <button class="filter-btn" data-div="07" onclick="filterDiv2(this,'07')">07 Moisture Prot.</button>
-      <button class="filter-btn" data-div="31" onclick="filterDiv2(this,'31')">31 Earthwork</button>
-    </div>
-  </div>
+  <span class="tb-label">Division:</span>
+  <button class="div-btn active" onclick="filterDiv2('all',this)">All</button>
+  <button class="div-btn" onclick="filterDiv2('03',this)">03 Concrete</button>
+  <button class="div-btn" onclick="filterDiv2('07',this)">07 Moisture Prot.</button>
+  <button class="div-btn" onclick="filterDiv2('31',this)">31 Earthwork</button>
+  <input class="search-box" type="text" placeholder="Search enabling works specs..." oninput="searchSpecs2(this.value)">
 </div>
 
 <div class="content" id="content2">
@@ -2269,9 +2280,9 @@ footer{background:var(--bg);border-top:1px solid var(--gold-line);padding:28px 4
 </div><!-- /content2 -->
 
 <script>
-function filterDiv2(btn,div){
-  document.querySelectorAll('#filterBar2 .filter-btn').forEach(function(b){b.classList.remove('active');});
-  btn.classList.add('active');
+function filterDiv2(div,btn){
+  document.querySelectorAll('#chapter2 .div-btn').forEach(function(b){b.classList.remove('active');});
+  if(btn) btn.classList.add('active');
   document.querySelectorAll('#content2 .div-section').forEach(function(s){
     s.style.display=(div==='all'||s.dataset.div===div)?'':'none';
   });
