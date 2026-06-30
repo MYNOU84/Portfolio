@@ -138,6 +138,12 @@ footer{background:var(--bg);border-top:1px solid var(--gold-line);padding:28px 4
   .stats-bar{flex-wrap:wrap}
   .sb{min-width:50%}
 }
+
+/* ── CHAPTER NAVIGATION ──────────────────── */
+.ch-nav{display:flex;gap:2px;padding:0 32px;background:rgba(13,13,13,.97);border-bottom:1px solid rgba(201,168,76,.12);position:sticky;top:60px;z-index:90}
+.ch-btn{padding:10px 22px;font-family:Montserrat,sans-serif;font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:rgba(232,228,220,.4);background:none;border:none;cursor:pointer;transition:all .2s;border-bottom:2px solid transparent}
+.ch-btn:hover{color:var(--gold)}
+.ch-btn.ch-active{color:var(--gold);border-bottom-color:var(--gold)}
 </style>
 </head>
 <body>
@@ -154,6 +160,12 @@ footer{background:var(--bg);border-top:1px solid var(--gold-line);padding:28px 4
   </div>
 </nav>
 
+<div class="ch-nav">
+  <button class="ch-btn ch-active" data-ch="1" onclick="switchChapter('1')">Chapter 1 — Architectural Finishes</button>
+  <button class="ch-btn" data-ch="2" onclick="switchChapter('2')">Chapter 2 — Enabling Works</button>
+</div>
+
+<div id="chapter1" class="ch-wrap">
 <section class="hero">
   <div class="hero-eyebrow">Project Specifications</div>
   <h1 class="hero-title">Architectural Specifications<em>Supervision Reference</em></h1>
@@ -1682,6 +1694,606 @@ footer{background:var(--bg);border-top:1px solid var(--gold-line);padding:28px 4
 </div>
 
 </div><!-- /content -->
+</div><!-- /chapter1 -->
+
+<div id="chapter2" class="ch-wrap" style="display:none">
+
+<section class="hero">
+  <div class="hero-meta">Enabling Works &middot; Shoring Package</div>
+  <h1 class="hero-title">Specifications</h1>
+  <div class="hero-sub">B+G+5+Roof Mixed-Use Residential</div>
+  <div class="hero-tags">
+    <span class="hero-tag">Meydan Avenue, Dubai, UAE</span>
+    <span class="hero-tag">Ref: Avenue-A-DP-29</span>
+    <span class="hero-tag">CSI MasterFormat</span>
+    <span class="hero-tag">ISO 19650 Aligned</span>
+  </div>
+</section>
+
+<div class="stats-bar">
+  <div class="stat"><div class="stat-num">3</div><div class="stat-label">Divisions</div></div>
+  <div class="stat"><div class="stat-num">8</div><div class="stat-label">Sections</div></div>
+  <div class="stat"><div class="stat-num">3</div><div class="stat-label">Parts / Section</div></div>
+  <div class="stat"><div class="stat-num">DM NOC</div><div class="stat-label">Shoring Authority</div></div>
+  <div class="stat"><div class="stat-num">BS &middot; ACI &middot; ASTM</div><div class="stat-label">Standards</div></div>
+</div>
+
+<div class="toolbar">
+  <div class="toolbar-inner">
+    <div class="search-wrap">
+      <input class="search-box" type="text" placeholder="Search enabling works specs..." oninput="searchSpecs2(this.value)">
+    </div>
+    <div class="filter-bar" id="filterBar2">
+      <button class="filter-btn active" data-div="all" onclick="filterDiv2(this,'all')">All</button>
+      <button class="filter-btn" data-div="03" onclick="filterDiv2(this,'03')">03 Concrete</button>
+      <button class="filter-btn" data-div="07" onclick="filterDiv2(this,'07')">07 Moisture Prot.</button>
+      <button class="filter-btn" data-div="31" onclick="filterDiv2(this,'31')">31 Earthwork</button>
+    </div>
+  </div>
+</div>
+
+<div class="content" id="content2">
+
+<!-- DIV 03 -->
+<div class="div-section" data-div="03">
+  <div class="div-header">
+    <span class="div-num">Division 03</span>
+    <h2 class="div-title">Concrete</h2>
+    <div class="div-line"></div>
+    <span class="div-count">2 Sections</span>
+  </div>
+  <div class="spec-grid">
+
+    <div class="spec-card" data-search2="cast in place concrete cip structural shoring 033000 OPC aggregate rebar SCC">
+      <div class="sc-head" onclick="toggle(this)">
+        <div class="sc-code">033000</div>
+        <div class="sc-info">
+          <div class="sc-title">Cast-In-Place Concrete</div>
+          <div class="sc-plain">Structural concrete for all below-grade enabling works: pile caps, capping beams, tie beams, basement slabs, and retaining wall connections. Durable mix for aggressive UAE sulfate and chloride ground conditions.</div>
+        </div>
+        <div class="sc-arrow">&#9662;</div>
+      </div>
+      <div class="sc-body">
+        <div class="sc-block">
+          <div class="sc-block-label">What It Is</div>
+          <p style="font-size:11px;color:var(--text2);line-height:1.7">Cast-in-place concrete placed in formwork forming all structural enabling works elements. Must resist UAE aggressive sulfate and chloride ground conditions. Self-compacting concrete (SCC) required at all congested reinforcement zones where vibrator access is restricted.</p>
+        </div>
+        <div class="sc-block">
+          <div class="sc-block-label">Key Technical Requirements</div>
+          <div class="spec-row"><span class="spec-key">Cement</span><span class="spec-val">OPC 42.5N &#8212; max C&#8323;A 10%, low alkali &lt;0.6%</span></div>
+          <div class="spec-row"><span class="spec-key">Silica Fume</span><span class="spec-val">Required &#8212; ASTM C1240, amorphous silica</span></div>
+          <div class="spec-row"><span class="spec-key">Coarse Aggregate</span><span class="spec-val">Max <strong>20mm</strong> crushed stone &#8212; <strong>no marine aggregates permitted</strong></span></div>
+          <div class="spec-row"><span class="spec-key">Water</span><span class="spec-val">Potable only &#8212; no seawater, no unapproved recycled water</span></div>
+          <div class="spec-row"><span class="spec-key">Prohibited Admixtures</span><span class="spec-val"><strong>No calcium chloride</strong> &#8212; no air-entraining admixtures</span></div>
+          <div class="spec-row"><span class="spec-key">Rebar</span><span class="spec-val">Deformed bars ASTM A615/A615M &#8212; Third Party Conformity mandatory</span></div>
+          <div class="spec-row"><span class="spec-key">Mechanical Couplers</span><span class="spec-val">BS8110 / ACI-318 <strong>Type 2 full-mechanical</strong> &#8212; test report required</span></div>
+          <div class="spec-row"><span class="spec-key">SCC</span><span class="spec-val">Required at congested zones &#8212; slump flow per ASTM C1611</span></div>
+          <div class="spec-row"><span class="spec-key">Curing</span><span class="spec-val">Continuous moisture min <strong>7 days</strong> &#8212; ACI 305.1M hot-weather compliance</span></div>
+          <div class="spec-row"><span class="spec-key">Shoring/Reshoring</span><span class="spec-val">Per ACI 318M and ACI 301M &#8212; no early stripping without Engineer approval</span></div>
+        </div>
+        <div class="sc-block">
+          <div class="sc-block-label">Field QC &#8212; Sampling &amp; Testing</div>
+          <div class="spec-row"><span class="spec-key">Slump</span><span class="spec-val">ASTM C143 &#8212; every truck / minimum every 50m&#179;</span></div>
+          <div class="spec-row"><span class="spec-key">Compressive Strength</span><span class="spec-val">ASTM C39 &#8212; <strong>6 specimens per 50m&#179;</strong>, minimum 6 per day</span></div>
+          <div class="spec-row"><span class="spec-key">Test Ages</span><span class="spec-val">7 days (indicative) + <strong>28 days</strong> (acceptance criterion)</span></div>
+          <div class="spec-row"><span class="spec-key">Laboratory</span><span class="spec-val"><strong>Independent approved lab only</strong> &#8212; results within 24 hrs</span></div>
+        </div>
+        <div class="sc-block">
+          <div class="sc-block-label">Submittals Required Before Work</div>
+          <ul class="check-list">
+            <li>Design mix with all material certifications from independent lab</li>
+            <li>Cement mill certificates: OPC 42.5N, C&#8323;A &#8804;10%, alkali &lt;0.6%</li>
+            <li>Third Party Conformity certificates for all rebar lots</li>
+            <li>Mechanical coupler test report &#8212; Type 2 full tensile proof required</li>
+            <li>Shop drawings: formwork, reinforcement layout, construction joint locations</li>
+            <li>Hot weather concreting plan (ACI 305) &#8212; mandatory for UAE conditions</li>
+            <li>SCC mix design with slump flow and viscosity data where applicable</li>
+          </ul>
+        </div>
+        <div class="sc-block">
+          <div class="sc-block-label">Site Technical Architect &#8212; Supervision Checkpoints</div>
+          <ul class="check-list">
+            <li>Verify no marine aggregate on site &#8212; reject any load from unapproved quarry immediately</li>
+            <li>Confirm calcium chloride is absent &#8212; check admixture data sheets before every pour</li>
+            <li>Witness slump test and cube sampling every 50m&#179; minimum</li>
+            <li>Inspect construction joints: clean, roughened, wetted, no laitance before next pour</li>
+            <li>Confirm curing compound applied immediately after surface finishing in UAE heat</li>
+            <li>Verify shoring/reshoring arrangement matches ACI 318M before stripping</li>
+            <li>Inspect honeycombs after form removal &#8212; patch within 24 hrs or issue NCR for rejection</li>
+            <li>ITP hold point sign-off before every major structural concrete pour</li>
+          </ul>
+          <div class="warn-box">Marine aggregates are categorically prohibited &#8212; chloride contamination compromises durability in UAE ground conditions and voids the structural warranty. Any load with unconfirmed aggregate source must be rejected and returned. No pour proceeds without signed ITP hold point.</div>
+        </div>
+        <div class="sc-block">
+          <div class="sc-block-label">Standards</div>
+          <div class="tag-row">
+            <span class="tag tag-std">ACI 318M</span><span class="tag tag-std">ACI 301M</span><span class="tag tag-std">ACI 305.1M</span>
+            <span class="tag tag-std">ASTM C150</span><span class="tag tag-std">ASTM C1240</span><span class="tag tag-std">ASTM A615</span>
+            <span class="tag tag-std">BS8110</span><span class="tag tag-std">Al Sa'fat</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="spec-card" data-search2="shotcrete wet mix pneumatic nozzle retaining shoring 033713 ACI506">
+      <div class="sc-head" onclick="toggle(this)">
+        <div class="sc-code">033713</div>
+        <div class="sc-info">
+          <div class="sc-title">Shotcrete</div>
+          <div class="sc-plain">Wet-mix shotcrete pneumatically projected onto secant pile faces &#8212; provides the facing layer for the shoring wall and fills voids between piles under high-velocity nozzle application.</div>
+        </div>
+        <div class="sc-arrow">&#9662;</div>
+      </div>
+      <div class="sc-body">
+        <div class="sc-block">
+          <div class="sc-block-label">What It Is</div>
+          <p style="font-size:11px;color:var(--text2);line-height:1.7">Mortar or concrete projected at high velocity via nozzle onto prepared shoring wall surfaces. Wet-mix process: all ingredients including water are premixed before entering the delivery hose. Used to fill the face between secant piles, add wall thickness, and seal against groundwater ingress. Nozzle operators must hold ACI certification with minimum mean core grade &#8212; a contractual qualification before any production shotcrete begins.</p>
+        </div>
+        <div class="sc-block">
+          <div class="sc-block-label">Key Technical Requirements</div>
+          <div class="spec-row"><span class="spec-key">Process</span><span class="spec-val"><strong>Wet-mix only</strong> &#8212; all ingredients premixed before delivery hose</span></div>
+          <div class="spec-row"><span class="spec-key">Cement</span><span class="spec-val">Portland Cement ASTM C150 &#8212; Type I or III; single brand throughout project</span></div>
+          <div class="spec-row"><span class="spec-key">Supplementary</span><span class="spec-val">Fly ash ASTM C618, Slag C989, Silica fume C1240</span></div>
+          <div class="spec-row"><span class="spec-key">Aggregate</span><span class="spec-val">ASTM C33 &#8212; Grading No. 1 per ACI 506R or ASTM C1436</span></div>
+          <div class="spec-row"><span class="spec-key">Fiber</span><span class="spec-val">Monofilament or fibrillated polypropylene &#8212; ASTM C1116</span></div>
+          <div class="spec-row"><span class="spec-key">Compressive Strength</span><span class="spec-val">Per structural design at <strong>28 days</strong></span></div>
+          <div class="spec-row"><span class="spec-key">Governing Standard</span><span class="spec-val">ACI 506.2 "Specification for Shotcrete"</span></div>
+          <div class="spec-row"><span class="spec-key">Nozzle Operator</span><span class="spec-val">ACI certified &#8212; <strong>mean core grade &#8805; Grade 2</strong></span></div>
+          <div class="spec-row"><span class="spec-key">Rebound Material</span><span class="spec-val"><strong>Cannot be reused</strong> &#8212; remove and dispose immediately</span></div>
+        </div>
+        <div class="sc-block">
+          <div class="sc-block-label">Preconstruction Testing (Mandatory per ACI 506.2)</div>
+          <ul class="check-list">
+            <li>Test panels required before any production work begins</li>
+            <li>6 specimens per panel: 3 unreinforced (compressive per ASTM C42) + 3 reinforced (visual core grading)</li>
+            <li>Mean core grade &#8805; Grade 2 &#8212; inspected by independent testing agency</li>
+            <li>Separate test panel for each mixture, shooting orientation, and nozzle operator</li>
+            <li>Mockup at each finish type &#8212; approved by Engineer before production</li>
+          </ul>
+        </div>
+        <div class="sc-block">
+          <div class="sc-block-label">Site Technical Architect &#8212; Supervision Checkpoints</div>
+          <ul class="check-list">
+            <li>Verify nozzle operator ACI certification before allowing any production work</li>
+            <li>Inspect substrate: blast or hydroblast to remove paint, oil, laitance before application</li>
+            <li>Confirm rebound material is not being collected and reused &#8212; strict disposal enforcement</li>
+            <li>Check ground wires and depth gauges in place to control finished thickness</li>
+            <li>Verify curing: moisture-retaining cover placed and maintained minimum 7 days</li>
+            <li>Do not permit exposed shotcrete to remain uncured in UAE heat overnight</li>
+          </ul>
+          <div class="warn-box">Rebound material contains separated fines and degraded paste &#8212; reusing it violates ACI 506.2. If observed: immediate stop work and NCR. Nozzle operator loses qualification if core grade tests fail on production panels.</div>
+        </div>
+        <div class="sc-block">
+          <div class="sc-block-label">Standards</div>
+          <div class="tag-row">
+            <span class="tag tag-std">ACI 506.2</span><span class="tag tag-std">ACI 506R</span><span class="tag tag-std">ASTM C150</span>
+            <span class="tag tag-std">ASTM C33</span><span class="tag tag-std">ASTM C42</span><span class="tag tag-std">ASTM C1116</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- DIV 07 -->
+<div class="div-section" data-div="07">
+  <div class="div-header">
+    <span class="div-num">Division 07</span>
+    <h2 class="div-title">Thermal &amp; Moisture Protection</h2>
+    <div class="div-line"></div>
+    <span class="div-count">1 Section</span>
+  </div>
+  <div class="spec-grid">
+
+    <div class="spec-card" data-search2="waterproofing HDPE elastomeric sheet membrane blind side pre-applied basement underground 071353">
+      <div class="sc-head" onclick="toggle(this)">
+        <div class="sc-code">071353</div>
+        <div class="sc-info">
+          <div class="sc-title">Elastomeric Sheet Waterproofing</div>
+          <div class="sc-plain">Integrally bonded HDPE pre-applied waterproofing membrane installed on the blind (soil) side of below-grade structures before concrete is cast &#8212; the primary barrier against groundwater migration into the basement.</div>
+        </div>
+        <div class="sc-arrow">&#9662;</div>
+      </div>
+      <div class="sc-body">
+        <div class="sc-block">
+          <div class="sc-block-label">What It Is</div>
+          <p style="font-size:11px;color:var(--text2);line-height:1.7">An HDPE sheet membrane installed before structural concrete is placed &#8212; it bonds directly to fresh concrete as it is cast (pre-applied / blind-side system). The membrane cannot be separated from the structure by a protection board or screed. Installed on the soil face of secant pile walls, under pile cap soffits, and below basement slabs anywhere water pressure exists.</p>
+        </div>
+        <div class="sc-block">
+          <div class="sc-block-label">Key Technical Requirements</div>
+          <div class="spec-row"><span class="spec-key">Membrane Type</span><span class="spec-val">Integrally bonded HDPE sheet &#8212; pre-applied or blind-side</span></div>
+          <div class="spec-row"><span class="spec-key">Bond Mechanism</span><span class="spec-val"><strong>Direct bond to fresh concrete</strong> &#8212; must be cast directly against membrane</span></div>
+          <div class="spec-row"><span class="spec-key">Protection Boards</span><span class="spec-val"><strong>NOT acceptable</strong> &#8212; physical separation voids the integral bond</span></div>
+          <div class="spec-row"><span class="spec-key">Related Substrates</span><span class="spec-val">Sections 033713 and 033000 govern substrate quality requirements</span></div>
+          <div class="spec-row"><span class="spec-key">Application Zones</span><span class="spec-val">Retaining walls (soil face), pile soffits, basement raft underside</span></div>
+          <div class="spec-row"><span class="spec-key">Pre-concrete Inspection</span><span class="spec-val"><strong>100% inspection</strong> of laps, penetrations, sleeves &#8212; ITP hold point</span></div>
+        </div>
+        <div class="sc-block">
+          <div class="sc-block-label">Submittals Required Before Work</div>
+          <ul class="check-list">
+            <li>Product data with physical properties, performance data, construction details</li>
+            <li>Manufacturer's written substrate preparation and minimum cure requirements</li>
+            <li>Preinstallation conference with applicator &#8212; review substrate condition and sequence</li>
+            <li>Manufacturer-approved installer qualification evidence</li>
+            <li>Detail drawings: penetrations, corners, laps, pile-head junctions, day joints</li>
+            <li>Manufacturer warranty documentation</li>
+          </ul>
+        </div>
+        <div class="sc-block">
+          <div class="sc-block-label">Site Technical Architect &#8212; Supervision Checkpoints</div>
+          <ul class="check-list">
+            <li>Confirm shotcrete face is clean and sound &#8212; no protrusions or voids before membrane starts</li>
+            <li>Inspect all membrane laps &#8212; minimum overlap per manufacturer, properly heat- or adhesive-sealed</li>
+            <li>Check all penetrations (MEP sleeves, drainage) properly detailed and sealed</li>
+            <li>Issue WIR hold point &#8212; no concrete placement before Engineer inspects and signs off membrane</li>
+            <li>No sharp aggregate, rebar ends, or debris to contact membrane surface &#8212; protective boards required for foot traffic</li>
+            <li>Record photo survey of all completed membrane zones before concrete covers them permanently</li>
+          </ul>
+          <div class="warn-box">Once concrete is cast against this membrane, no inspection is possible for the life of the building. The WIR hold point before concrete placement is non-negotiable. Any area with suspected membrane damage must be repaired and re-inspected before casting proceeds.</div>
+        </div>
+        <div class="sc-block">
+          <div class="sc-block-label">Standards</div>
+          <div class="tag-row">
+            <span class="tag tag-std">BS 8102</span><span class="tag tag-std">ASTM D4258</span>
+            <span class="tag tag-std">Ref: 033713</span><span class="tag tag-std">Ref: 033000</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- DIV 31 -->
+<div class="div-section" data-div="31">
+  <div class="div-header">
+    <span class="div-num">Division 31</span>
+    <h2 class="div-title">Earthwork</h2>
+    <div class="div-line"></div>
+    <span class="div-count">5 Sections</span>
+  </div>
+  <div class="spec-grid">
+
+    <div class="spec-card" data-search2="site clearing demolition stripping grubbing vegetation removal 311000">
+      <div class="sc-head" onclick="toggle(this)">
+        <div class="sc-code">311000</div>
+        <div class="sc-info">
+          <div class="sc-title">Site Clearing</div>
+          <div class="sc-plain">Removal of all above-grade obstructions from the enabling works footprint &#8212; structures, vegetation, surface debris &#8212; prior to piling rig mobilisation.</div>
+        </div>
+        <div class="sc-arrow">&#9662;</div>
+      </div>
+      <div class="sc-body">
+        <div class="sc-block">
+          <div class="sc-block-label">What It Is</div>
+          <p style="font-size:11px;color:var(--text2);line-height:1.7">First enabling works activity on site. Covers stripping of topsoil and vegetation, grubbing of roots and stumps, demolition of existing surface structures, and removal to approved disposal. Must complete before piling rigs or bulk excavation equipment mobilise. Protection zones around existing trees are legally defined &#8212; no activity permitted within them without Engineer direction.</p>
+        </div>
+        <div class="sc-block">
+          <div class="sc-block-label">Scope and Restrictions</div>
+          <div class="spec-row"><span class="spec-key">Stripping</span><span class="spec-val">Topsoil and vegetation across full enabling works footprint</span></div>
+          <div class="spec-row"><span class="spec-key">Grubbing</span><span class="spec-val">Roots, stumps, sub-surface vegetation removal</span></div>
+          <div class="spec-row"><span class="spec-key">Demolition</span><span class="spec-val">Existing surface slabs and structures within footprint</span></div>
+          <div class="spec-row"><span class="spec-key">Road Closure</span><span class="spec-val">Requires DM and RTA permit &#8212; alternate routes if directed</span></div>
+          <div class="spec-row"><span class="spec-key">Authority</span><span class="spec-val">Al Sa'fat and Dubai Green Building Regulations compliance</span></div>
+        </div>
+        <div class="sc-block">
+          <div class="sc-block-label">Protection Zone Prohibitions</div>
+          <ul class="check-list">
+            <li>No storage of materials, debris, or excavated spoil</li>
+            <li>No vehicle or equipment parking</li>
+            <li>No temporary sheds or structures</li>
+            <li>No water impoundment or ponding</li>
+            <li>No open flames or ignition sources</li>
+            <li>No attachment of signs or wrapping to trees</li>
+            <li>No vehicle exhaust directed towards zones</li>
+          </ul>
+        </div>
+        <div class="sc-block">
+          <div class="sc-block-label">Site Technical Architect &#8212; Supervision Checkpoints</div>
+          <ul class="check-list">
+            <li>Confirm protection zone boundaries physically marked before clearing starts</li>
+            <li>Verify utility locator notification before any ground disturbance</li>
+            <li>Record pre-clearing conditions photographically across full footprint</li>
+            <li>Confirm temporary erosion and sedimentation controls installed before stripping</li>
+            <li>Verify disposal route approvals (DM/RTA) are in place before first haul</li>
+          </ul>
+        </div>
+        <div class="sc-block">
+          <div class="sc-block-label">Standards</div>
+          <div class="tag-row">
+            <span class="tag tag-std">Al Sa'fat</span><span class="tag tag-std">Dubai Green Bldg</span><span class="tag tag-std">DM Permit</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="spec-card" data-search2="earthmoving bulk excavation backfill compaction grading subgrade 312000 ASTM D2487">
+      <div class="sc-head" onclick="toggle(this)">
+        <div class="sc-code">312000</div>
+        <div class="sc-info">
+          <div class="sc-title">Earth Moving</div>
+          <div class="sc-plain">Bulk excavation to basement formation level, subgrade preparation, backfilling, and compaction &#8212; defining the working platform and ground levels for all below-grade foundations and structures.</div>
+        </div>
+        <div class="sc-arrow">&#9662;</div>
+      </div>
+      <div class="sc-body">
+        <div class="sc-block">
+          <div class="sc-block-label">What It Is</div>
+          <p style="font-size:11px;color:var(--text2);line-height:1.7">Covers rough grading, bulk excavation (&gt;3m wide and &gt;9m long) for buildings and structures, subgrade preparation, utility trench backfill, and all soil handling. All fill and backfill must be classified per ASTM D2487 before reuse or import. Only satisfactory soil groups are acceptable. Rock excavation triggers a different equipment protocol.</p>
+        </div>
+        <div class="sc-block">
+          <div class="sc-block-label">Soil Classification &#8212; Acceptable vs. Rejected</div>
+          <div class="spec-row"><span class="spec-key">Satisfactory Fill</span><span class="spec-val">GW, GP, GM, SW, SP, SM &#8212; ASTM D2487</span></div>
+          <div class="spec-row"><span class="spec-key">Unsatisfactory (Reject)</span><span class="spec-val">GC, SC, CL, ML, OL, CH, MH, OH, PT &#8212; not to be used as fill</span></div>
+          <div class="spec-row"><span class="spec-key">Moisture Tolerance</span><span class="spec-val">Within <strong>&#177;2% of optimum moisture content</strong> at time of compaction</span></div>
+          <div class="spec-row"><span class="spec-key">Compaction Curve</span><span class="spec-val">ASTM D698 laboratory reference</span></div>
+        </div>
+        <div class="sc-block">
+          <div class="sc-block-label">Rock Excavation Definition</div>
+          <div class="spec-row"><span class="spec-key">Equipment Threshold</span><span class="spec-val">Track hydraulic excavator &gt;106mm tooth or loader &gt;172kW flywheel</span></div>
+          <div class="spec-row"><span class="spec-key">Small Boulders</span><span class="spec-val">&lt;0.57 m&#179; &#8212; not classified as rock for payment</span></div>
+        </div>
+        <div class="sc-block">
+          <div class="sc-block-label">Warning Tape Colour Coding</div>
+          <div class="spec-row"><span class="spec-key">Red</span><span class="spec-val">Electrical services</span></div>
+          <div class="spec-row"><span class="spec-key">Yellow</span><span class="spec-val">Gas, oil, steam, dangerous materials</span></div>
+          <div class="spec-row"><span class="spec-key">Orange</span><span class="spec-val">Telephone and communications</span></div>
+          <div class="spec-row"><span class="spec-key">Blue</span><span class="spec-val">Water systems</span></div>
+          <div class="spec-row"><span class="spec-key">Green</span><span class="spec-val">Sewer systems</span></div>
+        </div>
+        <div class="sc-block">
+          <div class="sc-block-label">Site Technical Architect &#8212; Supervision Checkpoints</div>
+          <ul class="check-list">
+            <li>Verify ASTM D2487 soil classification reports received before reusing any on-site material as fill</li>
+            <li>Monitor compaction testing frequency &#8212; test every layer at specified zones</li>
+            <li>Confirm no unsatisfactory soils (GC, SC, CL, ML) placed as structural fill</li>
+            <li>Check warning tapes correct colour and depth above utility lines</li>
+            <li>Do not permit excavation below dewatering drawdown level &#8212; coordinate with 312319</li>
+            <li>ITP hold point before any concrete on unapproved formation</li>
+          </ul>
+          <div class="warn-box">Unauthorized excavation below approved subgrade is at Contractor's cost and risk. Subgrade approval is an ITP hold point &#8212; no concrete on unapproved formation under any circumstances.</div>
+        </div>
+        <div class="sc-block">
+          <div class="sc-block-label">Standards</div>
+          <div class="tag-row">
+            <span class="tag tag-std">BS 6031:2009</span><span class="tag tag-std">ASTM D2487</span><span class="tag tag-std">ASTM D698</span>
+            <span class="tag tag-std">Al Sa'fat</span><span class="tag tag-std">Ref: 315000</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="spec-card" data-search2="dewatering groundwater wells piezometers pumps water control 312319 800mm drawdown">
+      <div class="sc-head" onclick="toggle(this)">
+        <div class="sc-code">312319</div>
+        <div class="sc-info">
+          <div class="sc-title">Dewatering</div>
+          <div class="sc-plain">Design, installation, continuous operation, and monitoring of the groundwater control system &#8212; maintaining piezometric level minimum 800mm below the active excavation bottom throughout the entire construction sequence.</div>
+        </div>
+        <div class="sc-arrow">&#9662;</div>
+      </div>
+      <div class="sc-body">
+        <div class="sc-block">
+          <div class="sc-block-label">What It Is</div>
+          <p style="font-size:11px;color:var(--text2);line-height:1.7">Temporary groundwater control system using wells, well points, pumps, headers, and monitoring piezometers. Must operate continuously &#8212; 24 hrs/day, 7 days/week &#8212; with full standby pumping capacity on site at all times. Designed by a delegated Professional Engineer who signs and seals all design documents. Pumped water disposal must comply with DM and EPA environmental requirements.</p>
+        </div>
+        <div class="sc-block">
+          <div class="sc-block-label">Key Performance Requirements</div>
+          <div class="spec-row"><span class="spec-key">Water Table Control</span><span class="spec-val">Piezometric level <strong>min 800mm below excavation bottom</strong> at all times</span></div>
+          <div class="spec-row"><span class="spec-key">Operation Mode</span><span class="spec-val"><strong>Continuous</strong> &#8212; no planned or unplanned interruption permitted</span></div>
+          <div class="spec-row"><span class="spec-key">Standby Equipment</span><span class="spec-val"><strong>Full standby set on site</strong> &#8212; installed and ready for immediate operation</span></div>
+          <div class="spec-row"><span class="spec-key">Design Authority</span><span class="spec-val">Delegated Qualified Professional Engineer &#8212; signed and sealed</span></div>
+          <div class="spec-row"><span class="spec-key">Open-Sump Pumping</span><span class="spec-val"><strong>Prohibited</strong> &#8212; causes fines loss, soil piping, slope instability</span></div>
+          <div class="spec-row"><span class="spec-key">Daily Monitoring</span><span class="spec-val"><strong>Daily piezometric readings</strong> &#8212; written log maintained</span></div>
+          <div class="spec-row"><span class="spec-key">Well Repair</span><span class="spec-val">Damaged or inactive wells replaced within <strong>24 hours</strong></span></div>
+        </div>
+        <div class="sc-block">
+          <div class="sc-block-label">Submittals Required Before Work</div>
+          <ul class="check-list">
+            <li>Delegated PE design &#8212; signed and sealed: system layout, pump schedule, piezometer plan</li>
+            <li>Written operation plan coordinated with excavation staging sequence</li>
+            <li>Standby equipment manifest &#8212; type, capacity, confirmed on-site location</li>
+            <li>Disposal route and authority compliance evidence</li>
+            <li>Pre-dewatering photography of all adjacent structures</li>
+          </ul>
+        </div>
+        <div class="sc-block">
+          <div class="sc-block-label">Site Technical Architect &#8212; Supervision Checkpoints</div>
+          <ul class="check-list">
+            <li>Verify 800mm drawdown achieved before excavation reaches each formation level</li>
+            <li>Check daily piezometric logs submitted and signed &#8212; reject any day without records</li>
+            <li>Confirm standby pump sets physically present and operationally ready before bulk excavation</li>
+            <li>Monitor adjacent building settlement data &#8212; act immediately on anomalous readings</li>
+            <li>ITP hold point before each new excavation stage &#8212; dewatering compliance confirmed first</li>
+          </ul>
+          <div class="warn-box">Dewatering failure during excavation is a life-safety and structural risk. If 800mm drawdown cannot be maintained, excavation stops immediately &#8212; do not permit work below undrained water table under any circumstances.</div>
+        </div>
+        <div class="sc-block">
+          <div class="sc-block-label">Standards</div>
+          <div class="tag-row">
+            <span class="tag tag-std">EPA Requirements</span><span class="tag tag-std">DM Requirements</span>
+            <span class="tag tag-std">BS 6031</span><span class="tag tag-std">Ref: 312000</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="spec-card" data-search2="secant piling bored cast retaining wall shoring guide wall BS8004 DM NOC 314155">
+      <div class="sc-head" onclick="toggle(this)">
+        <div class="sc-code">314155</div>
+        <div class="sc-info">
+          <div class="sc-title">Secant Piling</div>
+          <div class="sc-plain">Bored and cast-in-place overlapping concrete piles forming the primary continuous retaining wall &#8212; structural earth retention, water cutoff, and permanent shoring for the basement excavation.</div>
+        </div>
+        <div class="sc-arrow">&#9662;</div>
+      </div>
+      <div class="sc-body">
+        <div class="sc-block">
+          <div class="sc-block-label">What It Is</div>
+          <p style="font-size:11px;color:var(--text2);line-height:1.7">Alternating primary (soft/unreinforced) and secondary (hard/reinforced) piles that overlap to form a continuous interlocked retaining wall. Secondary piles are bored through primaries, creating the secant (overlapping) section for both earth retention and groundwater cut-off. Governed by BS 8004. Dubai Municipality SCC Shoring NOC is a legal prerequisite before any piling work commences.</p>
+        </div>
+        <div class="sc-block">
+          <div class="sc-block-label">Key Technical Requirements</div>
+          <div class="spec-row"><span class="spec-key">Governing Standard</span><span class="spec-val">BS 8004:1986 Code of Practice for Foundations</span></div>
+          <div class="spec-row"><span class="spec-key">DM Authority</span><span class="spec-val"><strong>DM SCC Shoring NOC</strong> &#8212; mandatory legal prerequisite before commencement</span></div>
+          <div class="spec-row"><span class="spec-key">Concrete Grade</span><span class="spec-val"><strong>C40</strong> durable grade</span></div>
+          <div class="spec-row"><span class="spec-key">Cement Combination</span><span class="spec-val"><strong>34% OPC (BS-12) + 66% GGBS (BS-6399)</strong></span></div>
+          <div class="spec-row"><span class="spec-key">Min Cement Content</span><span class="spec-val"><strong>400 kg/m&#179;</strong></span></div>
+          <div class="spec-row"><span class="spec-key">Max w/c Ratio</span><span class="spec-val"><strong>0.42</strong></span></div>
+          <div class="spec-row"><span class="spec-key">Slump &#8212; Free Shaft</span><span class="spec-val">100 &#177; 25 mm</span></div>
+          <div class="spec-row"><span class="spec-key">Slump &#8212; Tremie</span><span class="spec-val"><strong>175 &#177; 25 mm</strong></span></div>
+          <div class="spec-row"><span class="spec-key">Plan Tolerance</span><span class="spec-val">Max <strong>75mm</strong> from specified pile centre</span></div>
+          <div class="spec-row"><span class="spec-key">Shoring Tolerance</span><span class="spec-val">Max <strong>50mm</strong></span></div>
+          <div class="spec-row"><span class="spec-key">Vertical Tolerance</span><span class="spec-val">Max <strong>1 in 400</strong> from vertical at any level</span></div>
+          <div class="spec-row"><span class="spec-key">Forcible Correction</span><span class="spec-val"><strong>Strictly prohibited</strong> &#8212; rejected piles must be replaced</span></div>
+        </div>
+        <div class="sc-block">
+          <div class="sc-block-label">Guide Wall Requirements</div>
+          <div class="spec-row"><span class="spec-key">Construction</span><span class="spec-val">Reinforced concrete &#8212; high accuracy setting out required</span></div>
+          <div class="spec-row"><span class="spec-key">Min Depth</span><span class="spec-val"><strong>0.5m</strong></span></div>
+          <div class="spec-row"><span class="spec-key">Min Width</span><span class="spec-val"><strong>0.3m</strong></span></div>
+          <div class="spec-row"><span class="spec-key">Responsibility</span><span class="spec-val">Contractor design &#8212; consider actual piling rig loads</span></div>
+        </div>
+        <div class="sc-block">
+          <div class="sc-block-label">Mandatory Daily Records</div>
+          <ul class="check-list">
+            <li>Pile installation record for every pile &#8212; submitted to Engineer same working day</li>
+            <li>All unexpected ground conditions noted immediately</li>
+            <li>Cube test results and slump readings logged per pile ID</li>
+            <li>Borehole stability incidents or temporary casing use recorded</li>
+          </ul>
+        </div>
+        <div class="sc-block">
+          <div class="sc-block-label">Submittals Required Before Work</div>
+          <ul class="check-list">
+            <li><strong>DM SCC Shoring NOC</strong> &#8212; must be on site before mobilisation</li>
+            <li>Piling contractor method statement: equipment, crew qualifications, pile sequence</li>
+            <li>Licensed surveyor appointment &#8212; sets out all pile positions</li>
+            <li>Trial concrete mix report &#8212; conducted in presence of Engineer</li>
+            <li>Guide wall structural drawing and setting-out record</li>
+            <li>Borehole probing results along wall alignment (Contractor's own tests)</li>
+            <li>Drilling fluid (bentonite or approved alternate) data and stabilisation method</li>
+          </ul>
+        </div>
+        <div class="sc-block">
+          <div class="sc-block-label">Site Technical Architect &#8212; Supervision Checkpoints</div>
+          <ul class="check-list">
+            <li>Verify DM Shoring NOC is physically on site before any piling equipment mobilises</li>
+            <li>Check guide wall setting-out record &#8212; within tolerance before rig positions</li>
+            <li>Witness trial mix: 34% OPC + 66% GGBS, w/c 0.42, slump within range</li>
+            <li>Confirm pile records submitted daily &#8212; stop work if records not maintained</li>
+            <li>Maintain drilling fluid level throughout boring &#8212; no uncased open borehole</li>
+            <li>No forcible correction of any out-of-tolerance pile &#8212; immediate NCR and Engineer notification</li>
+          </ul>
+          <div class="warn-box">DM Shoring NOC is a legal prerequisite &#8212; no work, not even guide wall construction, proceeds without it on site. Forcible correction of out-of-tolerance piles is absolutely prohibited. Any attempt triggers immediate stop-work notice and pile rejection.</div>
+        </div>
+        <div class="sc-block">
+          <div class="sc-block-label">Standards</div>
+          <div class="tag-row">
+            <span class="tag tag-std">BS 8004:1986</span><span class="tag tag-std">BS 8002:1994</span><span class="tag tag-std">BS 8110:1997</span>
+            <span class="tag tag-std">BS 5950</span><span class="tag tag-std">DFCP 4</span><span class="tag tag-std">DM SCC NOC</span>
+            <span class="tag tag-std">BS-12 OPC</span><span class="tag tag-std">BS-6399 GGBS</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="spec-card" data-search2="excavation support protection shoring bracing tiebacks temporary soldier piles 315000">
+      <div class="sc-head" onclick="toggle(this)">
+        <div class="sc-code">315000</div>
+        <div class="sc-info">
+          <div class="sc-title">Excavation Support and Protection</div>
+          <div class="sc-plain">Design, installation, monitoring, and removal of all temporary support systems &#8212; tiebacks, bracing, soldier piles, and lagging &#8212; required to retain excavation faces and protect adjacent structures throughout basement construction.</div>
+        </div>
+        <div class="sc-arrow">&#9662;</div>
+      </div>
+      <div class="sc-body">
+        <div class="sc-block">
+          <div class="sc-block-label">What It Is</div>
+          <p style="font-size:11px;color:var(--text2);line-height:1.7">Temporary excavation support systems: tiebacks, internal bracing, soldier piles, sheet piling, and lagging. Delegated-design: a licensed PE designs, signs, seals, and takes full responsibility for all support elements. The system remains in place until the permanent structure independently resists lateral earth and hydrostatic pressures. Continuous settlement monitoring of adjacent structures is a contractual obligation throughout construction.</p>
+        </div>
+        <div class="sc-block">
+          <div class="sc-block-label">Key Technical Requirements</div>
+          <div class="spec-row"><span class="spec-key">Design</span><span class="spec-val">Delegated PE design &#8212; signed and sealed &#8212; OSHA 1926 Sub P compliance</span></div>
+          <div class="spec-row"><span class="spec-key">Structural Steel</span><span class="spec-val">ASTM A36/A36M, A690/A690M, or A992/A992M</span></div>
+          <div class="spec-row"><span class="spec-key">Sheet Piling</span><span class="spec-val">ASTM A328/A328M, A572/A572M, or A690/A690M &#8212; continuous interlocks</span></div>
+          <div class="spec-row"><span class="spec-key">Tiebacks</span><span class="spec-val">Steel bars ASTM A722/A722M &#8212; each one load-tested before acceptance</span></div>
+          <div class="spec-row"><span class="spec-key">Concrete</span><span class="spec-val">ACI 301 &#8212; compressive strength per application</span></div>
+          <div class="spec-row"><span class="spec-key">Rebar</span><span class="spec-val">ASTM A615/A615M, Grade 420, deformed</span></div>
+          <div class="spec-row"><span class="spec-key">Utility Interruption</span><span class="spec-val">Min <strong>2 days written notice</strong> to Engineer before any shutoff</span></div>
+        </div>
+        <div class="sc-block">
+          <div class="sc-block-label">Tieback and Removal Protocols</div>
+          <div class="spec-row"><span class="spec-key">Load Testing</span><span class="spec-val"><strong>Every tieback load-tested</strong> &#8212; deficient ones replaced and retested</span></div>
+          <div class="spec-row"><span class="spec-key">Test Witness</span><span class="spec-val">Delegated PE observes all tieback load tests</span></div>
+          <div class="spec-row"><span class="spec-key">Duration</span><span class="spec-val">Maintained until permanent structure resists lateral pressures</span></div>
+          <div class="spec-row"><span class="spec-key">Min Removal Depth</span><span class="spec-val"><strong>1200mm below overlying construction</strong> &#8212; remainder abandoned in place</span></div>
+          <div class="spec-row"><span class="spec-key">Void Filling</span><span class="spec-val">Fill immediately with approved backfill compacted per Section 312000</span></div>
+        </div>
+        <div class="sc-block">
+          <div class="sc-block-label">Monitoring Requirements</div>
+          <ul class="check-list">
+            <li>Resurvey settlement benchmarks regularly &#8212; maintain accurate log throughout excavation</li>
+            <li>Notify Engineer immediately of elevation changes, cracks, or sags in any adjacent structure</li>
+            <li>Monitor continuously for bulges, breakage, or movement in support system</li>
+            <li>Prevent surface water from entering excavation by grading and temporary berms</li>
+          </ul>
+        </div>
+        <div class="sc-block">
+          <div class="sc-block-label">Site Technical Architect &#8212; Supervision Checkpoints</div>
+          <ul class="check-list">
+            <li>Verify delegated PE design is signed, sealed, and approved before support installation</li>
+            <li>Witness all tieback load tests &#8212; no tieback accepted without passing test</li>
+            <li>Confirm bracing does not conflict with permanent structure &#8212; no unplanned embedment in concrete</li>
+            <li>Verify settlement monitoring readings taken and logged at required frequency</li>
+            <li>ITP hold point before each excavation stage &#8212; support system accepted first</li>
+            <li>Inspect void filling on removal &#8212; compaction testing required</li>
+          </ul>
+          <div class="warn-box">Bracing embedded in permanent concrete without Engineer approval creates unintended structural conditions and future corrosion paths. Confirm bracing removal sequence with PE and coordinate against concrete construction stages before any brace removal.</div>
+        </div>
+        <div class="sc-block">
+          <div class="sc-block-label">Standards</div>
+          <div class="tag-row">
+            <span class="tag tag-std">OSHA 1926 Sub P</span><span class="tag tag-std">AASHTO LRFD</span>
+            <span class="tag tag-std">ASTM A36</span><span class="tag tag-std">ASTM A722</span><span class="tag tag-std">ASTM A615</span>
+            <span class="tag tag-std">ACI 301</span><span class="tag tag-std">Al Sa'fat</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+</div><!-- /content2 -->
+
+<script>
+function filterDiv2(btn,div){
+  document.querySelectorAll('#filterBar2 .filter-btn').forEach(function(b){b.classList.remove('active');});
+  btn.classList.add('active');
+  document.querySelectorAll('#content2 .div-section').forEach(function(s){
+    s.style.display=(div==='all'||s.dataset.div===div)?'':'none';
+  });
+}
+function searchSpecs2(q){
+  var t=q.toLowerCase();
+  document.querySelectorAll('#content2 .spec-card').forEach(function(c){
+    c.style.display=(!t||c.dataset.search2.toLowerCase().includes(t))?'':'none';
+  });
+  if(!t){
+    document.querySelectorAll('#content2 .div-section').forEach(function(s){s.style.display='';});
+  } else {
+    document.querySelectorAll('#content2 .div-section').forEach(function(s){
+      var vis=Array.from(s.querySelectorAll('.spec-card')).some(function(c){return c.style.display!=='none';});
+      s.style.display=vis?'':'none';
+    });
+  }
+}
+</script>
+
+</div><!-- /chapter2 -->
+
 
 <footer>
   <div class="fl">&copy; 2026 — <span>M. Amine Berchache</span> — Senior Architect / BIM Coordinator — Dubai, UAE</div>
@@ -1735,6 +2347,12 @@ window.addEventListener('DOMContentLoaded', () => {
     }
   }
 })
+
+function switchChapter(n){
+  document.querySelectorAll('.ch-btn').forEach(function(b){b.classList.toggle('ch-active',b.dataset.ch==n);});
+  document.querySelectorAll('.ch-wrap').forEach(function(w){w.style.display=(w.id=='chapter'+n)?'block':'none';});
+}
+
 </script>
 </body>
 </html>
