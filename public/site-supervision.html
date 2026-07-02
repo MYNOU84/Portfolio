@@ -668,6 +668,11 @@ footer{
     <span class="ch-btn-n">02</span>
     <span class="ch-btn-label">Consultant-Side Construction Team Scope</span>
   </button>
+  <div class="ch-divider"></div>
+  <button class="ch-btn" onclick="switchChapter('chapter3',this)">
+    <span class="ch-btn-n">03</span>
+    <span class="ch-btn-label">Construction Phase Documents Report</span>
+  </button>
 </div>
 
 <!-- CHAPTER 1 -->
@@ -3039,6 +3044,855 @@ document.querySelectorAll('.gcard').forEach(function(el) {
 
 </div><!-- /ch2-inner -->
 </div><!-- /ch2 -->
+
+<!-- CHAPTER 3 — CONSTRUCTION PHASE DOCUMENTS & REPORTS -->
+<style>
+/* ── Chapter 3 ───────────────────────────────────── */
+.ch3-hero{border:1px solid rgba(201,168,76,.2);background:#000;cursor:zoom-in;overflow:hidden;margin-bottom:20px}
+.ch3-hero img{width:100%;display:block;transition:transform .4s ease}
+.ch3-hero:hover img{transform:scale(1.005)}
+.ch3-hero-caption{font-size:11px;color:var(--text3);letter-spacing:.05em;margin-bottom:80px;text-align:center;font-style:italic}
+.doc-secintro{font-size:13px;color:var(--text2);line-height:1.8;max-width:780px;margin:-24px 0 40px}
+.doc-list{border:1px solid rgba(201,168,76,.15);border-bottom:none}
+.doc-row{display:grid;grid-template-columns:290px 1fr;border-bottom:1px solid rgba(201,168,76,.15);background:var(--bg2)}
+.doc-row:nth-child(even){background:rgba(255,255,255,.015)}
+.doc-id{padding:20px 22px;border-right:1px solid rgba(201,168,76,.12)}
+.doc-abbr{font-family:'Montserrat',sans-serif;font-size:12px;font-weight:700;letter-spacing:.08em;color:var(--gold);text-transform:uppercase}
+.doc-full{font-size:11px;color:var(--text3);margin-top:4px;line-height:1.5}
+.doc-simple{display:inline-block;margin-top:10px;font-size:8.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold2);border:1px solid rgba(201,168,76,.3);padding:3px 8px}
+.doc-func{padding:20px 22px;font-size:12.5px;color:var(--text2);line-height:1.75}
+@media(max-width:768px){.doc-row{grid-template-columns:1fr}.doc-id{border-right:none;border-bottom:1px dashed rgba(201,168,76,.15)}}
+.seq-flow{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:40px}
+.seq-chip{border:1px solid rgba(201,168,76,.3);padding:9px 14px;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold2);font-family:'Montserrat',sans-serif;font-weight:600;background:rgba(201,168,76,.04)}
+.seq-arrow{color:var(--gold3);font-size:13px}
+.ch3-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1px;background:rgba(201,168,76,.12);border:1px solid rgba(201,168,76,.15);margin-top:40px}
+.ch3-stat{background:var(--bg2);padding:22px 24px;text-align:center}
+.ch3-stat-n{font-family:'Cormorant Garamond',serif;font-size:34px;color:var(--gold2);line-height:1}
+.ch3-stat-l{font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--text3);margin-top:8px;font-family:'Montserrat',sans-serif}
+</style>
+
+<div id="chapter3" class="ch2">
+<div class="ch2-inner">
+
+  <!-- Opening visual — Construction Project Management Process -->
+  <div class="ch3-hero" onclick="openImgLightbox(this.querySelector('img').src,'Construction Phase Documents — Process Overview')">
+    <img src="/site-supervision-images/ch3-documents-workflow.png" alt="Construction Project Management Process — IFC Drawings, Shop Drawings, Material Submittal, Method Statement, ITP, Mock-up Approval, MIR, WIR, Approval, Snagging, As-Built, O&M Manual, Handover">
+  </div>
+  <div class="ch3-hero-caption">The construction document chain — from IFC drawings through submittals, inspections and snag closure to as-built records, O&amp;M manuals and final handover</div>
+
+  <!-- Header -->
+  <div class="ch2-header">
+    <div class="ch2-eyebrow">Chapter 03 — Construction Phase Documents</div>
+    <h2 class="ch2-title">Construction Phase<br>Documents &amp; Reports</h2>
+    <div class="ch2-subtitle">Expanded Reference Guide · Document Control · QA/QC · Site Supervision · Handover</div>
+    <p class="ch2-intro">
+      In construction, documents are not paperwork only. Each document controls a specific risk: wrong material,
+      wrong method, missing approval, unsafe activity, poor workmanship, delay, cost impact, or incomplete handover.
+      This chapter explains what each document really does on site and why it matters during the construction phase —
+      for contractors, consultants, QA/QC teams, site architects, engineers and project managers.
+      <br><br>
+      A simple rule: before work starts, the project must know <strong style="color:var(--gold2)">what to build, how to build it,
+      how to inspect it, how to keep it safe, and how to record changes</strong>. The documents in this guide are the
+      control system for that process.
+    </p>
+    <div class="ch3-stats">
+      <div class="ch3-stat"><div class="ch3-stat-n">10</div><div class="ch3-stat-l">Document Families</div></div>
+      <div class="ch3-stat"><div class="ch3-stat-n">107</div><div class="ch3-stat-l">Controlled Documents</div></div>
+      <div class="ch3-stat"><div class="ch3-stat-n">8</div><div class="ch3-stat-l">Workflow Stages</div></div>
+      <div class="ch3-stat"><div class="ch3-stat-n">3</div><div class="ch3-stat-l">Applied Examples</div></div>
+    </div>
+  </div>
+
+  <!-- 01. Document Control Matrix -->
+  <div class="ch2-section">
+    <div class="ch2-sec-label">Section 01</div>
+    <div class="ch2-sec-title">The Document Control Matrix</div>
+    <div class="ch2-sec-divider"></div>
+    <p class="doc-secintro">Every core construction document answers one question and controls one category of risk. This matrix is the quick reference for the difference between the main documents.</p>
+    <table class="wf-table">
+      <tr>
+        <td class="wf-stage">Method Statement</td>
+        <td class="wf-role"><span class="wf-role-tag">Answers</span>How will the work be executed?</td>
+        <td class="wf-role"><span class="wf-role-tag">Control purpose</span>Controls the sequence, resources, tools, safety precautions and workmanship method before the activity starts.</td>
+      </tr>
+      <tr>
+        <td class="wf-stage">ITP</td>
+        <td class="wf-role"><span class="wf-role-tag">Answers</span>How will the work be inspected, tested and accepted?</td>
+        <td class="wf-role"><span class="wf-role-tag">Control purpose</span>Controls inspection stages, acceptance criteria, responsibilities, records, hold points and witness points.</td>
+      </tr>
+      <tr>
+        <td class="wf-stage">Shop Drawing</td>
+        <td class="wf-role"><span class="wf-role-tag">Answers</span>What exactly will be built?</td>
+        <td class="wf-role"><span class="wf-role-tag">Control purpose</span>Controls dimensions, setting-out, interfaces, installation details and coordination before execution.</td>
+      </tr>
+      <tr>
+        <td class="wf-stage">Material Submittal</td>
+        <td class="wf-role"><span class="wf-role-tag">Answers</span>What material or system will be used?</td>
+        <td class="wf-role"><span class="wf-role-tag">Control purpose</span>Controls compliance of proposed materials with specifications, drawings, codes and project requirements before procurement or installation.</td>
+      </tr>
+      <tr>
+        <td class="wf-stage">IR / WIR</td>
+        <td class="wf-role"><span class="wf-role-tag">Answers</span>Is the completed work acceptable?</td>
+        <td class="wf-role"><span class="wf-role-tag">Control purpose</span>Creates a formal inspection record for executed work before covering it, closing it or proceeding to the next stage.</td>
+      </tr>
+      <tr>
+        <td class="wf-stage">MIR</td>
+        <td class="wf-role"><span class="wf-role-tag">Answers</span>Are delivered materials acceptable?</td>
+        <td class="wf-role"><span class="wf-role-tag">Control purpose</span>Confirms that materials arriving on site match the approved submittal, quantity, condition, certificates and project specification.</td>
+      </tr>
+      <tr>
+        <td class="wf-stage">RFI / TQ</td>
+        <td class="wf-role"><span class="wf-role-tag">Answers</span>What clarification is required?</td>
+        <td class="wf-role"><span class="wf-role-tag">Control purpose</span>Controls technical ambiguity, missing information or conflict before the site team makes assumptions.</td>
+      </tr>
+      <tr>
+        <td class="wf-stage">NCR</td>
+        <td class="wf-role"><span class="wf-role-tag">Answers</span>What is not compliant?</td>
+        <td class="wf-role"><span class="wf-role-tag">Control purpose</span>Records non-conforming work or material, defines required corrective action and prevents acceptance of defective work.</td>
+      </tr>
+      <tr>
+        <td class="wf-stage">SI</td>
+        <td class="wf-role"><span class="wf-role-tag">Answers</span>What formal instruction must be followed?</td>
+        <td class="wf-role"><span class="wf-role-tag">Control purpose</span>Records a consultant/client instruction that may clarify, modify or direct the works and may have time or cost impact.</td>
+      </tr>
+      <tr>
+        <td class="wf-stage">As-Built</td>
+        <td class="wf-role"><span class="wf-role-tag">Answers</span>What was actually constructed?</td>
+        <td class="wf-role"><span class="wf-role-tag">Control purpose</span>Records final installed conditions, routing, dimensions and changes for operation, maintenance and future modifications.</td>
+      </tr>
+      <tr>
+        <td class="wf-stage">O&amp;M Manual</td>
+        <td class="wf-role"><span class="wf-role-tag">Answers</span>How will the asset be operated and maintained?</td>
+        <td class="wf-role"><span class="wf-role-tag">Control purpose</span>Transfers operational knowledge, maintenance requirements, warranties, datasheets and procedures to the client / facility team.</td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- 02. Pre-execution & approval -->
+  <div class="ch2-section">
+    <div class="ch2-sec-label">Section 02</div>
+    <div class="ch2-sec-title">Pre-Execution &amp; Approval Documents</div>
+    <div class="ch2-sec-divider"></div>
+    <p class="doc-secintro">These documents are normally required before starting an activity on site. Their purpose is to prevent wrong execution before it happens.</p>
+    <div class="doc-list">
+      <div class="doc-row">
+        <div class="doc-id"><div class="doc-abbr">MS</div><div class="doc-full">Method Statement</div><span class="doc-simple">Execution method</span></div>
+        <div class="doc-func">Explains the approved step-by-step method for carrying out a specific work activity. It describes manpower, equipment, tools, materials, access, safety controls, sequence of work, protection of adjacent works and quality checks. Site teams use it as the official execution procedure, and QA/QC uses it to verify that the work was done in the approved way.</div>
+      </div>
+      <div class="doc-row">
+        <div class="doc-id"><div class="doc-abbr">ITP</div><div class="doc-full">Inspection and Test Plan</div><span class="doc-simple">Inspection &amp; testing plan</span></div>
+        <div class="doc-func">Defines the inspection stages for an activity and the acceptance criteria for each stage. It identifies who checks the work, what documents are required, which tests must be performed, and where the consultant must stop the work for hold point approval. It is the bridge between execution and formal acceptance.</div>
+      </div>
+      <div class="doc-row">
+        <div class="doc-id"><div class="doc-abbr">QCP</div><div class="doc-full">Quality Control Plan</div><span class="doc-simple">Project quality plan</span></div>
+        <div class="doc-func">Describes the full project quality system, including roles, inspection workflow, documentation control, testing procedures and reporting lines. It does not focus on one activity only; it sets the overall QA/QC framework that all ITPs, IRs, NCRs and checklists must follow.</div>
+      </div>
+      <div class="doc-row">
+        <div class="doc-id"><div class="doc-abbr">PQD</div><div class="doc-full">Pre-Qualification Documents</div><span class="doc-simple">Supplier / subcontractor qualification</span></div>
+        <div class="doc-func">Demonstrates that a subcontractor, manufacturer or specialist supplier is capable of performing the required scope. It normally includes company profile, past experience, licenses, certificates, financial/technical capability, method capability and project references before appointment or approval.</div>
+      </div>
+      <div class="doc-row">
+        <div class="doc-id"><div class="doc-abbr">MAR / MTS</div><div class="doc-full">Material Approval Request / Material Technical Submittal</div><span class="doc-simple">Material approval package</span></div>
+        <div class="doc-func">Submitted before procurement or installation to prove that the proposed material complies with drawings, specifications and project requirements. It usually includes datasheets, catalogues, samples, certificates, compliance statements, test reports and warranty information.</div>
+      </div>
+      <div class="doc-row">
+        <div class="doc-id"><div class="doc-abbr">MAS</div><div class="doc-full">Material Approval Sheet</div><span class="doc-simple">Material approval record</span></div>
+        <div class="doc-func">A formal sheet or cover page showing the consultant response to a material submittal. It records whether the material is approved, approved with comments, revised and resubmitted, or rejected. It becomes a reference for procurement and material inspection on site.</div>
+      </div>
+      <div class="doc-row">
+        <div class="doc-id"><div class="doc-abbr">SD</div><div class="doc-full">Shop Drawing</div><span class="doc-simple">Detailed execution drawing</span></div>
+        <div class="doc-func">Prepared by the contractor or specialist subcontractor to convert design drawings into buildable installation drawings. It includes real dimensions, details, fixing methods, levels, setting-out, coordination with structure/MEP and site constraints. No major work should proceed without approved shop drawings.</div>
+      </div>
+      <div class="doc-row">
+        <div class="doc-id"><div class="doc-abbr">Mock-up</div><div class="doc-full">Mock-up Approval</div><span class="doc-simple">Approved sample installation</span></div>
+        <div class="doc-func">A physical sample area constructed on site to confirm workmanship, appearance, materials, joints, tolerances and coordination before mass installation. Once approved, it becomes the benchmark for acceptance of the same work across the project.</div>
+      </div>
+      <div class="doc-row">
+        <div class="doc-id"><div class="doc-abbr">Sample Board</div><div class="doc-full">Material Sample Board</div><span class="doc-simple">Board of approved samples</span></div>
+        <div class="doc-func">Displays physical samples such as tile, stone, paint, metal, wood, glass, fabric or sealant. It helps the client and consultant approve color, finish, texture and quality. Later, site deliveries are compared against the approved board to avoid substitutions.</div>
+      </div>
+      <div class="doc-row">
+        <div class="doc-id"><div class="doc-abbr">HP</div><div class="doc-full">Hold Point</div><span class="doc-simple">Mandatory stop point</span></div>
+        <div class="doc-func">A critical inspection stage where the contractor must stop work and cannot proceed until the consultant/client has inspected and approved. Example: waterproofing inspection before screed, rebar inspection before concrete, or substrate approval before finishing.</div>
+      </div>
+      <div class="doc-row">
+        <div class="doc-id"><div class="doc-abbr">WP</div><div class="doc-full">Witness Point</div><span class="doc-simple">Optional witnessing point</span></div>
+        <div class="doc-func">A planned stage where the consultant is invited to witness an inspection or test. Depending on the contract, if the consultant does not attend within the agreed notice period, the contractor may proceed while keeping records and evidence.</div>
+      </div>
+      <div class="doc-row">
+        <div class="doc-id"><div class="doc-abbr">Checklist</div><div class="doc-full">Inspection Checklist</div><span class="doc-simple">Detailed checklist</span></div>
+        <div class="doc-func">A practical list of items to verify during inspection. It translates drawings, specifications, ITP criteria and method statement requirements into measurable site checks such as alignment, level, thickness, spacing, fixing, cleanliness and protection.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 03. Drawings & technical coordination -->
+  <div class="ch2-section">
+    <div class="ch2-sec-label">Section 03</div>
+    <div class="ch2-sec-title">Drawings &amp; Technical Coordination Documents</div>
+    <div class="ch2-sec-divider"></div>
+    <p class="doc-secintro">These documents control what will be built, how design information is converted into buildable details, and how disciplines coordinate before installation.</p>
+    <div class="doc-list">
+      <div class="doc-row">
+        <div class="doc-id"><div class="doc-abbr">IFC</div><div class="doc-full">Issued for Construction Drawings</div><span class="doc-simple">Official construction drawings</span></div>
+        <div class="doc-func">The formal drawing issue used by the contractor to start construction. It represents the design information released for building, but it may still require shop drawings, coordination and clarifications before actual installation.</div>
+      </div>
+      <div class="doc-row">
+        <div class="doc-id"><div class="doc-abbr">AFC</div><div class="doc-full">Approved for Construction</div><span class="doc-simple">Approved construction issue</span></div>
+        <div class="doc-func">A drawing or document status indicating that the information is approved for site use. It is often used for shop drawings or specialist drawings after consultant review and approval.</div>
+      </div>
+      <div class="doc-row">
+        <div class="doc-id"><div class="doc-abbr">Shop Drawings</div><div class="doc-full">Contractor Execution Drawings</div><span class="doc-simple">Buildable detailed drawings</span></div>
+        <div class="doc-func">Translate design intent into practical installation information. They show exact dimensions, levels, supports, interfaces, quantities, fixing details, coordinated openings and site conditions. They are the main technical control before execution.</div>
+      </div>
+      <div class="doc-row">
+        <div class="doc-id"><div class="doc-abbr">CD</div><div class="doc-full">Coordination Drawings</div><span class="doc-simple">Multidiscipline coordination drawings</span></div>
+        <div class="doc-func">Used to coordinate architectural, structural and MEP systems before works are installed. They prevent clashes between ceilings, ducts, pipes, cable trays, walls, openings, access panels, equipment and finishes.</div>
+      </div>
+      <div class="doc-row">
+        <div class="doc-id"><div class="doc-abbr">BWD</div><div class="doc-full">Builders Work Drawings</div><span class="doc-simple">Civil works for MEP requirements</span></div>
+        <div class="doc-func">Shows sleeves, openings, block-outs, plinths, trenches, penetrations and structural provisions required for MEP systems. It prevents late hacking, coring or rework after concrete or masonry is completed.</div>
+      </div>
+      <div class="doc-row">
+        <div class="doc-id"><div class="doc-abbr">Redline Drawing</div><div class="doc-full">Marked-up Site Drawing</div><span class="doc-simple">Drawing with site changes marked</span></div>
+        <div class="doc-func">A working record where site changes, deviations and actual installed conditions are marked during construction. It is a temporary but important source used to prepare final as-built drawings.</div>
+      </div>
+      <div class="doc-row">
+        <div class="doc-id"><div class="doc-abbr">As-Built Drawing</div><div class="doc-full">As Constructed Drawing</div><span class="doc-simple">Final actual drawing</span></div>
+        <div class="doc-func">Shows the real final installation after all site changes, RFIs, SIs, variations and approved modifications. It is essential for facility management, maintenance, future renovation and legal project records.</div>
+      </div>
+      <div class="doc-row">
+        <div class="doc-id"><div class="doc-abbr">SK</div><div class="doc-full">Sketch</div><span class="doc-simple">Technical sketch or detail</span></div>
+        <div class="doc-func">A quick drawing issued to clarify a small detail, connection, dimension or site condition. Sketches must be controlled by revision and approval because they can affect cost, time and final as-built records.</div>
+      </div>
+      <div class="doc-row">
+        <div class="doc-id"><div class="doc-abbr">Drawing Register</div><div class="doc-full">Drawing Log</div><span class="doc-simple">Drawing tracking list</span></div>
+        <div class="doc-func">Tracks drawing numbers, titles, revisions, status, submission dates, approval dates and distribution. It prevents site teams from using superseded drawings and supports document control audits.</div>
+      </div>
+      <div class="doc-row">
+        <div class="doc-id"><div class="doc-abbr">Transmittal</div><div class="doc-full">Document Transmittal</div><span class="doc-simple">Formal document submission record</span></div>
+        <div class="doc-func">Used to officially send drawings, submittals or reports between contractor, consultant, client and subcontractors. It records what was sent, when, to whom, for what purpose and under which revision/status.</div>
+      </div>
+      <div class="doc-row">
+        <div class="doc-id"><div class="doc-abbr">RFI</div><div class="doc-full">Request for Information</div><span class="doc-simple">Formal technical question</span></div>
+        <div class="doc-func">Used when drawings, specifications or site conditions are unclear, missing or conflicting. It protects the project by forcing a documented response before assumptions are built into permanent works.</div>
+      </div>
+      <div class="doc-row">
+        <div class="doc-id"><div class="doc-abbr">TQ</div><div class="doc-full">Technical Query</div><span class="doc-simple">Technical clarification</span></div>
+        <div class="doc-func">Similar to an RFI, often used internally or between technical teams to resolve a specific design or construction question. It helps close gaps before they become delays, NCRs or claims.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 04. QA/QC inspection & non-compliance -->
+  <div class="ch2-section">
+    <div class="ch2-sec-label">Section 04</div>
+    <div class="ch2-sec-title">QA/QC Inspection &amp; Non-Compliance Documents</div>
+    <div class="ch2-sec-divider"></div>
+    <p class="doc-secintro">These documents control inspection, acceptance, rejection, corrective action and quality records during site execution.</p>
+    <div class="doc-list">
+      <div class="doc-row">
+        <div class="doc-id"><div class="doc-abbr">IR</div><div class="doc-full">Inspection Request</div><span class="doc-simple">Request to inspect work</span></div>
+        <div class="doc-func">A formal request submitted by the contractor to the consultant QA/QC team to inspect completed work. It creates a record that the work was offered for approval before covering it, closing it, or proceeding to the next construction stage.</div>
+      </div>
+      <div class="doc-row">
+        <div class="doc-id"><div class="doc-abbr">WIR</div><div class="doc-full">Work Inspection Request</div><span class="doc-simple">Work inspection request</span></div>
+        <div class="doc-func">Very similar to IR, usually used for work activities such as blockwork, plaster, waterproofing, tiling, painting, ceilings or facade installation. It links the executed work to the approved shop drawing, method statement and ITP.</div>
+      </div>
+      <div class="doc-row">
+        <div class="doc-id"><div class="doc-abbr">MIR</div><div class="doc-full">Material Inspection Request</div><span class="doc-simple">Inspection of delivered materials</span></div>
+        <div class="doc-func">Submitted when materials arrive on site. The inspector checks material condition, quantity, labels, batch numbers, certificates, storage, expiry dates and whether the delivered item matches the approved material submittal.</div>
+      </div>
+      <div class="doc-row">
+        <div class="doc-id"><div class="doc-abbr">NCR</div><div class="doc-full">Non-Conformance Report</div><span class="doc-simple">Report of non-compliance</span></div>
+        <div class="doc-func">Issued when work, material or process does not comply with approved drawings, specifications, method statements, ITP, codes or approved samples. It requires corrective action, root cause review and formal closure before the item is accepted.</div>
+      </div>
+      <div class="doc-row">
+        <div class="doc-id"><div class="doc-abbr">SOR / SON</div><div class="doc-full">Site Observation Report / Notice</div><span class="doc-simple">Site observation notice</span></div>
+        <div class="doc-func">Records a site issue, poor practice or potential non-compliance that requires attention. It is normally less severe than an NCR, but if ignored it may escalate into NCR, delay, rework or rejection.</div>
+      </div>
+      <div class="doc-row">
+        <div class="doc-id"><div class="doc-abbr">CAR</div><div class="doc-full">Corrective Action Request</div><span class="doc-simple">Correct the cause of defect</span></div>
+        <div class="doc-func">Requires the contractor to correct not only the visible defect but also the reason it happened. It is used to prevent repeated NCRs by addressing root causes such as wrong method, untrained labor, poor supervision or wrong material.</div>
+      </div>
+      <div class="doc-row">
+        <div class="doc-id"><div class="doc-abbr">PAR</div><div class="doc-full">Preventive Action Request</div><span class="doc-simple">Preventive action</span></div>
+        <div class="doc-func">Issued when a risk of non-conformance is identified before the defect actually occurs. It forces the team to improve controls, supervision, protection or method before the issue becomes a real failure.</div>
+      </div>
+      <div class="doc-row">
+        <div class="doc-id"><div class="doc-abbr">Defect Notice</div><div class="doc-full">Defect Notification</div><span class="doc-simple">Formal defect record</span></div>
+        <div class="doc-func">Identifies defective work that must be rectified. It can be issued during construction, at snagging stage, or during the defects liability period depending on contract conditions.</div>
+      </div>
+      <div class="doc-row">
+        <div class="doc-id"><div class="doc-abbr">Snag List</div><div class="doc-full">Snagging List</div><span class="doc-simple">Final finishing defects list</span></div>
+        <div class="doc-func">Lists incomplete, damaged or defective items found before handover. It is used to close minor works such as paint touch-ups, alignment, cleaning, damaged accessories, missing labels or incomplete sealant.</div>
+      </div>
+      <div class="doc-row">
+        <div class="doc-id"><div class="doc-abbr">Punch List</div><div class="doc-full">Punch List</div><span class="doc-simple">Remaining works list</span></div>
+        <div class="doc-func">Commonly used in handover stages to identify all remaining actions before practical completion or taking-over. It may include finishing, MEP testing, documentation, cleaning and incomplete installations.</div>
+      </div>
+      <div class="doc-row">
+        <div class="doc-id"><div class="doc-abbr">QA/QC Report</div><div class="doc-full">Quality Report</div><span class="doc-simple">Quality status report</span></div>
+        <div class="doc-func">Summarizes inspection status, open IRs, rejected inspections, NCRs, material approvals, testing records, quality risks and closure progress. It helps management see whether quality is under control.</div>
+      </div>
+      <div class="doc-row">
+        <div class="doc-id"><div class="doc-abbr">Lab Test Report</div><div class="doc-full">Laboratory Test Report</div><span class="doc-simple">Independent test result</span></div>
+        <div class="doc-func">Provides evidence that material or work meets the required performance. Examples include concrete compressive strength, steel tests, waterproofing flood test, tile adhesion test, soil compaction or paint thickness.</div>
+      </div>
+      <div class="doc-row">
+        <div class="doc-id"><div class="doc-abbr">Calibration Certificate</div><div class="doc-full">Calibration Certificate</div><span class="doc-simple">Equipment accuracy proof</span></div>
+        <div class="doc-func">Confirms that measuring or testing equipment is accurate and within calibration validity. It is required for tools such as levels, torque wrenches, pressure gauges, testing machines and surveying instruments.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 05. Material, sample & supplier -->
+  <div class="ch2-section">
+    <div class="ch2-sec-label">Section 05</div>
+    <div class="ch2-sec-title">Material, Sample &amp; Supplier Documents</div>
+    <div class="ch2-sec-divider"></div>
+    <p class="doc-secintro">These documents prove that materials are technically acceptable, safe, traceable, approved and suitable for the project before and after delivery.</p>
+    <div class="doc-list">
+      <div class="doc-row">
+        <div class="doc-id"><div class="doc-abbr">TDS</div><div class="doc-full">Technical Data Sheet</div><span class="doc-simple">Manufacturer technical information</span></div>
+        <div class="doc-func">Gives technical properties, recommended use, installation limitations, performance data and compatibility information for a material or system. The consultant checks it against project specifications before approval.</div>
+      </div>
+      <div class="doc-row">
+        <div class="doc-id"><div class="doc-abbr">SDS / MSDS</div><div class="doc-full">Safety Data Sheet / Material Safety Data Sheet</div><span class="doc-simple">Safety information for material</span></div>
+        <div class="doc-func">Explains hazards, handling, storage, PPE, first aid, fire precautions and disposal requirements for chemicals and materials. It is essential for HSE approval and safe site use.</div>
+      </div>
+      <div class="doc-row">
+        <div class="doc-id"><div class="doc-abbr">COC</div><div class="doc-full">Certificate of Compliance</div><span class="doc-simple">Compliance certificate</span></div>
+        <div class="doc-func">A manufacturer or supplier certificate stating that the delivered product complies with the required standard, specification or approved submittal. It is often checked during MIR and handover documentation.</div>
+      </div>
+      <div class="doc-row">
+        <div class="doc-id"><div class="doc-abbr">Test Certificate</div><div class="doc-full">Manufacturer or Laboratory Test Certificate</div><span class="doc-simple">Proof of testing</span></div>
+        <div class="doc-func">Shows that a product or batch was tested and achieved required performance. It may cover fire rating, acoustic rating, compressive strength, waterproofing, glass performance, coating thickness or other technical criteria.</div>
+      </div>
+      <div class="doc-row">
+        <div class="doc-id"><div class="doc-abbr">Warranty Certificate</div><div class="doc-full">Warranty Document</div><span class="doc-simple">Material / system warranty</span></div>
+        <div class="doc-func">Confirms the warranty period, scope and conditions for a material, equipment or installed system. It becomes part of the handover dossier and supports the client during defects or failure claims.</div>
+      </div>
+      <div class="doc-row">
+        <div class="doc-id"><div class="doc-abbr">Delivery Note</div><div class="doc-full">Delivery Note</div><span class="doc-simple">Material delivery record</span></div>
+        <div class="doc-func">Records delivered quantities, date, supplier, item description, batch number and receiving party. It is used by stores, QA/QC and commercial teams to verify that delivered materials match approvals and purchase orders.</div>
+      </div>
+      <div class="doc-row">
+        <div class="doc-id"><div class="doc-abbr">Batch / Lot Record</div><div class="doc-full">Batch Number Record</div><span class="doc-simple">Traceability record</span></div>
+        <div class="doc-func">Links installed material to a production batch or lot. It is important when defects appear later because the team can trace which areas received the affected batch and take controlled action.</div>
+      </div>
+      <div class="doc-row">
+        <div class="doc-id"><div class="doc-abbr">Material Log</div><div class="doc-full">Material Submittal Register</div><span class="doc-simple">Material tracking register</span></div>
+        <div class="doc-func">Tracks each material submittal from preparation to approval, rejection or resubmission. It helps avoid procurement delays and ensures work does not start with unapproved or expired material information.</div>
+      </div>
+      <div class="doc-row">
+        <div class="doc-id"><div class="doc-abbr">Compliance Statement</div><div class="doc-full">Specification Compliance Statement</div><span class="doc-simple">Clause-by-clause compliance</span></div>
+        <div class="doc-func">Shows how the proposed material complies with each project specification requirement. It highlights deviations, alternatives or missing information so the consultant can make a clear approval decision.</div>
+      </div>
+      <div class="doc-row">
+        <div class="doc-id"><div class="doc-abbr">Sample Approval</div><div class="doc-full">Approved Physical Sample</div><span class="doc-simple">Accepted sample reference</span></div>
+        <div class="doc-func">Records approval of the physical sample used for color, texture, quality and finish. Site inspectors compare installed work and delivered materials against this approved sample.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 06. Progress, planning & reporting -->
+  <div class="ch2-section">
+    <div class="ch2-sec-label">Section 06</div>
+    <div class="ch2-sec-title">Progress, Planning &amp; Reporting Documents</div>
+    <div class="ch2-sec-divider"></div>
+    <p class="doc-secintro">These documents record what is happening on site and compare actual progress against the approved plan. They are essential for management, payment and delay analysis.</p>
+    <div class="doc-list">
+      <div class="doc-row">
+        <div class="doc-id"><div class="doc-abbr">DPR</div><div class="doc-full">Daily Progress Report</div><span class="doc-simple">Daily site report</span></div>
+        <div class="doc-func">Records what happened on site each day: activities completed, manpower, equipment, deliveries, inspections, weather, instructions, constraints and incidents. It is a key factual record for progress, disputes and delay analysis.</div>
+      </div>
+      <div class="doc-row">
+        <div class="doc-id"><div class="doc-abbr">WPR</div><div class="doc-full">Weekly Progress Report</div><span class="doc-simple">Weekly summary report</span></div>
+        <div class="doc-func">Summarizes weekly progress against plan, key achievements, delayed activities, manpower, inspections, safety, quality issues and required decisions. It gives management a short-cycle view of project health.</div>
+      </div>
+      <div class="doc-row">
+        <div class="doc-id"><div class="doc-abbr">MPR</div><div class="doc-full">Monthly Progress Report</div><span class="doc-simple">Monthly formal progress report</span></div>
+        <div class="doc-func">A comprehensive report covering physical progress, schedule, procurement, cost/commercial status, QA/QC, HSE, risks, photographs, approvals and major issues. It is often submitted to the client and senior management.</div>
+      </div>
+      <div class="doc-row">
+        <div class="doc-id"><div class="doc-abbr">Baseline Program</div><div class="doc-full">Approved Baseline Schedule</div><span class="doc-simple">Original approved schedule</span></div>
+        <div class="doc-func">The contractual time plan approved at the start or after re-baselining. It is the reference used to measure delay, progress, productivity and extension of time claims.</div>
+      </div>
+      <div class="doc-row">
+        <div class="doc-id"><div class="doc-abbr">Updated Program</div><div class="doc-full">Updated Schedule</div><span class="doc-simple">Current schedule update</span></div>
+        <div class="doc-func">Shows the latest status of completed, ongoing and delayed activities. It compares actual progress with planned dates and forecasts the impact on milestones and completion.</div>
+      </div>
+      <div class="doc-row">
+        <div class="doc-id"><div class="doc-abbr">Lookahead Program</div><div class="doc-full">2 / 3 / 4 / 6 Week Lookahead Schedule</div><span class="doc-simple">Short-term work plan</span></div>
+        <div class="doc-func">Breaks the master schedule into near-term activities for site execution. It identifies required approvals, materials, access, manpower, inspections and constraints before work starts.</div>
+      </div>
+      <div class="doc-row">
+        <div class="doc-id"><div class="doc-abbr">S-Curve</div><div class="doc-full">Progress S-Curve</div><span class="doc-simple">Planned vs actual progress curve</span></div>
+        <div class="doc-func">Graphically compares planned progress with actual progress. It quickly shows whether the project is ahead, on track or delayed, and supports monthly reporting and management decisions.</div>
+      </div>
+      <div class="doc-row">
+        <div class="doc-id"><div class="doc-abbr">Resource Histogram</div><div class="doc-full">Manpower / Equipment Histogram</div><span class="doc-simple">Resource loading chart</span></div>
+        <div class="doc-func">Shows planned and actual manpower or equipment levels over time. It helps identify under-resourcing, productivity problems or over-crowding that may affect safety and progress.</div>
+      </div>
+      <div class="doc-row">
+        <div class="doc-id"><div class="doc-abbr">Progress Photos</div><div class="doc-full">Site Progress Photographs</div><span class="doc-simple">Photographic progress evidence</span></div>
+        <div class="doc-func">Provides visual evidence of work status at specific dates and locations. It supports reports, payment claims, delay records, snagging, disputes and handover documentation.</div>
+      </div>
+      <div class="doc-row">
+        <div class="doc-id"><div class="doc-abbr">Delay Report</div><div class="doc-full">Delay Analysis Report</div><span class="doc-simple">Delay explanation and impact</span></div>
+        <div class="doc-func">Explains causes of delay, affected activities, responsibility, critical path impact and mitigation. It may support EOT claims, recovery planning or management escalation.</div>
+      </div>
+      <div class="doc-row">
+        <div class="doc-id"><div class="doc-abbr">Recovery Program</div><div class="doc-full">Recovery / Acceleration Schedule</div><span class="doc-simple">Plan to recover delay</span></div>
+        <div class="doc-func">Shows how the contractor intends to recover lost time through resequencing, additional resources, extended working hours or alternative methods. It must be realistic and linked to constraints.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 07. Meeting & coordination records -->
+  <div class="ch2-section">
+    <div class="ch2-sec-label">Section 07</div>
+    <div class="ch2-sec-title">Meeting &amp; Coordination Records</div>
+    <div class="ch2-sec-divider"></div>
+    <p class="doc-secintro">These records capture decisions, actions, responsibilities and deadlines. Without them, important agreements can be lost or disputed.</p>
+    <div class="doc-list">
+      <div class="doc-row">
+        <div class="doc-id"><div class="doc-abbr">MOM</div><div class="doc-full">Minutes of Meeting</div><span class="doc-simple">Official meeting record</span></div>
+        <div class="doc-func">Records what was discussed, agreed and assigned during a meeting. It includes decisions, action owners, target dates and pending issues. It is a formal project record and often becomes important in disputes or delay claims.</div>
+      </div>
+      <div class="doc-row">
+        <div class="doc-id"><div class="doc-abbr">Action Log</div><div class="doc-full">Action Tracker</div><span class="doc-simple">Open action list</span></div>
+        <div class="doc-func">Tracks actions from meetings, site walks and reports. It shows responsible party, due date, status and closure evidence so decisions do not remain only as meeting discussion.</div>
+      </div>
+      <div class="doc-row">
+        <div class="doc-id"><div class="doc-abbr">Progress Meeting MOM</div><div class="doc-full">Progress Meeting Minutes</div><span class="doc-simple">Progress coordination record</span></div>
+        <div class="doc-func">Focuses on schedule, productivity, procurement, manpower, site constraints, milestones and delay mitigation. It is usually attended by client, consultant, contractor and major subcontractors.</div>
+      </div>
+      <div class="doc-row">
+        <div class="doc-id"><div class="doc-abbr">Technical Meeting MOM</div><div class="doc-full">Technical Meeting Minutes</div><span class="doc-simple">Technical decision record</span></div>
+        <div class="doc-func">Records decisions on drawings, RFIs, materials, method statements, design changes, interfaces and technical risks. It helps close design/construction issues before they reach site execution.</div>
+      </div>
+      <div class="doc-row">
+        <div class="doc-id"><div class="doc-abbr">Coordination Meeting MOM</div><div class="doc-full">Coordination Meeting Minutes</div><span class="doc-simple">Interface coordination record</span></div>
+        <div class="doc-func">Captures multidisciplinary coordination between architecture, structure, MEP, facade, interiors and specialist packages. It is especially important before ceilings, shafts, plantrooms and facade works.</div>
+      </div>
+      <div class="doc-row">
+        <div class="doc-id"><div class="doc-abbr">Workshop MOM</div><div class="doc-full">Workshop Minutes</div><span class="doc-simple">Focused technical workshop record</span></div>
+        <div class="doc-func">Used for complex issues requiring detailed discussion, such as facade interfaces, waterproofing details, medical equipment coordination, authority comments or sequencing problems.</div>
+      </div>
+      <div class="doc-row">
+        <div class="doc-id"><div class="doc-abbr">Site Walk Report</div><div class="doc-full">Site Walk / Walkthrough Report</div><span class="doc-simple">Field observation record</span></div>
+        <div class="doc-func">Records observations from a site walkthrough, including photos, locations, required actions and responsible parties. It is practical for closing visible issues quickly.</div>
+      </div>
+      <div class="doc-row">
+        <div class="doc-id"><div class="doc-abbr">CVR</div><div class="doc-full">Consultant Visit Report</div><span class="doc-simple">Consultant visit record</span></div>
+        <div class="doc-func">Records the consultant comments and observations during a site visit. It may include quality notes, coordination issues, safety observations, progress comments and required actions.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 08. Contract, variation & commercial -->
+  <div class="ch2-section">
+    <div class="ch2-sec-label">Section 08</div>
+    <div class="ch2-sec-title">Contract, Variation &amp; Commercial Documents</div>
+    <div class="ch2-sec-divider"></div>
+    <p class="doc-secintro">These documents control changes, instructions, claims, payments and contractual entitlement during construction.</p>
+    <div class="doc-list">
+      <div class="doc-row">
+        <div class="doc-id"><div class="doc-abbr">SI</div><div class="doc-full">Site Instruction</div><span class="doc-simple">Formal instruction from consultant / client</span></div>
+        <div class="doc-func">Directs the contractor to clarify, change or proceed with a specific action on site. It must be controlled because it may affect time, cost, scope, sequencing or responsibility.</div>
+      </div>
+      <div class="doc-row">
+        <div class="doc-id"><div class="doc-abbr">CVI</div><div class="doc-full">Confirmation of Verbal Instruction</div><span class="doc-simple">Written confirmation of spoken instruction</span></div>
+        <div class="doc-func">Used when an instruction is given verbally on site or during a meeting. The contractor records it formally to avoid misunderstanding and to protect time/cost entitlement if the instruction changes the scope.</div>
+      </div>
+      <div class="doc-row">
+        <div class="doc-id"><div class="doc-abbr">CR</div><div class="doc-full">Change Request</div><span class="doc-simple">Request to change scope</span></div>
+        <div class="doc-func">Initiates a proposed change in design, specification, quantity, method, sequence or requirement. It must be reviewed technically, commercially and contractually before implementation where required.</div>
+      </div>
+      <div class="doc-row">
+        <div class="doc-id"><div class="doc-abbr">VO</div><div class="doc-full">Variation Order</div><span class="doc-simple">Approved contractual change</span></div>
+        <div class="doc-func">A formal approved change to the contract scope, time or price. It may result from client instruction, design change, quantity variation, authority requirement or unforeseen site condition.</div>
+      </div>
+      <div class="doc-row">
+        <div class="doc-id"><div class="doc-abbr">VOR</div><div class="doc-full">Variation Order Request</div><span class="doc-simple">Request for variation approval</span></div>
+        <div class="doc-func">Submitted by the contractor to request recognition of a change as a variation. It normally includes description, reason, drawings, instruction reference, cost impact and time impact.</div>
+      </div>
+      <div class="doc-row">
+        <div class="doc-id"><div class="doc-abbr">EOT</div><div class="doc-full">Extension of Time</div><span class="doc-simple">Request for more contract time</span></div>
+        <div class="doc-func">A contractual request to extend the completion date due to delays that are not the contractor responsibility, such as late information, approved changes, authority delay or force majeure depending on contract conditions.</div>
+      </div>
+      <div class="doc-row">
+        <div class="doc-id"><div class="doc-abbr">Claim</div><div class="doc-full">Contractual Claim</div><span class="doc-simple">Formal claim for time or money</span></div>
+        <div class="doc-func">A structured contractual submission that explains entitlement, cause, effect, records, notices, delay analysis and cost/time impact. Good project records are essential to support or defend a claim.</div>
+      </div>
+      <div class="doc-row">
+        <div class="doc-id"><div class="doc-abbr">Payment Application</div><div class="doc-full">Interim Payment Application</div><span class="doc-simple">Contractor payment request</span></div>
+        <div class="doc-func">Submitted periodically by the contractor to claim payment for completed work, materials on site, approved variations and other payable items. It must be supported by progress evidence and measurement records.</div>
+      </div>
+      <div class="doc-row">
+        <div class="doc-id"><div class="doc-abbr">IPC</div><div class="doc-full">Interim Payment Certificate</div><span class="doc-simple">Certified progress payment</span></div>
+        <div class="doc-func">Issued by the consultant QS to certify the amount payable after checking the payment application, measured quantities, contract rates, retention, advances, variations and deductions.</div>
+      </div>
+      <div class="doc-row">
+        <div class="doc-id"><div class="doc-abbr">Final Account</div><div class="doc-full">Final Account Statement</div><span class="doc-simple">Final project cost settlement</span></div>
+        <div class="doc-func">Closes the commercial value of the project after completion. It reconciles contract sum, variations, claims, omissions, provisional sums, payments, retention and final adjustments.</div>
+      </div>
+      <div class="doc-row">
+        <div class="doc-id"><div class="doc-abbr">Daywork Sheet</div><div class="doc-full">Daywork Record</div><span class="doc-simple">Daywork labor / equipment / material record</span></div>
+        <div class="doc-func">Used when work is instructed on a daywork basis rather than measured by fixed rates. It must be signed daily and records labor hours, equipment hours and materials used.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 09. HSE documents -->
+  <div class="ch2-section">
+    <div class="ch2-sec-label">Section 09</div>
+    <div class="ch2-sec-title">HSE Documents</div>
+    <div class="ch2-sec-divider"></div>
+    <p class="doc-secintro">These documents control health, safety and environmental risks before and during work activities.</p>
+    <div class="doc-list">
+      <div class="doc-row">
+        <div class="doc-id"><div class="doc-abbr">HSE Plan</div><div class="doc-full">Health, Safety and Environment Plan</div><span class="doc-simple">Project safety management plan</span></div>
+        <div class="doc-func">Defines the project safety system, responsibilities, emergency procedures, permits, training, inspections, reporting and environmental controls. It is the main HSE framework for construction activities.</div>
+      </div>
+      <div class="doc-row">
+        <div class="doc-id"><div class="doc-abbr">RA</div><div class="doc-full">Risk Assessment</div><span class="doc-simple">Risk evaluation before work</span></div>
+        <div class="doc-func">Identifies hazards, evaluates risk level and defines control measures before an activity starts. It ensures the team knows what can go wrong and how to reduce the risk to an acceptable level.</div>
+      </div>
+      <div class="doc-row">
+        <div class="doc-id"><div class="doc-abbr">JSA / JHA</div><div class="doc-full">Job Safety Analysis / Job Hazard Analysis</div><span class="doc-simple">Step-by-step activity risk analysis</span></div>
+        <div class="doc-func">Breaks the work into steps and identifies hazards and controls for each step. It is more activity-specific than a general risk assessment and is used for toolbox talks and work permits.</div>
+      </div>
+      <div class="doc-row">
+        <div class="doc-id"><div class="doc-abbr">PTW</div><div class="doc-full">Permit to Work</div><span class="doc-simple">Formal permission for controlled work</span></div>
+        <div class="doc-func">Authorizes high-risk or controlled activities such as hot work, lifting, excavation, confined space entry, work at height, electrical isolation or night work. It ensures required checks are completed before work starts.</div>
+      </div>
+      <div class="doc-row">
+        <div class="doc-id"><div class="doc-abbr">TBT</div><div class="doc-full">Toolbox Talk</div><span class="doc-simple">Short safety briefing</span></div>
+        <div class="doc-func">A brief site talk before starting work to communicate hazards, method, PPE, access, emergency actions and specific daily risks. It also creates a record that workers were briefed.</div>
+      </div>
+      <div class="doc-row">
+        <div class="doc-id"><div class="doc-abbr">Lifting Plan</div><div class="doc-full">Lifting Operation Plan</div><span class="doc-simple">Plan for crane / lifting activity</span></div>
+        <div class="doc-func">Defines crane position, load weight, lifting radius, rigging, lifting accessories, ground bearing, communication, exclusion zone and emergency controls. It prevents uncontrolled lifting risks.</div>
+      </div>
+      <div class="doc-row">
+        <div class="doc-id"><div class="doc-abbr">Incident Report</div><div class="doc-full">Incident Report</div><span class="doc-simple">Accident or event report</span></div>
+        <div class="doc-func">Records accidents, injuries, property damage, environmental incidents or dangerous occurrences. It includes immediate action, investigation, root cause and corrective/preventive measures.</div>
+      </div>
+      <div class="doc-row">
+        <div class="doc-id"><div class="doc-abbr">Near Miss Report</div><div class="doc-full">Near Miss Report</div><span class="doc-simple">Potential accident record</span></div>
+        <div class="doc-func">Records an event that could have caused injury or damage but did not. Reporting near misses helps prevent future incidents before actual harm occurs.</div>
+      </div>
+      <div class="doc-row">
+        <div class="doc-id"><div class="doc-abbr">HSE Inspection Report</div><div class="doc-full">Safety Inspection Report</div><span class="doc-simple">Safety observation report</span></div>
+        <div class="doc-func">Documents site safety inspections, non-compliances, unsafe acts, unsafe conditions and required corrective actions. It helps management track safety performance and closure.</div>
+      </div>
+      <div class="doc-row">
+        <div class="doc-id"><div class="doc-abbr">ERP</div><div class="doc-full">Emergency Response Plan</div><span class="doc-simple">Emergency procedure</span></div>
+        <div class="doc-func">Explains what to do during fire, medical emergency, evacuation, spill, collapse, severe weather or other emergencies. It includes contacts, muster points, responsibilities and drills.</div>
+      </div>
+      <div class="doc-row">
+        <div class="doc-id"><div class="doc-abbr">Scaffold Tag</div><div class="doc-full">Scaffolding Inspection Record</div><span class="doc-simple">Scaffold safety status</span></div>
+        <div class="doc-func">Confirms scaffolds are inspected and safe for use. Tag systems usually show whether the scaffold is safe, restricted or unsafe and must be checked regularly.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 10. Testing, commissioning & handover -->
+  <div class="ch2-section">
+    <div class="ch2-sec-label">Section 10</div>
+    <div class="ch2-sec-title">Testing, Commissioning &amp; Handover Documents</div>
+    <div class="ch2-sec-divider"></div>
+    <p class="doc-secintro">These documents prove that the works are complete, tested, documented, maintainable and ready for client operation.</p>
+    <div class="doc-list">
+      <div class="doc-row">
+        <div class="doc-id"><div class="doc-abbr">T&amp;C</div><div class="doc-full">Testing and Commissioning</div><span class="doc-simple">Testing and operating systems</span></div>
+        <div class="doc-func">Verifies that installed systems function correctly and meet design requirements before handover. It is especially important for MEP, life safety, elevators, BMS, medical systems and specialist equipment.</div>
+      </div>
+      <div class="doc-row">
+        <div class="doc-id"><div class="doc-abbr">Pre-Commissioning</div><div class="doc-full">Pre-Commissioning Checks</div><span class="doc-simple">Checks before final commissioning</span></div>
+        <div class="doc-func">Covers cleaning, flushing, pressure tests, continuity checks, alignment, labeling, energization readiness and installation completeness before functional tests begin.</div>
+      </div>
+      <div class="doc-row">
+        <div class="doc-id"><div class="doc-abbr">Commissioning Report</div><div class="doc-full">Commissioning Test Report</div><span class="doc-simple">Formal commissioning result</span></div>
+        <div class="doc-func">Records the test procedure, equipment used, results, acceptance criteria, failures, corrective actions and final status. It proves that the system is operational and accepted.</div>
+      </div>
+      <div class="doc-row">
+        <div class="doc-id"><div class="doc-abbr">Test Pack</div><div class="doc-full">System Test Package</div><span class="doc-simple">Complete testing package</span></div>
+        <div class="doc-func">Collects all test records for a system or area, including checklists, pressure tests, insulation tests, balancing reports, commissioning sheets and certificates. It supports system handover.</div>
+      </div>
+      <div class="doc-row">
+        <div class="doc-id"><div class="doc-abbr">O&amp;M Manual</div><div class="doc-full">Operation and Maintenance Manual</div><span class="doc-simple">Operation &amp; maintenance guide</span></div>
+        <div class="doc-func">Provides the client facility team with information needed to operate, inspect, clean, maintain and repair systems. It includes descriptions, datasheets, spare parts, warranties, preventive maintenance and contacts.</div>
+      </div>
+      <div class="doc-row">
+        <div class="doc-id"><div class="doc-abbr">Handover Dossier</div><div class="doc-full">Handover File</div><span class="doc-simple">Final project handover file</span></div>
+        <div class="doc-func">The complete final documentation set submitted to the client. It includes as-built drawings, O&amp;M manuals, warranties, test reports, training records, approvals, certificates and statutory documents.</div>
+      </div>
+      <div class="doc-row">
+        <div class="doc-id"><div class="doc-abbr">Training Record</div><div class="doc-full">Operator Training Record</div><span class="doc-simple">Proof of training</span></div>
+        <div class="doc-func">Confirms that the contractor/supplier trained the client or facility management team on operation, maintenance, safety, troubleshooting and emergency procedures for installed systems.</div>
+      </div>
+      <div class="doc-row">
+        <div class="doc-id"><div class="doc-abbr">Spare Parts List</div><div class="doc-full">Spare Parts and Consumables List</div><span class="doc-simple">List of required spare parts</span></div>
+        <div class="doc-func">Identifies spare parts, consumables, quantities, part numbers and suppliers needed for maintenance after handover. It helps facility management avoid downtime.</div>
+      </div>
+      <div class="doc-row">
+        <div class="doc-id"><div class="doc-abbr">TOC</div><div class="doc-full">Taking Over Certificate</div><span class="doc-simple">Certificate of taking over</span></div>
+        <div class="doc-func">Issued when the client takes over the works or a section of the works, usually after substantial completion and closure of critical defects. It may trigger DLP and contractual milestones.</div>
+      </div>
+      <div class="doc-row">
+        <div class="doc-id"><div class="doc-abbr">DLP</div><div class="doc-full">Defects Liability Period</div><span class="doc-simple">Defects correction period</span></div>
+        <div class="doc-func">The period after taking-over during which the contractor remains responsible for correcting defects that appear, subject to contract conditions. Proper records are required to track closure.</div>
+      </div>
+      <div class="doc-row">
+        <div class="doc-id"><div class="doc-abbr">FAC</div><div class="doc-full">Final Acceptance Certificate</div><span class="doc-simple">Final project acceptance</span></div>
+        <div class="doc-func">Issued after completion of DLP and closure of outstanding defects, documents and obligations. It usually supports final release of retention or final settlement.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 11. BIM, CDE & digital information control -->
+  <div class="ch2-section">
+    <div class="ch2-sec-label">Section 11</div>
+    <div class="ch2-sec-title">BIM, CDE &amp; Digital Information Control</div>
+    <div class="ch2-sec-divider"></div>
+    <p class="doc-secintro">These documents control digital coordination, models, revision status and asset information during construction.</p>
+    <div class="doc-list">
+      <div class="doc-row">
+        <div class="doc-id"><div class="doc-abbr">CDE</div><div class="doc-full">Common Data Environment</div><span class="doc-simple">Shared document platform</span></div>
+        <div class="doc-func">The controlled digital environment where drawings, models, submittals, RFIs, reports and approvals are stored, reviewed and distributed. It controls revision, status, responsibility and access to project information.</div>
+      </div>
+      <div class="doc-row">
+        <div class="doc-id"><div class="doc-abbr">Revision Status</div><div class="doc-full">Document Revision Status</div><span class="doc-simple">Document approval state</span></div>
+        <div class="doc-func">Shows whether information is draft, shared, reviewed, approved, rejected, superseded or archived. It prevents site teams from using outdated information.</div>
+      </div>
+      <div class="doc-row">
+        <div class="doc-id"><div class="doc-abbr">BIM Coordination Report</div><div class="doc-full">Model Coordination Report</div><span class="doc-simple">BIM coordination summary</span></div>
+        <div class="doc-func">Summarizes model review status, clashes, discipline issues, unresolved interfaces, model quality and actions. It supports technical coordination before installation.</div>
+      </div>
+      <div class="doc-row">
+        <div class="doc-id"><div class="doc-abbr">Clash Report</div><div class="doc-full">Clash Detection Report</div><span class="doc-simple">Model clash list</span></div>
+        <div class="doc-func">Lists physical or rule-based clashes between architecture, structure and MEP. The value is not only detecting clashes but assigning responsibility, agreeing solutions and preventing site rework.</div>
+      </div>
+      <div class="doc-row">
+        <div class="doc-id"><div class="doc-abbr">Issue Log</div><div class="doc-full">BIM / Design Issue Log</div><span class="doc-simple">Model / design issue tracker</span></div>
+        <div class="doc-func">Tracks technical issues raised from model reviews, meetings, RFIs and coordination sessions. It records owner, priority, due date, status and closure evidence.</div>
+      </div>
+      <div class="doc-row">
+        <div class="doc-id"><div class="doc-abbr">Model Review Checklist</div><div class="doc-full">Model Quality Checklist</div><span class="doc-simple">BIM quality checklist</span></div>
+        <div class="doc-func">Checks model naming, coordinates, levels, classification, geometry accuracy, information parameters and compliance with BEP or project BIM standards.</div>
+      </div>
+      <div class="doc-row">
+        <div class="doc-id"><div class="doc-abbr">As-Built Model</div><div class="doc-full">As-Constructed BIM Model</div><span class="doc-simple">Final installed model</span></div>
+        <div class="doc-func">Updates the BIM model to reflect actual installed conditions, final equipment, asset information and changes. It supports facility management and future modifications when delivered correctly.</div>
+      </div>
+      <div class="doc-row">
+        <div class="doc-id"><div class="doc-abbr">COBie / Asset Data</div><div class="doc-full">Construction Operations Building Information Exchange</div><span class="doc-simple">Structured asset data</span></div>
+        <div class="doc-func">A structured data deliverable containing maintainable asset information such as equipment names, locations, serial numbers, warranty, manufacturer, spare parts and maintenance data.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 12. Practical construction workflow -->
+  <div class="ch2-section">
+    <div class="ch2-sec-label">Section 12</div>
+    <div class="ch2-sec-title">Practical Construction Workflow</div>
+    <div class="ch2-sec-divider"></div>
+    <p class="doc-secintro">How the main documents connect from the start of an activity to handover. It is not a fixed rule for every project, but it represents the normal logic used in consultant and contractor construction control.</p>
+    <table class="wf-table">
+      <tr>
+        <td class="wf-stage">1 — Before Procurement</td>
+        <td class="wf-role"><span class="wf-role-tag">Documents typically required</span>Material Submittal, TDS, compliance statement, samples, supplier PQD</td>
+        <td class="wf-role"><span class="wf-role-tag">Purpose of the stage</span>Confirm that proposed materials and suppliers are compliant before money is spent and before wrong products arrive on site.</td>
+      </tr>
+      <tr>
+        <td class="wf-stage">2 — Before Execution</td>
+        <td class="wf-role"><span class="wf-role-tag">Documents typically required</span>IFC/AFC drawings, shop drawings, method statement, ITP, risk assessment, permits</td>
+        <td class="wf-role"><span class="wf-role-tag">Purpose of the stage</span>Make sure the site team knows exactly what to build, how to build it, how to inspect it and how to do it safely.</td>
+      </tr>
+      <tr>
+        <td class="wf-stage">3 — Material Delivery</td>
+        <td class="wf-role"><span class="wf-role-tag">Documents typically required</span>MIR, delivery note, COC, test certificates, storage inspection</td>
+        <td class="wf-role"><span class="wf-role-tag">Purpose of the stage</span>Verify that delivered material matches the approved submittal and is undamaged, traceable and properly stored.</td>
+      </tr>
+      <tr>
+        <td class="wf-stage">4 — Work Execution</td>
+        <td class="wf-role"><span class="wf-role-tag">Documents typically required</span>Checklists, site supervision records, daily reports, progress photos</td>
+        <td class="wf-role"><span class="wf-role-tag">Purpose of the stage</span>Control workmanship while the activity is happening, not only after the mistake is already built.</td>
+      </tr>
+      <tr>
+        <td class="wf-stage">5 — Formal Inspection</td>
+        <td class="wf-role"><span class="wf-role-tag">Documents typically required</span>IR/WIR, ITP references, approved drawings, checklists, test records</td>
+        <td class="wf-role"><span class="wf-role-tag">Purpose of the stage</span>Obtain formal approval before work is covered, closed or continued to the next stage.</td>
+      </tr>
+      <tr>
+        <td class="wf-stage">6 — Non-Compliance Control</td>
+        <td class="wf-role"><span class="wf-role-tag">Documents typically required</span>NCR, SOR, CAR, corrective action evidence, re-inspection IR</td>
+        <td class="wf-role"><span class="wf-role-tag">Purpose of the stage</span>Record defects, stop repeated errors, correct the work and close the issue with evidence.</td>
+      </tr>
+      <tr>
+        <td class="wf-stage">7 — Progress &amp; Commercial Control</td>
+        <td class="wf-role"><span class="wf-role-tag">Documents typically required</span>DPR, WPR, MPR, updated program, payment application, VO/EOT/claim records</td>
+        <td class="wf-role"><span class="wf-role-tag">Purpose of the stage</span>Link actual site events to time, cost and contractual status. Good records protect both contractor and consultant.</td>
+      </tr>
+      <tr>
+        <td class="wf-stage">8 — Handover</td>
+        <td class="wf-role"><span class="wf-role-tag">Documents typically required</span>As-built drawings, O&amp;M manuals, warranties, commissioning reports, training records, snag closure</td>
+        <td class="wf-role"><span class="wf-role-tag">Purpose of the stage</span>Transfer a complete, maintainable and legally documented asset to the client / facility team.</td>
+      </tr>
+    </table>
+    <div class="ch2-sec-label" style="margin-top:48px">Typical Document Sequence</div>
+    <div class="seq-flow">
+      <span class="seq-chip">IFC / AFC Drawings</span><span class="seq-arrow">→</span>
+      <span class="seq-chip">Shop Drawings</span><span class="seq-arrow">→</span>
+      <span class="seq-chip">Material Submittal</span><span class="seq-arrow">→</span>
+      <span class="seq-chip">Method Statement</span><span class="seq-arrow">→</span>
+      <span class="seq-chip">ITP</span><span class="seq-arrow">→</span>
+      <span class="seq-chip">Mock-up</span><span class="seq-arrow">→</span>
+      <span class="seq-chip">MIR</span><span class="seq-arrow">→</span>
+      <span class="seq-chip">IR / WIR</span><span class="seq-arrow">→</span>
+      <span class="seq-chip">Approval / Comments / Rejection</span><span class="seq-arrow">→</span>
+      <span class="seq-chip">NCR / Snag Closure</span><span class="seq-arrow">→</span>
+      <span class="seq-chip">As-Built</span><span class="seq-arrow">→</span>
+      <span class="seq-chip">O&amp;M</span><span class="seq-arrow">→</span>
+      <span class="seq-chip">Handover</span>
+    </div>
+  </div>
+
+  <!-- 13. Applied examples -->
+  <div class="ch2-section">
+    <div class="ch2-sec-label">Section 13</div>
+    <div class="ch2-sec-title">Applied Examples — One Document Chain, Three Packages</div>
+    <div class="ch2-sec-divider"></div>
+    <p class="doc-secintro">The same set of documents controls every activity — from an architectural finish to a specialist facade to structural concrete. Three worked examples show how the chain applies in practice.</p>
+
+    <div class="rs-accordion">
+      <div class="rs-acc-header" onclick="toggleAcc(this)">
+        <span class="rs-acc-htext">Example 1 — Tiling Works (Architectural Finishing Activity)</span>
+        <span class="rs-acc-icon">▾</span>
+      </div>
+      <div class="rs-acc-body">
+        <table class="wf-table">
+          <tr><td class="wf-stage">Before Work</td><td class="wf-role"><span class="wf-role-tag">Material Submittal</span>Approve tile type, size, thickness, finish, adhesive, grout, sealant, trims and compatibility with wet/dry area requirements.</td></tr>
+          <tr><td class="wf-stage">Before Work</td><td class="wf-role"><span class="wf-role-tag">Shop Drawing</span>Confirm tile setting-out, starting point, cut tile locations, slopes, floor drains, expansion joints, thresholds and interface with doors/walls.</td></tr>
+          <tr><td class="wf-stage">Before Work</td><td class="wf-role"><span class="wf-role-tag">Method Statement</span>Explain substrate preparation, primer, adhesive application, tile laying sequence, joint control, cleaning, protection and curing period.</td></tr>
+          <tr><td class="wf-stage">Before Work</td><td class="wf-role"><span class="wf-role-tag">ITP</span>Define inspection stages: substrate, waterproofing if applicable, setting-out, installation, grout, slope test, final finish and acceptance criteria.</td></tr>
+          <tr><td class="wf-stage">Benchmark</td><td class="wf-role"><span class="wf-role-tag">Mock-up Approval</span>Create an approved sample area showing workmanship, joint size, alignment, grout color, edge details and final appearance.</td></tr>
+          <tr><td class="wf-stage">Material Arrival</td><td class="wf-role"><span class="wf-role-tag">MIR</span>Inspect delivered tiles and accessories against approved samples, batch numbers, quantity, damage, shade variation and storage conditions.</td></tr>
+          <tr><td class="wf-stage">Before Installation</td><td class="wf-role"><span class="wf-role-tag">IR / Checklist</span>Inspect substrate cleanliness, level, moisture, waterproofing approval, setting-out lines and readiness before tile fixing.</td></tr>
+          <tr><td class="wf-stage">During / After Work</td><td class="wf-role"><span class="wf-role-tag">IR / WIR</span>Inspect alignment, level, plumbness, lippage, joint width, slope to drain, hollow tiles, grout finish, cleaning and protection.</td></tr>
+          <tr><td class="wf-stage">If Defective</td><td class="wf-role"><span class="wf-role-tag">NCR / SOR</span>Record defects such as wrong tile, poor alignment, hollow tiles, incorrect slope, staining, damaged edges or unapproved material. Require correction and re-inspection.</td></tr>
+          <tr><td class="wf-stage">Handover</td><td class="wf-role"><span class="wf-role-tag">Snag List / As-Built / Warranty</span>Close finishing defects, record changes if any, and include warranty / maintenance instructions where required.</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="rs-accordion">
+      <div class="rs-acc-header" onclick="toggleAcc(this)">
+        <span class="rs-acc-htext">Example 2 — Facade Package (Specialist Multidiscipline Package)</span>
+        <span class="rs-acc-icon">▾</span>
+      </div>
+      <div class="rs-acc-body">
+        <p style="font-size:12px;color:var(--text3);line-height:1.7;margin-bottom:16px">Facade works require strong coordination because they involve architecture, structure, waterproofing, fire stopping, access, safety and specialist subcontractor design.</p>
+        <table class="wf-table">
+          <tr><td class="wf-stage">Technical Approval</td><td class="wf-role"><span class="wf-role-tag">Shop Drawings &amp; Structural Calculations</span>Confirm mullion/transom sizes, anchors, brackets, movement joints, interfaces, wind loads, fixing details and compliance with facade specifications.</td></tr>
+          <tr><td class="wf-stage">Material Approval</td><td class="wf-role"><span class="wf-role-tag">Material Submittal &amp; Samples</span>Approve glass, aluminum finish, gaskets, sealants, anchors, insulation, fire stopping and color/finish samples before procurement.</td></tr>
+          <tr><td class="wf-stage">Execution Control</td><td class="wf-role"><span class="wf-role-tag">Method Statement &amp; ITP</span>Define installation sequence, lifting/access, survey control, bracket installation, panel/glass installation, sealant application, water testing and inspection points.</td></tr>
+          <tr><td class="wf-stage">Site Checks</td><td class="wf-role"><span class="wf-role-tag">IR / Checklist</span>Inspect line, level, plumbness, bracket fixing, anchors, spacing, torque, sealant joints, drainage paths, thermal breaks and interface closure.</td></tr>
+          <tr><td class="wf-stage">Testing</td><td class="wf-role"><span class="wf-role-tag">Water Test / Hose Test Report</span>Verify facade water tightness and record location, test duration, pressure/method, leakage findings and corrective action.</td></tr>
+          <tr><td class="wf-stage">Non-Compliance</td><td class="wf-role"><span class="wf-role-tag">NCR / CAR</span>Control issues such as wrong alignment, missing firestop, failed water test, unapproved sealant, damaged coating or incorrect fixing.</td></tr>
+          <tr><td class="wf-stage">Handover</td><td class="wf-role"><span class="wf-role-tag">As-Built, O&amp;M, Warranty</span>Transfer final facade drawings, cleaning/maintenance guidance, warranties, test reports and access requirements to the client.</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="rs-accordion">
+      <div class="rs-acc-header" onclick="toggleAcc(this)">
+        <span class="rs-acc-htext">Example 3 — Concrete Works (Hold-Point Controlled Activity)</span>
+        <span class="rs-acc-icon">▾</span>
+      </div>
+      <div class="rs-acc-body">
+        <p style="font-size:12px;color:var(--text3);line-height:1.7;margin-bottom:16px">Concrete works require hold points because once concrete is poured, many items become hidden and difficult to correct.</p>
+        <table class="wf-table">
+          <tr><td class="wf-stage">Before Pour</td><td class="wf-role"><span class="wf-role-tag">Shop Drawings / Bar Bending Schedule</span>Confirm reinforcement size, spacing, laps, cover, openings, embedments, block-outs, sleeves and pour sequence.</td></tr>
+          <tr><td class="wf-stage">Before Pour</td><td class="wf-role"><span class="wf-role-tag">Method Statement &amp; ITP</span>Define formwork, rebar inspection, concrete supply, slump test, cube/cylinder sampling, vibration, curing and hold points.</td></tr>
+          <tr><td class="wf-stage">Before Pour</td><td class="wf-role"><span class="wf-role-tag">IR / Checklist</span>Inspect formwork line/level, rebar, cover blocks, cleanliness, MEP sleeves, embedded plates, access and pour readiness.</td></tr>
+          <tr><td class="wf-stage">During Pour</td><td class="wf-role"><span class="wf-role-tag">Pour Card / Concrete Delivery Ticket</span>Record concrete grade, truck time, batch, slump, temperature, volume, pour location and any rejected loads.</td></tr>
+          <tr><td class="wf-stage">Testing</td><td class="wf-role"><span class="wf-role-tag">Slump Test / Cube Test Report</span>Verify fresh and hardened concrete properties and keep official records for acceptance.</td></tr>
+          <tr><td class="wf-stage">After Pour</td><td class="wf-role"><span class="wf-role-tag">Curing Record / Inspection</span>Confirm curing method, duration, protection, surface finish, honeycombing check and repair requirements if any.</td></tr>
+          <tr><td class="wf-stage">If Defective</td><td class="wf-role"><span class="wf-role-tag">NCR / Repair Method Statement</span>Control issues such as honeycombing, low strength, wrong cover, misplaced openings or poor finish, and define the approved repair method.</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- 14. Final summary -->
+  <div class="ch2-section">
+    <div class="ch2-sec-label">Section 14</div>
+    <div class="ch2-sec-title">Final Summary — What Each Document Controls</div>
+    <div class="ch2-sec-divider"></div>
+    <div class="glossary-grid">
+      <div class="glossary-item">
+        <div class="glossary-term">Method Statement — controls execution</div>
+        <div class="glossary-def">It tells the site team how to perform the work correctly and safely.</div>
+      </div>
+      <div class="glossary-item">
+        <div class="glossary-term">ITP — controls inspection &amp; acceptance</div>
+        <div class="glossary-def">It tells QA/QC and the consultant when to inspect, what to test, and what acceptance criteria apply.</div>
+      </div>
+      <div class="glossary-item">
+        <div class="glossary-term">Shop Drawing — controls buildability</div>
+        <div class="glossary-def">It converts design intent into detailed site installation information.</div>
+      </div>
+      <div class="glossary-item">
+        <div class="glossary-term">Material Submittal — controls material compliance</div>
+        <div class="glossary-def">It ensures that only approved materials, systems and suppliers are used.</div>
+      </div>
+      <div class="glossary-item">
+        <div class="glossary-term">IR / WIR — controls formal acceptance of work</div>
+        <div class="glossary-def">It creates a signed inspection record before the activity is closed or continued.</div>
+      </div>
+      <div class="glossary-item">
+        <div class="glossary-term">MIR — controls delivered material</div>
+        <div class="glossary-def">It prevents wrong, damaged, unapproved or expired materials from entering the works.</div>
+      </div>
+      <div class="glossary-item">
+        <div class="glossary-term">RFI / TQ — controls uncertainty</div>
+        <div class="glossary-def">It prevents site teams from guessing when drawings or specifications are unclear.</div>
+      </div>
+      <div class="glossary-item">
+        <div class="glossary-term">NCR — controls non-compliance</div>
+        <div class="glossary-def">It records defects and forces corrective action before acceptance.</div>
+      </div>
+      <div class="glossary-item">
+        <div class="glossary-term">SI / CVI — controls instructions</div>
+        <div class="glossary-def">It documents instructions that may change scope, sequence, time or cost.</div>
+      </div>
+      <div class="glossary-item">
+        <div class="glossary-term">DPR / WPR / MPR — control progress records</div>
+        <div class="glossary-def">They prove what happened on site and support management, payment, delay and claims.</div>
+      </div>
+      <div class="glossary-item">
+        <div class="glossary-term">As-Built &amp; O&amp;M — control handover</div>
+        <div class="glossary-def">They transfer the final constructed asset and operating knowledge to the client.</div>
+      </div>
+    </div>
+    <div class="pos-statement">
+      <div class="pos-label">Closing Statement</div>
+      <p class="pos-text">
+        Construction documents are the control language of the site. They protect quality, safety, time, cost
+        and final handover. A strong site architect, QA/QC engineer or package lead must know not only the name
+        of each document, but also when to use it, what risk it controls and what evidence is required to close it.
+      </p>
+      <div class="pos-final-label">Document Control — Risk Control — Delivery Control</div>
+    </div>
+  </div>
+
+</div><!-- /ch2-inner (chapter3) -->
+</div><!-- /chapter3 -->
 
 <script>
 function switchChapter(id, btn) {
