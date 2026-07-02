@@ -3069,6 +3069,18 @@ document.querySelectorAll('.gcard').forEach(function(el) {
 .ch3-stat{background:var(--bg2);padding:22px 24px;text-align:center}
 .ch3-stat-n{font-family:'Cormorant Garamond',serif;font-size:34px;color:var(--gold2);line-height:1}
 .ch3-stat-l{font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--text3);margin-top:8px;font-family:'Montserrat',sans-serif}
+.pdf-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px}
+.pdf-card{background:var(--bg2);border:1px solid rgba(201,168,76,.15);padding:26px 24px;display:flex;flex-direction:column;transition:border-color .2s ease,transform .2s ease}
+.pdf-card:hover{border-color:rgba(201,168,76,.45);transform:translateY(-3px)}
+.pdf-card-tag{font-size:8.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--gold3);font-family:'Montserrat',sans-serif;font-weight:600;margin-bottom:10px}
+.pdf-card-title{font-family:'Cormorant Garamond',serif;font-size:21px;font-weight:400;color:var(--text);line-height:1.25;margin-bottom:10px}
+.pdf-card-desc{font-size:11.5px;color:var(--text3);line-height:1.65;margin-bottom:20px;flex-grow:1}
+.pdf-actions{display:flex;gap:10px}
+.pdf-btn{flex:1;text-align:center;padding:10px 0;font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;font-family:'Montserrat',sans-serif;font-weight:600;text-decoration:none;transition:all .2s ease}
+.pdf-btn-view{border:1px solid rgba(201,168,76,.4);color:var(--gold2)}
+.pdf-btn-view:hover{background:rgba(201,168,76,.1);border-color:var(--gold)}
+.pdf-btn-dl{background:var(--gold);color:#0d0d0d;border:1px solid var(--gold)}
+.pdf-btn-dl:hover{background:var(--gold2);border-color:var(--gold2)}
 </style>
 
 <div id="chapter3" class="ch2">
@@ -3100,6 +3112,7 @@ document.querySelectorAll('.gcard').forEach(function(el) {
       <div class="ch3-stat"><div class="ch3-stat-n">107</div><div class="ch3-stat-l">Controlled Documents</div></div>
       <div class="ch3-stat"><div class="ch3-stat-n">8</div><div class="ch3-stat-l">Workflow Stages</div></div>
       <div class="ch3-stat"><div class="ch3-stat-n">3</div><div class="ch3-stat-l">Applied Examples</div></div>
+      <div class="ch3-stat"><div class="ch3-stat-n">5</div><div class="ch3-stat-l">Standard Formats</div></div>
     </div>
   </div>
 
@@ -3829,9 +3842,64 @@ document.querySelectorAll('.gcard').forEach(function(el) {
     </div>
   </div>
 
-  <!-- 14. Final summary -->
+  <!-- 14. Standard format templates — downloadable PDFs -->
   <div class="ch2-section">
     <div class="ch2-sec-label">Section 14</div>
+    <div class="ch2-sec-title">Standard Format Templates — Floor Tiling Works</div>
+    <div class="ch2-sec-divider"></div>
+    <p class="doc-secintro">Five ready-to-use standard formats covering the full quality control chain of a tiling activity — from mock-up benchmark to non-conformance closure. Each document can be read directly in the browser or downloaded as PDF.</p>
+    <div class="pdf-grid">
+      <div class="pdf-card">
+        <div class="pdf-card-tag">PDF · Benchmark</div>
+        <div class="pdf-card-title">Mock-up Approval</div>
+        <div class="pdf-card-desc">Approval record for the physical sample area — workmanship, joint size, alignment, grout color and edge details. Once signed, it becomes the acceptance benchmark for all identical works.</div>
+        <div class="pdf-actions">
+          <a class="pdf-btn pdf-btn-view" href="/site-supervision-docs/Mockup_Approval_Floor_Tiling_Works_Standard_Format.pdf" target="_blank" rel="noopener">Read</a>
+          <a class="pdf-btn pdf-btn-dl" href="/site-supervision-docs/Mockup_Approval_Floor_Tiling_Works_Standard_Format.pdf" download>Download</a>
+        </div>
+      </div>
+      <div class="pdf-card">
+        <div class="pdf-card-tag">PDF · Inspection Planning</div>
+        <div class="pdf-card-title">Inspection &amp; Test Plan (ITP)</div>
+        <div class="pdf-card-desc">Defines the inspection stages for tiling works — substrate, waterproofing, setting-out, installation, grout and final finish — with acceptance criteria, hold points and witness points.</div>
+        <div class="pdf-actions">
+          <a class="pdf-btn pdf-btn-view" href="/site-supervision-docs/Inspection_and_Test_Plan_Floor_Tiling_Works_Standard_Format.pdf" target="_blank" rel="noopener">Read</a>
+          <a class="pdf-btn pdf-btn-dl" href="/site-supervision-docs/Inspection_and_Test_Plan_Floor_Tiling_Works_Standard_Format.pdf" download>Download</a>
+        </div>
+      </div>
+      <div class="pdf-card">
+        <div class="pdf-card-tag">PDF · Formal Acceptance</div>
+        <div class="pdf-card-title">Inspection Request (IR)</div>
+        <div class="pdf-card-desc">Formal request offering completed work for consultant inspection — creating the approval record before the work is covered, closed or continued to the next stage.</div>
+        <div class="pdf-actions">
+          <a class="pdf-btn pdf-btn-view" href="/site-supervision-docs/Inspection_Request_Floor_Tiling_Works_Standard_Format.pdf" target="_blank" rel="noopener">Read</a>
+          <a class="pdf-btn pdf-btn-dl" href="/site-supervision-docs/Inspection_Request_Floor_Tiling_Works_Standard_Format.pdf" download>Download</a>
+        </div>
+      </div>
+      <div class="pdf-card">
+        <div class="pdf-card-tag">PDF · Formal Acceptance</div>
+        <div class="pdf-card-title">Work Inspection Request (WIR)</div>
+        <div class="pdf-card-desc">Work-activity inspection request linking the executed tiling to its approved shop drawing, method statement and ITP — alignment, level, lippage, joints, slope and finish.</div>
+        <div class="pdf-actions">
+          <a class="pdf-btn pdf-btn-view" href="/site-supervision-docs/Work_Inspection_Request_Floor_Tiling_Works_Standard_Format.pdf" target="_blank" rel="noopener">Read</a>
+          <a class="pdf-btn pdf-btn-dl" href="/site-supervision-docs/Work_Inspection_Request_Floor_Tiling_Works_Standard_Format.pdf" download>Download</a>
+        </div>
+      </div>
+      <div class="pdf-card">
+        <div class="pdf-card-tag">PDF · Non-Compliance Control</div>
+        <div class="pdf-card-title">Non-Conformance Report (NCR)</div>
+        <div class="pdf-card-desc">Records non-conforming tiling work or material, defines the required corrective action and root cause, and controls formal closure with re-inspection evidence.</div>
+        <div class="pdf-actions">
+          <a class="pdf-btn pdf-btn-view" href="/site-supervision-docs/Non_Conformance_Report_Floor_Tiling_Works_Standard_Format.pdf" target="_blank" rel="noopener">Read</a>
+          <a class="pdf-btn pdf-btn-dl" href="/site-supervision-docs/Non_Conformance_Report_Floor_Tiling_Works_Standard_Format.pdf" download>Download</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 15. Final summary -->
+  <div class="ch2-section">
+    <div class="ch2-sec-label">Section 15</div>
     <div class="ch2-sec-title">Final Summary — What Each Document Controls</div>
     <div class="ch2-sec-divider"></div>
     <div class="glossary-grid">
