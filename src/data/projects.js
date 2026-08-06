@@ -6,6 +6,20 @@ const imgs = (slug, count, ext = 'jpg') =>
 
 export const PROJECTS = [
   {
+    id: 'al-safa-living-intelligence-park',
+    cover: 0,
+    title: 'Al Safa Living Intelligence Park',
+    subtitle: 'Dubai Municipality — AI Park Design Challenge',
+    location: 'Dubai, UAE',
+    category: 'Concept & Detail Design',
+    year: '2026',
+    role: 'Senior Architect & BIM Coordinator — Competition Entry',
+    description:
+      'Concept and preliminary design entry for the Dubai Municipality AI Park Design Challenge — reimagining the 15,037 m² Al Safa 2 neighbourhood park through an AI-integrated, Emirati-identity landscape strategy. Eight thematic zones under a shade-first canopy system, an oasis / majlis / falaj spatial language, and a documented AI-in-design-process methodology spanning site analysis, movement, zoning and cost verification — a 37-board bilingual (EN/AR) submission set against an AED 35M budget envelope.',
+    tags: ['Landscape Architecture', 'AI Integration', 'Competition', 'Dubai Municipality', 'Public Realm'],
+    images: imgs('al-safa-living-intelligence-park', 18),
+  },
+  {
     id: 'villa-youssef-b',
     cover: 0,
     title: 'Villa Youssef B',
@@ -413,6 +427,7 @@ export const CATEGORIES = [
 // Permanent display order — edit this array to reorder projects before deployment.
 // To change: move IDs up/down, then run `npm run build`.
 export const PROJECT_ORDER = [
+  'al-safa-living-intelligence-park',
   'villa-youssef',
   'renovation-flat',
   'oasis-pavilion',
