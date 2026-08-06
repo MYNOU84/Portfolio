@@ -3,6 +3,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import Navbar from './components/Navbar'
 import AdminPanel from './components/AdminPanel'
 import Hero from './components/Hero'
+import FeaturedCompetition from './components/FeaturedCompetition'
 import About from './components/About'
 import Experience from './components/Experience'
 import Portfolio from './components/Portfolio'
@@ -120,6 +121,7 @@ export default function App() {
         <Navbar isAdmin={adminOpen} onAdminToggle={handleAdminToggle} />
         <main>
           <Hero />
+          <FeaturedCompetition />
           <About />
           <Experience />
           <Portfolio />
