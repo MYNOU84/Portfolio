@@ -50,7 +50,7 @@ export default function FeaturedCompetition() {
 
         <motion.p
           variants={fadeUp} initial="hidden" animate={inView ? 'show' : 'hidden'} transition={{ delay: 0.15 }}
-          dir="rtl" className="text-gold/80 text-xl sm:text-2xl mb-6"
+          dir="rtl" className="text-gold/80 text-xl sm:text-2xl mb-6 max-w-3xl text-right"
           style={{ fontFamily: "'Noto Naskh Arabic', serif" }}
         >
           حديقة الصفا للذكاء الحي
