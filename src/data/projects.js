@@ -15,11 +15,11 @@ export const PROJECTS = [
     year: '2026',
     role: 'Senior Architect & BIM Coordinator — Competition Entry',
     description:
-      'Concept and preliminary design entry for the Dubai Municipality AI Park Design Challenge — reimagining the 15,037 m² Al Safa 2 neighbourhood park through an AI-integrated, Emirati-identity landscape strategy. Eight thematic zones under a shade-first canopy system, an oasis / majlis / falaj spatial language, and a documented AI-in-design-process methodology spanning site analysis, movement, zoning and cost verification — a 37-board bilingual (EN/AR) submission set against an AED 35M budget envelope.',
+      'Concept and preliminary design entry for the Dubai Municipality AI Park Design Challenge — reimagining the 15,037 m² Al Safa 2 neighbourhood park through an AI-integrated, Emirati-identity landscape strategy. Eight thematic zones under a shade-first canopy system, an oasis / majlis / falaj spatial language, and a documented AI-in-design-process methodology spanning site analysis, movement, zoning and cost verification — a 40-board bilingual (EN/AR) submission set against an AED 35M budget envelope.',
     tags: ['Landscape Architecture', 'AI Integration', 'Competition', 'Dubai Municipality', 'Public Realm'],
     images: imgs('al-safa-living-intelligence-park', 18),
     reportUrl: '/dubai-municipality-competition.html',
-    reportLabel: 'Dubai Municipality — AI Park Design Challenge · Full 37-Board Submission',
+    reportLabel: 'Dubai Municipality — AI Park Design Challenge · Full 40-Board Submission',
   },
   {
     id: 'villa-youssef-b',
