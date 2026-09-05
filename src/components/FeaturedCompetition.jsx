@@ -5,7 +5,7 @@ import { ArrowRight, ExternalLink } from 'lucide-react'
 const BASE = import.meta.env.BASE_URL
 
 const STATS = [
-  { value: '41',   label: 'A1 Boards' },
+  { value: '51',   label: 'A1 Boards' },
   { value: '8',    label: 'Thematic Zones' },
   { value: 'AED 35M', label: 'Budget Envelope' },
   { value: 'EN / AR', label: 'Bilingual Submission' },
