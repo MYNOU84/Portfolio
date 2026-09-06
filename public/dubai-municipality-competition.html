@@ -806,11 +806,11 @@ nav a:hover span { color:#9A7A3A; }
           <div class="klabel"><span>Source CAD File &mdash; Z5 Footprint (Living Oasis + AI Community Majlis)</span><span class="ar">ملف الأوتوكاد المصدر</span></div>
           <div style="border:.3mm solid rgba(180,90,60,.3); background:#fff; padding:16mm;">
             <div style="display:flex; align-items:center; gap:16mm;">
-              <a href="/dubai-municipality-competition-assets/cad/Al_Safa_Park2_AREA_DXF_Check_v02.dxf" download style="flex:0 0 auto; display:block;">
+              <a href="/dubai-municipality-competition-assets/cad/Al_Safa_Park2_AREA_DXF_Check_v02.dxf" download onclick="if(this.dataset.busy){return false;}this.dataset.busy=1;setTimeout(()=>delete this.dataset.busy,1200);" style="flex:0 0 auto; display:block;">
                 <img src="/dubai-municipality-competition-assets/cad/dxf_qr.svg" style="width:80mm; height:80mm; display:block;">
               </a>
               <div style="flex:1;">
-                <div style="font-family:'Playfair Display'; font-weight:600; font-size:9mm; color:#B45A3C; margin-bottom:5mm;"><a href="/dubai-municipality-competition-assets/cad/Al_Safa_Park2_AREA_DXF_Check_v02.dxf" download style="color:#B45A3C; text-decoration:none;">Download the source DXF</a> &middot; or scan the code</div>
+                <div style="font-family:'Playfair Display'; font-weight:600; font-size:9mm; color:#B45A3C; margin-bottom:5mm;"><a href="/dubai-municipality-competition-assets/cad/Al_Safa_Park2_AREA_DXF_Check_v02.dxf" download onclick="if(this.dataset.busy){return false;}this.dataset.busy=1;setTimeout(()=>delete this.dataset.busy,1200);" style="color:#B45A3C; text-decoration:none;">Download the source DXF</a> &middot; or scan the code</div>
                 <div style="font-size:3.8mm; line-height:1.7; color:var(--dmut);">
                   <b>Al_Safa_Park2_AREA_DXF_Check_v02.dxf</b> &mdash; closed polyline boundary, 20 vertices, arc bulges &middot; single-storey envelope &middot; Z5 (Living Oasis + AI Community Majlis) only.<br><br>
                   Footprint area and boundary closure were cross-checked directly in CAD against this source file, following the polyline's true arc bulges rather than straight vertex-to-vertex chords &mdash; an earlier straight-line reading of the same file gave 305.5304 m&sup2;, corrected here to 282.8104 m&sup2;. <b>CAD-verified: design-team CAD take-off, cross-checked against the source DXF above</b> &mdash; the file itself is provided for independent review.<br><br>
@@ -2966,6 +2966,7 @@ function showLbIndex(i) {
 }
 
 document.addEventListener('dblclick', (e) => {
+  if (e.target.closest('a[download]')) return;
   const img = e.target.closest('.board-canvas img');
   if (!img) return;
   const boardDiv = e.target.closest('.board');
