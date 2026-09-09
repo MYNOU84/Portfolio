@@ -89,6 +89,13 @@ export default function FeaturedCompetition() {
           >
             View Full Submission <ExternalLink size={13} className="group-hover:translate-x-0.5 transition-transform duration-300" />
           </a>
+          <a
+            href={`${BASE}dubai-municipality-competition-v2.html`}
+            target="_blank" rel="noopener noreferrer"
+            className="group btn-outline flex items-center gap-3 w-full sm:w-auto justify-center"
+          >
+            View V2 Redesign <ExternalLink size={13} className="group-hover:translate-x-0.5 transition-transform duration-300" />
+          </a>
           <button
             onClick={() => document.querySelector('#portfolio')?.scrollIntoView({ behavior: 'smooth' })}
             className="group btn-outline flex items-center gap-3 w-full sm:w-auto justify-center"
