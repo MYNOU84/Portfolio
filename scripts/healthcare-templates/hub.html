@@ -56,6 +56,13 @@ a.card:hover .card-cta::after{transform:translateX(4px)}
 .cover{max-width:1200px;margin:56px auto 0;padding:0 80px}
 .cover img,.storyboard img{display:block;width:100%;height:auto;border:1px solid var(--gold-line)}
 .storyboard{max-width:1200px;margin:1px auto 0;padding:0 80px;display:grid;gap:1px}
+.cover img,.storyboard img{cursor:zoom-in}
+
+/* Full-image viewer — opens on double-click */
+.lightbox{position:fixed;inset:0;z-index:200;background:rgba(5,5,5,.96);display:none;align-items:center;justify-content:center;padding:24px;cursor:zoom-out}
+.lightbox.open{display:flex}
+.lightbox img{max-width:100%;max-height:100%;object-fit:contain;border:1px solid var(--gold-line)}
+.lightbox-close{position:absolute;top:16px;right:20px;width:36px;height:36px;border:1px solid var(--gold-line);background:none;color:#F5F1E8;font-size:18px;cursor:pointer}
 
 @media(max-width:900px){.wrap{padding:56px 24px}.cover,.storyboard{padding:0 24px}.cover{margin-top:40px}}
 @media(max-width:600px){
@@ -149,6 +156,11 @@ a.card:hover .card-cta::after{transform:translateX(4px)}
   <div class="ft">Healthcare Architecture &nbsp;·&nbsp; Research Series</div>
 </div>
 
+<div class="lightbox" aria-hidden="true">
+  <button class="lightbox-close" type="button" aria-label="Close">✕</button>
+  <img alt="" draggable="false" oncontextmenu="return false">
+</div>
+
 <script>
 document.querySelector('.theme-toggle').addEventListener('click', function () {
   var root = document.documentElement
@@ -157,6 +169,17 @@ document.querySelector('.theme-toggle').addEventListener('click', function () {
   root.dataset.theme = next
   try { localStorage.setItem('ha-theme', next) } catch (e) {}
 })
+
+var lb = document.querySelector('.lightbox'), lbImg = lb.querySelector('img')
+document.querySelectorAll('.cover img, .storyboard img').forEach(function (img) {
+  img.addEventListener('dblclick', function () {
+    lbImg.src = img.src; lbImg.alt = img.alt
+    lb.classList.add('open'); document.body.style.overflow = 'hidden'
+  })
+})
+function closeLb() { lb.classList.remove('open'); document.body.style.overflow = '' }
+lb.addEventListener('click', closeLb)
+document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeLb() })
 </script>
 </body>
 </html>
