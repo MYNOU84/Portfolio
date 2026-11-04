@@ -2,12 +2,70 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ── CSS variables ───────────────────────────────────────────── */
-:root {
+/* ── Design tokens ───────────────────────────────────────────── */
+/* Dark is the default. `.theme-dark` and #hero keep the dark values even
+   when the page is in light mode (photo-led areas and viewers). */
+:root,
+.theme-dark,
+#hero {
+  /* Tailwind colour tokens as RGB channels (see tailwind.config.js) */
+  --c-deep-black: 5 5 5;
+  --c-charcoal:   17 17 17;
+  --c-dark-grey:  28 28 28;
+  --c-ink-800:    10 10 11;
+  --c-ink-700:    16 16 18;
+  --c-ink-600:    23 23 26;
+  --c-gold:       201 152 44;
+  --c-gold-light: 224 188 99;
+  --c-beige:      212 184 124;
+  --c-white-warm: 245 241 232;
+  --c-grey-muted: 168 168 168;
+
+  /* Accent — used sparingly, as a hairline and a mark, never as a glow */
   --gold:       #C9982C;
-  --gold-light: #F0D878;
+  --gold-light: #E0BC63;
   --gold-dark:  #7A5A12;
   --gold-mid:   #A87820;
+
+  /* Surfaces — a real scale instead of one black and twenty opacities */
+  --ink-900: #050505;
+  --ink-800: #0A0A0B;
+  --ink-700: #101012;
+  --ink-600: #17171A;
+  --line:    rgba(245, 241, 232, 0.09);
+  --line-strong: rgba(245, 241, 232, 0.16);
+
+  /* Structural rhythm */
+  --rule: 1px;
+  color-scheme: dark;
+}
+
+/* Light mode — same palette as the Healthcare Architecture pages */
+:root[data-theme="light"] {
+  --c-deep-black: 246 243 236;
+  --c-charcoal:   239 234 223;
+  --c-dark-grey:  251 249 244;
+  --c-ink-800:    239 234 223;
+  --c-ink-700:    251 249 244;
+  --c-ink-600:    255 255 255;
+  --c-gold:       154 110 18;
+  --c-gold-light: 138 95 10;
+  --c-beige:      138 100 24;
+  --c-white-warm: 29 26 21;
+  --c-grey-muted: 110 103 91;
+
+  --gold:       #9A6E12;
+  --gold-light: #8A5F0A;
+  --gold-dark:  #6E4E0C;
+  --gold-mid:   #8A6418;
+
+  --ink-900: #F6F3EC;
+  --ink-800: #EFEADF;
+  --ink-700: #FBF9F4;
+  --ink-600: #FFFFFF;
+  --line:    rgba(0, 0, 0, 0.08);
+  --line-strong: rgba(0, 0, 0, 0.16);
+  color-scheme: light;
 }
 
 @layer base {
@@ -19,222 +77,158 @@
 
   html {
     scroll-behavior: smooth;
-    background-color: #050505;
-    color: #F5F1E8;
+    background-color: var(--ink-900);
+    color: rgb(var(--c-white-warm));
     font-family: 'Inter', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
   body {
-    background-color: #050505;
+    background-color: var(--ink-900);
     overflow-x: hidden;
   }
 
   ::selection {
-    background: rgba(201, 152, 44, 0.28);
-    color: #F5F1E8;
+    background: rgb(var(--c-gold) / 0.28);
+    color: rgb(var(--c-white-warm));
   }
 
-  ::-webkit-scrollbar        { width: 3px; }
-  ::-webkit-scrollbar-track  { background: #080808; }
-  ::-webkit-scrollbar-thumb  { background: linear-gradient(to bottom, #C9982C 0%, #7A5A12 100%); border-radius: 2px; }
-  ::-webkit-scrollbar-thumb:hover { background: #D4B87C; }
+  ::-webkit-scrollbar        { width: 2px; }
+  ::-webkit-scrollbar-track  { background: var(--ink-900); }
+  ::-webkit-scrollbar-thumb  { background: var(--gold-mid); }
+  ::-webkit-scrollbar-thumb:hover { background: var(--gold); }
+
+  /* Visible, branded focus ring — required for keyboard users */
+  :focus-visible {
+    outline: 1px solid var(--gold);
+    outline-offset: 3px;
+  }
 }
 
-/* ── Marble texture for all main sections ────────────────────── */
+/* ── Section surfaces ────────────────────────────────────────── */
 /*
-   Black Marquina marble effect: dark ground + thin amber-gold veins.
-   Uses stacked linear-gradients at different angles to simulate
-   natural stone veining. Opacity is intentionally subtle.
+   The previous build faked Black Marquina marble with stacked
+   linear-gradients. At any size it read as a gradient artifact.
+   Replaced with a flat tonal scale and a single hairline rule at
+   each section boundary — the way a drawing set separates sheets.
 */
+#about,
+#portfolio,
+#services,
+#cv {
+  background-color: var(--ink-800);
+}
+
+#experience,
+#contact {
+  background-color: var(--ink-900);
+}
+
 #about,
 #experience,
 #portfolio,
 #services,
 #cv,
 #contact {
-  background-image:
-    /* Primary vein — shallow diagonal, top-left to bottom-right */
-    linear-gradient(
-      112deg,
-      transparent 0%,         transparent 22%,
-      rgba(201,152,44,0.10) 22.4%,
-      rgba(201,152,44,0.17) 23%,
-      rgba(201,152,44,0.10) 23.6%,
-      transparent 24.2%,      transparent 54%,
-      rgba(201,152,44,0.06) 54.4%,
-      rgba(201,152,44,0.10) 55%,
-      rgba(201,152,44,0.06) 55.6%,
-      transparent 56.2%
-    ),
-    /* Secondary vein — steeper, opposite direction */
-    linear-gradient(
-      248deg,
-      transparent 0%,         transparent 16%,
-      rgba(201,152,44,0.07) 16.3%,
-      rgba(201,152,44,0.12) 16.9%,
-      rgba(201,152,44,0.07) 17.5%,
-      transparent 18.1%,      transparent 41%,
-      rgba(201,152,44,0.05) 41.3%,
-      rgba(201,152,44,0.08) 41.9%,
-      rgba(201,152,44,0.05) 42.5%,
-      transparent 43.1%,      transparent 69%,
-      rgba(201,152,44,0.06) 69.3%,
-      rgba(201,152,44,0.09) 69.9%,
-      rgba(201,152,44,0.06) 70.5%,
-      transparent 71.1%
-    ),
-    /* Tertiary hairline vein */
-    linear-gradient(
-      178deg,
-      transparent 0%,         transparent 35%,
-      rgba(201,152,44,0.04) 35.2%,
-      rgba(201,152,44,0.06) 35.7%,
-      rgba(201,152,44,0.04) 36.2%,
-      transparent 36.7%
-    ),
-    /* Ambient warm-gold glow — bottom-left and top-right corners */
-    radial-gradient(ellipse 130% 80% at 8% 92%,  rgba(201,152,44,0.04) 0%, transparent 55%),
-    radial-gradient(ellipse 110% 70% at 92% 8%,  rgba(201,152,44,0.03) 0%, transparent 50%);
-}
-
-/* ── Grain overlay (cinematic noise texture) ─────────────────── */
-/*
-   A fixed, translucent SVG turbulence layer adds depth and prevents
-   the flat "digital" look. Sits above content so pointer-events none.
-*/
-body::after {
-  content: '';
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 9998;
-  opacity: 1;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='250'%3E%3Cfilter id='grain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='250' height='250' filter='url(%23grain)' opacity='0.028'/%3E%3C/svg%3E");
-  background-size: 250px 250px;
-  mix-blend-mode: overlay;
+  border-top: var(--rule) solid var(--line);
 }
 
 @layer components {
   /* ─── Typography ─────────────────────────────────────────────── */
   .section-title {
-    @apply font-display text-4xl sm:text-5xl text-white-warm leading-tight;
+    @apply font-display text-4xl sm:text-5xl lg:text-[3.5rem] text-white-warm leading-[1.05] tracking-[-0.015em];
   }
 
+  /* Tracking reduced from 0.55em — extreme letter-spacing is the
+     single most recognisable generated-portfolio typographic tell. */
   .section-label {
-    @apply text-gold text-[10px] tracking-[0.55em] uppercase;
-    text-shadow: 0 0 12px rgba(201,152,44,0.35);
+    @apply text-gold text-[10px] tracking-[0.28em] uppercase font-medium;
   }
 
-  /* ─── Gold decorative line ───────────────────────────────────── */
+  .eyebrow {
+    @apply text-grey-muted text-[10px] tracking-[0.22em] uppercase;
+  }
+
+  /* ─── Rules and marks ────────────────────────────────────────── */
   .gold-line {
-    @apply w-12 h-px flex-shrink-0;
-    background: linear-gradient(
-      to right,
-      transparent 0%,
-      rgba(201,152,44,0.5) 20%,
-      #C9982C 50%,
-      rgba(201,152,44,0.5) 80%,
-      transparent 100%
-    );
+    @apply w-8 h-px flex-shrink-0 bg-gold;
+  }
+
+  .gold-divider {
+    height: 1px;
+    background: var(--line);
+  }
+
+  .hairline {
+    height: 1px;
+    background: var(--line);
   }
 
   /* ─── Buttons ────────────────────────────────────────────────── */
+  /*
+     Flat, solid and sharp. No sliding gradient, no bloom.
+     Weight comes from contrast and from the rule, not from light.
+  */
   .btn-primary {
-    @apply text-deep-black px-8 py-3.5 text-[10px] tracking-[0.35em] uppercase font-semibold transition-all duration-300 cursor-pointer;
-    background: linear-gradient(
-      135deg,
-      #D4B87C 0%,
-      #E8CC80 18%,
-      #C9982C 40%,
-      #A87820 65%,
-      #C9982C 82%,
-      #D4B87C 100%
-    );
-    background-size: 200% auto;
-    box-shadow:
-      0 0 24px rgba(201,152,44,0.30),
-      0 4px 16px rgba(0,0,0,0.5),
-      inset 0 1px 0 rgba(255,255,255,0.18);
-    transition: background-position 0.5s ease, box-shadow 0.3s ease, transform 0.2s ease;
+    @apply bg-gold text-deep-black px-8 py-3.5 text-[11px] tracking-[0.18em] uppercase font-semibold cursor-pointer;
+    transition: background-color 0.25s ease, color 0.25s ease;
   }
   .btn-primary:hover {
-    background-position: right center;
-    box-shadow:
-      0 0 40px rgba(201,152,44,0.45),
-      0 6px 24px rgba(0,0,0,0.6),
-      inset 0 1px 0 rgba(255,255,255,0.22);
-    transform: translateY(-1px);
+    background-color: var(--gold-light);
+  }
+  .btn-primary:active {
+    background-color: var(--gold-mid);
   }
 
   .btn-outline {
-    @apply border text-gold px-8 py-3.5 text-[10px] tracking-[0.35em] uppercase transition-all duration-300 cursor-pointer;
-    border-color: rgba(201,152,44,0.40);
+    @apply px-8 py-3.5 text-[11px] tracking-[0.18em] uppercase cursor-pointer text-white-warm;
+    border: var(--rule) solid var(--line-strong);
+    transition: border-color 0.25s ease, background-color 0.25s ease, color 0.25s ease;
   }
   .btn-outline:hover {
-    border-color: rgba(201,152,44,0.85);
-    background: rgba(201,152,44,0.05);
-    box-shadow: 0 0 22px rgba(201,152,44,0.14), inset 0 0 22px rgba(201,152,44,0.03);
+    border-color: var(--gold);
+    color: var(--gold);
+    background-color: rgb(var(--c-gold) / 0.06);
   }
 
-  /* ─── Section divider accent ─────────────────────────────────── */
-  .gold-divider {
-    height: 1px;
-    background: linear-gradient(
-      to right,
-      transparent,
-      rgba(201,152,44,0.5) 30%,
-      rgba(201,152,44,0.5) 70%,
-      transparent
-    );
+  .btn-ghost {
+    @apply text-grey-muted text-[11px] tracking-[0.18em] uppercase px-2 py-3.5 cursor-pointer;
+    transition: color 0.25s ease;
   }
+  .btn-ghost:hover { color: rgb(var(--c-white-warm)); }
 
   /* ─── Card ───────────────────────────────────────────────────── */
+  /*
+     Flat surface, hairline border, real elevation on hover.
+     The 50px gold bloom is gone.
+  */
   .card-luxury {
-    background: linear-gradient(145deg, #181818, #0f0f0f);
-    border: 1px solid rgba(245,241,232,0.05);
-    transition: border-color 0.4s, box-shadow 0.4s;
+    background-color: var(--ink-700);
+    border: var(--rule) solid var(--line);
+    transition: border-color 0.3s ease, background-color 0.3s ease, transform 0.3s ease;
   }
   .card-luxury:hover {
-    border-color: rgba(201,152,44,0.28);
-    box-shadow: 0 0 50px rgba(201,152,44,0.08), 0 20px 60px rgba(0,0,0,0.5);
+    border-color: var(--line-strong);
+    background-color: var(--ink-600);
+    transform: translateY(-2px);
   }
 }
 
-/* ── Gold shimmer text ───────────────────────────────────────── */
-@keyframes gold-shimmer {
-  0%   { background-position: -200% center; }
-  100% { background-position:  200% center; }
-}
+/* ── Motion ──────────────────────────────────────────────────── */
+/*
+   Accessibility: the previous build had no reduced-motion support
+   anywhere, while running three infinite loops permanently.
+*/
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
 
-.gold-shimmer {
-  background: linear-gradient(
-    90deg,
-    #7A5A12  0%,
-    #C9982C 22%,
-    #F0D878 42%,
-    #FFFFFF 50%,
-    #F0D878 58%,
-    #C9982C 78%,
-    #7A5A12 100%
-  );
-  background-size: 200% auto;
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: gold-shimmer 5s linear infinite;
-}
-
-/* ── Pulse glow ──────────────────────────────────────────────── */
-@keyframes pulse-glow {
-  0%, 100% { opacity: 0.55; }
-  50%       { opacity: 1.0;  }
-}
-
-/* ── Marble card edge (applied to project cards on hover) ────── */
-@keyframes marble-edge {
-  0%   { background-position: 0% 50%; }
-  50%  { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

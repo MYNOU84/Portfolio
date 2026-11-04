@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
 import { motion, useInView, AnimatePresence } from 'framer-motion'
-import { Folder, Tag, Maximize2, LayoutGrid } from 'lucide-react'
+import { Maximize2, LayoutGrid } from 'lucide-react'
 import { PROJECTS, CATEGORIES, PROJECT_ORDER } from '../data/projects'
 import { loadAdminData } from './AdminPanel'
 import { loadDynamicProjects, loadProjectOrder, loadHiddenProjects, loadProjectOverrides } from '../utils/dynamicProjects'
@@ -24,106 +24,93 @@ function getCoverImage(project, adminData) {
   return project.images[coverIdx] || project.images[0]
 }
 
-function ProjectCard({ project, onImmersive, onGallery, adminData }) {
+function ProjectCard({ project, onImmersive, onGallery, adminData, featured = false }) {
   const [hovered, setHovered] = useState(false)
   const coverImg = getCoverImage(project, adminData)
+  const meta = [project.location, project.year].filter(Boolean).join('  ·  ')
 
   return (
-    <div
-      className="group relative cursor-pointer overflow-hidden bg-dark-grey border border-white-warm/5
-        hover:border-gold/35 transition-all duration-500
-        hover:shadow-[0_0_60px_rgba(201,152,44,0.12)]"
+    <article
+      className={`group relative cursor-pointer overflow-hidden bg-ink-700 border border-white-warm/8
+        hover:border-white-warm/20 transition-colors duration-300 h-full flex flex-col
+        `}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
-      {/* Image */}
-      <div className="relative h-64 overflow-hidden" onClick={() => onImmersive(project)}>
+      {/* Image — the lead project is given real size instead of the same crop as everything else */}
+      <div
+        className={`relative overflow-hidden ${featured ? 'aspect-[16/9]' : 'aspect-[4/3]'}`}
+        onClick={() => onImmersive(project)}
+      >
         <motion.img
           src={coverImg}
           alt={project.title}
           className="w-full h-full object-cover"
-          animate={{ scale: hovered ? 1.08 : 1 }}
-          transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
+          loading="lazy"
+          decoding="async"
+          animate={{ scale: hovered ? 1.04 : 1 }}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
           draggable={false}
           onContextMenu={e => e.preventDefault()}
           style={{ pointerEvents: 'none' }}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-dark-grey/95 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-ink-700 via-transparent to-transparent opacity-80" />
+
         <motion.div
-          className="absolute inset-0"
           animate={{ opacity: hovered ? 1 : 0 }}
-          transition={{ duration: 0.35 }}
-          style={{ background: 'linear-gradient(to top, rgba(5,5,5,0.9), rgba(5,5,5,0.15))' }}
-        />
-
-        {/* Image count badge */}
-        <div className="absolute top-3 right-3 bg-deep-black/80 backdrop-blur-sm px-2 py-1 flex items-center gap-1.5">
-          <Folder size={9} className="text-gold" />
-          <span className="text-gold text-[9px] tracking-wider">{project.images.length}</span>
-        </div>
-
-        {/* Category badge */}
-        <div className="absolute top-3 left-3 border border-gold/40 px-2 py-0.5">
-          <span className="text-gold text-[9px] tracking-[0.25em] uppercase">{project.category}</span>
-        </div>
-
-        {/* Explore 3D overlay on hover */}
-        <motion.div
-          animate={{ opacity: hovered ? 1 : 0, y: hovered ? 0 : 8 }}
           transition={{ duration: 0.25 }}
-          className="absolute inset-0 flex items-center justify-center pointer-events-none"
+          className="theme-dark absolute inset-0 flex items-end p-4 pointer-events-none"
+          style={{ background: 'linear-gradient(to top, rgba(5,5,5,0.75), transparent 55%)' }}
         >
-          <div className="border border-gold/60 px-5 py-2.5 flex items-center gap-2.5">
-            <Maximize2 size={12} className="text-gold" />
-            <span className="text-gold text-[10px] tracking-[0.35em] uppercase">Explore 3D</span>
-          </div>
+          <span className="flex items-center gap-2 text-white-warm text-[10px] tracking-[0.18em] uppercase">
+            <Maximize2 size={11} className="text-gold" /> Enter space
+          </span>
         </motion.div>
       </div>
 
       {/* Info */}
-      <div className="p-5">
-        <div className="flex items-start justify-between gap-3 mb-1">
+      <div className="p-5 flex flex-col flex-1">
+        <div className="flex items-center justify-between gap-3 mb-3">
+          <span className="text-gold text-[9px] tracking-[0.2em] uppercase">{project.category}</span>
+          <span className="text-grey-muted/70 text-[9px] tracking-[0.12em] uppercase tabular-nums">
+            {project.images.length} images
+          </span>
+        </div>
+
+        <div className="flex items-start justify-between gap-3">
           <div className="flex-1 min-w-0">
-            <h3 className="font-display text-lg text-white-warm group-hover:text-gold transition-colors duration-300 line-clamp-1">
+            <h3 className={`font-display text-white-warm leading-snug tracking-tight ${featured ? 'text-2xl sm:text-[1.7rem]' : 'text-lg'}`}>
               {project.title}
             </h3>
             {project.subtitle && (
-              <p className="text-gold/55 text-[9px] tracking-[0.25em] uppercase mt-0.5 line-clamp-1">{project.subtitle}</p>
+              <p className="text-grey-muted text-[11px] mt-1 line-clamp-1">{project.subtitle}</p>
             )}
           </div>
-          {/* Gallery grid button */}
           <button
             onClick={(e) => { e.stopPropagation(); onGallery(project) }}
             title="Open gallery grid"
-            className="shrink-0 w-7 h-7 border border-white-warm/10 flex items-center justify-center text-grey-muted/50 hover:border-gold/50 hover:text-gold transition-all duration-300 mt-0.5 cursor-pointer"
+            aria-label={`Open gallery for ${project.title}`}
+            className="shrink-0 w-7 h-7 border border-white-warm/12 flex items-center justify-center text-grey-muted hover:border-gold hover:text-gold transition-colors duration-300 mt-1 cursor-pointer"
           >
             <LayoutGrid size={11} />
           </button>
         </div>
-        {(project.location || project.year) && (
-          <p className="text-grey-muted text-xs mb-3 tracking-wide">{[project.location, project.year].filter(Boolean).join(' · ')}</p>
-        )}
-        <p className="text-white-warm/55 text-sm leading-6 line-clamp-2">{project.description}</p>
 
-        <div className="flex flex-wrap gap-2 mt-3">
-          {project.tags.slice(0, 3).map(t => (
-            <span key={t} className="flex items-center gap-1 text-[9px] text-grey-muted/60 tracking-wider">
-              <Tag size={7} className="text-gold/40" />{t}
-            </span>
+        {meta && (
+          <p className="text-grey-muted text-[11px] tracking-[0.06em] uppercase mt-2.5">{meta}</p>
+        )}
+
+        <p className={`text-white-warm/55 text-sm leading-6 mt-3 ${featured ? 'line-clamp-3' : 'line-clamp-2'}`}>
+          {project.description}
+        </p>
+
+        <div className="flex flex-wrap gap-x-3 gap-y-1 mt-auto pt-4">
+          {project.tags.slice(0, featured ? 5 : 3).map(t => (
+            <span key={t} className="text-[10px] text-grey-muted/70 tracking-wide">{t}</span>
           ))}
         </div>
-
-        <motion.div
-          animate={{ opacity: hovered ? 1 : 0, y: hovered ? 0 : 4 }}
-          transition={{ duration: 0.2 }}
-          className="mt-4 flex items-center gap-2 cursor-pointer"
-          onClick={() => onImmersive(project)}
-        >
-          <div className="gold-line w-8" />
-          <span className="text-gold text-[10px] tracking-[0.3em] uppercase">Enter Space</span>
-        </motion.div>
       </div>
-    </div>
+    </article>
   )
 }
 
@@ -188,6 +175,17 @@ export default function Portfolio() {
     return [...ordered, ...remaining]
   })()
 
+  /* Live counts, from the visible list — not the static import. Any category with
+     nothing in it is dropped, and a category introduced by a custom project is kept. */
+  const categoryCounts = allProjects.reduce((acc, p) => {
+    if (p.category) acc[p.category] = (acc[p.category] || 0) + 1
+    return acc
+  }, {})
+  const categoryTabs = [
+    'All',
+    ...CATEGORIES.filter(c => c !== 'All' && categoryCounts[c]),
+    ...Object.keys(categoryCounts).filter(c => !CATEGORIES.includes(c)),
+  ]
   const filtered = activeCategory === 'All'
     ? allProjects
     : allProjects.filter(p => p.category === activeCategory)
@@ -211,9 +209,6 @@ export default function Portfolio() {
 
   return (
     <section id="portfolio" className="py-32 bg-deep-black relative overflow-hidden" ref={ref}>
-      <div className="absolute bottom-0 left-0 text-[10rem] font-display text-white-warm/[0.012] leading-none select-none pointer-events-none">
-        PORTFOLIO
-      </div>
 
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
         <motion.div
@@ -240,18 +235,21 @@ export default function Portfolio() {
           </p>
         </motion.div>
 
-        {/* Filter tabs */}
+        {/* Filter tabs — one swipeable row on phones, wrapped rows from sm up.
+           The fade at the right edge is the only hint that the row scrolls. */}
+        <div className="relative">
+        <div className="pointer-events-none absolute right-0 -mr-6 top-0 bottom-12 w-14 z-10 bg-gradient-to-l from-deep-black to-transparent sm:hidden" />
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="flex flex-wrap gap-2 mb-12"
+          className="flex gap-2 mb-12 overflow-x-auto sm:flex-wrap sm:overflow-x-visible -mx-6 px-6 sm:mx-0 sm:px-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
         >
-          {CATEGORIES.map(cat => (
+          {categoryTabs.map(cat => (
             <button
               key={cat}
               onClick={() => setActiveCategory(cat)}
-              className={`text-[10px] tracking-[0.3em] uppercase px-4 py-2 border transition-all duration-300 cursor-pointer ${
+              className={`shrink-0 whitespace-nowrap text-[10px] tracking-[0.3em] uppercase px-4 py-2 border transition-all duration-300 cursor-pointer ${
                 activeCategory === cat
                   ? 'border-gold bg-gold text-deep-black font-semibold'
                   : 'border-white-warm/15 text-grey-muted hover:border-gold/50 hover:text-white-warm'
@@ -260,12 +258,13 @@ export default function Portfolio() {
               {cat}
               {cat !== 'All' && (
                 <span className="ml-1.5 opacity-60">
-                  ({PROJECTS.filter(p => p.category === cat).length})
+                  ({categoryCounts[cat] || 0})
                 </span>
               )}
             </button>
           ))}
         </motion.div>
+        </div>
 
         {/* Grid */}
         <AnimatePresence mode="wait">
@@ -275,16 +274,18 @@ export default function Portfolio() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.25 }}
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6 items-stretch"
           >
             {filtered.map((project, i) => (
               <motion.div
                 key={project.id}
+                className={i === 0 && filtered.length > 2 ? 'sm:col-span-2' : ''}
                 initial={{ opacity: 0, y: 40 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: i * 0.06 }}
+                transition={{ duration: 0.45, delay: Math.min(i, 6) * 0.05 }}
               >
                 <ProjectCard
+                  featured={i === 0 && filtered.length > 2}
                   project={project}
                   onImmersive={handleImmersive}
                   onGallery={handleGallery}
@@ -296,7 +297,8 @@ export default function Portfolio() {
         </AnimatePresence>
       </div>
 
-      {/* Immersive 3D view */}
+      {/* Immersive 3D view + gallery stay dark in both themes */}
+      <div className="theme-dark contents">
       <AnimatePresence>
         {immersiveProject && (
           <ImmersiveView
@@ -316,6 +318,7 @@ export default function Portfolio() {
           />
         )}
       </AnimatePresence>
+      </div>
     </section>
   )
 }

@@ -401,7 +401,7 @@ function StaticPanel({
 }
 
 const EMPTY_FORM = () => ({
-  title: '', subtitle: '', category: FORM_CATEGORIES[2],
+  title: '', subtitle: '', category: FORM_CATEGORIES[0],
   location: '', year: String(new Date().getFullYear()),
   role: '', description: '', tags: '', files: []
 })
@@ -669,7 +669,7 @@ export default function AdminPanel({ onClose }) {
   return (
     <motion.div
       initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-      className="fixed inset-0 z-[100] bg-[#060606] flex flex-col"
+      className="theme-dark fixed inset-0 z-[100] bg-[#060606] flex flex-col"
       style={{ fontFamily: 'Inter, sans-serif' }}
     >
       {/* Header */}
