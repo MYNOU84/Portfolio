@@ -54,9 +54,10 @@ a.card:hover .card-cta::after{transform:translateX(4px)}
 
 /* Cover image — full sheet, never cropped */
 .cover{max-width:1200px;margin:56px auto 0;padding:0 80px}
-.cover img{display:block;width:100%;height:auto;border:1px solid var(--gold-line)}
+.cover img,.storyboard img{display:block;width:100%;height:auto;border:1px solid var(--gold-line)}
+.storyboard{max-width:1200px;margin:1px auto 0;padding:0 80px;display:grid;gap:1px}
 
-@media(max-width:900px){.wrap{padding:56px 24px}.cover{padding:0 24px;margin-top:40px}}
+@media(max-width:900px){.wrap{padding:56px 24px}.cover,.storyboard{padding:0 24px}.cover{margin-top:40px}}
 @media(max-width:600px){
   .grid{grid-template-columns:1fr}
   .ep{grid-template-columns:40px 1fr 18px;gap:10px}
@@ -101,6 +102,11 @@ a.card:hover .card-cta::after{transform:translateX(4px)}
 <figure class="cover">
   <img src="img/cover-surgical-system-flow.jpg" width="1672" height="941" alt="Operating room linked to the emergency entrance, patient prep, recovery (PACU), sterile processing (CSSD) and sterile supply — the surgical system around the OR" draggable="false" oncontextmenu="return false">
 </figure>
+
+<div class="storyboard">
+  <img src="img/storyboard-surgical-journey.jpg" width="2000" height="844" loading="lazy" alt="Storyboard of the surgical patient journey: ambulance arrival, transfer corridor, pre-op bay, nurse station, operating theatre, monitoring, recovery ward, sterile processing and sterile storage" draggable="false" oncontextmenu="return false">
+  <img src="img/storyboard-surgical-support.jpg" width="2000" height="844" loading="lazy" alt="Storyboard of the support spaces around surgery: emergency entrance, patient prep, monitoring, CSSD, supply carts, sterile store, operating room, theatre doors, ward, staff corridor and operating suite entrance" draggable="false" oncontextmenu="return false">
+</div>
 
 <main>
 <div class="wrap">
