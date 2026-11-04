@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Healthcare Architecture — Research Series | M. Amine Berchache</title>
+<meta name="description" content="A reference series on healthcare facility planning and design, written in Arabic: from clinical needs to the architectural programme.">
+<script>try{var t=localStorage.getItem('ha-theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="series.css">
+<style>
+[lang="ar"]{font-family:'IBM Plex Sans Arabic','Segoe UI',Tahoma,sans-serif}
+.hero-ar{font-family:'Amiri','IBM Plex Sans Arabic',serif;font-size:clamp(22px,2.6vw,30px);color:var(--text2);line-height:1.5;margin:6px 0 18px;text-align:left}
+
+.wrap{max-width:1200px;margin:0 auto;padding:72px 80px}
+.sec-label{font-size:9px;text-transform:uppercase;letter-spacing:0.35em;color:var(--gold3);margin-bottom:22px;display:flex;align-items:center;gap:14px}
+.sec-label::after{content:'';flex:1;height:1px;background:var(--line2)}
+
+/* Chapter cards — ftb-rds card pattern, with a typographic panel instead of an image */
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line2)}
+.card{background:var(--bg2);text-decoration:none;display:flex;flex-direction:column;transition:background .25s;position:relative}
+a.card:hover{background:var(--bg3)}
+.card-ph{height:170px;background:var(--bg3);display:flex;align-items:flex-end;justify-content:space-between;padding:22px 24px;overflow:hidden}
+.card-ph .big{font-family:'Playfair Display',serif;font-size:96px;font-weight:300;line-height:.8;color:var(--gold-line)}
+a.card:hover .card-ph .big{color:var(--gold3)}
+.card-ph .ar{font-family:'Amiri',serif;font-size:22px;color:var(--text3)}
+.card-body{padding:22px 24px;flex:1;border-top:1px solid var(--gold-line);display:flex;flex-direction:column}
+.card-num{font-size:9px;text-transform:uppercase;letter-spacing:0.25em;color:var(--gold3);margin-bottom:8px}
+.card-title{font-family:'Playfair Display',serif;font-size:20px;font-weight:400;color:var(--text);margin-bottom:6px;line-height:1.25}
+.card-title-ar{font-family:'Amiri',serif;font-size:20px;color:var(--text2);margin-bottom:12px;line-height:1.5;text-align:left}
+.card-desc{font-size:11px;color:var(--text2);line-height:1.7;margin-bottom:16px}
+.card-tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px}
+.card-tag{font-size:8px;text-transform:uppercase;letter-spacing:0.1em;color:var(--gold3);border:1px solid var(--gold-line);padding:3px 8px;background:var(--gold-dim)}
+.card-cta{display:flex;align-items:center;gap:8px;font-size:9px;text-transform:uppercase;letter-spacing:0.18em;color:var(--gold);margin-top:auto}
+.card-cta::after{content:'→';font-size:12px;transition:transform .2s}
+a.card:hover .card-cta::after{transform:translateX(4px)}
+.card.soon{cursor:default}
+.card.soon>*{opacity:.45}
+.card.soon .card-cta{color:var(--text4)}
+.card.soon .card-cta::after{content:''}
+.soon-badge{position:absolute;top:12px;right:12px;font-size:8px;text-transform:uppercase;letter-spacing:0.12em;padding:4px 10px;background:var(--bg);border:1px solid var(--text4);color:var(--text3)}
+
+/* Episode list */
+.episodes{list-style:none;border-top:1px solid var(--line2)}
+.ep{display:grid;grid-template-columns:56px 56px 1fr 24px;align-items:center;gap:16px;padding:16px 8px;border-bottom:1px solid var(--line);text-decoration:none;color:var(--text);transition:background .2s}
+.ep:hover{background:var(--gold-dim)}
+.ep-n{font-size:9px;letter-spacing:0.2em;color:var(--gold3);text-transform:uppercase}
+.ep-sec{font-family:'Playfair Display',serif;font-size:18px;color:var(--gold2)}
+.ep-title{font-size:15px;line-height:1.6;color:var(--text);text-align:right}
+.ep-cta{color:var(--text4);transition:transform .2s,color .2s}
+.ep:hover .ep-cta{color:var(--gold);transform:translateX(4px)}
+.ep-note{font-size:11px;color:var(--text3);margin-top:16px}
+
+@media(max-width:900px){.wrap{padding:56px 24px}}
+@media(max-width:600px){
+  .grid{grid-template-columns:1fr}
+  .ep{grid-template-columns:40px 1fr 18px;gap:10px}
+  .ep-sec{display:none}
+  .card-ph{height:130px}.card-ph .big{font-size:72px}
+}
+</style>
+</head>
+<body>
+
+<nav class="top">
+  <a class="nav-logo" href="/">
+    <div class="nav-box">AB</div>
+    <div class="nav-txt">
+      <p>Berchache</p>
+      <p>Senior Architect</p>
+    </div>
+  </a>
+  <div class="nav-actions">
+    <button class="theme-toggle" type="button" aria-label="Toggle light / dark theme">◐</button>
+    <a class="nav-back" href="/">← Portfolio</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-in">
+    <div class="breadcrumb">Research Series &nbsp;/&nbsp; Healthcare Planning &amp; Design</div>
+    <h1>Healthcare<br><span>Architecture</span></h1>
+    <p class="hero-ar" lang="ar" dir="rtl">العمارة الاستشفائية — الدراسة المرجعية في تخطيط وتصميم المنشآت الصحية</p>
+    <div class="hero-sub">Arabic reference series &nbsp;·&nbsp; DHA / DoH guidance &nbsp;·&nbsp; RIBA &amp; ISO 19650 process</div>
+    <div class="rule"></div>
+    <p class="hero-desc">A chapter-by-chapter study of how a healthcare facility moves from medical need to an approved architectural programme — who takes part, which documents are produced, and how clinical requirements are reviewed, coordinated and turned into verifiable spatial decisions. Written in Arabic, with English and French technical terms kept as used in practice.</p>
+    <div class="stats">
+      <div><div class="stat-n">01</div><div class="stat-l">Chapter live</div></div>
+      <div><div class="stat-n">{{episodeCount}}</div><div class="stat-l">Sections</div></div>
+      <div><div class="stat-n">10</div><div class="stat-l">Core references</div></div>
+      <div><div class="stat-n">AR</div><div class="stat-l">Language</div></div>
+    </div>
+  </div>
+</div>
+
+<main>
+<div class="wrap">
+  <div class="sec-label">Chapters</div>
+  <div class="grid">
+    <a class="card" href="chapter-01.html">
+      <div class="card-ph"><span class="big">01</span><span class="ar" lang="ar" dir="rtl">الفصل الأول</span></div>
+      <div class="card-body">
+        <div class="card-num">Chapter 01 &nbsp;·&nbsp; Draft 02</div>
+        <div class="card-title">Healthcare Briefing &amp; Medical–Architectural Programming</div>
+        <div class="card-title-ar" lang="ar" dir="rtl">من الاحتياجات الطبية إلى البرنامج المعماري</div>
+        <div class="card-tags"><span class="card-tag">DHA</span><span class="card-tag">DoH</span><span class="card-tag">RIBA</span><span class="card-tag">ISO 19650</span></div>
+        <div class="card-cta">Read chapter</div>
+      </div>
+    </a>
+    <div class="card soon" aria-disabled="true">
+      <span class="soon-badge">In preparation</span>
+      <div class="card-ph"><span class="big">02</span><span class="ar" lang="ar" dir="rtl">الفصل الثاني</span></div>
+      <div class="card-body">
+        <div class="card-num">Chapter 02</div>
+        <div class="card-title">Service Scope, Role Delineation Levels (RDL), Key Planning Units (KPU) &amp; Capacity Planning</div>
+        <div class="card-tags"><span class="card-tag">RDL</span><span class="card-tag">KPU</span><span class="card-tag">Capacity</span></div>
+        <div class="card-cta">In preparation</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="wrap" style="padding-top:0">
+  <div class="sec-label">Episodes — Chapter 01</div>
+  <ol class="episodes">
+{{episodes}}
+  </ol>
+  <p class="ep-note">Each episode opens the matching section of Chapter 01.</p>
+</div>
+</main>
+
+<div class="bottom">
+  <div class="ft">M. Amine Berchache — Senior Architect / BIM Coordinator</div>
+  <div class="ft">Healthcare Architecture &nbsp;·&nbsp; Research Series</div>
+</div>
+
+<script>
+document.querySelector('.theme-toggle').addEventListener('click', function () {
+  var root = document.documentElement
+  var cur = root.dataset.theme || (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark')
+  var next = cur === 'light' ? 'dark' : 'light'
+  root.dataset.theme = next
+  try { localStorage.setItem('ha-theme', next) } catch (e) {}
+})
+</script>
+</body>
+</html>

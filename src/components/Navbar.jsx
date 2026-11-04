@@ -11,6 +11,7 @@ const NAV_LINKS = [
   { label: 'Site Supervision', href: '/site-supervision.html', external: true },
   { label: 'Arch Specs',      href: '/architectural-specifications.html', external: true },
   { label: 'Space Planning', href: '/space-planning/', external: true },
+  { label: 'Healthcare',     href: '/healthcare-architecture/', external: true },
   { label: 'Services',       href: '#services' },
   { label: 'Contact',    href: '#contact' },
 ]
