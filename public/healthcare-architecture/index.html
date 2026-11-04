@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Healthcare Architecture — Research Series | M. Amine Berchache</title>
 <meta name="description" content="A reference series on healthcare facility planning and design, written in Arabic: from clinical needs to the architectural programme.">
+<meta property="og:image" content="https://portfolio-five-kappa-d7gqte5vgz.vercel.app/healthcare-architecture/img/cover-surgical-system-flow.jpg">
 <script>try{var t=localStorage.getItem('ha-theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="series.css">
@@ -51,7 +52,11 @@ a.card:hover .card-cta::after{transform:translateX(4px)}
 .ep:hover .ep-cta{color:var(--gold);transform:translateX(4px)}
 .ep-note{font-size:11px;color:var(--text3);margin-top:16px}
 
-@media(max-width:900px){.wrap{padding:56px 24px}}
+/* Cover image — full sheet, never cropped */
+.cover{max-width:1200px;margin:56px auto 0;padding:0 80px}
+.cover img{display:block;width:100%;height:auto;border:1px solid var(--gold-line)}
+
+@media(max-width:900px){.wrap{padding:56px 24px}.cover{padding:0 24px;margin-top:40px}}
 @media(max-width:600px){
   .grid{grid-template-columns:1fr}
   .ep{grid-template-columns:40px 1fr 18px;gap:10px}
@@ -92,6 +97,10 @@ a.card:hover .card-cta::after{transform:translateX(4px)}
     </div>
   </div>
 </div>
+
+<figure class="cover">
+  <img src="img/cover-surgical-system-flow.jpg" width="1672" height="941" alt="Operating room linked to the emergency entrance, patient prep, recovery (PACU), sterile processing (CSSD) and sterile supply — the surgical system around the OR" draggable="false" oncontextmenu="return false">
+</figure>
 
 <main>
 <div class="wrap">
