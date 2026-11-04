@@ -21,7 +21,7 @@ export default function FeaturedCompetition() {
   const inView = useInView(ref, { once: true, margin: '-100px' })
 
   return (
-    <section id="dubai-competition" className="theme-dark relative py-28 sm:py-36 overflow-hidden bg-deep-black" ref={ref}>
+    <section id="dubai-competition" className="relative py-28 sm:py-36 overflow-hidden bg-deep-black" ref={ref}>
       {/* Background image */}
       <div className="absolute inset-0">
         <img

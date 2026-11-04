@@ -59,7 +59,7 @@ function ProjectCard({ project, onImmersive, onGallery, adminData, featured = fa
         <motion.div
           animate={{ opacity: hovered ? 1 : 0 }}
           transition={{ duration: 0.25 }}
-          className="theme-dark absolute inset-0 flex items-end p-4 pointer-events-none"
+          className="absolute inset-0 flex items-end p-4 pointer-events-none"
           style={{ background: 'linear-gradient(to top, rgba(5,5,5,0.75), transparent 55%)' }}
         >
           <span className="flex items-center gap-2 text-white-warm text-[10px] tracking-[0.18em] uppercase">
@@ -297,8 +297,6 @@ export default function Portfolio() {
         </AnimatePresence>
       </div>
 
-      {/* Immersive 3D view + gallery stay dark in both themes */}
-      <div className="theme-dark contents">
       <AnimatePresence>
         {immersiveProject && (
           <ImmersiveView
@@ -318,7 +316,6 @@ export default function Portfolio() {
           />
         )}
       </AnimatePresence>
-      </div>
     </section>
   )
 }

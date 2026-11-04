@@ -200,17 +200,17 @@ export default function ImmersiveView({ project, onClose, onOpenGallery }) {
             />
           </AnimatePresence>
           <div className="absolute inset-0 pointer-events-none" style={{
-            background: 'linear-gradient(to bottom, rgba(5,5,5,0.55) 0%, transparent 18%, transparent 70%, rgba(5,5,5,0.75) 100%)',
+            background: 'linear-gradient(to bottom, rgb(var(--c-deep-black) / 0.55) 0%, transparent 18%, transparent 70%, rgb(var(--c-deep-black) / 0.75) 100%)',
           }} />
           <div className="absolute inset-0 pointer-events-none" style={{
-            background: 'linear-gradient(to right, rgba(5,5,5,0.5) 0%, transparent 18%, transparent 82%, rgba(5,5,5,0.5) 100%)',
+            background: 'linear-gradient(to right, rgb(var(--c-deep-black) / 0.5) 0%, transparent 18%, transparent 82%, rgb(var(--c-deep-black) / 0.5) 100%)',
           }} />
         </motion.div>
       </div>
 
       {/* Outer vignette */}
       <div className="absolute inset-0 pointer-events-none" style={{
-        background: 'radial-gradient(ellipse 85% 85% at 50% 50%, transparent 40%, rgba(5,5,5,0.65) 100%)',
+        background: 'radial-gradient(ellipse 85% 85% at 50% 50%, transparent 40%, rgb(var(--c-deep-black) / 0.65) 100%)',
       }} />
 
       {/* no custom cursor — browser grab/grabbing handles it */}

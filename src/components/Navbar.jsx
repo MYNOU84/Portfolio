@@ -136,7 +136,7 @@ export default function Navbar({ isAdmin = false, onAdminToggle }) {
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
           scrolled
             ? 'py-3 bg-deep-black/92 backdrop-blur-xl border-b border-white-warm/10'
-            : 'py-6 bg-transparent border-b border-transparent theme-dark'
+            : 'py-6 bg-transparent border-b border-transparent'
         }`}
       >
         <div className="max-w-7xl mx-auto px-6 lg:px-10 flex items-center justify-between gap-6">

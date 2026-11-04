@@ -669,7 +669,7 @@ export default function AdminPanel({ onClose }) {
   return (
     <motion.div
       initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-      className="theme-dark fixed inset-0 z-[100] bg-[#060606] flex flex-col"
+      className="fixed inset-0 z-[100] bg-[#060606] flex flex-col"
       style={{ fontFamily: 'Inter, sans-serif' }}
     >
       {/* Header */}
