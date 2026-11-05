@@ -24,3 +24,7 @@ dist-ssr
 *.sw?
 
 .vercel
+
+# Private source documents (real project names) - never commit or deploy
+private/
+_private/

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Applied Case Studies — Healthcare Architecture | M. Amine Berchache</title>
+<meta name="description" content="Healthcare Architecture, Session 2: applied case studies that test the series methodology on hospital types. Independent educational studies.">
+<script>try{var t=localStorage.getItem('ha-theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../series.css">
+<style>
+{{hubStyle}}
+{{csStyle}}
+</style>
+</head>
+<body>
+
+<nav class="top">
+  <a class="nav-logo" href="/">
+    <div class="nav-box">AB</div>
+    <div class="nav-txt">
+      <p>Berchache</p>
+      <p>Senior Architect</p>
+    </div>
+  </a>
+  <div class="nav-actions">
+    <button class="theme-toggle" type="button" aria-label="Toggle light / dark theme">◐</button>
+    <a class="nav-back" href="../index.html">← Series</a>
+    <a class="nav-back" href="/">Portfolio</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-in">
+    <div class="breadcrumb">Healthcare Architecture &nbsp;/&nbsp; Session 2</div>
+    <h1>Applied<br><span>Case Studies</span></h1>
+    <div class="hero-sub">Session 2 &nbsp;·&nbsp; Independent educational case studies</div>
+    <div class="rule"></div>
+    <p class="hero-desc">Each case study applies the series methodology to one hospital type under a named regulatory jurisdiction, chapter by chapter. The methodology itself is set out in Session 1.</p>
+  </div>
+</div>
+
+<main>
+<div class="wrap">
+  <div class="sec-label">Case studies</div>
+{{csGrid}}
+  <a class="more-link" href="../index.html">Session 1 — Methodology</a>
+</div>
+</main>
+
+<div class="bottom">
+  <div class="ft">M. Amine Berchache — Senior Architect / BIM Coordinator</div>
+  <div class="ft">Healthcare Architecture &nbsp;·&nbsp; Session 2 — Applied Case Studies</div>
+</div>
+
+<script>
+document.querySelector('.theme-toggle').addEventListener('click', function () {
+  var root = document.documentElement
+  var cur = root.dataset.theme || (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark')
+  var next = cur === 'light' ? 'dark' : 'light'
+  root.dataset.theme = next
+  try { localStorage.setItem('ha-theme', next) } catch (e) {}
+})
+</script>
+</body>
+</html>

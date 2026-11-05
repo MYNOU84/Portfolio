@@ -71,6 +71,16 @@ a.card:hover .card-cta::after{transform:translateX(4px)}
   .ep-sec{display:none}
   .card-ph{height:130px}.card-ph .big{font-size:72px}
 }
+/* Session 2 — case-study components (appended; existing rules unchanged) */
+.grid.cs-grid{grid-template-columns:repeat(3,1fr)}
+.session-title{font-family:'Playfair Display',serif;font-size:clamp(24px,3vw,34px);font-weight:300;color:var(--text);line-height:1.2;margin-bottom:8px}
+.session-title span{color:var(--gold2)}
+.session-desc{font-size:12px;color:var(--text2);max-width:680px;line-height:1.8;margin-bottom:28px}
+.session-break{border-top:1px solid var(--gold-line)}
+.more-link{display:inline-flex;align-items:center;gap:8px;margin-top:20px;font-size:9px;text-transform:uppercase;letter-spacing:0.18em;color:var(--gold);text-decoration:none}
+.more-link::after{content:'→';font-size:12px;transition:transform .2s}
+.more-link:hover::after{transform:translateX(4px)}
+@media(max-width:900px){.grid.cs-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -117,6 +127,8 @@ a.card:hover .card-cta::after{transform:translateX(4px)}
 
 <main>
 <div class="wrap">
+  <h2 class="session-title">Session 1 — <span>Methodology</span></h2>
+  <p class="session-desc">The reference methodology, chapter by chapter.</p>
   <div class="sec-label">Chapters</div>
   <div class="grid">
     <a class="card" href="chapter-01.html">
@@ -136,6 +148,24 @@ a.card:hover .card-cta::after{transform:translateX(4px)}
         <div class="card-num">Chapter 02</div>
         <div class="card-title">Service Scope, Role Delineation Levels (RDL), Key Planning Units (KPU) &amp; Capacity Planning</div>
         <div class="card-tags"><span class="card-tag">RDL</span><span class="card-tag">KPU</span><span class="card-tag">Capacity</span></div>
+        <div class="card-cta">In preparation</div>
+      </div>
+    </div>
+    <div class="card soon" aria-disabled="true">
+      <span class="soon-badge">In preparation</span>
+      <div class="card-ph"><span class="big">03</span><span class="ar" lang="ar" dir="rtl">الفصل الثالث</span></div>
+      <div class="card-body">
+        <div class="card-num">Chapter 03</div>
+        <div class="card-title">In preparation</div>
+        <div class="card-cta">In preparation</div>
+      </div>
+    </div>
+    <div class="card soon" aria-disabled="true">
+      <span class="soon-badge">In preparation</span>
+      <div class="card-ph"><span class="big">04</span><span class="ar" lang="ar" dir="rtl">الفصل الرابع</span></div>
+      <div class="card-body">
+        <div class="card-num">Chapter 04</div>
+        <div class="card-title">In preparation</div>
         <div class="card-cta">In preparation</div>
       </div>
     </div>
@@ -225,6 +255,44 @@ a.card:hover .card-cta::after{transform:translateX(4px)}
     </a></li>
   </ol>
   <p class="ep-note">Each episode opens the matching section of Chapter 01.</p>
+</div>
+
+<div class="session-break">
+<div class="wrap">
+  <h2 class="session-title">Session 2 — <span>Applied Case Studies</span></h2>
+  <p class="session-desc">Independent educational case studies that apply the methodology to specific hospital types.</p>
+  <div class="sec-label">Case studies</div>
+  <div class="grid cs-grid">
+    <a class="card" href="case-studies/cs-01-maternity-children/index.html">
+      <div class="card-ph"><span class="big">01</span><span class="ar" lang="ar" dir="rtl">دراسة حالة</span></div>
+      <div class="card-body">
+        <div class="card-num">Case Study CS-01 &nbsp;·&nbsp; Rev. 01</div>
+        <div class="card-title">Maternity &amp; Children's Hospital, Abu Dhabi</div>
+        <div class="card-tags"><span class="card-tag">DoH Abu Dhabi</span><span class="card-tag">Chapter 01 live</span></div>
+        <div class="card-cta">Open case study</div>
+      </div>
+    </a>
+    <div class="card soon" aria-disabled="true">
+      <span class="soon-badge">In preparation</span>
+      <div class="card-ph"><span class="big">02</span><span class="ar" lang="ar" dir="rtl">دراسة حالة</span></div>
+      <div class="card-body">
+        <div class="card-num">Case Study CS-02</div>
+        <div class="card-title">Oncology Centre</div>
+        <div class="card-cta">In preparation</div>
+      </div>
+    </div>
+    <div class="card soon" aria-disabled="true">
+      <span class="soon-badge">In preparation</span>
+      <div class="card-ph"><span class="big">03</span><span class="ar" lang="ar" dir="rtl">دراسة حالة</span></div>
+      <div class="card-body">
+        <div class="card-num">Case Study CS-03</div>
+        <div class="card-title">General Hospital</div>
+        <div class="card-cta">In preparation</div>
+      </div>
+    </div>
+  </div>
+  <a class="more-link" href="case-studies/index.html">All case studies</a>
+</div>
 </div>
 </main>
 

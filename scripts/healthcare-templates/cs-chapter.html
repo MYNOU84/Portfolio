@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CS-01 · Chapter 01 — Birthing Unit | Healthcare Architecture</title>
+<meta name="description" content="Case Study CS-01 — Maternity &amp; Children&#39;s Hospital, Abu Dhabi (DoH). Chapter 01: Birthing Unit, Rev. 01 — independent educational case study.">
+<script>try{var t=localStorage.getItem('ha-theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../series.css">
+<style>
+body{font-family:'IBM Plex Sans Arabic','Segoe UI',Tahoma,'Inter',sans-serif;font-weight:400;font-size:17px;line-height:1.9}
+[lang="en"],[lang="fr"]{font-family:'Inter','Segoe UI',sans-serif}
+[dir="ltr"]{unicode-bidi:isolate}
+.hero{padding-top:84px}
+.hero .breadcrumb{font-family:'Inter',sans-serif;letter-spacing:0.25em}
+.hero .breadcrumb [lang="ar"],.hero .breadcrumb{font-size:11px}
+.hero h1{font-family:'Amiri','Playfair Display',serif;font-weight:700;line-height:1.35;font-size:clamp(32px,4.6vw,56px)}
+.hero p{font-size:15px;color:var(--text2);max-width:860px;margin-bottom:12px;line-height:1.9}
+.hero p strong{color:var(--text);font-weight:500}
+.hero p[dir="ltr"]{text-align:right;font-family:'Playfair Display',serif;font-size:20px;color:var(--gold2)}
+.hero p[dir="ltr"] strong{color:var(--gold2);font-weight:400}
+.hero em{color:var(--text3)}
+.rule{margin-inline:0}
+
+/* Layout: TOC on the right (RTL start), text on the left */
+.doc{max-width:1280px;margin:0 auto;padding:56px 80px 80px;display:grid;grid-template-columns:280px minmax(0,1fr);gap:64px;align-items:start}
+.toc{position:sticky;top:86px;max-height:calc(100vh - 110px);overflow:auto;font-size:13px;line-height:1.6;padding-inline-end:8px;border-inline-start:1px solid var(--line2);scrollbar-width:thin}
+.toc summary{list-style:none;font-family:'Inter',sans-serif;font-size:9px;text-transform:uppercase;letter-spacing:0.3em;color:var(--gold3);padding:0 16px 14px;cursor:default}
+.toc summary::-webkit-details-marker{display:none}
+.toc ol{list-style:none}
+.toc li a{display:block;padding:5px 16px;color:var(--text3);text-decoration:none;border-inline-start:2px solid transparent;margin-inline-start:-1px;transition:color .2s,border-color .2s}
+.toc li a:hover{color:var(--text)}
+.toc li a.active{color:var(--gold2);border-inline-start-color:var(--gold)}
+.toc ol ol{display:none}
+.toc li.open>ol{display:block}
+.toc ol ol a{padding-inline-start:30px;font-size:12px}
+
+article{min-width:0}
+article section{padding-bottom:16px}
+article h2,article h3,article h4{font-family:'Amiri','IBM Plex Sans Arabic',serif;color:var(--text);scroll-margin-top:86px;position:relative}
+article h2{font-size:30px;font-weight:700;line-height:1.4;margin:56px 0 20px;padding-top:28px;border-top:1px solid var(--gold-line)}
+article section:first-child h2{margin-top:0}
+article h3{font-size:22px;font-weight:700;line-height:1.5;margin:36px 0 12px;color:var(--gold2)}
+article h4{font-size:18px;margin:24px 0 10px}
+.anchor{position:absolute;inset-inline-start:-28px;color:var(--text4);text-decoration:none;font-family:'Inter',sans-serif;font-weight:300;opacity:0;transition:opacity .2s}
+h2:hover .anchor,h3:hover .anchor,h4:hover .anchor{opacity:1}
+article p{margin:0 0 16px;color:var(--text2)}
+article p[dir="ltr"],article li[dir="ltr"]{text-align:left}
+article strong{color:var(--text);font-weight:600}
+article em{color:var(--text)}
+article a{color:var(--gold2);text-decoration:underline;text-decoration-color:var(--gold-line);text-underline-offset:3px}
+article a.url{word-break:break-all;font-size:14px}
+article code{font-family:ui-monospace,Consolas,monospace;font-size:.85em;background:var(--bg3);border:1px solid var(--line2);padding:1px 6px}
+article ul,article ol{margin:0 0 18px;padding-inline-start:26px;color:var(--text2)}
+article li{margin-bottom:6px}
+article li::marker{color:var(--gold3)}
+article hr{border:0;border-top:1px solid var(--line2);margin:32px 0}
+
+blockquote{margin:0 0 20px;padding:18px 22px;background:var(--bg2);border-inline-start:2px solid var(--gold);font-family:'Inter',sans-serif;font-size:14px;line-height:1.8}
+blockquote[dir="ltr"]{border-inline-start:0;border-left:2px solid var(--gold);text-align:left}
+blockquote p{margin-bottom:10px}blockquote p:last-child{margin-bottom:0}
+
+/* Tables: scroll sideways inside their own box on narrow screens */
+.table-wrap{overflow-x:auto;margin:0 0 24px;border:1px solid var(--line2);background:var(--bg2);-webkit-overflow-scrolling:touch}
+table{border-collapse:collapse;width:100%;min-width:560px;font-size:14px;line-height:1.7}
+th,td{padding:10px 14px;text-align:right;vertical-align:top;border-bottom:1px solid var(--line)}
+th{background:var(--bg3);color:var(--gold2);font-weight:600;font-size:13px;white-space:nowrap}
+td{color:var(--text2)}
+td:first-child{white-space:nowrap}
+tbody tr:last-child td{border-bottom:0}
+tbody tr:hover td{background:var(--gold-dim)}
+
+/* Formulas */
+.math{margin:8px 0 22px;padding:18px;background:var(--bg2);border:1px solid var(--line2);overflow-x:auto;text-align:center;color:var(--text)}
+.math .tex-fallback{background:none;border:0;font-size:15px;white-space:pre-wrap}
+.math .katex{font-size:1.15em}
+
+/* Checklist */
+.checklist{list-style:none;padding:0;border:1px solid var(--line2);background:var(--bg2)}
+.checklist li{display:flex;gap:14px;align-items:flex-start;padding:12px 18px;margin:0;border-bottom:1px solid var(--line)}
+.checklist li:last-child{border-bottom:0}
+.checklist .box{flex:0 0 16px;height:16px;margin-top:6px;border:1px solid var(--gold);background:var(--gold-dim)}
+
+.pager{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line2);margin-top:56px;border:1px solid var(--line2)}
+.pager a,.pager div{background:var(--bg2);padding:20px 24px;text-decoration:none;color:var(--text);font-size:15px}
+.pager a:hover{background:var(--bg3)}
+.pager small{display:block;font-family:'Inter',sans-serif;font-size:9px;text-transform:uppercase;letter-spacing:0.25em;color:var(--gold3);margin-bottom:6px}
+.pager .soon{color:var(--text4)}
+.pager .soon small{color:var(--text4)}
+.to-top{position:fixed;bottom:20px;left:20px;width:40px;height:40px;display:flex;align-items:center;justify-content:center;background:var(--bg2);border:1px solid var(--gold-line);color:var(--gold);text-decoration:none;font-family:'Inter',sans-serif;opacity:0;pointer-events:none;transition:opacity .2s}
+.to-top.show{opacity:1;pointer-events:auto}
+
+@media(max-width:980px){
+  .doc{grid-template-columns:1fr;gap:24px;padding:32px 24px 64px}
+  .toc{position:sticky;top:62px;z-index:50;max-height:none;overflow:visible;border:1px solid var(--line2);background:var(--bg2);margin:0 -24px;border-inline:0;padding:0}
+  .toc summary{padding:14px 24px;cursor:pointer;display:flex;justify-content:space-between}
+  .toc summary::after{content:'▾';color:var(--gold)}
+  .toc[open] summary::after{content:'▴'}
+  .toc>ol{max-height:60vh;overflow:auto;padding-bottom:12px}
+  .toc li.open>ol{display:none}
+  .anchor{display:none}
+  article h2,article h3,article h4{scroll-margin-top:124px}
+}
+@media(max-width:600px){
+  body{font-size:16px}
+  article h2{font-size:25px}
+  article h3{font-size:20px}
+  .pager{grid-template-columns:1fr}
+}
+@media print{
+  nav.top,.toc,.to-top,.pager{display:none}
+  .doc{display:block;padding:0}
+}
+</style>
+</head>
+<body>
+
+<nav class="top" dir="ltr" lang="en">
+  <a class="nav-logo" href="/">
+    <div class="nav-box">AB</div>
+    <div class="nav-txt">
+      <p>Berchache</p>
+      <p>Senior Architect</p>
+    </div>
+  </a>
+  <div class="nav-actions">
+    <button class="theme-toggle" type="button" aria-label="Toggle light / dark theme">◐</button>
+    <a class="nav-back" href="index.html">← CS-01</a>
+    <a class="nav-back" href="/">Portfolio</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="hero-in">
+{{hero}}
+  </div>
+</header>
+
+<div class="doc">
+  <details class="toc" open>
+    <summary>المحتويات</summary>
+    <nav aria-label="المحتويات">
+{{toc}}
+    </nav>
+  </details>
+
+  <article>
+{{body}}
+    <div class="pager">
+      <a href="index.html"><small>دراسة الحالة</small><span dir="ltr" lang="en">CS-01 — Maternity &amp; Children&#39;s Hospital, Abu Dhabi</span></a>
+      <div class="soon"><small>الفصل الثاني — قيد الإعداد</small><span dir="ltr" lang="en">Chapter 02 — In preparation</span></div>
+    </div>
+  </article>
+</div>
+
+<a class="to-top" href="#top" aria-label="العودة إلى الأعلى">↑</a>
+
+<div class="bottom" dir="ltr" lang="en">
+  <div class="ft">M. Amine Berchache — Senior Architect / BIM Coordinator</div>
+  <div class="ft">Case Study CS-01 &nbsp;·&nbsp; Chapter 01 — Rev. 01</div>
+</div>
+
+<script>
+// Theme toggle (remembered per browser)
+document.querySelector('.theme-toggle').addEventListener('click', function () {
+  var root = document.documentElement
+  var cur = root.dataset.theme || (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark')
+  var next = cur === 'light' ? 'dark' : 'light'
+  root.dataset.theme = next
+  try { localStorage.setItem('ha-theme', next) } catch (e) {}
+})
+
+// TOC: collapsed by default on small screens, closes after a jump
+var toc = document.querySelector('.toc')
+var small = matchMedia('(max-width: 980px)')
+toc.open = !small.matches
+small.addEventListener('change', function () { toc.open = !small.matches })
+toc.querySelector('summary').addEventListener('click', function (e) { if (!small.matches) e.preventDefault() })
+toc.addEventListener('click', function (e) { if (e.target.closest('a') && small.matches) toc.open = false })
+
+// Scrollspy: highlight the section currently under the nav
+var links = Array.prototype.slice.call(toc.querySelectorAll('a[href^="#"]'))
+var targets = links.map(function (a) { return document.getElementById(a.getAttribute('href').slice(1)) })
+var toTop = document.querySelector('.to-top')
+function spy () {
+  var idx = -1
+  for (var i = 0; i < targets.length; i++) if (targets[i] && targets[i].getBoundingClientRect().top < 140) idx = i
+  links.forEach(function (a, i) { a.classList.toggle('active', i === idx) })
+  toc.querySelectorAll('li.open').forEach(function (li) { li.classList.remove('open') })
+  if (idx >= 0) {
+    var li = links[idx].closest('ol').closest('li') || links[idx].parentNode
+    li.classList.add('open')
+    if (!small.matches) links[idx].scrollIntoView({ block: 'nearest' })
+  }
+  toTop.classList.toggle('show', scrollY > 800)
+}
+var ticking = false
+addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(function () { spy(); ticking = false }) } }, { passive: true })
+spy()
+</script>
+</body>
+</html>
