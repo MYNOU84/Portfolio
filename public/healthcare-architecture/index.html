@@ -81,6 +81,13 @@ a.card:hover .card-cta::after{transform:translateX(4px)}
 .more-link::after{content:'→';font-size:12px;transition:transform .2s}
 .more-link:hover::after{transform:translateX(4px)}
 @media(max-width:900px){.grid.cs-grid{grid-template-columns:1fr}}
+/* Hero jump link to Session 2 (appended; existing rules unchanged) */
+.cs-jump{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:34px;padding:18px 22px;border:1px solid var(--gold-line);border-left:3px solid var(--gold);text-decoration:none;color:var(--text);transition:background .2s}
+.cs-jump:hover{background:rgba(201,152,44,.07)}
+.cs-jump-k{display:block;font-size:9px;text-transform:uppercase;letter-spacing:.2em;color:var(--gold);margin-bottom:6px}
+.cs-jump-t{font-family:'Playfair Display',serif;font-size:clamp(17px,2vw,21px);font-weight:400}
+.cs-jump-go{font-size:9px;text-transform:uppercase;letter-spacing:.18em;color:var(--gold);white-space:nowrap}
+#session-2{scroll-margin-top:80px}
 </style>
 </head>
 <body>
@@ -95,6 +102,7 @@ a.card:hover .card-cta::after{transform:translateX(4px)}
   </a>
   <div class="nav-actions">
     <button class="theme-toggle" type="button" aria-label="Toggle light / dark theme">◐</button>
+    <a class="nav-back" href="#session-2">Case Studies</a>
     <a class="nav-back" href="/">← Portfolio</a>
   </div>
 </nav>
@@ -113,6 +121,10 @@ a.card:hover .card-cta::after{transform:translateX(4px)}
       <div><div class="stat-n">10</div><div class="stat-l">Core references</div></div>
       <div><div class="stat-n">AR</div><div class="stat-l">Language</div></div>
     </div>
+    <a class="cs-jump" href="case-studies/cs-01-maternity-children/index.html">
+      <span><span class="cs-jump-k">New · Session 2 — Applied Case Studies</span><span class="cs-jump-t">CS-01 — Maternity &amp; Children's Hospital, Abu Dhabi</span></span>
+      <span class="cs-jump-go">Open case study →</span>
+    </a>
   </div>
 </div>
 
@@ -257,7 +269,7 @@ a.card:hover .card-cta::after{transform:translateX(4px)}
   <p class="ep-note">Each episode opens the matching section of Chapter 01.</p>
 </div>
 
-<div class="session-break">
+<div class="session-break" id="session-2">
 <div class="wrap">
   <h2 class="session-title">Session 2 — <span>Applied Case Studies</span></h2>
   <p class="session-desc">Independent educational case studies that apply the methodology to specific hospital types.</p>
