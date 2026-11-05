@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>الفصل الأول — من الاحتياجات الطبية إلى البرنامج المعماري | Healthcare Architecture</title>
+<meta name="description" content="العمارة الاستشفائية — الفصل الأول: Healthcare Briefing & Medical–Architectural Programming">
+<script>try{var t=localStorage.getItem('ha-theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<link rel="stylesheet" href="series.css">
+<style>
+body{font-family:'IBM Plex Sans Arabic','Segoe UI',Tahoma,'Inter',sans-serif;font-weight:400;font-size:17px;line-height:1.9}
+[lang="en"],[lang="fr"]{font-family:'Inter','Segoe UI',sans-serif}
+[dir="ltr"]{unicode-bidi:isolate}
+.hero{padding-top:84px}
+.hero .breadcrumb{font-family:'Inter',sans-serif;letter-spacing:0.25em}
+.hero .breadcrumb [lang="ar"],.hero .breadcrumb{font-size:11px}
+.hero h1{font-family:'Amiri','Playfair Display',serif;font-weight:700;line-height:1.35;font-size:clamp(32px,4.6vw,56px)}
+.hero p{font-size:15px;color:var(--text2);max-width:860px;margin-bottom:12px;line-height:1.9}
+.hero p strong{color:var(--text);font-weight:500}
+.hero p[dir="ltr"]{text-align:right;font-family:'Playfair Display',serif;font-size:20px;color:var(--gold2)}
+.hero p[dir="ltr"] strong{color:var(--gold2);font-weight:400}
+.hero em{color:var(--text3)}
+.rule{margin-inline:0}
+
+/* Layout: TOC on the right (RTL start), text on the left */
+.doc{max-width:1280px;margin:0 auto;padding:56px 80px 80px;display:grid;grid-template-columns:280px minmax(0,1fr);gap:64px;align-items:start}
+.toc{position:sticky;top:86px;max-height:calc(100vh - 110px);overflow:auto;font-size:13px;line-height:1.6;padding-inline-end:8px;border-inline-start:1px solid var(--line2);scrollbar-width:thin}
+.toc summary{list-style:none;font-family:'Inter',sans-serif;font-size:9px;text-transform:uppercase;letter-spacing:0.3em;color:var(--gold3);padding:0 16px 14px;cursor:default}
+.toc summary::-webkit-details-marker{display:none}
+.toc ol{list-style:none}
+.toc li a{display:block;padding:5px 16px;color:var(--text3);text-decoration:none;border-inline-start:2px solid transparent;margin-inline-start:-1px;transition:color .2s,border-color .2s}
+.toc li a:hover{color:var(--text)}
+.toc li a.active{color:var(--gold2);border-inline-start-color:var(--gold)}
+.toc ol ol{display:none}
+.toc li.open>ol{display:block}
+.toc ol ol a{padding-inline-start:30px;font-size:12px}
+
+article{min-width:0}
+article section{padding-bottom:16px}
+article h2,article h3,article h4{font-family:'Amiri','IBM Plex Sans Arabic',serif;color:var(--text);scroll-margin-top:86px;position:relative}
+article h2{font-size:30px;font-weight:700;line-height:1.4;margin:56px 0 20px;padding-top:28px;border-top:1px solid var(--gold-line)}
+article section:first-child h2{margin-top:0}
+article h3{font-size:22px;font-weight:700;line-height:1.5;margin:36px 0 12px;color:var(--gold2)}
+article h4{font-size:18px;margin:24px 0 10px}
+.anchor{position:absolute;inset-inline-start:-28px;color:var(--text4);text-decoration:none;font-family:'Inter',sans-serif;font-weight:300;opacity:0;transition:opacity .2s}
+h2:hover .anchor,h3:hover .anchor,h4:hover .anchor{opacity:1}
+article p{margin:0 0 16px;color:var(--text2)}
+article p[dir="ltr"],article li[dir="ltr"]{text-align:left}
+article strong{color:var(--text);font-weight:600}
+article em{color:var(--text)}
+article a{color:var(--gold2);text-decoration:underline;text-decoration-color:var(--gold-line);text-underline-offset:3px}
+article a.url{word-break:break-all;font-size:14px}
+article code{font-family:ui-monospace,Consolas,monospace;font-size:.85em;background:var(--bg3);border:1px solid var(--line2);padding:1px 6px}
+article ul,article ol{margin:0 0 18px;padding-inline-start:26px;color:var(--text2)}
+article li{margin-bottom:6px}
+article li::marker{color:var(--gold3)}
+article hr{border:0;border-top:1px solid var(--line2);margin:32px 0}
+
+blockquote{margin:0 0 20px;padding:18px 22px;background:var(--bg2);border-inline-start:2px solid var(--gold);font-family:'Inter',sans-serif;font-size:14px;line-height:1.8}
+blockquote[dir="ltr"]{border-inline-start:0;border-left:2px solid var(--gold);text-align:left}
+blockquote p{margin-bottom:10px}blockquote p:last-child{margin-bottom:0}
+
+/* Tables: scroll sideways inside their own box on narrow screens */
+.table-wrap{overflow-x:auto;margin:0 0 24px;border:1px solid var(--line2);background:var(--bg2);-webkit-overflow-scrolling:touch}
+table{border-collapse:collapse;width:100%;min-width:560px;font-size:14px;line-height:1.7}
+th,td{padding:10px 14px;text-align:right;vertical-align:top;border-bottom:1px solid var(--line)}
+th{background:var(--bg3);color:var(--gold2);font-weight:600;font-size:13px;white-space:nowrap}
+td{color:var(--text2)}
+td:first-child{white-space:nowrap}
+tbody tr:last-child td{border-bottom:0}
+tbody tr:hover td{background:var(--gold-dim)}
+
+/* Formulas */
+.math{margin:8px 0 22px;padding:18px;background:var(--bg2);border:1px solid var(--line2);overflow-x:auto;text-align:center;color:var(--text)}
+.math .tex-fallback{background:none;border:0;font-size:15px;white-space:pre-wrap}
+.math .katex{font-size:1.15em}
+
+/* Checklist */
+.checklist{list-style:none;padding:0;border:1px solid var(--line2);background:var(--bg2)}
+.checklist li{display:flex;gap:14px;align-items:flex-start;padding:12px 18px;margin:0;border-bottom:1px solid var(--line)}
+.checklist li:last-child{border-bottom:0}
+.checklist .box{flex:0 0 16px;height:16px;margin-top:6px;border:1px solid var(--gold);background:var(--gold-dim)}
+
+.pager{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line2);margin-top:56px;border:1px solid var(--line2)}
+.pager a,.pager div{background:var(--bg2);padding:20px 24px;text-decoration:none;color:var(--text);font-size:15px}
+.pager a:hover{background:var(--bg3)}
+.pager small{display:block;font-family:'Inter',sans-serif;font-size:9px;text-transform:uppercase;letter-spacing:0.25em;color:var(--gold3);margin-bottom:6px}
+.pager .soon{color:var(--text4)}
+.pager .soon small{color:var(--text4)}
+.to-top{position:fixed;bottom:20px;left:20px;width:40px;height:40px;display:flex;align-items:center;justify-content:center;background:var(--bg2);border:1px solid var(--gold-line);color:var(--gold);text-decoration:none;font-family:'Inter',sans-serif;opacity:0;pointer-events:none;transition:opacity .2s}
+.to-top.show{opacity:1;pointer-events:auto}
+
+@media(max-width:980px){
+  .doc{grid-template-columns:1fr;gap:24px;padding:32px 24px 64px}
+  .toc{position:sticky;top:62px;z-index:50;max-height:none;overflow:visible;border:1px solid var(--line2);background:var(--bg2);margin:0 -24px;border-inline:0;padding:0}
+  .toc summary{padding:14px 24px;cursor:pointer;display:flex;justify-content:space-between}
+  .toc summary::after{content:'▾';color:var(--gold)}
+  .toc[open] summary::after{content:'▴'}
+  .toc>ol{max-height:60vh;overflow:auto;padding-bottom:12px}
+  .toc li.open>ol{display:none}
+  .anchor{display:none}
+  article h2,article h3,article h4{scroll-margin-top:124px}
+}
+@media(max-width:600px){
+  body{font-size:16px}
+  article h2{font-size:25px}
+  article h3{font-size:20px}
+  .pager{grid-template-columns:1fr}
+}
+@media print{
+  nav.top,.toc,.to-top,.pager{display:none}
+  .doc{display:block;padding:0}
+}
+</style>
+</head>
+<body>
+
+<nav class="top" dir="ltr" lang="en">
+  <a class="nav-logo" href="/">
+    <div class="nav-box">AB</div>
+    <div class="nav-txt">
+      <p>Berchache</p>
+      <p>Senior Architect</p>
+    </div>
+  </a>
+  <div class="nav-actions">
+    <button class="theme-toggle" type="button" aria-label="Toggle light / dark theme">◐</button>
+    <a class="nav-back" href="./">← Series</a>
+    <a class="nav-back" href="/">Portfolio</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="hero-in">
+<p class="breadcrumb">العمارة الاستشفائية | <span dir="ltr" lang="en">Healthcare Architecture</span></p>
+<p><strong>الدراسة المرجعية في تخطيط وتصميم المنشآت الصحية</strong></p>
+<p><strong>الفصل الأول — المسودة رقم 02 | إصدار منقّح للمراجعة قبل النشر</strong></p>
+<p><strong>تاريخ التحرير:</strong> 4 نوفمبر 2026 · <strong>اللغة:</strong> العربية · <strong>حالة الوثيقة:</strong> مراجعة تحريرية وتقنية مكتملة، مع نقاط تحقق معلّقة في المصادر الفرنسية (انظر الملحق).</p>
+<h1 id="top">من الاحتياجات الطبية إلى البرنامج المعماري</h1><div class="rule"></div>
+<p dir="ltr"><strong><span dir="ltr" lang="en">Healthcare Briefing &amp; Medical–Architectural Programming</span></strong></p>
+<p><em>من تحديد المشروع الطبي إلى مراجعة البرنامج الوظيفي والمساحي واعتماده بوصفه أساسًا للتصميم المعماري.</em></p>
+<p><strong>نطاق الفصل:</strong> يتناول هذا الفصل إعداد البرنامج الصحي والمعماري، والجهات المشاركة فيه، والوثائق اللازمة، وآليات مراجعتها وتنسيقها واعتمادها، وكيفية ترجمة المتطلبات السريرية إلى قرارات مكانية أولية قابلة للتحقق.</p>
+<p>يعتمد التحليل على تجارب وممارسات العمارة الاستشفائية الواردة في ثلاثة مراجع فرنسية سبق إدراجها في المسودة الأولى، مع الاستعانة بأدلة هيئة الصحة بدبي (<span dir="ltr" lang="en">DHA</span>) ودائرة الصحة بأبوظبي (<span dir="ltr" lang="en">DoH</span>) في الجوانب التنظيمية والتخطيطية، وإطار <span dir="ltr" lang="en">RIBA</span> وإرشادات <span dir="ltr" lang="en">UK BIM Framework</span> في النقاط الإجرائية. <strong>تنبيه توثيقي:</strong> لم تتوفر أثناء هذه المراجعة نسخ أصلية قابلة للفحص من المراجع الفرنسية الثلاثة؛ لذلك أبقينا الاستشهادات المنقولة عن المسودة الأولى بصفتها <strong>إحالات معلّقة للتحقق من الصفحات</strong>، ولا يجوز اعتمادها كاقتباسات موثّقة نهائياً قبل مطابقة الأصول.</p>
+  </div>
+</header>
+
+<div class="doc">
+  <details class="toc" open>
+    <summary>المحتويات</summary>
+    <nav aria-label="المحتويات">
+<ol><li><a href="#references">المراجع الأساسية</a></li><li><a href="#s1-1">1.1 من أين يبدأ مشروع المستشفى؟</a><ol><li><a href="#s1-1-1">1.1.1 المستويات الأساسية لتطوير البرنامج</a></li><li><a href="#s1-1-2">1.1.2 ارتباط البرمجة بمراحل المشروع — <span dir="ltr" lang="en">Stage Gates</span></a></li><li><a href="#s1-1-3">1.1.3 الفرق بين الحاجة الطبية والمتطلب المعماري</a></li></ol></li><li><a href="#s1-2">1.2 إعداد البرنامج عملية متعددة التخصصات</a><ol><li><a href="#s1-2-1">1.2.1 الأطراف الرئيسية ومسؤولياتها</a></li><li><a href="#s1-2-2">1.2.2 لماذا يجب إشراك المعماري مبكرًا؟</a></li><li><a href="#s1-2-3">1.2.3 مثال: التعارض بين الطلب الطبي والقيود المعمارية</a></li></ol></li><li><a href="#s1-3">1.3 كيف تُراجع وثيقة <span dir="ltr" lang="en">Clinical Brief</span> بصورة مهنية؟</a><ol><li><a href="#s1-3-1">1.3.1 مثال على موجز مشروع أولي</a></li><li><a href="#s1-3-2">1.3.2 تحليل الفجوات في البرنامج — <span dir="ltr" lang="en">Brief Gap Analysis</span></a></li><li><a href="#s1-3-3">1.3.3 تصنيف المعلومات وفق أثرها</a></li></ol></li><li><a href="#s1-4">1.4 العلاقة بين البرنامج المعماري ومعايير دبي وأبوظبي</a><ol><li><a href="#s1-4-1">1.4.1 الهيكل المرجعي لـ<span dir="ltr" lang="en">DHA</span></a></li><li><a href="#s1-4-2">1.4.2 الهيكل المرجعي لـ<span dir="ltr" lang="en">DoH</span> أبوظبي</a></li><li><a href="#s1-4-3">1.4.3 المصطلحات الرئيسية</a></li><li><a href="#s1-4-3-1">1.4.3.1 قاموس مصطلحات ثلاثي اللغة</a></li><li><a href="#s1-4-4">1.4.4 كيف تُستخدم هذه الأدوات؟</a></li><li><a href="#s1-4-5">1.4.5 الفرق بين <span dir="ltr" lang="en">RDS</span> و<span dir="ltr" lang="en">RLS</span></a></li></ol></li><li><a href="#s1-5">1.5 مثال تطبيقي — من طلب إنشاء مجمع عمليات إلى متطلبات معمارية</a><ol><li><a href="#s1-5-1">1.5.1 الحالة الافتراضية</a></li><li><a href="#s1-5-2">1.5.2 اختلاف أنواع غرف العمليات</a></li><li><a href="#s1-5-3">1.5.3 العلاقة بين مجمع العمليات والأقسام المجاورة</a></li><li><a href="#s1-5-4">1.5.4 من المثال إلى قرار قابل للتحقق</a></li></ol></li><li><a href="#s1-6">1.6 إدماج مكافحة العدوى في إعداد البرنامج</a><ol><li><a href="#s1-6-1">1.6.1 تحديد الخطر قبل اختيار الحل المكاني</a></li><li><a href="#s1-6-2">1.6.2 النظافة والتخطيط الوظيفي</a></li><li><a href="#s1-6-3">1.6.3 غرف الدعم ليست مساحات ثانوية</a></li></ol></li><li><a href="#s1-7">1.7 وثائق البرمجة الصحية والمعمارية — <span dir="ltr" lang="en">Briefing Documents</span></a><ol><li><a href="#s1-7-1">1.7.1 مجموعة الوثائق الأساسية</a></li><li><a href="#s1-7-2">1.7.2 الفرق بين وجود المعلومة وصلاحيتها للاعتماد</a></li><li><a href="#s1-7-3">1.7.3 هرم وثائق المشروع</a></li></ol></li><li><a href="#s1-8">1.8 مراجعة البرنامج والتحقق منه قبل اعتماده</a><ol><li><a href="#s1-8-1">1.8.1 مراجعة النطاق السريري — <span dir="ltr" lang="en">Clinical Scope Review</span></a></li><li><a href="#s1-8-2">1.8.2 مراجعة السعات — <span dir="ltr" lang="en">Capacity Review</span></a></li><li><a href="#s1-8-3">1.8.3 مراجعة العلاقات الوظيفية — <span dir="ltr" lang="en">Functional Relationship Review</span></a></li><li><a href="#s1-8-4">1.8.4 مراجعة البرنامج المساحي — <span dir="ltr" lang="en">SOA Review</span></a></li><li><a href="#s1-8-5">1.8.5 الفرق بين المساحات الصافية والإجمالية</a></li></ol></li><li><a href="#s1-9">1.9 آلية اعتماد البرنامج — <span dir="ltr" lang="en">Brief Validation &amp; Approval</span></a><ol><li><a href="#s1-9-1">1.9.1 اعتماد المشروع الطبي</a></li><li><a href="#s1-9-2">1.9.2 اعتماد البرنامج الوظيفي</a></li><li><a href="#s1-9-3">1.9.3 اعتماد البرنامج المساحي</a></li><li><a href="#s1-9-4">1.9.4 مراجعة قابلية التصميم</a></li><li><a href="#s1-9-5">1.9.5 المرجع التنظيمي للاعتماد</a></li><li><a href="#s1-9-6">1.9.6 سجل الاعتماد</a></li><li><a href="#s1-9-7">1.9.7 الربط بين <span dir="ltr" lang="en">Clinical Brief</span> وإدارة المعلومات وفق <span dir="ltr" lang="en">ISO 19650</span></a></li></ol></li><li><a href="#s1-10">1.10 إدارة التعديلات بعد اعتماد البرنامج</a><ol><li><a href="#s1-10-1">1.10.1 ما الذي يُعد تعديلًا مؤثرًا؟</a></li><li><a href="#s1-10-2">1.10.2 تقييم أثر التغيير — <span dir="ltr" lang="en">Change Impact Assessment</span></a></li><li><a href="#s1-10-3">1.10.3 سجل التعديلات — <span dir="ltr" lang="en">Change Register</span></a></li></ol></li><li><a href="#s1-11">1.11 مخرجات الفصل الأول — ما الذي يجب أن يكون متوفرًا للانتقال إلى التخطيط المعماري؟</a></li><li><a href="#s1-12">1.12 أسئلة المراجعة والفهم — <span dir="ltr" lang="en">Review Questions</span></a></li><li><a href="#s1-13">1.13 الخلاصة العلمية للفصل الأول</a></li><li><a href="#appendix-a">ملحق <span dir="ltr" lang="en">A</span> — حدود التحقق وملاحظات ما قبل الإتاحة العامة</a></li><li><a href="#sources-register">سجل المراجع والمواضع المستخدمة</a></li></ol>
+    </nav>
+  </details>
+
+  <article>
+<section aria-labelledby="references">
+<h2 id="references"><a class="anchor" href="#references" aria-hidden="true" tabindex="-1">#</a>المراجع الأساسية</h2>
+<h3 id="references-professional"><a class="anchor" href="#references-professional" aria-hidden="true" tabindex="-1">#</a>المراجع المهنية</h3>
+<p dir="ltr"><strong>[<span dir="ltr" lang="en">R01</span>] <span dir="ltr" lang="fr">Architecture Hospitalière — N°16</span></strong></p>
+<p>مجلة <em><span dir="ltr" lang="fr">Architecture Hospitalière</span></em>، العدد السادس عشر، خريف/شتاء 2015–2016، فرنسا.</p>
+<p>يُستخدم هذا المرجع لفهم التعاون بين الأطباء والمعماريين، وتطوير البرامج الصحية، وتحليل القرارات المعمارية في مشاريع مستشفيات فعلية، بما فيها <span dir="ltr" lang="fr">Clinique Rhéna</span> و<span dir="ltr" lang="fr">Centre Hospitalier Métropole Savoie</span>؛ <strong>ورود اسمي المشروعين هنا توصيف لمحتوى المرجع بحسب المسودة السابقة، لا إثبات لاستعمال دراسة الحالة في هذا الفصل</strong>.</p>
+<p dir="ltr"><strong>[<span dir="ltr" lang="en">R02</span>] <span dir="ltr" lang="fr">Et si vous deviez concevoir un bloc opératoire ? — Le point de vue de l’architecte</span></strong></p>
+<p>عرض مهني ضمن <em><span dir="ltr" lang="fr">Forum Hygiène Hospitalière — Bloc Opératoire et Secteur Interventionnel</span></em>، بتاريخ 19 مارس 2019.</p>
+<p>يتناول تنظيم مجمع العمليات الجراحية، والعلاقات الوظيفية، ونقاط العبور، واختلاف أنواع غرف العمليات، وتأثير المعدات الطبية والقيود التقنية على التصميم.</p>
+<p dir="ltr"><strong>[<span dir="ltr" lang="en">R03</span>] <span dir="ltr" lang="fr">Hygiène et Architecture dans les établissements de santé</span></strong></p>
+<p><em><span dir="ltr" lang="fr">COTEREHOS — DRASS Rhône-Alpes</span></em>، أبريل 1997، فرنسا.</p>
+<p>يركز على تصميم وتجديد وحدات الرعاية، ومشاركة الجهات المعنية في إعداد البرنامج، ومكافحة العدوى، وتنظيم الحركة، واحتياجات الغرف السريرية والخدمية.</p>
+<h3 id="references-regulatory"><a class="anchor" href="#references-regulatory" aria-hidden="true" tabindex="-1">#</a>المراجع التنظيمية والتخطيطية</h3>
+<p dir="ltr"><strong>[<span dir="ltr" lang="en">S01</span>] <span dir="ltr" lang="en">Dubai Health Authority</span> (<span dir="ltr" lang="en">DHA</span>) — <span dir="ltr" lang="en">Health Facility Guidelines</span></strong></p>
+<p>خصوصًا <span dir="ltr" lang="en">Parts A–F</span>. <strong>المرجع الإلكتروني الحي:</strong> <a class="url" href="https://services.dha.gov.ae/tahpi-app/HealthFacilityGuidelines/Guidelines/Index/DHAHFG" target="_blank" rel="noopener" dir="ltr">https://services.dha.gov.ae/tahpi-app/HealthFacilityGuidelines/Guidelines/Index/DHAHFG</a> ؛ تاريخ الاطلاع 4 نوفمبر 2026. تحذّر <span dir="ltr" lang="en">DHA</span> من أن النسخ المحمّلة قد تتقادم؛ تُراجع نسخة كل ملف أو <span dir="ltr" lang="en">Revision</span> الظاهرة في غلافه عند الاستخدام التعاقدي.</p>
+<p dir="ltr"><strong>[<span dir="ltr" lang="en">S02</span>] <span dir="ltr" lang="en">Department of Health — Abu Dhabi</span> (<span dir="ltr" lang="en">DoH</span>) — <span dir="ltr" lang="en">Health Facility Guidelines</span></strong></p>
+<p>خصوصًا الإرشادات المتعلقة بالتخطيط الصحي، ومستويات الخدمات، والوحدات الوظيفية، وجداول المساحات، ومكونات الغرف، ومتطلبات تقديم التصاميم ومراجعتها. <strong>المرجع الإلكتروني الحي:</strong> <a class="url" href="https://stem.doh.gov.ae/HealthFacilityGuidelines/" target="_blank" rel="noopener" dir="ltr">https://stem.doh.gov.ae/HealthFacilityGuidelines/</a> ؛ تاريخ الاطلاع 4 نوفمبر 2026؛ لا يستعاض عن توثيق إصدار كل ملف منفرد بتوثيق تاريخ زيارة البوابة.</p>
+<p><strong>[<span dir="ltr" lang="en">S03</span>] <span dir="ltr" lang="en">DoH — Administrative Provisions &amp; Appendices</span></strong> — <a class="url" href="https://stem.doh.gov.ae/HealthFacilityGuidelines/Guidelines/Index/Administrative-Provisions" target="_blank" rel="noopener" dir="ltr">https://stem.doh.gov.ae/HealthFacilityGuidelines/Guidelines/Index/Administrative-Provisions</a> ؛ تحقق من أسماء الملاحق في 4 نوفمبر 2026؛ إصدار كل ملف <span dir="ltr" lang="en">PDF</span> غير مؤكد هنا.</p>
+<p><strong>[<span dir="ltr" lang="en">S04</span>] <span dir="ltr" lang="en">DHA — Standard Components</span> (<span dir="ltr" lang="en">RDS / RLS</span>)</strong> — <a class="url" href="https://services.dha.gov.ae/tahpi-app/HealthFacilityGuidelines/StdComps/All/AtoE/DHAHFG" target="_blank" rel="noopener" dir="ltr">https://services.dha.gov.ae/tahpi-app/HealthFacilityGuidelines/StdComps/All/AtoE/DHAHFG</a> ؛ تاريخ الاطلاع 4 نوفمبر 2026؛ تنطبق شروط البدائل حسب النص الحي ومكونات الغرفة المحددة.</p>
+<p><strong>[<span dir="ltr" lang="en">S05</span>] <span dir="ltr" lang="en">DHA — Part B, Planning Preliminaries</span></strong> — <a class="url" href="https://services.dha.gov.ae/tahpi-app/HealthFacilityGuidelines/Guidelines/FileContent/Preview/DHAHFG/DHA_part_b_planning_preliminaries_rev8" target="_blank" rel="noopener" dir="ltr">https://services.dha.gov.ae/tahpi-app/HealthFacilityGuidelines/Guidelines/FileContent/Preview/DHAHFG/DHA_part_b_planning_preliminaries_rev8</a> ؛ يعرض المحتوى النصي <span dir="ltr" lang="en">Version 1.0</span>، القسم 5.4، ص 25–30 من 45؛ تاريخ الاطلاع 4 نوفمبر 2026. ينبغي مطابقة رقم <span dir="ltr" lang="en">revision</span> في اسم الرابط مع غلاف الملف عند إصدار نسخة تنظيمية نهائية.</p>
+<p><strong>[<span dir="ltr" lang="en">P01</span>] <span dir="ltr" lang="en">RIBA Plan of Work 2020</span></strong> — <a class="url" href="https://www.riba.org/media/sszn5kkt/2020ribaplanofworktemplatepdf.pdf" target="_blank" rel="noopener" dir="ltr">https://www.riba.org/media/sszn5kkt/2020ribaplanofworktemplatepdf.pdf</a> ؛ تاريخ الاطلاع 4 نوفمبر 2026.</p>
+<p><strong>[<span dir="ltr" lang="en">P02</span>] <span dir="ltr" lang="en">UK BIM Framework — Guidance Part D: Developing Information Requirements, Edition 2</span> (<span dir="ltr" lang="en">February 2021</span>)</strong> — <a class="url" href="https://www.ukbimframework.org/wp-content/uploads/2021/02/Guidance-Part-D_Developing-information-requirements_Edition-2.pdf" target="_blank" rel="noopener" dir="ltr">https://www.ukbimframework.org/wp-content/uploads/2021/02/Guidance-Part-D_Developing-information-requirements_Edition-2.pdf</a> ؛ تاريخ الاطلاع 4 نوفمبر 2026.</p>
+<p>تُستخدم المراجع المهنية الفرنسية لفهم منهجية التصميم وتجارب التطبيق، بينما تُستخدم الوثائق التنظيمية الصادرة عن الجهة الصحية المختصة للتحقق من المتطلبات التي تحكم المشروع في نطاق اختصاصها. ولا تعني المقارنة بين <span dir="ltr" lang="en">DHA</span> و<span dir="ltr" lang="en">DoH</span> أن متطلبات الجهتين ملزمة في المشروع نفسه.</p>
+</section>
+<section aria-labelledby="s1-1">
+<h2 id="s1-1"><a class="anchor" href="#s1-1" aria-hidden="true" tabindex="-1">#</a>1.1 من أين يبدأ مشروع المستشفى؟</h2>
+<p>يبدأ المشروع الصحي قبل رسم أول مخطط معماري، عندما تنشأ حاجة إلى إنشاء خدمة طبية جديدة، أو زيادة القدرة الاستيعابية، أو إعادة تنظيم خدمات قائمة، أو تحديث منشأة لم تعد تلبي المتطلبات السريرية والتشغيلية.</p>
+<p>قد تنشأ هذه الحاجة بسبب نمو السكان، أو تغير أنماط الأمراض، أو ارتفاع الطلب على خدمة معينة، أو تطور التقنيات الطبية، أو تقادم البنية التحتية القائمة.</p>
+<p>غير أن <strong>وجود حاجة صحية لا يعني أن البرنامج المعماري أصبح جاهزًا</strong>.</p>
+<p>فالحاجة إلى توسيع خدمات الجراحة، على سبيل المثال، لا تحدد تلقائيًا عدد غرف العمليات، ولا نوع الجراحة التي ستُجرى، ولا متطلبات الإفاقة والتعقيم والإمداد والاستشفاء.</p>
+<p>يتطلب الانتقال من الحاجة الصحية إلى التصميم مجموعة من القرارات والوثائق المترابطة.</p>
+<h3 id="s1-1-1"><a class="anchor" href="#s1-1-1" aria-hidden="true" tabindex="-1">#</a>1.1.1 المستويات الأساسية لتطوير البرنامج</h3>
+<div class="table-wrap" role="region" tabindex="0" aria-label="المستوى · الاسم المهني · السؤال الذي يجيب عنه"><table><thead><tr><th>المستوى</th><th>الاسم المهني</th><th>السؤال الذي يجيب عنه</th></tr></thead><tbody>
+<tr><td dir="ltr">01</td><td><span dir="ltr" lang="en">Expression of Needs</span> — التعبير عن الاحتياجات</td><td>ما المشكلة أو الحاجة الصحية المطلوب تلبيتها؟</td></tr>
+<tr><td dir="ltr">02</td><td><span dir="ltr" lang="en">Clinical Service Plan</span> — خطة الخدمات السريرية</td><td>ما الخدمات التي ستقدمها المنشأة، ولمن، وبأي نموذج للرعاية؟</td></tr>
+<tr><td dir="ltr">03</td><td><span dir="ltr" lang="en">Feasibility / Business Case</span> — الجدوى والمبرر الاستثماري</td><td>هل أنسب حل إنشاء مبنى أو توسيعه، وما حدود التمويل والمخاطر والخيارات؟</td></tr>
+<tr><td dir="ltr">04</td><td><span dir="ltr" lang="en">Functional Brief</span> — البرنامج الوظيفي</td><td>كيف ستعمل الأقسام وما العلاقات والموارد التي تحتاجها؟</td></tr>
+<tr><td dir="ltr">05</td><td><span dir="ltr" lang="en">Schedule of Accommodation</span> (<span dir="ltr" lang="en">SOA</span>) — جدول الفراغات والمساحات</td><td>ما الفراغات المطلوبة وأعدادها ومساحاتها؟</td></tr>
+<tr><td dir="ltr">06</td><td><span dir="ltr" lang="en">Architectural Design Brief</span> — موجز المتطلبات المعمارية</td><td>ما الشروط والقيود التي يجب أن يستجيب لها التصميم؟</td></tr>
+</tbody></table></div>
+<p><strong>موقع دراسة الجدوى ليس بوابة زمنية ثابتة بعد الخطة السريرية:</strong> قد يبدأ <span dir="ltr" lang="en">Business Case</span> قبل تعريف المشروع التفصيلي، وتُعاد دراسات الجدوى لاحقاً بالتوازي مع تطوير البرنامج. يتضمن <span dir="ltr" lang="en">RIBA Stage 0</span> تعريف الخيارات والمبرر الاستثماري، بينما تتناول <span dir="ltr" lang="en">Stage 1</span> دراسات الجدوى وتطوير <span dir="ltr" lang="en">Project Brief</span>. [<span dir="ltr" lang="en">P01</span>، <span dir="ltr" lang="en">Stages 0–1</span>]؛ ويتضمن <span dir="ltr" lang="en">DHA Part F</span> موضوعات الجدوى والتكلفة. [<span dir="ltr" lang="en">S01</span>، <span dir="ltr" lang="en">Part F</span>].</p>
+<p>هذا الترتيب يوضح العلاقة بين الوثائق، لكنه لا يفترض أن العمل يجري دائمًا على مراحل منفصلة تمامًا. ففي المشاريع المعقدة، قد تتطور بعض القرارات الطبية والتشغيلية والمكانية بالتوازي، مع مراجعتها كلما ظهرت معلومات جديدة.</p>
+<h3 id="s1-1-2"><a class="anchor" href="#s1-1-2" aria-hidden="true" tabindex="-1">#</a>1.1.2 ارتباط البرمجة بمراحل المشروع — <span dir="ltr" lang="en">Stage Gates</span></h3>
+<div class="table-wrap" role="region" tabindex="0" aria-label="المرجع المرحلي · العمل المتصل بالبرنامج الصحي · نقطة القرار / الاعتماد"><table><thead><tr><th>المرجع المرحلي</th><th>العمل المتصل بالبرنامج الصحي</th><th>نقطة القرار / الاعتماد</th></tr></thead><tbody>
+<tr><td>ما قبل التصميم / <span dir="ltr" lang="en">Strategic Definition</span> (<span dir="ltr" lang="en">RIBA 0</span>)</td><td>تحديد الحاجة والخيارات، مقارنة الإنشاء والتوسعة وإعادة التأهيل وتحسين التشغيل، وتطوير <span dir="ltr" lang="en">Business Case</span></td><td>موافقة المالك على الخيار المفضّل وعلى إمكان الاستمرار في المشروع</td></tr>
+<tr><td dir="ltr"><span dir="ltr" lang="en">Preparation &amp; Briefing</span> (<span dir="ltr" lang="en">RIBA 1</span>)</td><td>استكمال متطلبات المالك والمستخدمين، اختبار الموقع والجدوى، البرنامج الوظيفي والمساحي، الميزانية والافتراضات</td><td>اعتماد <span dir="ltr" lang="en">Project Brief</span> المناسب للانتقال إلى <span dir="ltr" lang="en">Concept Design</span> مع ضبط القضايا المفتوحة</td></tr>
+<tr><td dir="ltr"><span dir="ltr" lang="en">Concept Design</span> (<span dir="ltr" lang="en">RIBA 2</span>)</td><td>ترجمة المتطلبات إلى حلول معمارية وهندسية واختبارها</td><td>مراجعة مطابقة المفهوم للبرنامج، أو إصدار تغيير معتمد إن لزم</td></tr>
+</tbody></table></div>
+<p>هذا الربط <strong>تفسير إرشادي</strong> لا يفرض على جميع نظم التعاقد أو تراخيص المستشفيات مراحل <span dir="ltr" lang="en">RIBA</span> نفسها. كما أن اعتماد المالك للبرنامج لا يساوي ترخيص الجهة الصحية. [<span dir="ltr" lang="en">P01</span>، <span dir="ltr" lang="en">RIBA Plan of Work 2020</span>].</p>
+<h3 id="s1-1-3"><a class="anchor" href="#s1-1-3" aria-hidden="true" tabindex="-1">#</a>1.1.3 الفرق بين الحاجة الطبية والمتطلب المعماري</h3>
+<p>لنأخذ المثال التالي:</p>
+<p><strong>الحاجة الطبية:</strong> زيادة القدرة على إجراء العمليات الجراحية المبرمجة.</p>
+<p>هذه الحاجة قد تستدعي دراسة زيادة عدد غرف العمليات، لكنها قد تُعالج أيضًا بتحسين أوقات التشغيل، أو إعادة تنظيم جدول الجراحات، أو تطوير الرعاية اليومية، بحسب نتائج دراسة النشاط والقدرة القائمة.</p>
+<p>وبعد اعتماد نموذج الخدمة، تتحول الحاجة إلى أسئلة معمارية:</p>
+<ul><li>هل تتطلب الخدمة غرف عمليات إضافية؟</li><li>ما التخصصات الجراحية التي ستستعمل هذه الغرف؟</li><li>هل يستلزم المشروع منطقة مستقلة للجراحة اليومية؟</li><li>ما العلاقة المطلوبة مع قسم الطوارئ والعناية المركزة؟</li><li>كيف ستصل الأدوات المعقمة وتخرج الأدوات المستعملة؟</li><li>هل المساحة المقترحة كافية للمعدات وفرق العمل والحركة الآمنة؟</li></ul>
+<p>يُظهر هذا المثال أن المعماري لا يبدأ من عدد الغرف وحده، بل من <strong>فهم النظام السريري والتشغيلي الذي ستخدمه هذه الغرف</strong>.</p>
+<p>تناقش الصفحات 12–13 من <em><span dir="ltr" lang="fr">Hygiène et Architecture dans les établissements de santé</span></em> تطوير البرنامج انطلاقًا من المشروع الطبي ومشروع المؤسسة والمخطط التوجيهي، مع دراسة الاحتياجات والجدوى والقيود قبل اعتماد البرنامج. [<span dir="ltr" lang="en">R03</span>، ص 12–13؛ <strong>إحالة فرنسية معلّقة للمطابقة مع الأصل</strong>].</p>
+</section>
+<section aria-labelledby="s1-2">
+<h2 id="s1-2"><a class="anchor" href="#s1-2" aria-hidden="true" tabindex="-1">#</a>1.2 إعداد البرنامج عملية متعددة التخصصات</h2>
+<p>تصميم المستشفى ليس مسؤولية معمارية منفردة، كما أن إعداد البرنامج الصحي ليس مهمة يمكن فصلها تمامًا عن إمكانات المبنى والموقع والتشغيل.</p>
+<p>تؤكد المناقشات المهنية المنشورة في <em><span dir="ltr" lang="fr">Architecture Hospitalière N°16</span></em> أهمية الحوار المبكر بين الأطباء والمعماريين. وتوضح أن غياب هذا الحوار قد يؤدي إلى ظهور متطلبات سريرية أو معمارية مؤثرة بعد بدء التصميم، بما يستلزم مراجعة قرارات كان من الممكن مناقشتها خلال البرمجة. [<span dir="ltr" lang="en">R01</span>، ص 10–15].</p>
+<h3 id="s1-2-1"><a class="anchor" href="#s1-2-1" aria-hidden="true" tabindex="-1">#</a>1.2.1 الأطراف الرئيسية ومسؤولياتها</h3>
+<div class="table-wrap" role="region" tabindex="0" aria-label="الطرف المهني · المسؤولية الأساسية · العلاقة بالبرنامج"><table><thead><tr><th>الطرف المهني</th><th>المسؤولية الأساسية</th><th>العلاقة بالبرنامج</th></tr></thead><tbody>
+<tr><td><span dir="ltr" lang="en">Client / Project Owner</span> — المالك</td><td>تحديد أهداف المشروع ونطاق الاستثمار والقرارات التعاقدية</td><td>اعتماد المتطلبات والقرارات الرئيسية</td></tr>
+<tr><td><span dir="ltr" lang="en">Healthcare Service Planner</span> — مخطط الخدمات الصحية</td><td>دراسة الاحتياجات الصحية والطلب والعرض وتوقعات النشاط</td><td>إعداد أساس نطاق الخدمات والسعات</td></tr>
+<tr><td><span dir="ltr" lang="en">Clinical Stakeholders</span> — الأطراف السريرية</td><td>تحديد أساليب تقديم الرعاية والاحتياجات الطبية</td><td>التحقق من قابلية البرنامج للتشغيل</td></tr>
+<tr><td><span dir="ltr" lang="en">Healthcare Facility Planner</span> — مخطط المرافق الصحية</td><td>تحويل متطلبات الخدمة إلى وحدات وظيفية وغرف وعلاقات</td><td>إعداد أو تنسيق البرنامج الوظيفي والمساحي</td></tr>
+<tr><td><span dir="ltr" lang="en">Healthcare Architect</span> — معماري المنشآت الصحية</td><td>تحليل المتطلبات وتحويلها إلى تنظيم مكاني ومعماري</td><td>اختبار العلاقات والفراغات والبدائل</td></tr>
+<tr><td><span dir="ltr" lang="en">Infection Prevention Team</span> — فريق الوقاية من العدوى</td><td>تقييم المخاطر السريرية ومتطلبات الوقاية</td><td>مراجعة العزل والتدفقات والفراغات الحساسة</td></tr>
+<tr><td><span dir="ltr" lang="en">Medical Equipment Planner</span> — مخطط التجهيزات الطبية</td><td>تحديد احتياجات المعدات والحيز التشغيلي</td><td>تنسيق متطلبات الغرف والمعدات</td></tr>
+<tr><td><span dir="ltr" lang="en">Facility Operations Team</span> — فريق التشغيل والصيانة</td><td>تحديد المتطلبات التشغيلية واللوجستية</td><td>مراجعة استدامة تشغيل المنشأة وصيانتها</td></tr>
+<tr><td><span dir="ltr" lang="en">Design Coordination Team</span> — فريق تنسيق التصميم</td><td>تنسيق المتطلبات بين التخصصات</td><td>ضبط التعارضات والمتطلبات المتداخلة</td></tr>
+<tr><td><span dir="ltr" lang="en">Cost Consultant / Quantity Surveyor</span> (<span dir="ltr" lang="en">QS</span>) — مستشار التكلفة</td><td>تقدير التكاليف ومراجعة قابلية التمويل والبدائل</td><td>اختبار توافق نطاق الخدمات والمساحات مع الميزانية ومؤشرات التكلفة</td></tr>
+<tr><td><span dir="ltr" lang="en">MEP / Building Services Engineer</span> — مهندس الأنظمة الميكانيكية والكهربائية والصحية</td><td>تحديد احتياجات الطاقة والتكييف والغازات الطبية والحيز الفني والصيانة</td><td>مراجعة غرف المعدات والـ<span dir="ltr" lang="en">Plant</span> والـ<span dir="ltr" lang="en">Risers</span> ومسارات الخدمات مبكراً</td></tr>
+<tr><td><span dir="ltr" lang="en">Medical Physicist / Radiation Protection Adviser</span> — الفيزيائي الطبي أو مستشار الوقاية الإشعاعية</td><td>تحديد متطلبات الوقاية والقياس والدرع الإشعاعي بحسب نوع التجهيز</td><td>مراجعة غرف <span dir="ltr" lang="en">CT</span> والأشعة والطب النووي والعلاج الإشعاعي وفق التشريعات والاختصاص المعني</td></tr>
+</tbody></table></div>
+<p>تختلف المسؤوليات الفعلية بحسب العقد ونوع المشروع ونظام الترخيص. وقد يجمع استشاري واحد عدة أدوار، أو تُوزع على شركات ومستشارين متخصصين.</p>
+<h3 id="s1-2-2"><a class="anchor" href="#s1-2-2" aria-hidden="true" tabindex="-1">#</a>1.2.2 لماذا يجب إشراك المعماري مبكرًا؟</h3>
+<p>توجد ثلاثة أسباب رئيسية:</p>
+<p><strong>أولًا — اختبار قابلية التنفيذ المكاني.</strong> فقد يتطلب البرنامج علاقات بين أقسام يصعب تحقيقها في الموقع المتاح أو ضمن عدد الطوابق المقترح.</p>
+<p><strong>ثانيًا — التحقق من اكتمال الوظائف.</strong> قد تُحدد الخدمات الطبية الرئيسية دون ذكر جميع الغرف والمرافق المساندة اللازمة لتشغيلها.</p>
+<p><strong>ثالثًا — دعم القرار قبل تثبيت المتطلبات.</strong> قد يكشف التحليل المعماري عن حلول تنظيمية أكثر كفاءة، أو عن حاجة إلى تعديل توزيع الوظائف والأقسام.</p>
+<p>لكن المشاركة المبكرة لا تنقل سلطة اتخاذ القرارات السريرية إلى المعماري. فالقرار الطبي يظل من اختصاص الجهات المؤهلة لاعتماده، بينما تقع على فريق التصميم مسؤولية تفسير آثاره المكانية والتقنية وتوضيح التعارضات.</p>
+<h3 id="s1-2-3"><a class="anchor" href="#s1-2-3" aria-hidden="true" tabindex="-1">#</a>1.2.3 مثال: التعارض بين الطلب الطبي والقيود المعمارية</h3>
+<p>قد يطلب المستخدمون وضع قسم التصوير الطبي بالقرب من الطوارئ والعيادات الخارجية وقسم التنويم في الوقت نفسه.</p>
+<p>هذه علاقات قد تكون جميعها مهمة، لكن درجة أهميتها تختلف بحسب حجم النشاط وطبيعة الحالات.</p>
+<p>يجب تحليل:</p>
+<ol><li>أنواع المرضى المستخدمين للتصوير.</li><li>حجم الحركة المتوقعة من كل قسم.</li><li>الحالات التي تتطلب نقلًا سريعًا أو مراقبة سريرية.</li><li>إمكانية إنشاء روابط أفقية أو رأسية.</li><li>أثر اختيار الموقع على أقسام أخرى.</li></ol>
+<p>والنتيجة ليست بالضرورة اختيار الموقع الأقرب إلى جميع الأقسام، وإنما <strong>اختيار تنظيم يحقق العلاقات ذات الأولوية، مع توثيق أثر البدائل والمفاضلات</strong>.</p>
+</section>
+<section aria-labelledby="s1-3">
+<h2 id="s1-3"><a class="anchor" href="#s1-3" aria-hidden="true" tabindex="-1">#</a>1.3 كيف تُراجع وثيقة <span dir="ltr" lang="en">Clinical Brief</span> بصورة مهنية؟</h2>
+<p>قد تتلقى شركة استشارية وثيقة تتضمن عدد الأسرة، وقائمة بالأقسام، ومساحة الموقع، والميزانية الأولية.</p>
+<p>وهذه المعلومات تسمح بتكوين تصور مبدئي، لكنها لا تعني بالضرورة أن البرنامج الوظيفي أصبح مكتملًا.</p>
+<h3 id="s1-3-1"><a class="anchor" href="#s1-3-1" aria-hidden="true" tabindex="-1">#</a>1.3.1 مثال على موجز مشروع أولي</h3>
+<blockquote dir="ltr"><p><strong><span dir="ltr" lang="en">ILLUSTRATIVE CLIENT BRIEF</span></strong></p><p><strong><span dir="ltr" lang="en">Project Type</span>:</strong> <span dir="ltr" lang="en">General Hospital</span><br>
+<strong><span dir="ltr" lang="en">Planned Capacity</span>:</strong> 120 <span dir="ltr" lang="en">Beds</span><br>
+<strong><span dir="ltr" lang="en">Main Departments</span>:</strong> <span dir="ltr" lang="en">Emergency, Surgery, Inpatient, ICU, Diagnostic Imaging, Pharmacy</span><br>
+<strong><span dir="ltr" lang="en">Project Stage</span>:</strong> <span dir="ltr" lang="en">Initial Briefing</span></p></blockquote>
+<p>السعة المذكورة تحدد أحد مؤشرات حجم المنشأة، لكنها لا توفر المعلومات اللازمة لتحديد نوع كل قسم أو عدد غرفه أو علاقاته التشغيلية.</p>
+<h3 id="s1-3-2"><a class="anchor" href="#s1-3-2" aria-hidden="true" tabindex="-1">#</a>1.3.2 تحليل الفجوات في البرنامج — <span dir="ltr" lang="en">Brief Gap Analysis</span></h3>
+<div class="table-wrap" role="region" tabindex="0" aria-label="المجال · المعلومات التي تحتاج إلى مراجعة · الأثر المحتمل على التصميم"><table><thead><tr><th>المجال</th><th>المعلومات التي تحتاج إلى مراجعة</th><th>الأثر المحتمل على التصميم</th></tr></thead><tbody>
+<tr><td>نطاق الخدمات السريرية</td><td>التخصصات، والإجراءات الطبية، ومستوى تعقيد الحالات</td><td>اختيار الوحدات والأقسام المناسبة</td></tr>
+<tr><td>الاستشفاء</td><td>توزيع الأسرة حسب التخصص ونوع الرعاية</td><td>عدد وحدات التنويم وتكوينها</td></tr>
+<tr><td>الطوارئ</td><td>النشاط السنوي ونوع الحالات ونظام الفرز</td><td>عدد أماكن العلاج وتنظيم المناطق</td></tr>
+<tr><td>الجراحة</td><td>أنواع الإجراءات والنشاط ونموذج الجراحة اليومية</td><td>أنواع غرف العمليات والخدمات الداعمة</td></tr>
+<tr><td>العناية المركزة</td><td>طبيعة الحالات والقدرات السريرية</td><td>متطلبات الغرف والعلاقات الحرجة</td></tr>
+<tr><td>التصوير الطبي</td><td>الأجهزة والفحوص والنشاط المتوقع</td><td>عدد غرف الفحص ومساحات المعدات والدعم</td></tr>
+<tr><td>الصيدلية</td><td>نطاق التحضير والتخزين والتوزيع</td><td>اختيار الغرف المساندة</td></tr>
+<tr><td>التعقيم</td><td>التعقيم الداخلي أو الخدمة المشتركة</td><td>العلاقات مع العمليات واللوجستيات</td></tr>
+<tr><td>مكافحة العدوى</td><td>فئات المرضى والعزل والمخاطر</td><td>توزيع غرف العزل والمناطق الحساسة</td></tr>
+<tr><td>التشغيل</td><td>ساعات العمل وأعداد العاملين</td><td>غرف الموظفين والخدمات والدعم</td></tr>
+<tr><td>الخدمات اللوجستية</td><td>طرق توريد المواد والتخلص من المخلفات</td><td>نقاط التسليم والتخزين ومسارات الحركة</td></tr>
+<tr><td>التوسع</td><td>الاحتياجات المستقبلية المتوقعة</td><td>قابلية التمدد وإعادة التنظيم</td></tr>
+</tbody></table></div>
+<p>لا تعني الفجوة بالضرورة وجود خطأ في البرنامج. فقد تكون بعض المعلومات غير مطلوبة بعد في المرحلة المبكرة، أو قيد التطوير لدى فريق التخطيط.</p>
+<p>المهم هو تحديد <strong>المعلومة الناقصة، والقرار الذي تعتمد عليه، والجهة المسؤولة عن توفيرها، والمرحلة التي يجب حسمها قبلها</strong>.</p>
+<h3 id="s1-3-3"><a class="anchor" href="#s1-3-3" aria-hidden="true" tabindex="-1">#</a>1.3.3 تصنيف المعلومات وفق أثرها</h3>
+<p>من المفيد التمييز بين ثلاثة مستويات:</p>
+<p><strong>معلومات حاسمة للتخطيط الأولي:</strong> مثل نوع المنشأة، ونطاق الخدمات، والسعات الرئيسية، والقيود الأساسية للموقع.</p>
+<p><strong>معلومات مؤثرة على تطوير التصميم:</strong> مثل العلاقات التفصيلية، ونموذج تشغيل الأقسام، وعدد الغرف المساندة.</p>
+<p><strong>معلومات مرتبطة بتفاصيل التصميم والتجهيز:</strong> مثل طراز معدات محددة، وتوزيع التجهيزات داخل الغرف، والتشطيبات الخاصة.</p>
+<p>ولا يعني هذا التصنيف أن المعلومات الفنية يمكن دائمًا تأجيلها. فاختيار جهاز طبي كبير، مثلًا، قد يؤثر منذ البداية على أبعاد الغرفة والهيكل ومسار إدخال الجهاز إلى المبنى.</p>
+<p>ولهذا ترتبط أولوية الحصول على المعلومات <strong>بدرجة تأثيرها على القرارات المعمارية وصعوبة تعديل تلك القرارات لاحقًا</strong>.</p>
+</section>
+<section aria-labelledby="s1-4">
+<h2 id="s1-4"><a class="anchor" href="#s1-4" aria-hidden="true" tabindex="-1">#</a>1.4 العلاقة بين البرنامج المعماري ومعايير دبي وأبوظبي</h2>
+<p>تُستخدم المعايير الصحية لمراجعة المتطلبات الوظيفية والتصميمية والتأكد من أن البرنامج المقترح يستجيب للحدود والاشتراطات ذات الصلة.</p>
+<p>ومع ذلك، لا يمكن اعتبار الدليل التنظيمي بديلًا كاملًا عن المشروع الطبي أو نموذج التشغيل. فالمعايير تقدم متطلبات ونماذج مرجعية، بينما يحدد نطاق الخدمات والنشاط المتوقع كيفية اختيار الوحدات وتطويرها ضمن مشروع معين.</p>
+<h3 id="s1-4-1"><a class="anchor" href="#s1-4-1" aria-hidden="true" tabindex="-1">#</a>1.4.1 الهيكل المرجعي لـ<span dir="ltr" lang="en">DHA</span></h3>
+<p>تتضمن أدلة <strong><span dir="ltr" lang="en">Dubai Health Authority — Health Facility Guidelines</span></strong> مجموعة من الأجزاء ذات الوظائف المختلفة:</p>
+<div class="table-wrap" role="region" tabindex="0" aria-label="الجزء · الاسم الإنجليزي · مجال الاستخدام"><table><thead><tr><th>الجزء</th><th>الاسم الإنجليزي</th><th>مجال الاستخدام</th></tr></thead><tbody>
+<tr><td dir="ltr"><span dir="ltr" lang="en">Part A</span></td><td dir="ltr"><span dir="ltr" lang="en">Administrative Provisions</span></td><td>الإجراءات الإدارية والتنظيمية المرتبطة بالمرافق الصحية</td></tr>
+<tr><td dir="ltr"><span dir="ltr" lang="en">Part B</span></td><td dir="ltr"><span dir="ltr" lang="en">Health Facility Briefing and Design</span></td><td>البرمجة والتخطيط والتصميم والوحدات الوظيفية</td></tr>
+<tr><td dir="ltr"><span dir="ltr" lang="en">Part C</span></td><td dir="ltr"><span dir="ltr" lang="en">Access, Mobility, Occupational Health &amp; Safety</span></td><td>الوصول والحركة والسلامة والصحة المهنية</td></tr>
+<tr><td dir="ltr"><span dir="ltr" lang="en">Part D</span></td><td dir="ltr"><span dir="ltr" lang="en">Infection Control</span></td><td>متطلبات مكافحة العدوى</td></tr>
+<tr><td dir="ltr"><span dir="ltr" lang="en">Part E</span></td><td dir="ltr"><span dir="ltr" lang="en">Engineering</span></td><td>متطلبات خدمات المبنى والهندسة</td></tr>
+<tr><td dir="ltr"><span dir="ltr" lang="en">Part F</span></td><td dir="ltr"><span dir="ltr" lang="en">Feasibility Planning &amp; Costing</span></td><td>دراسات الجدوى والتكاليف</td></tr>
+</tbody></table></div>
+<p>ويبين الموقع الرسمي أن <span dir="ltr" lang="en">Part B</span> يشمل وحدات <span dir="ltr" lang="en">FPU</span> والعلاقات الوظيفية وجداول <span dir="ltr" lang="en">SOA</span>، إضافة إلى مكونات الغرف المعيارية <span dir="ltr" lang="en">RDS</span> و<span dir="ltr" lang="en">RLS</span>. [<span dir="ltr" lang="en">S01</span>، وصف <span dir="ltr" lang="en">Part B</span> في صفحة <span dir="ltr" lang="en">Structure</span>، تاريخ الاطلاع 4 نوفمبر 2026].</p>
+<h3 id="s1-4-2"><a class="anchor" href="#s1-4-2" aria-hidden="true" tabindex="-1">#</a>1.4.2 الهيكل المرجعي لـ<span dir="ltr" lang="en">DoH</span> أبوظبي</h3>
+<p>تتيح <strong><span dir="ltr" lang="en">Department of Health — Abu Dhabi Health Facility Guidelines</span></strong> وثائق للتخطيط والتصميم، إلى جانب الوحدات الوظيفية ونماذج تقديم التصاميم ومراجعتها.</p>
+<p>ومن الوثائق المنشورة ضمن <em><span dir="ltr" lang="en">Administrative Provisions</span></em>:</p>
+<ul><li dir="ltr"><span dir="ltr" lang="en">Appendix 01 — Deliverables: Schematic Design Submission</span></li><li dir="ltr"><span dir="ltr" lang="en">Appendix 02 — Deliverables: Detailed Design Submission</span></li><li dir="ltr"><span dir="ltr" lang="en">Appendix 04 — Template for Non-Compliance Report</span></li><li dir="ltr"><span dir="ltr" lang="en">Appendix 05 — Template for SOA</span></li><li dir="ltr"><span dir="ltr" lang="en">Appendix 06 — Role Delineation Framework</span></li><li dir="ltr"><span dir="ltr" lang="en">Appendix 11 — Facility Types, FPU's and RDL's Guide</span></li><li dir="ltr"><span dir="ltr" lang="en">Appendix 12 — Health Facility Design Review Checklist</span></li></ul>
+<p><strong>تمت مطابقة هذه الأسماء والأرقام على فهرس <span dir="ltr" lang="en">DoH</span> المباشر بتاريخ 4 نوفمبر 2026.</strong> [<span dir="ltr" lang="en">S03</span>، <span dir="ltr" lang="en">Administrative Provisions — Appendices 01/02/04/05/06/11/12</span>]. لم يتم إثبات أرقام إصدارات ملفات <span dir="ltr" lang="en">PDF</span> الفردية، فتظل واجبة التوثيق عند استخدامها في تقديم رسمي.</p>
+<p>وجود هذه الوثائق مهم لأنه يوضح أن عملية المراجعة لا تقتصر على مطابقة مساحات الغرف، وإنما تشمل تصنيف المنشأة، وتحديد الخدمات، وإعداد المخرجات، وتسجيل حالات عدم المطابقة.</p>
+<h3 id="s1-4-3"><a class="anchor" href="#s1-4-3" aria-hidden="true" tabindex="-1">#</a>1.4.3 المصطلحات الرئيسية</h3>
+<div class="table-wrap" role="region" tabindex="0" aria-label="الاختصار · الاسم الإنجليزي الكامل · الترجمة العربية · الوظيفة"><table><thead><tr><th>الاختصار</th><th>الاسم الإنجليزي الكامل</th><th>الترجمة العربية</th><th>الوظيفة</th></tr></thead><tbody>
+<tr><td dir="ltr"><span dir="ltr" lang="en">KPU</span></td><td dir="ltr"><span dir="ltr" lang="en">Key Planning Unit</span></td><td>وحدة القياس التخطيطية الرئيسية</td><td>قياس القدرة التشغيلية المطلوبة للخدمة</td></tr>
+<tr><td dir="ltr"><span dir="ltr" lang="en">RDL</span></td><td dir="ltr"><span dir="ltr" lang="en">Role Delineation Level</span></td><td>مستوى تصنيف الخدمة الصحية</td><td>تحديد نطاق الخدمة ومستوى تعقيدها وتبعياتها</td></tr>
+<tr><td dir="ltr"><span dir="ltr" lang="en">FPU</span></td><td dir="ltr"><span dir="ltr" lang="en">Functional Planning Unit</span></td><td>الوحدة الوظيفية التخطيطية</td><td>تحديد متطلبات قسم سريري أو خدمي وعلاقاته</td></tr>
+<tr><td dir="ltr"><span dir="ltr" lang="en">SOA</span></td><td dir="ltr"><span dir="ltr" lang="en">Schedule of Accommodation</span></td><td>جدول الفراغات والمساحات</td><td>حصر أنواع الغرف وأعدادها ومساحاتها</td></tr>
+<tr><td dir="ltr"><span dir="ltr" lang="en">RDS</span></td><td dir="ltr"><span dir="ltr" lang="en">Room Data Sheet</span></td><td>بطاقة البيانات الفنية للغرفة</td><td>وصف متطلبات نوع الغرفة وتجهيزاتها وتشطيباتها</td></tr>
+<tr><td dir="ltr"><span dir="ltr" lang="en">RLS</span></td><td dir="ltr"><span dir="ltr" lang="en">Room Layout Sheet</span></td><td>مخطط التوزيع النموذجي للغرفة</td><td>بيان توزيع عناصر الغرفة وعلاقاتها وأبعادها</td></tr>
+<tr><td dir="ltr"><span dir="ltr" lang="en">IPC</span></td><td dir="ltr"><span dir="ltr" lang="en">Infection Prevention and Control</span></td><td>الوقاية من العدوى ومكافحتها</td><td>تحديد متطلبات الحد من مخاطر العدوى وانتقالها</td></tr>
+</tbody></table></div>
+<p><strong>إحالة للفصل الثاني:</strong> يُعرَّف <span dir="ltr" lang="en">KPU</span> هنا لتوضيح العلاقة بين البرمجة والسعة، بينما تُناقش معادلاته ومعاملاته وأمثلة حسابه في الفصل الثاني: <span dir="ltr" lang="en">Service Scope, RDL, KPU &amp; Capacity Planning</span>.</p>
+<h3 id="s1-4-3-1"><a class="anchor" href="#s1-4-3-1" aria-hidden="true" tabindex="-1">#</a>1.4.3.1 قاموس مصطلحات ثلاثي اللغة</h3>
+<div class="table-wrap" role="region" tabindex="0" aria-label="Français · English — المقابل التقريبي حسب السياق · العربية · تنبيه"><table><thead><tr><th dir="ltr"><span dir="ltr" lang="fr">Français</span></th><th><span dir="ltr" lang="en">English</span> — المقابل التقريبي حسب السياق</th><th>العربية</th><th>تنبيه</th></tr></thead><tbody>
+<tr><td dir="ltr"><span dir="ltr" lang="fr">Projet médical</span></td><td dir="ltr"><span dir="ltr" lang="en">Medical Project / Clinical Service Strategy</span></td><td>المشروع الطبي</td><td>ليس دائماً مرادفاً حرفياً لوثيقة <span dir="ltr" lang="en">Clinical Service Plan</span></td></tr>
+<tr><td dir="ltr"><span dir="ltr" lang="fr">Projet d’établissement</span></td><td dir="ltr"><span dir="ltr" lang="en">Institutional / Hospital Strategic Plan</span></td><td>مشروع المؤسسة / خطتها الاستراتيجية</td><td>يغطي تنظيم المؤسسة وأهدافها وقد يتجاوز التصميم</td></tr>
+<tr><td dir="ltr"><span dir="ltr" lang="fr">Schéma directeur</span></td><td dir="ltr"><span dir="ltr" lang="en">Master Plan / Strategic Development Plan</span></td><td>المخطط التوجيهي</td><td>قد يتضمن مراحل التطوير والاستثمار والتوسع</td></tr>
+<tr><td dir="ltr"><span dir="ltr" lang="fr">Cahier des Charges</span></td><td dir="ltr"><span dir="ltr" lang="en">Brief / Employer’s Requirements / Specification</span></td><td>دفتر الشروط أو المتطلبات</td><td>يحدد المعنى بطبيعة الوثيقة والعقد</td></tr>
+<tr><td dir="ltr"><span dir="ltr" lang="fr">Programmation hospitalière</span></td><td dir="ltr"><span dir="ltr" lang="en">Healthcare Facility Programming</span></td><td>برمجة المنشآت الصحية</td><td>تشمل الخدمة والتشغيل والاحتياجات المكانية</td></tr>
+<tr><td dir="ltr"><span dir="ltr" lang="fr">Bloc opératoire</span></td><td dir="ltr"><span dir="ltr" lang="en">Operating Suite / Surgical Department</span></td><td>مجمع العمليات الجراحية</td><td>ليس غرفة عمليات منفردة</td></tr>
+</tbody></table></div>
+<p>المقابلات <strong>تفسيرية وليست ترجمات تنظيمية متطابقة</strong>؛ يجب الرجوع إلى تعريف المصطلح في المرجع المستخدم.</p>
+<h3 id="s1-4-4"><a class="anchor" href="#s1-4-4" aria-hidden="true" tabindex="-1">#</a>1.4.4 كيف تُستخدم هذه الأدوات؟</h3>
+<p>لنأخذ خدمة <strong><span dir="ltr" lang="en">Medical Imaging</span> — التصوير الطبي</strong>.</p>
+<p>تبدأ العملية بتحديد أنواع الفحوص المطلوبة ونموذج تقديمها وحجم النشاط المتوقع، ثم دراسة مستوى الخدمة والتجهيزات اللازمة.</p>
+<p>بعد ذلك تُختار الوحدة الوظيفية المناسبة، وتُراجع جداول الفراغات، ثم متطلبات الغرف الفردية.</p>
+<p dir="ltr"><strong><span dir="ltr" lang="en">Clinical Requirements to Architectural Design</span>:</strong></p>
+<ol><li><strong><span dir="ltr" lang="en">Clinical Service Requirements</span>:</strong> الخدمات والفحوص المطلوبة.</li><li><strong><span dir="ltr" lang="en">Service Capacity &amp; RDL</span>:</strong> القدرة ومستوى الخدمة.</li><li><strong><span dir="ltr" lang="en">FPU</span>:</strong> متطلبات الوحدة وعلاقاتها.</li><li><strong><span dir="ltr" lang="en">SOA</span>:</strong> حصر الغرف وأعدادها ومساحاتها.</li><li><strong><span dir="ltr" lang="en">RDS / RLS</span>:</strong> المتطلبات الفنية والتوزيع النموذجي.</li><li><strong><span dir="ltr" lang="en">Architectural Design</span>:</strong> تنظيم الفراغات والحركة والتنسيق.</li></ol>
+<p>لا يمثل هذا المخطط عملية خطية صارمة. فقد تكشف متطلبات <span dir="ltr" lang="en">RDS</span> أو أبعاد المعدات عن ضرورة تعديل <span dir="ltr" lang="en">SOA</span>، أو قد تظهر أثناء اختبار التوزيع المعماري علاقة تشغيلية تحتاج إلى إعادة مراجعة البرنامج الوظيفي.</p>
+<h3 id="s1-4-5"><a class="anchor" href="#s1-4-5" aria-hidden="true" tabindex="-1">#</a>1.4.5 الفرق بين <span dir="ltr" lang="en">RDS</span> و<span dir="ltr" lang="en">RLS</span></h3>
+<p>من الضروري فهم هذا الفرق؛ لأن وجود مخطط نموذجي للغرفة لا يغني عن مراجعة بياناتها الفنية.</p>
+<p><strong><span dir="ltr" lang="en">Room Data Sheet</span> (<span dir="ltr" lang="en">RDS</span>):</strong> تتناول بطاقة بيانات الغرفة معلومات مثل المساحة، والإشغال، ووصف الوظيفة، والتشطيبات، والأثاث، والتجهيزات، والخدمات المطلوبة.</p>
+<p><strong><span dir="ltr" lang="en">Room Layout Sheet</span> (<span dir="ltr" lang="en">RLS</span>):</strong> تعرض نموذجًا لتوزيع عناصر الغرفة ومواضع التجهيزات، وقد تتضمن المخطط والمساقط الرأسية والأبعاد.</p>
+<p>توضح وثائق <span dir="ltr" lang="en">Standard Components</span> التابعة لـ<span dir="ltr" lang="en">DHA</span> أن مخططات <span dir="ltr" lang="en">RLS</span> <strong>إرشادية</strong> ويمكن اعتماد بدائل تخطيطية إذا استوفت نص الإرشادات، والحدود الدنيا لمساحات <span dir="ltr" lang="en">FPU</span>، والارتفاعات والأبعاد المحددة، والفصل النظيف/الملوث، وإمكانية الوصول وحركة الاستخدام، والمواقع النسبية لبعض الملحقات والتجهيزات. وينص المصدر أيضاً على إضافة <strong>2 م² لكل باب إضافي فوق الحد الأدنى المطلوب</strong> عند تقييم البديل؛ وتُراجع شروط كل غرفة في مرجعها الأصلي. [<span dir="ltr" lang="en">S04</span>، <span dir="ltr" lang="en">Standard Components</span>، الفقرات التمهيدية الخاصة بـ<span dir="ltr" lang="en">RDS/RLS</span>].</p>
+<p>وعليه، فمطابقة شكل غرفة مرسومة في <span dir="ltr" lang="en">RLS</span> ليست الهدف بذاته؛ وإنما التحقق من أن الحل البديل يستوفي متطلبات الأداء والمساحة والعناصر المحددة.</p>
+</section>
+<section aria-labelledby="s1-5">
+<h2 id="s1-5"><a class="anchor" href="#s1-5" aria-hidden="true" tabindex="-1">#</a>1.5 مثال تطبيقي — من طلب إنشاء مجمع عمليات إلى متطلبات معمارية</h2>
+<p>يتناول المرجع <em><span dir="ltr" lang="fr">Et si vous deviez concevoir un bloc opératoire ? — Le point de vue de l’architecte</span></em> مجموعة من القرارات التي تسبق تحديد المساحة النهائية لغرف العمليات.</p>
+<p>وتشمل طبيعة الجراحة، ونوع المرضى، والمعدات المستخدمة، وعدد العاملين، والعلاقات مع الطوارئ والعناية المركزة والاستشفاء، إضافة إلى مسارات المواد والأدوات. [<span dir="ltr" lang="en">R02</span>، ص 10–23].</p>
+<h3 id="s1-5-1"><a class="anchor" href="#s1-5-1" aria-hidden="true" tabindex="-1">#</a>1.5.1 الحالة الافتراضية</h3>
+<p>تطلب منشأة صحية تطوير مجمع يتضمن أربع غرف عمليات.</p>
+<p>لا يُعد عدد الغرف وحده وصفًا كافيًا للبرنامج.</p>
+<p>يجب تحديد طبيعة النشاط الجراحي المقترح قبل اعتماد توزيع المساحات.</p>
+<div class="table-wrap" role="region" tabindex="0" aria-label="سؤال التخطيط · المعلومات المطلوبة · التأثير المعماري"><table><thead><tr><th>سؤال التخطيط</th><th>المعلومات المطلوبة</th><th>التأثير المعماري</th></tr></thead><tbody>
+<tr><td>هل توجد جراحة يومية؟</td><td>نسبة ونوع العمليات دون مبيت</td><td>تنظيم الاستقبال والتحضير والإفاقة والخروج</td></tr>
+<tr><td>هل توجد جراحة استعجالية؟</td><td>أنواع الحالات ومسارات استقبالها</td><td>العلاقة مع الطوارئ والتصوير والعناية الحرجة</td></tr>
+<tr><td>ما التخصصات الجراحية؟</td><td>الجراحة العامة والعظام وغيرها</td><td>نوع الغرف والمعدات والمساحة</td></tr>
+<tr><td>هل الغرف عامة أم متخصصة؟</td><td>نموذج الاستخدام وجدول التشغيل</td><td>اختلاف الهندسة الداخلية والتجهيزات</td></tr>
+<tr><td>كيف تتم إعادة معالجة الأدوات؟</td><td>نظام التعقيم والإمداد</td><td>نقاط التسليم والتخزين ومسارات نقل الأدوات</td></tr>
+<tr><td>أين تتم الإفاقة؟</td><td>نموذج الرعاية بعد التخدير</td><td>موقع منطقة الإفاقة وتجهيزاتها</td></tr>
+<tr><td>كيف يدخل العاملون؟</td><td>بروتوكولات تبديل الملابس والوصول</td><td>غرف تبديل الملابس ونقاط التحكم</td></tr>
+<tr><td>ما احتياجات المعدات المستقبلية؟</td><td>خطة التجهيز والتحديث</td><td>المرونة ومسارات الاستبدال والخدمات</td></tr>
+</tbody></table></div>
+<h3 id="s1-5-2"><a class="anchor" href="#s1-5-2" aria-hidden="true" tabindex="-1">#</a>1.5.2 اختلاف أنواع غرف العمليات</h3>
+<p>يعرض المرجع المهني أمثلة تقريبية من مرافق مختلفة:</p>
+<div class="table-wrap" role="region" tabindex="0" aria-label="المساحة التقريبية · نوع الغرفة · التسمية العربية"><table><thead><tr><th>المساحة التقريبية</th><th>نوع الغرفة</th><th>التسمية العربية</th></tr></thead><tbody>
+<tr><td dir="ltr">~50 <span dir="ltr" lang="en">m</span>²</td><td dir="ltr"><span dir="ltr" lang="fr">Salle polyvalente</span></td><td>غرفة متعددة الاستعمالات</td></tr>
+<tr><td dir="ltr">~39 <span dir="ltr" lang="en">m</span>²</td><td dir="ltr"><span dir="ltr" lang="fr">Salle spécifique</span></td><td>غرفة متخصصة</td></tr>
+<tr><td dir="ltr">~80 <span dir="ltr" lang="en">m</span>²</td><td dir="ltr"><span dir="ltr" lang="fr">Salle hybride</span></td><td>غرفة هجينة</td></tr>
+</tbody></table></div>
+<p><strong>ملاحظة تحقق:</strong> هذه الأرقام (~39 و~50 و~80 م²) وتوصيفاتها منقولة من المسودة الأولى مع إحالة [<span dir="ltr" lang="en">R02</span>، ص 22]، <strong>ولم تُقابل في هذه المراجعة مع الصفحة الأصلية أو تُحدد تخصصات كل مثال</strong>. لذلك تُعرض أدناه كأمثلة تاريخية منسوبة إلى المرجع قيد التحقق؛ <strong>لا تصلح للاقتباس التصميمي أو التنظيمي حتى استكمال التوثيق</strong>. ليست حدوداً دنيا صادرة عن <span dir="ltr" lang="en">DHA</span> أو <span dir="ltr" lang="en">DoH</span>.</p>
+<p>توضح هذه الأمثلة أن نوع النشاط والتجهيزات قد يؤثران مباشرة على المساحة، لكن لا يجوز استنتاج المساحة التنظيمية المطلوبة من المثال وحده.</p>
+<p>يتطلب ذلك الرجوع إلى <span dir="ltr" lang="en">FPU</span> المناسبة وجداول <span dir="ltr" lang="en">SOA</span> وبطاقات <span dir="ltr" lang="en">RDS</span>، ثم التحقق من متطلبات المعدات المختارة.</p>
+<h3 id="s1-5-3"><a class="anchor" href="#s1-5-3" aria-hidden="true" tabindex="-1">#</a>1.5.3 العلاقة بين مجمع العمليات والأقسام المجاورة</h3>
+<p>يجب دراسة ارتباط المجمع بالخدمات التي يعتمد عليها، مع الانتباه إلى أن مستوى أهمية العلاقة يختلف حسب نوع المستشفى ونموذج الرعاية.</p>
+<p>وقد تشمل العلاقات المهمة:</p>
+<ul><li><span dir="ltr" lang="en">Emergency Department</span> — قسم الطوارئ.</li><li><span dir="ltr" lang="en">Intensive Care Unit</span> (<span dir="ltr" lang="en">ICU</span>) — وحدة العناية المركزة.</li><li><span dir="ltr" lang="en">Inpatient Units</span> — وحدات الاستشفاء.</li><li><span dir="ltr" lang="en">Sterile Services</span> — خدمات التعقيم.</li><li><span dir="ltr" lang="en">Diagnostic Imaging</span> — التصوير الطبي.</li><li><span dir="ltr" lang="en">Surgical Support Areas</span> — مناطق الدعم الجراحي.</li></ul>
+<p>ولا تكفي المسافة الخطية وحدها لتقييم هذه العلاقات.</p>
+<p>فالعلاقة الوظيفية تتأثر أيضًا بإمكان نقل المريض، والمصاعد، ونقاط التحكم، والأمن، والزمن التشغيلي، واحتمال تقاطع المسارات.</p>
+<p>ويشير المرجع إلى أهمية تحليل الحركة الأفقية والرأسية والمسافات وطرق الدخول والخروج. [<span dir="ltr" lang="en">R02</span>، ص 10–16].</p>
+<h3 id="s1-5-4"><a class="anchor" href="#s1-5-4" aria-hidden="true" tabindex="-1">#</a>1.5.4 من المثال إلى قرار قابل للتحقق</h3>
+<p>يُترجم طلب إنشاء أربع غرف عمليات إلى ثلاث مجموعات من القرارات:</p>
+<p><strong>قرارات سريرية وتشغيلية:</strong> أنواع العمليات، ومصادر المرضى، ونموذج الرعاية، والقدرة المطلوبة.</p>
+<p><strong>قرارات وظيفية:</strong> الغرف المساندة، والعلاقات، ومسارات المرضى والعاملين والمواد، ونقاط التحكم.</p>
+<p><strong>قرارات معمارية:</strong> التوزيع، وأبعاد الفراغات، والواجهات الداخلية والخارجية، والمرونة، وإمكان الصيانة وإدخال المعدات.</p>
+<p>وإذا لم تكن بعض القرارات السريرية محسومة، فيجب تسجيل أثرها على التصميم بدل استبدالها بافتراضات غير موثقة.</p>
+</section>
+<section aria-labelledby="s1-6">
+<h2 id="s1-6"><a class="anchor" href="#s1-6" aria-hidden="true" tabindex="-1">#</a>1.6 إدماج مكافحة العدوى في إعداد البرنامج</h2>
+<p>تؤثر متطلبات الوقاية من العدوى ومكافحتها في توزيع بعض الغرف، وعلاقات الحركة، ونقاط غسل اليدين، وطبيعة الأسطح، وطرق التخلص من المواد المستعملة.</p>
+<p>ويبين مرجع <em><span dir="ltr" lang="fr">Hygiène et Architecture dans les établissements de santé</span></em> أهمية ربط الأنشطة داخل الوحدة الصحية بمخاطر انتقال الملوثات، مع مراعاة حركة العاملين والمرضى والمعدات والمواد النظيفة والملوثة. [<span dir="ltr" lang="en">R03</span>، ص 15–19].</p>
+<h3 id="s1-6-1"><a class="anchor" href="#s1-6-1" aria-hidden="true" tabindex="-1">#</a>1.6.1 تحديد الخطر قبل اختيار الحل المكاني</h3>
+<p>من الأسئلة المهمة عند مراجعة البرنامج:</p>
+<div class="table-wrap" role="region" tabindex="0" aria-label="الحالة · المسألة التي تحتاج إلى تحديد · الأثر المعماري"><table><thead><tr><th>الحالة</th><th>المسألة التي تحتاج إلى تحديد</th><th>الأثر المعماري</th></tr></thead><tbody>
+<tr><td>مرضى يحتمل انتقال عدواهم للآخرين</td><td>نوع العدوى وطريقة انتقالها</td><td>اختيار نوع العزل وموقع الغرفة</td></tr>
+<tr><td>مرضى شديدو القابلية للعدوى</td><td>مستوى الحماية المطلوب</td><td>متطلبات البيئة المحمية</td></tr>
+<tr><td>تحضير أدوية أو مواد حساسة</td><td>مستوى الحماية والنظافة</td><td>طبيعة غرفة التحضير وعلاقتها بالفراغات المجاورة</td></tr>
+<tr><td>تخزين مواد نظيفة</td><td>حجم التداول والحماية</td><td>مواقع التخزين وطرق الإمداد</td></tr>
+<tr><td>التخلص من النفايات</td><td>أنواع النفايات وطرق احتوائها</td><td>مواقع التجميع والإخلاء</td></tr>
+<tr><td>التعامل مع الأدوات المستعملة</td><td>أسلوب النقل وإعادة المعالجة</td><td>مسارات التسليم والعلاقات مع الخدمات الداعمة</td></tr>
+</tbody></table></div>
+<p>يجب تحديد متطلبات العزل والتعامل مع المخاطر بالتنسيق مع المختصين السريريين ومكافحة العدوى، ثم الرجوع إلى <span dir="ltr" lang="en">Part D</span> والوثائق الفنية ذات الصلة قبل اعتماد الحل.</p>
+<h3 id="s1-6-2"><a class="anchor" href="#s1-6-2" aria-hidden="true" tabindex="-1">#</a>1.6.2 النظافة والتخطيط الوظيفي</h3>
+<p>لا يعني تنظيم الحركة الصحية بالضرورة إنشاء ممر منفصل لكل نوع من المواد.</p>
+<p>فقد يتطلب نموذج التشغيل فصلًا مكانيًا، أو احتواءً مناسبًا للمواد أثناء النقل، أو نقاط انتقال وتحكم خاصة، بحسب طبيعة الخدمة والمخاطر والمعايير المطبقة.</p>
+<p>يوضح الكتاب الفرنسي العلاقة بين مكافحة العدوى وكفاءة الحركة، ويشير إلى أن تحسين المسارات وتقليل المسافات غير الضرورية قد يساعدان أيضًا في تحسين ظروف عمل الطاقم. [<span dir="ltr" lang="en">R03</span>، ص 19].</p>
+<p>وهذا يبرز ضرورة دراسة المخاطر وكفاءة التشغيل معًا، بدل معالجة كل منهما بصورة مستقلة.</p>
+<h3 id="s1-6-3"><a class="anchor" href="#s1-6-3" aria-hidden="true" tabindex="-1">#</a>1.6.3 غرف الدعم ليست مساحات ثانوية</h3>
+<p>قد تظهر في البرنامج غرف مثل:</p>
+<ul><li><span dir="ltr" lang="en">Clean Utility Room</span> — غرفة الخدمات النظيفة.</li><li><span dir="ltr" lang="en">Dirty Utility Room</span> — غرفة الخدمات الملوثة.</li><li><span dir="ltr" lang="en">Clean Linen Store</span> — مخزن البياضات النظيفة.</li><li><span dir="ltr" lang="en">Soiled Linen Holding</span> — غرفة تجميع البياضات المستعملة.</li><li><span dir="ltr" lang="en">Waste Holding Room</span> — غرفة تجميع النفايات.</li><li><span dir="ltr" lang="en">Housekeeping Room</span> — غرفة خدمات التنظيف.</li><li><span dir="ltr" lang="en">Equipment Storage</span> — مخزن المعدات.</li></ul>
+<p>وجود هذه الفراغات ووظائفها وأعدادها يعتمد على طبيعة الوحدة ونموذج التشغيل.</p>
+<p>وتقدم الصفحات 21–38 من مرجع <em><span dir="ltr" lang="fr">Hygiène et Architecture</span></em> بطاقات تفصيلية لوظائف عدد من غرف وحدات الاستشفاء، بما فيها الغرف النظيفة والملوثة والخدمات المساندة. [<span dir="ltr" lang="en">R03</span>، ص 21–38].</p>
+<p>ولا تُستخدم القيم العددية القديمة في المرجع باعتبارها متطلبات حالية؛ بل تُراجع المساحات والتجهيزات من خلال <span dir="ltr" lang="en">FPU</span> و<span dir="ltr" lang="en">RDS</span> المناسبة للمشروع.</p>
+</section>
+<section aria-labelledby="s1-7">
+<h2 id="s1-7"><a class="anchor" href="#s1-7" aria-hidden="true" tabindex="-1">#</a>1.7 وثائق البرمجة الصحية والمعمارية — <span dir="ltr" lang="en">Briefing Documents</span></h2>
+<p>لكي يتحول البرنامج إلى مرجع موثوق للتصميم، يجب أن تكون متطلباته واضحة وقابلة للتحقق، وأن يعرف فريق المشروع مصدر كل قرار والجهة المسؤولة عن اعتماده.</p>
+<p>ولا يكفي وجود ملف واحد بعنوان <em><span dir="ltr" lang="fr">Cahier des Charges</span></em> أو <em><span dir="ltr" lang="en">Clinical Brief</span></em> إذا كان يفتقر إلى بيانات النشاط أو العلاقات أو الافتراضات الأساسية.</p>
+<h3 id="s1-7-1"><a class="anchor" href="#s1-7-1" aria-hidden="true" tabindex="-1">#</a>1.7.1 مجموعة الوثائق الأساسية</h3>
+<div class="table-wrap" role="region" tabindex="0" aria-label="الوثيقة · المحتوى المتوقع · دورها في التصميم"><table><thead><tr><th>الوثيقة</th><th>المحتوى المتوقع</th><th>دورها في التصميم</th></tr></thead><tbody>
+<tr><td dir="ltr"><span dir="ltr" lang="en">Project Definition &amp; Objectives</span></td><td>نوع المشروع وأهدافه وحدود نطاقه</td><td>تحديد الإطار العام</td></tr>
+<tr><td dir="ltr"><span dir="ltr" lang="en">Clinical Service Plan</span></td><td>التخصصات والخدمات ونموذج الرعاية</td><td>اختيار الوظائف الطبية</td></tr>
+<tr><td dir="ltr"><span dir="ltr" lang="en">Operational Policies</span></td><td>ساعات التشغيل ومسارات المرضى وآليات تقديم الخدمة</td><td>تطوير العلاقات ومسارات الحركة</td></tr>
+<tr><td dir="ltr"><span dir="ltr" lang="en">Capacity Schedule</span></td><td>السعات والقدرات التشغيلية الرئيسية</td><td>تحديد حجم الوحدات</td></tr>
+<tr><td dir="ltr"><span dir="ltr" lang="en">Functional Brief</span></td><td>وظائف الأقسام وعلاقاتها الأساسية</td><td>إعداد التخطيط الوظيفي</td></tr>
+<tr><td dir="ltr"><span dir="ltr" lang="en">Schedule of Accommodation</span> (<span dir="ltr" lang="en">SOA</span>)</td><td>أنواع الغرف وأعدادها ومساحاتها</td><td>إعداد البرنامج المساحي</td></tr>
+<tr><td dir="ltr"><span dir="ltr" lang="en">Medical Equipment Schedule</span></td><td>التجهيزات المطلوبة والاحتياجات المرتبطة بها</td><td>التنسيق المكاني والتقني</td></tr>
+<tr><td dir="ltr"><span dir="ltr" lang="en">Room Data Sheets</span> (<span dir="ltr" lang="en">RDS</span>)</td><td>متطلبات الغرف الفردية</td><td>التحقق من تفاصيل التصميم</td></tr>
+<tr><td dir="ltr"><span dir="ltr" lang="en">Site &amp; Statutory Constraints</span></td><td>ظروف الموقع والقيود التنظيمية</td><td>اختبار قابلية تنفيذ البرنامج</td></tr>
+<tr><td dir="ltr"><span dir="ltr" lang="en">Project Budget &amp; Phasing</span></td><td>الميزانية والجدول الزمني ومراحل التنفيذ</td><td>تقييم الخيارات والتوسع</td></tr>
+</tbody></table></div>
+<p>هذه الوثائق لا تحمل بالضرورة الأسماء نفسها في جميع المشاريع، وقد تكون بعض المعلومات مجمعة في ملف واحد.</p>
+<p>المعيار الأساسي هو <strong>اكتمال المعلومات واتساقها وإمكانية تتبعها</strong>، وليس عدد الملفات أو أسماؤها.</p>
+<h3 id="s1-7-2"><a class="anchor" href="#s1-7-2" aria-hidden="true" tabindex="-1">#</a>1.7.2 الفرق بين وجود المعلومة وصلاحيتها للاعتماد</h3>
+<p>قد تتضمن وثيقة البرنامج معلومة صحيحة في وقت إعدادها لكنها لم تعد متوافقة مع التطورات اللاحقة.</p>
+<p>مثال ذلك تحديد نوع جهاز للتصوير الطبي قبل تغيير استراتيجية الشراء، أو إعداد جدول الغرف بناءً على نموذج تشغيل تغير لاحقًا.</p>
+<p>ولهذا يجب أن تخضع المعلومات لأربعة اختبارات:</p>
+<ol><li><strong><span dir="ltr" lang="en">Completeness</span> — الاكتمال:</strong> هل تتضمن المعلومات الضرورية للقرار؟</li><li><strong><span dir="ltr" lang="en">Consistency</span> — الاتساق:</strong> هل تتوافق مع بقية وثائق المشروع؟</li><li><strong><span dir="ltr" lang="en">Traceability</span> — قابلية التتبع:</strong> هل يمكن معرفة مصدر المتطلب وأساسه؟</li><li><strong><span dir="ltr" lang="en">Approval Status</span> — حالة الاعتماد:</strong> هل المتطلب مقترح، أم قيد المراجعة، أم معتمد؟</li></ol>
+<h3 id="s1-7-3"><a class="anchor" href="#s1-7-3" aria-hidden="true" tabindex="-1">#</a>1.7.3 هرم وثائق المشروع</h3>
+<p>يجب أن يوضح المشروع مرجعية الوثائق وأولوية تطبيقها عند التعارض.</p>
+<p>وعلى المستوى العملي، يجب التمييز بين:</p>
+<ul><li>المتطلبات التشريعية والتنظيمية المطبقة على المشروع.</li><li>متطلبات الجهة الصحية المختصة.</li><li>متطلبات العميل والمشغل.</li><li>متطلبات المستخدمين السريريين.</li><li>المعايير والمراجع الفنية المعتمدة في نطاق المشروع.</li><li>الافتراضات التصميمية التي تحتاج إلى تحقق أو اعتماد.</li></ul>
+<p>لا توجد أولوية تعاقدية واحدة تصلح لكل المشاريع؛ فقد تحدد العقود والجهات التنظيمية إجراءات مختلفة لمعالجة التعارضات.</p>
+<p>لكن <strong>لا يجوز معالجة تعارض بين متطلب تنظيمي ومتطلب عميل بمجرد اختيار الخيار الأسهل معماريًا</strong>. ويجب إحالته إلى الجهة صاحبة الصلاحية ضمن إجراءات المشروع.</p>
+</section>
+<section aria-labelledby="s1-8">
+<h2 id="s1-8"><a class="anchor" href="#s1-8" aria-hidden="true" tabindex="-1">#</a>1.8 مراجعة البرنامج والتحقق منه قبل اعتماده</h2>
+<p>تُعد هذه المرحلة حلقة الوصل بين إعداد المتطلبات والانتقال إلى التصميم المعماري.</p>
+<p>فبعد تجميع وثائق البرنامج، يجب إجراء مراجعة متكاملة بدل الاكتفاء بالتأكد من وجود ملف <span dir="ltr" lang="en">SOA</span> أو قائمة أقسام.</p>
+<h3 id="s1-8-1"><a class="anchor" href="#s1-8-1" aria-hidden="true" tabindex="-1">#</a>1.8.1 مراجعة النطاق السريري — <span dir="ltr" lang="en">Clinical Scope Review</span></h3>
+<p>تهدف إلى التأكد من أن الخدمات المدرجة تعبر عن نطاق المنشأة.</p>
+<p>تشمل المراجعة:</p>
+<ul><li>التخصصات والخدمات التي ستقدم داخل المنشأة.</li><li>الخدمات التي ستقدم من خلال الإحالة.</li><li>نطاق الخدمات التشخيصية والعلاجية.</li><li>مستويات الرعاية.</li><li>ساعات التشغيل.</li><li>الفئات المستهدفة من المرضى.</li><li>الخدمات المساندة الداخلية والمشتركة والخارجية.</li></ul>
+<p><strong>المخرج:</strong> وثيقة نطاق خدمات واضحة، أو قائمة بالقرارات التي تحتاج إلى حسم.</p>
+<h3 id="s1-8-2"><a class="anchor" href="#s1-8-2" aria-hidden="true" tabindex="-1">#</a>1.8.2 مراجعة السعات — <span dir="ltr" lang="en">Capacity Review</span></h3>
+<p>يجب التحقق من ارتباط السعات المقترحة بحجم النشاط ونموذج التشغيل.</p>
+<p>ويختلف أساس القياس حسب الخدمة:</p>
+<div class="table-wrap" role="region" tabindex="0" aria-label="نوع الخدمة · مثال لوحدة قياس"><table><thead><tr><th>نوع الخدمة</th><th>مثال لوحدة قياس</th></tr></thead><tbody>
+<tr><td dir="ltr"><span dir="ltr" lang="en">Inpatient Care</span></td><td>عدد الأسرة</td></tr>
+<tr><td dir="ltr"><span dir="ltr" lang="en">Operating Theatres</span></td><td>عدد غرف العمليات</td></tr>
+<tr><td dir="ltr"><span dir="ltr" lang="en">Outpatient Clinics</span></td><td>غرف الاستشارة وقدرتها التشغيلية</td></tr>
+<tr><td dir="ltr"><span dir="ltr" lang="en">Emergency Department</span></td><td>أماكن العلاج والفرز والملاحظة حسب النموذج</td></tr>
+<tr><td dir="ltr"><span dir="ltr" lang="en">Diagnostic Imaging</span></td><td>عدد أجهزة الفحص وقدرتها</td></tr>
+<tr><td dir="ltr"><span dir="ltr" lang="en">Day Care</span></td><td>أماكن الرعاية أو العلاج اليومي</td></tr>
+</tbody></table></div>
+<p>لا يمكن اشتقاق جميع هذه السعات مباشرة من عدد الأسرة.</p>
+<p>ويمكن توضيح ذلك بمعادلة تقديرية للأسرة:</p>
+<div class="math" dir="ltr" data-tex="\text{Beds} =
+\frac{\text{Annual Admissions}\times\text{ALOS}}
+{365\times\text{Target Occupancy}}"><code class="tex-fallback">\text{Beds} =
+\frac{\text{Annual Admissions}\times\text{ALOS}}
+{365\times\text{Target Occupancy}}</code></div>
+<p>حيث:</p>
+<ul><li><strong><span dir="ltr" lang="en">Annual Admissions</span>:</strong> عدد حالات الإدخال السنوية.</li><li><strong><span dir="ltr" lang="en">ALOS — Average Length of Stay</span>:</strong> متوسط مدة الإقامة.</li><li><strong><span dir="ltr" lang="en">Target Occupancy</span>:</strong> نسبة الإشغال التخطيطية المستهدفة.</li></ul>
+<h3 id="s1-8-2-example"><a class="anchor" href="#s1-8-2-example" aria-hidden="true" tabindex="-1">#</a>مثال حسابي توضيحي</h3>
+<p>لنفترض وجود 7,000 حالة إدخال متوقعة سنويًا، ومتوسط إقامة يبلغ 4 أيام، ونسبة إشغال تخطيطية مفترضة تبلغ 80%.</p>
+<div class="math" dir="ltr" data-tex="\text{Beds} =
+\frac{7{,}000\times4}{365\times0.80}
+\approx95.9"><code class="tex-fallback">\text{Beds} =
+\frac{7{,}000\times4}{365\times0.80}
+\approx95.9</code></div>
+<p>إذن يبلغ الاحتياج الحسابي التقريبي <strong>96 سريرًا</strong> في هذا النموذج المبسط.</p>
+<p>ولا يُعتبر الرقم سعة نهائية قابلة للاعتماد؛ إذ يجب مراعاة توزيع الأسرة بين الخدمات، واختلاف أوقات الذروة، ومعدلات الإشغال المناسبة لأنواع الرعاية، والقيود التشغيلية، والعزل، والنمو المتوقع.</p>
+<p>كما أن نسبة 80% افتراض تعليمي هنا، وليست نسبة إلزامية مستخرجة من <span dir="ltr" lang="en">DHA</span> أو <span dir="ltr" lang="en">DoH</span>.</p>
+<p>يُدرس اشتقاق السعات تفصيليًا في الفصل الثاني، أما أهميته في الفصل الأول فهي إظهار ضرورة وجود أساس واضح للأرقام التي يتضمنها البرنامج.</p>
+<h3 id="s1-8-3"><a class="anchor" href="#s1-8-3" aria-hidden="true" tabindex="-1">#</a>1.8.3 مراجعة العلاقات الوظيفية — <span dir="ltr" lang="en">Functional Relationship Review</span></h3>
+<p>تهدف إلى التأكد من أن البرنامج يوضح العلاقات التي تؤثر على تشغيل المستشفى.</p>
+<p>مثال ذلك:</p>
+<div class="table-wrap" role="region" tabindex="0" aria-label="العلاقة · سبب أهميتها · طريقة التحقق"><table><thead><tr><th>العلاقة</th><th>سبب أهميتها</th><th>طريقة التحقق</th></tr></thead><tbody>
+<tr><td dir="ltr"><span dir="ltr" lang="en">Emergency ↔ Imaging</span></td><td>فحوص الحالات الطارئة</td><td>نموذج الرعاية وحجم النقل</td></tr>
+<tr><td dir="ltr"><span dir="ltr" lang="en">Operating Suite ↔ ICU</span></td><td>نقل الحالات التي تحتاج إلى رعاية حرجة</td><td>متطلبات النقل والمراقبة</td></tr>
+<tr><td dir="ltr"><span dir="ltr" lang="en">Operating Suite ↔ Sterile Services</span></td><td>إمداد الأدوات وإعادة معالجتها</td><td>نموذج التعقيم واللوجستيات</td></tr>
+<tr><td dir="ltr"><span dir="ltr" lang="en">Inpatient Units ↔ Diagnostic Services</span></td><td>نقل المرضى المنومين</td><td>تحليل الحركة</td></tr>
+<tr><td dir="ltr"><span dir="ltr" lang="en">Pharmacy ↔ Clinical Departments</span></td><td>توزيع الأدوية والمستلزمات</td><td>سياسة الصرف والإمداد</td></tr>
+</tbody></table></div>
+<p>هذه علاقات تحتاج إلى تقييم، وليست تعليمات بوضع الأقسام متجاورة مباشرة في كل مشروع.</p>
+<p>ويجب تحديد درجة الأولوية وفق نموذج التشغيل.</p>
+<h3 id="s1-8-4"><a class="anchor" href="#s1-8-4" aria-hidden="true" tabindex="-1">#</a>1.8.4 مراجعة البرنامج المساحي — <span dir="ltr" lang="en">SOA Review</span></h3>
+<p>تخضع جداول الفراغات للمراجعة من عدة جوانب:</p>
+<p><strong>مراجعة وظيفية:</strong> هل توجد جميع الغرف اللازمة لتنفيذ الأنشطة المطلوبة؟</p>
+<p><strong>مراجعة كمية:</strong> هل عدد الغرف مرتبط بالسعات والأنشطة؟</p>
+<p><strong>مراجعة مساحية:</strong> هل المساحات متوافقة مع متطلبات <span dir="ltr" lang="en">FPU</span> و<span dir="ltr" lang="en">RDS</span> ذات الصلة؟</p>
+<p><strong>مراجعة تنظيمية:</strong> هل تم تضمين متطلبات الوصول والخصوصية والأمن ومكافحة العدوى؟</p>
+<p><strong>مراجعة تشغيلية:</strong> هل تتوافر المساحات اللازمة للتمريض والتخزين والتنظيف والخدمات اللوجستية؟</p>
+<p><strong>مراجعة الاتساق:</strong> هل تتوافق تسميات الغرف وأكوادها وكمياتها بين <span dir="ltr" lang="en">SOA</span> والمخططات وبطاقات <span dir="ltr" lang="en">RDS</span>؟</p>
+<h3 id="s1-8-5"><a class="anchor" href="#s1-8-5" aria-hidden="true" tabindex="-1">#</a>1.8.5 الفرق بين المساحات الصافية والإجمالية</h3>
+<p>يجب التمييز بين:</p>
+<p><strong><span dir="ltr" lang="en">Net Room Area</span> — المساحة الصافية للغرفة:</strong> المساحة المحددة للغرفة بحسب طريقة القياس المعتمدة.</p>
+<p><strong><span dir="ltr" lang="en">Departmental Area</span> — مساحة القسم:</strong> مجموع المساحات المحتسبة للقسم وفق تعريفات المشروع.</p>
+<p><strong><span dir="ltr" lang="en">Gross Floor Area</span> — المساحة الطابقية الإجمالية:</strong> مساحة تُحسب وفق منهجية محددة قد تتضمن عناصر لا تدخل ضمن المساحة الصافية للغرف.</p>
+<p>ولا يجوز افتراض نسبة ثابتة لتحويل مجموع مساحات الغرف إلى المساحة الإجمالية للمستشفى دون تحديد منهجية القياس والعناصر المحتسبة.</p>
+<p>يتناول دليل <span dir="ltr" lang="en">DHA Part B</span>، <strong><span dir="ltr" lang="en">Planning Preliminaries</span> §5.4 — <span dir="ltr" lang="en">Floor Area Measurement Methodology, Definitions and Diagrams</span></strong>، منهج قياس يسمى <strong><span dir="ltr" lang="en">No-Gap</span></strong>، مع تعريف مستقل لمساحات الغرف والأقسام والعناصر المستثناة. في §5.4.1، تُقاس الغرف إلى الوجوه أو محاور الجدران بحسب حالة الحد الفاصل، وتُحتسب مساحة القسم بإضافة ممراته الداخلية وفق تعريف <span dir="ltr" lang="en">FPU</span>؛ ولا تُدرج غرف بعض الخدمات والـ<span dir="ltr" lang="en">Risers</span> والسلالم في مجموع الغرف بالمنهج المذكور. تُقرب المساحات إلى أقرب 0.5 م². <strong>وهذه ليست قاعدة عامة لقياس <span dir="ltr" lang="en">GFA</span> خارج سياق الدليل، ولا يجوز مساواتها تلقائياً بالمساحة الصافية الفعلية بين التشطيبات.</strong> [<span dir="ltr" lang="en">S05</span>، §5.4 و§5.4.1، ص 25–30/45، <span dir="ltr" lang="en">Version 1.0</span> المعروض].</p>
+</section>
+<section aria-labelledby="s1-9">
+<h2 id="s1-9"><a class="anchor" href="#s1-9" aria-hidden="true" tabindex="-1">#</a>1.9 آلية اعتماد البرنامج — <span dir="ltr" lang="en">Brief Validation &amp; Approval</span></h2>
+<p>تتضمن عملية الاعتماد مستويات مختلفة، ويجب الفصل بين <strong>اعتماد المالك للمتطلبات</strong> و<strong>المراجعة التنظيمية للتصميم</strong>.</p>
+<h3 id="s1-9-1"><a class="anchor" href="#s1-9-1" aria-hidden="true" tabindex="-1">#</a>1.9.1 اعتماد المشروع الطبي</h3>
+<p>يجب التأكد من أن نطاق الخدمات ونموذج الرعاية والسعات الأساسية قد خضعت للمراجعة من أصحاب الاختصاص.</p>
+<p>وتشمل القرارات الرئيسية:</p>
+<ul><li>نطاق الخدمات الطبية.</li><li>نموذج التشغيل.</li><li>توزيع القدرة الاستيعابية.</li><li>التبعيات السريرية.</li><li>الاحتياجات المستقبلية.</li><li>الخدمات المساندة.</li></ul>
+<p>الاعتماد في هذا المستوى يخص الجهات المسؤولة عن المشروع والخدمات السريرية، بحسب ترتيباته المؤسسية والتعاقدية.</p>
+<h3 id="s1-9-2"><a class="anchor" href="#s1-9-2" aria-hidden="true" tabindex="-1">#</a>1.9.2 اعتماد البرنامج الوظيفي</h3>
+<p>تُراجع العلاقات والوظائف والأنشطة والخدمات المساندة بالتنسيق بين المخطط الصحي والمستخدمين وفريق التصميم.</p>
+<p>ويجب تحديد نقاط الخلاف أو النقص قبل إصدار نسخة مرجعية للاستخدام في التصميم.</p>
+<h3 id="s1-9-3"><a class="anchor" href="#s1-9-3" aria-hidden="true" tabindex="-1">#</a>1.9.3 اعتماد البرنامج المساحي</h3>
+<p>يُراجع <span dir="ltr" lang="en">SOA</span> للتأكد من أن:</p>
+<ul><li>الغرف المطلوبة موجودة.</li><li>الكميات مرتبطة بنموذج الخدمة.</li><li>المساحات تتوافق مع المتطلبات المطبقة.</li><li>وظائف الغرف واضحة.</li><li>الغرف المساندة مدرجة.</li><li>المساحات العامة والخدمية محتسبة بالمنهجية الصحيحة.</li><li>البرنامج يتوافق مع حدود المشروع والميزانية.</li></ul>
+<h3 id="s1-9-4"><a class="anchor" href="#s1-9-4" aria-hidden="true" tabindex="-1">#</a>1.9.4 مراجعة قابلية التصميم</h3>
+<p>يجري فريق التصميم مراجعة للبرنامج مقابل قيود الموقع والكتلة والبنية العامة للمشروع.</p>
+<p>وقد تظهر مسائل تتطلب العودة إلى المالك أو المخطط الصحي، مثل:</p>
+<ul><li>عدم إمكانية تحقيق علاقة مباشرة بين قسمين.</li><li>الحاجة إلى زيادة مساحة بسبب المعدات.</li><li>تعارض حركة المرضى مع الخدمات اللوجستية.</li><li>عدم كفاية المساحة المخصصة لمناطق الدعم.</li><li>تعارض متطلبات التوسع مع حدود الموقع.</li></ul>
+<p>ينبغي توثيق هذه الحالات والخيارات المقترحة لمعالجتها.</p>
+<h3 id="s1-9-5"><a class="anchor" href="#s1-9-5" aria-hidden="true" tabindex="-1">#</a>1.9.5 المرجع التنظيمي للاعتماد</h3>
+<p>تتيح دائرة الصحة بأبوظبي نماذج لتقديم مخططات التصميم المبدئي والتفصيلي، إضافة إلى نموذج لتسجيل عدم المطابقة وقائمة مراجعة تصميم المنشآت الصحية. [<span dir="ltr" lang="en">S03</span>، الملاحق 01 و02 و04 و12، فهرس <span dir="ltr" lang="en">Administrative Provisions</span>، تاريخ الاطلاع 4 نوفمبر 2026].</p>
+<p>وهذا يؤكد ضرورة أن تكون مراجعة المتطلبات قابلة للتوثيق.</p>
+<p>لكن لا يعني اعتماد البرنامج داخليًا أنه حصل تلقائيًا على موافقة الجهة التنظيمية؛ فالموافقة التنظيمية تتطلب إجراءات ووثائق خاصة بحسب نوع المنشأة والمرحلة والجهة المختصة.</p>
+<h3 id="s1-9-6"><a class="anchor" href="#s1-9-6" aria-hidden="true" tabindex="-1">#</a>1.9.6 سجل الاعتماد</h3>
+<p>يمكن أن تُنظم حالة الوثائق وفق النموذج التالي:</p>
+<div class="table-wrap" role="region" tabindex="0" aria-label="الوثيقة · الحالة · الجهة المسؤولة · الإجراء التالي"><table><thead><tr><th>الوثيقة</th><th>الحالة</th><th>الجهة المسؤولة</th><th>الإجراء التالي</th></tr></thead><tbody>
+<tr><td dir="ltr"><span dir="ltr" lang="en">Clinical Service Plan</span></td><td dir="ltr"><span dir="ltr" lang="en">Approved</span></td><td>المالك / الفريق السريري</td><td>استخدام نطاق الخدمات المعتمد</td></tr>
+<tr><td dir="ltr"><span dir="ltr" lang="en">Operational Policies</span></td><td dir="ltr"><span dir="ltr" lang="en">Under Review</span></td><td>المشغل</td><td>استكمال مراجعة التدفقات</td></tr>
+<tr><td dir="ltr"><span dir="ltr" lang="en">Capacity Schedule</span></td><td dir="ltr"><span dir="ltr" lang="en">Approved with Comments</span></td><td>المخطط الصحي / المالك</td><td>إغلاق الملاحظات المؤثرة</td></tr>
+<tr><td dir="ltr"><span dir="ltr" lang="en">Functional Brief</span></td><td dir="ltr"><span dir="ltr" lang="en">Under Review</span></td><td>فريق التخطيط</td><td>مراجعة العلاقات</td></tr>
+<tr><td dir="ltr"><span dir="ltr" lang="en">SOA</span></td><td dir="ltr"><span dir="ltr" lang="en">Draft</span></td><td>فريق التخطيط والتصميم</td><td>التحقق من الغرف والمساحات</td></tr>
+<tr><td dir="ltr"><span dir="ltr" lang="en">Equipment Schedule</span></td><td dir="ltr"><span dir="ltr" lang="en">Preliminary</span></td><td>مخطط المعدات</td><td>تثبيت متطلبات الأجهزة المؤثرة</td></tr>
+<tr><td dir="ltr"><span dir="ltr" lang="en">Architectural Requirements Register</span></td><td dir="ltr"><span dir="ltr" lang="en">In Progress</span></td><td>فريق التصميم</td><td>ربط المتطلبات بالقرارات والمخرجات</td></tr>
+</tbody></table></div>
+<p>هذه حالات نموذجية لإدارة المعلومات. وتختلف التسميات وإجراءات التوقيع والاعتماد بحسب نظام إدارة المشروع. <strong>لا تُعد <span dir="ltr" lang="en">Approved</span> أو <span dir="ltr" lang="en">Approved with Comments</span> في الجدول رموز صلاحية <span dir="ltr" lang="en">ISO 19650</span> قياسية أو دليلاً على ترخيص صحي.</strong> تستخدم بعض الملحقات الوطنية، ومنها ملحق المملكة المتحدة، رموز صلاحية وتصنيف للحاويات المعلوماتية؛ لا تُفرض تلك الرموز على مشاريع الإمارات أو الجزائر ما لم تُعتمد ضمن متطلبات المشروع واتفاقيات تبادل المعلومات.</p>
+<h3 id="s1-9-7"><a class="anchor" href="#s1-9-7" aria-hidden="true" tabindex="-1">#</a>1.9.7 الربط بين <span dir="ltr" lang="en">Clinical Brief</span> وإدارة المعلومات وفق <span dir="ltr" lang="en">ISO 19650</span></h3>
+<p>البرنامج الصحي ليس ملف <span dir="ltr" lang="en">PDF</span> معزولاً؛ بل مجموعة متطلبات يجب أن تظل قابلة للتتبع خلال تطور المشروع. يمكن أن يغذي البرنامج <strong><span dir="ltr" lang="en">Project Information Requirements</span> (<span dir="ltr" lang="en">PIR</span>)</strong>، وأن يحدد ما يجب تبادله ضمن <strong><span dir="ltr" lang="en">Exchange Information Requirements</span> (<span dir="ltr" lang="en">EIR</span>)</strong>، مع الانتباه إلى أن <strong><span dir="ltr" lang="en">Asset Information Requirements</span> (<span dir="ltr" lang="en">AIR</span>)</strong> ترتبط بمعلومات التشغيل التي يحتاجها مالك الأصل أو مشغله. وتختلف نقطة التقاء هذه المتطلبات بحسب نموذج التوريد والمعلومات المطلوب تسليمها. [<span dir="ltr" lang="en">P02</span>، <span dir="ltr" lang="en">Guidance Part D</span>، §1.4].</p>
+<p><strong>مثال عملي للغرف:</strong> يخصص لكل فراغ معرّف ثابت مثل <code dir="ltr">HSP-L02-OR-001</code> (رمز توضيحي وليس معياراً إلزامياً) يربط سجل الغرف/الـ<span dir="ltr" lang="en">SOA</span> ببطاقة <span dir="ltr" lang="en">RDS</span> والمخطط ونموذج <span dir="ltr" lang="en">Revit</span> وسجل المعدات. يجب أن يُدار الفرق بين <strong><span dir="ltr" lang="en">Room ID</span></strong> المستقر و<strong><span dir="ltr" lang="en">Room Name</span></strong> القابل للتغيير، وأن تُحفظ حقول مثل الوظيفة والمساحة المطلوبة والمساحة المصممة وحالة الاعتماد ورقم التعديل.</p>
+<p>قد يُدار ذلك عبر قاعدة بيانات متخصصة مثل <span dir="ltr" lang="en">dRofus</span>، أو سجل غرفة منظّم مرتبط بنموذج <span dir="ltr" lang="en">BIM</span>، أو نظام آخر يضمن معرّفات مشتركة وتاريخ تغيير وتقارير فرق. <strong>اسم البرنامج ليس شرطاً معيارياً</strong>؛ المعيار هو وجود مالك للبيانات، وأصل معتمد، وإجراء مراجعة وتبادل وتحديث.</p>
+<p><strong>فحوص آلية مفيدة:</strong> كشف الغرف المفقودة؛ مقارنة الكمية بين <span dir="ltr" lang="en">SOA</span> والنموذج؛ انحراف المساحة الفعلية عن المطلوبة؛ ازدواجية <span dir="ltr" lang="en">Room IDs</span>؛ نقص <span dir="ltr" lang="en">RDS</span>؛ اختلاف حالة الموافقة أو إصدار البيانات. ولا يُغني أي فحص رقمي عن المراجعة السريرية للوظيفة. [<span dir="ltr" lang="en">P02</span>؛ منهج تطبيق مرتبط بإدارة معلومات المشروع].</p>
+</section>
+<section aria-labelledby="s1-10">
+<h2 id="s1-10"><a class="anchor" href="#s1-10" aria-hidden="true" tabindex="-1">#</a>1.10 إدارة التعديلات بعد اعتماد البرنامج</h2>
+<p>لا يعني اعتماد البرنامج أن المعلومات ستظل ثابتة طوال مراحل التصميم.</p>
+<p>فقد تتغير احتياجات الخدمة، أو نموذج التشغيل، أو مواصفات المعدات، أو نطاق المشروع.</p>
+<p>ويؤكد المرجع <em><span dir="ltr" lang="fr">Et si vous deviez concevoir un bloc opératoire ?</span></em> أن التصميم عملية متكررة تشمل التحليل والتركيب والتقييم، وأن مدة تطوير المشاريع الكبيرة قد تجعل بعض احتياجاتها تتغير أثناء التنفيذ. [<span dir="ltr" lang="en">R02</span>، ص 6–7، 29–30].</p>
+<h3 id="s1-10-1"><a class="anchor" href="#s1-10-1" aria-hidden="true" tabindex="-1">#</a>1.10.1 ما الذي يُعد تعديلًا مؤثرًا؟</h3>
+<p>يمكن أن يشمل التعديل المؤثر:</p>
+<ul><li>إضافة خدمة طبية جديدة.</li><li>تعديل عدد الأسرة أو غرف العلاج.</li><li>تغيير نوع جهاز رئيسي.</li><li>تغيير توزيع الخدمات بين الأقسام.</li><li>تغيير نموذج حركة المرضى.</li><li>إضافة متطلبات عزل أو حماية.</li><li>تعديل استراتيجية التعقيم أو الإمداد.</li><li>تغيير حدود المشروع أو مراحله.</li></ul>
+<p>ويجب تقييم أثر التعديل قبل إدخاله إلى المخططات.</p>
+<h3 id="s1-10-2"><a class="anchor" href="#s1-10-2" aria-hidden="true" tabindex="-1">#</a>1.10.2 تقييم أثر التغيير — <span dir="ltr" lang="en">Change Impact Assessment</span></h3>
+<p><strong>مثال: تحويل غرفة عمليات عامة إلى غرفة هجينة</strong></p>
+<p>تغيير سريري وتقني قد يتطلب مراجعة التصميم.</p>
+<div class="table-wrap" role="region" tabindex="0" aria-label="مجال التأثير · المسألة المطلوب مراجعتها"><table><thead><tr><th>مجال التأثير</th><th>المسألة المطلوب مراجعتها</th></tr></thead><tbody>
+<tr><td dir="ltr"><span dir="ltr" lang="en">Clinical</span></td><td>نوع الإجراءات الطبية الجديدة</td></tr>
+<tr><td dir="ltr"><span dir="ltr" lang="en">Space</span></td><td>المساحة والأبعاد التشغيلية</td></tr>
+<tr><td dir="ltr"><span dir="ltr" lang="en">Equipment</span></td><td>حجم الأجهزة ومناطق حركتها</td></tr>
+<tr><td dir="ltr"><span dir="ltr" lang="en">Structure</span></td><td>الأحمال ونقاط التثبيت</td></tr>
+<tr><td dir="ltr"><span dir="ltr" lang="en">Building Services</span></td><td>الحيز والخدمات اللازمة بالتنسيق مع المختصين</td></tr>
+<tr><td dir="ltr"><span dir="ltr" lang="en">Circulation</span></td><td>مسارات المعدات والمرضى</td></tr>
+<tr><td dir="ltr"><span dir="ltr" lang="en">Cost &amp; Programme</span></td><td>أثر التعديل على التكلفة والجدول الزمني</td></tr>
+</tbody></table></div>
+<p>توضّح هذه الحالة أن تغيير اسم الغرفة في جدول <span dir="ltr" lang="en">SOA</span> لا يكفي لاعتماد التحويل.</p>
+<p>يجب مراجعة المتطلبات الوظيفية والمعمارية والفنية ذات الصلة، ثم تحديث الوثائق المتأثرة وفق نظام ضبط التغييرات.</p>
+<h3 id="s1-10-3"><a class="anchor" href="#s1-10-3" aria-hidden="true" tabindex="-1">#</a>1.10.3 سجل التعديلات — <span dir="ltr" lang="en">Change Register</span></h3>
+<div class="table-wrap" role="region" tabindex="0" aria-label="ID · التاريخ · الجهة الطالبة / السبب · وصف التغيير والوثائق المتأثرة · أثر التكلفة / المدة / النطاق · المسؤول عن التقييم · صاحب الاعتماد · القرار والحالة"><table><thead><tr><th dir="ltr"><span dir="ltr" lang="en">ID</span></th><th>التاريخ</th><th>الجهة الطالبة / السبب</th><th>وصف التغيير والوثائق المتأثرة</th><th>أثر التكلفة / المدة / النطاق</th><th>المسؤول عن التقييم</th><th>صاحب الاعتماد</th><th>القرار والحالة</th></tr></thead><tbody>
+<tr><td dir="ltr"><span dir="ltr" lang="en">CR-01</span></td><td>يُحدد</td><td>المستخدم السريري / تحديث نموذج الخدمة</td><td>تعديل الجراحة اليومية؛ <span dir="ltr" lang="en">Clinical Brief</span>، <span dir="ltr" lang="en">FPU</span>، <span dir="ltr" lang="en">SOA</span></td><td>قيد الدراسة</td><td>المخطط الصحي + فريق التصميم</td><td>المالك / المفوض</td><td>قيد التقييم</td></tr>
+<tr><td dir="ltr"><span dir="ltr" lang="en">CR-02</span></td><td>يُحدد</td><td>مخطط التجهيزات / تغيير خطة التوريد</td><td>إضافة جهاز تصوير؛ <span dir="ltr" lang="en">Equipment Schedule</span>، <span dir="ltr" lang="en">SOA</span>، <span dir="ltr" lang="en">RDS</span></td><td>المساحة والـ<span dir="ltr" lang="en">MEP</span> والكلفة قيد الدراسة</td><td dir="ltr"><span dir="ltr" lang="en">Medical Equipment Planner + MEP + Architect</span></td><td>المالك / المفوض</td><td>يحتاج إلى اعتماد</td></tr>
+<tr><td dir="ltr"><span dir="ltr" lang="en">CR-03</span></td><td>يُحدد</td><td>فريق التخطيط / تحسين الحركة</td><td>نقل قسم سريري؛ <span dir="ltr" lang="en">Adjacency</span>، <span dir="ltr" lang="en">Zoning</span>، <span dir="ltr" lang="en">Flow</span></td><td>تكلفة ومدة غير محددتين بعد</td><td dir="ltr"><span dir="ltr" lang="en">Architect + Clinical Team</span></td><td>المالك / المفوض</td><td>مراجعة مشتركة</td></tr>
+<tr><td dir="ltr"><span dir="ltr" lang="en">CR-04</span></td><td>يُحدد</td><td>فريق <span dir="ltr" lang="en">IPC</span> / تقييم مخاطر</td><td>تحديث متطلبات العزل؛ <span dir="ltr" lang="en">IPC</span>، <span dir="ltr" lang="en">RDS</span>، <span dir="ltr" lang="en">Plans</span></td><td>أثر فني ومالي قيد الدراسة</td><td dir="ltr"><span dir="ltr" lang="en">IPC + MEP + Architect</span></td><td>المالك / المفوض</td><td>تنسيق مع المختصين</td></tr>
+</tbody></table></div>
+<p>يجب الاحتفاظ بتاريخ التعديل، وسببه، ومصدره، والجهة التي طلبته، ونتيجة تقييمه، والقرار النهائي، <strong>ورابطه بالنسخة المعتمدة للمستند وحالة تنفيذ القرار</strong>. الحقول الواردة في الجدول أمثلة؛ لا تُستبدل عبارة «قيد الدراسة» بمبلغ أو مدة تقديرية غير مستندة إلى تقييم رسمي.</p>
+<p>والهدف من ذلك هو الحد من تضارب المعلومات بين وثائق البرنامج والمخططات وإصدارات التصميم.</p>
+</section>
+<section aria-labelledby="s1-11">
+<h2 id="s1-11"><a class="anchor" href="#s1-11" aria-hidden="true" tabindex="-1">#</a>1.11 مخرجات الفصل الأول — ما الذي يجب أن يكون متوفرًا للانتقال إلى التخطيط المعماري؟</h2>
+<p>تُختتم مرحلة مراجعة البرنامج بمجموعة مخرجات تسمح ببدء التخطيط على أساس واضح.</p>
+<p>ولا يشترط أن تكون جميع التفاصيل قد بلغت مستوى التصميم النهائي، لكن ينبغي أن تكون المعلومات المؤثرة على القرارات الأساسية معروفة، أو أن تكون الافتراضات والنواقص المتبقية محددة ومضبوطة.</p>
+<h3 id="s1-11-checklist"><a class="anchor" href="#s1-11-checklist" aria-hidden="true" tabindex="-1">#</a>قائمة التحقق — <span dir="ltr" lang="en">Clinical Brief Readiness Checklist</span></h3>
+<ul class="checklist"><li><span class="box" aria-hidden="true"></span><span>تحديد نوع المنشأة الصحية ونطاق خدماتها</span></li><li><span class="box" aria-hidden="true"></span><span>تحديد نموذج الرعاية والتشغيل لكل خدمة رئيسية</span></li><li><span class="box" aria-hidden="true"></span><span>مراجعة بيانات النشاط والسعات الأساسية</span></li><li><span class="box" aria-hidden="true"></span><span>تحديد مستويات الخدمات والتبعيات السريرية</span></li><li><span class="box" aria-hidden="true"></span><span>اختيار الوحدات الوظيفية <span dir="ltr" lang="en">FPU</span> ذات الصلة</span></li><li><span class="box" aria-hidden="true"></span><span>توثيق العلاقات الرئيسية بين الأقسام</span></li><li><span class="box" aria-hidden="true"></span><span>تحديد متطلبات مكافحة العدوى المؤثرة على التنظيم</span></li><li><span class="box" aria-hidden="true"></span><span>تحديد الخدمات المساندة وأساليب تقديمها</span></li><li><span class="box" aria-hidden="true"></span><span>مراجعة <span dir="ltr" lang="en">SOA</span> والاتساق بين كميات الغرف ومساحاتها</span></li><li><span class="box" aria-hidden="true"></span><span>تحديد متطلبات المعدات الطبية المؤثرة على التصميم</span></li><li><span class="box" aria-hidden="true"></span><span>مراجعة القيود الأساسية للموقع والجهات التنظيمية</span></li><li><span class="box" aria-hidden="true"></span><span>تسجيل النواقص والتعارضات والمسؤولين عن حلها</span></li><li><span class="box" aria-hidden="true"></span><span>تحديد حالة اعتماد وثائق البرنامج وإصداراتها</span></li><li><span class="box" aria-hidden="true"></span><span>توثيق الافتراضات المقبولة لبدء التصميم</span></li><li><span class="box" aria-hidden="true"></span><span>وضع آلية ضبط التغييرات اللاحقة</span></li></ul>
+<p>قائمة مراجعة مهنية تجمع متطلبات المعلومات التي تناولها الفصل. لا تمثل نموذج اعتماد تنظيمي رسمي.</p>
+<h3 id="s1-11-register"><a class="anchor" href="#s1-11-register" aria-hidden="true" tabindex="-1">#</a>نموذج سجل المتطلبات — <span dir="ltr" lang="en">Architectural Requirements Register</span></h3>
+<p>من أكثر أدوات المراجعة فائدة ربط المتطلب بمصدره وقرار التصميم المتأثر به.</p>
+<div class="table-wrap" role="region" tabindex="0" aria-label="ID · المتطلب · المصدر · الأثر · حالة الإغلاق"><table><thead><tr><th dir="ltr"><span dir="ltr" lang="en">ID</span></th><th>المتطلب</th><th>المصدر</th><th>الأثر</th><th>حالة الإغلاق</th></tr></thead><tbody>
+<tr><td dir="ltr"><span dir="ltr" lang="en">BR-01</span></td><td>تحديد نطاق الجراحة</td><td dir="ltr"><span dir="ltr" lang="en">Clinical Service Plan</span></td><td>اختيار نوع غرف العمليات</td><td>معتمد</td></tr>
+<tr><td dir="ltr"><span dir="ltr" lang="en">BR-02</span></td><td>تحديد نوع مرضى العناية المركزة</td><td dir="ltr"><span dir="ltr" lang="en">Clinical Brief</span></td><td>متطلبات وحدة <span dir="ltr" lang="en">ICU</span></td><td>قيد المراجعة</td></tr>
+<tr><td dir="ltr"><span dir="ltr" lang="en">BR-03</span></td><td>تحديد نظام التعقيم</td><td dir="ltr"><span dir="ltr" lang="en">Operational Policy</span></td><td>العلاقات والمخازن ومسارات الأدوات</td><td>يحتاج إلى حسم</td></tr>
+<tr><td dir="ltr"><span dir="ltr" lang="en">BR-04</span></td><td>تحديد أجهزة التصوير</td><td dir="ltr"><span dir="ltr" lang="en">Equipment Schedule</span></td><td>أبعاد الفراغات والعلاقات</td><td>أولي</td></tr>
+<tr><td dir="ltr"><span dir="ltr" lang="en">BR-05</span></td><td>تحديد استراتيجية غرف العزل</td><td dir="ltr"><span dir="ltr" lang="en">IPC Requirements</span></td><td>التخطيط والتوزيع الداخلي</td><td>قيد المراجعة</td></tr>
+<tr><td dir="ltr"><span dir="ltr" lang="en">BR-06</span></td><td>تحديد حدود التوسع</td><td dir="ltr"><span dir="ltr" lang="en">Project Brief / Site Data</span></td><td>موقع الكتل والمرونة المستقبلية</td><td>معتمد مبدئيًا</td></tr>
+</tbody></table></div>
+<p>يتيح هذا السجل تتبع المتطلبات من مصدرها حتى تأثيرها على التصميم.</p>
+<p>كما يمكن ربطه بالملاحظات وطلبات المعلومات وإصدارات الرسومات ضمن بيئة إدارة المشروع.</p>
+</section>
+<section aria-labelledby="s1-12">
+<h2 id="s1-12"><a class="anchor" href="#s1-12" aria-hidden="true" tabindex="-1">#</a>1.12 أسئلة المراجعة والفهم — <span dir="ltr" lang="en">Review Questions</span></h2>
+<p>تختبر هذه الأسئلة فهم المفاهيم الرئيسية وقدرة المعماري على تطبيقها، وليست قائمة أسئلة مخصصة لمقابلات التوظيف.</p>
+<h3 id="s1-12-q1"><a class="anchor" href="#s1-12-q1" aria-hidden="true" tabindex="-1">#</a>السؤال الأول: ما الفرق بين المشروع الطبي والبرنامج المعماري؟</h3>
+<p><strong>الإجابة:</strong> يحدد المشروع الطبي الخدمات الصحية ونموذج تقديم الرعاية والاحتياجات السريرية، بينما يترجم البرنامج الوظيفي والمساحي هذه المتطلبات إلى وظائف وأقسام وغرف وعلاقات ومساحات يمكن تطويرها معماريًا.</p>
+<p>ولا يعني ذلك أن المرحلتين منفصلتان تمامًا؛ بل تحتاجان إلى التنسيق المتبادل طوال عملية البرمجة والتصميم.</p>
+<h3 id="s1-12-q2"><a class="anchor" href="#s1-12-q2" aria-hidden="true" tabindex="-1">#</a>السؤال الثاني: هل يمكن تصميم مستشفى اعتمادًا على عدد الأسرة فقط؟</h3>
+<p><strong>الإجابة:</strong> لا يكفي عدد الأسرة لتحديد نطاق الخدمات أو أنواع الأقسام أو أعداد غرف العمليات والتصوير والطوارئ.</p>
+<p>يتطلب إعداد البرنامج معرفة نموذج الرعاية وحجم النشاط ومستوى الخدمة والسعات المطلوبة لكل وظيفة، إضافة إلى الاحتياجات المساندة والعلاقات التشغيلية.</p>
+<h3 id="s1-12-q3"><a class="anchor" href="#s1-12-q3" aria-hidden="true" tabindex="-1">#</a>السؤال الثالث: ما الإجراء المناسب عند استلام برنامج وظيفي غير مكتمل؟</h3>
+<p><strong>الإجابة:</strong> تُراجع الوثيقة لتحديد المعلومات الناقصة والتعارضات والافتراضات، ثم يُقيّم تأثيرها على التصميم. وتُحال المسائل السريرية والتشغيلية إلى الجهات المختصة، مع تسجيل القرارات والاعتمادات المطلوبة قبل تثبيت الحلول المعمارية المتأثرة.</p>
+<h3 id="s1-12-q4"><a class="anchor" href="#s1-12-q4" aria-hidden="true" tabindex="-1">#</a>السؤال الرابع: ما الفرق بين <span dir="ltr" lang="en">FPU</span> و<span dir="ltr" lang="en">SOA</span> و<span dir="ltr" lang="en">RDS</span> و<span dir="ltr" lang="en">RLS</span>؟</h3>
+<p><strong>الإجابة:</strong> تصف <span dir="ltr" lang="en">FPU</span> وظيفة الوحدة ومتطلباتها وعلاقاتها، ويحدد <span dir="ltr" lang="en">SOA</span> الغرف وكمياتها ومساحاتها، بينما تقدم <span dir="ltr" lang="en">RDS</span> المتطلبات التفصيلية لكل نوع من الغرف، وتوضح <span dir="ltr" lang="en">RLS</span> توزيعًا نموذجيًا للعناصر والأبعاد داخل الغرفة.</p>
+<p>وتُستخدم هذه الأدوات بصورة مترابطة، ولا تحل إحداها محل الأخرى.</p>
+<h3 id="s1-12-q5"><a class="anchor" href="#s1-12-q5" aria-hidden="true" tabindex="-1">#</a>السؤال الخامس: لماذا لا يمكن نسخ برنامج غرف العمليات من مستشفى آخر؟</h3>
+<p><strong>الإجابة:</strong> تختلف متطلبات مجمع العمليات باختلاف نوع الجراحة، وأعداد المرضى، ونموذج التشغيل، والمعدات، ومستوى الخدمة، والعلاقات مع الأقسام الأخرى.</p>
+<p>يمكن الاستفادة من المشاريع السابقة في فهم الخيارات، لكن يجب تطوير البرنامج وفق متطلبات المشروع الجديد والتحقق منه بالمعايير المطبقة.</p>
+<h3 id="s1-12-q6"><a class="anchor" href="#s1-12-q6" aria-hidden="true" tabindex="-1">#</a>السؤال السادس: متى يجب إدماج متطلبات مكافحة العدوى؟</h3>
+<p><strong>الإجابة:</strong> تبدأ مراجعة مخاطر العدوى أثناء البرمجة وتستمر خلال التصميم والتنفيذ والتشغيل.</p>
+<p>وقد تؤثر هذه المتطلبات على اختيار أنواع الغرف والعلاقات ومسارات الحركة والتشطيبات وتجهيزات الغرف. لذلك لا يصح التعامل معها بوصفها مراجعة نهائية للتشطيبات فقط.</p>
+<h3 id="s1-12-q7"><a class="anchor" href="#s1-12-q7" aria-hidden="true" tabindex="-1">#</a>السؤال السابع: هل يجوز تعديل <span dir="ltr" lang="en">SOA</span> بعد اعتماد البرنامج؟</h3>
+<p><strong>الإجابة:</strong> يمكن تعديل جدول المساحات عندما تتغير المتطلبات أو تظهر حاجة فنية أو تشغيلية مبررة، ولكن يجب تقييم أثر التعديل وتوثيقه والحصول على الاعتماد المناسب قبل إدراجه ضمن وثائق التصميم المعتمدة.</p>
+<h3 id="s1-12-q8"><a class="anchor" href="#s1-12-q8" aria-hidden="true" tabindex="-1">#</a>السؤال الثامن: متى يصبح البرنامج جاهزًا لبدء <span dir="ltr" lang="en">Concept Design</span>؟</h3>
+<p><strong>الإجابة:</strong> عندما تتوافر المعلومات الأساسية اللازمة لاتخاذ قرارات تخطيطية مبررة، وتكون الافتراضات والنواقص المؤثرة معروفة وموثقة، مع تحديد المسؤولين عن استكمالها.</p>
+<p>ولا يتطلب ذلك اكتمال جميع تفاصيل المشروع، لكنه يتطلب عدم تثبيت القرارات التي تعتمد على معلومات لم تُحسم بعد.</p>
+</section>
+<section aria-labelledby="s1-13">
+<h2 id="s1-13"><a class="anchor" href="#s1-13" aria-hidden="true" tabindex="-1">#</a>1.13 الخلاصة العلمية للفصل الأول</h2>
+<p>إعداد البرنامج المعماري للمستشفى ليس مجرد تحويل قائمة خدمات طبية إلى قائمة غرف ومساحات.</p>
+<p>إنه عملية تبدأ بتحديد الحاجة الصحية، وتطوير نطاق الخدمات ونموذج الرعاية، ثم ترجمة هذه المعلومات إلى وظائف وعلاقات وسعات وفراغات يمكن التحقق منها.</p>
+<p>وتتطلب العملية تنسيقًا بين المالك والمخطط الصحي والفريق السريري والمعماري والمختصين الفنيين، مع تحديد واضح للمسؤوليات.</p>
+<p>كما أن البرنامج الوظيفي والمساحي لا يصبح أساسًا موثوقًا للتصميم إلا عندما تُراجع معلوماته من حيث الاكتمال والاتساق وقابلية التتبع وحالة الاعتماد.</p>
+<p>ومن هنا يمكن استخلاص خمسة مبادئ رئيسية:</p>
+<ol><li><strong>المشروع الطبي يقود تعريف الخدمة، لكن البرنامج المعماري يتطلب أيضًا اختبار قابلية تنفيذها مكانيًا.</strong></li><li><strong>عدد الأسرة أو قائمة الأقسام لا يمثلان بمفردهما برنامجًا وظيفيًا متكاملًا.</strong></li><li><strong>تُستخدم <span dir="ltr" lang="en">FPU</span> و<span dir="ltr" lang="en">SOA</span> و<span dir="ltr" lang="en">RDS</span> و<span dir="ltr" lang="en">RLS</span> أدوات مترابطة لتحويل الوظائف إلى متطلبات مكانية وفنية قابلة للتحقق.</strong></li><li><strong>يجب إدماج متطلبات مكافحة العدوى والحركة والخدمات المساندة منذ مراحل البرمجة ذات الصلة، لا بعد انتهاء التخطيط.</strong></li><li><strong>يعتمد الانتقال المنضبط إلى التصميم على مراجعة المتطلبات وتوثيق الافتراضات والاعتمادات وضبط التغييرات.</strong></li></ol>
+<p>وعليه، فإن جودة التخطيط المعماري للمستشفى لا تُقاس فقط بقدرة التصميم على استيعاب الغرف المطلوبة، بل بمدى استجابته للمتطلبات السريرية والتشغيلية والوظيفية والتنظيمية التي يستند إليها البرنامج.</p>
+</section>
+<section aria-labelledby="appendix-a">
+<h2 id="appendix-a"><a class="anchor" href="#appendix-a" aria-hidden="true" tabindex="-1">#</a>ملحق <span dir="ltr" lang="en">A</span> — حدود التحقق وملاحظات ما قبل الإتاحة العامة</h2>
+<p><strong>المصادر الفرنسية <span dir="ltr" lang="en">R01–R03</span>:</strong> أُبقيت الاقتباسات التحليلية وأرقام الصفحات كما ظهرت في <span dir="ltr" lang="en">Draft 01</span> للحفاظ على المتن، لكن لم تتوفر نسخ المصدر الأصلية للمطابقة المباشرة. لذلك لا يُعتبر وصف الصفحات أو قياسات غرف العمليات تدقيقاً مستقلاً؛ يجب مقابلة <span dir="ltr" lang="en">R01</span> ص 10–16 ومواقع المشاريع المذكورة، و<span dir="ltr" lang="en">R02</span> ص 6–7 و10–23 و22 و29–30، و<span dir="ltr" lang="en">R03</span> ص 12–13 و15–19 و21–38 قبل اعتمادها للإحالة العلمية النهائية.</p>
+<p><strong>المراجع التنظيمية:</strong> تمت مراجعة بوابات <span dir="ltr" lang="en">DHA</span> و<span dir="ltr" lang="en">DoH</span> والمقاطع المشار إليها بتاريخ 4 نوفمبر 2026. هذا يُثبت الوجود والمضمون الظاهر على الصفحات التي فُحصت، ولا يثبت تلقائياً أن ملفات جميع الأجزاء هي آخر إصدار نافذ في مشروع بعينه. ينبغي استكمال خانة رقم الإصدار والغلاف وتاريخ النفاذ لكل <span dir="ltr" lang="en">PDF</span> عند استعماله تعاقدياً أو تنظيمياً.</p>
+<p><strong>سياق الاختصاص:</strong> <span dir="ltr" lang="en">DHA</span> و<span dir="ltr" lang="en">DoH</span> جهتان مختلفتان في الاختصاص. لا تطبق وثائقهما تلقائياً خارج نطاقهما، ولا تُعامل أمثلة فرنسا أو <span dir="ltr" lang="en">RIBA</span> أو <span dir="ltr" lang="en">ISO 19650</span> بديلاً عن اشتراطات الترخيص المحلية، بما فيها المتطلبات الجزائرية إذا طُبق النص في الجزائر.</p>
+<p><strong>إعادة النشر:</strong> المرجع الرسمي لـ<span dir="ltr" lang="en">DHA</span> يبين شروطاً على إعادة إنتاج المواد لأغراض تجارية أو دعائية؛ لذلك صيغ هذا الفصل كتحليل وشرح أصلي، ولا يُعاد نشر الرسومات والجداول الرسمية بنسخ مطابقة قبل مراجعة حقوق الاستخدام. [<span dir="ltr" lang="en">S01</span>، <span dir="ltr" lang="en">Conditions of Use</span>].</p>
+</section>
+<section aria-labelledby="sources-register">
+<h2 id="sources-register"><a class="anchor" href="#sources-register" aria-hidden="true" tabindex="-1">#</a>سجل المراجع والمواضع المستخدمة</h2>
+<div class="table-wrap" role="region" tabindex="0" aria-label="الرمز · المرجع · الاستخدام الفعلي / حالة المطابقة"><table><thead><tr><th>الرمز</th><th>المرجع</th><th>الاستخدام الفعلي / حالة المطابقة</th></tr></thead><tbody>
+<tr><td dir="ltr"><span dir="ltr" lang="en">R01</span></td><td dir="ltr"><em><span dir="ltr" lang="fr">Architecture Hospitalière — N°16</span></em></td><td>§1.2، ص 10–15 بحسب <span dir="ltr" lang="en">Draft 01</span>؛ <strong>لم تُطابق الصفحات مع الأصل</strong>. الإشارة إلى <span dir="ltr" lang="fr">Clinique Rhéna</span> و<span dir="ltr" lang="fr">Centre Hospitalier Métropole Savoie</span> في التعريف بالمصدر فقط، دون ادعاء استخدام دراسة حالة موثقة هنا</td></tr>
+<tr><td dir="ltr"><span dir="ltr" lang="en">R02</span></td><td dir="ltr"><em><span dir="ltr" lang="fr">Et si vous deviez concevoir un bloc opératoire ?</span></em></td><td>§1.5 ص 10–23؛ §1.5.2 ص 22؛ §1.10 ص 6–7 و29–30، <strong>كلها إحالات تحتاج مطابقة الأصل</strong></td></tr>
+<tr><td dir="ltr"><span dir="ltr" lang="en">R03</span></td><td dir="ltr"><em><span dir="ltr" lang="fr">Hygiène et Architecture dans les établissements de santé</span></em></td><td>§1.1 ص 12–13؛ §1.6 ص 15–19 و21–38، <strong>تحتاج مطابقة الأصل</strong></td></tr>
+<tr><td dir="ltr"><span dir="ltr" lang="en">S01</span></td><td dir="ltr"><a href="https://services.dha.gov.ae/tahpi-app/HealthFacilityGuidelines/Guidelines/Index/DHAHFG" target="_blank" rel="noopener" dir="ltr">DHA Health Facility Guidelines</a></td><td>هيكل <span dir="ltr" lang="en">Parts A–F</span> في §1.4.1؛ شروط الاستخدام؛ اطلاع 2026-11-04؛ إصدار كل <span dir="ltr" lang="en">Part</span> لا يزال بحاجة توثيق مستقل</td></tr>
+<tr><td dir="ltr"><span dir="ltr" lang="en">S02</span></td><td dir="ltr"><a href="https://stem.doh.gov.ae/HealthFacilityGuidelines/" target="_blank" rel="noopener" dir="ltr">DoH Health Facility Guidelines</a></td><td>بوابة التخطيط والتصميم؛ اطلاع 2026-11-04؛ إصدار كل ملف يحدد منفرداً</td></tr>
+<tr><td dir="ltr"><span dir="ltr" lang="en">S03</span></td><td dir="ltr"><a href="https://stem.doh.gov.ae/HealthFacilityGuidelines/Guidelines/Index/Administrative-Provisions" target="_blank" rel="noopener" dir="ltr">DoH Administrative Provisions</a></td><td>الملاحق 01، 02، 04، 05، 06، 11، 12 في §§1.4.2، 1.9.5؛ العناوين والأرقام تحققت من الفهرس في 2026-11-04</td></tr>
+<tr><td dir="ltr"><span dir="ltr" lang="en">S04</span></td><td dir="ltr"><a href="https://services.dha.gov.ae/tahpi-app/HealthFacilityGuidelines/StdComps/All/AtoE/DHAHFG" target="_blank" rel="noopener" dir="ltr">DHA Standard Components</a></td><td>شروط بدائل <span dir="ltr" lang="en">RLS/RDS</span> في §1.4.5؛ اطلاع 2026-11-04</td></tr>
+<tr><td dir="ltr"><span dir="ltr" lang="en">S05</span></td><td dir="ltr"><a href="https://services.dha.gov.ae/tahpi-app/HealthFacilityGuidelines/Guidelines/FileContent/Preview/DHAHFG/DHA_part_b_planning_preliminaries_rev8" target="_blank" rel="noopener" dir="ltr">DHA Part B — Planning Preliminaries</a></td><td>§5.4–5.4.1، ص 25–30/45 في §1.8.5، <span dir="ltr" lang="en">Version 1.0</span> الظاهرة في النص المنشور</td></tr>
+<tr><td dir="ltr"><span dir="ltr" lang="en">P01</span></td><td dir="ltr"><a href="https://www.riba.org/media/sszn5kkt/2020ribaplanofworktemplatepdf.pdf" target="_blank" rel="noopener" dir="ltr">RIBA Plan of Work 2020</a></td><td><span dir="ltr" lang="en">Stages 0–2</span>؛ جدول مراحل البرمجة في §1.1</td></tr>
+<tr><td dir="ltr"><span dir="ltr" lang="en">P02</span></td><td dir="ltr"><a href="https://www.ukbimframework.org/wp-content/uploads/2021/02/Guidance-Part-D_Developing-information-requirements_Edition-2.pdf" target="_blank" rel="noopener" dir="ltr">UK BIM Framework Guidance Part D, Ed.2 (2021)</a></td><td>مبادئ <span dir="ltr" lang="en">AIR/PIR/EIR</span> في §1.9.7؛ يجب الرجوع إلى الوثيقة الأصلية والتحقق من الرابط قبل النشر</td></tr>
+</tbody></table></div>
+<p><strong>نهاية الفصل الأول — المسودة رقم 02 (منقحة، مع نقاط تحقق موثقة)</strong></p>
+<p>يتناول الفصل الثاني بصورة مستقلة اشتقاق نطاق الخدمات والقدرات المطلوبة، بما في ذلك <strong><span dir="ltr" lang="en">Service Scope, Role Delineation Levels</span> (<span dir="ltr" lang="en">RDL</span>), <span dir="ltr" lang="en">Key Planning Units</span> (<span dir="ltr" lang="en">KPU</span>) &amp; <span dir="ltr" lang="en">Capacity Planning</span></strong>. ويبقى هذا الفصل مخصصًا للبرمجة الصحية والمعمارية وآليات مراجعة وثائقها واعتمادها.</p>
+</section>
+    <div class="pager">
+      <a href="./"><small>السلسلة</small>العمارة الاستشفائية — Healthcare Architecture</a>
+      <div class="soon"><small>الفصل الثاني — قيد الإعداد</small><span dir="ltr" lang="en">Service Scope, RDL, KPU &amp; Capacity Planning</span></div>
+    </div>
+  </article>
+</div>
+
+<a class="to-top" href="#top" aria-label="العودة إلى الأعلى">↑</a>
+
+<div class="bottom" dir="ltr" lang="en">
+  <div class="ft">M. Amine Berchache — Senior Architect / BIM Coordinator</div>
+  <div class="ft">Healthcare Architecture &nbsp;·&nbsp; Chapter 01 — Draft 02</div>
+</div>
+
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" onload="renderMath()"></script>
+<script>
+// Formulas: KaTeX when the CDN loads; otherwise the TeX source stays visible.
+function renderMath () {
+  document.querySelectorAll('.math[data-tex]').forEach(function (el) {
+    try { katex.render(el.dataset.tex, el, { displayMode: true, throwOnError: false }) } catch (e) {}
+  })
+}
+
+// Theme toggle (remembered per browser)
+document.querySelector('.theme-toggle').addEventListener('click', function () {
+  var root = document.documentElement
+  var cur = root.dataset.theme || (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark')
+  var next = cur === 'light' ? 'dark' : 'light'
+  root.dataset.theme = next
+  try { localStorage.setItem('ha-theme', next) } catch (e) {}
+})
+
+// TOC: collapsed by default on small screens, closes after a jump
+var toc = document.querySelector('.toc')
+var small = matchMedia('(max-width: 980px)')
+toc.open = !small.matches
+small.addEventListener('change', function () { toc.open = !small.matches })
+toc.querySelector('summary').addEventListener('click', function (e) { if (!small.matches) e.preventDefault() })
+toc.addEventListener('click', function (e) { if (e.target.closest('a') && small.matches) toc.open = false })
+
+// Scrollspy: highlight the section currently under the nav
+var links = Array.prototype.slice.call(toc.querySelectorAll('a[href^="#"]'))
+var targets = links.map(function (a) { return document.getElementById(a.getAttribute('href').slice(1)) })
+var toTop = document.querySelector('.to-top')
+function spy () {
+  var idx = -1
+  for (var i = 0; i < targets.length; i++) if (targets[i] && targets[i].getBoundingClientRect().top < 140) idx = i
+  links.forEach(function (a, i) { a.classList.toggle('active', i === idx) })
+  toc.querySelectorAll('li.open').forEach(function (li) { li.classList.remove('open') })
+  if (idx >= 0) {
+    var li = links[idx].closest('ol').closest('li') || links[idx].parentNode
+    li.classList.add('open')
+    if (!small.matches) links[idx].scrollIntoView({ block: 'nearest' })
+  }
+  toTop.classList.toggle('show', scrollY > 800)
+}
+var ticking = false
+addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(function () { spy(); ticking = false }) } }, { passive: true })
+spy()
+</script>
+</body>
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CS-01 — Maternity &amp; Children's Hospital, Abu Dhabi | Healthcare Architecture</title>
+<meta name="description" content="Case Study CS-01 — Maternity &amp; Children's Hospital, Abu Dhabi (DoH). Independent analytical study for educational purposes.">
+<script>try{var t=localStorage.getItem('ha-theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../series.css">
+<style>
+{{hubStyle}}
+{{csStyle}}
+/* CS-01 page */
+.disclaimer{margin-top:28px;max-width:860px;border:1px solid var(--gold-line);border-left:2px solid var(--gold);background:var(--bg2);padding:16px 20px;display:grid;gap:8px}
+.disclaimer .lbl{font-size:9px;text-transform:uppercase;letter-spacing:0.25em;color:var(--gold3)}
+.disclaimer p{font-size:12px;color:var(--text2);line-height:1.8}
+.disclaimer p[lang="ar"]{font-size:15px;text-align:right}
+.cs-eps .ep{grid-template-columns:84px 56px 1fr 24px}
+.figs{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line2)}
+.fig-ph{background:var(--bg2);margin:0}
+.fig-ph .frame{aspect-ratio:16/9;margin:14px;border:1px dashed var(--text4);display:flex;align-items:center;justify-content:center;font-size:9px;text-transform:uppercase;letter-spacing:0.25em;color:var(--text4)}
+.fig-ph figcaption{padding:0 14px 14px;font-size:11px;color:var(--text3);line-height:1.6}
+.fig-ph figcaption b{font-weight:500;color:var(--gold3);margin-right:6px}
+@media(max-width:900px){.figs{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.cs-eps .ep{grid-template-columns:64px 1fr 18px}.figs{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<nav class="top">
+  <a class="nav-logo" href="/">
+    <div class="nav-box">AB</div>
+    <div class="nav-txt">
+      <p>Berchache</p>
+      <p>Senior Architect</p>
+    </div>
+  </a>
+  <div class="nav-actions">
+    <button class="theme-toggle" type="button" aria-label="Toggle light / dark theme">◐</button>
+    <a class="nav-back" href="../index.html">← Case Studies</a>
+    <a class="nav-back" href="/">Portfolio</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-in">
+    <div class="breadcrumb">Healthcare Architecture &nbsp;/&nbsp; Session 2 &nbsp;/&nbsp; Case Study CS-01</div>
+    <h1>CS-01 —<br><span>Maternity &amp; Children's Hospital, Abu Dhabi</span></h1>
+    <div class="hero-sub">Jurisdiction: DoH Abu Dhabi &nbsp;·&nbsp; Chapters: 01 live &nbsp;·&nbsp; Status: Rev. 01</div>
+    <div class="rule"></div>
+    <div class="disclaimer" role="note">
+      <div class="lbl">Disclaimer</div>
+      <p lang="ar" dir="rtl">دراسة تحليلية مستقلة لأغراض تعليمية، غير مرتبطة بأي جهة مالكة أو استشارية، ولا تمثل التصميم المقدَّم في أي مسابقة.</p>
+      <p>Independent analytical study for educational purposes. Not affiliated with any owner or consultant, and does not represent any competition submission.</p>
+    </div>
+    <div class="stats">
+      <div><div class="stat-n">DoH</div><div class="stat-l">Jurisdiction · Abu Dhabi</div></div>
+      <div><div class="stat-n">01</div><div class="stat-l">Chapter live</div></div>
+      <div><div class="stat-n">{{episodeCount}}</div><div class="stat-l">Sections</div></div>
+      <div><div class="stat-n">Rev. 01</div><div class="stat-l">Status</div></div>
+    </div>
+  </div>
+</div>
+
+<main>
+<div class="wrap">
+  <div class="sec-label">Chapters</div>
+  <div class="grid">
+    <a class="card" href="chapter-01.html">
+      <div class="card-ph"><span class="big">01</span><span class="ar" lang="ar" dir="rtl">الفصل الأول</span></div>
+      <div class="card-body">
+        <div class="card-num">Chapter 01 &nbsp;·&nbsp; Rev. 01</div>
+        <div class="card-title">Birthing Unit</div>
+        <div class="card-tags"><span class="card-tag">DoH HFG</span><span class="card-tag">FPU 30</span></div>
+        <div class="card-cta">Read chapter</div>
+      </div>
+    </a>
+    <div class="card soon" aria-disabled="true">
+      <span class="soon-badge">In preparation</span>
+      <div class="card-ph"><span class="big">02</span><span class="ar" lang="ar" dir="rtl">الفصل الثاني</span></div>
+      <div class="card-body">
+        <div class="card-num">Chapter 02</div>
+        <div class="card-title">In preparation</div>
+        <div class="card-cta">In preparation</div>
+      </div>
+    </div>
+  </div>
+  <a class="more-link" href="../../chapter-01.html">Methodology — Session 1, Chapter 01</a>
+</div>
+
+<div class="wrap" style="padding-top:0">
+  <div class="sec-label">Episodes — Chapter 01</div>
+  <ol class="episodes cs-eps">
+{{episodes}}
+  </ol>
+  <p class="ep-note">Each episode opens the matching section of Chapter 01.</p>
+</div>
+
+<div class="wrap" style="padding-top:0">
+  <div class="sec-label">Figures — Chapter 01</div>
+  <div class="figs">
+{{figures}}
+  </div>
+  <p class="ep-note">Image slots are placeholders; figures will be added per episode.</p>
+</div>
+</main>
+
+<div class="bottom">
+  <div class="ft">M. Amine Berchache — Senior Architect / BIM Coordinator</div>
+  <div class="ft">Case Study CS-01 &nbsp;·&nbsp; Rev. 01</div>
+</div>
+
+<script>
+document.querySelector('.theme-toggle').addEventListener('click', function () {
+  var root = document.documentElement
+  var cur = root.dataset.theme || (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark')
+  var next = cur === 'light' ? 'dark' : 'light'
+  root.dataset.theme = next
+  try { localStorage.setItem('ha-theme', next) } catch (e) {}
+})
+</script>
+</body>
+</html>
