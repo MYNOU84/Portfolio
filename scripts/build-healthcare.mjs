@@ -215,7 +215,7 @@ writeFileSync(path.join(OUT, 'chapter-01.html'), fill(template('chapter.html'), 
   body: bodyHtml.join('\n'),
 }))
 
-// ── Hub page: episode list mirrors the chapter's numbered sections ──
+// ── Session 1 page: episode list mirrors the chapter's numbered sections ──
 const episodes = tocItems.filter((it) => /^\d+\.\d+ /.test(it.text))
 const episodeHtml = episodes.map((it, n) => {
   const [num, ...rest] = it.text.split(' ')
@@ -226,9 +226,10 @@ const episodeHtml = episodes.map((it, n) => {
       <span class="ep-cta" aria-hidden="true">→</span>
     </a></li>`
 }).join('\n')
-writeFileSync(path.join(OUT, 'index.html'), fill(template('hub.html'), {
-  episodes: episodeHtml,
-  episodeCount: String(episodes.length).padStart(2, '0'),
-}))
+const episodeCount = String(episodes.length).padStart(2, '0')
+writeFileSync(path.join(OUT, 'session-1.html'), fill(template('session-1.html'), { episodes: episodeHtml, episodeCount }))
 
-console.log(`healthcare-architecture: chapter-01.html (${headings.length} headings), index.html (${episodes.length} episodes)`)
+// ── Hub page: hero + one card per session ──
+writeFileSync(path.join(OUT, 'index.html'), fill(template('hub.html'), { episodeCount }))
+
+console.log(`healthcare-architecture: chapter-01.html (${headings.length} headings), session-1.html (${episodes.length} episodes), index.html`)
