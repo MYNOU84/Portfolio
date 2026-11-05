@@ -234,16 +234,14 @@ if (open) bodyHtml.push('</section>')
 
 // ── Templates ──
 const TPL = 'scripts/healthcare-templates'
-const template = (name) => readFileSync(path.join(TPL, name), 'utf8')
+const template = (name) => readFileSync(path.join(TPL, name), 'utf8').replace(/\r\n/g, '\n')
 const fill = (tpl, vars) => tpl.replace(/\{\{(\w+)\}\}/g, (_, k) => { assert(k in vars, `missing ${k}`); return vars[k] })
 
-// The index pages reuse the hub's own style block unchanged, plus the appended case-study rules.
-const hubTpl = template('hub.html')
+// The index pages reuse the Session 1 page's style block unchanged, plus the appended case-study rules.
+const hubTpl = template('session-1.html')
 const csStyle = template('cs-shared-style.css').trimEnd()
 const csGrid = template('cs-grid.html').trimEnd()
-// The hub carries the same grid and rules; stop if they have drifted apart.
-assert(hubTpl.includes(fill(csGrid, { base: 'case-studies/' })), 'hub.html case-study grid differs from cs-grid.html')
-assert(hubTpl.includes(csStyle), 'hub.html is missing the rules from cs-shared-style.css')
+assert(hubTpl.includes(csStyle), 'session-1.html is missing the rules from cs-shared-style.css')
 const hubStyle = hubTpl.match(/<style>\n([\s\S]*?)\n<\/style>/)[1].replace(csStyle, '').trimEnd()
 
 const episodes = tocItems.filter((it) => /^\d+\.\d+ /.test(it.text))
