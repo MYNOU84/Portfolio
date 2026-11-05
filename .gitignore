@@ -25,6 +25,19 @@ dist-ssr
 
 .vercel
 
+# Local only - big originals and backups, never uploaded
+_originals_full_size
+_not_published
+_backup_audit_fixes_20260916
+
 # Private source documents (real project names) - never commit or deploy
 private/
 _private/
+
+# Local working folders - never commit
+_rejected_homepage_*/
+_backup_*/
+outputs/
+*.orig
+_probe_delete_test.txt
+homepage-preview/

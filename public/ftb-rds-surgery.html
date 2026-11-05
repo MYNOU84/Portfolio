@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Integrated Robotic Surgery Suite — Functional Technical Brief | M. Amine Berchache</title>
+<meta name="description" content="Healthcare Architecture Research Series: Integrated robotic surgery operating theatre — clinical role, robotic system, sterile zoning and flows, patient journey, functional programme, room design, ventilation and building services.">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0d0d0d;--bg2:#111;--bg3:#161616;--bg4:#1c1c1c;
+  --gold:#C9982C;--gold2:#E0BC63;--gold3:#A87A1B;
+  --gold-dim:rgba(201,168,76,0.07);--gold-line:rgba(201,168,76,0.20);
+  --text:#e8e4dc;--text2:#b8b2a8;--text3:#787068;--text4:#484440;
+  --line:rgba(255,255,255,0.06);--line2:rgba(255,255,255,0.10);
+  --green:#5a9e6f;--red:#9e5a5a;--blue:#5a7a9e;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-weight:300;font-size:13px;line-height:1.7;overflow-x:hidden}
+nav{position:sticky;top:0;z-index:100;background:rgba(13,13,13,0.96);backdrop-filter:blur(20px);border-bottom:1px solid var(--gold-line);padding:0 56px;display:flex;align-items:center;justify-content:space-between;height:62px}
+.nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none}
+.nav-box{width:34px;height:34px;border:1px solid rgba(201,168,76,0.45);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:var(--gold);font-family:'Inter',sans-serif}
+.nav-txt p:first-child{font-size:10px;font-weight:500;letter-spacing:0.28em;text-transform:uppercase;color:var(--text);line-height:1.2}
+.nav-txt p:last-child{font-size:9px;letter-spacing:0.35em;text-transform:uppercase;color:var(--gold);line-height:1.2}
+.nav-r{display:flex;align-items:center;gap:10px}
+.nav-tag{font-size:9px;text-transform:uppercase;letter-spacing:0.12em;color:var(--gold3);border:1px solid var(--gold-line);padding:5px 12px;background:var(--gold-dim)}
+.nav-back{font-size:9px;text-transform:uppercase;letter-spacing:0.12em;color:var(--text3);text-decoration:none;border:1px solid var(--text4);padding:5px 14px;transition:all .2s}
+.nav-back:hover{border-color:var(--gold);color:var(--gold)}
+.hero{position:relative;height:68vh;min-height:500px;overflow:hidden}
+.hero img{width:100%;height:100%;object-fit:cover;filter:brightness(0.38)}
+.hero-ov{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(13,13,13,0.1) 0%,rgba(13,13,13,0.88) 100%)}
+.hero-c{position:absolute;bottom:0;left:0;right:0;padding:60px 80px}
+.breadcrumb{font-size:9px;text-transform:uppercase;letter-spacing:0.35em;color:var(--gold3);margin-bottom:14px}
+h1{font-family:'Playfair Display',serif;font-size:clamp(30px,5vw,56px);font-weight:300;line-height:1.1;color:var(--text);margin-bottom:8px}
+h1 span{color:var(--gold2)}
+.hero-sub{font-size:10px;text-transform:uppercase;letter-spacing:0.25em;color:var(--text2)}
+.tags{display:flex;gap:8px;margin-top:18px;flex-wrap:wrap}
+.tag{font-size:9px;text-transform:uppercase;letter-spacing:0.12em;color:var(--gold);border:1px solid var(--gold-line);padding:4px 12px;background:var(--gold-dim)}
+.notice{background:rgba(160,50,50,0.12);border:1px solid rgba(160,50,50,0.32);border-left:3px solid rgba(160,50,50,0.7);padding:14px 22px;margin:24px 80px 0;font-size:11px;color:#d4a0a0;line-height:1.65}
+.notice strong{color:#e8b0b0}
+.wrap{max-width:1200px;margin:0 auto;padding:0 80px}
+section{padding:72px 0;border-bottom:1px solid var(--line)}
+.sn{font-size:9px;text-transform:uppercase;letter-spacing:0.35em;color:var(--gold3);margin-bottom:8px}
+h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,32px);font-weight:300;color:var(--text)}
+h2 span{color:var(--gold2)}
+.rule{width:44px;height:1px;background:var(--gold);margin:14px 0 28px}
+p.body{font-size:12px;color:var(--text2);line-height:1.8;max-width:820px}
+table{width:100%;border-collapse:collapse}
+th{background:var(--bg3);color:var(--gold3);font-size:9px;text-transform:uppercase;letter-spacing:0.14em;font-weight:500;padding:11px 14px;text-align:left;border-bottom:1px solid var(--gold-line)}
+td{padding:10px 14px;border-bottom:1px solid var(--line);color:var(--text2);vertical-align:top}
+tr:hover td{background:rgba(201,168,76,0.025)}
+td.k{color:var(--text);font-weight:400}
+td.yes{color:#7ec87e}
+td.no{color:var(--text4)}
+td.tbc{color:var(--gold3);font-style:italic}
+td.h{color:var(--gold2);font-weight:500}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--gold-line);border:1px solid var(--gold-line)}
+.gl{background:var(--bg3);padding:12px 18px;font-size:10px;text-transform:uppercase;letter-spacing:0.13em;color:var(--gold3)}
+.gv{background:var(--bg2);padding:12px 18px;font-size:12px;color:var(--text2)}
+.chain-wrap{overflow-x:auto;padding:8px 0}
+.chain{display:flex;align-items:center;flex-wrap:nowrap;min-width:max-content}
+.cs{background:var(--bg3);border:1px solid var(--gold-line);padding:11px 16px;font-size:10px;color:var(--text2);text-align:center;min-width:110px}
+.cs.k{background:var(--gold-dim);border-color:var(--gold);color:var(--gold2);font-weight:500}
+.cl{font-size:8px;text-transform:uppercase;letter-spacing:0.08em;color:var(--text3);margin-top:3px;display:block}
+.ca{color:var(--gold3);font-size:15px;padding:0 5px;flex-shrink:0}
+.zones{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line2);margin-bottom:28px}
+.zc{padding:18px;background:var(--bg2)}
+.zd{width:9px;height:9px;border-radius:50%;margin-bottom:9px}
+.zn{font-size:10px;text-transform:uppercase;letter-spacing:0.08em;font-weight:500;color:var(--text);margin-bottom:5px}
+.zt{font-size:11px;color:var(--text3);line-height:1.6}
+.img2{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin:22px 0}
+.img2 img{width:100%;aspect-ratio:16/9;object-fit:contain;background:var(--bg3);filter:brightness(0.92);transition:filter .3s;display:block}
+.img2 img:hover,.imgf:hover,.img1 img:hover{filter:brightness(1)}
+.imgf{width:100%;max-height:500px;object-fit:contain;background:var(--bg3);filter:brightness(0.92);display:block;margin:22px 0;transition:filter .3s}
+.img1{margin:22px 0}
+.img1 img{width:100%;max-height:500px;object-fit:contain;background:var(--bg3);filter:brightness(0.92);display:block;transition:filter .3s}
+.img4{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin:22px 0}
+.img4 img{width:100%;aspect-ratio:16/9;object-fit:contain;background:var(--bg3);filter:brightness(0.92);display:block;transition:filter .3s}
+.img4 img:hover{filter:brightness(1)}
+.ic{font-size:10px;color:var(--text3);text-align:center;margin-top:5px;letter-spacing:0.04em}
+.area td:last-child{color:var(--gold2);font-family:'Playfair Display',serif;font-size:14px;text-align:right}
+.src{border:1px solid var(--line2)}
+.si{display:grid;grid-template-columns:56px 1fr;border-bottom:1px solid var(--line)}
+.si:last-child{border-bottom:none}
+.sc{background:var(--bg3);padding:14px;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:14px;color:var(--gold3);border-right:1px solid var(--line2)}
+.sb{background:var(--bg2);padding:12px 16px}
+.sn2{font-size:12px;color:var(--text);margin-bottom:3px}
+.sl{font-size:10px;color:var(--gold3);word-break:break-all}
+.rds-list{display:flex;flex-direction:column;gap:56px}
+.rds{border:1px solid var(--line2);background:var(--bg2)}
+.rds-hdr{display:flex;align-items:stretch;border-bottom:1px solid var(--gold-line)}
+.rds-num{background:var(--gold-dim);border-right:1px solid var(--gold-line);padding:22px 26px;display:flex;flex-direction:column;align-items:center;justify-content:center;min-width:90px}
+.rds-num span:first-child{font-family:'Playfair Display',serif;font-size:34px;font-weight:300;color:var(--gold2);line-height:1}
+.rds-num span:last-child{font-size:8px;text-transform:uppercase;letter-spacing:0.15em;color:var(--gold3);margin-top:3px}
+.rds-ttl{padding:22px 26px;flex:1}
+.rds-room{font-family:'Playfair Display',serif;font-size:21px;font-weight:400;color:var(--text);margin-bottom:4px}
+.rds-img{width:100%;max-height:400px;object-fit:contain;background:var(--bg3);filter:brightness(0.92);display:block;border-bottom:1px solid var(--line);transition:filter .3s}
+.rds-img:hover{filter:brightness(1)}
+.rds-img2{display:grid;grid-template-columns:1fr 1fr;gap:1px;border-bottom:1px solid var(--line)}
+.rds-img2 img{width:100%;height:300px;object-fit:contain;background:var(--bg3);filter:brightness(0.92);display:block;transition:filter .3s}
+.rds-img2 img:hover{filter:brightness(1)}
+.rds-sub{font-size:9px;text-transform:uppercase;letter-spacing:0.22em;color:var(--gold3);padding:18px 26px 6px;border-bottom:1px solid var(--line);background:var(--bg3);margin-top:0}
+.rds-body{padding:0 26px 26px}
+.rds-note{background:var(--gold-dim);border:1px solid var(--gold-line);border-left:3px solid var(--gold);padding:12px 16px;margin-top:18px;font-size:11px;color:var(--text2);line-height:1.7}
+.cmp{display:grid;grid-template-columns:200px 1fr 1fr;gap:1px;background:var(--gold-line);border:1px solid var(--gold-line);margin:22px 0}
+.cmp-h{background:var(--bg3);padding:11px 14px;font-size:9px;text-transform:uppercase;letter-spacing:0.12em;color:var(--gold3);font-weight:500}
+.cmp-k{background:var(--bg2);padding:10px 14px;font-size:11px;color:var(--text);font-weight:400}
+.cmp-a{background:rgba(90,154,111,0.06);padding:10px 14px;font-size:11px;color:var(--text2)}
+.cmp-b{background:rgba(90,122,158,0.06);padding:10px 14px;font-size:11px;color:var(--text2)}
+.cmp-adv{color:#7ec87e;font-size:10px;margin-top:3px}
+.badge-e{display:inline-block;font-size:8px;text-transform:uppercase;letter-spacing:0.1em;padding:2px 8px;background:rgba(0,56,101,0.3);border:1px solid rgba(0,156,166,0.3);color:#009CA6;margin-left:6px}
+.badge-v{display:inline-block;font-size:8px;text-transform:uppercase;letter-spacing:0.1em;padding:2px 8px;background:rgba(0,47,108,0.3);border:1px solid rgba(99,163,232,0.3);color:#63a3e8;margin-left:6px}
+.lim{border:1px solid var(--line2);background:var(--bg3);padding:28px 32px;margin-top:48px}
+.lim h3{font-family:'Playfair Display',serif;font-size:18px;font-weight:400;color:var(--text);margin-bottom:14px}
+.lim p{font-size:11px;color:var(--text3);line-height:1.8}
+footer{padding:40px 80px;border-top:1px solid var(--line2);display:flex;align-items:center;justify-content:space-between}
+.ft{font-size:9px;text-transform:uppercase;letter-spacing:0.2em;color:var(--text4)}
+.lead{font-family:'Playfair Display',serif;font-size:clamp(16px,1.8vw,20px);font-style:italic;color:var(--gold2);line-height:1.5;max-width:820px;margin-bottom:18px}
+.ref{font-size:10px;color:var(--gold3);letter-spacing:0.04em;white-space:nowrap}
+.kpi{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--gold-line);border:1px solid var(--gold-line);margin-bottom:18px}
+.kc{background:var(--bg2);padding:22px 20px}
+.kn{font-family:'Playfair Display',serif;font-size:30px;font-weight:300;color:var(--gold2);line-height:1.1}
+.kn small{font-family:'Inter',sans-serif;font-size:11px;color:var(--gold3);letter-spacing:0.1em}
+.kl{font-size:11px;color:var(--text3);margin-top:6px;line-height:1.6}
+.pgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line2);border:1px solid var(--line2)}
+.pc{background:var(--bg2);padding:18px 20px}
+.pc.hl{background:var(--gold-dim)}
+.pt{font-size:10px;text-transform:uppercase;letter-spacing:0.1em;font-weight:500;color:var(--text);margin-bottom:6px}
+.pd{font-size:11.5px;color:var(--text2);line-height:1.7}
+.pd a{color:var(--gold2)}
+.bl{list-style:none;max-width:820px}
+.bl li{font-size:12px;color:var(--text2);padding:7px 0 7px 22px;position:relative;border-bottom:1px solid var(--line)}
+.bl li::before{content:'';position:absolute;left:0;top:15px;width:10px;height:1px;background:var(--gold)}
+.zones3{grid-template-columns:repeat(3,1fr)}
+@media(max-width:768px){
+  nav,.hero-c,.wrap,footer{padding-left:16px;padding-right:16px}
+  .notice{margin:20px 16px 0;padding:12px 16px}
+  .hero-c{padding-top:32px;padding-bottom:32px}
+  .zones,.zones3,.kpi,.pgrid{grid-template-columns:1fr}
+  .img2,.rds-img2{grid-template-columns:1fr}
+  .cmp{grid-template-columns:1fr}
+  table{display:block;overflow-x:auto}
+  td,th{padding:9px 10px}
+  footer{flex-direction:column;gap:8px;align-items:flex-start}
+  .nav-txt p:last-child{display:none}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="/">
+    <div class="nav-box">AB</div>
+    <div class="nav-txt">
+      <p>Berchache</p>
+      <p>Senior Architect</p>
+    </div>
+  </a>
+  <div class="nav-r">
+    <a class="nav-tag" href="/ftb-rds.html" style="text-decoration:none">FTB-RDS</a>
+    <a class="nav-back" href="/">← Portfolio</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <img src="projects/Detaill_Surgery_Room/img-001.jpg" alt="Robotic surgery operating theatre with surgical lights, robotic arms and anaesthesia machine">
+  <div class="hero-ov"></div>
+  <div class="hero-c">
+    <div class="breadcrumb">Healthcare Architecture Research Series &nbsp;/&nbsp; Functional Technical Brief &nbsp;/&nbsp; Surgery &nbsp;/&nbsp; Operating Theatre</div>
+    <h1>Integrated Robotic<br><span>Surgery Suite</span></h1>
+    <div class="hero-sub">Operating Theatre — Clinical Role, Sterile Flows, Robotic System Integration, Ventilation &amp; Room Requirements</div>
+    <div class="tags">
+      <span class="tag">Operating Theatre</span>
+      <span class="tag">Robotic Surgery</span>
+      <span class="tag">da Vinci-Type System</span>
+      <span class="tag">Sterile Flows</span>
+      <span class="tag">HTM 03-01</span>
+      <span class="tag">HBN 26</span>
+      <span class="tag">WHO Checklist</span>
+    </div>
+  </div>
+</div>
+
+<div class="notice">
+  <strong>Research Document — Not for Construction.</strong> This brief is a planning study prepared from published clinical, regulatory and manufacturer references. Areas, air-change rates, structural and MEP values are indicative and must be confirmed against the selected robotic system's site requirements, the infection-control team, the appointed MEP engineer and the competent authority. Images and design boards are AI-assisted illustrative visualisations — labels, dimensions and details shown in them are not construction drawings.
+</div>
+
+<div class="wrap">
+
+<!-- INTRO -->
+<section>
+  <div class="sn">Introduction</div>
+  <h2>The Room Where <span>Everything Must Fit</span></h2>
+  <div class="rule"></div>
+  <p class="lead">What changes when a surgical robot moves into the operating theatre?</p>
+  <p class="body" style="margin-bottom:18px">An operating theatre is already the most demanding room in a hospital: ultra-clean air, a sterile field that must never be crossed, a full team moving around a patient under anaesthesia, and dozens of devices drawing power, gases and data. Robotic-assisted surgery adds three large pieces of equipment — a surgeon console, a patient-side cart with robotic arms, and a vision / video tower — plus their cables, docking space and storage.</p>
+  <p class="body" style="margin-bottom:28px">The architecture has to answer one question first: <strong style="color:var(--text);font-weight:400">can the team see, reach and move around the patient with the robot docked, and still convert to open surgery in seconds?</strong> Room size, ceiling layout, pendant positions, door widths and the sterile workflow all follow from that answer.</p>
+
+  <div class="g2">
+    <div class="gl">Service</div><div class="gv">Operating Theatre — Robotic-Capable Surgical Suite</div>
+    <div class="gl">Document Type</div><div class="gv">Functional Technical Brief — Healthcare Architecture Research Series</div>
+    <div class="gl">Reference Equipment</div><div class="gv">da Vinci-type multi-arm robotic surgical system (Intuitive Surgical) — surgeon console, patient cart, vision cart</div>
+    <div class="gl">Scope</div><div class="gv">Clinical role, robotic system, zoning and sterile flows, patient and team journey, functional programme, room layout and ceiling, finishes, MEP, safety, standards</div>
+    <div class="gl">Planning References</div><div class="gv">NHS HBN 26 &nbsp;|&nbsp; HTM 03-01 Specialised Ventilation &nbsp;|&nbsp; iHFG Operating Unit &nbsp;|&nbsp; FGI Guidelines</div>
+    <div class="gl">Safety Framework</div><div class="gv">WHO Surgical Safety Checklist &nbsp;|&nbsp; AORN Guidelines for Perioperative Practice</div>
+    <div class="gl">Author</div><div class="gv">M. Amine Berchache — Senior Architect / BIM Coordinator</div>
+  </div>
+</section>
+
+<!-- SECTION 01 -->
+<section>
+  <div class="sn">Section 01</div>
+  <h2>What Is <span>Robotic-Assisted Surgery?</span></h2>
+  <div class="rule"></div>
+  <p class="body" style="margin-bottom:18px">In robotic-assisted surgery the surgeon operates through small incisions using instruments held by robotic arms. The surgeon sits at a console in the same room, viewing a magnified 3D image from an endoscopic camera and controlling the instruments with hand controls and foot pedals. The robot does not act on its own — it translates the surgeon's movements, filters tremor and scales motion. <span class="ref">[1]</span></p>
+  <p class="body" style="margin-bottom:28px">At the bedside, a scrubbed assistant and scrub nurse exchange instruments and manage the ports; the anaesthetist stays at the head of the patient. <strong style="color:var(--text);font-weight:400">Three working positions — console, bedside and anaesthesia — must keep eye and voice contact across a room crowded with equipment.</strong></p>
+
+  <div class="kpi">
+    <div class="kc"><div class="kn">3</div><div class="kl">System components — surgeon console, patient-side cart, vision / video cart</div></div>
+    <div class="kc"><div class="kn">≈ 47 <small>m²</small></div><div class="kl">Theatre in the illustrated scheme (6.0 × 7.8 m) — lower end for robotic use, see Section 06</div></div>
+    <div class="kc"><div class="kn">20–25 <small>ACH</small></div><div class="kl">Typical minimum air changes for a conventional theatre — confirm per HTM 03-01 / ASHRAE 170</div></div>
+  </div>
+
+  <div class="img2">
+    <div>
+      <img src="projects/Detaill_Surgery_Room/img-014.jpg" alt="Robotic arms positioned over the operating table">
+      <p class="ic">Patient-Side Cart — Robotic Arms over the Operating Table</p>
+    </div>
+    <div>
+      <img src="projects/Detaill_Surgery_Room/img-032.jpg" alt="Close-up of a robotic surgical arm">
+      <p class="ic">Robotic Arm — Instrument Interface &amp; Sterile Drape Zone</p>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 02 -->
+<section>
+  <div class="sn">Section 02</div>
+  <h2>Clinical Role <span>&amp; Specialties</span></h2>
+  <div class="rule"></div>
+  <p class="body" style="margin-bottom:28px">Robotic surgery is used mainly for minimally invasive procedures in confined anatomy, where precision and visualisation matter most. In a cancer centre it is closely tied to oncology pathways: <span class="ref">[1, 2]</span></p>
+
+  <div class="pgrid">
+    <div class="pc hl"><div class="pt">Urology</div><div class="pd">Radical prostatectomy, partial nephrectomy, cystectomy — historically the largest robotic caseload.</div></div>
+    <div class="pc"><div class="pt">Gynaecology</div><div class="pd">Hysterectomy, myomectomy, endometriosis and gynaecological oncology staging.</div></div>
+    <div class="pc hl"><div class="pt">Colorectal &amp; General Surgery</div><div class="pd">Rectal and colon resections, hernia repair, cholecystectomy, bariatric and upper-GI surgery.</div></div>
+    <div class="pc"><div class="pt">Thoracic</div><div class="pd">Lobectomy and mediastinal tumour resection.</div></div>
+    <div class="pc"><div class="pt">Head &amp; Neck</div><div class="pd">Transoral robotic surgery (TORS) for selected throat tumours.</div></div>
+    <div class="pc"><div class="pt">Oncology Pathway</div><div class="pd">Surgery is often one step in a pathway that includes imaging (<a href="/ftb-rds-mri.html">MRI</a>), PET-CT and <a href="/ftb-rds-radiotherapy.html">radiotherapy</a> — the theatre suite sits close to recovery, ICU and sterile services.</div></div>
+  </div>
+</section>
+
+<!-- SECTION 03 -->
+<section>
+  <div class="sn">Section 03</div>
+  <h2>The Robotic System <span>&amp; Room Equipment</span></h2>
+  <div class="rule"></div>
+  <p class="body" style="margin-bottom:28px">The robot adds to — it does not replace — the standard theatre equipment. Every item below needs a parking position, a power / gas / data point and a clear route. <span class="ref">[1, 2]</span></p>
+
+  <table>
+    <thead><tr><th>Item</th><th>Function</th><th>Planning Implication</th></tr></thead>
+    <tbody>
+      <tr><td class="k">Surgeon Console</td><td>Surgeon controls the instruments and views the 3D image</td><td>Placed in the room with line of sight to the patient and team; outside the sterile field; power and system cabling</td></tr>
+      <tr><td class="k">Patient-Side Cart</td><td>Carries the robotic arms, docked at the table</td><td>Mobile floor unit — docking clearance on several sides of the table; parking bay when not in use; wide doors on its route</td></tr>
+      <tr><td class="k">Vision / Video Cart</td><td>Image processing, light source, energy devices, display</td><td>Near the bedside; integrates with theatre displays and recording</td></tr>
+      <tr><td class="k">Operating Table</td><td>Patient positioning, often steep tilt</td><td>Centred under lights and laminar-flow canopy</td></tr>
+      <tr><td class="k">Surgical Lights &amp; Pendants</td><td>Field lighting; power, gases and data from the ceiling</td><td>Ceiling structure, coordination with diffuser and arm swing</td></tr>
+      <tr><td class="k">Anaesthesia Machine &amp; Monitoring</td><td>Ventilation, vital signs, infusion</td><td>Head end of the table, on an anaesthesia pendant</td></tr>
+      <tr><td class="k">Instrument Tables &amp; Foot Pedals</td><td>Sterile set-up; electrosurgical and console controls</td><td>Space inside the sterile zone; cable management on the floor</td></tr>
+    </tbody>
+  </table>
+
+  <div class="img2" style="margin-top:28px">
+    <div>
+      <img src="projects/Detaill_Surgery_Room/img-012.jpg" alt="LED surgical light">
+      <p class="ic">Surgical Light — LED Field Illumination</p>
+    </div>
+    <div>
+      <img src="projects/Detaill_Surgery_Room/img-019.jpg" alt="Anaesthesia machine with vaporisers">
+      <p class="ic">Anaesthesia Machine — Gas Supply &amp; Vaporisers</p>
+    </div>
+  </div>
+  <div class="img2">
+    <div>
+      <img src="projects/Detaill_Surgery_Room/img-017.jpg" alt="Patient monitor showing vital signs">
+      <p class="ic">Patient Monitoring — Vital Signs Display</p>
+    </div>
+    <div>
+      <img src="projects/Detaill_Surgery_Room/img-029.jpg" alt="Foot pedal unit near the operating table">
+      <p class="ic">Foot Pedal Controls — Floor Cable Management Zone</p>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 04 -->
+<section>
+  <div class="sn">Section 04</div>
+  <h2>Zoning <span>&amp; Sterile Flows</span></h2>
+  <div class="rule"></div>
+  <p class="body" style="margin-bottom:28px">A theatre suite is organised as a cascade of cleanliness. Clean supplies move in one direction, used instruments and waste move out by a separate route, and air pressure steps down from the theatre to the corridor so air always flows from clean to less clean. <span class="ref">[2, 3]</span></p>
+
+  <div class="zones">
+    <div class="zc"><div class="zd" style="background:#5a9e6f"></div><div class="zn">Unrestricted</div><div class="zt">Reception, waiting, changing entry — street clothes allowed</div></div>
+    <div class="zc"><div class="zd" style="background:#5a7a9e"></div><div class="zn">Semi-Restricted</div><div class="zt">Theatre corridor, anaesthesia room, recovery, stores — scrubs and caps</div></div>
+    <div class="zc"><div class="zd" style="background:#C9982C"></div><div class="zn">Restricted</div><div class="zt">Operating theatre, scrub area, sterile preparation — masks, highest pressure</div></div>
+    <div class="zc"><div class="zd" style="background:#9e5a5a"></div><div class="zn">Dirty / Disposal</div><div class="zt">Used instruments and waste — out via pass-through or disposal route to sterile services</div></div>
+  </div>
+
+  <ul class="bl">
+    <li>Sterile storage feeds the theatre directly; used instruments leave by a separate disposal room or pass-through.</li>
+    <li>Scrub station at the theatre entrance with view into the room.</li>
+    <li>Patient enters via the anaesthesia room (where used) or directly through a wide automatic sliding door.</li>
+    <li>Theatre at positive pressure to the corridor; doors kept closed during surgery to protect the airflow.</li>
+    <li>Observation window or camera for teaching and coordination without entering the room.</li>
+  </ul>
+
+  <div class="img1" style="margin-top:28px">
+    <img src="projects/Detaill_Surgery_Room/img-039.jpg" alt="Operating theatre design board with layout plan, materials, ceiling plan and sections">
+    <p class="ic">Design Board 01 — "Future of Care": Layout Plan, Materials, Reflected Ceiling Plan, Elevations, Sections &amp; Flow Diagrams</p>
+  </div>
+  <div class="img1">
+    <img src="projects/Detaill_Surgery_Room/img-040.jpg" alt="Integrated robotic surgery suite design dossier">
+    <p class="ic">Design Board 02 — Integrated Robotic Surgery Suite Dossier: Equipment Plan, Zoning, Circulation, Lighting &amp; Sectional Details</p>
+  </div>
+</section>
+
+<!-- SECTION 05 -->
+<section>
+  <div class="sn">Section 05</div>
+  <h2>Patient &amp; Team <span>Journey</span></h2>
+  <div class="rule"></div>
+
+  <div class="chain-wrap">
+    <div class="chain">
+      <div class="cs"><span>Reception<br>&amp; Pre-Op</span><span class="cl">Identity · Consent · Marking</span></div>
+      <div class="ca">→</div>
+      <div class="cs"><span>Transfer<br>to Theatre</span><span class="cl">Trolley · Sign In</span></div>
+      <div class="ca">→</div>
+      <div class="cs"><span>Anaesthesia<br>&amp; Positioning</span><span class="cl">Induction · Draping</span></div>
+      <div class="ca">→</div>
+      <div class="cs k"><span>Docking<br>&amp; Time Out</span><span class="cl">Ports · Robot Arms</span></div>
+      <div class="ca">→</div>
+      <div class="cs k"><span>Console<br>Surgery</span><span class="cl">Monitored · Recorded</span></div>
+      <div class="ca">→</div>
+      <div class="cs"><span>Undock<br>&amp; Recovery</span><span class="cl">Sign Out · PACU</span></div>
+    </div>
+  </div>
+
+  <table style="margin-top:28px">
+    <thead><tr><th>Step</th><th>Content</th></tr></thead>
+    <tbody>
+      <tr><td class="k">1 — Pre-Op</td><td>Patient identity, consent, site marking and anaesthetic assessment in the pre-operative holding area.</td></tr>
+      <tr><td class="k">2 — Sign In</td><td>Transfer to theatre; the WHO checklist "Sign In" is done before induction of anaesthesia. <span class="ref">[4]</span></td></tr>
+      <tr><td class="k">3 — Anaesthesia &amp; Positioning</td><td>Induction, lines and monitoring; patient positioned and secured — robotic cases often use steep table tilt, so padding and restraint are critical.</td></tr>
+      <tr><td class="k">4 — Docking &amp; Time Out</td><td>Ports placed, patient cart driven in and docked; "Time Out" confirms patient, procedure and site before incision.</td></tr>
+      <tr><td class="k">5 — Console Surgery</td><td>Surgeon at the console, assistant and scrub nurse at the bedside, anaesthetist at the head; video shared on room displays.</td></tr>
+      <tr><td class="k">6 — Undock &amp; Recovery</td><td>Instruments counted, robot undocked, "Sign Out" completed; patient to the recovery unit (PACU) or ICU. Room turnover and cleaning.</td></tr>
+    </tbody>
+  </table>
+
+  <div class="img1" style="margin-top:28px">
+    <img src="projects/Detaill_Surgery_Room/img-041.jpg" alt="Storyboard of a robotic surgery procedure from patient arrival to observation window">
+    <p class="ic">Storyboard — Room Ready, Patient Arrival, Instrument Set-Up, Monitoring, Team at the Table, Robotic Arms, Console Control &amp; View from the Observation Window</p>
+  </div>
+</section>
+
+<!-- SECTION 06 -->
+<section>
+  <div class="sn">Section 06</div>
+  <h2>Functional <span>Programme</span></h2>
+  <div class="rule"></div>
+  <p class="body" style="margin-bottom:28px">Areas below follow the illustrated scheme (Design Board 01) and are compared with common practice for robotic-capable theatres. Final sizes depend on the robotic system's layout drawings, the table position and the number of devices. <span class="ref">[2, 6, 8]</span></p>
+
+  <table class="area">
+    <thead><tr><th>Space</th><th>Zone</th><th>Notes</th><th style="text-align:right">Scheme / Indicative</th></tr></thead>
+    <tbody>
+      <tr><td class="k">Operating Theatre</td><td>Restricted</td><td>Scheme 6.0 × 7.8 m. Robotic and large-equipment theatres are commonly planned larger — verify against HBN 26 / FGI and the robot layout</td><td>≈ 47 m² (scheme)<br>55–70 m² (robotic)</td></tr>
+      <tr><td class="k">Sterile Storage</td><td>Restricted</td><td>Instrument trays, robotic instruments and drapes</td><td>10 m²</td></tr>
+      <tr><td class="k">Anaesthesia Room</td><td>Semi-restricted</td><td>Induction; omitted in some models where induction is in theatre</td><td>8 m²</td></tr>
+      <tr><td class="k">Equipment Room</td><td>Semi-restricted</td><td>Parking for patient cart, vision cart and mobile devices</td><td>7 m²</td></tr>
+      <tr><td class="k">Scrub Station</td><td>Restricted</td><td>Scrub troughs at the theatre door, view into the room</td><td>Per layout</td></tr>
+      <tr><td class="k">Staff Change</td><td>Semi-restricted</td><td>Local change in the scheme; department change rooms in addition</td><td>6 m²</td></tr>
+      <tr><td class="k">Pass-Through</td><td>Restricted / dirty</td><td>Transfer of used items out of the theatre</td><td>3 m²</td></tr>
+      <tr><td class="k">Waste Disposal</td><td>Dirty</td><td>Clinical waste and used instruments to sterile services</td><td>3 m²</td></tr>
+      <tr><td class="k">Recovery (PACU), Pre-Op Holding</td><td>Semi-restricted</td><td>Shared across the theatre department</td><td>Shared</td></tr>
+    </tbody>
+  </table>
+  <div class="rds-note"><strong>Design comment:</strong> the illustrated theatre (≈ 47 m²) works for general surgery but is tight once the patient cart, vision cart and console are all in the room with full team circulation. For a dedicated robotic theatre, test the layout with the manufacturer's room templates and plan for a larger clear floor area.</div>
+
+  <div class="img2" style="margin-top:28px">
+    <div>
+      <img src="projects/Detaill_Surgery_Room/img-004.jpg" alt="Wide view of the operating theatre">
+      <p class="ic">Theatre — Wide View with Pendants, Lights &amp; Wall Storage</p>
+    </div>
+    <div>
+      <img src="projects/Detaill_Surgery_Room/img-006.jpg" alt="Operating theatre seen through the automatic sliding door">
+      <p class="ic">Entrance — Automatic Sliding Door from the Clean Corridor</p>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 07 -->
+<section>
+  <div class="sn">Section 07</div>
+  <h2>Room Layout, <span>Ceiling &amp; Finishes</span></h2>
+  <div class="rule"></div>
+
+  <div class="pgrid">
+    <div class="pc hl"><div class="pt">Ceiling Coordination</div><div class="pd">The reflected ceiling plan holds the laminar-flow / supply diffuser over the table, two surgical lights, the anaesthesia and surgical pendants, monitors, LED panels, return grilles and fire detection. Pendant arms and lights must clear each other and the robot's arms at full swing.</div></div>
+    <div class="pc"><div class="pt">Structure</div><div class="pd">Ceiling slab and steel support for lights and pendants, designed for their loads and deflection limits. The da Vinci-type patient cart is a mobile floor unit — the "ceiling-mounted arm" shown on Board 02 applies only if a ceiling-mounted robotic system is chosen.</div></div>
+    <div class="pc"><div class="pt">Walls</div><div class="pd">Seamless antibacterial HPL or glass panels with minimal joints, flush-fitted cabinets, viewing window, X-ray viewers / displays and bumper rails.</div></div>
+    <div class="pc"><div class="pt">Floors</div><div class="pd">Seamless antibacterial / antistatic sheet vinyl, coved up the wall; welded joints; level threshold for carts.</div></div>
+    <div class="pc"><div class="pt">Doors</div><div class="pd">Wide hermetic automatic sliding door for beds and the patient cart; staff door to the scrub area; vision panels.</div></div>
+    <div class="pc"><div class="pt">Colour &amp; Light</div><div class="pd">Calm blue / white palette as in the visualisations; high colour-rendering task lighting, dimmable ambient light for endoscopic and console work.</div></div>
+  </div>
+
+  <div class="img2" style="margin-top:28px">
+    <div>
+      <img src="projects/Detaill_Surgery_Room/img-013.jpg" alt="Surgical light seen from below">
+      <p class="ic">Surgical Light — Ceiling Coordination</p>
+    </div>
+    <div>
+      <img src="projects/Detaill_Surgery_Room/img-033.jpg" alt="Pendant arm detail">
+      <p class="ic">Ceiling Pendant Arm — Articulation &amp; Clearance</p>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 08 -->
+<section>
+  <div class="sn">Section 08</div>
+  <h2>Building <span>Services</span></h2>
+  <div class="rule"></div>
+
+  <table>
+    <thead><tr><th>System</th><th>Requirement</th></tr></thead>
+    <tbody>
+      <tr><td class="k">Ventilation</td><td>Dedicated theatre air-handling with HEPA / high-efficiency filtration, supply over the table and low-level extract; conventional or ultraclean (UCV) per surgical risk. Air-change rates and design per HTM 03-01 or ASHRAE 170. <span class="ref">[3]</span></td></tr>
+      <tr><td class="k">Pressure Cascade</td><td>Theatre positive to anaesthesia room, scrub and corridor; monitored with local pressure display.</td></tr>
+      <tr><td class="k">Temperature &amp; Humidity</td><td>Adjustable by the team within the guidance range; robotic and video equipment add heat load.</td></tr>
+      <tr><td class="k">Medical Gases</td><td>Oxygen, medical air, surgical air (tools), vacuum, nitrous oxide where used, and anaesthetic gas scavenging (AGSS) on pendants.</td></tr>
+      <tr><td class="k">Power</td><td>Medical IT (isolated) supply for patient-near equipment, UPS / essential supply for life-critical loads, dedicated circuits for the robot components.</td></tr>
+      <tr><td class="k">Lighting</td><td>Surgical lights for the field, uniform ambient lighting, dimming scenes for minimally invasive surgery.</td></tr>
+      <tr><td class="k">Data &amp; Video</td><td>Integration of endoscopic / robotic video, room displays, recording, teleconsultation and PACS access.</td></tr>
+      <tr><td class="k">Fire &amp; Communication</td><td>Detection coordinated with the ceiling; nurse call, intercom, staff alarm.</td></tr>
+    </tbody>
+  </table>
+
+  <div class="img2" style="margin-top:28px">
+    <div>
+      <img src="projects/Detaill_Surgery_Room/img-021.jpg" alt="Breathing circuit tubing">
+      <p class="ic">Anaesthesia Breathing Circuits — Gas Supply at the Head End</p>
+    </div>
+    <div>
+      <img src="projects/Detaill_Surgery_Room/img-024.jpg" alt="Infusion pump on IV pole">
+      <p class="ic">Infusion Pump — Power &amp; Mounting at the Bedside</p>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 09 -->
+<section>
+  <div class="sn">Section 09</div>
+  <h2>Safety <span>Considerations</span></h2>
+  <div class="rule"></div>
+  <ul class="bl">
+    <li><strong style="color:var(--text);font-weight:400">Surgical Safety Checklist</strong> — Sign In, Time Out and Sign Out built into the workflow and visible in the room. <span class="ref">[4, 5]</span></li>
+    <li><strong style="color:var(--text);font-weight:400">Emergency undocking &amp; conversion</strong> — space and routes for rapid undocking and conversion to open surgery; the robot must be removable from the bedside without obstruction.</li>
+    <li><strong style="color:var(--text);font-weight:400">Infection control</strong> — airflow protection of the sterile field, closed doors, cleanable finishes, separate clean and dirty routes. <span class="ref">[3, 7]</span></li>
+    <li><strong style="color:var(--text);font-weight:400">Surgical fire</strong> — oxygen-enriched atmosphere plus energy devices and alcohol preps; team protocols and extinguishing equipment.</li>
+    <li><strong style="color:var(--text);font-weight:400">Electrical safety</strong> — isolated supply, equipotential bonding, cable routing that avoids trip hazards.</li>
+    <li><strong style="color:var(--text);font-weight:400">Communication</strong> — the console surgeon is not at the bedside; voice, video and line of sight across the room are part of safety.</li>
+    <li><strong style="color:var(--text);font-weight:400">Ergonomics</strong> — console height and display positions, standing space for the bedside team, monitor sight lines.</li>
+  </ul>
+</section>
+
+<!-- SECTION 10 -->
+<section>
+  <div class="sn">Section 10</div>
+  <h2>Reference Standards <span>&amp; Guidance</span></h2>
+  <div class="rule"></div>
+  <table>
+    <thead><tr><th>Reference</th><th>Scope</th></tr></thead>
+    <tbody>
+      <tr><td class="k">NHS HBN 26 — Facilities for Surgical Procedures</td><td>Theatre suite planning, room relationships, areas</td></tr>
+      <tr><td class="k">NHS HTM 03-01 — Specialised Ventilation</td><td>Theatre ventilation, ultraclean systems, pressure regimes, validation</td></tr>
+      <tr><td class="k">ASHRAE / ASHE 170</td><td>Ventilation of health care facilities (US practice)</td></tr>
+      <tr><td class="k">FGI Guidelines</td><td>Design and construction of hospitals — operating room sizes and clearances</td></tr>
+      <tr><td class="k">iHFG — Operating Unit</td><td>International functional planning and room data</td></tr>
+      <tr><td class="k">WHO Surgical Safety Checklist</td><td>Team procedure for safe surgery</td></tr>
+      <tr><td class="k">AORN Guidelines</td><td>Perioperative practice — sterile technique, environment of care</td></tr>
+      <tr><td class="k">Robotic system site requirements</td><td class="tbc">Manufacturer layout, power and data — for the selected system</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- CONCLUSION -->
+<section>
+  <div class="sn">Conclusion</div>
+  <h2>Designing for <span>Precision and People</span></h2>
+  <div class="rule"></div>
+  <p class="body" style="margin-bottom:18px">A robotic surgery suite succeeds when the building disappears behind the procedure: clean air arriving over the table, clean and dirty routes that never cross, ceiling equipment that never collides, and enough floor space for the robot, the team and an emergency at the same time.</p>
+  <p class="body">The illustrated scheme sets out a clear zoning, a calm material palette and a coordinated ceiling. The next design step is to test it with the chosen robotic system's room templates — the equipment, not the drawing, sets the minimum room size.</p>
+</section>
+
+<!-- SOURCES -->
+<section>
+  <div class="sn">Sources</div>
+  <h2>Sources &amp; <span>References</span></h2>
+  <div class="rule"></div>
+
+  <div class="src">
+    <div class="si"><div class="sc">1</div><div class="sb"><div class="sn2">Intuitive Surgical — da Vinci Robotic Surgical Systems</div><a class="sl" href="https://www.intuitive.com/en-us/products-and-services/da-vinci" target="_blank" rel="noopener">intuitive.com/en-us/products-and-services/da-vinci</a></div></div>
+    <div class="si"><div class="sc">2</div><div class="sb"><div class="sn2">NHS England — HBN 26: Facilities for Surgical Procedures in Acute General Hospitals</div><a class="sl" href="https://www.england.nhs.uk/publication/facilities-for-surgical-procedures-in-acute-general-hospitals-hbn-26" target="_blank" rel="noopener">england.nhs.uk/publication/facilities-for-surgical-procedures-in-acute-general-hospitals-hbn-26</a></div></div>
+    <div class="si"><div class="sc">3</div><div class="sb"><div class="sn2">NHS England — HTM 03-01: Specialised Ventilation for Healthcare Premises</div><a class="sl" href="https://www.england.nhs.uk/publication/specialised-ventilation-for-healthcare-buildings/" target="_blank" rel="noopener">england.nhs.uk/publication/specialised-ventilation-for-healthcare-buildings</a></div></div>
+    <div class="si"><div class="sc">4</div><div class="sb"><div class="sn2">World Health Organization — Implementation Manual: WHO Surgical Safety Checklist</div><a class="sl" href="https://www.who.int/publications/i/item/9789241598590" target="_blank" rel="noopener">who.int/publications/i/item/9789241598590</a></div></div>
+    <div class="si"><div class="sc">5</div><div class="sb"><div class="sn2">World Health Organization — Safe Surgery: Tools and Resources</div><a class="sl" href="https://www.who.int/teams/integrated-health-services/patient-safety/research/safe-surgery/tool-and-resources" target="_blank" rel="noopener">who.int/teams/integrated-health-services/patient-safety/research/safe-surgery</a></div></div>
+    <div class="si"><div class="sc">6</div><div class="sb"><div class="sn2">iHFG — International Health Facility Guidelines, Part B: Operating Unit</div><a class="sl" href="https://www.healthfacilityguidelines.com" target="_blank" rel="noopener">healthfacilityguidelines.com</a></div></div>
+    <div class="si"><div class="sc">7</div><div class="sb"><div class="sn2">AORN — Guidelines for Perioperative Practice</div><a class="sl" href="https://www.aorn.org/guidelines" target="_blank" rel="noopener">aorn.org/guidelines</a></div></div>
+    <div class="si"><div class="sc">8</div><div class="sb"><div class="sn2">Facility Guidelines Institute (FGI) — Guidelines for Design and Construction of Hospitals (website not accessible for verification at time of writing)</div><a class="sl" href="https://fgiguidelines.org/" target="_blank" rel="noopener">fgiguidelines.org</a></div></div>
+  </div>
+
+  <div class="lim" style="margin-top:40px">
+    <h3>Document Limitations</h3>
+    <p>This research brief is prepared from publicly available clinical references, manufacturer information and planning guidance. It does not prescribe areas, air-change rates, structural loads or services for a specific project — these depend on the selected robotic system, the surgical case-mix, the infection-control strategy and the competent authority. All images and design boards are AI-assisted illustrative visualisations; text, dimensions and details within them are indicative and not construction information.</p>
+  </div>
+</section>
+
+</div><!-- /wrap -->
+
+<!-- GALLERY -->
+<div style="background:var(--bg2);border-top:1px solid var(--gold-line);padding:72px 0">
+  <div class="wrap">
+    <div class="sn">Visual Documentation</div>
+    <h2>Theatre <span>Views &amp; Details</span></h2>
+    <div class="rule"></div>
+    <p class="body" style="margin-bottom:36px">Interior visualisations of the robotic surgery theatre: overall views, robotic arms, instruments and clinical equipment.</p>
+    <div class="img2">
+      <div>
+        <img src="projects/Detaill_Surgery_Room/img-034.jpg" alt="Operating theatre overall view">
+        <p class="ic">Theatre — Overall View</p>
+      </div>
+      <div>
+        <img src="projects/Detaill_Surgery_Room/img-036.jpg" alt="Operating theatre with robotic system">
+        <p class="ic">Theatre — Robotic System at the Table</p>
+      </div>
+    </div>
+    <div class="img2">
+      <div>
+        <img src="projects/Detaill_Surgery_Room/img-015.jpg" alt="Robotic arms over the patient drape">
+        <p class="ic">Robotic Arms — Docked Position</p>
+      </div>
+      <div>
+        <img src="projects/Detaill_Surgery_Room/img-011.jpg" alt="Monitor and robotic arms">
+        <p class="ic">Monitoring &amp; Robotic Arms</p>
+      </div>
+    </div>
+    <div class="img2">
+      <div>
+        <img src="projects/Detaill_Surgery_Room/img-026.jpg" alt="Surgical instruments on a sterile drape">
+        <p class="ic">Sterile Field — Instrument Set-Up</p>
+      </div>
+      <div>
+        <img src="projects/Detaill_Surgery_Room/img-008.jpg" alt="Scalpel on sterile drape">
+        <p class="ic">Detail — Instruments on the Sterile Drape</p>
+      </div>
+    </div>
+    <div class="img2">
+      <div>
+        <img src="projects/Detaill_Surgery_Room/img-018.jpg" alt="Anaesthesia workstation">
+        <p class="ic">Anaesthesia Workstation</p>
+      </div>
+      <div>
+        <img src="projects/Detaill_Surgery_Room/img-028.jpg" alt="Foot pedal close-up">
+        <p class="ic">Detail — Foot Pedal Controls</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="ft">M. Amine Berchache — Senior Architect / BIM Coordinator</div>
+  <div class="ft">Robotic Surgery Suite FTB &nbsp;·&nbsp; Operating Theatre &nbsp;·&nbsp; Healthcare Architecture Research Series</div>
+</footer>
+
+</body>
+</html>

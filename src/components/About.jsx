@@ -2,19 +2,47 @@ import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 import { MapPin, Mail, Phone, ExternalLink, Award, Globe, Star, Monitor } from 'lucide-react'
 
-const COMPETENCIES = [
-  'Architectural Design Development','Technical Documentation','DD-to-Tender Packages',
-  'IFC Drawing Coordination','High-Rise Residential','Mixed-Use Projects',
-  'Healthcare Architecture','Hospital Design Coordination','BIM Coordination',
-  'ISO 19650 Workflows','BEP','MIDP','TIDP','CDE Governance',
-  'Federated Model Coordination','Clash Detection & Resolution','Revit Model Audits',
-  'Multidisciplinary Coordination','Architecture / Structure / MEP Coordination',
-  'Façade Coordination','Authority Submission Coordination',
-  'Dubai Municipality','Dubai Civil Defence','DEWA',
-  'RFI Management','Submittal Review','BOQ & Quantity Validation',
-  'QA/QC','Site Coordination','Snagging','Handover Support',
-  'Interior Space Planning','Layout Analysis','Design Review & Audits',
-  'AI-Assisted Visualization','Prompt Engineering for AEC Workflows',
+const COMPETENCY_GROUPS = [
+  {
+    group: 'Design & Documentation',
+    items: [
+      'Architectural Design Development','Technical Documentation','DD-to-Tender Packages',
+      'IFC Drawing Coordination','Design Review & Audits','Interior Space Planning','Layout Analysis',
+      'Tender / IFC / Shop Drawing Review','Buildability',
+    ],
+  },
+  {
+    group: 'Sectors',
+    items: [
+      'Super High-Rise & Mixed-Use','Healthcare / Oncology Facilities','Hospital Functional Planning','Medical Equipment Interfaces',
+    ],
+  },
+  {
+    group: 'BIM & Standards',
+    items: [
+      'BIM Coordination','ISO 19650 Workflows','EIR','LOD / LOIN','BEP, MIDP & TIDP Review','CDE / ACC',
+      'Federated Model Coordination','Clash Review','Model Data & Naming Conventions',
+    ],
+  },
+  {
+    group: 'Coordination & Authorities',
+    items: [
+      'Multidisciplinary Coordination','Architecture / Structure / MEP Coordination','Façade Coordination',
+      'Dubai Building Code','Dubai Municipality','Dubai Civil Defence','DEWA',
+    ],
+  },
+  {
+    group: 'Delivery & Site',
+    items: [
+      'RFIs & Submittals','BOQ Review','QA/QC','Site Technical Coordination',
+    ],
+  },
+  {
+    group: 'AI in Practice',
+    items: [
+      'AI Architectural Visualization','Revit–Claude MCP Automation','CAD-to-BIM Workflows',
+    ],
+  },
 ]
 
 const SOFTWARE = [
@@ -24,17 +52,17 @@ const SOFTWARE = [
 ]
 
 const HIGHLIGHTS = [
-  'Contributed to tender-stage coordination on Kings’ Square — an 8-tower mixed-use development in Riyadh, Saudi Arabia, with a GFA of 151,473 m².',
-  'Led multidisciplinary coordination across architecture, structure, MEP, façade and BMU/cleaning systems, resolving 1,500+ coordination clashes prior to tender stage.',
-  'Developed ISO 19650-aligned BIM documentation including BEP, MIDP and TIDP frameworks supporting CDE governance, model quality control and naming convention compliance.',
-  'Delivered healthcare projects including a 240-bed hospital and a 140-bed Anti-Cancer Centre in Algeria — concept through BIM production, BOQ validation and site coordination.',
-  'Gained 4+ years of contractor-side BIM and site experience covering RFI cycles, submittal review, QA/QC, snagging and handover support.',
+  'Coordinated architectural and technical review for a 90-storey Downtown Dubai residential tower and a 50-storey Sheikh Zayed Road tower (approx. 130,000 m² GFA).',
+  'Supported detailed design and tender deliverables on Kings’ Square — an eight-tower mixed-use project in Riyadh (approx. 151,473 m² GFA).',
+  'Reviewed and updated BEP, MIDP, TIDP and CDE processes under ISO 19650; checked model data against client EIR and LOD / LOIN expectations.',
+  'Healthcare portfolio across five hospitals in Algeria — Jijel (240 beds), Ghardaia, Chlef Anti-Cancer Centre (140 beds), Boumerdes (240 beds) and Constantine Oncology (approx. 160 beds).',
+  'Contractor-side technical experience covering IFC / shop drawing review, RFIs, submittals, quantities and medical equipment interfaces.',
 ]
 
 const LANGUAGES = [
-  { lang: 'Arabic',  level: 'Native · C2',             pct: 100 },
-  { lang: 'French',  level: 'Upper Intermediate · B2', pct: 75 },
-  { lang: 'English', level: 'Upper Intermediate · B2', pct: 75 },
+  { lang: 'Arabic',  level: 'Native', note: 'C2' },
+  { lang: 'French',  level: 'Upper Intermediate', note: 'B2' },
+  { lang: 'English', level: 'Upper Intermediate', note: 'B2' },
 ]
 
 const fadeUp = {
@@ -63,31 +91,27 @@ export default function About() {
           {/* Left - Bio */}
           <motion.div variants={fadeUp} initial="hidden" animate={inView ? 'show' : 'hidden'} transition={{ delay: 0.1 }}>
             <h2 className="section-title mb-8">
-              Senior Architect &<br />
+              Senior Technical Architect &<br />
               <span className="text-gold">BIM Coordinator</span>
             </h2>
             <p className="text-white-warm/70 leading-8 mb-6">
-              Senior Architect and BIM Coordinator with{' '}
-              <span className="text-gold font-semibold">16+ years</span> of experience across the UAE,
-              Saudi Arabia and Algeria, covering high-rise residential, mixed-use, healthcare, public
-              and interior design projects.
+              Senior Technical Architect and BIM Coordinator with{' '}
+              <span className="text-gold font-semibold">16+ years</span> of experience across the UAE
+              and Algeria, and project delivery exposure in Saudi Arabia.
             </p>
             <p className="text-white-warm/60 leading-8 mb-6">
-              Currently practising independently as a Freelance Interior Designer and 3D Visualization
-              specialist, applying AI-assisted visualization and prompt engineering to concept development
-              and client presentations. Previously led design coordination on two flagship Dubai towers —
-              a 90-storey residential tower in Downtown Dubai (GFA uncapped) and a 50-storey tower on
-              Sheikh Zayed Road (GFA: 130,000 m²) at Model Engineering Consultant.
+              Career progression from architectural design and hospital functional planning to
+              construction-stage technical coordination, BIM information management and complex
+              super high-rise developments.
             </p>
             <p className="text-white-warm/60 leading-8 mb-10">
-              Hands-on contractor-side and consultant-side experience with strong knowledge of Dubai
-              Municipality, Dubai Civil Defence and DEWA submission coordination. Healthcare experience
-              includes a 240-bed hospital and a 140-bed Anti-Cancer Centre — from concept through
-              tender, BIM coordination and site execution.
+              Combines consultant- and contractor-side judgment with RICS BIM Management
+              certification (ISO 19650), practical AI architectural visualization and developing
+              Revit–Claude MCP / CAD-to-BIM automation workflows.
             </p>
             <div className="flex flex-col gap-4">
               {[
-                { icon: MapPin,       text: 'Dubai, UAE' },
+                { icon: MapPin,       text: 'Based in Algeria · Available for UAE opportunities' },
                 { icon: Mail,        text: 'berchache.mohamedamine@gmail.com' },
                 { icon: Phone,       text: '+971 55 314 6783' },
                 { icon: ExternalLink, text: 'linkedin.com/in/mohamed-al-amine-berchache' },
@@ -111,17 +135,12 @@ export default function About() {
               </h3>
               <div className="space-y-4">
                 {LANGUAGES.map(l => (
-                  <div key={l.lang}>
-                    <div className="flex justify-between mb-2">
-                      <span className="text-white-warm text-sm">{l.lang}</span>
-                      <span className="text-grey-muted text-xs">{l.level}</span>
-                    </div>
-                    <div className="h-px bg-dark-grey relative">
-                      <motion.div className="absolute top-0 left-0 h-full bg-gold"
-                        initial={{ width: 0 }}
-                        animate={inView ? { width: `${l.pct}%` } : { width: 0 }}
-                        transition={{ duration: 1, delay: 0.5, ease: 'easeOut' }} />
-                    </div>
+                  <div key={l.lang} className="flex items-baseline justify-between border-b border-white/[0.06] pb-3">
+                    <span className="text-white-warm text-sm">{l.lang}</span>
+                    <span className="text-grey-muted text-xs">
+                      {l.level}
+                      <span className="text-gold/60 ml-2 tracking-[0.15em]">{l.note}</span>
+                    </span>
                   </div>
                 ))}
               </div>
@@ -138,8 +157,8 @@ export default function About() {
                   <p className="text-grey-muted text-xs mt-1">University of Mentouri Constantine, Algeria &middot; 2009</p>
                 </div>
                 <div className="border-l border-gold/30 pl-5">
-                  <p className="text-white-warm text-sm font-semibold">BIM Management &mdash; ISO 19650</p>
-                  <p className="text-grey-muted text-xs mt-1">RICS-accredited Online Academy, London &middot; 2024</p>
+                  <p className="text-white-warm text-sm font-semibold">RICS BIM Management Certificate &mdash; ISO 19650</p>
+                  <p className="text-grey-muted text-xs mt-1">RICS &middot; 2024</p>
                 </div>
                 <div className="border-l border-gold/20 pl-5">
                   <p className="text-gold/70 text-xs italic">In Progress 2026: AI for AEC Workflows &middot; n8n Automation &middot; Claude Code &middot; PMP (planned)</p>
@@ -156,11 +175,18 @@ export default function About() {
             <div className="gold-line w-6" />
             Core Competencies
           </h3>
-          <div className="flex flex-wrap gap-2">
-            {COMPETENCIES.map(c => (
-              <span key={c} className="text-white-warm/70 text-xs border border-white/10 rounded px-3 py-1.5 hover:border-gold/40 hover:text-gold/80 transition-colors">
-                {c}
-              </span>
+          <div className="grid gap-x-10 gap-y-8 sm:grid-cols-2 lg:grid-cols-3">
+            {COMPETENCY_GROUPS.map(({ group, items }) => (
+              <div key={group}>
+                <p className="text-gold/70 text-[10px] tracking-[0.3em] uppercase mb-3">{group}</p>
+                <ul className="space-y-1.5">
+                  {items.map(c => (
+                    <li key={c} className="text-white-warm/60 text-[13px] leading-relaxed pl-4 relative before:absolute before:left-0 before:top-[0.65em] before:w-1.5 before:h-px before:bg-gold/40 before:content-['']">
+                      {c}
+                    </li>
+                  ))}
+                </ul>
+              </div>
             ))}
           </div>
         </motion.div>

@@ -12,7 +12,10 @@ import Services from './components/Services'
 import CvDownload from './components/CvDownload'
 import Contact from './components/Contact'
 
-// SHA-256 hash of 'BIM2026!'
+/* SHA-256 of the admin passphrase. The passphrase itself is never stored here and
+   is not recoverable from this value. To change it, hash the new passphrase and
+   paste the digest below. This gate only hides the editing UI on this device --
+   it is not a server-side security boundary. */
 const ADMIN_HASH = '98aadf56a9d1e6f710d87117d87de0baf0c395dd66a16f0a0706da2e13548447'
 
 async function sha256(str) {

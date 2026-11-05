@@ -51,7 +51,7 @@ export default function CvDownload() {
             16+ years · 50+ projects · Available for Senior Architect, Lead Architect & BIM Coordinator roles
           </p>
           <a
-            href={`${BASE}cv/Berchache_Amine_CV_ATS_v5.pdf`}
+            href={`${BASE}cv/Berchache_Amine_CV_ATS_FINAL.pdf`}
             download
             className="group inline-flex items-center gap-4 bg-gold text-deep-black px-10 py-4 text-xs tracking-[0.4em] uppercase font-semibold hover:bg-beige transition-all duration-300"
           >

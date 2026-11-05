@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hyperbaric Oxygen Therapy Unit — Functional Technical Brief | M. Amine Berchache</title>
+<meta name="description" content="Healthcare Architecture Research Series, Part 1: Hyperbaric Oxygen Therapy (HBOT) unit — medical specialty, patient journey, monoplace and multiplace systems, functional programme and planning requirements.">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0d0d0d;--bg2:#111;--bg3:#161616;--bg4:#1c1c1c;
+  --gold:#C9982C;--gold2:#E0BC63;--gold3:#A87A1B;
+  --gold-dim:rgba(201,168,76,0.07);--gold-line:rgba(201,168,76,0.20);
+  --text:#e8e4dc;--text2:#b8b2a8;--text3:#787068;--text4:#484440;
+  --line:rgba(255,255,255,0.06);--line2:rgba(255,255,255,0.10);
+  --green:#5a9e6f;--red:#9e5a5a;--blue:#5a7a9e;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-weight:300;font-size:13px;line-height:1.7;overflow-x:hidden}
+nav{position:sticky;top:0;z-index:100;background:rgba(13,13,13,0.96);backdrop-filter:blur(20px);border-bottom:1px solid var(--gold-line);padding:0 56px;display:flex;align-items:center;justify-content:space-between;height:62px}
+.nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none}
+.nav-box{width:34px;height:34px;border:1px solid rgba(201,168,76,0.45);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:var(--gold);font-family:'Inter',sans-serif}
+.nav-txt p:first-child{font-size:10px;font-weight:500;letter-spacing:0.28em;text-transform:uppercase;color:var(--text);line-height:1.2}
+.nav-txt p:last-child{font-size:9px;letter-spacing:0.35em;text-transform:uppercase;color:var(--gold);line-height:1.2}
+.nav-r{display:flex;align-items:center;gap:10px}
+.nav-tag{font-size:9px;text-transform:uppercase;letter-spacing:0.12em;color:var(--gold3);border:1px solid var(--gold-line);padding:5px 12px;background:var(--gold-dim)}
+.nav-back{font-size:9px;text-transform:uppercase;letter-spacing:0.12em;color:var(--text3);text-decoration:none;border:1px solid var(--text4);padding:5px 14px;transition:all .2s}
+.nav-back:hover{border-color:var(--gold);color:var(--gold)}
+.hero{position:relative;height:68vh;min-height:500px;overflow:hidden}
+.hero img{width:100%;height:100%;object-fit:cover;filter:brightness(0.38)}
+.hero-ov{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(13,13,13,0.1) 0%,rgba(13,13,13,0.88) 100%)}
+.hero-c{position:absolute;bottom:0;left:0;right:0;padding:60px 80px}
+.breadcrumb{font-size:9px;text-transform:uppercase;letter-spacing:0.35em;color:var(--gold3);margin-bottom:14px}
+h1{font-family:'Playfair Display',serif;font-size:clamp(30px,5vw,56px);font-weight:300;line-height:1.1;color:var(--text);margin-bottom:8px}
+h1 span{color:var(--gold2)}
+.hero-sub{font-size:10px;text-transform:uppercase;letter-spacing:0.25em;color:var(--text2)}
+.tags{display:flex;gap:8px;margin-top:18px;flex-wrap:wrap}
+.tag{font-size:9px;text-transform:uppercase;letter-spacing:0.12em;color:var(--gold);border:1px solid var(--gold-line);padding:4px 12px;background:var(--gold-dim)}
+.notice{background:rgba(160,50,50,0.12);border:1px solid rgba(160,50,50,0.32);border-left:3px solid rgba(160,50,50,0.7);padding:14px 22px;margin:24px 80px 0;font-size:11px;color:#d4a0a0;line-height:1.65}
+.notice strong{color:#e8b0b0}
+.wrap{max-width:1200px;margin:0 auto;padding:0 80px}
+section{padding:72px 0;border-bottom:1px solid var(--line)}
+.sn{font-size:9px;text-transform:uppercase;letter-spacing:0.35em;color:var(--gold3);margin-bottom:8px}
+h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,32px);font-weight:300;color:var(--text)}
+h2 span{color:var(--gold2)}
+.rule{width:44px;height:1px;background:var(--gold);margin:14px 0 28px}
+p.body{font-size:12px;color:var(--text2);line-height:1.8;max-width:820px}
+table{width:100%;border-collapse:collapse}
+th{background:var(--bg3);color:var(--gold3);font-size:9px;text-transform:uppercase;letter-spacing:0.14em;font-weight:500;padding:11px 14px;text-align:left;border-bottom:1px solid var(--gold-line)}
+td{padding:10px 14px;border-bottom:1px solid var(--line);color:var(--text2);vertical-align:top}
+tr:hover td{background:rgba(201,168,76,0.025)}
+td.k{color:var(--text);font-weight:400}
+td.yes{color:#7ec87e}
+td.no{color:var(--text4)}
+td.tbc{color:var(--gold3);font-style:italic}
+td.h{color:var(--gold2);font-weight:500}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--gold-line);border:1px solid var(--gold-line)}
+.gl{background:var(--bg3);padding:12px 18px;font-size:10px;text-transform:uppercase;letter-spacing:0.13em;color:var(--gold3)}
+.gv{background:var(--bg2);padding:12px 18px;font-size:12px;color:var(--text2)}
+.chain-wrap{overflow-x:auto;padding:8px 0}
+.chain{display:flex;align-items:center;flex-wrap:nowrap;min-width:max-content}
+.cs{background:var(--bg3);border:1px solid var(--gold-line);padding:11px 16px;font-size:10px;color:var(--text2);text-align:center;min-width:110px}
+.cs.k{background:var(--gold-dim);border-color:var(--gold);color:var(--gold2);font-weight:500}
+.cl{font-size:8px;text-transform:uppercase;letter-spacing:0.08em;color:var(--text3);margin-top:3px;display:block}
+.ca{color:var(--gold3);font-size:15px;padding:0 5px;flex-shrink:0}
+.zones{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line2);margin-bottom:28px}
+.zc{padding:18px;background:var(--bg2)}
+.zd{width:9px;height:9px;border-radius:50%;margin-bottom:9px}
+.zn{font-size:10px;text-transform:uppercase;letter-spacing:0.08em;font-weight:500;color:var(--text);margin-bottom:5px}
+.zt{font-size:11px;color:var(--text3);line-height:1.6}
+.img2{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin:22px 0}
+.img2 img{width:100%;aspect-ratio:16/9;object-fit:contain;background:var(--bg3);filter:brightness(0.92);transition:filter .3s;display:block}
+.img2 img:hover,.imgf:hover,.img1 img:hover{filter:brightness(1)}
+.imgf{width:100%;max-height:500px;object-fit:contain;background:var(--bg3);filter:brightness(0.92);display:block;margin:22px 0;transition:filter .3s}
+.img1{margin:22px 0}
+.img1 img{width:100%;max-height:500px;object-fit:contain;background:var(--bg3);filter:brightness(0.92);display:block;transition:filter .3s}
+.img4{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin:22px 0}
+.img4 img{width:100%;aspect-ratio:16/9;object-fit:contain;background:var(--bg3);filter:brightness(0.92);display:block;transition:filter .3s}
+.img4 img:hover{filter:brightness(1)}
+.ic{font-size:10px;color:var(--text3);text-align:center;margin-top:5px;letter-spacing:0.04em}
+.area td:last-child{color:var(--gold2);font-family:'Playfair Display',serif;font-size:14px;text-align:right}
+.src{border:1px solid var(--line2)}
+.si{display:grid;grid-template-columns:56px 1fr;border-bottom:1px solid var(--line)}
+.si:last-child{border-bottom:none}
+.sc{background:var(--bg3);padding:14px;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:14px;color:var(--gold3);border-right:1px solid var(--line2)}
+.sb{background:var(--bg2);padding:12px 16px}
+.sn2{font-size:12px;color:var(--text);margin-bottom:3px}
+.sl{font-size:10px;color:var(--gold3);word-break:break-all}
+.rds-list{display:flex;flex-direction:column;gap:56px}
+.rds{border:1px solid var(--line2);background:var(--bg2)}
+.rds-hdr{display:flex;align-items:stretch;border-bottom:1px solid var(--gold-line)}
+.rds-num{background:var(--gold-dim);border-right:1px solid var(--gold-line);padding:22px 26px;display:flex;flex-direction:column;align-items:center;justify-content:center;min-width:90px}
+.rds-num span:first-child{font-family:'Playfair Display',serif;font-size:34px;font-weight:300;color:var(--gold2);line-height:1}
+.rds-num span:last-child{font-size:8px;text-transform:uppercase;letter-spacing:0.15em;color:var(--gold3);margin-top:3px}
+.rds-ttl{padding:22px 26px;flex:1}
+.rds-room{font-family:'Playfair Display',serif;font-size:21px;font-weight:400;color:var(--text);margin-bottom:4px}
+.rds-img{width:100%;max-height:400px;object-fit:contain;background:var(--bg3);filter:brightness(0.92);display:block;border-bottom:1px solid var(--line);transition:filter .3s}
+.rds-img:hover{filter:brightness(1)}
+.rds-img2{display:grid;grid-template-columns:1fr 1fr;gap:1px;border-bottom:1px solid var(--line)}
+.rds-img2 img{width:100%;height:300px;object-fit:contain;background:var(--bg3);filter:brightness(0.92);display:block;transition:filter .3s}
+.rds-img2 img:hover{filter:brightness(1)}
+.rds-sub{font-size:9px;text-transform:uppercase;letter-spacing:0.22em;color:var(--gold3);padding:18px 26px 6px;border-bottom:1px solid var(--line);background:var(--bg3);margin-top:0}
+.rds-body{padding:0 26px 26px}
+.rds-note{background:var(--gold-dim);border:1px solid var(--gold-line);border-left:3px solid var(--gold);padding:12px 16px;margin-top:18px;font-size:11px;color:var(--text2);line-height:1.7}
+.cmp{display:grid;grid-template-columns:200px 1fr 1fr;gap:1px;background:var(--gold-line);border:1px solid var(--gold-line);margin:22px 0}
+.cmp-h{background:var(--bg3);padding:11px 14px;font-size:9px;text-transform:uppercase;letter-spacing:0.12em;color:var(--gold3);font-weight:500}
+.cmp-k{background:var(--bg2);padding:10px 14px;font-size:11px;color:var(--text);font-weight:400}
+.cmp-a{background:rgba(90,154,111,0.06);padding:10px 14px;font-size:11px;color:var(--text2)}
+.cmp-b{background:rgba(90,122,158,0.06);padding:10px 14px;font-size:11px;color:var(--text2)}
+.cmp-adv{color:#7ec87e;font-size:10px;margin-top:3px}
+.badge-e{display:inline-block;font-size:8px;text-transform:uppercase;letter-spacing:0.1em;padding:2px 8px;background:rgba(0,56,101,0.3);border:1px solid rgba(0,156,166,0.3);color:#009CA6;margin-left:6px}
+.badge-v{display:inline-block;font-size:8px;text-transform:uppercase;letter-spacing:0.1em;padding:2px 8px;background:rgba(0,47,108,0.3);border:1px solid rgba(99,163,232,0.3);color:#63a3e8;margin-left:6px}
+.lim{border:1px solid var(--line2);background:var(--bg3);padding:28px 32px;margin-top:48px}
+.lim h3{font-family:'Playfair Display',serif;font-size:18px;font-weight:400;color:var(--text);margin-bottom:14px}
+.lim p{font-size:11px;color:var(--text3);line-height:1.8}
+footer{padding:40px 80px;border-top:1px solid var(--line2);display:flex;align-items:center;justify-content:space-between}
+.ft{font-size:9px;text-transform:uppercase;letter-spacing:0.2em;color:var(--text4)}
+.lead{font-family:'Playfair Display',serif;font-size:clamp(16px,1.8vw,20px);font-style:italic;color:var(--gold2);line-height:1.5;max-width:820px;margin-bottom:18px}
+.ref{font-size:10px;color:var(--gold3);letter-spacing:0.04em;white-space:nowrap}
+.kpi{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--gold-line);border:1px solid var(--gold-line);margin-bottom:18px}
+.kc{background:var(--bg2);padding:22px 20px}
+.kn{font-family:'Playfair Display',serif;font-size:30px;font-weight:300;color:var(--gold2);line-height:1.1}
+.kn small{font-family:'Inter',sans-serif;font-size:11px;color:var(--gold3);letter-spacing:0.1em}
+.kl{font-size:11px;color:var(--text3);margin-top:6px;line-height:1.6}
+.pgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line2);border:1px solid var(--line2)}
+.pc{background:var(--bg2);padding:18px 20px}
+.pc.hl{background:var(--gold-dim)}
+.pt{font-size:10px;text-transform:uppercase;letter-spacing:0.1em;font-weight:500;color:var(--text);margin-bottom:6px}
+.pd{font-size:11.5px;color:var(--text2);line-height:1.7}
+.pd a{color:var(--gold2)}
+.bl{list-style:none;max-width:820px}
+.bl li{font-size:12px;color:var(--text2);padding:7px 0 7px 22px;position:relative;border-bottom:1px solid var(--line)}
+.bl li::before{content:'';position:absolute;left:0;top:15px;width:10px;height:1px;background:var(--gold)}
+.zones3{grid-template-columns:repeat(3,1fr)}
+@media(max-width:768px){
+  nav,.hero-c,.wrap,footer{padding-left:16px;padding-right:16px}
+  .notice{margin:20px 16px 0;padding:12px 16px}
+  .hero-c{padding-top:32px;padding-bottom:32px}
+  .zones,.zones3,.kpi,.pgrid{grid-template-columns:1fr}
+  .img2,.rds-img2{grid-template-columns:1fr}
+  .cmp{grid-template-columns:1fr}
+  table{display:block;overflow-x:auto}
+  td,th{padding:9px 10px}
+  footer{flex-direction:column;gap:8px;align-items:flex-start}
+  .nav-txt p:last-child{display:none}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="/">
+    <div class="nav-box">AB</div>
+    <div class="nav-txt">
+      <p>Berchache</p>
+      <p>Senior Architect</p>
+    </div>
+  </a>
+  <div class="nav-r">
+    <a class="nav-tag" href="/ftb-rds.html" style="text-decoration:none">FTB-RDS</a>
+    <a class="nav-back" href="/">← Portfolio</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <img src="projects/Hyperbaric_Oxygen_Therapy/img-001.jpg" alt="Multiplace hyperbaric chamber suite with entry airlock">
+  <div class="hero-ov"></div>
+  <div class="hero-c">
+    <div class="breadcrumb">Healthcare Architecture Research Series &nbsp;/&nbsp; Functional Technical Brief &nbsp;/&nbsp; Hyperbaric Oxygen Therapy &nbsp;/&nbsp; Part 1</div>
+    <h1>Hyperbaric Oxygen<br><span>Therapy Unit</span></h1>
+    <div class="hero-sub">Medical Specialty, Patient Journey, Treatment Systems &amp; Unit Requirements</div>
+    <div class="tags">
+      <span class="tag">HBOT</span>
+      <span class="tag">Monoplace</span>
+      <span class="tag">Multiplace</span>
+      <span class="tag">iHFG</span>
+      <span class="tag">NFPA 99 Ch. 14</span>
+      <span class="tag">ASME PVHO-1</span>
+      <span class="tag">EN 14931</span>
+    </div>
+  </div>
+</div>
+
+<div class="notice">
+  <strong>Research Document — Not for Construction.</strong> This brief is a planning study prepared from published clinical, regulatory and manufacturer references. Pressures, areas, configurations and services are indicative and must be confirmed against the selected chamber's certified layout, the licensing authority of the project location, and the appointed hyperbaric physician and safety director. Images are AI-assisted illustrative visualisations — they are not construction drawings or evidence of compliance.
+</div>
+
+<div class="wrap">
+
+<!-- INTRO -->
+<section>
+  <div class="sn">Introduction</div>
+  <h2>From the Diver with Decompression Sickness <span>to the Diabetic Wound Patient</span></h2>
+  <div class="rule"></div>
+  <p class="lead">How can one department bring together patients whose needs are radically different?</p>
+  <p class="body" style="margin-bottom:18px">A patient may arrive from the Emergency Department after carbon monoxide poisoning, from the wound clinic with a complex diabetic ulcer, or from oncology follow-up to treat a late radiation injury. One specialty brings them together — but their clinical condition and the way care is delivered to them define the nature of the unit, its equipment and its organisation.</p>
+  <p class="body" style="margin-bottom:28px">Understanding this department starts with the patient, then moves to the chamber, operations and planning.</p>
+
+  <div class="g2">
+    <div class="gl">Service</div><div class="gv">Hyperbaric Oxygen Therapy (HBOT) Unit</div>
+    <div class="gl">Document Type</div><div class="gv">Functional Technical Brief — Research Series, Part 1</div>
+    <div class="gl">Scope</div><div class="gv">Medical specialty, referral &amp; patient journey, chamber systems, functional programme, spaces, services, safety, standards</div>
+    <div class="gl">Chamber Types</div><div class="gv">Monoplace (single patient) &nbsp;|&nbsp; Multiplace (several occupants + inside attendant)</div>
+    <div class="gl">Reference Systems</div><div class="gv">HAUX-LIFE-SUPPORT &nbsp;|&nbsp; Sechrist H-Series &nbsp;|&nbsp; Perry Baromedical SIGMA</div>
+    <div class="gl">Planning References</div><div class="gv">iHFG (May 2025) &nbsp;|&nbsp; DHA HBOT Standard v2.2 &nbsp;|&nbsp; DoH Abu Dhabi (2019) &nbsp;|&nbsp; NFPA 99 &nbsp;|&nbsp; ASME PVHO-1 &nbsp;|&nbsp; EN 14931</div>
+    <div class="gl">Author</div><div class="gv">M. Amine Berchache — Senior Architect / BIM Coordinator</div>
+  </div>
+</section>
+
+<!-- SECTION 01 -->
+<section>
+  <div class="sn">Section 01</div>
+  <h2>What Is Hyperbaric <span>Oxygen Therapy?</span></h2>
+  <div class="rule"></div>
+  <p class="body" style="margin-bottom:18px">Hyperbaric Oxygen Therapy (HBOT) is a medical procedure in which the patient breathes medical oxygen inside a chamber where the pressure surrounding the body is raised above normal atmospheric pressure.</p>
+  <p class="body" style="margin-bottom:18px">This increases the oxygen available to the tissues. The intended benefit depends on the condition: it may include treating the effects of gas bubbles, supporting the healing of hypoxic tissue, or helping to treat certain infections. Giving oxygen by mask in an ordinary room does not achieve the same effect — <strong style="color:var(--text);font-weight:400">pressure is an essential part of the treatment.</strong></p>
+  <p class="body" style="margin-bottom:28px">HBOT is usually one part of a wider treatment plan that includes other medical or surgical interventions. <span class="ref">[1, 2]</span></p>
+
+  <div class="kpi">
+    <div class="kc"><div class="kn">2–3 <small>ATA</small></div><div class="kl">Typical pressure in many protocols — prescribed per diagnosis</div></div>
+    <div class="kc"><div class="kn">1.5–2 <small>h</small></div><div class="kl">Typical session — some protocols are longer</div></div>
+    <div class="kc"><div class="kn">Rx</div><div class="kl">Pressure, duration and number of sessions are a medical prescription</div></div>
+  </div>
+  <div class="rds-note" style="margin-top:0"><strong>ATA = Atmospheres Absolute.</strong> 2 ATA is roughly twice normal atmospheric pressure — not two additional atmospheres on top of it.</div>
+
+  <div class="img2" style="margin-top:28px">
+    <div>
+      <img src="projects/Hyperbaric_Oxygen_Therapy/img-004.jpg" alt="Interior of a six-seat multiplace chamber">
+      <p class="ic">Multiplace Chamber — Six-Seat Interior with Built-In Breathing System</p>
+    </div>
+    <div>
+      <img src="projects/Hyperbaric_Oxygen_Therapy/img-006.jpg" alt="Inside a monoplace hyperbaric capsule">
+      <p class="ic">Monoplace Chamber — Patient View Inside the Transparent Capsule</p>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 02 -->
+<section>
+  <div class="sn">Section 02</div>
+  <h2>Who Is Referred <span>to This Specialty?</span></h2>
+  <div class="rule"></div>
+  <p class="body" style="margin-bottom:28px">The unit does not receive a single patient category, and having a condition does not mean automatic eligibility for treatment. The main referral groups are:</p>
+
+  <div class="pgrid">
+    <div class="pc"><div class="pt">Diabetic &amp; Complex Wounds</div><div class="pd">Considered for selected diabetic foot wounds meeting clinical criteria, especially when response to standard care stalls. The target is the eligible wound — not diabetes itself. Perfusion, infection, glucose control, wound care and offloading continue in parallel.</div></div>
+    <div class="pc"><div class="pt">Divers — Decompression Sickness</div><div class="pd">A rapid drop in pressure during ascent can form gas bubbles in the body. Recompression follows specialised protocols, so a unit receiving diving accidents may need emergency readiness that differs from a scheduled-session unit.</div></div>
+    <div class="pc"><div class="pt">Carbon Monoxide Poisoning</div><div class="pd">Selected cases of smoke or combustion exposure are assessed by injury severity and clinical findings. Referral depends on medical assessment, not on exposure alone.</div></div>
+    <div class="pc"><div class="pt">Air or Gas Embolism</div><div class="pd">Gas bubbles may enter the circulation in certain situations, including some medical procedures or diving accidents. Treatment is decided urgently, case by case.</div></div>
+    <div class="pc"><div class="pt">Acute Thermal Burns</div><div class="pd">Used in selected cases as an adjunct within specialised burn care. Not every burn patient needs it.</div></div>
+    <div class="pc"><div class="pt">Crush Injury &amp; Acute Traumatic Ischaemia</div><div class="pd">May form part of treating selected cases where tissue becomes hypoxic after injury, integrated with the necessary surgical interventions.</div></div>
+    <div class="pc"><div class="pt">Severe Infection &amp; Bone Disease</div><div class="pd">Eligible conditions include some necrotising soft-tissue infections, gas gangrene and refractory osteomyelitis. Inflammation or a wound alone is not enough to decide on treatment.</div></div>
+    <div class="pc hl"><div class="pt">Late Radiation Injury</div><div class="pd">Soft tissue or bone may be damaged after radiotherapy. HBOT targets some of these injuries in appropriate cases — it is <em>not</em> offered as a treatment for the cancer itself. Direct link to the <a href="/ftb-rds-radiotherapy.html">Radiotherapy Department</a>.</div></div>
+    <div class="pc"><div class="pt">Compromised Grafts &amp; Flaps</div><div class="pd">May help salvage surgical tissue with poor perfusion — not used routinely for every graft.</div></div>
+    <div class="pc"><div class="pt">Other Specific Conditions</div><div class="pd">Professional indication lists include idiopathic sudden sensorineural hearing loss, central retinal artery occlusion, some severe anaemia, intracranial abscess and avascular necrosis — subject to selection criteria and the approved protocol.</div></div>
+  </div>
+
+  <p class="body" style="margin-top:24px">The strength of recommendations and regulatory coverage varies between conditions and countries. A condition listed in a professional reference is not automatically approved by every licensing body or insurer. Shortness of breath alone is not a reason for direct referral to the chamber — it is a symptom requiring diagnosis and appropriate care first. <span class="ref">[1, 3, 4]</span></p>
+
+  <div class="img1" style="margin-top:28px">
+    <img src="projects/Hyperbaric_Oxygen_Therapy/img-016.jpg" alt="Patients preparing and breathing oxygen during a session">
+    <p class="ic">Storyboard — Patient Preparation, Oxygen Masks &amp; In-Session Monitoring</p>
+  </div>
+</section>
+
+<!-- SECTION 03 -->
+<section>
+  <div class="sn">Section 03</div>
+  <h2>How Does the Patient <span>Reach the Unit?</span></h2>
+  <div class="rule"></div>
+  <p class="body" style="margin-bottom:28px">Referrals may come from many departments. Eligibility is reviewed by the specialist physician — including the diagnosis, general condition, risks, ability to tolerate pressure and any required tests. <span class="ref">[2, 3]</span></p>
+
+  <table style="margin-bottom:28px">
+    <thead><tr><th>Referring Department</th><th>Typical Referral</th><th>Planning Implication</th></tr></thead>
+    <tbody>
+      <tr><td class="k">Emergency Department</td><td>CO poisoning, gas embolism, diving accidents</td><td class="yes">Urgent access — unscheduled treatment readiness</td></tr>
+      <tr><td class="k">Intensive Care</td><td>Critically ill, ventilated or monitored patients</td><td class="yes">Bed / stretcher route — pressure-compatible life support</td></tr>
+      <tr><td class="k">Wound &amp; Diabetes Clinics</td><td>Selected diabetic foot wounds</td><td class="tbc">Scheduled outpatient series</td></tr>
+      <tr><td class="k">Surgery &amp; Burns</td><td>Grafts, flaps, crush injuries, burns</td><td class="tbc">Mixed — inpatient and outpatient</td></tr>
+      <tr><td class="k">Infectious Diseases &amp; Orthopaedics</td><td>Necrotising infection, refractory osteomyelitis</td><td class="tbc">Inpatient — infection control review</td></tr>
+      <tr><td class="k">Radiotherapy Follow-up</td><td>Late radiation tissue injury</td><td class="tbc">Scheduled outpatient series</td></tr>
+      <tr><td class="k">ENT &amp; Ophthalmology</td><td>Sudden hearing loss, retinal artery occlusion</td><td class="yes">Time-sensitive — fast-track assessment</td></tr>
+    </tbody>
+  </table>
+
+  <div class="zones">
+    <div class="zc"><div class="zd" style="background:#5a9e6f"></div><div class="zn">Outpatient</div><div class="zt">Walks in for a series of repeated sessions — waiting, changing, lockers</div></div>
+    <div class="zc"><div class="zd" style="background:#5a7a9e"></div><div class="zn">Inpatient</div><div class="zt">Arrives on a stretcher or bed — transfer space and holding</div></div>
+    <div class="zc"><div class="zd" style="background:#9e5a5a"></div><div class="zn">Critical</div><div class="zt">Needs continuous support — inside attendant, compatible equipment</div></div>
+    <div class="zc"><div class="zd" style="background:#C9982C"></div><div class="zn">Emergency</div><div class="zt">Unscheduled recompression — on-call team and chamber readiness</div></div>
+  </div>
+  <p class="body">This difference is the basis for deciding the level of service and the resources required — <strong style="color:var(--text);font-weight:400">not the number of seats alone.</strong></p>
+
+  <div class="img1" style="margin-top:28px">
+    <img src="projects/Hyperbaric_Oxygen_Therapy/img-018.jpg" alt="Monoplace patient journey from arrival to treatment">
+    <p class="ic">Storyboard — Monoplace Patient Journey: Arrival, Assessment, Loading &amp; Treatment</p>
+  </div>
+</section>
+
+<!-- SECTION 04 -->
+<section>
+  <div class="sn">Section 04</div>
+  <h2>The Treatment <span>Journey</span></h2>
+  <div class="rule"></div>
+
+  <div class="chain-wrap">
+    <div class="chain">
+      <div class="cs"><span>Assessment<br>&amp; Plan</span><span class="cl">Eligibility · Prescription</span></div>
+      <div class="ca">→</div>
+      <div class="cs"><span>Preparation</span><span class="cl">Change · Lockers · Vitals</span></div>
+      <div class="ca">→</div>
+      <div class="cs"><span>Pre-Entry<br>Safety Check</span><span class="cl">Patient · Equipment · Comms</span></div>
+      <div class="ca">→</div>
+      <div class="cs k"><span>Compression</span><span class="cl">Gradual · Ear Equalisation</span></div>
+      <div class="ca">→</div>
+      <div class="cs k"><span>Treatment</span><span class="cl">O₂ Breathing · Air Breaks</span></div>
+      <div class="ca">→</div>
+      <div class="cs"><span>Decompression<br>&amp; Review</span><span class="cl">Discharge / Return to Ward</span></div>
+    </div>
+  </div>
+
+  <table style="margin-top:28px">
+    <thead><tr><th>Step</th><th>Content</th></tr></thead>
+    <tbody>
+      <tr><td class="k">1 — Assessment &amp; Plan</td><td>Suitability and prescription are set; benefits, risks and session expectations are explained.</td></tr>
+      <tr><td class="k">2 — Preparation</td><td>Change of clothing per the safety policy, storage of belongings, review of permitted materials and devices, vital signs or blood glucose where the condition requires.</td></tr>
+      <tr><td class="k">3 — Pre-Entry Safety Check</td><td>Confirms patient readiness, equipment, communication, and the plan for handling the patient's needs during the session.</td></tr>
+      <tr><td class="k">4 — Compression</td><td>Chamber pressure is raised gradually to the prescribed level, monitoring tolerance and ear-equalisation instructions.</td></tr>
+      <tr><td class="k">5 — Treatment &amp; Monitoring</td><td>The patient breathes oxygen per protocol; air breaks may be included per the prescription.</td></tr>
+      <tr><td class="k">6 — Decompression &amp; Review</td><td>Pressure is reduced in a controlled way; the patient is assessed before discharge or return to the referring department.</td></tr>
+    </tbody>
+  </table>
+  <div class="rds-note"><strong>Occupancy Note:</strong> Many sessions last about 1.5–2 hours, but some protocols are longer. Unit occupancy includes preparation, loading and cleaning — not only oxygen-breathing time. <span class="ref">[2, 3]</span></div>
+
+  <div class="img1" style="margin-top:28px">
+    <img src="projects/Hyperbaric_Oxygen_Therapy/img-011.jpg" alt="Multiplace session from entry to decompression">
+    <p class="ic">Storyboard — Multiplace Session: Entry, Compression, Treatment &amp; Exit</p>
+  </div>
+  <div class="img1">
+    <img src="projects/Hyperbaric_Oxygen_Therapy/img-013.jpg" alt="Staff operations around the multiplace chamber">
+    <p class="ic">Storyboard — Staff Roles: Operator, Inside Attendant &amp; Physician Review</p>
+  </div>
+</section>
+
+<!-- SECTION 05 -->
+<section>
+  <div class="sn">Section 05</div>
+  <h2>Monoplace vs <span>Multiplace Chambers</span></h2>
+  <div class="rule"></div>
+
+  <div class="cmp">
+    <div class="cmp-h">Parameter</div>
+    <div class="cmp-h" style="color:#63a3e8">Monoplace <span class="badge-v">Single</span></div>
+    <div class="cmp-h" style="color:#009CA6">Multiplace <span class="badge-e">Group</span></div>
+
+    <div class="cmp-k">Occupancy</div>
+    <div class="cmp-b">One patient, usually lying in a transparent cylinder</div>
+    <div class="cmp-a">Several occupants, with the possibility of a clinical attendant inside</div>
+
+    <div class="cmp-k">Pressurisation</div>
+    <div class="cmp-b">Many models are pressurised with oxygen; some designs use air with a separate breathing system — no single supply method can be assumed</div>
+    <div class="cmp-a">Usually pressurised with air; patients receive oxygen through masks, hoods or system-compatible breathing devices</div>
+
+    <div class="cmp-k">Patient Access</div>
+    <div class="cmp-b">Monitoring and communication from outside; direct access during pressure is limited</div>
+    <div class="cmp-a">Hands-on care by inside attendant during treatment</div>
+
+    <div class="cmp-k">Configuration</div>
+    <div class="cmp-b">Some systems support patients needing specialised equipment — "monoplace" does not mean simple cases only</div>
+    <div class="cmp-a">Seats, stretcher or bed positions per configuration — a bed may require re-arranging seats and reducing effective capacity</div>
+  </div>
+  <p class="body">System selection combines activity volume, patient condition, clinical access, staffing, technical infrastructure and the emergency plan. <span class="ref">[2, 3, 5]</span></p>
+
+  <div class="img2" style="margin-top:28px">
+    <div>
+      <img src="projects/Hyperbaric_Oxygen_Therapy/img-007.jpg" alt="Monoplace hyperbaric treatment room">
+      <p class="ic">Monoplace Treatment Room — Chamber, Operator Desk &amp; Clinical Support</p>
+    </div>
+    <div>
+      <img src="projects/Hyperbaric_Oxygen_Therapy/img-002.jpg" alt="Multiplace hyperbaric suite with control station">
+      <p class="ic">Multiplace Suite — Chamber Hall &amp; External Control Station</p>
+    </div>
+  </div>
+  <div class="img1">
+    <img src="projects/Hyperbaric_Oxygen_Therapy/img-025.jpg" alt="Monoplace treatment room operations">
+    <p class="ic">Storyboard — Monoplace Room: Operator Console, Loading &amp; Bedside Communication</p>
+  </div>
+</section>
+
+<!-- SECTION 06 -->
+<section>
+  <div class="sn">Section 06</div>
+  <h2>What Does a 2-, 3- or 4-Compartment <span>System Mean?</span></h2>
+  <div class="rule"></div>
+  <p class="body" style="margin-bottom:24px">Three different things must not be confused:</p>
+
+  <div class="zones zones3">
+    <div class="zc"><div class="zd" style="background:#5a9e6f"></div><div class="zn">The Architectural Room</div><div class="zt">The treatment hall inside the hospital building</div></div>
+    <div class="zc"><div class="zd" style="background:#C9982C"></div><div class="zn">The Pressure Vessel</div><div class="zt">The manufactured chamber installed within that room</div></div>
+    <div class="zc"><div class="zd" style="background:#9e5a5a"></div><div class="zn">The Compartments</div><div class="zt">The locks and chambers that make up the pressure system</div></div>
+  </div>
+
+  <table>
+    <thead><tr><th>Term</th><th>Meaning</th></tr></thead>
+    <tbody>
+      <tr><td class="k">Two-compartment system</td><td>In some multiplace systems: one main treatment chamber plus a personnel entry lock.</td></tr>
+      <tr><td class="k">Airlock (entry lock)</td><td>A space whose pressure can be equalised, allowing entry or exit while the main treatment chamber stays under pressure. It is not simply an extra door.</td></tr>
+      <tr><td class="k">Three / four compartments</td><td>Some systems offer two main treatment chambers with entry locks, per design. Compartment count alone does not prove independent sessions can run — that depends on the approved control, gas, equipment and operating system.</td></tr>
+      <tr><td class="k">Medical lock</td><td>A small lock for passing supplies — different from the personnel entry lock.</td></tr>
+    </tbody>
+  </table>
+  <p class="body" style="margin-top:14px"><span class="ref">[5, 6]</span></p>
+
+  <div class="img2" style="margin-top:22px">
+    <div>
+      <img src="projects/Hyperbaric_Oxygen_Therapy/img-005.jpg" alt="View from the treatment chamber through the airlock">
+      <p class="ic">Treatment Chamber Looking Through the Personnel Entry Lock</p>
+    </div>
+    <div>
+      <img src="projects/Hyperbaric_Oxygen_Therapy/img-003.jpg" alt="Open multiplace chamber entry lock">
+      <p class="ic">Entry Lock Door Open — Equalised Access to the Main Chamber</p>
+    </div>
+  </div>
+  <div class="img1">
+    <img src="projects/Hyperbaric_Oxygen_Therapy/img-014.jpg" alt="Lock operation and door handling sequence">
+    <p class="ic">Storyboard — Lock Operation, Door Handling &amp; Viewport Observation</p>
+  </div>
+</section>
+
+<!-- SECTION 07 -->
+<section>
+  <div class="sn">Section 07</div>
+  <h2>Reference Systems <span>&amp; Manufacturers</span></h2>
+  <div class="rule"></div>
+  <p class="body" style="margin-bottom:28px">The review covered Sechrist, HAUX-LIFE-SUPPORT and Perry Baromedical to understand differences in configuration and requirements — with no commercial ranking between them.</p>
+
+  <table>
+    <thead><tr><th>Family / System</th><th>Manufacturer</th><th>Type</th><th>Notes</th></tr></thead>
+    <tbody>
+      <tr><td class="k">QUADRO</td><td>HAUX</td><td>Multiplace — rectangular</td><td>Seated or lying patients; multi-compartment configurations</td></tr>
+      <tr><td class="k">STARMED</td><td>HAUX</td><td>Multiplace — cylindrical</td><td>Diameters, doors and arrangements vary per project</td></tr>
+      <tr><td class="k">MINI-QUADRO / DUOX</td><td>HAUX</td><td>Compact rectangular</td><td>3–6 seated patients, <em>or</em> one lying patient + attendant (DUOX) — alternatives, not a combined occupancy</td></tr>
+      <tr><td class="k">OXYSTAR</td><td>HAUX</td><td>Monoplace — transparent</td><td>Oxygen-breathing variants show why the actual model must be reviewed</td></tr>
+      <tr><td class="k">H-Series (e.g. 3600H)</td><td>Sechrist</td><td>Monoplace</td><td>Patient loading, communication, control and compatible medical support per configuration</td></tr>
+      <tr><td class="k">SIGMA Multiplace</td><td>Perry Baromedical</td><td>Multiplace</td><td>Several standard configurations; seated, lying and wheelchair options; entry lock and separate control station</td></tr>
+    </tbody>
+  </table>
+  <div class="rds-note"><strong>Note:</strong> The four HAUX families are equipment families — not four treatment grades or four patient categories. A catalogue defines options; approving a device requires the specification, drawings and conformity documents for the supplied configuration. <span class="ref">[6, 7, 8]</span></div>
+</section>
+
+<!-- SECTION 08 -->
+<section>
+  <div class="sn">Section 08</div>
+  <h2>Functional <span>Programme</span></h2>
+  <div class="rule"></div>
+  <p class="body" style="margin-bottom:28px">The chamber is the centre of the service, but its operation depends on a supporting programme. Preliminary functional programme for review:</p>
+
+  <div class="zones">
+    <div class="zc"><div class="zd" style="background:#5a9e6f"></div><div class="zn">Public / Patient</div><div class="zt">Reception, waiting, changing, lockers, accessible WC</div></div>
+    <div class="zc"><div class="zd" style="background:#5a7a9e"></div><div class="zn">Clinical</div><div class="zt">Consultation, preparation &amp; observation with stretcher capacity</div></div>
+    <div class="zc"><div class="zd" style="background:#9e5a5a"></div><div class="zn">Treatment</div><div class="zt">Chamber hall + control station — authorised staff and patients</div></div>
+    <div class="zc"><div class="zd" style="background:#C9982C"></div><div class="zn">Technical &amp; Support</div><div class="zt">Compressors, air treatment, gas sources, stores, clean / dirty utility, staff</div></div>
+  </div>
+
+  <table>
+    <thead><tr><th>Function</th><th>Zone</th><th>Observation</th></tr></thead>
+    <tbody>
+      <tr><td class="k">Reception &amp; Waiting</td><td style="color:#5a9e6f">Public</td><td>Repeated outpatient series — comfortable, wayfinding to changing</td></tr>
+      <tr><td class="k">Examination &amp; Consultation</td><td style="color:#5a7a9e">Clinical</td><td>Eligibility review and pre-session assessment</td></tr>
+      <tr><td class="k">Preparation &amp; Observation</td><td style="color:#5a7a9e">Clinical</td><td>Accommodates stretchers when required</td></tr>
+      <tr><td class="k">Changing, Lockers &amp; Accessible WC</td><td style="color:#5a9e6f">Public</td><td>Change of clothing per the oxygen-safety policy</td></tr>
+      <tr><td class="k">Chamber Hall &amp; Control Station</td><td style="color:#9e5a5a">Treatment</td><td>Sized on the actual equipment layout — see Section 09</td></tr>
+      <tr><td class="k">Equipment, Consumables &amp; Linen Stores</td><td style="color:#C9982C">Support</td><td>Pressure-compatible equipment kept separate</td></tr>
+      <tr><td class="k">Clean &amp; Dirty Utility</td><td style="color:#C9982C">Support</td><td>Masks and reusable parts processed per instructions</td></tr>
+      <tr><td class="k">Compressors, Air Treatment, Gas Sources &amp; Reserves</td><td style="color:#C9982C">Technical</td><td>Depending on the chamber system</td></tr>
+      <tr><td class="k">Staff Facilities &amp; Administration</td><td style="color:#C9982C">Support</td><td>Physician, nursing, operator and safety roles</td></tr>
+    </tbody>
+  </table>
+  <p class="body" style="margin-top:22px">This is a programming list for the project — not a requirement for a separate room per function. Sharing and combining are decided by operations, infection control and licensing requirements. The unit's relationship with Emergency, inpatient wards and ICU is studied according to the service scope, with practical access for patients and operating supplies. <span class="ref">[9, 10]</span></p>
+</section>
+
+<!-- SECTION 09 -->
+<section>
+  <div class="sn">Section 09</div>
+  <h2>Determining Areas <span>&amp; Clearances</span></h2>
+  <div class="rule"></div>
+  <p class="lead" style="margin-bottom:18px">There is no single area that suits every six-seat multiplace chamber.</p>
+  <p class="body" style="margin-bottom:22px">The area is built on the actual equipment layout, including:</p>
+  <ul class="bl">
+    <li>The external body, supports and connections.</li>
+    <li>Door swing and the entry lock.</li>
+    <li>Patient loading and stretcher or bed movement.</li>
+    <li>The operating station and supporting care.</li>
+    <li>Egress and access to valves and maintenance.</li>
+  </ul>
+  <p class="body" style="margin:18px 0 28px">Knowing the internal diameter or seat area is not enough to define the hall area.</p>
+
+  <table class="area">
+    <thead><tr><th>iHFG Reference Room</th><th>Applies To</th><th>Notes</th><th>Net Area (m²)</th></tr></thead>
+    <tbody>
+      <tr><td class="k">HBOT Room — 1 Chamber</td><td>One monoplace chamber</td><td>Room sheet describes a 1,400 mm clear door opening — not a general size for multiplace delivery</td><td>40</td></tr>
+      <tr><td class="k">HBOT Room — 2 Chambers</td><td>Two monoplace chambers</td><td>Does <em>not</em> mean a two-seat multiplace chamber</td><td>60</td></tr>
+      <tr><td class="k">Multiplace Chamber Hall</td><td>Per selected system</td><td>Derived from the certified vendor layout and clearances</td><td style="font-size:12px">Per vendor</td></tr>
+    </tbody>
+  </table>
+  <div class="rds-note">Neither iHFG value represents the total area of the department. Clear height depends on the highest component of the equipment and its maintenance clearance — the references verified give no single height that can be generalised to all multiplace chambers. <span class="ref">[11, 12]</span></div>
+
+  <div class="img1" style="margin-top:28px">
+    <img src="projects/Hyperbaric_Oxygen_Therapy/img-019.jpg" alt="Monoplace room clearances, loading and staff positions">
+    <p class="ic">Storyboard — Monoplace Room: Loading Clearance, Wheelchair Transfer &amp; Staff Positions</p>
+  </div>
+</section>
+
+<!-- SECTION 10 -->
+<section>
+  <div class="sn">Section 10</div>
+  <h2>Equipment <span>&amp; Essential Services</span></h2>
+  <div class="rule"></div>
+
+  <table>
+    <thead><tr><th>Chamber System</th><th>Requirement</th></tr></thead>
+    <tbody>
+      <tr><td class="k">Breathing Gas</td><td>Breathing, supply and gas exhaust system appropriate to each position</td></tr>
+      <tr><td class="k">Communication &amp; Monitoring</td><td>Two-way communication, viewing and monitoring</td></tr>
+      <tr><td class="k">Pressure Control</td><td>Pressure control, relief valves and alarms</td></tr>
+      <tr><td class="k">Locks</td><td>Personnel lock and supply (medical) lock where included in the system</td></tr>
+      <tr><td class="k">Care Equipment</td><td>Equipment compatible with the pressurised environment</td></tr>
+      <tr><td class="k">Fire Suppression</td><td>System appropriate to the approved configuration</td></tr>
+    </tbody>
+  </table>
+  <div class="rds-note"><strong>Compatibility:</strong> A monitor or infusion pump being available in the hospital does not mean it may enter the chamber. Compatibility with pressure, gases and safety requirements must be documented.</div>
+
+  <table style="margin-top:28px">
+    <thead><tr><th>Building Coordination</th><th>Scope</th></tr></thead>
+    <tbody>
+      <tr><td class="k">Control Station</td><td>Line of sight, communication, monitoring and practical alarm response — with the intervention route kept clear</td></tr>
+      <tr><td class="k">Air &amp; Gases</td><td>Air quality, gas sources and reserves</td></tr>
+      <tr><td class="k">Exhaust</td><td>Discharge of chamber exhaust</td></tr>
+      <tr><td class="k">Electrical</td><td>Electrical loads; normal and standby power according to the criticality of each function</td></tr>
+      <tr><td class="k">Room Pressure</td><td>Chamber pressure differs from the surrounding hall air pressure — the word "hyperbaric" does not by itself require the architectural room to be positive or negative pressure</td></tr>
+    </tbody>
+  </table>
+  <p class="body" style="margin-top:14px"><span class="ref">[5, 6, 8]</span></p>
+
+  <div class="img1" style="margin-top:22px">
+    <img src="projects/Hyperbaric_Oxygen_Therapy/img-012.jpg" alt="Control station monitoring and communication">
+    <p class="ic">Storyboard — Control Station: Monitoring, Communication &amp; Pressure Control</p>
+  </div>
+  <div class="img1">
+    <img src="projects/Hyperbaric_Oxygen_Therapy/img-015.jpg" alt="Operator and clinical team at the chamber">
+    <p class="ic">Storyboard — Operator Console, Valve Panel &amp; Team Coordination</p>
+  </div>
+</section>
+
+<!-- SECTION 11 -->
+<section>
+  <div class="sn">Section 11</div>
+  <h2>Safety, Operations <span>&amp; Infection Control</span></h2>
+  <div class="rule"></div>
+  <p class="body" style="margin-bottom:28px">High oxygen concentration increases fire risk. Safety is therefore tied to manufacturer instructions, grounding, permitted clothing and materials, team training, continuous monitoring and documented maintenance — points the FDA reaffirmed in its safety letter of 25 August 2025.</p>
+
+  <table>
+    <thead><tr><th>Operational Consideration</th><th>Observation</th></tr></thead>
+    <tbody>
+      <tr><td class="k">Cleaning</td><td>Compatible with the device instructions</td></tr>
+      <tr><td class="k">Clean / Used Separation</td><td>Clean supplies kept separate from used items</td></tr>
+      <tr><td class="k">Masks &amp; Reusable Parts</td><td>Processed according to their instructions</td></tr>
+      <tr><td class="k">Group Sessions</td><td>Assess whether patients are suitable to share a multiplace session</td></tr>
+      <tr><td class="k">Roles</td><td>Clear responsibilities for physician, nursing, operator, inside attendant, safety and maintenance</td></tr>
+      <tr><td class="k">Scenarios</td><td>Clinical deterioration, loss of services and fire</td></tr>
+    </tbody>
+  </table>
+  <div class="rds-note"><strong>Emergency Response:</strong> follows the approved system. No generic depressurisation or gas-shutdown sequence can be invented that suits all devices. <span class="ref">[5, 13]</span></div>
+
+  <div class="img2" style="margin-top:28px">
+    <div>
+      <img src="projects/Hyperbaric_Oxygen_Therapy/img-017.jpg" alt="Safety checks and emergency drill">
+      <p class="ic">Storyboard — Safety Checks, Alarms &amp; Emergency Drill</p>
+    </div>
+    <div>
+      <img src="projects/Hyperbaric_Oxygen_Therapy/img-020.jpg" alt="Team briefing and multiplace operations">
+      <p class="ic">Storyboard — Team Briefing &amp; Multiplace Operations</p>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 12 -->
+<section>
+  <div class="sn">Section 12</div>
+  <h2>Reference Standards <span>&amp; Regulations</span></h2>
+  <div class="rule"></div>
+  <p class="body" style="margin-bottom:28px">Each reference has a different function:</p>
+
+  <table>
+    <thead><tr><th>Role</th><th>Reference</th><th>Scope</th></tr></thead>
+    <tbody>
+      <tr><td class="k">Licensing Authority</td><td>DHA HBOT Standard v2.2 (announced 29 Jan 2026) &nbsp;|&nbsp; UAE Ministerial Resolution 177 / 2024</td><td>Dubai licensing requirements; UAE national standards</td></tr>
+      <tr><td class="k">Health Planning</td><td>iHFG — Hyperbaric Chamber Therapy Unit (May 2025)</td><td>Functional planning, with related RDS and RLS sheets</td></tr>
+      <tr><td class="k">Local Comparative</td><td>DoH Abu Dhabi HBOT Standard (April 2019)</td><td>Status and updates to be verified before applying to a project</td></tr>
+      <tr><td class="k">Facility Safety</td><td>NFPA 99 — Chapter 14, Hyperbaric Facilities</td><td>Per the edition adopted for the project</td></tr>
+      <tr><td class="k">Pressure Vessel</td><td>ASME PVHO-1</td><td>Design, fabrication, inspection and testing of pressure vessels for human occupancy</td></tr>
+      <tr><td class="k">European Route</td><td>EN 14931</td><td>Performance, safety and testing of multiplace chamber systems</td></tr>
+      <tr><td class="k">Operations &amp; Practice</td><td>European Code of Good Practice for HBOT (Review 2022)</td><td>Operational and clinical practice</td></tr>
+    </tbody>
+  </table>
+  <p class="body" style="margin-top:22px">These references do not all replace one another, and they do not automatically become local law. Mandatory status is defined by the project location, the competent authority and the device approval route. <span class="ref">[5, 9, 10, 14–18]</span></p>
+  <div class="rds-note"><strong>Documentation Note:</strong> The DHA announcement of v2.2 was verified; its full attachment was not reviewed in this study. Dimensions from the older v2.1 are therefore not presented as current Dubai requirements.</div>
+</section>
+
+<!-- CONCLUSION -->
+<section>
+  <div class="sn">Conclusion</div>
+  <h2>More Than <span>a Capsule</span></h2>
+  <div class="rule"></div>
+  <p class="lead" style="margin-bottom:18px">The department is not defined by the shape of the capsule alone.</p>
+  <p class="body" style="margin-bottom:28px">It is a clinical service that brings together patients with very different needs, a specialised team, a pressure vessel, gas, control and safety systems, and a functional programme that makes it possible to operate.</p>
+  <div class="img1">
+    <img src="projects/Hyperbaric_Oxygen_Therapy/img-021.jpg" alt="Multiplace chamber in operation">
+    <p class="ic">Storyboard — Multiplace Unit in Operation: Patients, Attendant &amp; Control Team</p>
+  </div>
+</section>
+
+<!-- SOURCES -->
+<section>
+  <div class="sn">Sources</div>
+  <h2>Sources &amp; <span>References</span></h2>
+  <div class="rule"></div>
+
+  <div class="src">
+    <div class="si"><div class="sc">1</div><div class="sb"><div class="sn2">UHMS — Medical Indications for Hyperbaric Oxygen Therapy</div><a class="sl" href="https://www.uhms.org/resources/featured-resources/hbo-indications.html" target="_blank" rel="noopener">uhms.org/resources/featured-resources/hbo-indications.html</a></div></div>
+    <div class="si"><div class="sc">2</div><div class="sb"><div class="sn2">Mayo Clinic — Hyperbaric Oxygen Therapy: Definition, Preparation &amp; Session</div><a class="sl" href="https://www.mayoclinic.org/tests-procedures/hyperbaric-oxygen-therapy/about/pac-20394380" target="_blank" rel="noopener">mayoclinic.org/tests-procedures/hyperbaric-oxygen-therapy</a></div></div>
+    <div class="si"><div class="sc">3</div><div class="sb"><div class="sn2">University of Iowa Health Care — Patient Assessment, Treatment Journey &amp; Chamber Types</div><a class="sl" href="https://uihc.org/educational-resources/frequently-asked-questions-about-hyperbaric-oxygen-therapy" target="_blank" rel="noopener">uihc.org/educational-resources/frequently-asked-questions-about-hyperbaric-oxygen-therapy</a></div></div>
+    <div class="si"><div class="sc">4</div><div class="sb"><div class="sn2">Duke Center for Hyperbaric Medicine — Medical Indications</div><a class="sl" href="https://anesthesiology.duke.edu/hyperbaric-center/chamber/hyperbaric-medicine" target="_blank" rel="noopener">anesthesiology.duke.edu/hyperbaric-center/chamber/hyperbaric-medicine</a></div></div>
+    <div class="si"><div class="sc">5</div><div class="sb"><div class="sn2">European Code of Good Practice in Hyperbaric Medicine — Review 2022</div><a class="sl" href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10911829/" target="_blank" rel="noopener">pmc.ncbi.nlm.nih.gov/articles/PMC10911829</a></div></div>
+    <div class="si"><div class="sc">6</div><div class="sb"><div class="sn2">HAUX-LIFE-SUPPORT — Medical Chamber Families &amp; Configurations</div><a class="sl" href="https://hauxlifesupport.de/en/products/medical-technology/" target="_blank" rel="noopener">hauxlifesupport.de/en/products/medical-technology</a></div></div>
+    <div class="si"><div class="sc">7</div><div class="sb"><div class="sn2">Sechrist — H-Series Monoplace Chambers</div><a class="sl" href="https://www.sechristusa.com/hbo-products" target="_blank" rel="noopener">sechristusa.com/hbo-products</a></div></div>
+    <div class="si"><div class="sc">8</div><div class="sb"><div class="sn2">Perry Baromedical — SIGMA Multiplace Chamber</div><a class="sl" href="https://perrybaromedical.com/products/hyperbaric-oxygen-therapy-chambers/multiplace-hyperbaric-chamber/" target="_blank" rel="noopener">perrybaromedical.com/products/…/multiplace-hyperbaric-chamber</a></div></div>
+    <div class="si"><div class="sc">9</div><div class="sb"><div class="sn2">iHFG — Hyperbaric Chamber Therapy Unit (May 2025)</div><a class="sl" href="https://www.healthfacilityguidelines.com/ViewPDF/ViewIndexPDF/iHFG_part_b_hyperbaric_unit" target="_blank" rel="noopener">healthfacilityguidelines.com/ViewPDF/ViewIndexPDF/iHFG_part_b_hyperbaric_unit</a></div></div>
+    <div class="si"><div class="sc">10</div><div class="sb"><div class="sn2">DoH Abu Dhabi — Standard for Hyperbaric Oxygen Therapy (April 2019)</div><a class="sl" href="https://www.doh.gov.ae/-/media/298DE4C3E60E411ABB6CD12546ABCBA6.ashx" target="_blank" rel="noopener">doh.gov.ae/-/media/298DE4C3E60E411ABB6CD12546ABCBA6.ashx</a></div></div>
+    <div class="si"><div class="sc">11</div><div class="sb"><div class="sn2">iHFG — Hyperbaric Oxygen Therapy Room, 1 Chamber</div><a class="sl" href="https://www.healthfacilityguidelines.com/StandardComponents/ItemDetails/Hyperbaric-Oxygen-Therapy-Room-1-Chamber" target="_blank" rel="noopener">healthfacilityguidelines.com/StandardComponents/ItemDetails/Hyperbaric-Oxygen-Therapy-Room-1-Chamber</a></div></div>
+    <div class="si"><div class="sc">12</div><div class="sb"><div class="sn2">iHFG — Hyperbaric Oxygen Therapy Room, 2 Chambers</div><a class="sl" href="https://www.healthfacilityguidelines.com/StandardComponents/ItemDetails/Hyperbaric-Oxygen-Therapy-Room-2-Chambers" target="_blank" rel="noopener">healthfacilityguidelines.com/StandardComponents/ItemDetails/Hyperbaric-Oxygen-Therapy-Room-2-Chambers</a></div></div>
+    <div class="si"><div class="sc">13</div><div class="sb"><div class="sn2">FDA — Follow Instructions for Safe Use of HBOT Devices, Letter to Health Care Providers (25 Aug 2025)</div><a class="sl" href="https://www.fda.gov/medical-devices/letters-health-care-providers/follow-instructions-safe-use-hyperbaric-oxygen-therapy-devices-letter-health-care-providers" target="_blank" rel="noopener">fda.gov/medical-devices/letters-health-care-providers/…</a></div></div>
+    <div class="si"><div class="sc">14</div><div class="sb"><div class="sn2">DHA — Announcement of HBOT Standard v2.2, Ref. CIR-2026-00000018</div><a class="sl" href="https://services.dha.gov.ae/sheryan/wps/portal/home/circular-details?circularRefNo=CIR-2026-00000018&amp;fromHome=true" target="_blank" rel="noopener">services.dha.gov.ae — CIR-2026-00000018</a></div></div>
+    <div class="si"><div class="sc">15</div><div class="sb"><div class="sn2">DHA — Circular on UAE Ministerial Resolution 177 of 2024</div><a class="sl" href="https://services.dha.gov.ae/sheryan/wps/portal/home/circular-details?circularRefNo=CIR-2024-00000165&amp;fromHome=true&amp;isPublicCircular=true" target="_blank" rel="noopener">services.dha.gov.ae — CIR-2024-00000165</a></div></div>
+    <div class="si"><div class="sc">16</div><div class="sb"><div class="sn2">FDA Recognised Standards — NFPA 99:2024 Scope</div><a class="sl" href="https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfStandards/detail.cfm?standard__identification_no=45591" target="_blank" rel="noopener">accessdata.fda.gov — Standard 45591</a></div></div>
+    <div class="si"><div class="sc">17</div><div class="sb"><div class="sn2">FDA Recognised Standards — ASME PVHO-1-2023 Scope</div><a class="sl" href="https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfStandards/detail.cfm?standard__identification_no=45593" target="_blank" rel="noopener">accessdata.fda.gov — Standard 45593</a></div></div>
+    <div class="si"><div class="sc">18</div><div class="sb"><div class="sn2">BSI — BS EN 14931:2006 Multi-Place Pressure Chambers for Hyperbaric Therapy</div><a class="sl" href="https://knowledge.bsigroup.com/products/pressure-vessels-for-human-occupancy-pvho-multi-place-pressure-chambers-for-hyperbaric-therapy-performance-safety-requirements-and-testing" target="_blank" rel="noopener">knowledge.bsigroup.com — BS EN 14931:2006</a></div></div>
+  </div>
+
+  <div class="lim" style="margin-top:40px">
+    <h3>Document Limitations</h3>
+    <p>This research brief is prepared from publicly available clinical references, manufacturer catalogues and regulatory publications. It does not prescribe areas, heights, gas systems or emergency sequences for a specific project — these depend on the selected chamber's certified documentation, the competent authority and the appointed clinical and safety team. All images are AI-assisted illustrative visualisations and do not represent construction drawings or evidence of compliance.</p>
+  </div>
+</section>
+
+</div><!-- /wrap -->
+
+<!-- PART 2 PREVIEW -->
+<div style="background:var(--bg2);border-top:1px solid var(--gold-line);padding:72px 0">
+  <div class="wrap">
+    <div class="sn">Coming Next — Part 2</div>
+    <h2>Delivery, Rigging <span>&amp; Assembly</span></h2>
+    <div class="rule"></div>
+    <p class="body" style="margin-bottom:36px">How do the chamber's supply, entry into the building, assembly and future replacement affect the design and the construction sequence?</p>
+    <div class="img2">
+      <div>
+        <img src="projects/Hyperbaric_Oxygen_Therapy/img-008.jpg" alt="Chamber entering through the hospital facade">
+        <p class="ic">Chamber Delivered Through a Temporary Façade Opening</p>
+      </div>
+      <div>
+        <img src="projects/Hyperbaric_Oxygen_Therapy/img-009.jpg" alt="Chamber modules entering the hospital">
+        <p class="ic">Modular Chamber Sections on Transport Trailers</p>
+      </div>
+    </div>
+    <div class="img1">
+      <img src="projects/Hyperbaric_Oxygen_Therapy/img-010.jpg" alt="Modular chamber assembly inside the hall">
+      <p class="ic">In-Situ Assembly — Gantry Crane, Door Modules &amp; Bolted Sections</p>
+    </div>
+    <div class="img1">
+      <img src="projects/Hyperbaric_Oxygen_Therapy/img-022.jpg" alt="Crane lift and site logistics">
+      <p class="ic">Storyboard — Crane Lift, Heavy Transport &amp; Site Logistics</p>
+    </div>
+    <div class="img1">
+      <img src="projects/Hyperbaric_Oxygen_Therapy/img-023.jpg" alt="Building entry route for the chamber">
+      <p class="ic">Storyboard — Building Entry Route &amp; Structural Opening</p>
+    </div>
+    <div class="img1">
+      <img src="projects/Hyperbaric_Oxygen_Therapy/img-024.jpg" alt="Chamber assembly and commissioning">
+      <p class="ic">Storyboard — Section Assembly, Door Fitting &amp; Inspection</p>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="ft">M. Amine Berchache — Senior Architect / BIM Coordinator</div>
+  <div class="ft">HBOT FTB &nbsp;·&nbsp; Healthcare Architecture Research Series &nbsp;·&nbsp; Part 1</div>
+</footer>
+
+</body>
+</html>

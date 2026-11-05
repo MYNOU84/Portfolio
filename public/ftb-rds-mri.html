@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MRI Suite — Siemens MAGNETOM Sola 1.5T — Functional Technical Brief | M. Amine Berchache</title>
+<meta name="description" content="Healthcare Architecture Research Series: Magnetic Resonance Imaging (MRI) suite with Siemens MAGNETOM Sola 1.5T — clinical role, ACR MR safety zones, RF shielding, quench, functional programme and room requirements.">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0d0d0d;--bg2:#111;--bg3:#161616;--bg4:#1c1c1c;
+  --gold:#C9982C;--gold2:#E0BC63;--gold3:#A87A1B;
+  --gold-dim:rgba(201,168,76,0.07);--gold-line:rgba(201,168,76,0.20);
+  --text:#e8e4dc;--text2:#b8b2a8;--text3:#787068;--text4:#484440;
+  --line:rgba(255,255,255,0.06);--line2:rgba(255,255,255,0.10);
+  --green:#5a9e6f;--red:#9e5a5a;--blue:#5a7a9e;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-weight:300;font-size:13px;line-height:1.7;overflow-x:hidden}
+nav{position:sticky;top:0;z-index:100;background:rgba(13,13,13,0.96);backdrop-filter:blur(20px);border-bottom:1px solid var(--gold-line);padding:0 56px;display:flex;align-items:center;justify-content:space-between;height:62px}
+.nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none}
+.nav-box{width:34px;height:34px;border:1px solid rgba(201,168,76,0.45);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:var(--gold);font-family:'Inter',sans-serif}
+.nav-txt p:first-child{font-size:10px;font-weight:500;letter-spacing:0.28em;text-transform:uppercase;color:var(--text);line-height:1.2}
+.nav-txt p:last-child{font-size:9px;letter-spacing:0.35em;text-transform:uppercase;color:var(--gold);line-height:1.2}
+.nav-r{display:flex;align-items:center;gap:10px}
+.nav-tag{font-size:9px;text-transform:uppercase;letter-spacing:0.12em;color:var(--gold3);border:1px solid var(--gold-line);padding:5px 12px;background:var(--gold-dim)}
+.nav-back{font-size:9px;text-transform:uppercase;letter-spacing:0.12em;color:var(--text3);text-decoration:none;border:1px solid var(--text4);padding:5px 14px;transition:all .2s}
+.nav-back:hover{border-color:var(--gold);color:var(--gold)}
+.hero{position:relative;height:68vh;min-height:500px;overflow:hidden}
+.hero img{width:100%;height:100%;object-fit:cover;filter:brightness(0.38)}
+.hero-ov{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(13,13,13,0.1) 0%,rgba(13,13,13,0.88) 100%)}
+.hero-c{position:absolute;bottom:0;left:0;right:0;padding:60px 80px}
+.breadcrumb{font-size:9px;text-transform:uppercase;letter-spacing:0.35em;color:var(--gold3);margin-bottom:14px}
+h1{font-family:'Playfair Display',serif;font-size:clamp(30px,5vw,56px);font-weight:300;line-height:1.1;color:var(--text);margin-bottom:8px}
+h1 span{color:var(--gold2)}
+.hero-sub{font-size:10px;text-transform:uppercase;letter-spacing:0.25em;color:var(--text2)}
+.tags{display:flex;gap:8px;margin-top:18px;flex-wrap:wrap}
+.tag{font-size:9px;text-transform:uppercase;letter-spacing:0.12em;color:var(--gold);border:1px solid var(--gold-line);padding:4px 12px;background:var(--gold-dim)}
+.notice{background:rgba(160,50,50,0.12);border:1px solid rgba(160,50,50,0.32);border-left:3px solid rgba(160,50,50,0.7);padding:14px 22px;margin:24px 80px 0;font-size:11px;color:#d4a0a0;line-height:1.65}
+.notice strong{color:#e8b0b0}
+.wrap{max-width:1200px;margin:0 auto;padding:0 80px}
+section{padding:72px 0;border-bottom:1px solid var(--line)}
+.sn{font-size:9px;text-transform:uppercase;letter-spacing:0.35em;color:var(--gold3);margin-bottom:8px}
+h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,32px);font-weight:300;color:var(--text)}
+h2 span{color:var(--gold2)}
+.rule{width:44px;height:1px;background:var(--gold);margin:14px 0 28px}
+p.body{font-size:12px;color:var(--text2);line-height:1.8;max-width:820px}
+table{width:100%;border-collapse:collapse}
+th{background:var(--bg3);color:var(--gold3);font-size:9px;text-transform:uppercase;letter-spacing:0.14em;font-weight:500;padding:11px 14px;text-align:left;border-bottom:1px solid var(--gold-line)}
+td{padding:10px 14px;border-bottom:1px solid var(--line);color:var(--text2);vertical-align:top}
+tr:hover td{background:rgba(201,168,76,0.025)}
+td.k{color:var(--text);font-weight:400}
+td.yes{color:#7ec87e}
+td.no{color:var(--text4)}
+td.tbc{color:var(--gold3);font-style:italic}
+td.h{color:var(--gold2);font-weight:500}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--gold-line);border:1px solid var(--gold-line)}
+.gl{background:var(--bg3);padding:12px 18px;font-size:10px;text-transform:uppercase;letter-spacing:0.13em;color:var(--gold3)}
+.gv{background:var(--bg2);padding:12px 18px;font-size:12px;color:var(--text2)}
+.chain-wrap{overflow-x:auto;padding:8px 0}
+.chain{display:flex;align-items:center;flex-wrap:nowrap;min-width:max-content}
+.cs{background:var(--bg3);border:1px solid var(--gold-line);padding:11px 16px;font-size:10px;color:var(--text2);text-align:center;min-width:110px}
+.cs.k{background:var(--gold-dim);border-color:var(--gold);color:var(--gold2);font-weight:500}
+.cl{font-size:8px;text-transform:uppercase;letter-spacing:0.08em;color:var(--text3);margin-top:3px;display:block}
+.ca{color:var(--gold3);font-size:15px;padding:0 5px;flex-shrink:0}
+.zones{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line2);margin-bottom:28px}
+.zc{padding:18px;background:var(--bg2)}
+.zd{width:9px;height:9px;border-radius:50%;margin-bottom:9px}
+.zn{font-size:10px;text-transform:uppercase;letter-spacing:0.08em;font-weight:500;color:var(--text);margin-bottom:5px}
+.zt{font-size:11px;color:var(--text3);line-height:1.6}
+.img2{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin:22px 0}
+.img2 img{width:100%;aspect-ratio:16/9;object-fit:contain;background:var(--bg3);filter:brightness(0.92);transition:filter .3s;display:block}
+.img2 img:hover,.imgf:hover,.img1 img:hover{filter:brightness(1)}
+.imgf{width:100%;max-height:500px;object-fit:contain;background:var(--bg3);filter:brightness(0.92);display:block;margin:22px 0;transition:filter .3s}
+.img1{margin:22px 0}
+.img1 img{width:100%;max-height:500px;object-fit:contain;background:var(--bg3);filter:brightness(0.92);display:block;transition:filter .3s}
+.img4{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin:22px 0}
+.img4 img{width:100%;aspect-ratio:16/9;object-fit:contain;background:var(--bg3);filter:brightness(0.92);display:block;transition:filter .3s}
+.img4 img:hover{filter:brightness(1)}
+.ic{font-size:10px;color:var(--text3);text-align:center;margin-top:5px;letter-spacing:0.04em}
+.area td:last-child{color:var(--gold2);font-family:'Playfair Display',serif;font-size:14px;text-align:right}
+.src{border:1px solid var(--line2)}
+.si{display:grid;grid-template-columns:56px 1fr;border-bottom:1px solid var(--line)}
+.si:last-child{border-bottom:none}
+.sc{background:var(--bg3);padding:14px;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:14px;color:var(--gold3);border-right:1px solid var(--line2)}
+.sb{background:var(--bg2);padding:12px 16px}
+.sn2{font-size:12px;color:var(--text);margin-bottom:3px}
+.sl{font-size:10px;color:var(--gold3);word-break:break-all}
+.rds-list{display:flex;flex-direction:column;gap:56px}
+.rds{border:1px solid var(--line2);background:var(--bg2)}
+.rds-hdr{display:flex;align-items:stretch;border-bottom:1px solid var(--gold-line)}
+.rds-num{background:var(--gold-dim);border-right:1px solid var(--gold-line);padding:22px 26px;display:flex;flex-direction:column;align-items:center;justify-content:center;min-width:90px}
+.rds-num span:first-child{font-family:'Playfair Display',serif;font-size:34px;font-weight:300;color:var(--gold2);line-height:1}
+.rds-num span:last-child{font-size:8px;text-transform:uppercase;letter-spacing:0.15em;color:var(--gold3);margin-top:3px}
+.rds-ttl{padding:22px 26px;flex:1}
+.rds-room{font-family:'Playfair Display',serif;font-size:21px;font-weight:400;color:var(--text);margin-bottom:4px}
+.rds-img{width:100%;max-height:400px;object-fit:contain;background:var(--bg3);filter:brightness(0.92);display:block;border-bottom:1px solid var(--line);transition:filter .3s}
+.rds-img:hover{filter:brightness(1)}
+.rds-img2{display:grid;grid-template-columns:1fr 1fr;gap:1px;border-bottom:1px solid var(--line)}
+.rds-img2 img{width:100%;height:300px;object-fit:contain;background:var(--bg3);filter:brightness(0.92);display:block;transition:filter .3s}
+.rds-img2 img:hover{filter:brightness(1)}
+.rds-sub{font-size:9px;text-transform:uppercase;letter-spacing:0.22em;color:var(--gold3);padding:18px 26px 6px;border-bottom:1px solid var(--line);background:var(--bg3);margin-top:0}
+.rds-body{padding:0 26px 26px}
+.rds-note{background:var(--gold-dim);border:1px solid var(--gold-line);border-left:3px solid var(--gold);padding:12px 16px;margin-top:18px;font-size:11px;color:var(--text2);line-height:1.7}
+.cmp{display:grid;grid-template-columns:200px 1fr 1fr;gap:1px;background:var(--gold-line);border:1px solid var(--gold-line);margin:22px 0}
+.cmp-h{background:var(--bg3);padding:11px 14px;font-size:9px;text-transform:uppercase;letter-spacing:0.12em;color:var(--gold3);font-weight:500}
+.cmp-k{background:var(--bg2);padding:10px 14px;font-size:11px;color:var(--text);font-weight:400}
+.cmp-a{background:rgba(90,154,111,0.06);padding:10px 14px;font-size:11px;color:var(--text2)}
+.cmp-b{background:rgba(90,122,158,0.06);padding:10px 14px;font-size:11px;color:var(--text2)}
+.cmp-adv{color:#7ec87e;font-size:10px;margin-top:3px}
+.badge-e{display:inline-block;font-size:8px;text-transform:uppercase;letter-spacing:0.1em;padding:2px 8px;background:rgba(0,56,101,0.3);border:1px solid rgba(0,156,166,0.3);color:#009CA6;margin-left:6px}
+.badge-v{display:inline-block;font-size:8px;text-transform:uppercase;letter-spacing:0.1em;padding:2px 8px;background:rgba(0,47,108,0.3);border:1px solid rgba(99,163,232,0.3);color:#63a3e8;margin-left:6px}
+.lim{border:1px solid var(--line2);background:var(--bg3);padding:28px 32px;margin-top:48px}
+.lim h3{font-family:'Playfair Display',serif;font-size:18px;font-weight:400;color:var(--text);margin-bottom:14px}
+.lim p{font-size:11px;color:var(--text3);line-height:1.8}
+footer{padding:40px 80px;border-top:1px solid var(--line2);display:flex;align-items:center;justify-content:space-between}
+.ft{font-size:9px;text-transform:uppercase;letter-spacing:0.2em;color:var(--text4)}
+.lead{font-family:'Playfair Display',serif;font-size:clamp(16px,1.8vw,20px);font-style:italic;color:var(--gold2);line-height:1.5;max-width:820px;margin-bottom:18px}
+.ref{font-size:10px;color:var(--gold3);letter-spacing:0.04em;white-space:nowrap}
+.kpi{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--gold-line);border:1px solid var(--gold-line);margin-bottom:18px}
+.kc{background:var(--bg2);padding:22px 20px}
+.kn{font-family:'Playfair Display',serif;font-size:30px;font-weight:300;color:var(--gold2);line-height:1.1}
+.kn small{font-family:'Inter',sans-serif;font-size:11px;color:var(--gold3);letter-spacing:0.1em}
+.kl{font-size:11px;color:var(--text3);margin-top:6px;line-height:1.6}
+.pgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line2);border:1px solid var(--line2)}
+.pc{background:var(--bg2);padding:18px 20px}
+.pc.hl{background:var(--gold-dim)}
+.pt{font-size:10px;text-transform:uppercase;letter-spacing:0.1em;font-weight:500;color:var(--text);margin-bottom:6px}
+.pd{font-size:11.5px;color:var(--text2);line-height:1.7}
+.pd a{color:var(--gold2)}
+.bl{list-style:none;max-width:820px}
+.bl li{font-size:12px;color:var(--text2);padding:7px 0 7px 22px;position:relative;border-bottom:1px solid var(--line)}
+.bl li::before{content:'';position:absolute;left:0;top:15px;width:10px;height:1px;background:var(--gold)}
+.zones3{grid-template-columns:repeat(3,1fr)}
+@media(max-width:768px){
+  nav,.hero-c,.wrap,footer{padding-left:16px;padding-right:16px}
+  .notice{margin:20px 16px 0;padding:12px 16px}
+  .hero-c{padding-top:32px;padding-bottom:32px}
+  .zones,.zones3,.kpi,.pgrid{grid-template-columns:1fr}
+  .img2,.rds-img2{grid-template-columns:1fr}
+  .cmp{grid-template-columns:1fr}
+  table{display:block;overflow-x:auto}
+  td,th{padding:9px 10px}
+  footer{flex-direction:column;gap:8px;align-items:flex-start}
+  .nav-txt p:last-child{display:none}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="/">
+    <div class="nav-box">AB</div>
+    <div class="nav-txt">
+      <p>Berchache</p>
+      <p>Senior Architect</p>
+    </div>
+  </a>
+  <div class="nav-r">
+    <a class="nav-tag" href="/ftb-rds.html" style="text-decoration:none">FTB-RDS</a>
+    <a class="nav-back" href="/">← Portfolio</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <img src="projects/MRI_Siemens/img-001.jpg" alt="MRI scanner room with Siemens 1.5T scanner and control room window">
+  <div class="hero-ov"></div>
+  <div class="hero-c">
+    <div class="breadcrumb">Healthcare Architecture Research Series &nbsp;/&nbsp; Functional Technical Brief &nbsp;/&nbsp; Medical Imaging &nbsp;/&nbsp; MRI</div>
+    <h1>Magnetic Resonance<br><span>Imaging Suite</span></h1>
+    <div class="hero-sub">Siemens MAGNETOM Sola 1.5T — Clinical Role, MR Safety Zoning, Shielding &amp; Room Requirements</div>
+    <div class="tags">
+      <span class="tag">MRI 1.5T</span>
+      <span class="tag">MAGNETOM Sola</span>
+      <span class="tag">ACR Zones I–IV</span>
+      <span class="tag">RF Shielding</span>
+      <span class="tag">Quench Pipe</span>
+      <span class="tag">IEC 60601-2-33</span>
+      <span class="tag">HBN 06</span>
+    </div>
+  </div>
+</div>
+
+<div class="notice">
+  <strong>Research Document — Not for Construction.</strong> This brief is a planning study prepared from published clinical, regulatory and manufacturer references. Areas, shielding values, structural loads and services are indicative and must be confirmed against the Siemens Healthineers site planning documentation for the purchased configuration, the appointed MR physicist / MR Safety Officer, and the competent authority. Images are AI-assisted illustrative visualisations — equipment details and signage shown are not construction drawings or evidence of compliance.
+</div>
+
+<div class="wrap">
+
+<!-- INTRO -->
+<section>
+  <div class="sn">Introduction</div>
+  <h2>A Room Built Around <span>a Magnet That Is Never Off</span></h2>
+  <div class="rule"></div>
+  <p class="lead">Why is an MRI suite planned from the magnetic field outward, not from the room inward?</p>
+  <p class="body" style="margin-bottom:18px">An MRI scanner produces detailed images of soft tissue — brain, spine, joints, abdomen, pelvis, heart and tumours — without using ionising radiation. But the superconducting magnet at its core stays at full field strength 24 hours a day, whether or not a patient is being scanned. Every metal object, every person and every piece of equipment that approaches the scanner enters that field.</p>
+  <p class="body" style="margin-bottom:28px">This single fact drives the whole suite: controlled access zones, patient screening, a radiofrequency-shielded scan room, a quench vent to the outside, a structure able to carry several tonnes, and a delivery route for a magnet that may one day need replacing.</p>
+
+  <div class="g2">
+    <div class="gl">Service</div><div class="gv">Magnetic Resonance Imaging (MRI) Suite — Single Scanner</div>
+    <div class="gl">Document Type</div><div class="gv">Functional Technical Brief — Healthcare Architecture Research Series</div>
+    <div class="gl">Reference Equipment</div><div class="gv">Siemens Healthineers MAGNETOM Sola — 1.5 Tesla, 70 cm bore</div>
+    <div class="gl">Scope</div><div class="gv">Clinical role, referrals, patient journey, MR safety zoning, functional programme, shielding, structure, MEP services, safety, standards</div>
+    <div class="gl">Safety Framework</div><div class="gv">ACR Manual on MR Safety (Zones I–IV) &nbsp;|&nbsp; MHRA MR Safety Guidelines &nbsp;|&nbsp; IEC 60601-2-33</div>
+    <div class="gl">Planning References</div><div class="gv">iHFG Part B — Medical Imaging Unit &nbsp;|&nbsp; NHS HBN 06 &nbsp;|&nbsp; Siemens Site Planning Guide</div>
+    <div class="gl">Author</div><div class="gv">M. Amine Berchache — Senior Architect / BIM Coordinator</div>
+  </div>
+</section>
+
+<!-- SECTION 01 -->
+<section>
+  <div class="sn">Section 01</div>
+  <h2>What Is <span>MRI?</span></h2>
+  <div class="rule"></div>
+  <p class="body" style="margin-bottom:18px">MRI places the patient inside a strong, uniform magnetic field. Hydrogen nuclei in the body's water and fat align with the field. Short radiofrequency (RF) pulses tip them out of alignment; as they relax, they emit weak radio signals that receiver coils placed on the body pick up. Gradient coils vary the field in space so each signal can be located, and a computer reconstructs the signals into cross-sectional images. <span class="ref">[6, 7]</span></p>
+  <p class="body" style="margin-bottom:28px">Because the signals are radio waves of only a few microvolts, the scan room must be sealed against outside radio noise — <strong style="color:var(--text);font-weight:400">the RF cage is part of the imaging system, not just part of the building.</strong> At 1.5 T the hydrogen resonance frequency is about 63.9 MHz, inside the FM-to-TV broadcast range, which is why shielding continuity matters so much.</p>
+
+  <div class="kpi">
+    <div class="kc"><div class="kn">1.5 <small>T</small></div><div class="kl">Static field — roughly 30,000 times the Earth's magnetic field, always on</div></div>
+    <div class="kc"><div class="kn">63.9 <small>MHz</small></div><div class="kl">Hydrogen resonance at 1.5 T — the frequency the RF cage must keep out</div></div>
+    <div class="kc"><div class="kn">0</div><div class="kl">Ionising radiation — no lead shielding or dose limits as in CT or radiotherapy</div></div>
+  </div>
+  <div class="rds-note" style="margin-top:0"><strong>Not a radiation room.</strong> MRI hazards are magnetic, RF and cryogenic — not ionising. Its signage, shielding and access control are therefore different from those of the <a href="/ftb-rds-radiotherapy.html" style="color:var(--gold2)">Radiotherapy</a> bunker or a CT room. The radiation trefoil does not belong on an MRI door; the ACR / IEC MR warning signs ("Magnet Is Always On") do.</div>
+</section>
+
+<!-- SECTION 02 -->
+<section>
+  <div class="sn">Section 02</div>
+  <h2>Clinical Role <span>&amp; Referrals</span></h2>
+  <div class="rule"></div>
+  <p class="body" style="margin-bottom:28px">A 1.5 T scanner is the general-purpose workhorse of clinical MRI. In a hospital or cancer centre it serves almost every department: <span class="ref">[6, 8]</span></p>
+
+  <div class="pgrid">
+    <div class="pc"><div class="pt">Neurology &amp; Neurosurgery</div><div class="pd">Brain tumours, stroke, multiple sclerosis, epilepsy, spinal cord compression — the largest single referral group.</div></div>
+    <div class="pc"><div class="pt">Musculoskeletal &amp; Orthopaedics</div><div class="pd">Joints, ligaments, cartilage, spine and soft-tissue masses; sports injuries and pre-operative planning.</div></div>
+    <div class="pc hl"><div class="pt">Oncology — Staging &amp; Follow-up</div><div class="pd">Tumour detection, local staging (prostate, rectum, breast, head &amp; neck, liver) and response assessment. MR images are also fused with CT for target delineation in the <a href="/ftb-rds-radiotherapy.html">Radiotherapy</a> treatment planning chain.</div></div>
+    <div class="pc"><div class="pt">Abdomen &amp; Pelvis</div><div class="pd">Liver, pancreas, biliary tree (MRCP), kidneys, gynaecology and prostate — often with contrast and breath-hold sequences.</div></div>
+    <div class="pc"><div class="pt">Cardiac &amp; Vascular</div><div class="pd">Heart function, viability and angiography — requires ECG or sensor-based triggering and longer slots.</div></div>
+    <div class="pc"><div class="pt">Paediatrics &amp; Sedation</div><div class="pd">Children and anxious or critically ill patients may need sedation or general anaesthesia, with MR-conditional monitoring and an induction / recovery space nearby.</div></div>
+  </div>
+
+  <table style="margin-top:28px">
+    <thead><tr><th>Patient Type</th><th>Arrival</th><th>Planning Implication</th></tr></thead>
+    <tbody>
+      <tr><td class="k">Outpatient</td><td>Walks in for a booked slot</td><td class="tbc">Reception, waiting, change cubicles, lockers, screening</td></tr>
+      <tr><td class="k">Inpatient</td><td>Wheelchair, trolley or bed</td><td class="tbc">Transfer to MR-conditional trolley outside Zone IV</td></tr>
+      <tr><td class="k">Emergency / Stroke</td><td>Direct from ED</td><td class="yes">Short route from ED, rapid screening, slot flexibility</td></tr>
+      <tr><td class="k">Sedated / Anaesthetised</td><td>With anaesthesia team</td><td class="yes">Induction &amp; recovery bay, MR-conditional anaesthetic machine, medical gases</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- SECTION 03 -->
+<section>
+  <div class="sn">Section 03</div>
+  <h2>Reference Equipment — <span>Siemens MAGNETOM Sola</span></h2>
+  <div class="rule"></div>
+  <p class="body" style="margin-bottom:28px">MAGNETOM Sola is Siemens Healthineers' 1.5 T wide-bore platform. It was chosen as the reference system for this brief because 1.5 T suits the broadest clinical mix, carries the widest implant-conditional labelling, and has less demanding siting than 3 T. <span class="ref">[1]</span></p>
+
+  <div class="g2" style="margin-bottom:28px">
+    <div class="gl">Field Strength</div><div class="gv">1.5 Tesla superconducting magnet (helium-cooled)</div>
+    <div class="gl">Bore</div><div class="gv">70 cm open bore — improves comfort for larger and claustrophobic patients</div>
+    <div class="gl">BioMatrix Technology</div><div class="gv">Sensors and coils that adapt the scan to the individual patient (breathing, heart motion, anatomy)</div>
+    <div class="gl">Coils</div><div class="gv">BioMatrix Contour XL body coil (60 × 90 cm coverage); tiltable Head/Neck 20 coil</div>
+    <div class="gl">Speed</div><div class="gv">Deep Resolve AI-based reconstruction; Compressed Sensing acceleration</div>
+    <div class="gl">Workflow</div><div class="gv">myExam Companion — guided, standardised exams for different operator skill levels</div>
+    <div class="gl">Siting Data</div><div class="gv tbc" style="color:var(--gold3);font-style:italic">Magnet weight, fringe-field plot, helium volume, heat loads and power — from the Siemens Site Planning Guide for the purchased configuration</div>
+  </div>
+
+  <div class="img2">
+    <div>
+      <img src="projects/MRI_Siemens/img-019.jpg" alt="Siemens 1.5T MRI scanner front view">
+      <p class="ic">MAGNETOM-Type 1.5T Scanner — Front View with Patient Table</p>
+    </div>
+    <div>
+      <img src="projects/MRI_Siemens/img-017.jpg" alt="MRI scanner under a sky-ceiling panel">
+      <p class="ic">Scanner Room — Illuminated Bore &amp; Sky-Ceiling Panel</p>
+    </div>
+  </div>
+  <div class="img1">
+    <img src="projects/MRI_Siemens/img-006.jpg" alt="MRI gantry front elevation">
+    <p class="ic">Gantry Elevation — Bore Lighting, Control Panels &amp; Table Interface</p>
+  </div>
+</section>
+
+<!-- SECTION 04 -->
+<section>
+  <div class="sn">Section 04</div>
+  <h2>MR Safety <span>Zoning</span></h2>
+  <div class="rule"></div>
+  <p class="body" style="margin-bottom:28px">The ACR Manual on MR Safety divides the suite into four zones of increasing restriction. The plan must make the sequence physical — through doors, sight lines and the position of the control desk — not just a line on a drawing. <span class="ref">[2, 3]</span></p>
+
+  <div class="zones">
+    <div class="zc"><div class="zd" style="background:#5a9e6f"></div><div class="zn">Zone I</div><div class="zt">Public — corridors and general hospital areas, freely accessible</div></div>
+    <div class="zc"><div class="zd" style="background:#5a7a9e"></div><div class="zn">Zone II</div><div class="zt">Reception, waiting, changing — patients screened here, supervised by MR staff</div></div>
+    <div class="zc"><div class="zd" style="background:#C9982C"></div><div class="zn">Zone III</div><div class="zt">Control room &amp; screened prep — locked access, only screened people; must contain the 0.5 mT (5 gauss) line</div></div>
+    <div class="zc"><div class="zd" style="background:#9e5a5a"></div><div class="zn">Zone IV</div><div class="zt">Magnet room — entered only under direct MR staff supervision</div></div>
+  </div>
+
+  <ul class="bl">
+    <li>Zone IV door must be directly visible from the operator's position in the control room.</li>
+    <li>The 0.5 mT (5 gauss) fringe-field line — the limit for pacemakers and active implants — must stay inside Zones III / IV, including above and below the scan room.</li>
+    <li>Ferromagnetic detection (handheld or portal) at the Zone III / IV threshold supports screening, but never replaces it.</li>
+    <li>MR-conditional trolleys, wheelchairs, fire extinguishers and anaesthetic equipment are parked in Zone III; standard equipment stays outside.</li>
+    <li>Resuscitation is done outside Zone IV: the patient is removed from the magnet room before a crash team with standard equipment arrives.</li>
+  </ul>
+
+  <div class="img1" style="margin-top:28px">
+    <img src="projects/MRI_Siemens/img-001.jpg" alt="Zone IV magnet room seen from the entrance with control window">
+    <p class="ic">Zone IV — Magnet Room with Direct Line of Sight from the Control Room Window</p>
+  </div>
+</section>
+
+<!-- SECTION 05 -->
+<section>
+  <div class="sn">Section 05</div>
+  <h2>The Patient <span>Journey</span></h2>
+  <div class="rule"></div>
+
+  <div class="chain-wrap">
+    <div class="chain">
+      <div class="cs"><span>Referral<br>&amp; Booking</span><span class="cl">Clinical Question · Protocol</span></div>
+      <div class="ca">→</div>
+      <div class="cs"><span>Safety<br>Screening</span><span class="cl">Implants · Questionnaire</span></div>
+      <div class="ca">→</div>
+      <div class="cs"><span>Change<br>&amp; Prepare</span><span class="cl">Gown · Lockers · IV Line</span></div>
+      <div class="ca">→</div>
+      <div class="cs k"><span>Positioning</span><span class="cl">Coils · Ear Protection · Call Bell</span></div>
+      <div class="ca">→</div>
+      <div class="cs k"><span>Scan</span><span class="cl">Monitored from Control Room</span></div>
+      <div class="ca">→</div>
+      <div class="cs"><span>Recovery<br>&amp; Report</span><span class="cl">Discharge · Radiologist Review</span></div>
+    </div>
+  </div>
+
+  <table style="margin-top:28px">
+    <thead><tr><th>Step</th><th>Content</th></tr></thead>
+    <tbody>
+      <tr><td class="k">1 — Referral &amp; Booking</td><td>The radiologist checks the clinical question and assigns a protocol and slot length (typically 20–45 minutes; cardiac and multi-region exams longer).</td></tr>
+      <tr><td class="k">2 — Safety Screening</td><td>Written questionnaire and interview in Zone II: pacemakers, implants, metal fragments, pregnancy, kidney function if contrast is planned. Implant documentation is checked against MR-conditional labelling.</td></tr>
+      <tr><td class="k">3 — Change &amp; Prepare</td><td>Patient changes into a gown and locks away all metal, cards and devices. IV cannula placed if contrast is required. Second screening at the Zone III threshold.</td></tr>
+      <tr><td class="k">4 — Positioning</td><td>The radiographer positions the patient, places receiver coils, and gives hearing protection and the emergency call bulb. Insulating pads prevent skin-to-skin loops (RF burn risk).</td></tr>
+      <tr><td class="k">5 — Scan &amp; Monitoring</td><td>The operator runs sequences from the control room with constant view and voice contact; vital signs are monitored for sedated or critical patients.</td></tr>
+      <tr><td class="k">6 — Recovery &amp; Report</td><td>Cannula removed, brief observation after contrast or sedation, discharge or return to ward. Images go to PACS for radiologist reporting.</td></tr>
+    </tbody>
+  </table>
+
+  <div class="img1" style="margin-top:28px">
+    <img src="projects/MRI_Siemens/img-020.jpg" alt="Storyboard of patient positioning and control room monitoring">
+    <p class="ic">Storyboard 01 — Control-Room View, Patient Assistance onto the Table, Head Positioning &amp; Image Review</p>
+  </div>
+  <div class="img1">
+    <img src="projects/MRI_Siemens/img-021.jpg" alt="Storyboard of patient escort, briefing and scanning">
+    <p class="ic">Storyboard 02 — Escort into Zone IV, Patient Briefing, In-Bore Positioning &amp; Scan Monitored from the Control Desk</p>
+  </div>
+  <div class="img1">
+    <img src="projects/MRI_Siemens/img-022.jpg" alt="Storyboard of patient arrival, preparation and scan">
+    <p class="ic">Storyboard 03 — Arrival, Seated Preparation on the Table, Team Supervision &amp; Patient Inside the Bore</p>
+  </div>
+</section>
+
+<!-- SECTION 06 -->
+<section>
+  <div class="sn">Section 06</div>
+  <h2>Functional <span>Programme</span></h2>
+  <div class="rule"></div>
+  <p class="body" style="margin-bottom:28px">Indicative schedule for a single-scanner suite. The scan room and technical room dimensions are fixed by the manufacturer's minimum installation layout and the fringe-field plot; the rest follows the zoning sequence. <span class="ref">[4, 5]</span></p>
+
+  <table class="area">
+    <thead><tr><th>Space</th><th>Zone</th><th>Notes</th><th style="text-align:right">Indicative Area</th></tr></thead>
+    <tbody>
+      <tr><td class="k">Reception &amp; Waiting</td><td>I / II</td><td>Shared with imaging department where possible</td><td>Shared</td></tr>
+      <tr><td class="k">Screening / Interview Room</td><td>II</td><td>Private — questionnaire, implant review, consent</td><td>9–12 m²</td></tr>
+      <tr><td class="k">Change Cubicles (incl. accessible)</td><td>II</td><td>With lockers for metal objects and valuables</td><td>2–4 m² each</td></tr>
+      <tr><td class="k">Gowned Waiting</td><td>II / III</td><td>Screened patients awaiting their slot</td><td>8–12 m²</td></tr>
+      <tr><td class="k">Patient Preparation / Cannulation</td><td>III</td><td>IV access, contrast preparation</td><td>9–12 m²</td></tr>
+      <tr><td class="k">Induction &amp; Recovery Bay</td><td>III</td><td>Sedation / anaesthesia — medical gases, suction, monitoring</td><td>12–16 m²</td></tr>
+      <tr><td class="k">Control Room</td><td>III</td><td>Operator console, viewing window, direct sight of Zone IV door</td><td>12–16 m²</td></tr>
+      <tr><td class="k">MRI Scan Room (RF-shielded)</td><td>IV</td><td>Per Siemens layout — table travel, service clearance, access</td><td>35–45 m²</td></tr>
+      <tr><td class="k">Technical / Equipment Room</td><td>III</td><td>Gradient / RF cabinets, cooling, filter panel interface</td><td>20–30 m²</td></tr>
+      <tr><td class="k">MR-Conditional Equipment Bay</td><td>III</td><td>Trolley, wheelchair, extinguisher, anaesthetic machine</td><td>4–6 m²</td></tr>
+      <tr><td class="k">Reporting Room</td><td>II / III</td><td>Radiologist workstation, PACS</td><td>10–12 m²</td></tr>
+      <tr><td class="k">Clean / Dirty Utility, Cleaner, Toilets</td><td>II</td><td>Shared with imaging department where possible</td><td>Shared</td></tr>
+    </tbody>
+  </table>
+  <div class="rds-note"><strong>Outdoor items:</strong> chiller / dry cooler for the magnet's cold head and gradient system, and the quench pipe termination — both need a reserved, secured location on the façade or roof.</div>
+
+  <div class="img1" style="margin-top:28px">
+    <img src="projects/MRI_Siemens/img-002.jpg" alt="Four views of the MRI scan room">
+    <p class="ic">Scan Room — Four Views: Gantry, Table Travel, Control Window &amp; Doors</p>
+  </div>
+</section>
+
+<!-- SECTION 07 -->
+<section>
+  <div class="sn">Section 07</div>
+  <h2>Shielding, Structure <span>&amp; Siting</span></h2>
+  <div class="rule"></div>
+
+  <div class="pgrid">
+    <div class="pc hl"><div class="pt">RF Shielding (Faraday Cage)</div><div class="pd">Continuous copper or galvanised steel enclosure on all six faces — walls, floor and ceiling — with RF-sealed door, RF-shielded viewing window, waveguides for gases and fibre, and a filter panel for all electrical services. Attenuation and test frequency range per Siemens specification; the cage is tested after installation and must not be pierced afterwards.</div></div>
+    <div class="pc"><div class="pt">Magnetic Shielding</div><div class="pd">Modern 1.5 T magnets are actively shielded. Additional passive steel shielding is only needed if the 0.5 mT line crosses into uncontrolled areas or sensitive equipment nearby.</div></div>
+    <div class="pc"><div class="pt">Quench Pipe</div><div class="pd">If the magnet quenches, liquid helium boils off very rapidly. A dedicated, insulated, non-magnetic vent pipe carries it straight outside to a safe discharge point away from air intakes and public areas. Route, diameter and maximum length come from the manufacturer.</div></div>
+    <div class="pc"><div class="pt">Structure &amp; Floor</div><div class="pd">The magnet weighs several tonnes on a small footprint. The slab is checked for point loads, flatness and vibration. Moving steel — lifts, vehicles, parking — is kept outside the distances given in the site planning guide.</div></div>
+    <div class="pc"><div class="pt">Delivery &amp; Replacement Route</div><div class="pd">A rigging path from outside to the scan room, sized for the magnet with its transport frame, with sufficient floor capacity. Often a removable wall panel or a knock-out section in the RF cage.</div></div>
+    <div class="pc"><div class="pt">Environment</div><div class="pd">Keep away from sources of electromagnetic interference (transformers, large cables, lift motors) and from equipment sensitive to the fringe field (CT, gamma cameras, PET, pacemaker clinics).</div></div>
+  </div>
+
+  <div class="img2" style="margin-top:28px">
+    <div>
+      <img src="projects/MRI_Siemens/img-003.jpg" alt="Gantry side view with RF-shielded control window">
+      <p class="ic">RF-Shielded Viewing Window — Operator Line of Sight to the Bore</p>
+    </div>
+    <div>
+      <img src="projects/MRI_Siemens/img-004.jpg" alt="Gantry with control room behind">
+      <p class="ic">Scan Room / Control Room Interface</p>
+    </div>
+  </div>
+  <div class="img1">
+    <img src="projects/MRI_Siemens/img-018.jpg" alt="RF-shielded window into the control room">
+    <p class="ic">Detail — RF-Shielded Viewing Window into the Control Room</p>
+  </div>
+</section>
+
+<!-- SECTION 08 -->
+<section>
+  <div class="sn">Section 08</div>
+  <h2>Building Services <span>&amp; Patient Environment</span></h2>
+  <div class="rule"></div>
+
+  <table>
+    <thead><tr><th>System</th><th>Requirement</th></tr></thead>
+    <tbody>
+      <tr><td class="k">HVAC</td><td>Dedicated, stable temperature and humidity in the scan and technical rooms per Siemens limits; ductwork enters through waveguides; supply grilles non-ferrous.</td></tr>
+      <tr><td class="k">Emergency Exhaust</td><td>High-level emergency exhaust in the scan room, activated by the oxygen monitor or quench, to clear any helium leak.</td></tr>
+      <tr><td class="k">Oxygen Monitoring</td><td>Oxygen-depletion sensor in the scan room, linked to alarm and emergency exhaust.</td></tr>
+      <tr><td class="k">Cooling</td><td>Chilled water for the cold head compressor and gradient system — redundant or with backup, since cold-head failure leads to helium boil-off.</td></tr>
+      <tr><td class="k">Power</td><td>Dedicated supply with main disconnect; emergency power for the cold head / compressor; magnet emergency stop (rundown) separate from system off.</td></tr>
+      <tr><td class="k">Lighting</td><td>DC / LED fittings approved for MR use inside the cage, dimmable — no flicker or RF noise.</td></tr>
+      <tr><td class="k">Medical Gases</td><td>Oxygen, medical air and suction in the scan room and induction bay, via MR-conditional outlets and waveguides.</td></tr>
+      <tr><td class="k">Fire</td><td>Non-magnetic (MR-conditional) extinguishers only near Zone IV; fire-fighter procedure agreed with the civil defence — the magnet stays on in a fire.</td></tr>
+      <tr><td class="k">Communication</td><td>Intercom, patient call bulb, camera, and MR-compatible music / headphones for patient comfort.</td></tr>
+    </tbody>
+  </table>
+  <div class="rds-note"><strong>Patient Experience:</strong> the illuminated sky-ceiling panel, bore lighting and a warm palette shown in the visualisations reduce anxiety and the need for sedation — an architectural measure with a clinical benefit.</div>
+
+  <div class="img2" style="margin-top:28px">
+    <div>
+      <img src="projects/MRI_Siemens/img-010.jpg" alt="View into the bore under the sky ceiling">
+      <p class="ic">Patient View — Bore Lighting &amp; Sky-Ceiling Panel</p>
+    </div>
+    <div>
+      <img src="projects/MRI_Siemens/img-016.jpg" alt="MRI patient table close-up">
+      <p class="ic">Detail — Patient Table &amp; Cushioning</p>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 09 -->
+<section>
+  <div class="sn">Section 09</div>
+  <h2>Safety <span>Hazards</span></h2>
+  <div class="rule"></div>
+  <p class="body" style="margin-bottom:24px">Each hazard has a design answer as well as an operational one. <span class="ref">[2, 3, 6]</span></p>
+  <ul class="bl">
+    <li><strong style="color:var(--text);font-weight:400">Projectile effect</strong> — ferromagnetic objects (oxygen cylinders, trolleys, tools) are pulled into the bore. Answer: zoning, screening, locked Zone IV, MR-conditional equipment only.</li>
+    <li><strong style="color:var(--text);font-weight:400">Active and passive implants</strong> — pacemakers, neurostimulators, some clips and fragments. Answer: screening room, implant documentation, MR Safety Expert review.</li>
+    <li><strong style="color:var(--text);font-weight:400">RF heating</strong> — burns from conductive loops or cables. Answer: positioning pads, cable management, trained staff.</li>
+    <li><strong style="color:var(--text);font-weight:400">Acoustic noise</strong> — gradient switching is loud. Answer: hearing protection for every patient, acoustic isolation of the room.</li>
+    <li><strong style="color:var(--text);font-weight:400">Quench &amp; cryogens</strong> — helium displaces oxygen. Answer: quench pipe, oxygen monitor, emergency exhaust, outward-opening or pressure-relief door strategy per manufacturer.</li>
+    <li><strong style="color:var(--text);font-weight:400">Claustrophobia &amp; anxiety</strong> — Answer: 70 cm bore, lighting, sky ceiling, communication, companion access after screening.</li>
+    <li><strong style="color:var(--text);font-weight:400">Contrast agents</strong> — gadolinium reactions are rare. Answer: prep area, resuscitation equipment outside Zone IV, recovery observation.</li>
+  </ul>
+</section>
+
+<!-- SECTION 10 -->
+<section>
+  <div class="sn">Section 10</div>
+  <h2>Reference Standards <span>&amp; Guidance</span></h2>
+  <div class="rule"></div>
+  <table>
+    <thead><tr><th>Reference</th><th>Scope</th></tr></thead>
+    <tbody>
+      <tr><td class="k">ACR Manual on MR Safety</td><td>Four-zone access model, screening, MR personnel levels, safety policies</td></tr>
+      <tr><td class="k">MHRA — Safety Guidelines for MR Equipment in Clinical Use</td><td>Roles (MR Responsible Person, MR Safety Expert), controlled access, emergency procedures</td></tr>
+      <tr><td class="k">IEC 60601-2-33:2022</td><td>Basic safety and essential performance of MR equipment for medical diagnosis</td></tr>
+      <tr><td class="k">iHFG Part B — Medical Imaging Unit</td><td>Functional relationships, room list and planning of imaging departments</td></tr>
+      <tr><td class="k">NHS HBN 06 — Diagnostic Imaging &amp; Interventional Radiology</td><td>Imaging department planning, MRI suite layout principles</td></tr>
+      <tr><td class="k">Siemens Healthineers Site Planning Guide</td><td>Binding for fringe field, loads, RF cage, quench pipe, cooling, power and room dimensions</td></tr>
+      <tr><td class="k">Local authority / licensing body</td><td class="tbc">To be confirmed for the project location</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- CONCLUSION -->
+<section>
+  <div class="sn">Conclusion</div>
+  <h2>More Than <span>a Room with a Scanner</span></h2>
+  <div class="rule"></div>
+  <p class="body" style="margin-bottom:18px">An MRI suite is a sequence of controlled thresholds wrapped around a permanent magnetic field. The architect fixes its success early: the location of the magnet relative to lifts, roads and other imaging; the zoning sequence and the control-room sight line; the RF cage, quench route and delivery path; and a patient environment calm enough that fewer patients need sedation.</p>
+  <p class="body">Equipment selection — here the Siemens MAGNETOM Sola 1.5T — should be made before detailed design, because the manufacturer's site planning data define the room, not the other way around.</p>
+</section>
+
+<!-- SOURCES -->
+<section>
+  <div class="sn">Sources</div>
+  <h2>Sources &amp; <span>References</span></h2>
+  <div class="rule"></div>
+
+  <div class="src">
+    <div class="si"><div class="sc">1</div><div class="sb"><div class="sn2">Siemens Healthineers — MAGNETOM Sola 1.5T MRI Scanner</div><a class="sl" href="https://www.siemens-healthineers.com/magnetic-resonance-imaging/1-5t-mri-scanner/magnetom-sola" target="_blank" rel="noopener">siemens-healthineers.com/magnetic-resonance-imaging/1-5t-mri-scanner/magnetom-sola</a></div></div>
+    <div class="si"><div class="sc">2</div><div class="sb"><div class="sn2">American College of Radiology — MR Safety &amp; ACR Manual on MR Safety</div><a class="sl" href="https://www.acr.org/Clinical-Resources/Clinical-Tools-and-Reference/Radiology-Safety/MR-Safety" target="_blank" rel="noopener">acr.org/Clinical-Resources/Clinical-Tools-and-Reference/Radiology-Safety/MR-Safety</a></div></div>
+    <div class="si"><div class="sc">3</div><div class="sb"><div class="sn2">MHRA — Safety Guidelines for Magnetic Resonance Imaging Equipment in Clinical Use</div><a class="sl" href="https://www.gov.uk/government/publications/safety-guidelines-for-magnetic-resonance-imaging-equipment-in-clinical-use" target="_blank" rel="noopener">gov.uk/government/publications/safety-guidelines-for-magnetic-resonance-imaging-equipment-in-clinical-use</a></div></div>
+    <div class="si"><div class="sc">4</div><div class="sb"><div class="sn2">iHFG — International Health Facility Guidelines, Part B: Medical Imaging Unit</div><a class="sl" href="https://www.healthfacilityguidelines.com" target="_blank" rel="noopener">healthfacilityguidelines.com</a></div></div>
+    <div class="si"><div class="sc">5</div><div class="sb"><div class="sn2">NHS England — HBN 06: Facilities for Diagnostic Imaging and Interventional Radiology</div><a class="sl" href="https://www.england.nhs.uk/publication/facilities-for-diagnostic-imaging-and-interventional-radiology-hbn-06/" target="_blank" rel="noopener">england.nhs.uk/publication/facilities-for-diagnostic-imaging-and-interventional-radiology-hbn-06</a></div></div>
+    <div class="si"><div class="sc">6</div><div class="sb"><div class="sn2">U.S. FDA — MRI (Magnetic Resonance Imaging): Benefits &amp; Risks</div><a class="sl" href="https://www.fda.gov/radiation-emitting-products/medical-imaging/mri-magnetic-resonance-imaging" target="_blank" rel="noopener">fda.gov/radiation-emitting-products/medical-imaging/mri-magnetic-resonance-imaging</a></div></div>
+    <div class="si"><div class="sc">7</div><div class="sb"><div class="sn2">NIBIB / NIH — Magnetic Resonance Imaging (MRI)</div><a class="sl" href="https://www.nibib.nih.gov/science-education/science-topics/magnetic-resonance-imaging-mri" target="_blank" rel="noopener">nibib.nih.gov/science-education/science-topics/magnetic-resonance-imaging-mri</a></div></div>
+    <div class="si"><div class="sc">8</div><div class="sb"><div class="sn2">RadiologyInfo.org (ACR / RSNA) — MRI of the Body</div><a class="sl" href="https://www.radiologyinfo.org/en/info/bodymr" target="_blank" rel="noopener">radiologyinfo.org/en/info/bodymr</a></div></div>
+    <div class="si"><div class="sc">9</div><div class="sb"><div class="sn2">IEC 60601-2-33:2022 — Particular Requirements for MR Equipment for Medical Diagnosis</div><a class="sl" href="https://webstore.iec.ch/en/publication/67211" target="_blank" rel="noopener">webstore.iec.ch/en/publication/67211</a></div></div>
+  </div>
+
+  <div class="lim" style="margin-top:40px">
+    <h3>Document Limitations</h3>
+    <p>This research brief is prepared from publicly available clinical references, manufacturer information and safety guidance. It does not prescribe areas, shielding values, structural loads or services for a specific project — these depend on the Siemens site planning documentation for the purchased configuration, the appointed MR physicist / MR Safety Expert and the competent authority. All images are AI-assisted illustrative visualisations; equipment details and signage shown in them are not construction drawings or evidence of compliance.</p>
+  </div>
+</section>
+
+</div><!-- /wrap -->
+
+<!-- GALLERY -->
+<div style="background:var(--bg2);border-top:1px solid var(--gold-line);padding:72px 0">
+  <div class="wrap">
+    <div class="sn">Visual Documentation</div>
+    <h2>Scan Room <span>Views</span></h2>
+    <div class="rule"></div>
+    <p class="body" style="margin-bottom:36px">Interior visualisations of the MRI scan room: gantry, patient table travel, control window and finishes.</p>
+    <div class="img2">
+      <div>
+        <img src="projects/MRI_Siemens/img-007.jpg" alt="Gantry and table side view">
+        <p class="ic">Gantry &amp; Table — Side Perspective</p>
+      </div>
+      <div>
+        <img src="projects/MRI_Siemens/img-008.jpg" alt="Patient table extended">
+        <p class="ic">Patient Table Extended — Loading Position</p>
+      </div>
+    </div>
+    <div class="img2">
+      <div>
+        <img src="projects/MRI_Siemens/img-009.jpg" alt="Scan room toward the entrance door">
+        <p class="ic">Scan Room Toward the RF Door</p>
+      </div>
+      <div>
+        <img src="projects/MRI_Siemens/img-005.jpg" alt="Gantry from above">
+        <p class="ic">Gantry — High-Angle View</p>
+      </div>
+    </div>
+    <div class="img2">
+      <div>
+        <img src="projects/MRI_Siemens/img-011.jpg" alt="Rear of gantry looking through the bore">
+        <p class="ic">Service Side — View Through the Bore</p>
+      </div>
+      <div>
+        <img src="projects/MRI_Siemens/img-012.jpg" alt="Table leading into the bore">
+        <p class="ic">Table Axis into the Bore</p>
+      </div>
+    </div>
+    <div class="img2">
+      <div>
+        <img src="projects/MRI_Siemens/img-013.jpg" alt="Patient table from the side">
+        <p class="ic">Patient Table — Floor Clearance &amp; Transfer Side</p>
+      </div>
+      <div>
+        <img src="projects/MRI_Siemens/img-014.jpg" alt="Patient table from the head end">
+        <p class="ic">Patient Table — Head-End View</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="ft">M. Amine Berchache — Senior Architect / BIM Coordinator</div>
+  <div class="ft">MRI Suite FTB &nbsp;·&nbsp; Siemens MAGNETOM Sola 1.5T &nbsp;·&nbsp; Healthcare Architecture Research Series</div>
+</footer>
+
+</body>
+</html>

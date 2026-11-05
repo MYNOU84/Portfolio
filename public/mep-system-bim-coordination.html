@@ -8,7 +8,7 @@
 <title>MEP System_ BIM Coordination — M. Amine Berchache</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -16,9 +16,9 @@
   --bg2:#111111;
   --bg3:#161616;
   --bg4:#1c1c1c;
-  --gold:#c9a84c;
-  --gold2:#e2c068;
-  --gold3:#a8872e;
+  --gold:#C9982C;
+  --gold2:#E0BC63;
+  --gold3:#A87A1B;
   --gold-dim:rgba(201,168,76,0.10);
   --gold-line:rgba(201,168,76,0.20);
   --text:#e8e4dc;
@@ -32,7 +32,7 @@ html{scroll-behavior:smooth}
 body{
   background:var(--bg);
   color:var(--text);
-  font-family:'Montserrat',sans-serif;
+  font-family:'Inter',sans-serif;
   font-weight:300;
   font-size:14px;
   line-height:1.7;
@@ -51,7 +51,7 @@ nav{
   height:64px;
 }
 .nav-logo{
-  font-family:'Cormorant Garamond',serif;
+  font-family:'Playfair Display',serif;
   font-size:17px;font-weight:400;
   color:var(--gold2);
   letter-spacing:0.06em;
@@ -65,7 +65,7 @@ nav{
   font-size:12px;font-weight:600;
   letter-spacing:0.1em;
   color:var(--gold);
-  font-family:'Montserrat',sans-serif;
+  font-family:'Inter',sans-serif;
 }
 .nav-logo-text p:first-child{
   font-size:11px;font-weight:500;
@@ -79,7 +79,7 @@ nav{
 }
 .nav-right{display:flex;align-items:center;gap:10px}
 .nav-tag{
-  font-family:'Montserrat',sans-serif;
+  font-family:'Inter',sans-serif;
   font-size:9px;text-transform:uppercase;letter-spacing:0.12em;
   color:var(--gold3);
   border:1px solid var(--gold-line);
@@ -88,7 +88,7 @@ nav{
   font-weight:500;
 }
 .nav-back{
-  font-family:'Montserrat',sans-serif;
+  font-family:'Inter',sans-serif;
   font-size:9px;text-transform:uppercase;letter-spacing:0.12em;
   color:var(--text3);text-decoration:none;
   border:1px solid var(--text4);
@@ -109,7 +109,7 @@ nav{
   background:linear-gradient(90deg,transparent,var(--gold),transparent);
 }
 .hero-eyebrow{
-  font-family:'Montserrat',sans-serif;
+  font-family:'Inter',sans-serif;
   font-size:10px;text-transform:uppercase;letter-spacing:0.25em;
   color:var(--gold);margin-bottom:20px;
   display:flex;align-items:center;gap:14px;font-weight:500;
@@ -117,7 +117,7 @@ nav{
 .hero-eyebrow::before{content:'';width:40px;height:1px;background:var(--gold)}
 .hero-eyebrow::after{content:'';flex:0 0 40px;height:1px;background:var(--gold)}
 .hero-title{
-  font-family:'Cormorant Garamond',serif;
+  font-family:'Playfair Display',serif;
   font-size:clamp(40px,6vw,72px);
   font-weight:300;
   line-height:1.05;
@@ -132,7 +132,7 @@ nav{
   display:block;
 }
 .hero-sub{
-  font-family:'Montserrat',sans-serif;
+  font-family:'Inter',sans-serif;
   font-size:13px;font-weight:300;
   color:var(--text2);
   letter-spacing:0.02em;
@@ -142,7 +142,7 @@ nav{
 }
 .hero-badges{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:36px}
 .hb{
-  font-family:'Montserrat',sans-serif;
+  font-family:'Inter',sans-serif;
   font-size:9px;text-transform:uppercase;letter-spacing:0.1em;
   padding:5px 14px;font-weight:500;
 }
@@ -152,18 +152,18 @@ nav{
 .hstat{flex:1;padding:18px 22px;border-right:1px solid var(--gold-line)}
 .hstat:last-child{border-right:none}
 .hstat-n{
-  font-family:'Cormorant Garamond',serif;
+  font-family:'Playfair Display',serif;
   font-size:28px;font-weight:400;
   color:var(--gold2);line-height:1;margin-bottom:5px;
 }
 .hstat-l{
-  font-family:'Montserrat',sans-serif;
+  font-family:'Inter',sans-serif;
   font-size:9px;text-transform:uppercase;letter-spacing:0.12em;
   color:var(--text3);font-weight:500;
 }
 .hero-deco{
   position:absolute;right:48px;top:50%;transform:translateY(-50%);
-  font-family:'Cormorant Garamond',serif;
+  font-family:'Playfair Display',serif;
   font-size:180px;font-weight:300;
   color:rgba(201,168,76,0.03);
   letter-spacing:-0.05em;
@@ -175,12 +175,12 @@ nav{
 .sbt{flex:1;padding:14px 24px;border-right:1px solid var(--line);text-align:center}
 .sbt:last-child{border-right:none}
 .sbt-n{
-  font-family:'Cormorant Garamond',serif;
+  font-family:'Playfair Display',serif;
   font-size:22px;font-weight:400;color:var(--gold2);
   line-height:1;margin-bottom:3px;
 }
 .sbt-l{
-  font-family:'Montserrat',sans-serif;
+  font-family:'Inter',sans-serif;
   font-size:9px;text-transform:uppercase;letter-spacing:0.1em;
   color:var(--text3);font-weight:500;
 }
@@ -197,7 +197,7 @@ nav{
 }
 .filter-group{display:flex;gap:6px;flex-wrap:wrap}
 .fbt{
-  font-family:'Montserrat',sans-serif;
+  font-family:'Inter',sans-serif;
   font-size:9px;text-transform:uppercase;letter-spacing:0.1em;font-weight:500;
   padding:6px 14px;
   border:1px solid var(--text4);
@@ -208,7 +208,7 @@ nav{
 .fbt.active{background:var(--gold);color:var(--bg);border-color:var(--gold);font-weight:600}
 .toolbar-actions{display:flex;gap:8px}
 .tact{
-  font-family:'Montserrat',sans-serif;
+  font-family:'Inter',sans-serif;
   font-size:9px;text-transform:uppercase;letter-spacing:0.1em;font-weight:500;
   padding:6px 14px;
   border:1px solid var(--gold-line);
@@ -222,7 +222,7 @@ nav{
   display:flex;align-items:center;gap:12px;margin:24px 0 16px;
 }
 .section-rule span{
-  font-family:'Montserrat',sans-serif;
+  font-family:'Inter',sans-serif;
   font-size:9px;text-transform:uppercase;letter-spacing:0.18em;
   color:var(--text3);white-space:nowrap;font-weight:500;
 }
@@ -254,16 +254,16 @@ nav{
 }
 .dp-title-block{flex:1}
 .dp-title{
-  font-family:'Cormorant Garamond',serif;
+  font-family:'Playfair Display',serif;
   font-size:26px;font-weight:400;color:#ffffff;margin-bottom:4px;letter-spacing:-0.01em;
 }
 .dp-sub{
-  font-family:'Montserrat',sans-serif;
+  font-family:'Inter',sans-serif;
   font-size:9px;text-transform:uppercase;letter-spacing:0.12em;
   color:var(--gold3);font-weight:500;
 }
 .close-dp{
-  font-family:'Montserrat',sans-serif;font-size:9px;text-transform:uppercase;
+  font-family:'Inter',sans-serif;font-size:9px;text-transform:uppercase;
   letter-spacing:0.1em;font-weight:500;padding:6px 12px;
   border:1px solid var(--text4);background:transparent;
   color:var(--text3);cursor:pointer;transition:all .18s;flex-shrink:0;
@@ -280,14 +280,14 @@ nav{
   line-height:1.7;display:flex;gap:10px;font-weight:300;
 }
 .uae-banner strong{
-  font-family:'Montserrat',sans-serif;font-size:9px;
+  font-family:'Inter',sans-serif;font-size:9px;
   text-transform:uppercase;letter-spacing:0.1em;font-weight:600;
   white-space:nowrap;flex-shrink:0;margin-top:2px;
 }
 .dp-cols{display:grid;grid-template-columns:1fr 1fr;gap:24px}
 @media(max-width:640px){.dp-cols{grid-template-columns:1fr}}
 .dp-col h3{
-  font-family:'Montserrat',sans-serif;
+  font-family:'Inter',sans-serif;
   font-size:9px;text-transform:uppercase;letter-spacing:0.14em;font-weight:600;
   color:var(--gold);margin-bottom:12px;
   padding-bottom:6px;border-bottom:1px solid var(--gold-line);
@@ -306,19 +306,19 @@ nav{
   border-top:1px solid var(--line2);flex-wrap:wrap;
 }
 .lod-label{
-  font-family:'Montserrat',sans-serif;
+  font-family:'Inter',sans-serif;
   font-size:9px;text-transform:uppercase;letter-spacing:0.1em;
   color:var(--text3);font-weight:500;
 }
 .lod-pill{
-  font-family:'Montserrat',sans-serif;font-size:9px;font-weight:500;
+  font-family:'Inter',sans-serif;font-size:9px;font-weight:500;
   padding:4px 12px;border:1px solid var(--text4);color:var(--text3);
   text-transform:uppercase;letter-spacing:0.08em;
 }
 .lod-pill.active{background:var(--gold-dim);border-color:var(--gold);color:var(--gold2)}
 .all-coords{margin-top:20px;padding-top:16px;border-top:1px solid var(--line2)}
 .all-coords h3{
-  font-family:'Montserrat',sans-serif;font-size:9px;text-transform:uppercase;
+  font-family:'Inter',sans-serif;font-size:9px;text-transform:uppercase;
   letter-spacing:0.14em;font-weight:600;color:var(--gold);margin-bottom:12px;
 }
 .coord-full-list{list-style:none;display:flex;flex-direction:column;gap:8px}
@@ -344,13 +344,86 @@ nav{
   position:relative;
 }
 .card::before{
-  content:'';position:absolute;top:0;left:0;right:0;height:1px;
+  content:'';position:absolute;top:0;left:0;right:0;height:1px;z-index:2;
   background:transparent;transition:background .2s;
 }
 .card:hover{border-color:var(--gold-line);transform:translateY(-2px)}
 .card:hover::before{background:linear-gradient(90deg,transparent,var(--gold),transparent)}
 .card.selected{border-color:var(--gold)!important}
 .card.selected::before{background:linear-gradient(90deg,transparent,var(--gold),transparent)!important}
+
+/* CARD IMAGE — system diagram; double-click the card to open it full size */
+.card-media{
+  position:relative;aspect-ratio:1672/941;overflow:hidden;
+  background:var(--bg4);border-bottom:1px solid var(--line);
+}
+.card-media img{
+  position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;display:block;
+  filter:brightness(0.86);transition:filter .25s;
+  user-select:none;-webkit-user-drag:none;
+}
+.card-media::after{
+  content:'';position:absolute;left:0;right:0;bottom:0;height:35%;
+  background:linear-gradient(to bottom,transparent,rgba(22,22,22,0.6));
+  pointer-events:none;
+}
+.card:hover .card-media img,.card.selected .card-media img{filter:brightness(1)}
+.media-zoom{
+  position:absolute;right:10px;bottom:10px;z-index:1;
+  font-family:'Inter',sans-serif;
+  font-size:9px;text-transform:uppercase;letter-spacing:0.1em;font-weight:500;
+  padding:5px 10px;
+  border:1px solid var(--gold-line);
+  background:rgba(13,13,13,0.82);color:var(--gold2);
+  cursor:zoom-in;opacity:0;transition:opacity .2s,background .18s,color .18s;
+}
+.media-zoom:hover{background:var(--gold);color:var(--bg)}
+.card:hover .media-zoom,.media-zoom:focus-visible{opacity:1}
+.hint-tap{display:none}
+@media(hover:none){
+  .media-zoom{opacity:1}
+  .hint-dbl{display:none}
+  .hint-tap{display:inline}
+}
+
+/* IMAGE VIEWER */
+.viewer{
+  position:fixed;inset:0;z-index:300;
+  background:rgba(8,8,8,0.95);
+  display:flex;align-items:center;justify-content:center;
+  padding:80px 32px 32px;
+  animation:viewerIn .2s ease;
+}
+.viewer[hidden]{display:none}
+@keyframes viewerIn{from{opacity:0}to{opacity:1}}
+.viewer-bar{
+  position:absolute;top:0;left:0;right:0;height:64px;
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+  padding:0 32px;border-bottom:1px solid var(--gold-line);
+}
+.viewer-title{
+  font-family:'Playfair Display',serif;
+  font-size:19px;font-weight:400;color:#ffffff;line-height:1.2;
+}
+.viewer-sub{
+  font-family:'Inter',sans-serif;
+  font-size:9px;text-transform:uppercase;letter-spacing:0.12em;
+  color:var(--gold3);font-weight:500;margin-top:3px;
+}
+.viewer-img{
+  display:block;
+  max-width:calc(100vw - 64px);max-height:calc(100vh - 112px);
+  width:auto;height:auto;
+  border:1px solid var(--line2);
+  user-select:none;-webkit-user-drag:none;
+}
+@media(max-width:768px){
+  .viewer{padding:72px 12px 12px}
+  .viewer-bar{padding:0 16px}
+  .viewer-title{font-size:16px}
+  .viewer-img{max-width:calc(100vw - 24px);max-height:calc(100vh - 84px)}
+}
 .card-header{
   padding:16px 18px 12px;
   display:flex;align-items:flex-start;gap:12px;
@@ -364,12 +437,12 @@ nav{
 }
 .card-meta{flex:1;min-width:0}
 .card-title{
-  font-family:'Cormorant Garamond',serif;
+  font-family:'Playfair Display',serif;
   font-size:17px;font-weight:400;
   color:#ffffff;margin-bottom:3px;line-height:1.3;
 }
 .card-cat{
-  font-family:'Montserrat',sans-serif;
+  font-family:'Inter',sans-serif;
   font-size:9px;text-transform:uppercase;letter-spacing:0.1em;font-weight:500;
   color:var(--text3);display:flex;align-items:center;gap:6px;
 }
@@ -382,7 +455,7 @@ nav{
 }
 .coord-item::before{content:'·';color:var(--gold);flex-shrink:0;font-weight:700;font-size:16px;line-height:1.3}
 .coord-more{
-  font-family:'Montserrat',sans-serif;
+  font-family:'Inter',sans-serif;
   font-size:9px;color:var(--gold3);
   text-transform:uppercase;letter-spacing:0.1em;font-weight:500;
   padding-left:14px;margin-top:4px;
@@ -392,7 +465,7 @@ nav{
   display:flex;gap:5px;flex-wrap:wrap;
 }
 .tag{
-  font-family:'Montserrat',sans-serif;
+  font-family:'Inter',sans-serif;
   font-size:8px;text-transform:uppercase;letter-spacing:0.08em;font-weight:500;
   padding:3px 9px;
 }
@@ -410,11 +483,11 @@ nav{
   display:flex;align-items:center;justify-content:space-between;
 }
 .cl-header h3{
-  font-family:'Cormorant Garamond',serif;
+  font-family:'Playfair Display',serif;
   font-size:17px;font-weight:400;color:#ffffff;
 }
 .cl-progress{
-  font-family:'Montserrat',sans-serif;
+  font-family:'Inter',sans-serif;
   font-size:9px;text-transform:uppercase;letter-spacing:0.1em;font-weight:500;
   color:var(--gold);
 }
@@ -438,6 +511,65 @@ nav{
 .progress-bar-wrap{height:2px;background:var(--line)}
 .progress-bar{height:2px;background:var(--gold);transition:width .3s ease}
 
+/* KEY — symbols & abbreviations */
+.toolbar-actions{flex-wrap:wrap}
+.tact.on{background:var(--gold);color:var(--bg);border-color:var(--gold)}
+.key-wrap{background:var(--bg3);border:1px solid var(--line2);margin-bottom:24px}
+.key-head{
+  padding:16px 20px;border-bottom:1px solid var(--line);
+  display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap;
+}
+.key-head h3{font-family:'Playfair Display',serif;font-size:19px;font-weight:400;color:#ffffff}
+.key-head p{font-size:12.5px;color:var(--text2);font-weight:300;line-height:1.6;margin-top:4px;max-width:640px}
+.key-tools{display:flex;gap:8px;align-items:center}
+.key-search{
+  font-family:'Inter',sans-serif;font-size:13px;font-weight:400;
+  width:260px;padding:7px 12px;
+  background:var(--bg2);border:1px solid var(--line2);color:var(--text);outline:none;
+}
+.key-search::placeholder{color:var(--text3)}
+.key-search:focus{border-color:var(--gold)}
+.key-jump{display:flex;gap:6px;flex-wrap:wrap;padding:12px 20px;border-bottom:1px solid var(--line)}
+.key-jump button{
+  font-family:'Inter',sans-serif;font-size:9px;text-transform:uppercase;letter-spacing:0.1em;font-weight:500;
+  padding:5px 10px;border:1px solid var(--line2);background:transparent;color:var(--text3);cursor:pointer;transition:all .18s;
+}
+.key-jump button:hover{border-color:var(--gold);color:var(--gold)}
+.key-group{padding:18px 20px 8px}
+.key-group h4{
+  font-family:'Inter',sans-serif;font-size:9px;text-transform:uppercase;letter-spacing:0.14em;font-weight:600;
+  color:var(--gold);padding-bottom:6px;border-bottom:1px solid var(--gold-line);
+}
+.key-note{font-size:12.5px;color:var(--text2);font-weight:300;line-height:1.6;margin:10px 0 2px}
+.key-table{width:100%;border-collapse:collapse}
+.key-table th{
+  font-family:'Inter',sans-serif;font-size:9px;text-transform:uppercase;letter-spacing:0.1em;font-weight:500;
+  color:var(--text3);text-align:left;padding:10px 16px 6px 0;
+}
+.key-table td{
+  padding:9px 16px 9px 0;border-top:1px solid var(--line);vertical-align:top;
+  font-size:13px;line-height:1.6;color:var(--text2);font-weight:300;
+}
+.key-table td.k-term{width:170px;font-weight:600;color:var(--gold2)}
+.key-table td.k-name{width:34%;color:var(--text);font-weight:400}
+.key-table .tag,.key-table .lod-pill{display:inline-block;white-space:nowrap}
+.key-empty{padding:24px 20px;font-size:13px;color:var(--text2)}
+.key-foot{padding:12px 20px 16px;border-top:1px solid var(--line);font-size:11.5px;color:var(--text3);line-height:1.6}
+.dp-keyhint{margin-top:18px;padding-top:14px;border-top:1px solid var(--line2);font-size:12px;color:var(--text3)}
+.dp-keyhint button{
+  font-family:'Inter',sans-serif;font-size:9px;text-transform:uppercase;letter-spacing:0.1em;font-weight:500;
+  margin-left:8px;padding:4px 10px;border:1px solid var(--gold-line);background:var(--gold-dim);color:var(--gold2);cursor:pointer;
+}
+.dp-keyhint button:hover{background:var(--gold);color:var(--bg)}
+@media(max-width:768px){
+  .key-tools,.key-search{width:100%}
+  .key-table thead{display:none}
+  .key-table,.key-table tbody,.key-table tr,.key-table td{display:block;width:auto}
+  .key-table tr{padding:10px 0;border-top:1px solid var(--line)}
+  .key-table td,.key-table td.k-term,.key-table td.k-name{width:auto;border:none;padding:0}
+  .key-table td.k-mean{margin-top:3px;font-size:12.5px}
+}
+
 /* FOOTER */
 footer{
   border-top:1px solid var(--gold-line);
@@ -450,16 +582,16 @@ footer::before{
   background:linear-gradient(90deg,transparent,var(--gold),transparent);
 }
 .footer-name{
-  font-family:'Cormorant Garamond',serif;
+  font-family:'Playfair Display',serif;
   font-size:15px;font-weight:400;color:var(--gold2);letter-spacing:0.05em;
 }
 .footer-meta{
-  font-family:'Montserrat',sans-serif;
+  font-family:'Inter',sans-serif;
   font-size:9px;text-transform:uppercase;letter-spacing:0.12em;font-weight:400;
   color:var(--text3);
 }
 .footer-link{
-  font-family:'Montserrat',sans-serif;
+  font-family:'Inter',sans-serif;
   font-size:9px;text-transform:uppercase;letter-spacing:0.1em;font-weight:500;
   color:var(--gold3);text-decoration:none;
   border:1px solid var(--gold-line);padding:6px 14px;
@@ -486,7 +618,7 @@ footer::before{
 
 <!-- NAV -->
 <nav>
-  <a href="https://portfolio-five-kappa-d7gqte5vgz.vercel.app" class="nav-logo">
+  <a href="/" class="nav-logo">
     <div class="nav-logo-box">AB</div>
     <div class="nav-logo-text">
       <p>Berchache</p>
@@ -495,7 +627,7 @@ footer::before{
   </a>
   <div class="nav-right">
     <span class="nav-tag">BIM Reference</span>
-    <a href="https://portfolio-five-kappa-d7gqte5vgz.vercel.app" class="nav-back">← Portfolio</a>
+    <a href="/" class="nav-back">← Portfolio</a>
   </div>
 </nav>
 
@@ -542,12 +674,33 @@ footer::before{
     <button class="fbt" onclick="filter(this,'uae')">UAE Critical</button>
   </div>
   <div class="toolbar-actions">
-    <button class="tact" onclick="toggleChecklist()">Sign-off checklist</button>
+    <button class="tact" id="key-btn" type="button" aria-expanded="false" aria-controls="key-section" onclick="toggleKey()">? Symbols &amp; abbreviations</button>
+    <button class="tact" id="cl-btn" type="button" aria-expanded="false" aria-controls="checklist-section" onclick="toggleChecklist()">Sign-off checklist</button>
   </div>
 </div>
 
 <!-- CONTENT -->
 <main class="content">
+
+  <!-- KEY: SYMBOLS & ABBREVIATIONS (hidden by default) -->
+  <div id="key-section" style="display:none">
+    <div class="section-rule"><span>Key — Symbols &amp; Abbreviations</span></div>
+    <div class="key-wrap">
+      <div class="key-head">
+        <div>
+          <h3>How to read this page</h3>
+          <p>Every symbol, colour, code and short name used on this page, with its full standard name and a plain explanation.</p>
+        </div>
+        <div class="key-tools">
+          <input class="key-search" id="key-search" type="search" placeholder="Search: §6, ⚑, FAHU, NOC…" aria-label="Search the key" oninput="renderKey(this.value)">
+          <button class="close-dp" type="button" onclick="toggleKey(false)">✕ Close</button>
+        </div>
+      </div>
+      <div class="key-jump" id="key-jump"></div>
+      <div id="key-body"></div>
+      <div class="key-foot">Full names are the standard forms. Where a line says “on this page”, it explains how this guide uses the term. For a real project, always check the latest official documents of each authority.</div>
+    </div>
+  </div>
 
   <!-- CHECKLIST (hidden by default) -->
   <div id="checklist-section" style="display:none">
@@ -580,8 +733,20 @@ footer::before{
     <div class="footer-meta" style="margin-top:4px">Senior Architect & BIM Coordinator · UAE & Algeria · 16+ years</div>
   </div>
   <div class="footer-meta">MEP System_ BIM Coordination Reference · ISO 19650 · UAE/GCC Standard</div>
-  <a href="https://portfolio-five-kappa-d7gqte5vgz.vercel.app" class="footer-link">View full portfolio →</a>
+  <a href="/" class="footer-link">View full portfolio →</a>
 </footer>
+
+<!-- IMAGE VIEWER (opened by double-clicking a system card) -->
+<div class="viewer" id="viewer" hidden role="dialog" aria-modal="true" aria-labelledby="viewer-title">
+  <div class="viewer-bar">
+    <div>
+      <div class="viewer-title" id="viewer-title"></div>
+      <div class="viewer-sub" id="viewer-sub"></div>
+    </div>
+    <button class="close-dp" type="button" id="viewer-close" onclick="closeViewer()">✕ Close</button>
+  </div>
+  <img class="viewer-img" id="viewer-img" alt="" draggable="false" oncontextmenu="return false">
+</div>
 
 <script>
 const SYSTEMS=[
@@ -1096,6 +1261,9 @@ let selectedId=null;
 let activeFilter='all';
 let checkStates=Array(CHECKS.length).fill(false);
 let checklistVisible=false;
+let clickTimer=null;
+let viewerOpenedAt=0;
+let viewerReturnFocus=null;
 
 function filter(btn,f){
   document.querySelectorAll('.fbt').forEach(b=>b.classList.remove('active'));
@@ -1125,8 +1293,24 @@ function renderCards(){
   vis.forEach(s=>{
     const c=document.createElement('div');
     c.className='card'+(s.id===selectedId?' selected':'');
-    c.onclick=()=>selectCard(s.id);
+    c.dataset.id=s.id;
+    // Single click opens the detail panel, double click opens the image.
+    // The single click waits a moment so a double click does not also toggle the panel.
+    c.addEventListener('click',e=>{
+      clearTimeout(clickTimer);
+      if(e.detail>1)return;
+      clickTimer=setTimeout(()=>selectCard(s.id),250);
+    });
+    c.addEventListener('dblclick',()=>{
+      clearTimeout(clickTimer);
+      window.getSelection()?.removeAllRanges();
+      openViewer(s.id);
+    });
     c.innerHTML=`
+      <div class="card-media">
+        <img src="/mep-systems/thumb/${s.id}.jpg" alt="${s.title} — system diagram" loading="lazy" decoding="async" draggable="false" oncontextmenu="return false" onerror="this.parentElement.remove()">
+        <button class="media-zoom" type="button" aria-label="Open ${s.title} image"><span class="hint-dbl">⤢ Double-click to enlarge</span><span class="hint-tap">⤢ Enlarge</span></button>
+      </div>
       <div class="card-header">
         <div class="sys-icon">${s.icon}</div>
         <div class="card-meta">
@@ -1143,6 +1327,11 @@ function renderCards(){
       <div class="card-footer">
         ${s.tags.map(t=>`<span class="tag tag-${t.c==='hot'?'hot':t.c==='gold'?'gold':'dim'}">${t.t}</span>`).join('')}
       </div>`;
+    c.querySelector('.media-zoom')?.addEventListener('click',e=>{
+      e.stopPropagation();
+      clearTimeout(clickTimer);
+      openViewer(s.id);
+    });
     grid.appendChild(c);
   });
 }
@@ -1150,7 +1339,7 @@ function selectCard(id){
   if(selectedId===id){closeDetail();return;}
   selectedId=id;
   document.getElementById('s-sel').textContent=SYSTEMS.find(x=>x.id===id)?.title||'—';
-  renderCards();
+  syncSelected();
   renderDetail(id);
   document.getElementById('detail-panel').scrollIntoView({behavior:'smooth',block:'nearest'});
 }
@@ -1185,19 +1374,61 @@ function renderDetail(id){
     <div class="all-coords">
       <h3>All coordination requirements</h3>
       <ul class="coord-full-list">${s.coords.map(c=>`<li>${c}</li>`).join('')}</ul>
-    </div>`;
+    </div>
+    <p class="dp-keyhint">Not sure what §, ⚑ or a short name means?<button type="button" onclick="toggleKey(true)">Open the key</button></p>`;
   dp.classList.add('visible');
 }
 function closeDetail(){
   selectedId=null;
   document.getElementById('s-sel').textContent='—';
-  renderCards();
+  syncSelected();
   document.getElementById('detail-panel').classList.remove('visible');
 }
-function toggleChecklist(){
-  checklistVisible=!checklistVisible;
-  document.getElementById('checklist-section').style.display=checklistVisible?'block':'none';
-  if(checklistVisible)renderChecklist();
+// Mark the selected card without rebuilding the grid, so the card images do not reload.
+function syncSelected(){
+  document.querySelectorAll('#card-grid .card').forEach(c=>c.classList.toggle('selected',c.dataset.id===selectedId));
+}
+function openViewer(id){
+  const s=SYSTEMS.find(x=>x.id===id);
+  if(!s)return;
+  const img=document.getElementById('viewer-img');
+  img.src=`/mep-systems/${s.id}.jpg`;
+  img.alt=`${s.title} — system diagram`;
+  document.getElementById('viewer-title').textContent=s.title;
+  document.getElementById('viewer-sub').textContent=s.label;
+  viewerReturnFocus=document.activeElement;
+  document.getElementById('viewer').hidden=false;
+  document.body.style.overflow='hidden';
+  viewerOpenedAt=Date.now();
+  document.getElementById('viewer-close').focus();
+}
+function closeViewer(){
+  const v=document.getElementById('viewer');
+  if(v.hidden)return;
+  v.hidden=true;
+  document.body.style.overflow='';
+  document.getElementById('viewer-img').removeAttribute('src');
+  if(viewerReturnFocus&&viewerReturnFocus.focus)viewerReturnFocus.focus();
+}
+// Click on the dark area closes the viewer. Clicks right after opening are ignored,
+// so the second click of the double click that opened it does not close it again.
+document.getElementById('viewer').addEventListener('click',e=>{
+  if(Date.now()-viewerOpenedAt<400)return;
+  if(e.target.id==='viewer')closeViewer();
+});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeViewer();});
+// The checklist and the key take turns: opening one closes the other, then the page scrolls to it.
+function toggleChecklist(show){
+  checklistVisible=typeof show==='boolean'?show:!checklistVisible;
+  const sec=document.getElementById('checklist-section');
+  const btn=document.getElementById('cl-btn');
+  sec.style.display=checklistVisible?'block':'none';
+  btn.classList.toggle('on',checklistVisible);
+  btn.setAttribute('aria-expanded',String(checklistVisible));
+  if(!checklistVisible)return;
+  if(keyVisible)toggleKey(false);
+  renderChecklist();
+  requestAnimationFrame(()=>requestAnimationFrame(()=>scrollUnderToolbar(sec)));
 }
 function toggleCheck(i){
   checkStates[i]=!checkStates[i];
@@ -1216,6 +1447,214 @@ function renderChecklist(){
       <span class="check-text">${c}</span>
     </div>`).join('');
 }
+// KEY — every symbol, colour, code and short name used on this page: [term, full standard name, plain meaning]
+const KEY=[
+  {id:'k-sym',short:'Symbols',title:'Symbols and marks',cols:['Symbol','Name','What it means'],rows:[
+    ['§','Section','A numbered part of a document. “DM Classification §5” means Section 5 of the DM Classification.'],
+    ['§3.1','Sub-section','Section 3, part 1. The number after the dot is the part inside the section.'],
+    ['§6 Note 3','Section 6, Note 3','Note number 3 inside Section 6.'],
+    ['/ &nbsp;or&nbsp; and','Two references','“§4 / §6 Note 8” means both references apply to the same line.'],
+    ['|','Separator','Left side: the requirement. Right side: its source (Ref:) or its topic.'],
+    ['Ref:','Reference','The document, code or standard the line comes from.'],
+    ['Authority:','Approving authority','The government body that must approve this system.'],
+    ['BIM Code:','BIM classification code','The code given to the system in the model, e.g. M-01. See “System codes” below.'],
+    ['= “…”','Value to enter','The exact value to type in the model parameter, e.g. System Classification = “M-01”.'],
+    ['⚑ UAE flag','Authority flag (on a card)','This system needs approval from a UAE authority: DM, DCD, DEWA or TRA.'],
+    ['⚑ (in a list)','Authority action','This line names an authority, an approval or an NOC. Deal with it early.'],
+    ['⚑ UAE (box)','UAE authority note','The most important authority rule for this system, shown at the top of its details.'],
+    ['→','To / next stage','Shows a range or an order. LOD 300 → 500 means from LOD 300 up to LOD 500.'],
+    ['— &nbsp;· &nbsp;›','List bullets','Start of a new line in a list. No other meaning.'],
+    ['+ 3 more','More lines','The card shows the first lines only. Click the card to see all of them.'],
+    ['⤢','Enlarge','Double-click a picture (or tap “Enlarge” on a phone) to see it full size.'],
+    ['✕ Close','Close','Closes the details, the picture or this key.'],
+    ['✓','Done','A ticked item in the sign-off checklist.'],
+  ]},
+  {id:'k-col',short:'Colours & LOD',title:'Colours, tags and LOD boxes',cols:['Looks like','Name','What it means'],rows:[
+    ['<span class="tag tag-hot">DCD NOC</span>','Red tag — critical','An authority approval or a mandatory item. Plan it first.'],
+    ['<span class="tag tag-gold">DBC Part H</span>','Gold tag — key topic','The main code, system code or coordination topic of this system.'],
+    ['<span class="tag tag-dim">Jet fans</span>','Grey tag — related topic','A related item to check during coordination.'],
+    ['<span class="lod-pill active">350</span>','Gold LOD box','This LOD stage applies to the system.'],
+    ['<span class="lod-pill">500</span>','Grey LOD box','This LOD stage is not listed for the system.'],
+    ['Gold border','Selected card','The card you clicked. Its full details open above the cards.'],
+    ['UAE Critical','Filter and counter','Systems that carry a ⚑ UAE authority flag.'],
+    ['Sign-off 0/19','Checklist progress','Items ticked / total items in the sign-off checklist.'],
+  ]},
+  {id:'k-codes',short:'System codes',title:'System codes (BIM classification)',note:'The code goes in the model parameter “System Classification”. M = Mechanical. FLS = Fire &amp; Life Safety. Only the mechanical systems have a code in this classification.',cols:['Code','Full name','Scope and authority'],rows:[
+    ['M-01','HVAC Comfort Cooling','Normal cooling and air conditioning. DBC Part H. Smoke control is not part of M-01.'],
+    ['M-02','Ventilation and Exhaust','Fresh air, and toilet, kitchen and garbage room exhaust. DBC Part H.'],
+    ['M-03','Car Park Ventilation','Car park fans and CO control. The fire/smoke mode links to DCD.'],
+    ['M-04','Mechanical Plant and Energy Systems','Pumps, heat recovery, VFDs and energy metering. The BMS interface is also classed under M-04.'],
+    ['FLS-M-01','Smoke Control Systems','Smoke extract. DCD approval, separate NOC.'],
+    ['FLS-M-02','Pressurization Systems','Stair, firefighting lift lobby and lift shaft pressurization. DCD, separate NOC.'],
+    ['FLS-M-03','Fire-Related HVAC Components','Fire dampers and fire-rated ductwork. DCD, separate NOC.'],
+    ['FLS-M-04','Fire Alarm / Emergency Interface','How fans, dampers and pressurization react to a fire alarm. DCD.'],
+  ]},
+  {id:'k-ref',short:'§ References',title:'Reference sections — “DM Classification”',note:'“DM Classification” is the short name used on this page for the DM / DCD mechanical system classification reference that this guide is built on. The table shows what each section covers on this page.',cols:['Reference','Topic','What it covers on this page'],rows:[
+    ['§2','Scope and authority split','What is not M-01 scope, and whether DM or DCD reviews it.'],
+    ['§3.1','M-01','HVAC Comfort Cooling.'],
+    ['§3.2','M-02','Ventilation and Exhaust.'],
+    ['§3.3','M-03','Car Park Ventilation.'],
+    ['§3.4','M-04','Mechanical Plant and Energy Systems, and the BMS interface.'],
+    ['§4','FLS-M group','Fire &amp; life-safety mechanical systems: DCD jurisdiction, separate NOC track.'],
+    ['§4.1','FLS-M-01','Smoke Control Systems.'],
+    ['§4.2','FLS-M-02','Pressurization Systems.'],
+    ['§4.3','FLS-M-03','Fire-Related HVAC Components (fire dampers).'],
+    ['§4.4','FLS-M-04','Fire Alarm / Emergency Interface and the cause-and-effect matrix.'],
+    ['§5','BIM Classification Table','The list of system codes to use in the model.'],
+    ['§6','Coordination notes','General coordination rules, numbered Note 1 to Note 8.'],
+    ['§6 Note 1','Zones and separation','Smoke zones follow the fire compartments. ELV cabling is kept apart from power.'],
+    ['§6 Note 2','Fire-rated ducts and dampers','Positions follow the fire compartments, including kitchen grease ducts.'],
+    ['§6 Note 3','Damper access','Every damper needs an access panel that can be reached.'],
+    ['§6 Note 4','BMS and fire alarm interfaces','The BMS integration list and the fire alarm zones.'],
+    ['§6 Note 5','Door leakage','Door leakage rates used in pressurization calculations.'],
+    ['§6 Note 6','Car park CO and fire mode','CO fan control logic and the fire/smoke mode.'],
+    ['§6 Note 7','Space and structure','Clearances, installation routes, pipe levels and openings in slabs and walls.'],
+    ['§6 Note 8','DCD NOC and commissioning','DCD approval time (budget 8–12 weeks) and the commissioning programme.'],
+    ['§8','Fire engineer','Joint design with the fire engineer, including pressure calculations.'],
+    ['§ in other documents','Section or clause','The same sign is used for other documents. ISO 19650-2 §5.6 = clause 5.6 of that standard.'],
+  ]},
+  {id:'k-auth',short:'Authorities',title:'Authorities and approvals',cols:['Short form','Full standard name','What it is'],rows:[
+    ['DM','Dubai Municipality','Dubai authority for building approvals. On this page: drainage connection and water tank sizing.'],
+    ['DCD','Dubai Civil Defence','Fire and life safety authority: smoke control, fire alarm, sprinklers, emergency lighting.'],
+    ['DEWA','Dubai Electricity and Water Authority','Electricity and water supply, water meters and solar net metering.'],
+    ['TRA','Telecommunications Regulatory Authority (UAE) — now TDRA, Telecommunications and Digital Government Regulatory Authority','Approval for data and telecom works.'],
+    ['NOC','No Objection Certificate','Written approval from an authority. The work waits until it is issued.'],
+    ['Net Metering','DEWA Net Metering','Solar electricity sent to the grid is counted against the electricity bill. A DEWA application is needed before installation.'],
+    ['EMICOOL / Tabreed / POMA','District cooling providers (as named on this page)','Suppliers of chilled water for cooling from a central plant.'],
+    ['UAE / GCC','United Arab Emirates / Gulf Cooperation Council','The region this guide is written for.'],
+  ]},
+  {id:'k-std',short:'Standards & BIM',title:'Codes, standards and BIM terms',cols:['Short form','Full standard name','What it is'],rows:[
+    ['DBC 2021','Dubai Building Code, 2021 edition','The building code of Dubai. On this page, Part G is cited for electrical items and Part H for mechanical, plumbing, lighting and energy items.'],
+    ['ISO 19650','ISO 19650 — Organization and digitization of information about buildings and civil engineering works, including BIM: Information management using BIM','The international standard for managing project information with BIM.'],
+    ['ISO 19650-2','Part 2: Delivery phase of the assets','Rules for the design and construction stage.'],
+    ['ISO 19650-3','Part 3: Operational phase of the assets','Rules for handover and building operation (asset information).'],
+    ['BIM','Building Information Modelling','A 3D model with data, shared by all design teams.'],
+    ['BEP','BIM Execution Plan','The project document that fixes the BIM rules: naming, parameters, milestones and clash checks.'],
+    ['LOD','Level of Development','How complete and reliable a model element is.'],
+    ['LOD 300','Precise geometry','Correct size, shape and location. Used for coordination.'],
+    ['LOD 350','Interfaces with other trades','Adds connections, supports and clearances with other systems. The main design freeze point on this page.'],
+    ['LOD 400','Fabrication and installation','Enough detail for shop drawings and installation.'],
+    ['LOD 500','As-built','Checked on site after construction. Used for handover and facilities management.'],
+    ['IFC','Industry Foundation Classes','Open file format for exchanging BIM models (ISO 16739).'],
+    ['COBie','Construction Operations Building information exchange','A standard list of equipment, spaces and systems handed to the building operator.'],
+    ['FM','Facilities Management','Running and maintaining the building after handover.'],
+    ['Revit · Navisworks','Autodesk Revit / Autodesk Navisworks','Revit: modelling software. Navisworks: model review and clash detection.'],
+    ['NFPA 13','NFPA 13 — Standard for the Installation of Sprinkler Systems (National Fire Protection Association, USA)','Sprinkler design standard. On this page: adopted by DCD.'],
+    ['IEC','International Electrotechnical Commission','International body that writes electrical standards.'],
+    ['IEC 60364','Low-voltage electrical installations','Rules for electrical installations in buildings.'],
+    ['IEC 60529','Degrees of protection provided by enclosures (IP Code)','Defines the IP rating against dust and water.'],
+    ['IEC 61537','Cable management — Cable tray systems and cable ladder systems','Rules for cable trays and cable ladders.'],
+    ['UL / BS','Underwriters Laboratories (USA) / British Standards (UK)','Test and rating standards, used here for fire dampers.'],
+    ['RIBA Stage 2','RIBA Plan of Work, Stage 2 — Concept Design (Royal Institute of British Architects)','An early design stage.'],
+  ]},
+  {id:'k-tech',short:'MEP abbreviations',title:'Technical abbreviations',cols:['Short form','Full standard name','What it is'],rows:[
+    ['MEP','Mechanical, Electrical and Plumbing','The building services disciplines.'],
+    ['HVAC','Heating, Ventilation and Air Conditioning','Systems that cool, heat and move air.'],
+    ['AC','Air Conditioning','Used on this page for AC units and AC diffusers.'],
+    ['CHW','Chilled Water','Cold water used to cool the air in AHUs and FCUs.'],
+    ['AHU','Air Handling Unit','Large unit that treats air and moves it through ducts.'],
+    ['FAHU','Fresh Air Handling Unit','An AHU that brings in and treats outside air.'],
+    ['FCU','Fan Coil Unit','Small room unit with a fan and a cooling coil.'],
+    ['VRF / VRV','Variable Refrigerant Flow / Variable Refrigerant Volume','Refrigerant system that serves many indoor units from one outdoor unit. VRV is the Daikin name.'],
+    ['DX','Direct Expansion','Cooling where the refrigerant cools the air directly.'],
+    ['VFD','Variable Frequency Drive','Controls motor speed to match demand and save energy.'],
+    ['CO','Carbon Monoxide','Gas from car engines. CO sensors start the car park fans.'],
+    ['BMS','Building Management System','Central system that controls and monitors the building services.'],
+    ['DDC','Direct Digital Control','Digital controllers used by the BMS.'],
+    ['BACnet / Modbus / LonWorks','BACnet: Building Automation and Control networks · Modbus · LonWorks: Local Operating Network','Communication protocols that let the BMS talk to equipment.'],
+    ['Cause-and-effect matrix','Fire alarm cause-and-effect matrix','Table that shows what each system must do for each fire alarm signal: stop or start fans, move dampers, start pressurization.'],
+    ['LV / MV','Low Voltage / Medium Voltage','Building power levels. MV comes from the utility and is stepped down to LV.'],
+    ['ELV','Extra-Low Voltage','Data, CCTV, fire alarm, security and audio systems.'],
+    ['MDB','Main Distribution Board','The main electrical panel of the building.'],
+    ['SMDB','Sub-Main Distribution Board','Panel fed from the MDB that feeds a zone or a floor.'],
+    ['DB','Distribution Board','Final panel that feeds lights and sockets.'],
+    ['MCC','Motor Control Centre','Panel that controls motors such as pumps and fans.'],
+    ['ATS','Automatic Transfer Switch','Switches to standby power when the main supply fails.'],
+    ['UPS','Uninterruptible Power Supply','Battery power that keeps critical equipment on without a break.'],
+    ['IP rating','Ingress Protection rating','Protection level against dust and water (IEC 60529).'],
+    ['IP address','Internet Protocol address','Network address of a device.'],
+    ['CCTV','Closed-Circuit Television','Security cameras.'],
+    ['MDF / IDF','Main Distribution Frame / Intermediate Distribution Frame','The main telecom room or rack, and the floor telecom rooms or racks.'],
+    ['ID','Identifier','The unique name or number of a panel, controller or rack.'],
+    ['PV','Photovoltaic','Solar panels that produce electricity.'],
+    ['DC','Direct Current','Electricity from the solar panels, before the inverter.'],
+    ['kWp / kWh','Kilowatt-peak / Kilowatt-hour','Solar capacity / energy produced.'],
+    ['DN','Nominal Diameter (Diamètre Nominal)','Standard pipe size.'],
+    ['IL','Invert Level','Level of the inside bottom of a pipe. It sets the drainage slope.'],
+    ['UPVC','Unplasticized Polyvinyl Chloride','Rigid plastic pipe.'],
+    ['PPR','Polypropylene Random Copolymer','Plastic pipe for hot and cold water.'],
+    ['Cu','Copper','Copper pipe.'],
+    ['K-factor','Sprinkler discharge coefficient','How much water a sprinkler gives at a given pressure.'],
+    ['L/s','Litres per second','Flow rate of air or water.'],
+  ]},
+  {id:'k-terms',short:'Building terms',title:'Common building terms',cols:['Term','Standard name','What it is'],rows:[
+    ['Fire compartment','Fire compartment','Part of a building closed by fire-rated walls and floors, to stop fire spreading.'],
+    ['Fire stopping','Fire stopping','Sealing the gaps around pipes, ducts and cables that pass through fire-rated walls and slabs.'],
+    ['Smoke extract','Smoke extract / smoke exhaust','Fans and ducts that remove smoke during a fire.'],
+    ['Smoke curtain','Smoke curtain','Fire-resistant fabric that drops down to hold smoke in one zone.'],
+    ['Pressurization','Stair and lobby pressurization','Keeps escape stairs and lobbies at a higher air pressure so smoke cannot enter.'],
+    ['Jet fans','Car park jet fans','Fans that push air and smoke across the car park towards the extract points.'],
+    ['Heat recovery','Heat (energy) recovery','Re-uses energy from exhaust air to treat the fresh air.'],
+    ['Riser','Service riser / shaft','Vertical space that carries services between floors.'],
+    ['Bus duct','Busway','Metal-enclosed bars that carry large electrical power instead of cables.'],
+    ['Grease trap','Grease interceptor','Tank that holds kitchen grease before the water goes to drainage.'],
+    ['Gaseous suppression','Gas fire suppression system','Puts out fire with gas instead of water, e.g. in server rooms.'],
+    ['Clash check','Clash detection','Finding places where elements of different trades hit each other in the model.'],
+    ['Design freeze','Design freeze','The point after which the design should not change.'],
+    ['Commissioning','Commissioning','Testing systems to prove they work before handover.'],
+    ['As-built','As-built record','The model or drawings that show what was really built.'],
+    ['Handover','Project handover','Giving the finished building, model and data to the owner.'],
+  ]},
+];
+let keyVisible=false;
+function toggleKey(show){
+  keyVisible=typeof show==='boolean'?show:!keyVisible;
+  const sec=document.getElementById('key-section');
+  const btn=document.getElementById('key-btn');
+  sec.style.display=keyVisible?'block':'none';
+  btn.classList.toggle('on',keyVisible);
+  btn.setAttribute('aria-expanded',String(keyVisible));
+  if(!keyVisible)return;
+  if(checklistVisible)toggleChecklist(false);
+  if(!document.getElementById('key-body').innerHTML){
+    document.getElementById('key-jump').innerHTML=KEY.map(g=>`<button type="button" onclick="jumpToKey('${g.id}')">${g.short}</button>`).join('');
+    renderKey('');
+  }
+  // Wait until the browser has laid out the new section (and done its scroll anchoring), then scroll to it.
+  requestAnimationFrame(()=>requestAnimationFrame(()=>scrollUnderToolbar(sec)));
+}
+// Scroll so the element sits just below the sticky nav + toolbar.
+function scrollUnderToolbar(el){
+  const bar=document.querySelector('.toolbar');
+  const offset=(parseFloat(getComputedStyle(bar).top)||0)+bar.offsetHeight+12;
+  window.scrollTo({top:el.getBoundingClientRect().top+window.scrollY-offset,behavior:'smooth'});
+}
+function jumpToKey(id){
+  const el=document.getElementById(id);
+  if(el)scrollUnderToolbar(el);
+}
+function renderKey(q){
+  const find=q.trim().toLowerCase();
+  const plain=h=>h.replace(/<[^>]*>/g,'').replace(/&nbsp;/g,' ').replace(/&amp;/g,'&');
+  let shown=0;
+  const html=KEY.map(g=>{
+    const rows=find?g.rows.filter(r=>plain(r.join(' ')).toLowerCase().includes(find)):g.rows;
+    shown+=rows.length;
+    if(!rows.length)return '';
+    return `<section class="key-group" id="${g.id}">
+      <h4>${g.title}</h4>
+      ${g.note&&!find?`<p class="key-note">${g.note}</p>`:''}
+      <table class="key-table">
+        <thead><tr>${g.cols.map(c=>`<th scope="col">${c}</th>`).join('')}</tr></thead>
+        <tbody>${rows.map(r=>`<tr><td class="k-term">${r[0]}</td><td class="k-name">${r[1]}</td><td class="k-mean">${r[2]}</td></tr>`).join('')}</tbody>
+      </table>
+    </section>`;
+  }).join('');
+  const safe=q.replace(/[&<>"]/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[ch]));
+  document.getElementById('key-body').innerHTML=shown?html:`<p class="key-empty">Nothing found for “${safe}”. Try a shorter word.</p>`;
+  document.getElementById('key-jump').style.display=find?'none':'flex';
+}
+if(location.hash==='#key')toggleKey(true);
 document.getElementById('total-count').textContent=SYSTEMS.length;
 document.getElementById('uae-count').textContent=SYSTEMS.filter(s=>s.uae).length;
 renderCards();

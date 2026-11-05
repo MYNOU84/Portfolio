@@ -4,19 +4,19 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Architectural Specifications — Meydan Avenue, Dubai — M. Amine Berchache</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
   --bg:#0d0d0d;--bg2:#111;--bg3:#161616;--bg4:#1c1c1c;
-  --gold:#c9a84c;--gold2:#e2c068;--gold3:#a8872e;
+  --gold:#C9982C;--gold2:#E0BC63;--gold3:#A87A1B;
   --gold-dim:rgba(201,168,76,0.10);--gold-line:rgba(201,168,76,0.20);
   --text:#e8e4dc;--text2:#b8b2a8;--text3:#787068;--text4:#484440;
   --line:rgba(255,255,255,0.06);--line2:rgba(255,255,255,0.10);
   --red-dim:rgba(192,57,43,0.12);--green-dim:rgba(39,174,96,0.10);
 }
 html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--text);font-family:'Montserrat',sans-serif;font-weight:300;font-size:13px;line-height:1.7;overflow-x:hidden}
+body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-weight:300;font-size:13px;line-height:1.7;overflow-x:hidden}
 
 /* NAV */
 nav{position:sticky;top:0;z-index:100;background:rgba(13,13,13,0.96);backdrop-filter:blur(20px);border-bottom:1px solid var(--gold-line);padding:0 48px;display:flex;align-items:center;justify-content:space-between;height:64px}
@@ -34,7 +34,7 @@ nav{position:sticky;top:0;z-index:100;background:rgba(13,13,13,0.96);backdrop-fi
 .hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
 .hero-eyebrow{font-size:10px;text-transform:uppercase;letter-spacing:.25em;color:var(--gold);margin-bottom:16px;display:flex;align-items:center;gap:12px;font-weight:500}
 .hero-eyebrow::before,.hero-eyebrow::after{content:'';width:36px;height:1px;background:var(--gold)}
-.hero-title{font-family:'Cormorant Garamond',serif;font-size:clamp(34px,5vw,64px);font-weight:300;line-height:1.05;color:#fff;margin-bottom:6px}
+.hero-title{font-family:'Playfair Display',serif;font-size:clamp(34px,5vw,64px);font-weight:300;line-height:1.05;color:#fff;margin-bottom:6px}
 .hero-title em{color:var(--gold2);font-style:italic;display:block}
 .hero-sub{font-size:13px;color:var(--text2);max-width:640px;line-height:1.8;margin-bottom:28px}
 .hero-proj{display:inline-flex;align-items:center;gap:12px;background:var(--gold-dim);border:1px solid var(--gold-line);padding:12px 20px;margin-bottom:28px}
@@ -44,13 +44,13 @@ nav{position:sticky;top:0;z-index:100;background:rgba(13,13,13,0.96);backdrop-fi
 .hb{font-size:9px;text-transform:uppercase;letter-spacing:.1em;padding:4px 12px;font-weight:500}
 .hb-g{background:var(--gold-dim);color:var(--gold2);border:1px solid var(--gold-line)}
 .hb-d{background:rgba(255,255,255,.03);color:var(--text3);border:1px solid var(--line2)}
-.hero-deco{position:absolute;right:48px;top:50%;transform:translateY(-50%);font-family:'Cormorant Garamond',serif;font-size:160px;font-weight:300;color:rgba(201,168,76,.025);pointer-events:none;user-select:none;line-height:1}
+.hero-deco{position:absolute;right:48px;top:50%;transform:translateY(-50%);font-family:'Playfair Display',serif;font-size:160px;font-weight:300;color:rgba(201,168,76,.025);pointer-events:none;user-select:none;line-height:1}
 
 /* STATS BAR */
 .stats-bar{display:flex;background:var(--bg2);border-bottom:1px solid var(--line)}
 .sb{flex:1;padding:14px 20px;border-right:1px solid var(--line);text-align:center}
 .sb:last-child{border-right:none}
-.sb-n{font-family:'Cormorant Garamond',serif;font-size:24px;color:var(--gold2);line-height:1;margin-bottom:3px}
+.sb-n{font-family:'Playfair Display',serif;font-size:24px;color:var(--gold2);line-height:1;margin-bottom:3px}
 .sb-l{font-size:9px;text-transform:uppercase;letter-spacing:.1em;color:var(--text3);font-weight:500}
 
 /* TOOLBAR */
@@ -59,7 +59,7 @@ nav{position:sticky;top:0;z-index:100;background:rgba(13,13,13,0.96);backdrop-fi
 .div-btn{font-size:9px;text-transform:uppercase;letter-spacing:.08em;font-weight:500;padding:5px 12px;border:1px solid var(--text4);background:transparent;color:var(--text3);cursor:pointer;transition:all .15s;white-space:nowrap}
 .div-btn:hover{border-color:var(--gold);color:var(--gold)}
 .div-btn.active{background:var(--gold);color:var(--bg);border-color:var(--gold);font-weight:600}
-.search-box{margin-left:auto;background:transparent;border:1px solid var(--text4);color:var(--text);padding:5px 12px;font-size:11px;font-family:'Montserrat',sans-serif;width:200px;outline:none;transition:border .2s}
+.search-box{margin-left:auto;background:transparent;border:1px solid var(--text4);color:var(--text);padding:5px 12px;font-size:11px;font-family:'Inter',sans-serif;width:200px;outline:none;transition:border .2s}
 .search-box:focus{border-color:var(--gold)}
 .search-box::placeholder{color:var(--text4)}
 
@@ -67,8 +67,8 @@ nav{position:sticky;top:0;z-index:100;background:rgba(13,13,13,0.96);backdrop-fi
 .content{padding:36px 48px 72px}
 .div-section{margin-bottom:48px}
 .div-header{display:flex;align-items:center;gap:16px;margin-bottom:20px}
-.div-num{font-family:'Cormorant Garamond',serif;font-size:13px;color:var(--gold3);font-weight:500}
-.div-title{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:300;color:#fff}
+.div-num{font-family:'Playfair Display',serif;font-size:13px;color:var(--gold3);font-weight:500}
+.div-title{font-family:'Playfair Display',serif;font-size:28px;font-weight:300;color:#fff}
 .div-line{flex:1;height:1px;background:var(--gold-line)}
 .div-count{font-size:9px;text-transform:uppercase;letter-spacing:.12em;color:var(--text4);font-weight:500}
 
@@ -81,7 +81,7 @@ nav{position:sticky;top:0;z-index:100;background:rgba(13,13,13,0.96);backdrop-fi
 .sc-head{padding:20px 22px;cursor:pointer;display:flex;align-items:flex-start;gap:14px}
 .sc-code{font-size:9px;text-transform:uppercase;letter-spacing:.12em;color:var(--gold3);font-weight:600;white-space:nowrap;margin-top:3px}
 .sc-info{flex:1}
-.sc-title{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:400;color:#fff;margin-bottom:4px;line-height:1.2}
+.sc-title{font-family:'Playfair Display',serif;font-size:18px;font-weight:400;color:#fff;margin-bottom:4px;line-height:1.2}
 .sc-plain{font-size:11px;color:var(--text3);line-height:1.6}
 .sc-arrow{font-size:14px;color:var(--text4);margin-top:4px;transition:transform .2s;flex-shrink:0}
 .spec-card.open .sc-arrow{transform:rotate(180deg)}
@@ -126,7 +126,7 @@ nav{position:sticky;top:0;z-index:100;background:rgba(13,13,13,0.96);backdrop-fi
 /* FOOTER */
 footer{background:var(--bg);border-top:1px solid var(--gold-line);padding:28px 48px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
 .fl{font-size:11px;color:var(--text3)}
-.fl span{color:var(--gold2);font-family:'Cormorant Garamond',serif;font-size:13px}
+.fl span{color:var(--gold2);font-family:'Playfair Display',serif;font-size:13px}
 .fr{display:flex;gap:10px}
 .flink{font-size:9px;text-transform:uppercase;letter-spacing:.1em;color:var(--text3);text-decoration:none;border:1px solid var(--text4);padding:4px 12px;transition:all .2s;font-weight:500}
 .flink:hover{border-color:var(--gold);color:var(--gold)}
@@ -141,7 +141,7 @@ footer{background:var(--bg);border-top:1px solid var(--gold-line);padding:28px 4
 
 /* ── CHAPTER NAVIGATION ──────────────────── */
 .ch-nav{display:flex;gap:2px;padding:0 32px;background:rgba(13,13,13,.97);border-bottom:1px solid rgba(201,168,76,.12);position:sticky;top:60px;z-index:90}
-.ch-btn{padding:10px 22px;font-family:Montserrat,sans-serif;font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:rgba(232,228,220,.4);background:none;border:none;cursor:pointer;transition:all .2s;border-bottom:2px solid transparent}
+.ch-btn{padding:10px 22px;font-family:Inter,sans-serif;font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:rgba(232,228,220,.4);background:none;border:none;cursor:pointer;transition:all .2s;border-bottom:2px solid transparent}
 .ch-btn:hover{color:var(--gold)}
 .ch-btn.ch-active{color:var(--gold);border-bottom-color:var(--gold)}
 </style>
