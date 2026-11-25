@@ -4,6 +4,7 @@ import Navbar from './components/Navbar'
 import AdminPanel from './components/AdminPanel'
 import Hero from './components/Hero'
 import FeaturedCompetition from './components/FeaturedCompetition'
+import SoftwareProject from './components/SoftwareProject'
 import About from './components/About'
 import Experience from './components/Experience'
 import Portfolio from './components/Portfolio'
@@ -128,6 +129,7 @@ export default function App() {
           <About />
           <Experience />
           <Portfolio />
+          <SoftwareProject />
           <VideoSection isAdmin={authenticated} />
           <Services />
           {adminOpen && <CvDownload />}

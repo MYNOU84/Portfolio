@@ -34,6 +34,7 @@ const NAV_LINKS = [
   { label: 'About',      href: '#about' },
   { label: 'Experience', href: '#experience' },
   { label: 'Portfolio',  href: '#portfolio' },
+  { label: 'Software',   href: '#buildtrack-pro' },
   {
     label: 'Technical',
     children: [
