@@ -46,6 +46,14 @@ function ask(prompt) {
 const source = readFileSync(APP, 'utf8')
 if (!LINE.test(source)) { console.error('ADMIN_HASH line not found in src/App.jsx; nothing changed.'); process.exit(1) }
 
+if (process.argv.includes('--check')) {
+  const typed = await ask('Passphrase to test: ')
+  const stored = source.match(/const ADMIN_HASH = '([0-9a-f]{64})'/)[1]
+  const ok = createHash('sha256').update(typed, 'utf8').digest('hex') === stored
+  console.log(ok ? 'MATCH: this passphrase opens the admin gate of the current source.' : 'NO MATCH: this is not the passphrase stored in src/App.jsx.')
+  process.exit(ok ? 0 : 1)
+}
+
 const first = await ask('New admin passphrase: ')
 if (first.length < MIN) { console.error(`Use at least ${MIN} characters. Nothing changed.`); process.exit(1) }
 const second = await ask('Repeat it: ')
