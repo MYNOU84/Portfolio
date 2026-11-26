@@ -62,7 +62,7 @@ main > section[id] {
   max-width:1700px;
   margin:0 auto;
   padding:90px 24px;
-  border-bottom:1px solid rgba(201,162,39,.15);
+  border-bottom:1px solid rgba(201,152,44,.15);
 }
 main > section[id]:last-child { border-bottom:none; }
 
@@ -364,7 +364,7 @@ main > section[id]:last-child { border-bottom:none; }
 /* ---- Persistent mini player (Hero Audio) -------------------------------
    Fixed, bottom-left, shown only once playback has started AND the Hero
    has scrolled out of view. Uses the page's global lightbox palette
-   (rgba(11,11,13,..)/#C9A227/#9A9A9A) since it is not scoped to #hero.
+   (rgba(11,11,13,..)/#C9982C/#9A9A9A) since it is not scoped to #hero.
    Sits above content (z-index:120) but below the lightbox (#lb, z-index:200). */
 .audio-mini {
   position:fixed;
@@ -376,7 +376,7 @@ main > section[id]:last-child { border-bottom:none; }
   gap:10px;
   padding:9px 14px 9px 10px;
   background:rgba(11,11,13,.88);
-  border:1px solid rgba(201,162,39,.35);
+  border:1px solid rgba(201,152,44,.35);
   backdrop-filter:blur(6px);
   font-family:Arial,Helvetica,sans-serif;
   opacity:0;
@@ -395,14 +395,14 @@ main > section[id]:last-child { border-bottom:none; }
   align-items:center;
   justify-content:center;
   background:none;
-  border:1px solid rgba(201,162,39,.5);
-  color:#C9A227;
+  border:1px solid rgba(201,152,44,.5);
+  color:#C9982C;
   font-size:9px;
   cursor:pointer;
   padding:0;
 }
 .audio-mini__play:hover,
-.audio-mini__play:focus-visible { background:rgba(201,162,39,.15); }
+.audio-mini__play:focus-visible { background:rgba(201,152,44,.15); }
 
 .audio-mini__label { flex:0 0 auto; font-size:9.5px; letter-spacing:.18em; text-transform:uppercase; color:#D8C9A3; white-space:nowrap; }
 
@@ -416,8 +416,8 @@ main > section[id]:last-child { border-bottom:none; }
   cursor:pointer;
 }
 .audio-mini__progress::before { content:""; position:absolute; left:0; right:0; height:1px; background:rgba(216,201,163,.3); }
-.audio-mini__progress-fill { position:relative; display:block; height:1px; width:0%; background:#C9A227; }
-.audio-mini__progress:focus-visible { outline:1px solid #C9A227; outline-offset:3px; }
+.audio-mini__progress-fill { position:relative; display:block; height:1px; width:0%; background:#C9982C; }
+.audio-mini__progress:focus-visible { outline:1px solid #C9982C; outline-offset:3px; }
 
 .audio-mini__time { flex:0 0 auto; font-size:9px; letter-spacing:.05em; color:#9A9A9A; white-space:nowrap; }
 
@@ -3304,7 +3304,7 @@ main > section[id]:last-child { border-bottom:none; }
 #final-film {
   --film-ivory:#F4EFE6;
   --film-charcoal:#0B0B0D;
-  --film-accent:#C9A227;
+  --film-accent:#C9982C;
   --film-mut:#9A9488;
 
   position:relative;
@@ -3345,7 +3345,7 @@ main > section[id]:last-child { border-bottom:none; }
 
 .film-frame {
   position:relative;
-  border:1px solid rgba(201,162,39,.3);
+  border:1px solid rgba(201,152,44,.3);
   background:#000;
 }
 .film-frame__ratio {
@@ -3398,8 +3398,8 @@ main > section[id]:last-child { border-bottom:none; }
   flex:1 1 420px;
   min-width:280px;
   min-height:260px;
-  border:1px dashed rgba(201,162,39,.3);
-  background:rgba(201,162,39,.03);
+  border:1px dashed rgba(201,152,44,.3);
+  background:rgba(201,152,44,.03);
 }
 
 .sticky-container {
@@ -3411,8 +3411,8 @@ main > section[id]:last-child { border-bottom:none; }
 }
 .sticky-visual {
   min-height:260px;
-  border:1px dashed rgba(201,162,39,.3);
-  background:rgba(201,162,39,.03);
+  border:1px dashed rgba(201,152,44,.3);
+  background:rgba(201,152,44,.03);
 }
 
 /* competition-archive intro block (label + heading) sits above the

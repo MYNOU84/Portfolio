@@ -8,7 +8,7 @@
 <title>Site Supervision Process — Architect on Site — M. Amine Berchache</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -16,9 +16,9 @@
   --bg2:#111111;
   --bg3:#161616;
   --bg4:#1c1c1c;
-  --gold:#c9a84c;
-  --gold2:#e2c068;
-  --gold3:#a8872e;
+  --gold:#C9982C;
+  --gold2:#E0BC63;
+  --gold3:#A87A1B;
   --gold-dim:rgba(201,168,76,0.10);
   --gold-line:rgba(201,168,76,0.20);
   --text:#e8e4dc;
@@ -36,7 +36,7 @@ html{scroll-behavior:smooth}
 body{
   background:var(--bg);
   color:var(--text);
-  font-family:'Montserrat',sans-serif;
+  font-family:'Inter',sans-serif;
   font-weight:300;
   font-size:14px;
   line-height:1.7;
@@ -55,7 +55,7 @@ nav{
   height:64px;
 }
 .nav-logo{
-  font-family:'Cormorant Garamond',serif;
+  font-family:'Playfair Display',serif;
   font-size:17px;font-weight:400;
   color:var(--gold2);
   letter-spacing:0.06em;
@@ -67,7 +67,7 @@ nav{
   border:1px solid rgba(201,168,76,0.5);
   display:flex;align-items:center;justify-content:center;
   font-size:12px;font-weight:600;letter-spacing:0.1em;
-  color:var(--gold);font-family:'Montserrat',sans-serif;
+  color:var(--gold);font-family:'Inter',sans-serif;
 }
 .nav-logo-text p:first-child{font-size:11px;font-weight:500;letter-spacing:0.3em;text-transform:uppercase;color:var(--text);line-height:1.2}
 .nav-logo-text p:last-child{font-size:9px;font-weight:400;letter-spacing:0.4em;text-transform:uppercase;color:var(--gold);line-height:1.2}
@@ -101,7 +101,7 @@ nav{
 .hero-eyebrow::before{content:'';width:40px;height:1px;background:var(--gold)}
 .hero-eyebrow::after{content:'';flex:0 0 40px;height:1px;background:var(--gold)}
 .hero-title{
-  font-family:'Cormorant Garamond',serif;
+  font-family:'Playfair Display',serif;
   font-size:clamp(38px,5.5vw,70px);
   font-weight:300;line-height:1.05;letter-spacing:-0.02em;
   color:#ffffff;margin-bottom:6px;
@@ -119,11 +119,11 @@ nav{
 .hero-stats{display:flex;border:1px solid var(--gold-line);max-width:600px}
 .hstat{flex:1;padding:18px 22px;border-right:1px solid var(--gold-line)}
 .hstat:last-child{border-right:none}
-.hstat-n{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:400;color:var(--gold2);line-height:1;margin-bottom:5px}
+.hstat-n{font-family:'Playfair Display',serif;font-size:28px;font-weight:400;color:var(--gold2);line-height:1;margin-bottom:5px}
 .hstat-l{font-size:9px;text-transform:uppercase;letter-spacing:0.12em;color:var(--text3);font-weight:500}
 .hero-deco{
   position:absolute;right:48px;top:50%;transform:translateY(-50%);
-  font-family:'Cormorant Garamond',serif;
+  font-family:'Playfair Display',serif;
   font-size:200px;font-weight:300;
   color:rgba(201,168,76,0.025);
   letter-spacing:-0.05em;pointer-events:none;user-select:none;line-height:1;
@@ -146,7 +146,7 @@ nav{
 .pz:hover,.pz.active{background:var(--gold-dim)}
 .pz.active::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--gold)}
 .pz-num{font-size:9px;text-transform:uppercase;letter-spacing:0.15em;color:var(--gold3);font-weight:500;margin-bottom:4px}
-.pz-label{font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:400;color:var(--text);line-height:1.2}
+.pz-label{font-family:'Playfair Display',serif;font-size:16px;font-weight:400;color:var(--text);line-height:1.2}
 .pz-sub{font-size:9px;color:var(--text3);letter-spacing:0.05em;margin-top:3px}
 
 /* ── CONTENT WRAPPER ── */
@@ -161,7 +161,7 @@ nav{
   color:var(--text3);font-weight:500;white-space:nowrap;
 }
 .section-divider .sd-num{
-  font-family:'Cormorant Garamond',serif;
+  font-family:'Playfair Display',serif;
   font-size:13px;color:var(--gold3);margin-right:4px;
 }
 
@@ -180,11 +180,11 @@ nav{
 }
 .zone-header::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,var(--gold),transparent)}
 .zh-zone{font-size:9px;text-transform:uppercase;letter-spacing:0.2em;color:var(--gold3);font-weight:500;margin-bottom:8px}
-.zh-title{font-family:'Cormorant Garamond',serif;font-size:clamp(26px,3.5vw,40px);font-weight:300;color:#fff;margin-bottom:10px;line-height:1.1}
+.zh-title{font-family:'Playfair Display',serif;font-size:clamp(26px,3.5vw,40px);font-weight:300;color:#fff;margin-bottom:10px;line-height:1.1}
 .zh-desc{font-size:13px;color:var(--text2);line-height:1.8;max-width:720px}
 .zh-deco{
   position:absolute;right:32px;top:50%;transform:translateY(-50%);
-  font-family:'Cormorant Garamond',serif;
+  font-family:'Playfair Display',serif;
   font-size:120px;font-weight:300;
   color:rgba(201,168,76,0.04);
   pointer-events:none;user-select:none;line-height:1;
@@ -203,11 +203,11 @@ nav{
 .gcard:hover{border-color:var(--gold-line)}
 .gcard:hover::before{background:var(--gold)}
 .gc-num{
-  font-family:'Cormorant Garamond',serif;
+  font-family:'Playfair Display',serif;
   font-size:32px;font-weight:300;color:var(--gold-line);
   line-height:1;margin-bottom:12px;
 }
-.gc-title{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:400;color:#fff;margin-bottom:8px}
+.gc-title{font-family:'Playfair Display',serif;font-size:20px;font-weight:400;color:#fff;margin-bottom:8px}
 .gc-sub{font-size:9px;text-transform:uppercase;letter-spacing:0.12em;color:var(--gold3);font-weight:500;margin-bottom:12px}
 .gc-body{font-size:12px;color:var(--text3);line-height:1.7}
 .gc-tag{
@@ -228,7 +228,7 @@ nav{
   position:relative;
 }
 .ir-cycle::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
-.ir-title{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:400;color:#fff;margin-bottom:6px}
+.ir-title{font-family:'Playfair Display',serif;font-size:22px;font-weight:400;color:#fff;margin-bottom:6px}
 .ir-sub{font-size:11px;color:var(--gold3);text-transform:uppercase;letter-spacing:0.12em;font-weight:500;margin-bottom:24px}
 .ir-steps{display:flex;gap:0;flex-wrap:wrap}
 .ir-step{
@@ -246,7 +246,7 @@ nav{
   color:var(--gold3);font-size:14px;z-index:1;
 }
 .ir-step:last-child::after{display:none}
-.ir-step-n{font-family:'Cormorant Garamond',serif;font-size:13px;color:var(--gold3);margin-bottom:6px;font-weight:500}
+.ir-step-n{font-family:'Playfair Display',serif;font-size:13px;color:var(--gold3);margin-bottom:6px;font-weight:500}
 .ir-step-title{font-size:12px;font-weight:500;color:var(--text);margin-bottom:4px}
 .ir-step-desc{font-size:11px;color:var(--text3);line-height:1.6}
 .ir-note{
@@ -268,7 +268,7 @@ nav{
 .track-label{font-size:9px;text-transform:uppercase;letter-spacing:0.15em;font-weight:500;margin-bottom:10px}
 .track-card.coord .track-label{color:var(--gold3)}
 .track-card.qa .track-label{color:#27ae60}
-.track-title{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:400;color:#fff;margin-bottom:12px}
+.track-title{font-family:'Playfair Display',serif;font-size:22px;font-weight:400;color:#fff;margin-bottom:12px}
 .track-item{
   display:flex;gap:10px;margin-bottom:10px;align-items:flex-start;
   font-size:12px;color:var(--text2);line-height:1.6;
@@ -363,8 +363,8 @@ nav{
   display:flex;align-items:center;justify-content:center;
   font-size:20px;
 }
-.hf-num{font-family:'Cormorant Garamond',serif;font-size:13px;color:var(--gold3);margin-bottom:6px;font-weight:500}
-.hf-title{font-family:'Cormorant Garamond',serif;font-size:19px;font-weight:400;color:#fff;margin-bottom:8px}
+.hf-num{font-family:'Playfair Display',serif;font-size:13px;color:var(--gold3);margin-bottom:6px;font-weight:500}
+.hf-title{font-family:'Playfair Display',serif;font-size:19px;font-weight:400;color:#fff;margin-bottom:8px}
 .hf-desc{font-size:11px;color:var(--text3);line-height:1.7}
 .hf-note{
   grid-column:1/-1;
@@ -387,7 +387,7 @@ nav{
 }
 .risk-table tr:hover td{background:rgba(255,255,255,0.02)}
 .risk-num{
-  font-family:'Cormorant Garamond',serif;
+  font-family:'Playfair Display',serif;
   font-size:22px;font-weight:400;color:var(--gold3);
 }
 .fp-label{font-weight:500;color:var(--text);margin-bottom:3px;display:block}
@@ -413,7 +413,7 @@ nav{
 }
 .career-eyebrow::before{content:'';width:32px;height:1px;background:var(--gold)}
 .career-title{
-  font-family:'Cormorant Garamond',serif;
+  font-family:'Playfair Display',serif;
   font-size:clamp(30px,4vw,50px);font-weight:300;
   color:#fff;margin-bottom:12px;
 }
@@ -470,7 +470,7 @@ nav{
 .pb-item:last-child{border-right:none}
 .pb-item:hover{background:var(--gold-dim)}
 .pb-icon{font-size:18px;margin-bottom:10px}
-.pb-title{font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:400;color:#fff;margin-bottom:4px}
+.pb-title{font-family:'Playfair Display',serif;font-size:16px;font-weight:400;color:#fff;margin-bottom:4px}
 .pb-desc{font-size:11px;color:var(--text3);line-height:1.6}
 
 /* ── FOOTER ── */
@@ -482,7 +482,7 @@ footer{
   flex-wrap:wrap;gap:16px;
 }
 .footer-left{font-size:11px;color:var(--text3)}
-.footer-left span{color:var(--gold2);font-family:'Cormorant Garamond',serif;font-size:13px}
+.footer-left span{color:var(--gold2);font-family:'Playfair Display',serif;font-size:13px}
 .footer-right{display:flex;gap:12px}
 .footer-link{
   font-size:9px;text-transform:uppercase;letter-spacing:0.1em;
@@ -517,7 +517,7 @@ footer{
 
 /* ── Chapter Nav ─────────────────────────────────── */
 .ch-nav{display:flex;align-items:center;gap:0;background:var(--bg2);border-bottom:1px solid rgba(201,168,76,.15);position:sticky;top:0;z-index:500;padding:0 48px}
-.ch-btn{background:none;border:none;border-bottom:2px solid transparent;padding:18px 32px;cursor:pointer;display:flex;align-items:center;gap:12px;color:var(--text3);transition:all .2s ease;font-family:'Montserrat',sans-serif}
+.ch-btn{background:none;border:none;border-bottom:2px solid transparent;padding:18px 32px;cursor:pointer;display:flex;align-items:center;gap:12px;color:var(--text3);transition:all .2s ease;font-family:'Inter',sans-serif}
 .ch-btn.active{border-bottom-color:var(--gold);color:var(--text)}
 .ch-btn:hover{color:var(--text2)}
 .ch-btn-n{font-size:9px;letter-spacing:.2em;color:var(--gold3);font-weight:600;text-transform:uppercase}
@@ -532,14 +532,14 @@ footer{
 @media(max-width:768px){.ch2-inner{padding:0 20px}}
 
 .ch2-header{border-left:3px solid var(--gold);padding-left:32px;margin-bottom:72px}
-.ch2-eyebrow{font-size:9px;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;font-family:'Montserrat',sans-serif;font-weight:600}
-.ch2-title{font-family:'Cormorant Garamond',serif;font-size:clamp(28px,4vw,52px);font-weight:300;color:var(--text);line-height:1.1;margin-bottom:16px}
-.ch2-subtitle{font-size:13px;letter-spacing:.1em;color:var(--gold2);text-transform:uppercase;font-family:'Montserrat',sans-serif;margin-bottom:24px}
+.ch2-eyebrow{font-size:9px;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;font-family:'Inter',sans-serif;font-weight:600}
+.ch2-title{font-family:'Playfair Display',serif;font-size:clamp(28px,4vw,52px);font-weight:300;color:var(--text);line-height:1.1;margin-bottom:16px}
+.ch2-subtitle{font-size:13px;letter-spacing:.1em;color:var(--gold2);text-transform:uppercase;font-family:'Inter',sans-serif;margin-bottom:24px}
 .ch2-intro{font-size:15px;color:var(--text2);line-height:1.8;max-width:760px}
 
 /* Section headings */
-.ch2-sec-label{font-size:9px;letter-spacing:.25em;text-transform:uppercase;color:var(--gold3);font-family:'Montserrat',sans-serif;font-weight:600;margin-bottom:8px}
-.ch2-sec-title{font-family:'Cormorant Garamond',serif;font-size:clamp(22px,3vw,38px);font-weight:300;color:var(--text);margin-bottom:32px}
+.ch2-sec-label{font-size:9px;letter-spacing:.25em;text-transform:uppercase;color:var(--gold3);font-family:'Inter',sans-serif;font-weight:600;margin-bottom:8px}
+.ch2-sec-title{font-family:'Playfair Display',serif;font-size:clamp(22px,3vw,38px);font-weight:300;color:var(--text);margin-bottom:32px}
 .ch2-sec-divider{width:60px;height:1px;background:var(--gold);margin:32px 0 48px}
 .ch2-section{margin-bottom:96px}
 
@@ -552,11 +552,11 @@ footer{
 .org-connector::before{content:'';position:absolute;top:0;left:50%;width:1px;height:100%;background:rgba(201,168,76,.3)}
 .org-box{background:var(--bg3);border:1px solid rgba(201,168,76,.2);padding:10px 20px;text-align:center;position:relative;min-width:200px;max-width:320px}
 .org-box.gold-border{border-color:rgba(201,168,76,.6)}
-.org-box-title{font-family:'Cormorant Garamond',serif;font-size:15px;color:var(--text);font-weight:400}
+.org-box-title{font-family:'Playfair Display',serif;font-size:15px;color:var(--text);font-weight:400}
 .org-box-sub{font-size:9px;letter-spacing:.1em;color:var(--text3);text-transform:uppercase;margin-top:3px}
 .org-teams{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1px;background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.15);margin-top:0}
 .org-team-col{background:var(--bg2);padding:16px}
-.org-team-head{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);font-family:'Montserrat',sans-serif;font-weight:600;margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid rgba(201,168,76,.2)}
+.org-team-head{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);font-family:'Inter',sans-serif;font-weight:600;margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid rgba(201,168,76,.2)}
 .org-team-item{font-size:11px;color:var(--text2);padding:3px 0;line-height:1.4}
 .org-team-item.highlight{color:var(--gold2);font-weight:500}
 .org-branch{display:flex;justify-content:center;gap:1px;margin-top:0}
@@ -569,24 +569,24 @@ footer{
 .role-img{width:100%;background:#080808;line-height:0}
 .role-img img{width:100%;height:auto;display:block;filter:brightness(.92)}
 .role-block:hover .role-img img{transform:scale(1.01)}
-.role-storyboard-cap{padding:10px 32px;font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--gold3);font-family:'Montserrat',sans-serif;font-weight:600;background:var(--bg2);border-bottom:1px solid rgba(201,168,76,.15)}
+.role-storyboard-cap{padding:10px 32px;font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--gold3);font-family:'Inter',sans-serif;font-weight:600;background:var(--bg2);border-bottom:1px solid rgba(201,168,76,.15)}
 .role-storyboard{width:100%;background:#080808;line-height:0;cursor:zoom-in}
 .role-storyboard img{width:100%;height:auto;display:block;filter:brightness(.92)}
 .role-block:hover .role-storyboard img{transform:scale(1.01)}
 .role-block{background:var(--bg2);border:1px solid rgba(201,168,76,.15);margin-bottom:32px;overflow:hidden}
 .role-header{display:flex;align-items:stretch;border-bottom:1px solid rgba(201,168,76,.15)}
 .role-num{background:rgba(201,168,76,.08);border-right:1px solid rgba(201,168,76,.15);padding:24px 28px;display:flex;align-items:center;justify-content:center}
-.role-num-inner{font-family:'Cormorant Garamond',serif;font-size:48px;color:var(--gold3);font-weight:300;line-height:1}
+.role-num-inner{font-family:'Playfair Display',serif;font-size:48px;color:var(--gold3);font-weight:300;line-height:1}
 .role-header-text{padding:24px 32px;flex:1}
-.role-tag{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);font-family:'Montserrat',sans-serif;font-weight:600;margin-bottom:8px}
-.role-title{font-family:'Cormorant Garamond',serif;font-size:26px;color:var(--text);font-weight:300;margin-bottom:6px}
+.role-tag{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);font-family:'Inter',sans-serif;font-weight:600;margin-bottom:8px}
+.role-title{font-family:'Playfair Display',serif;font-size:26px;color:var(--text);font-weight:300;margin-bottom:6px}
 .role-focus{font-size:11px;color:var(--gold2);letter-spacing:.05em}
 .role-body{padding:32px}
 .role-def{font-size:14px;color:var(--text2);line-height:1.8;margin-bottom:28px;border-left:2px solid var(--gold);padding-left:20px;font-style:italic}
-.role-question{background:rgba(201,168,76,.06);border:1px solid rgba(201,168,76,.2);padding:16px 20px;font-family:'Cormorant Garamond',serif;font-size:18px;color:var(--gold2);text-align:center;margin-top:24px;font-style:italic}
+.role-question{background:rgba(201,168,76,.06);border:1px solid rgba(201,168,76,.2);padding:16px 20px;font-family:'Playfair Display',serif;font-size:18px;color:var(--gold2);text-align:center;margin-top:24px;font-style:italic}
 .role-cols{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-top:24px}
 @media(max-width:768px){.role-cols{grid-template-columns:1fr}}
-.role-col-title{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold3);font-family:'Montserrat',sans-serif;font-weight:600;margin-bottom:12px}
+.role-col-title{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold3);font-family:'Inter',sans-serif;font-weight:600;margin-bottom:12px}
 .role-list{list-style:none;padding:0;margin:0}
 .role-list li{font-size:12px;color:var(--text2);padding:5px 0;border-bottom:1px solid rgba(255,255,255,.04);display:flex;align-items:flex-start;gap:8px;line-height:1.5}
 .role-list li::before{content:'◆';font-size:6px;color:var(--gold3);flex-shrink:0;margin-top:5px}
@@ -595,13 +595,13 @@ footer{
 .ir-stages{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:16px}
 @media(max-width:768px){.ir-stages{grid-template-columns:1fr}}
 .ir-stage{background:var(--bg3);border:1px solid rgba(201,168,76,.1);padding:20px}
-.ir-stage-title{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);font-family:'Montserrat',sans-serif;font-weight:600;margin-bottom:12px}
+.ir-stage-title{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);font-family:'Inter',sans-serif;font-weight:600;margin-bottom:12px}
 
 /* Teams grid */
 .teams-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:20px}
 .team-card{background:var(--bg2);border:1px solid rgba(201,168,76,.12);padding:28px}
-.team-card-num{font-size:9px;letter-spacing:.2em;color:var(--gold3);font-family:'Montserrat',sans-serif;font-weight:600;margin-bottom:6px}
-.team-card-title{font-family:'Cormorant Garamond',serif;font-size:20px;color:var(--gold2);margin-bottom:12px;font-weight:400}
+.team-card-num{font-size:9px;letter-spacing:.2em;color:var(--gold3);font-family:'Inter',sans-serif;font-weight:600;margin-bottom:6px}
+.team-card-title{font-family:'Playfair Display',serif;font-size:20px;color:var(--gold2);margin-bottom:12px;font-weight:400}
 .team-card-body{font-size:12px;color:var(--text2);line-height:1.7}
 .team-card-body p{margin:0 0 8px}
 .team-card-body strong{color:var(--text3);font-weight:600;font-size:10px;letter-spacing:.08em;text-transform:uppercase}
@@ -609,16 +609,16 @@ footer{
 /* Comparison table */
 .comp-table-wrap{overflow-x:auto}
 .comp-table{width:100%;border-collapse:collapse;min-width:700px}
-.comp-table th{background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.2);padding:12px 16px;font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);font-family:'Montserrat',sans-serif;font-weight:600;text-align:left}
+.comp-table th{background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.2);padding:12px 16px;font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);font-family:'Inter',sans-serif;font-weight:600;text-align:left}
 .comp-table td{border:1px solid rgba(255,255,255,.06);padding:12px 16px;font-size:12px;color:var(--text2);line-height:1.6;vertical-align:top}
 .comp-table tr:nth-child(even) td{background:rgba(255,255,255,.02)}
-.comp-table td:first-child{color:var(--text3);font-size:10px;letter-spacing:.08em;text-transform:uppercase;font-family:'Montserrat',sans-serif;font-weight:600;background:rgba(201,168,76,.04)}
+.comp-table td:first-child{color:var(--text3);font-size:10px;letter-spacing:.08em;text-transform:uppercase;font-family:'Inter',sans-serif;font-weight:600;background:rgba(201,168,76,.04)}
 
 /* Workflow table */
 .wf-table{width:100%;border-collapse:collapse;margin-top:8px}
-.wf-stage{background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.2);padding:10px 16px;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);font-family:'Montserrat',sans-serif;font-weight:600;vertical-align:top;width:140px}
+.wf-stage{background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.2);padding:10px 16px;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);font-family:'Inter',sans-serif;font-weight:600;vertical-align:top;width:140px}
 .wf-role{border:1px solid rgba(255,255,255,.06);padding:12px 16px;font-size:12px;color:var(--text2);line-height:1.6;vertical-align:top}
-.wf-role-tag{font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold3);font-family:'Montserrat',sans-serif;font-weight:600;display:block;margin-bottom:4px}
+.wf-role-tag{font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold3);font-family:'Inter',sans-serif;font-weight:600;display:block;margin-bottom:4px}
 .wf-table tr:nth-child(even) .wf-role{background:rgba(255,255,255,.02)}
 
 /* References */
@@ -629,14 +629,14 @@ footer{
 /* Glossary */
 .glossary-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1px;background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.12)}
 .glossary-item{background:var(--bg2);padding:16px 20px}
-.glossary-term{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);font-family:'Montserrat',sans-serif;font-weight:700;margin-bottom:6px}
+.glossary-term{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);font-family:'Inter',sans-serif;font-weight:700;margin-bottom:6px}
 .glossary-def{font-size:12px;color:var(--text2);line-height:1.6}
 
 /* Positioning statement */
 .pos-statement{background:linear-gradient(135deg,rgba(201,168,76,.06) 0%,transparent 60%);border:1px solid rgba(201,168,76,.3);padding:48px;text-align:center;margin-top:48px}
-.pos-label{font-size:9px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);font-family:'Montserrat',sans-serif;font-weight:600;margin-bottom:20px}
-.pos-text{font-family:'Cormorant Garamond',serif;font-size:clamp(16px,2vw,24px);color:var(--text);line-height:1.7;font-weight:300;max-width:860px;margin:0 auto 32px}
-.pos-final-label{display:inline-block;border:1px solid var(--gold);padding:10px 28px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);font-family:'Montserrat',sans-serif;font-weight:600}
+.pos-label{font-size:9px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);font-family:'Inter',sans-serif;font-weight:600;margin-bottom:20px}
+.pos-text{font-family:'Playfair Display',serif;font-size:clamp(16px,2vw,24px);color:var(--text);line-height:1.7;font-weight:300;max-width:860px;margin:0 auto 32px}
+.pos-final-label{display:inline-block;border:1px solid var(--gold);padding:10px 28px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);font-family:'Inter',sans-serif;font-weight:600}
 </style>
 </head>
 <body>
@@ -716,7 +716,7 @@ footer{
 
 <!-- HERO BANNER IMAGE -->
 <div style="width:100%;height:520px;overflow:hidden;position:relative;margin-top:0">
-  <img src="/site-supervision-images/09-COVER.png" alt="Site Supervision — On Site" style="width:100%;height:100%;object-fit:cover;object-position:center center;display:block;filter:brightness(.75)">
+  <img src="/site-supervision-images/09-COVER.jpg" alt="Site Supervision — On Site" style="width:100%;height:100%;object-fit:cover;object-position:center center;display:block;filter:brightness(.75)">
   <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(13,13,13,.5) 0%,transparent 40%,transparent 60%,rgba(13,13,13,.8) 100%)"></div>
 </div>
 
@@ -755,7 +755,7 @@ footer{
 .process-header{text-align:center;margin-bottom:64px}
 .process-eyebrow{font-size:10px;text-transform:uppercase;letter-spacing:.35em;color:var(--gold);font-weight:500;margin-bottom:14px;display:flex;align-items:center;justify-content:center;gap:16px}
 .process-eyebrow::before,.process-eyebrow::after{content:'';width:48px;height:1px;background:rgba(201,168,76,.35)}
-.process-headline{font-family:'Cormorant Garamond',serif;font-size:clamp(28px,4vw,52px);font-weight:300;color:#fff;line-height:1.1;margin-bottom:12px}
+.process-headline{font-family:'Playfair Display',serif;font-size:clamp(28px,4vw,52px);font-weight:300;color:#fff;line-height:1.1;margin-bottom:12px}
 .process-headline em{color:var(--gold2);font-style:italic}
 .process-sub{font-size:12px;color:var(--text3);max-width:560px;margin:0 auto;line-height:1.8}
 
@@ -780,14 +780,14 @@ footer{
 }
 .ref-badge{position:absolute;top:20px;right:20px;background:rgba(13,13,13,.88);border:1px solid rgba(201,168,76,.5);backdrop-filter:blur(8px);padding:8px 14px;display:flex;flex-direction:column;align-items:center;z-index:2;pointer-events:none}
 .ref-badge-label{font-size:7px;text-transform:uppercase;letter-spacing:.2em;color:var(--gold3);font-weight:600;line-height:1}
-.ref-badge-num{font-family:'Cormorant Garamond',serif;font-size:26px;color:var(--gold2);line-height:1.1;font-weight:400}
-.step-num-bg{position:absolute;bottom:-10px;left:20px;font-family:'Cormorant Garamond',serif;font-size:140px;font-weight:300;color:rgba(201,168,76,.06);line-height:1;pointer-events:none;user-select:none;z-index:1}
+.ref-badge-num{font-family:'Playfair Display',serif;font-size:26px;color:var(--gold2);line-height:1.1;font-weight:400}
+.step-num-bg{position:absolute;bottom:-10px;left:20px;font-family:'Playfair Display',serif;font-size:140px;font-weight:300;color:rgba(201,168,76,.06);line-height:1;pointer-events:none;user-select:none;z-index:1}
 
 /* CONTENT SIDE */
 .step-content{background:var(--bg3);padding:52px 48px;display:flex;flex-direction:column;justify-content:center;flex:0 0 50%;width:50%;position:relative;border-left:1px solid var(--line2)}
 .step-zone-tag{font-size:9px;text-transform:uppercase;letter-spacing:.2em;color:var(--gold3);font-weight:600;background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.18);display:inline-flex;align-items:center;gap:6px;padding:4px 12px;margin-bottom:20px;width:fit-content}
-.step-number{font-family:'Cormorant Garamond',serif;font-size:72px;font-weight:300;color:rgba(201,168,76,.15);line-height:.85;margin-bottom:4px;letter-spacing:-.02em}
-.step-title{font-family:'Cormorant Garamond',serif;font-size:clamp(22px,2.5vw,34px);font-weight:400;color:#fff;line-height:1.15;margin-bottom:6px}
+.step-number{font-family:'Playfair Display',serif;font-size:72px;font-weight:300;color:rgba(201,168,76,.15);line-height:.85;margin-bottom:4px;letter-spacing:-.02em}
+.step-title{font-family:'Playfair Display',serif;font-size:clamp(22px,2.5vw,34px);font-weight:400;color:#fff;line-height:1.15;margin-bottom:6px}
 .step-tagline{font-size:9px;text-transform:uppercase;letter-spacing:.2em;color:var(--gold3);font-weight:600;margin-bottom:20px;padding-bottom:20px;border-bottom:1px solid var(--line)}
 .step-desc{font-size:12px;color:var(--text2);line-height:1.85;margin-bottom:24px}
 
@@ -822,7 +822,7 @@ footer{
 
 /* ── Chapter Nav ─────────────────────────────────── */
 .ch-nav{display:flex;align-items:center;gap:0;background:var(--bg2);border-bottom:1px solid rgba(201,168,76,.15);position:sticky;top:0;z-index:500;padding:0 48px}
-.ch-btn{background:none;border:none;border-bottom:2px solid transparent;padding:18px 32px;cursor:pointer;display:flex;align-items:center;gap:12px;color:var(--text3);transition:all .2s ease;font-family:'Montserrat',sans-serif}
+.ch-btn{background:none;border:none;border-bottom:2px solid transparent;padding:18px 32px;cursor:pointer;display:flex;align-items:center;gap:12px;color:var(--text3);transition:all .2s ease;font-family:'Inter',sans-serif}
 .ch-btn.active{border-bottom-color:var(--gold);color:var(--text)}
 .ch-btn:hover{color:var(--text2)}
 .ch-btn-n{font-size:9px;letter-spacing:.2em;color:var(--gold3);font-weight:600;text-transform:uppercase}
@@ -837,14 +837,14 @@ footer{
 @media(max-width:768px){.ch2-inner{padding:0 20px}}
 
 .ch2-header{border-left:3px solid var(--gold);padding-left:32px;margin-bottom:72px}
-.ch2-eyebrow{font-size:9px;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;font-family:'Montserrat',sans-serif;font-weight:600}
-.ch2-title{font-family:'Cormorant Garamond',serif;font-size:clamp(28px,4vw,52px);font-weight:300;color:var(--text);line-height:1.1;margin-bottom:16px}
-.ch2-subtitle{font-size:13px;letter-spacing:.1em;color:var(--gold2);text-transform:uppercase;font-family:'Montserrat',sans-serif;margin-bottom:24px}
+.ch2-eyebrow{font-size:9px;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;font-family:'Inter',sans-serif;font-weight:600}
+.ch2-title{font-family:'Playfair Display',serif;font-size:clamp(28px,4vw,52px);font-weight:300;color:var(--text);line-height:1.1;margin-bottom:16px}
+.ch2-subtitle{font-size:13px;letter-spacing:.1em;color:var(--gold2);text-transform:uppercase;font-family:'Inter',sans-serif;margin-bottom:24px}
 .ch2-intro{font-size:15px;color:var(--text2);line-height:1.8;max-width:760px}
 
 /* Section headings */
-.ch2-sec-label{font-size:9px;letter-spacing:.25em;text-transform:uppercase;color:var(--gold3);font-family:'Montserrat',sans-serif;font-weight:600;margin-bottom:8px}
-.ch2-sec-title{font-family:'Cormorant Garamond',serif;font-size:clamp(22px,3vw,38px);font-weight:300;color:var(--text);margin-bottom:32px}
+.ch2-sec-label{font-size:9px;letter-spacing:.25em;text-transform:uppercase;color:var(--gold3);font-family:'Inter',sans-serif;font-weight:600;margin-bottom:8px}
+.ch2-sec-title{font-family:'Playfair Display',serif;font-size:clamp(22px,3vw,38px);font-weight:300;color:var(--text);margin-bottom:32px}
 .ch2-sec-divider{width:60px;height:1px;background:var(--gold);margin:32px 0 48px}
 .ch2-section{margin-bottom:96px}
 
@@ -857,11 +857,11 @@ footer{
 .org-connector::before{content:'';position:absolute;top:0;left:50%;width:1px;height:100%;background:rgba(201,168,76,.3)}
 .org-box{background:var(--bg3);border:1px solid rgba(201,168,76,.2);padding:10px 20px;text-align:center;position:relative;min-width:200px;max-width:320px}
 .org-box.gold-border{border-color:rgba(201,168,76,.6)}
-.org-box-title{font-family:'Cormorant Garamond',serif;font-size:15px;color:var(--text);font-weight:400}
+.org-box-title{font-family:'Playfair Display',serif;font-size:15px;color:var(--text);font-weight:400}
 .org-box-sub{font-size:9px;letter-spacing:.1em;color:var(--text3);text-transform:uppercase;margin-top:3px}
 .org-teams{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1px;background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.15);margin-top:0}
 .org-team-col{background:var(--bg2);padding:16px}
-.org-team-head{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);font-family:'Montserrat',sans-serif;font-weight:600;margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid rgba(201,168,76,.2)}
+.org-team-head{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);font-family:'Inter',sans-serif;font-weight:600;margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid rgba(201,168,76,.2)}
 .org-team-item{font-size:11px;color:var(--text2);padding:3px 0;line-height:1.4}
 .org-team-item.highlight{color:var(--gold2);font-weight:500}
 .org-branch{display:flex;justify-content:center;gap:1px;margin-top:0}
@@ -874,24 +874,24 @@ footer{
 .role-img{width:100%;background:#080808;line-height:0}
 .role-img img{width:100%;height:auto;display:block;filter:brightness(.92)}
 .role-block:hover .role-img img{transform:scale(1.01)}
-.role-storyboard-cap{padding:10px 32px;font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--gold3);font-family:'Montserrat',sans-serif;font-weight:600;background:var(--bg2);border-bottom:1px solid rgba(201,168,76,.15)}
+.role-storyboard-cap{padding:10px 32px;font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--gold3);font-family:'Inter',sans-serif;font-weight:600;background:var(--bg2);border-bottom:1px solid rgba(201,168,76,.15)}
 .role-storyboard{width:100%;background:#080808;line-height:0;cursor:zoom-in}
 .role-storyboard img{width:100%;height:auto;display:block;filter:brightness(.92)}
 .role-block:hover .role-storyboard img{transform:scale(1.01)}
 .role-block{background:var(--bg2);border:1px solid rgba(201,168,76,.15);margin-bottom:32px;overflow:hidden}
 .role-header{display:flex;align-items:stretch;border-bottom:1px solid rgba(201,168,76,.15)}
 .role-num{background:rgba(201,168,76,.08);border-right:1px solid rgba(201,168,76,.15);padding:24px 28px;display:flex;align-items:center;justify-content:center}
-.role-num-inner{font-family:'Cormorant Garamond',serif;font-size:48px;color:var(--gold3);font-weight:300;line-height:1}
+.role-num-inner{font-family:'Playfair Display',serif;font-size:48px;color:var(--gold3);font-weight:300;line-height:1}
 .role-header-text{padding:24px 32px;flex:1}
-.role-tag{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);font-family:'Montserrat',sans-serif;font-weight:600;margin-bottom:8px}
-.role-title{font-family:'Cormorant Garamond',serif;font-size:26px;color:var(--text);font-weight:300;margin-bottom:6px}
+.role-tag{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);font-family:'Inter',sans-serif;font-weight:600;margin-bottom:8px}
+.role-title{font-family:'Playfair Display',serif;font-size:26px;color:var(--text);font-weight:300;margin-bottom:6px}
 .role-focus{font-size:11px;color:var(--gold2);letter-spacing:.05em}
 .role-body{padding:32px}
 .role-def{font-size:14px;color:var(--text2);line-height:1.8;margin-bottom:28px;border-left:2px solid var(--gold);padding-left:20px;font-style:italic}
-.role-question{background:rgba(201,168,76,.06);border:1px solid rgba(201,168,76,.2);padding:16px 20px;font-family:'Cormorant Garamond',serif;font-size:18px;color:var(--gold2);text-align:center;margin-top:24px;font-style:italic}
+.role-question{background:rgba(201,168,76,.06);border:1px solid rgba(201,168,76,.2);padding:16px 20px;font-family:'Playfair Display',serif;font-size:18px;color:var(--gold2);text-align:center;margin-top:24px;font-style:italic}
 .role-cols{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-top:24px}
 @media(max-width:768px){.role-cols{grid-template-columns:1fr}}
-.role-col-title{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold3);font-family:'Montserrat',sans-serif;font-weight:600;margin-bottom:12px}
+.role-col-title{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold3);font-family:'Inter',sans-serif;font-weight:600;margin-bottom:12px}
 .role-list{list-style:none;padding:0;margin:0}
 .role-list li{font-size:12px;color:var(--text2);padding:5px 0;border-bottom:1px solid rgba(255,255,255,.04);display:flex;align-items:flex-start;gap:8px;line-height:1.5}
 .role-list li::before{content:'◆';font-size:6px;color:var(--gold3);flex-shrink:0;margin-top:5px}
@@ -900,13 +900,13 @@ footer{
 .ir-stages{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:16px}
 @media(max-width:768px){.ir-stages{grid-template-columns:1fr}}
 .ir-stage{background:var(--bg3);border:1px solid rgba(201,168,76,.1);padding:20px}
-.ir-stage-title{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);font-family:'Montserrat',sans-serif;font-weight:600;margin-bottom:12px}
+.ir-stage-title{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);font-family:'Inter',sans-serif;font-weight:600;margin-bottom:12px}
 
 /* Teams grid */
 .teams-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:20px}
 .team-card{background:var(--bg2);border:1px solid rgba(201,168,76,.12);padding:28px}
-.team-card-num{font-size:9px;letter-spacing:.2em;color:var(--gold3);font-family:'Montserrat',sans-serif;font-weight:600;margin-bottom:6px}
-.team-card-title{font-family:'Cormorant Garamond',serif;font-size:20px;color:var(--gold2);margin-bottom:12px;font-weight:400}
+.team-card-num{font-size:9px;letter-spacing:.2em;color:var(--gold3);font-family:'Inter',sans-serif;font-weight:600;margin-bottom:6px}
+.team-card-title{font-family:'Playfair Display',serif;font-size:20px;color:var(--gold2);margin-bottom:12px;font-weight:400}
 .team-card-body{font-size:12px;color:var(--text2);line-height:1.7}
 .team-card-body p{margin:0 0 8px}
 .team-card-body strong{color:var(--text3);font-weight:600;font-size:10px;letter-spacing:.08em;text-transform:uppercase}
@@ -914,16 +914,16 @@ footer{
 /* Comparison table */
 .comp-table-wrap{overflow-x:auto}
 .comp-table{width:100%;border-collapse:collapse;min-width:700px}
-.comp-table th{background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.2);padding:12px 16px;font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);font-family:'Montserrat',sans-serif;font-weight:600;text-align:left}
+.comp-table th{background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.2);padding:12px 16px;font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);font-family:'Inter',sans-serif;font-weight:600;text-align:left}
 .comp-table td{border:1px solid rgba(255,255,255,.06);padding:12px 16px;font-size:12px;color:var(--text2);line-height:1.6;vertical-align:top}
 .comp-table tr:nth-child(even) td{background:rgba(255,255,255,.02)}
-.comp-table td:first-child{color:var(--text3);font-size:10px;letter-spacing:.08em;text-transform:uppercase;font-family:'Montserrat',sans-serif;font-weight:600;background:rgba(201,168,76,.04)}
+.comp-table td:first-child{color:var(--text3);font-size:10px;letter-spacing:.08em;text-transform:uppercase;font-family:'Inter',sans-serif;font-weight:600;background:rgba(201,168,76,.04)}
 
 /* Workflow table */
 .wf-table{width:100%;border-collapse:collapse;margin-top:8px}
-.wf-stage{background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.2);padding:10px 16px;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);font-family:'Montserrat',sans-serif;font-weight:600;vertical-align:top;width:140px}
+.wf-stage{background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.2);padding:10px 16px;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);font-family:'Inter',sans-serif;font-weight:600;vertical-align:top;width:140px}
 .wf-role{border:1px solid rgba(255,255,255,.06);padding:12px 16px;font-size:12px;color:var(--text2);line-height:1.6;vertical-align:top}
-.wf-role-tag{font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold3);font-family:'Montserrat',sans-serif;font-weight:600;display:block;margin-bottom:4px}
+.wf-role-tag{font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold3);font-family:'Inter',sans-serif;font-weight:600;display:block;margin-bottom:4px}
 .wf-table tr:nth-child(even) .wf-role{background:rgba(255,255,255,.02)}
 
 /* References */
@@ -934,32 +934,32 @@ footer{
 /* Glossary */
 .glossary-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1px;background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.12)}
 .glossary-item{background:var(--bg2);padding:16px 20px}
-.glossary-term{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);font-family:'Montserrat',sans-serif;font-weight:700;margin-bottom:6px}
+.glossary-term{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);font-family:'Inter',sans-serif;font-weight:700;margin-bottom:6px}
 .glossary-def{font-size:12px;color:var(--text2);line-height:1.6}
 
 /* Positioning statement */
 .pos-statement{background:linear-gradient(135deg,rgba(201,168,76,.06) 0%,transparent 60%);border:1px solid rgba(201,168,76,.3);padding:48px;text-align:center;margin-top:48px}
-.pos-label{font-size:9px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);font-family:'Montserrat',sans-serif;font-weight:600;margin-bottom:20px}
-.pos-text{font-family:'Cormorant Garamond',serif;font-size:clamp(16px,2vw,24px);color:var(--text);line-height:1.7;font-weight:300;max-width:860px;margin:0 auto 32px}
-.pos-final-label{display:inline-block;border:1px solid var(--gold);padding:10px 28px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);font-family:'Montserrat',sans-serif;font-weight:600}
+.pos-label{font-size:9px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);font-family:'Inter',sans-serif;font-weight:600;margin-bottom:20px}
+.pos-text{font-family:'Playfair Display',serif;font-size:clamp(16px,2vw,24px);color:var(--text);line-height:1.7;font-weight:300;max-width:860px;margin:0 auto 32px}
+.pos-final-label{display:inline-block;border:1px solid var(--gold);padding:10px 28px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);font-family:'Inter',sans-serif;font-weight:600}
 
 /* ── Role accordion sub-sections ── */
 .rs-sect{margin-top:24px}
-.rs-sect-title{font-family:Montserrat,sans-serif;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:rgba(201,168,76,.6);margin-bottom:14px;padding-bottom:6px;border-bottom:1px solid rgba(201,168,76,.12)}
+.rs-sect-title{font-family:Inter,sans-serif;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:rgba(201,168,76,.6);margin-bottom:14px;padding-bottom:6px;border-bottom:1px solid rgba(201,168,76,.12)}
 .rs-accordion{border:1px solid rgba(201,168,76,.14);margin-bottom:6px;border-radius:2px}
 .rs-acc-header{padding:11px 16px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;background:rgba(201,168,76,.03)}
 .rs-acc-header:hover{background:rgba(201,168,76,.07)}
-.rs-acc-htext{font-family:Montserrat,sans-serif;font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold)}
+.rs-acc-htext{font-family:Inter,sans-serif;font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold)}
 .rs-acc-icon{color:rgba(201,168,76,.5);transition:transform .25s;font-size:12px;flex-shrink:0}
 .rs-acc-header.rs-open .rs-acc-icon{transform:rotate(180deg)}
 .rs-acc-body{display:none;padding:16px 18px}
 .rs-acc-body.rs-open{display:block}
 .rs-table{width:100%;border-collapse:collapse;margin:12px 0;font-size:12.5px}
-.rs-table th{background:rgba(201,168,76,.12);color:rgba(201,168,76,.9);padding:9px 13px;text-align:left;font-family:Montserrat,sans-serif;font-size:9px;letter-spacing:.12em;text-transform:uppercase;border-bottom:1px solid rgba(201,168,76,.25)}
+.rs-table th{background:rgba(201,168,76,.12);color:rgba(201,168,76,.9);padding:9px 13px;text-align:left;font-family:Inter,sans-serif;font-size:9px;letter-spacing:.12em;text-transform:uppercase;border-bottom:1px solid rgba(201,168,76,.25)}
 .rs-table td{padding:8px 13px;border-bottom:1px solid rgba(201,168,76,.07);vertical-align:top;color:var(--text);line-height:1.55}
 .rs-table tr:last-child td{border-bottom:none}
-.rs-table td:first-child{color:rgba(201,168,76,.85);font-family:Montserrat,sans-serif;font-size:11px;letter-spacing:.04em;white-space:nowrap;min-width:140px}
-.rs-sub-title{font-family:Montserrat,sans-serif;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:rgba(201,168,76,.7);margin:14px 0 6px}
+.rs-table td:first-child{color:rgba(201,168,76,.85);font-family:Inter,sans-serif;font-size:11px;letter-spacing:.04em;white-space:nowrap;min-width:140px}
+.rs-sub-title{font-family:Inter,sans-serif;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:rgba(201,168,76,.7);margin:14px 0 6px}
 .rs-list{list-style:none;margin:0;padding:0}
 .rs-list li{position:relative;padding:4px 0 4px 16px;font-size:13px;color:var(--text);line-height:1.5}
 .rs-list li::before{content:'—';position:absolute;left:0;color:rgba(201,168,76,.45);font-size:10px}
@@ -979,7 +979,7 @@ footer{
   <!-- ── STEP 01 ── -->
   <div class="step-card">
     <div class="step-img">
-      <img src="/site-supervision-images/02.png" alt="Step 01 — Contract Documents & Specifications" loading="lazy" style="object-position:center center">
+      <img src="/site-supervision-images/02.jpg" alt="Step 01 — Contract Documents & Specifications" loading="lazy" style="object-position:center center">
       <div class="step-img-overlay"></div>
       <div class="ref-badge"><span class="ref-badge-label">REF</span><span class="ref-badge-num">01</span></div>
       <div class="step-num-bg">01</div>
@@ -1015,7 +1015,7 @@ footer{
   <!-- ── STEP 02 ── -->
   <div class="step-card reverse">
     <div class="step-img">
-      <img src="/site-supervision-images/04.png" alt="Step 02 — Material Submittals" loading="lazy" style="object-position:center center">
+      <img src="/site-supervision-images/04.jpg" alt="Step 02 — Material Submittals" loading="lazy" style="object-position:center center">
       <div class="step-img-overlay"></div>
       <div class="ref-badge"><span class="ref-badge-label">REF</span><span class="ref-badge-num">02</span></div>
       <div class="step-num-bg">02</div>
@@ -1050,7 +1050,7 @@ footer{
   <!-- ── STEP 03 ── -->
   <div class="step-card">
     <div class="step-img">
-      <img src="/site-supervision-images/03.png" alt="Step 03 — Shop Drawings" loading="lazy" style="object-position:center center">
+      <img src="/site-supervision-images/03.jpg" alt="Step 03 — Shop Drawings" loading="lazy" style="object-position:center center">
       <div class="step-img-overlay"></div>
       <div class="ref-badge"><span class="ref-badge-label">REF</span><span class="ref-badge-num">03</span></div>
       <div class="step-num-bg">03</div>
@@ -1085,7 +1085,7 @@ footer{
   <!-- ── STEP 04 ── -->
   <div class="step-card reverse">
     <div class="step-img">
-      <img src="/site-supervision-images/08.png" alt="Step 04 — Method Statement" loading="lazy" style="object-position:center center">
+      <img src="/site-supervision-images/08.jpg" alt="Step 04 — Method Statement" loading="lazy" style="object-position:center center">
       <div class="step-img-overlay"></div>
       <div class="ref-badge"><span class="ref-badge-label">REF</span><span class="ref-badge-num">04</span></div>
       <div class="step-num-bg">04</div>
@@ -1120,7 +1120,7 @@ footer{
   <!-- ── STEP 05 ── -->
   <div class="step-card">
     <div class="step-img">
-      <img src="/site-supervision-images/05.png" alt="Step 05 — Mockup / Sample Approval" loading="lazy" style="object-position:center center">
+      <img src="/site-supervision-images/05.jpg" alt="Step 05 — Mockup / Sample Approval" loading="lazy" style="object-position:center center">
       <div class="step-img-overlay"></div>
       <div class="ref-badge"><span class="ref-badge-label">REF</span><span class="ref-badge-num">05</span></div>
       <div class="step-num-bg">05</div>
@@ -1158,7 +1158,7 @@ footer{
   <!-- ── STEP 06 ── -->
   <div class="step-card reverse">
     <div class="step-img">
-      <img src="/site-supervision-images/06.png" alt="Step 06 — Site Execution & Handover" loading="lazy" style="object-position:center center">
+      <img src="/site-supervision-images/06.jpg" alt="Step 06 — Site Execution & Handover" loading="lazy" style="object-position:center center">
       <div class="step-img-overlay"></div>
       <div class="ref-badge"><span class="ref-badge-label">REF</span><span class="ref-badge-num">06</span></div>
       <div class="step-num-bg">06</div>
@@ -1194,7 +1194,7 @@ footer{
   <!-- ── STEP 07 ── -->
   <div class="step-card">
     <div class="step-img">
-      <img src="/site-supervision-images/07.png" alt="Step 07 — Project Handover" loading="lazy" style="object-position:center center">
+      <img src="/site-supervision-images/07.jpg" alt="Step 07 — Project Handover" loading="lazy" style="object-position:center center">
       <div class="step-img-overlay"></div>
       <div class="ref-badge"><span class="ref-badge-label">REF</span><span class="ref-badge-num">07</span></div>
       <div class="step-num-bg">07</div>
@@ -1707,11 +1707,11 @@ footer{
 
 <!-- ══ LIGHTBOX ══ -->
 <div id="lightbox" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.92);cursor:zoom-out;align-items:center;justify-content:center;flex-direction:column">
-  <button onclick="closeLightbox()" style="position:absolute;top:24px;right:32px;background:none;border:1px solid rgba(201,168,76,.4);color:var(--gold);font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:.15em;padding:8px 18px;cursor:pointer">✕ CLOSE</button>
+  <button onclick="closeLightbox()" style="position:absolute;top:24px;right:32px;background:none;border:1px solid rgba(201,168,76,.4);color:var(--gold);font-family:'Inter',sans-serif;font-size:11px;letter-spacing:.15em;padding:8px 18px;cursor:pointer">✕ CLOSE</button>
   <img id="lb-img" src="" alt="" style="max-width:90vw;max-height:80vh;object-fit:contain;border:1px solid rgba(201,168,76,.15);display:none">
   <div id="lb-text" style="display:none;max-width:680px;padding:48px;background:var(--bg2);border:1px solid rgba(201,168,76,.2)">
     <div id="lb-zone" style="font-size:10px;letter-spacing:.2em;color:var(--gold);text-transform:uppercase;margin-bottom:12px"></div>
-    <div id="lb-title" style="font-family:'Cormorant Garamond',serif;font-size:32px;color:var(--text);margin-bottom:16px;font-weight:300"></div>
+    <div id="lb-title" style="font-family:'Playfair Display',serif;font-size:32px;color:var(--text);margin-bottom:16px;font-weight:300"></div>
     <div id="lb-body" style="font-size:14px;color:var(--text2);line-height:1.8"></div>
     <div id="lb-tags" style="margin-top:24px;display:flex;gap:8px;flex-wrap:wrap"></div>
   </div>
@@ -2073,7 +2073,7 @@ document.querySelectorAll('.gcard').forEach(function(el) {
 
     <!-- Role 1 -->
     <div class="role-block">
-      <div class="role-img" ondblclick="openImgLightbox(this.querySelector('img').src,'Senior Technical Architect')" style="cursor:zoom-in"><img src="/site-supervision-images/role-technical-architect.png" alt="Senior Technical Architect" loading="lazy"></div>
+      <div class="role-img" ondblclick="openImgLightbox(this.querySelector('img').src,'Senior Technical Architect')" style="cursor:zoom-in"><img src="/site-supervision-images/role-technical-architect.jpg" alt="Senior Technical Architect" loading="lazy"></div>
       <div class="role-header">
         <div class="role-num"><div class="role-num-inner">01</div></div>
         <div class="role-header-text">
@@ -2083,9 +2083,9 @@ document.querySelectorAll('.gcard').forEach(function(el) {
         </div>
       </div>
       <div class="role-storyboard-cap">Workflow Storyboard — From Technical Review to Site-Ready Information</div>
-      <div class="role-storyboard" ondblclick="openImgLightbox(this.querySelector('img').src,'Senior Technical Architect — Workflow Storyboard')"><img src="/site-supervision-images/role-technical-architect-storyboard.png" alt="Senior Technical Architect workflow storyboard" loading="lazy"></div>
+      <div class="role-storyboard" ondblclick="openImgLightbox(this.querySelector('img').src,'Senior Technical Architect — Workflow Storyboard')"><img src="/site-supervision-images/role-technical-architect-storyboard.jpg" alt="Senior Technical Architect workflow storyboard" loading="lazy"></div>
       <div class="role-body">
-        <button onclick="zoomRole(this)" style="float:right;margin:-4px 0 12px 12px;background:none;border:1px solid rgba(201,168,76,.4);color:var(--gold);font-family:Montserrat,sans-serif;font-size:9px;letter-spacing:.15em;padding:6px 14px;cursor:pointer;text-transform:uppercase">⊕ Read Full</button>
+        <button onclick="zoomRole(this)" style="float:right;margin:-4px 0 12px 12px;background:none;border:1px solid rgba(201,168,76,.4);color:var(--gold);font-family:Inter,sans-serif;font-size:9px;letter-spacing:.15em;padding:6px 14px;cursor:pointer;text-transform:uppercase">⊕ Read Full</button>
         <div class="role-def">
           The Senior Technical Architect is the consultant-side technical authority for architectural documentation, buildability, compliance, detailing, and multidisciplinary coordination during the construction stage. This role is primarily technical and document-based — 70–80% on technical reviews, shop drawings, materials, RFIs, and coordination. The main value is preventing technical errors before they become site defects.
         </div>
@@ -2311,7 +2311,7 @@ document.querySelectorAll('.gcard').forEach(function(el) {
 
     <!-- Role 2 -->
     <div class="role-block">
-      <div class="role-img" ondblclick="openImgLightbox(this.querySelector('img').src,'Architectural Package Lead')" style="cursor:zoom-in"><img src="/site-supervision-images/role-package-lead.png" alt="Architectural Package Lead" loading="lazy"></div>
+      <div class="role-img" ondblclick="openImgLightbox(this.querySelector('img').src,'Architectural Package Lead')" style="cursor:zoom-in"><img src="/site-supervision-images/role-package-lead.jpg" alt="Architectural Package Lead" loading="lazy"></div>
       <div class="role-header">
         <div class="role-num"><div class="role-num-inner">02</div></div>
         <div class="role-header-text">
@@ -2321,9 +2321,9 @@ document.querySelectorAll('.gcard').forEach(function(el) {
         </div>
       </div>
       <div class="role-storyboard-cap">Workflow Storyboard — From Package Definition to Handover Closure</div>
-      <div class="role-storyboard" ondblclick="openImgLightbox(this.querySelector('img').src,'Architectural Package Lead — Workflow Storyboard')"><img src="/site-supervision-images/role-package-lead-storyboard.png" alt="Architectural Package Lead workflow storyboard" loading="lazy"></div>
+      <div class="role-storyboard" ondblclick="openImgLightbox(this.querySelector('img').src,'Architectural Package Lead — Workflow Storyboard')"><img src="/site-supervision-images/role-package-lead-storyboard.jpg" alt="Architectural Package Lead workflow storyboard" loading="lazy"></div>
       <div class="role-body">
-        <button onclick="zoomRole(this)" style="float:right;margin:-4px 0 12px 12px;background:none;border:1px solid rgba(201,168,76,.4);color:var(--gold);font-family:Montserrat,sans-serif;font-size:9px;letter-spacing:.15em;padding:6px 14px;cursor:pointer;text-transform:uppercase">⊕ Read Full</button>
+        <button onclick="zoomRole(this)" style="float:right;margin:-4px 0 12px 12px;background:none;border:1px solid rgba(201,168,76,.4);color:var(--gold);font-family:Inter,sans-serif;font-size:9px;letter-spacing:.15em;padding:6px 14px;cursor:pointer;text-transform:uppercase">⊕ Read Full</button>
         <div class="role-def">
           The Architectural Package Lead owns a defined architectural package and manages it from technical submission through site implementation and handover. The role is 60–70% management and coordination, with 30–40% technical and site interface. The Package Lead controls the workflow, coordinates responsible parties, tracks approvals, manages risks, and ensures the package is delivered correctly.
         </div>
@@ -2555,7 +2555,7 @@ document.querySelectorAll('.gcard').forEach(function(el) {
 
     <!-- Role 3 -->
     <div class="role-block">
-      <div class="role-img" ondblclick="openImgLightbox(this.querySelector('img').src,'Senior Site Architect')" style="cursor:zoom-in"><img src="/site-supervision-images/role-site-architect.png" alt="Senior Site Architect" loading="lazy"></div>
+      <div class="role-img" ondblclick="openImgLightbox(this.querySelector('img').src,'Senior Site Architect')" style="cursor:zoom-in"><img src="/site-supervision-images/role-site-architect.jpg" alt="Senior Site Architect" loading="lazy"></div>
       <div class="role-header">
         <div class="role-num"><div class="role-num-inner">03</div></div>
         <div class="role-header-text">
@@ -2565,9 +2565,9 @@ document.querySelectorAll('.gcard').forEach(function(el) {
         </div>
       </div>
       <div class="role-storyboard-cap">Workflow Storyboard — From Inspection to Handover</div>
-      <div class="role-storyboard" ondblclick="openImgLightbox(this.querySelector('img').src,'Senior Site Architect — Workflow Storyboard')"><img src="/site-supervision-images/role-site-architect-storyboard.png" alt="Senior Site Architect workflow storyboard" loading="lazy"></div>
+      <div class="role-storyboard" ondblclick="openImgLightbox(this.querySelector('img').src,'Senior Site Architect — Workflow Storyboard')"><img src="/site-supervision-images/role-site-architect-storyboard.jpg" alt="Senior Site Architect workflow storyboard" loading="lazy"></div>
       <div class="role-body">
-        <button onclick="zoomRole(this)" style="float:right;margin:-4px 0 12px 12px;background:none;border:1px solid rgba(201,168,76,.4);color:var(--gold);font-family:Montserrat,sans-serif;font-size:9px;letter-spacing:.15em;padding:6px 14px;cursor:pointer;text-transform:uppercase">⊕ Read Full</button>
+        <button onclick="zoomRole(this)" style="float:right;margin:-4px 0 12px 12px;background:none;border:1px solid rgba(201,168,76,.4);color:var(--gold);font-family:Inter,sans-serif;font-size:9px;letter-spacing:.15em;padding:6px 14px;cursor:pointer;text-transform:uppercase">⊕ Read Full</button>
         <div class="role-def">
           The Senior Site Architect is responsible for verifying that architectural works executed on site comply with approved shop drawings, specifications, method statements, ITPs, material approvals, authority requirements, and project quality standards. This role is mainly site-based — 70–80% on site. The Senior Site Architect is not only an inspector; he is the consultant's architectural quality controller on site.
         </div>
@@ -3057,26 +3057,26 @@ document.querySelectorAll('.gcard').forEach(function(el) {
 .doc-row{display:grid;grid-template-columns:290px 1fr;border-bottom:1px solid rgba(201,168,76,.15);background:var(--bg2)}
 .doc-row:nth-child(even){background:rgba(255,255,255,.015)}
 .doc-id{padding:20px 22px;border-right:1px solid rgba(201,168,76,.12)}
-.doc-abbr{font-family:'Montserrat',sans-serif;font-size:12px;font-weight:700;letter-spacing:.08em;color:var(--gold);text-transform:uppercase}
+.doc-abbr{font-family:'Inter',sans-serif;font-size:12px;font-weight:700;letter-spacing:.08em;color:var(--gold);text-transform:uppercase}
 .doc-full{font-size:11px;color:var(--text3);margin-top:4px;line-height:1.5}
 .doc-simple{display:inline-block;margin-top:10px;font-size:8.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold2);border:1px solid rgba(201,168,76,.3);padding:3px 8px}
 .doc-func{padding:20px 22px;font-size:12.5px;color:var(--text2);line-height:1.75}
 @media(max-width:768px){.doc-row{grid-template-columns:1fr}.doc-id{border-right:none;border-bottom:1px dashed rgba(201,168,76,.15)}}
 .seq-flow{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:40px}
-.seq-chip{border:1px solid rgba(201,168,76,.3);padding:9px 14px;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold2);font-family:'Montserrat',sans-serif;font-weight:600;background:rgba(201,168,76,.04)}
+.seq-chip{border:1px solid rgba(201,168,76,.3);padding:9px 14px;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold2);font-family:'Inter',sans-serif;font-weight:600;background:rgba(201,168,76,.04)}
 .seq-arrow{color:var(--gold3);font-size:13px}
 .ch3-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1px;background:rgba(201,168,76,.12);border:1px solid rgba(201,168,76,.15);margin-top:40px}
 .ch3-stat{background:var(--bg2);padding:22px 24px;text-align:center}
-.ch3-stat-n{font-family:'Cormorant Garamond',serif;font-size:34px;color:var(--gold2);line-height:1}
-.ch3-stat-l{font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--text3);margin-top:8px;font-family:'Montserrat',sans-serif}
+.ch3-stat-n{font-family:'Playfair Display',serif;font-size:34px;color:var(--gold2);line-height:1}
+.ch3-stat-l{font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--text3);margin-top:8px;font-family:'Inter',sans-serif}
 .pdf-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px}
 .pdf-card{background:var(--bg2);border:1px solid rgba(201,168,76,.15);padding:26px 24px;display:flex;flex-direction:column;transition:border-color .2s ease,transform .2s ease}
 .pdf-card:hover{border-color:rgba(201,168,76,.45);transform:translateY(-3px)}
-.pdf-card-tag{font-size:8.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--gold3);font-family:'Montserrat',sans-serif;font-weight:600;margin-bottom:10px}
-.pdf-card-title{font-family:'Cormorant Garamond',serif;font-size:21px;font-weight:400;color:var(--text);line-height:1.25;margin-bottom:10px}
+.pdf-card-tag{font-size:8.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--gold3);font-family:'Inter',sans-serif;font-weight:600;margin-bottom:10px}
+.pdf-card-title{font-family:'Playfair Display',serif;font-size:21px;font-weight:400;color:var(--text);line-height:1.25;margin-bottom:10px}
 .pdf-card-desc{font-size:11.5px;color:var(--text3);line-height:1.65;margin-bottom:20px;flex-grow:1}
 .pdf-actions{display:flex;gap:10px}
-.pdf-btn{flex:1;text-align:center;padding:10px 0;font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;font-family:'Montserrat',sans-serif;font-weight:600;text-decoration:none;transition:all .2s ease}
+.pdf-btn{flex:1;text-align:center;padding:10px 0;font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;font-family:'Inter',sans-serif;font-weight:600;text-decoration:none;transition:all .2s ease}
 .pdf-btn-view{border:1px solid rgba(201,168,76,.4);color:var(--gold2)}
 .pdf-btn-view:hover{background:rgba(201,168,76,.1);border-color:var(--gold)}
 .pdf-btn-dl{background:var(--gold);color:#0d0d0d;border:1px solid var(--gold)}

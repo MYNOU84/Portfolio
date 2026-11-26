@@ -1,118 +1,97 @@
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
-import { MapPin, Wrench } from 'lucide-react'
 import { EXPERIENCE } from '../data/experience'
 
-function ExperienceCard({ item, index }) {
-  const ref    = useRef(null)
-  const inView = useInView(ref, { once: true, margin: '-60px' })
-  const isLeft = index % 2 === 0
+/*
+  Previously an alternating left/right timeline with a centre rail.
+  It is a widely reproduced pattern, it left half of every row empty,
+  and it made this one section several thousand pixels tall.
+
+  Replaced with a register: period in a fixed left column, the post on
+  the right, separated by hairlines — how a CV or a drawing index reads.
+*/
+function ExperienceRow({ item, index }) {
+  const ref = useRef(null)
+  const inView = useInView(ref, { once: true, margin: '-80px' })
 
   return (
-    <div
+    <motion.article
       ref={ref}
-      className={`relative flex ${isLeft ? 'md:flex-row' : 'md:flex-row-reverse'} items-start`}
+      initial={{ opacity: 0, y: 24 }}
+      animate={inView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.55, delay: Math.min(index, 3) * 0.06, ease: [0.22, 1, 0.36, 1] }}
+      className="group grid grid-cols-1 md:grid-cols-12 gap-x-10 gap-y-4 py-10 border-t border-white-warm/10"
     >
-      {/* Timeline dot */}
-      <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 z-10">
-        <motion.div
-          initial={{ scale: 0, opacity: 0 }}
-          animate={inView ? { scale: 1, opacity: 1 } : {}}
-          transition={{ duration: 0.4, delay: 0.1 }}
-          className="w-4 h-4 rounded-full bg-gold border-4 border-deep-black shadow-[0_0_20px_rgba(201,152,44,0.6)]"
-        />
+      {/* Period rail */}
+      <div className="md:col-span-3">
+        <p className="text-gold text-[11px] tracking-[0.16em] uppercase tabular-nums">{item.period}</p>
+        <p className="text-grey-muted text-[11px] mt-2">{item.location}</p>
+        <p className="text-grey-muted/70 text-[10px] tracking-[0.16em] uppercase mt-1">{item.type}</p>
       </div>
 
-      {/* Card */}
-      <motion.div
-        initial={{ opacity: 0, x: isLeft ? -40 : 40 }}
-        animate={inView ? { opacity: 1, x: 0 } : {}}
-        transition={{ duration: 0.7, delay: 0.15, ease: [0.25, 0.46, 0.45, 0.94] }}
-        className={`w-full md:w-[calc(50%-2rem)] ${isLeft ? 'md:mr-auto md:pr-8' : 'md:ml-auto md:pl-8'}
-          bg-dark-grey border border-white-warm/5 p-6
-          hover:border-gold/25 hover:shadow-[0_0_40px_rgba(201,152,44,0.08)]
-          transition-all duration-500`}
-      >
-        <div className="inline-block border border-gold/30 px-3 py-1 text-gold text-[10px] tracking-[0.3em] uppercase mb-4">
-          {item.period}
-        </div>
+      {/* Post */}
+      <div className="md:col-span-9">
+        <h3 className="font-display text-xl sm:text-2xl text-white-warm leading-snug tracking-tight">
+          {item.role}
+        </h3>
+        <p className="text-white-warm/70 text-sm mt-1.5">{item.company}</p>
 
-        <h3 className="font-display text-xl text-white-warm mb-1">{item.role}</h3>
-        <div className="flex flex-wrap items-center gap-3 mb-4">
-          <span className="text-gold text-sm font-semibold">{item.company}</span>
-          <span className="flex items-center gap-1 text-grey-muted text-xs">
-            <MapPin size={10} />
-            {item.location}
-          </span>
-          <span className={`text-[9px] tracking-[0.2em] uppercase px-2 py-0.5 border ${
-            item.type === 'Consultant'
-              ? 'border-gold/30 text-gold/70'
-              : 'border-grey-muted/30 text-grey-muted/70'
-          }`}>
-            {item.type}
-          </span>
-        </div>
-
-        <ul className="space-y-2 mb-5">
+        <ul className="mt-5 space-y-2.5 max-w-3xl">
           {item.highlights.map((h, i) => (
-            <li key={i} className="flex items-start gap-2 text-white-warm/65 text-sm leading-6">
-              <span className="text-gold mt-2 text-[7px] shrink-0">◆</span>
-              {h}
+            <li key={i} className="flex items-start gap-3 text-white-warm/60 text-sm leading-6">
+              <span className="mt-2.5 h-px w-3 bg-gold/60 shrink-0" aria-hidden="true" />
+              <span>{h}</span>
             </li>
           ))}
         </ul>
 
-        <div className="flex items-center gap-2 flex-wrap">
-          <Wrench size={11} className="text-gold/50" />
-          {item.tools.map(t => (
-            <span key={t} className="text-[10px] text-grey-muted/70 tracking-wider border border-white-warm/8 px-2 py-0.5">
-              {t}
-            </span>
-          ))}
-        </div>
-      </motion.div>
-    </div>
+        {item.tools?.length > 0 && (
+          <p className="mt-5 text-[11px] text-grey-muted tracking-wide">
+            {item.tools.join('  ·  ')}
+          </p>
+        )}
+      </div>
+    </motion.article>
   )
 }
 
 export default function Experience() {
-  const headerRef    = useRef(null)
+  const headerRef = useRef(null)
   const headerInView = useInView(headerRef, { once: true })
 
   return (
-    <section id="experience" className="py-32 bg-deep-black relative overflow-hidden">
-      <div className="absolute top-20 right-0 text-[10rem] font-display text-white-warm/[0.012] leading-none select-none pointer-events-none overflow-hidden">
-        CAREER
-      </div>
-
+    <section id="experience" className="py-24 sm:py-32">
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
-        <div ref={headerRef}>
+        <div ref={headerRef} className="mb-14">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 24 }}
             animate={headerInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.7 }}
-            className="flex items-center gap-4 mb-4"
+            transition={{ duration: 0.6 }}
+            className="flex items-center gap-4 mb-5"
           >
             <div className="gold-line" />
             <span className="section-label">Work History</span>
           </motion.div>
-          <motion.h2
-            initial={{ opacity: 0, y: 30 }}
+
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
             animate={headerInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.7, delay: 0.1 }}
-            className="section-title mb-20"
+            transition={{ duration: 0.6, delay: 0.08 }}
+            className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4"
           >
-            Professional <span className="text-gold">Experience</span>
-          </motion.h2>
+            <h2 className="section-title">
+              Professional <span className="text-gold">Experience</span>
+            </h2>
+            <p className="text-grey-muted text-sm">
+              {EXPERIENCE.length} posts · 16+ years
+            </p>
+          </motion.div>
         </div>
 
-        <div className="relative">
-          <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-gold/40 via-gold/15 to-transparent -translate-x-1/2" />
-          <div className="space-y-12">
-            {EXPERIENCE.map((item, i) => (
-              <ExperienceCard key={item.id} item={item} index={i} />
-            ))}
-          </div>
+        <div className="border-b border-white-warm/10">
+          {EXPERIENCE.map((item, i) => (
+            <ExperienceRow key={item.id} item={item} index={i} />
+          ))}
         </div>
       </div>
     </section>

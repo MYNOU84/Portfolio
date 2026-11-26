@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CS-01 · Chapter 01 — Birthing Unit | Healthcare Architecture</title>
+<meta name="description" content="Case Study CS-01 — Maternity &amp; Children&#39;s Hospital, Abu Dhabi (DoH). Chapter 01: Birthing Unit, Rev. 01 — independent educational case study.">
+<script>try{var t=localStorage.getItem('ha-theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../series.css">
+<style>
+body{font-family:'IBM Plex Sans Arabic','Segoe UI',Tahoma,'Inter',sans-serif;font-weight:400;font-size:17px;line-height:1.9}
+[lang="en"],[lang="fr"]{font-family:'Inter','Segoe UI',sans-serif}
+[dir="ltr"]{unicode-bidi:isolate}
+.hero{padding-top:84px}
+.hero .breadcrumb{font-family:'Inter',sans-serif;letter-spacing:0.25em}
+.hero .breadcrumb [lang="ar"],.hero .breadcrumb{font-size:11px}
+.hero h1{font-family:'Amiri','Playfair Display',serif;font-weight:700;line-height:1.35;font-size:clamp(32px,4.6vw,56px)}
+.hero p{font-size:15px;color:var(--text2);max-width:860px;margin-bottom:12px;line-height:1.9}
+.hero p strong{color:var(--text);font-weight:500}
+.hero p[dir="ltr"]{text-align:right;font-family:'Playfair Display',serif;font-size:20px;color:var(--gold2)}
+.hero p[dir="ltr"] strong{color:var(--gold2);font-weight:400}
+.hero em{color:var(--text3)}
+.rule{margin-inline:0}
+
+/* Layout: TOC on the right (RTL start), text on the left */
+.doc{max-width:1280px;margin:0 auto;padding:56px 80px 80px;display:grid;grid-template-columns:280px minmax(0,1fr);gap:64px;align-items:start}
+.toc{position:sticky;top:86px;max-height:calc(100vh - 110px);overflow:auto;font-size:13px;line-height:1.6;padding-inline-end:8px;border-inline-start:1px solid var(--line2);scrollbar-width:thin}
+.toc summary{list-style:none;font-family:'Inter',sans-serif;font-size:9px;text-transform:uppercase;letter-spacing:0.3em;color:var(--gold3);padding:0 16px 14px;cursor:default}
+.toc summary::-webkit-details-marker{display:none}
+.toc ol{list-style:none}
+.toc li a{display:block;padding:5px 16px;color:var(--text3);text-decoration:none;border-inline-start:2px solid transparent;margin-inline-start:-1px;transition:color .2s,border-color .2s}
+.toc li a:hover{color:var(--text)}
+.toc li a.active{color:var(--gold2);border-inline-start-color:var(--gold)}
+.toc ol ol{display:none}
+.toc li.open>ol{display:block}
+.toc ol ol a{padding-inline-start:30px;font-size:12px}
+
+article{min-width:0}
+article section{padding-bottom:16px}
+article h2,article h3,article h4{font-family:'Amiri','IBM Plex Sans Arabic',serif;color:var(--text);scroll-margin-top:86px;position:relative}
+article h2{font-size:30px;font-weight:700;line-height:1.4;margin:56px 0 20px;padding-top:28px;border-top:1px solid var(--gold-line)}
+article section:first-child h2{margin-top:0}
+article h3{font-size:22px;font-weight:700;line-height:1.5;margin:36px 0 12px;color:var(--gold2)}
+article h4{font-size:18px;margin:24px 0 10px}
+.anchor{position:absolute;inset-inline-start:-28px;color:var(--text4);text-decoration:none;font-family:'Inter',sans-serif;font-weight:300;opacity:0;transition:opacity .2s}
+h2:hover .anchor,h3:hover .anchor,h4:hover .anchor{opacity:1}
+article p{margin:0 0 16px;color:var(--text2)}
+article p[dir="ltr"],article li[dir="ltr"]{text-align:left}
+article strong{color:var(--text);font-weight:600}
+article em{color:var(--text)}
+article a{color:var(--gold2);text-decoration:underline;text-decoration-color:var(--gold-line);text-underline-offset:3px}
+article a.url{word-break:break-all;font-size:14px}
+article code{font-family:ui-monospace,Consolas,monospace;font-size:.85em;background:var(--bg3);border:1px solid var(--line2);padding:1px 6px}
+article ul,article ol{margin:0 0 18px;padding-inline-start:26px;color:var(--text2)}
+article li{margin-bottom:6px}
+article li::marker{color:var(--gold3)}
+article hr{border:0;border-top:1px solid var(--line2);margin:32px 0}
+
+blockquote{margin:0 0 20px;padding:18px 22px;background:var(--bg2);border-inline-start:2px solid var(--gold);font-family:'Inter',sans-serif;font-size:14px;line-height:1.8}
+blockquote[dir="ltr"]{border-inline-start:0;border-left:2px solid var(--gold);text-align:left}
+blockquote p{margin-bottom:10px}blockquote p:last-child{margin-bottom:0}
+
+/* Tables: scroll sideways inside their own box on narrow screens */
+.table-wrap{overflow-x:auto;margin:0 0 24px;border:1px solid var(--line2);background:var(--bg2);-webkit-overflow-scrolling:touch}
+table{border-collapse:collapse;width:100%;min-width:560px;font-size:14px;line-height:1.7}
+th,td{padding:10px 14px;text-align:right;vertical-align:top;border-bottom:1px solid var(--line)}
+th{background:var(--bg3);color:var(--gold2);font-weight:600;font-size:13px;white-space:nowrap}
+td{color:var(--text2)}
+td:first-child{white-space:nowrap}
+tbody tr:last-child td{border-bottom:0}
+tbody tr:hover td{background:var(--gold-dim)}
+
+/* Formulas */
+.math{margin:8px 0 22px;padding:18px;background:var(--bg2);border:1px solid var(--line2);overflow-x:auto;text-align:center;color:var(--text)}
+.math .tex-fallback{background:none;border:0;font-size:15px;white-space:pre-wrap}
+.math .katex{font-size:1.15em}
+
+/* Checklist */
+.checklist{list-style:none;padding:0;border:1px solid var(--line2);background:var(--bg2)}
+.checklist li{display:flex;gap:14px;align-items:flex-start;padding:12px 18px;margin:0;border-bottom:1px solid var(--line)}
+.checklist li:last-child{border-bottom:0}
+.checklist .box{flex:0 0 16px;height:16px;margin-top:6px;border:1px solid var(--gold);background:var(--gold-dim)}
+
+.pager{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line2);margin-top:56px;border:1px solid var(--line2)}
+.pager a,.pager div{background:var(--bg2);padding:20px 24px;text-decoration:none;color:var(--text);font-size:15px}
+.pager a:hover{background:var(--bg3)}
+.pager small{display:block;font-family:'Inter',sans-serif;font-size:9px;text-transform:uppercase;letter-spacing:0.25em;color:var(--gold3);margin-bottom:6px}
+.pager .soon{color:var(--text4)}
+.pager .soon small{color:var(--text4)}
+.to-top{position:fixed;bottom:20px;left:20px;width:40px;height:40px;display:flex;align-items:center;justify-content:center;background:var(--bg2);border:1px solid var(--gold-line);color:var(--gold);text-decoration:none;font-family:'Inter',sans-serif;opacity:0;pointer-events:none;transition:opacity .2s}
+.to-top.show{opacity:1;pointer-events:auto}
+
+@media(max-width:980px){
+  .doc{grid-template-columns:1fr;gap:24px;padding:32px 24px 64px}
+  .toc{position:sticky;top:62px;z-index:50;max-height:none;overflow:visible;border:1px solid var(--line2);background:var(--bg2);margin:0 -24px;border-inline:0;padding:0}
+  .toc summary{padding:14px 24px;cursor:pointer;display:flex;justify-content:space-between}
+  .toc summary::after{content:'▾';color:var(--gold)}
+  .toc[open] summary::after{content:'▴'}
+  .toc>ol{max-height:60vh;overflow:auto;padding-bottom:12px}
+  .toc li.open>ol{display:none}
+  .anchor{display:none}
+  article h2,article h3,article h4{scroll-margin-top:124px}
+}
+@media(max-width:600px){
+  body{font-size:16px}
+  article h2{font-size:25px}
+  article h3{font-size:20px}
+  .pager{grid-template-columns:1fr}
+}
+@media print{
+  nav.top,.toc,.to-top,.pager{display:none}
+  .doc{display:block;padding:0}
+}
+</style>
+</head>
+<body>
+
+<nav class="top" dir="ltr" lang="en">
+  <a class="nav-logo" href="/">
+    <div class="nav-box">AB</div>
+    <div class="nav-txt">
+      <p>Berchache</p>
+      <p>Senior Architect</p>
+    </div>
+  </a>
+  <div class="nav-actions">
+    <button class="theme-toggle" type="button" aria-label="Toggle light / dark theme">◐</button>
+    <a class="nav-back" href="index.html">← CS-01</a>
+    <a class="nav-back" href="/">Portfolio</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="hero-in">
+<p class="breadcrumb" dir="ltr" lang="en">Case Study CS-01 &nbsp;/&nbsp; Maternity &amp; Children's Hospital, Abu Dhabi (DoH)</p>
+<h1 id="top" dir="ltr" lang="en">CHAPTER 01 — BIRTHING UNIT</h1><div class="rule"></div>
+<p dir="ltr"><strong><span dir="ltr" lang="en">REVISION 01 — ARCHITECTURAL &amp; TECHNICAL REQUIREMENTS</span></strong></p>
+  </div>
+</header>
+
+<div class="doc">
+  <details class="toc" open>
+    <summary>المحتويات</summary>
+    <nav aria-label="المحتويات">
+<ol><li><a href="#s1-1">1.1 مقدمة وتعريف قسم الولادة</a></li><li><a href="#s1-2">1.2 الهدف الطبي والوظيفي للقسم</a></li><li><a href="#s1-3">1.3 نماذج الرعاية — <span dir="ltr" lang="en">Models of Care</span></a><ol><li><a href="#s1-3-1">1.3.1 نموذج <span dir="ltr" lang="en">LDR</span></a></li><li><a href="#s1-3-2">1.3.2 نموذج <span dir="ltr" lang="en">LDRP</span></a></li><li><a href="#s1-3-3">1.3.3 نموذج الرعاية المشتركة</a></li></ol></li><li><a href="#s1-4">1.4 التخطيط الوظيفي للقسم — <span dir="ltr" lang="en">Functional Planning</span></a></li><li><a href="#s1-5">1.5 العلاقات الوظيفية — <span dir="ltr" lang="en">Functional Relationships</span></a></li><li><a href="#s1-6">1.6 حساب القدرة الاستيعابية — <span dir="ltr" lang="en">Birthing Room Capacity</span></a></li><li><a href="#s1-7">1.7 جدول المساحات الوظيفية — <span dir="ltr" lang="en">Schedule of Accommodation</span> (<span dir="ltr" lang="en">SOA</span>)</a><ol><li><a href="#s1-7-1">1.7.1 غرف المرضى والإجراءات</a></li><li><a href="#s1-7-2">1.7.2 مناطق الخدمات السريرية</a></li><li><a href="#s1-7-3">1.7.3 مناطق الموظفين</a></li><li><a href="#s1-7-4">1.7.4 المجاميع النموذجية المنشورة</a></li></ol></li><li><a href="#s1-8">1.8 المتطلبات المعمارية لغرف الولادة — <span dir="ltr" lang="en">Birthing Room Requirements</span></a><ol><li><a href="#s1-8-1">1.8.1 المساحة وملاءمة التجهيزات</a></li><li><a href="#s1-8-2">1.8.2 غرف الولادات المتعددة</a></li><li><a href="#s1-8-3">1.8.3 غرف العزل</a></li><li><a href="#s1-8-4">1.8.4 الحمامات الملحقة</a></li></ol></li><li><a href="#s1-9">1.9 الأبواب — <span dir="ltr" lang="en">Architectural Door Requirements</span></a><ol><li><a href="#s1-9-1">1.9.1 المتطلب العددي المحدد في القسم</a></li><li><a href="#s1-9-2">1.9.2 تصنيف الأبواب المطلوب في مخططات القسم</a></li><li><a href="#s1-9-3">1.9.3 متطلبات يجب التحقق منها في <span dir="ltr" lang="en">Door Schedule</span></a></li><li><a href="#s1-9-4">1.9.4 الخصوصية وأبواب غرف الولادة</a></li></ol></li><li><a href="#s1-10">1.10 الأرضيات — <span dir="ltr" lang="en">Flooring Requirements</span></a></li><li><a href="#s1-11">1.11 الجدران والتشطيبات الرأسية — <span dir="ltr" lang="en">Wall Finishes</span></a></li><li><a href="#s1-12">1.12 الأسقف — <span dir="ltr" lang="en">Ceiling Requirements</span></a></li><li><a href="#s1-13">1.13 النوافذ والخصوصية والإضاءة الطبيعية</a></li><li><a href="#s1-14">1.14 الإنارة — <span dir="ltr" lang="en">Lighting Requirements</span></a></li><li><a href="#s1-15">1.15 المتطلبات الصوتية — <span dir="ltr" lang="en">Acoustic Requirements</span></a></li><li><a href="#s1-16">1.16 التهوية والتكييف — <span dir="ltr" lang="en">HVAC Requirements</span></a></li><li><a href="#s1-17">1.17 الغازات الطبية — <span dir="ltr" lang="en">Medical Gases</span></a></li><li><a href="#s1-18">1.18 السباكة والمياه — <span dir="ltr" lang="en">Plumbing &amp; Hydraulics</span></a></li><li><a href="#s1-19">1.19 مكافحة العدوى — <span dir="ltr" lang="en">Infection Prevention &amp; Control</span> (<span dir="ltr" lang="en">IPC</span>)</a></li><li><a href="#s1-20">1.20 الأمن والتحكم بالدخول — <span dir="ltr" lang="en">Safety &amp; Security</span></a></li><li><a href="#s1-21">1.21 أنظمة استدعاء التمريض والطوارئ — <span dir="ltr" lang="en">Nurse Call &amp; Emergency Call</span></a></li><li><a href="#s1-22">1.22 التجهيزات الطبية والتثبيت — <span dir="ltr" lang="en">Medical Equipment &amp; FF&amp;E</span></a></li><li><a href="#s1-23">1.23 غرف العمليات القيصرية — <span dir="ltr" lang="en">Emergency Caesarean Operating Area</span></a></li><li><a href="#s1-24">1.24 الحريق والسلامة — <span dir="ltr" lang="en">Fire &amp; Life Safety</span></a></li><li><a href="#s1-25">1.25 التنسيق المعماري والهندسي — <span dir="ltr" lang="en">Architectural &amp; MEP Coordination</span></a></li><li><a href="#s1-26">1.26 مصفوفة مراجعة المتطلبات — <span dir="ltr" lang="en">Requirements Compliance Matrix, Rev. 01</span></a></li><li><a href="#s1-27">1.27 آلية مراجعة مخططات التنفيذ — <span dir="ltr" lang="en">Construction Drawing Review</span></a></li><li><a href="#s1-28">1.28 نقاط تدقيق خاصة بالمصدر — <span dir="ltr" lang="en">Reference Verification Notes</span></a></li><li><a href="#s1-29">1.29 خلاصة الفصل الأول — <span dir="ltr" lang="en">Technical Conclusion</span></a></li><li><a href="#references">المراجع — <span dir="ltr" lang="en">References</span></a></li></ol>
+    </nav>
+  </details>
+
+  <article>
+<section aria-labelledby="s1-1">
+<h2 id="s1-1"><a class="anchor" href="#s1-1" aria-hidden="true" tabindex="-1">#</a>1.1 مقدمة وتعريف قسم الولادة</h2>
+<p>يُعد قسم الولادة (<span dir="ltr" lang="en">Birthing Unit</span>) أحد المكونات السريرية الأساسية في مستشفى النساء وحديثي الولادة (<span dir="ltr" lang="en">Women &amp; Newborn Hospital</span>). وهو القسم الذي يستقبل النساء خلال المراحل النهائية من الحمل، ويقدم خدمات التقييم والمخاض والولادة والرعاية المباشرة للأم والمولود.</p>
+<p>في مستشفى نساء وحديثي ولادة نموذجي بأبوظبي، ضمن نطاق اختصاص <span dir="ltr" lang="en">DoH</span>، يمثل هذا القسم جزءاً رئيسياً من منظومة الرعاية الطبية المتخصصة. ومع ذلك، فإن السعة الكلية للمستشفى لا تحدد وحدها عدد غرف الولادة أو توزيعها؛ فذلك يخضع لخطة الخدمات السريرية (<span dir="ltr" lang="en">Clinical Service Plan</span>) والسياسة التشغيلية (<span dir="ltr" lang="en">Operational Policy</span>) ونموذج الرعاية المعتمد.</p>
+<p>يعتمد هذا الفصل على دليل دائرة الصحة بأبوظبي (<span dir="ltr" lang="en">Department of Health – DoH</span>)، ضمن إرشادات تصميم المنشآت الصحية (<span dir="ltr" lang="en">Health Facility Guidelines – HFG</span>)، الجزء <span dir="ltr" lang="en">B</span>، وحدة التخطيط الوظيفي رقم 30 (<span dir="ltr" lang="en">Functional Planning Unit – FPU 30</span>).</p>
+<p>ويُقرأ هذا الدليل بالتكامل مع ملفات الأمومة، والعمليات، والعناية المركزة لحديثي الولادة، ومكافحة العدوى، والهندسة الميكانيكية والكهربائية.</p>
+<p><strong>المرجع:</strong> <span dir="ltr" lang="en">DoH HFG 2019 – Birthing Unit</span>، الصفحات 2 و4–5.</p>
+</section>
+<section aria-labelledby="s1-2">
+<h2 id="s1-2"><a class="anchor" href="#s1-2" aria-hidden="true" tabindex="-1">#</a>1.2 الهدف الطبي والوظيفي للقسم</h2>
+<p>يقدم القسم الخدمات التالية:</p>
+<ul><li>استقبال وتقييم الحوامل (<span dir="ltr" lang="en">Obstetric Assessment</span>).</li><li>متابعة المخاض (<span dir="ltr" lang="en">Labour Monitoring</span>).</li><li>الولادة الطبيعية (<span dir="ltr" lang="en">Normal Vaginal Delivery</span>).</li><li>التدخلات الطبية المصاحبة للولادة.</li><li>إنعاش الأم والمولود عند الضرورة (<span dir="ltr" lang="en">Maternal &amp; Neonatal Resuscitation</span>).</li><li>التعافي والمراقبة المباشرة بعد الولادة (<span dir="ltr" lang="en">Immediate Postnatal Recovery</span>).</li><li>التحويل إلى قسم الإقامة بعد الولادة (<span dir="ltr" lang="en">Postnatal Inpatient Unit</span>).</li><li>التحويل العاجل إلى غرفة العمليات لإجراء ولادة قيصرية (<span dir="ltr" lang="en">Emergency Caesarean Section</span>).</li><li>التحويل إلى العناية المركزة للأم أو المولود وفق الحاجة السريرية.</li></ul>
+<p>تعمل وحدة الولادة 24 ساعة يومياً، ويجب أن تسمح بنيتها التشغيلية بالاستقبال والتدخلات الطارئة في جميع الأوقات.</p>
+<p>وفق دليل <span dir="ltr" lang="en">DoH</span>، لا يُسمح بإنشاء وحدة ولادة مستقلة خارج المستشفى في نموذج الخدمة المذكور، ويجب أن توجد ضمن مستشفى بمستوى خدمات سريرية (<span dir="ltr" lang="en">Role Delineation Level – RDL</span>) من المستوى الثالث فما فوق.</p>
+<p><strong>المرجع:</strong> <span dir="ltr" lang="en">Birthing Unit</span>، الصفحات 2 و4.</p>
+</section>
+<section aria-labelledby="s1-3">
+<h2 id="s1-3"><a class="anchor" href="#s1-3" aria-hidden="true" tabindex="-1">#</a>1.3 نماذج الرعاية — <span dir="ltr" lang="en">Models of Care</span></h2>
+<p>يشكل اختيار نموذج الرعاية نقطة أساسية في فهم التصميم المعماري، حتى عند استلام مشروع دخل بالفعل مرحلة التنفيذ.</p>
+<h3 id="s1-3-1"><a class="anchor" href="#s1-3-1" aria-hidden="true" tabindex="-1">#</a>1.3.1 نموذج <span dir="ltr" lang="en">LDR</span></h3>
+<p><strong><span dir="ltr" lang="en">Labour, Delivery, Recovery</span> — المخاض والولادة والتعافي</strong></p>
+<p>يتيح النموذج استخدام غرفة واحدة خلال المراحل الثلاث، بدلاً من نقل الأم بين عدة غرف.</p>
+<p>الغرفة مخصصة لمريضة واحدة (<span dir="ltr" lang="en">Single Occupancy</span>)، وتحتوي على المعدات اللازمة لمراقبة المخاض والولادة والتعافي المباشر، بما في ذلك الاستعداد للتعامل مع المضاعفات الأولية.</p>
+<p>بعد اكتمال التعافي، تنتقل الأم إلى قسم الإقامة بعد الولادة (<span dir="ltr" lang="en">Postnatal Unit</span>)، ما لم تتطلب الحالة تدخلاً آخر.</p>
+<p>يوصي دليل <span dir="ltr" lang="en">DoH</span> بدرجة عالية باعتماد نموذج <span dir="ltr" lang="en">LDR</span>.</p>
+<h3 id="s1-3-2"><a class="anchor" href="#s1-3-2" aria-hidden="true" tabindex="-1">#</a>1.3.2 نموذج <span dir="ltr" lang="en">LDRP</span></h3>
+<p><strong><span dir="ltr" lang="en">Labour, Delivery, Recovery, Postpartum</span> — المخاض والولادة والتعافي والرعاية بعد الولادة</strong></p>
+<p>يجمع هذا النموذج المراحل الأربع داخل غرفة واحدة، مما يقلل نقل المريضة بعد الولادة.</p>
+<p>ويؤثر ذلك في تصميم الغرفة، ومدة إشغالها، والتجهيزات والأثاث، وقدرة القسم على استيعاب النشاط اليومي.</p>
+<h3 id="s1-3-3"><a class="anchor" href="#s1-3-3" aria-hidden="true" tabindex="-1">#</a>1.3.3 نموذج الرعاية المشتركة</h3>
+<p><strong><span dir="ltr" lang="en">Shared Obstetric Care Model</span> — نموذج الرعاية التوليدية المشتركة</strong></p>
+<p>قد يشارك أطباء التوليد والقابلات والتمريض والاختصاصيون الآخرون في تقديم الرعاية وفق السياسة التشغيلية، مع مراعاة النص التنظيمي في دليل أبوظبي الذي يشترط إدارة الولادة من قبل طبيب توليد.</p>
+<h3 id="s1-3-review"><a class="anchor" href="#s1-3-review" aria-hidden="true" tabindex="-1">#</a>متطلبات المراجعة في مرحلة التنفيذ</h3>
+<p>عند استلام المخططات، يجب التأكد من:</p>
+<ul><li>تحديد نموذج <span dir="ltr" lang="en">LDR</span> أو <span dir="ltr" lang="en">LDRP</span> في الوثائق المعتمدة.</li><li>توافق تجهيزات كل غرفة مع نموذج الرعاية.</li><li>تخصيص غرفة لكل مريضة.</li><li>وجود مساحة لمراقبة المولود وإنعاشه.</li><li>توافق عدد الغرف مع البرنامج الطبي المعتمد.</li><li>عدم وجود تناقض بين المخططات المعمارية وبطاقات بيانات الغرف.</li></ul>
+<p><strong>المرجع:</strong> <span dir="ltr" lang="en">Birthing Unit</span>، الصفحات 4–5 و11–12.</p>
+</section>
+<section aria-labelledby="s1-4">
+<h2 id="s1-4"><a class="anchor" href="#s1-4" aria-hidden="true" tabindex="-1">#</a>1.4 التخطيط الوظيفي للقسم — <span dir="ltr" lang="en">Functional Planning</span></h2>
+<p>يقسم دليل <span dir="ltr" lang="en">DoH</span> وحدة الولادة إلى خمسة مكونات رئيسية.</p>
+<p><strong>أولاً: منطقة الدخول والاستقبال (<span dir="ltr" lang="en">Entry &amp; Reception</span>)</strong></p>
+<p>تضم الاستقبال، والانتظار، ومرافق العائلات، وغرف الاستشارة عند الحاجة، والمرافق العامة ومواقف الكراسي المتحركة.</p>
+<p><strong>ثانياً: جناح الولادة (<span dir="ltr" lang="en">Birthing Suite</span>)</strong></p>
+<p>ويضم غرف الولادة، وغرف التقييم والفحص، والحمامات الملحقة، ومناطق انتظار المرافقين، والخدمات السريرية القريبة.</p>
+<p><strong>ثالثاً: مناطق الخدمات السريرية المساندة (<span dir="ltr" lang="en">Clinical Support Areas</span>)</strong></p>
+<p>وتشمل المخازن، والمرافق النظيفة والملوثة، وغرف النظافة، ومناطق المعدات المتحركة، ومحطات التمريض.</p>
+<p><strong>رابعاً: مناطق الموظفين (<span dir="ltr" lang="en">Staff Areas</span>)</strong></p>
+<p>وتشمل غرف تبديل الملابس، والمكاتب، وغرف الاجتماعات والتسليم بين المناوبات، والاستراحة والمبيت عند الحاجة.</p>
+<p><strong>خامساً: منطقة العمليات القيصرية عند توفيرها (<span dir="ltr" lang="en">Integrated Caesarean Operating Area</span>)</strong></p>
+<p>وهي منطقة اختيارية تعتمد على البرنامج الطبي وقد تشمل غرفة العمليات ومناطق الغسل والتعقيم والتحضير والتعافي والخدمات الداعمة.</p>
+<p><strong>المرجع:</strong> <span dir="ltr" lang="en">Birthing Unit</span>، الصفحات 6–8.</p>
+</section>
+<section aria-labelledby="s1-5">
+<h2 id="s1-5"><a class="anchor" href="#s1-5" aria-hidden="true" tabindex="-1">#</a>1.5 العلاقات الوظيفية — <span dir="ltr" lang="en">Functional Relationships</span></h2>
+<p>تتطلب حالات الولادة الطارئة مسارات نقل قصيرة وآمنة وسريعة.</p>
+<h3 id="s1-5-critical"><a class="anchor" href="#s1-5-critical" aria-hidden="true" tabindex="-1">#</a>العلاقات الحرجة</h3>
+<ul><li>غرف الولادة ↔ غرف العمليات (<span dir="ltr" lang="en">Operating Unit</span>).</li><li>غرف الولادة ↔ العناية المركزة لحديثي الولادة (<span dir="ltr" lang="en">NICU</span>).</li><li>غرف الولادة ↔ خدمات التخدير (<span dir="ltr" lang="en">Anaesthetic Services</span>).</li><li>قسم الطوارئ ↔ جناح الولادة (<span dir="ltr" lang="en">Emergency-to-Birthing Transfer</span>).</li></ul>
+<h3 id="s1-5-adjacent"><a class="anchor" href="#s1-5-adjacent" aria-hidden="true" tabindex="-1">#</a>العلاقات القريبة</h3>
+<ul><li>قسم الأمومة والإقامة قبل الولادة وبعدها (<span dir="ltr" lang="en">Maternity &amp; Postnatal Unit</span>).</li><li>حضانات الرعاية الخاصة بالمواليد (<span dir="ltr" lang="en">Special Care Baby Unit – SCBU</span>).</li><li>العيادات الخارجية (<span dir="ltr" lang="en">Outpatients</span>).</li><li>التصوير الطبي، خصوصاً الموجات فوق الصوتية (<span dir="ltr" lang="en">Ultrasound</span>).</li><li>المختبرات والصيدلية والخدمات المساندة.</li></ul>
+<h3 id="s1-5-entrances"><a class="anchor" href="#s1-5-entrances" aria-hidden="true" tabindex="-1">#</a>تنظيم مداخل القسم</h3>
+<p>يحدد الدليل ثلاثة أنواع من مسارات الدخول الوظيفية:</p>
+<ol><li>دخول المرضى القادمين للتقييم والعلاج.</li><li>دخول الموظفين والمواد والخدمات.</li><li>دخول المرافقين والزوار عبر المناطق المسموح بها.</li></ol>
+<p>ويجب أن تسمح نقطة الاستقبال بالتحكم في وصول الزوار، وأن تكون محطة التمريض (<span dir="ltr" lang="en">Staff Station</span>) في موقع يدعم المراقبة والوصول السريع إلى غرف الولادة.</p>
+<p>كما يجب تجنب المرور العابر غير المرتبط بوظيفة القسم (<span dir="ltr" lang="en">Unrelated Through-Traffic</span>)، وعدم استخدام مناطق العمليات كممر عبور للوصول إلى أقسام أخرى.</p>
+<p><strong>المرجع:</strong> <span dir="ltr" lang="en">Birthing Unit</span>، الصفحات 9–11.</p>
+</section>
+<section aria-labelledby="s1-6">
+<h2 id="s1-6"><a class="anchor" href="#s1-6" aria-hidden="true" tabindex="-1">#</a>1.6 حساب القدرة الاستيعابية — <span dir="ltr" lang="en">Birthing Room Capacity</span></h2>
+<p>يعرض الدليل نموذجاً استرشادياً لعدد غرف الولادة وفق حجم النشاط السنوي، بافتراض نموذج <span dir="ltr" lang="en">LDR</span> قد يشغل فيه المريض الغرفة لمدة تصل إلى 24 ساعة.</p>
+<div class="table-wrap" role="region" tabindex="0" aria-label="عدد الولادات السنوي · غرف الولادة · غرف التقييم"><table><thead><tr><th>عدد الولادات السنوي</th><th>غرف الولادة</th><th>غرف التقييم</th></tr></thead><tbody>
+<tr><td>حتى 1,000</td><td dir="ltr">3</td><td dir="ltr">1</td></tr>
+<tr><td>حتى 1,500</td><td dir="ltr">4</td><td dir="ltr">1</td></tr>
+<tr><td>حتى 2,000</td><td dir="ltr">5</td><td dir="ltr">1</td></tr>
+<tr><td>حتى 3,000</td><td dir="ltr">8</td><td dir="ltr">1–2</td></tr>
+</tbody></table></div>
+<p>هذه القيم مؤشرات تخطيطية وليست متطلبات إلزامية مطلقة.</p>
+<p>يعتمد تحديد العدد النهائي على حجم السكان المستهدفين، ومتوسط مدة الإقامة، والولادات القيصرية المجدولة، وبرامج الخروج المبكر، والتحويلات من منشآت أخرى.</p>
+<p><strong>المرجع:</strong> <span dir="ltr" lang="en">Birthing Unit</span>، الصفحة 13.</p>
+</section>
+<section aria-labelledby="s1-7">
+<h2 id="s1-7"><a class="anchor" href="#s1-7" aria-hidden="true" tabindex="-1">#</a>1.7 جدول المساحات الوظيفية — <span dir="ltr" lang="en">Schedule of Accommodation</span> (<span dir="ltr" lang="en">SOA</span>)</h2>
+<p>يمثل جدول المساحات المرجعي إحدى أهم الوثائق التي يجب استخدامها عند مراجعة مخططات القسم.</p>
+<p>يوفر <span dir="ltr" lang="en">DoH</span> أمثلة نموذجية لوحدات تحتوي على 2 أو 4 أو 8 أو 12 غرفة ولادة، ترتبط بمستويات <span dir="ltr" lang="en">RDL</span> من الثالث إلى السادس.</p>
+<h3 id="s1-7-1"><a class="anchor" href="#s1-7-1" aria-hidden="true" tabindex="-1">#</a>1.7.1 غرف المرضى والإجراءات</h3>
+<div class="table-wrap" role="region" tabindex="0" aria-label="الفراغ · المساحة المرجعية"><table><thead><tr><th>الفراغ</th><th>المساحة المرجعية</th></tr></thead><tbody>
+<tr><td>غرفة ولادة <span dir="ltr" lang="en">LDR / LDRP</span></td><td>30 م²</td></tr>
+<tr><td>غرفة التقييم والفحص</td><td>23 م²</td></tr>
+<tr><td>حمام ملحق مع دش</td><td>5 م²</td></tr>
+<tr><td>حمام ملحق من نوع <span dir="ltr" lang="en">Bathroom</span></td><td>10 م²</td></tr>
+<tr><td>غرفة استشارة وفحص إضافية، إن وُجدت</td><td>13 م²</td></tr>
+<tr><td>غرفة عمليات قيصرية ضمن القسم، إن وُجدت</td><td>42 م²</td></tr>
+<tr><td>منطقة تعافٍ من المرحلة الأولى</td><td>9 م² لكل موضع</td></tr>
+<tr><td>منطقة إنعاش حديثي الولادة المستقلة، إن وُجدت</td><td>6 م²</td></tr>
+</tbody></table></div>
+<h3 id="s1-7-2"><a class="anchor" href="#s1-7-2" aria-hidden="true" tabindex="-1">#</a>1.7.2 مناطق الخدمات السريرية</h3>
+<div class="table-wrap" role="region" tabindex="0" aria-label="الفراغ · المساحة المرجعية في النماذج"><table><thead><tr><th>الفراغ</th><th>المساحة المرجعية في النماذج</th></tr></thead><tbody>
+<tr><td>منطقة إعداد المشروبات</td><td>5 م²</td></tr>
+<tr><td>مكان حفظ البطانيات وتسخين السوائل</td><td>1 م²</td></tr>
+<tr><td>منطقة غسل اليدين من النوع <span dir="ltr" lang="en">B</span></td><td>1 م²</td></tr>
+<tr><td>منطقة حفظ البياضات</td><td>2 م²</td></tr>
+<tr><td>مكان المعدات المتحركة</td><td>4 م²</td></tr>
+<tr><td>مكان عربة الإنعاش</td><td>1.5 م²</td></tr>
+<tr><td>غرفة عمال النظافة</td><td>6 م²</td></tr>
+<tr><td>غرفة الخدمات النظيفة (<span dir="ltr" lang="en">Clean Utility</span>)</td><td>8–14 م²</td></tr>
+<tr><td>غرفة الخدمات الملوثة (<span dir="ltr" lang="en">Dirty Utility</span>)</td><td>10–12 م²</td></tr>
+<tr><td>غرفة النفايات (<span dir="ltr" lang="en">Disposal Room</span>)</td><td>8–10 م²</td></tr>
+<tr><td>غرفة الأدوية (<span dir="ltr" lang="en">Medication Room</span>)</td><td>10–14 م²</td></tr>
+<tr><td>غرفة مشتركة للخدمات النظيفة والأدوية</td><td>14 م²</td></tr>
+<tr><td>محطة التمريض (<span dir="ltr" lang="en">Staff Station</span>)</td><td>10–20 م²</td></tr>
+<tr><td>مخزن المعدات</td><td>6–14 م² للغرفة حسب النموذج</td></tr>
+<tr><td>المخزن العام</td><td>6–14 م² للغرفة حسب النموذج</td></tr>
+<tr><td>مخزن المستلزمات المعقمة</td><td>6–12 م² للغرفة حسب النموذج</td></tr>
+</tbody></table></div>
+<p>وجود الفراغ ومساحته وعدده يخضع للنموذج المحدد، ولا يجوز جمع كل الخيارات البديلة باعتبارها غرفاً مطلوبة في الوقت نفسه.</p>
+<h3 id="s1-7-3"><a class="anchor" href="#s1-7-3" aria-hidden="true" tabindex="-1">#</a>1.7.3 مناطق الموظفين</h3>
+<div class="table-wrap" role="region" tabindex="0" aria-label="الفراغ · المساحة المرجعية"><table><thead><tr><th>الفراغ</th><th>المساحة المرجعية</th></tr></thead><tbody>
+<tr><td>غرفة تبديل ملابس الموظفين</td><td>10–20 م² لكل غرفة حسب النموذج</td></tr>
+<tr><td>غرفة اجتماعات</td><td>15–25 م²</td></tr>
+<tr><td>مكتب سريري / تسليم مناوبة</td><td>15 م²</td></tr>
+<tr><td>مكتب فردي</td><td>9 أو 12 م²</td></tr>
+<tr><td>مكتب مشترك لشخصين</td><td>12 م²</td></tr>
+<tr><td>غرفة مبيت مناوبة</td><td>10 م²</td></tr>
+<tr><td>حمام غرفة المبيت</td><td>4 م²</td></tr>
+<tr><td>استراحة الموظفين</td><td>15–25 م²</td></tr>
+</tbody></table></div>
+<h3 id="s1-7-4"><a class="anchor" href="#s1-7-4" aria-hidden="true" tabindex="-1">#</a>1.7.4 المجاميع النموذجية المنشورة</h3>
+<div class="table-wrap" role="region" tabindex="0" aria-label="نموذج الوحدة · صافي المساحة المنشور · النسبة المرجعية للممرات · إجمالي المساحة المنشور"><table><thead><tr><th>نموذج الوحدة</th><th>صافي المساحة المنشور</th><th>النسبة المرجعية للممرات</th><th>إجمالي المساحة المنشور</th></tr></thead><tbody>
+<tr><td>غرفتا ولادة</td><td>211.5 م²</td><td dir="ltr">35%</td><td>285.5 م²</td></tr>
+<tr><td>4 غرف ولادة</td><td>491.5 م²</td><td dir="ltr">35%</td><td>633.5 م²</td></tr>
+<tr><td>8 غرف ولادة</td><td>718.5 م²</td><td dir="ltr">35%</td><td>970 م²</td></tr>
+<tr><td>12 غرفة ولادة</td><td>1,012.5 م²</td><td dir="ltr">35%</td><td>1,366.9 م²</td></tr>
+</tbody></table></div>
+<p><strong>ملاحظة تدقيق حسابي:</strong> يحتوي جدول <span dir="ltr" lang="en">DoH</span> المنشور على عدم تطابق حسابي في نموذج الأربع غرف: حاصل 491.5 × 1.35 يساوي 663.525 م²، وليس 633.5 م² كما يظهر في المصدر. ويجب عدم تصحيح الرقم بصمت داخل وثائق المشروع؛ بل تسجيله للتحقق من المرجع أو طلب توضيح من الجهة المختصة.</p>
+<p>تُعد نسبة 35% هدفاً أدنى موصى به للدوران الداخلي في الجداول النموذجية، ويذكر الدليل أن 40% موصى بها. ولا تمثل تلك النسبة بالضرورة جميع المساحات غير الصافية في المشروع.</p>
+<p><strong>المرجع:</strong> <span dir="ltr" lang="en">Birthing Unit</span>، الصفحات 19–22.</p>
+</section>
+<section aria-labelledby="s1-8">
+<h2 id="s1-8"><a class="anchor" href="#s1-8" aria-hidden="true" tabindex="-1">#</a>1.8 المتطلبات المعمارية لغرف الولادة — <span dir="ltr" lang="en">Birthing Room Requirements</span></h2>
+<h3 id="s1-8-1"><a class="anchor" href="#s1-8-1" aria-hidden="true" tabindex="-1">#</a>1.8.1 المساحة وملاءمة التجهيزات</h3>
+<p>تبلغ المساحة النموذجية لغرفة الولادة 30 م².</p>
+<p>إلا أن مساحة الغرفة لا تكفي وحدها لإثبات المطابقة؛ بل يجب أن تستوعب:</p>
+<ul><li>سرير الولادة والحركة المحيطة به.</li><li>المريضة وفريق التوليد.</li><li>أجهزة مراقبة الأم والجنين.</li><li>معدات الإنعاش الأولي للمولود.</li><li>مساحة المعدات المتحركة.</li><li>المرافق المساندة وفق بطاقة بيانات الغرفة.</li><li>مسارات الحركة الآمنة للموظفين ونقل السرير.</li></ul>
+<p>يجب الرجوع إلى بطاقة بيانات الغرفة (<span dir="ltr" lang="en">Room Data Sheet – RDS</span>) ومخطط ترتيب الغرفة (<span dir="ltr" lang="en">Room Layout Sheet – RLS</span>) للحصول على أبعاد المعدات والخلوصات ومتطلبات التثبيت.</p>
+<p>ولا يقدم جدول <span dir="ltr" lang="en">SOA</span> وحده جميع الأبعاد الهندسية اللازمة.</p>
+<h3 id="s1-8-2"><a class="anchor" href="#s1-8-2" aria-hidden="true" tabindex="-1">#</a>1.8.2 غرف الولادات المتعددة</h3>
+<p>إذا احتوى القسم على ثلاث غرف <span dir="ltr" lang="en">LDR</span> أو أكثر، فيجب أن تكون إحدى الغرف مجهزة للتعامل مع الولادات المتعددة، بما في ذلك مجموعات إضافية من الغازات الطبية للمواليد.</p>
+<p>وهذا يؤثر على عدد نقاط الخدمات والتجهيزات الثابتة والمتنقلة وتنسيق الحائط الطبي.</p>
+<h3 id="s1-8-3"><a class="anchor" href="#s1-8-3" aria-hidden="true" tabindex="-1">#</a>1.8.3 غرف العزل</h3>
+<p>إذا احتوت الوحدة على ست غرف ولادة أو أكثر، ينص الدليل على تجهيز غرفة واحدة على الأقل كغرفة عزل ذات ضغط سلبي (<span dir="ltr" lang="en">Negative Pressure Isolation Birthing Room</span>) مع غرفة عازلة أمامية (<span dir="ltr" lang="en">Anteroom</span>).</p>
+<p>ويذكر الدليل أيضاً اشتراط توفير غرفة ولادة ذات ضغط سلبي لكل ست غرف ولادة، مع تقييم احتياجات العزل بواسطة تقييم مخاطر مكافحة العدوى.</p>
+<p>يجب مطابقة العدد النهائي مع برنامج المشروع وتقييم مخاطر العدوى، والتحقق من نظام الضغط السالب وعلاقته بالضغط الموجب المعتاد لجناح الولادة.</p>
+<h3 id="s1-8-4"><a class="anchor" href="#s1-8-4" aria-hidden="true" tabindex="-1">#</a>1.8.4 الحمامات الملحقة</h3>
+<p>تتطلب غرف الولادة حماماً ملحقاً، مزوداً بدش ومرافق استخدام المرحاض.</p>
+<p>ويشير الوصف الوظيفي إلى استخدام نظام دش مزدوج الرأس (<span dir="ltr" lang="en">Dual Shower Sprays</span>) في اتجاهين متقابلين.</p>
+<p><strong>تعارض في المرجع يحتاج توضيحاً:</strong> ينص متن الصفحة 7 على أن توفير حوض استحمام (<span dir="ltr" lang="en">Bath</span>) في الحمام الملحق بغرفة الولادة غير مسموح، في حين تتضمن جداول الصفحتين 20–21 نموذج <span dir="ltr" lang="en">Ensuite Bathroom</span> بمساحة 10 م² مع <span dir="ltr" lang="en">Bath</span>. لذلك لا يجوز اعتماد الحوض من جدول <span dir="ltr" lang="en">SOA</span> وحده قبل التحقق من النسخة التنظيمية المعمول بها وموافقة <span dir="ltr" lang="en">DoH</span>.</p>
+<p>أما الولادة داخل الماء (<span dir="ltr" lang="en">Water Birthing</span>)، فيناقشها الدليل بصورة منفصلة وفق السياسة التشغيلية، مع التنبيه صراحةً إلى أن الإرشادات لا تقترحها أو توصي بها باعتبارها خياراً آمناً أو مناسباً.</p>
+<p><strong>المرجع:</strong> <span dir="ltr" lang="en">Birthing Unit</span>، الصفحات 7–8 و11–12 و16–17 و20–21.</p>
+</section>
+<section aria-labelledby="s1-9">
+<h2 id="s1-9"><a class="anchor" href="#s1-9" aria-hidden="true" tabindex="-1">#</a>1.9 الأبواب — <span dir="ltr" lang="en">Architectural Door Requirements</span></h2>
+<p>تعتبر الأبواب من العناصر المؤثرة مباشرة على سلامة النقل السريري وخصوصية المرضى والتحكم بالدخول.</p>
+<p>ويجب مراجعتها بوصفها عناصر معمارية وأنظمة تشغيلية متكاملة، وليس مجرد فتحات محددة العرض.</p>
+<h3 id="s1-9-1"><a class="anchor" href="#s1-9-1" aria-hidden="true" tabindex="-1">#</a>1.9.1 المتطلب العددي المحدد في القسم</h3>
+<p>ينص دليل <span dir="ltr" lang="en">Birthing Unit</span>، الصفحة 13، على توصية بفتحة صافية لا تقل عن <strong>1,400 مم</strong> للأبواب المستخدمة لنقل الأسرة والعربات داخل وحدة الولادة أو باتجاه غرف العمليات.</p>
+<p>ويقصد بالفتحة الصافية (<span dir="ltr" lang="en">Clear Opening</span>) العرض المتاح فعلياً بعد تركيب إطار الباب والضلف والأجهزة المرتبطة بها، وفق طريقة القياس المعتمدة.</p>
+<p>لا يضع هذا النص حداً أقصى عاماً لعرض الأبواب، ولا يحدد ارتفاعاً موحداً لجميع أبواب الوحدة.</p>
+<h3 id="s1-9-2"><a class="anchor" href="#s1-9-2" aria-hidden="true" tabindex="-1">#</a>1.9.2 تصنيف الأبواب المطلوب في مخططات القسم</h3>
+<div class="table-wrap" role="region" tabindex="0" aria-label="نوع الباب · متطلبات المراجعة"><table><thead><tr><th>نوع الباب</th><th>متطلبات المراجعة</th></tr></thead><tbody>
+<tr><td>باب غرفة الولادة (<span dir="ltr" lang="en">Birthing Room Door</span>)</td><td>عرض نقل الأسرّة، الخصوصية، الأجهزة، اتجاه الفتح</td></tr>
+<tr><td>باب غرفة التقييم (<span dir="ltr" lang="en">Assessment Room Door</span>)</td><td>قابلية نقل المريضة والعربة، وخصوصية الفحص</td></tr>
+<tr><td>باب نقل الطوارئ باتجاه العمليات</td><td>فتحة نقل مناسبة، وسهولة الفتح، وعدم وجود عوائق</td></tr>
+<tr><td>باب غرفة العزل (<span dir="ltr" lang="en">Isolation Door</span>)</td><td>الاحتواء والضغط والتحكم بالدخول والتفاصيل المناسبة للعزل</td></tr>
+<tr><td>باب الغرفة العازلة (<span dir="ltr" lang="en">Anteroom Door</span>)</td><td>التنسيق مع استراتيجية الضغط وأجهزة الأبواب</td></tr>
+<tr><td>باب منطقة الدخول المقيد</td><td><span dir="ltr" lang="en">Access Control</span> و<span dir="ltr" lang="en">Video Intercom</span></td></tr>
+<tr><td>باب الخدمات النظيفة</td><td>التحكم بالدخول والحركة الآمنة للمواد</td></tr>
+<tr><td>باب الخدمات الملوثة</td><td>الفصل التشغيلي وقابلية التنظيف</td></tr>
+<tr><td>باب غرف التخزين</td><td>إمكانية إدخال المعدات الفعلية وفتح الضلف</td></tr>
+<tr><td>أبواب الموظفين والخدمات</td><td>متطلبات الاستخدام والحريق والإخلاء</td></tr>
+<tr><td>أبواب الحمامات</td><td>سهولة الوصول والخصوصية والمساعدة الطارئة</td></tr>
+</tbody></table></div>
+<p>هذه الأنواع مستخلصة من وظائف فراغات القسم؛ وليست جميعها مقاسات مستقلة منشورة في <span dir="ltr" lang="en">FPU 30</span>.</p>
+<h3 id="s1-9-3"><a class="anchor" href="#s1-9-3" aria-hidden="true" tabindex="-1">#</a>1.9.3 متطلبات يجب التحقق منها في <span dir="ltr" lang="en">Door Schedule</span></h3>
+<p>لكل باب يجب تسجيل ما يلي:</p>
+<ul><li>رقم الباب (<span dir="ltr" lang="en">Door Tag</span>).</li><li>رقم الغرفة ووظيفتها (<span dir="ltr" lang="en">Room Number &amp; Function</span>).</li><li>العرض الصافي (<span dir="ltr" lang="en">Clear Width</span>).</li><li>الارتفاع الصافي (<span dir="ltr" lang="en">Clear Height</span>).</li><li>عرض فتحة البناء (<span dir="ltr" lang="en">Structural Opening</span>).</li><li>نوع الضلفة والإطار (<span dir="ltr" lang="en">Door Leaf &amp; Frame</span>).</li><li>اتجاه الفتح (<span dir="ltr" lang="en">Door Swing</span>).</li><li>درجة مقاومة الحريق (<span dir="ltr" lang="en">Fire Rating</span>) إن كانت مطلوبة.</li><li>متطلبات العزل الصوتي (<span dir="ltr" lang="en">Acoustic Rating</span>).</li><li>نوع القفل ومجموعة الأجهزة المعدنية (<span dir="ltr" lang="en">Ironmongery</span>).</li><li>أجهزة التحكم بالدخول (<span dir="ltr" lang="en">Access Control Hardware</span>).</li><li>آلية الفتح في حالات الطوارئ.</li><li>متطلبات النظافة والمواد والتشطيبات.</li><li>متطلبات حركة الأسرة والعربات والمعدات.</li><li>التنسيق مع نظام إدارة المبنى والحريق والإنذار عند الاقتضاء.</li></ul>
+<p><strong>مهم:</strong> لا يحدد ملف <span dir="ltr" lang="en">Birthing Unit</span> قيمة موحدة لتصنيف مقاومة الحريق لكل باب، ولا يحدد قيماً رقمية شاملة للارتفاع أو العزل الصوتي. يجب الرجوع إلى متطلبات الدفاع المدني، والكود المعتمد، وجداول الأبواب ومواصفات المشروع، وأجزاء الإرشادات المكملة.</p>
+<h3 id="s1-9-4"><a class="anchor" href="#s1-9-4" aria-hidden="true" tabindex="-1">#</a>1.9.4 الخصوصية وأبواب غرف الولادة</h3>
+<p>ينص دليل <span dir="ltr" lang="en">DoH</span> على ضرورة حماية خصوصية المريضة، ويذكر عدم استخدام ألواح رؤية في أبواب غرف الولادة (<span dir="ltr" lang="en">No Door Viewing Panels</span>).</p>
+<p>وتُراجع هذه النقطة مع التصميم المعماري ومتطلبات الحريق والرؤية التشغيلية وسلامة المريضة، دون افتراض أن حلول المراقبة متطابقة بين غرف الولادة وغرف العناية المركزة.</p>
+<p><strong>المرجع:</strong> <span dir="ltr" lang="en">Birthing Unit</span>، الصفحات 12–14.</p>
+</section>
+<section aria-labelledby="s1-10">
+<h2 id="s1-10"><a class="anchor" href="#s1-10" aria-hidden="true" tabindex="-1">#</a>1.10 الأرضيات — <span dir="ltr" lang="en">Flooring Requirements</span></h2>
+<p>يشترط دليل القسم أن تكون الأرضيات:</p>
+<ul><li>ملساء بالقدر المناسب لوظيفتها.</li><li>غير منفذة للرطوبة (<span dir="ltr" lang="en">Impervious to Moisture</span>).</li><li>سهلة التنظيف والتطهير.</li><li>ملائمة لحركة الأسرة والعربات والمعدات الطبية.</li></ul>
+<p>وتحتاج المناطق الرطبة، مثل غرف الدش، إلى معالجة خطر الانزلاق والتصريف والعزل المائي وفق المتطلبات المعتمدة.</p>
+<p>عند مراجعة مخططات التنفيذ، يجب التحقق من:</p>
+<ol><li>نوع مادة الأرضية المعتمدة.</li><li>تفاصيل الوصلات والفواصل.</li><li>استمرارية العزل المائي في المناطق الرطبة.</li><li>مناسيب التشطيب وتفاصيل الانتقال بين المواد.</li><li>توافق المادة مع مواد التنظيف والتطهير.</li><li>تفاصيل التقاء الأرضية بالجدار.</li><li>مقاومة التآكل والأحمال الناجمة عن المعدات المتحركة.</li></ol>
+<p>لا يحدد ملف القسم نوعاً تجارياً بعينه مثل <span dir="ltr" lang="en">Vinyl</span> أو <span dir="ltr" lang="en">Epoxy</span>، ولا يحدد ارتفاع وزرة منحنية (<span dir="ltr" lang="en">Coved Skirting</span>) موحداً لجميع الغرف؛ لذلك يجب أن تؤخذ هذه التفاصيل من المواصفات وبطاقات بيانات الغرف والمعايير المكملة.</p>
+<p><strong>المرجع:</strong> <span dir="ltr" lang="en">Birthing Unit</span>، الصفحة 14.</p>
+</section>
+<section aria-labelledby="s1-11">
+<h2 id="s1-11"><a class="anchor" href="#s1-11" aria-hidden="true" tabindex="-1">#</a>1.11 الجدران والتشطيبات الرأسية — <span dir="ltr" lang="en">Wall Finishes</span></h2>
+<p>يتطلب الدليل جدراناً:</p>
+<ul><li>سهلة التنظيف.</li><li>ذات تشطيبات متصلة قدر الإمكان (<span dir="ltr" lang="en">Seamless Finishes</span>).</li><li>محمية من اصطدام العربات والأسرة.</li><li>مستخدمة لطلاء خالٍ من الرصاص (<span dir="ltr" lang="en">Lead-Free Paint</span>).</li></ul>
+<p>ويجب ألا تؤثر الألوان على القدرة الطبية على ملاحظة لون بشرة الأم أو المولود.</p>
+<p>أما في مرحلة المراجعة التنفيذية، فيجب التحقق من:</p>
+<ul><li>تفاصيل حمايات الجدران (<span dir="ltr" lang="en">Wall Protection</span>).</li><li>أنواع التشطيبات المعتمدة.</li><li>التقاء الجدران بالأبواب والأسقف والأرضيات.</li><li>مواقع التجهيزات المعلقة.</li><li>تدعيم الجدران خلف الأجهزة (<span dir="ltr" lang="en">Wall Backing / Reinforcement</span>).</li><li>الفتحات اللازمة للخدمات الطبية والكهربائية.</li><li>متطلبات إحكام الفواصل في غرف العزل.</li><li>التنسيق بين اللوحات المعمارية ومخططات الأجهزة والخدمات.</li></ul>
+<p><strong>المرجع:</strong> <span dir="ltr" lang="en">Birthing Unit</span>، الصفحة 14.</p>
+</section>
+<section aria-labelledby="s1-12">
+<h2 id="s1-12"><a class="anchor" href="#s1-12" aria-hidden="true" tabindex="-1">#</a>1.12 الأسقف — <span dir="ltr" lang="en">Ceiling Requirements</span></h2>
+<p>يشير دليل <span dir="ltr" lang="en">DoH</span> إلى ضرورة توفير أسقف مغلقة أو محكمة وسهلة التنظيف (<span dir="ltr" lang="en">Sealed &amp; Easily Cleaned Ceilings</span>).</p>
+<p>وفي غرف الولادة والتقييم يجب مراعاة مواقع الإضاءة والمعدات الطبية والكواشف ومخارج الهواء وأجهزة الاتصال.</p>
+<p>تشمل مراجعة الأسقف:</p>
+<ul><li>نوع نظام السقف.</li><li>المنسوب النهائي (<span dir="ltr" lang="en">Finished Ceiling Level</span>).</li><li>إمكانية الوصول للصيانة.</li><li>طريقة تثبيت التجهيزات.</li><li>التنسيق مع الأنظمة الميكانيكية والكهربائية.</li><li>توافق التشطيبات مع متطلبات مكافحة العدوى.</li><li>معالجة الفتحات والفواصل.</li><li>عدم تعارض التجهيزات مع ارتفاعات الحركة أو معدات إنعاش المولود.</li></ul>
+<p><strong>حدود المرجع:</strong> لا ينص ملف <span dir="ltr" lang="en">Birthing Unit</span> على ارتفاع صافٍ رقمي شامل لجميع غرف القسم. ولا يجوز افتراض ارتفاع معين على أنه متطلب <span dir="ltr" lang="en">DoH</span> دون الرجوع إلى مخططات المكونات القياسية والمواصفات المعتمدة.</p>
+<p><strong>المرجع:</strong> <span dir="ltr" lang="en">Birthing Unit</span>، الصفحات 14–15 و17–18.</p>
+</section>
+<section aria-labelledby="s1-13">
+<h2 id="s1-13"><a class="anchor" href="#s1-13" aria-hidden="true" tabindex="-1">#</a>1.13 النوافذ والخصوصية والإضاءة الطبيعية</h2>
+<p>يعتبر دليل <span dir="ltr" lang="en">DoH</span> الضوء الطبيعي والإطلالات الخارجية عناصر أساسية لغرف الولادة.</p>
+<p>وينص على توفير نافذة وإضاءة طبيعية في جميع غرف الولادة، مع الاهتمام بالخصوصية ومنع الرؤية غير المرغوبة من الخارج.</p>
+<p>ويجب توفير تجهيزات تعتيم جزئي (<span dir="ltr" lang="en">Partial Blackout</span>) مثل الستائر أو أنظمة التظليل المناسبة.</p>
+<p>كما يشير الدليل إلى تفضيل بعض أنواع الستائر الرأسية على الأفقية بسبب تراكم الغبار، وإمكانية استخدام ستائر أفقية داخل الزجاج المزدوج مع وسيلة تحكم من جهة الغرفة.</p>
+<p>وتجب مراجعة:</p>
+<ul><li>موقع النافذة بالنسبة إلى سرير المريضة.</li><li>الرؤية من المباني المقابلة والأفنية الداخلية.</li><li>التظليل والتحكم بالضوء.</li><li>ملاءمة الستائر للتنظيف ومكافحة العدوى.</li><li>توافق مواد الستائر والستائر الفاصلة مع متطلبات الحريق.</li><li>تأثير الواجهة على درجة حرارة الغرفة.</li></ul>
+<p><strong>المرجع:</strong> <span dir="ltr" lang="en">Birthing Unit</span>، الصفحات 12 و14–15.</p>
+</section>
+<section aria-labelledby="s1-14">
+<h2 id="s1-14"><a class="anchor" href="#s1-14" aria-hidden="true" tabindex="-1">#</a>1.14 الإنارة — <span dir="ltr" lang="en">Lighting Requirements</span></h2>
+<p>تتطلب غرف الولادة والفحص ومناطق إنعاش المواليد إنارة تتيح التمييز الصحيح للون البشرة (<span dir="ltr" lang="en">Colour-Corrected Lighting</span>).</p>
+<p>كما يشير الدليل إلى أهمية التحكم بدرجة الإضاءة (<span dir="ltr" lang="en">Dimmable Lighting</span>) في غرف الولادة لراحة المريضة.</p>
+<p>يجب مراجعة:</p>
+<ul><li>الإنارة العامة.</li><li>إنارة الفحص والإجراءات.</li><li>إنارة إنعاش المولود.</li><li>التحكم المحلي بالإنارة.</li><li>تنسيق مفاتيح التحكم مع المسار السريري.</li><li>متطلبات إنارة الطوارئ والخروج وفق الكود المعتمد.</li></ul>
+<p>لا يقدم ملف <span dir="ltr" lang="en">Birthing Unit</span> وحده جميع قيم شدة الإضاءة (<span dir="ltr" lang="en">Lux</span>) أو درجات تجسيد اللون (<span dir="ltr" lang="en">Colour Rendering Index – CRI</span>)، لذا تُستخرج القيم الملزمة من المعايير الهندسية والمواصفات المعتمدة.</p>
+<p><strong>المرجع:</strong> <span dir="ltr" lang="en">Birthing Unit</span>، الصفحة 12.</p>
+</section>
+<section aria-labelledby="s1-15">
+<h2 id="s1-15"><a class="anchor" href="#s1-15" aria-hidden="true" tabindex="-1">#</a>1.15 المتطلبات الصوتية — <span dir="ltr" lang="en">Acoustic Requirements</span></h2>
+<p>يتطلب القسم بيئة منخفضة الضوضاء، خصوصاً في غرف الولادة وغرف التقييم ومناطق المناقشة الخاصة.</p>
+<p>ويشير الدليل إلى ضرورة:</p>
+<ul><li>تقليل تأثير الضوضاء الخارجية والمرور وصفارات الإسعاف.</li><li>إبعاد مناطق انتظار الأطفال والأنشطة الصاخبة عن مناطق العلاج.</li><li>حماية سرية المحادثات في غرف الاستشارة.</li><li>الحد من انتقال الضوضاء عبر أنظمة التكييف.</li><li>اختيار تشطيبات تراعي الأداء الصوتي.</li></ul>
+<p>تُستكمل القيم الرقمية المطلوبة لعزل الجدران والأبواب من <span dir="ltr" lang="en">Part G – Acoustics</span> ومواصفات المشروع.</p>
+<p><strong>المرجع:</strong> <span dir="ltr" lang="en">Birthing Unit</span>، الصفحتان 12 و16.</p>
+</section>
+<section aria-labelledby="s1-16">
+<h2 id="s1-16"><a class="anchor" href="#s1-16" aria-hidden="true" tabindex="-1">#</a>1.16 التهوية والتكييف — <span dir="ltr" lang="en">HVAC Requirements</span></h2>
+<p>يشير دليل <span dir="ltr" lang="en">DoH</span> إلى المحافظة على ضغط موجب في منطقة جناح الولادة مقارنة بالمناطق المجاورة (<span dir="ltr" lang="en">Positive Pressure</span>)، مع استثناء المناطق التي تتطلب نظام عزل خاصاً.</p>
+<h3 id="s1-16-temperatures"><a class="anchor" href="#s1-16-temperatures" aria-hidden="true" tabindex="-1">#</a>درجات الحرارة</h3>
+<p>يوضح الدليل أن درجة الحرارة في غرف الولادة والتقييم يجب أن تكون ضمن:</p>
+<p><strong>20–23 درجة مئوية</strong> في الظروف الاعتيادية.</p>
+<p>ويجب أن يسمح نظام التحكم المحلي برفعها بسرعة إلى:</p>
+<p><strong>25–27 درجة مئوية</strong> عند ولادة الطفل.</p>
+<p>كما يشترط أن تكون أجهزة التحكم داخل الغرفة ومتاحة للموظفين فقط.</p>
+<h3 id="s1-16-coordination"><a class="anchor" href="#s1-16-coordination" aria-hidden="true" tabindex="-1">#</a>متطلبات التنسيق</h3>
+<ul><li>توثيق مخطط مناطق الضغط (<span dir="ltr" lang="en">Pressure Zoning</span>).</li><li>التنسيق بين الغرف العادية وغرف العزل ذات الضغط السلبي.</li><li>التحقق من توزيع مخارج الهواء.</li><li>دراسة الضوضاء الناتجة عن التهوية.</li><li>توفير أنظمة التخلص من غازات تسكين الألم عند استخدامها (<span dir="ltr" lang="en">Analgesic Gas Scavenging</span>).</li><li>التنسيق مع مناطق المعدات الطبية.</li><li>مراجعة إمكانية الوصول والصيانة.</li></ul>
+<p>لا يحدد ملف <span dir="ltr" lang="en">Part B</span> كل معدلات تغيير الهواء والضغط التفاضلي والمرشحات، ويشير إلى <span dir="ltr" lang="en">Part E – Engineering Services</span> لاستكمالها.</p>
+<p><strong>المرجع:</strong> <span dir="ltr" lang="en">Birthing Unit</span>، الصفحة 16.</p>
+</section>
+<section aria-labelledby="s1-17">
+<h2 id="s1-17"><a class="anchor" href="#s1-17" aria-hidden="true" tabindex="-1">#</a>1.17 الغازات الطبية — <span dir="ltr" lang="en">Medical Gases</span></h2>
+<p>يحدد دليل <span dir="ltr" lang="en">DoH</span> الحاجة إلى خدمات الأكسجين والشفط الطبي في غرف التقييم والولادة للأم والمولود.</p>
+<p><strong><span dir="ltr" lang="en">Oxygen</span> – الأكسجين الطبي</strong></p>
+<p>يستخدم لدعم الرعاية الطبية والإنعاش عند الحاجة.</p>
+<p><strong><span dir="ltr" lang="en">Medical Suction</span> – الشفط الطبي</strong></p>
+<p>يستخدم ضمن احتياجات الإجراءات والإنعاش.</p>
+<p><strong><span dir="ltr" lang="en">Nitrous Oxide</span> – أكسيد النيتروز</strong></p>
+<p>قد يستخدم في تسكين الألم وفق النظام الطبي المعتمد، ويتطلب معالجة مناسبة لتجميع الغازات والتخلص منها (<span dir="ltr" lang="en">Scavenging System</span>).</p>
+<p>كما يجب توفير تجهيزات مناسبة للولادات المتعددة، بما يشمل نقاطاً إضافية حسب بطاقة بيانات الغرفة.</p>
+<h3 id="s1-17-drawing-review"><a class="anchor" href="#s1-17-drawing-review" aria-hidden="true" tabindex="-1">#</a>متطلبات مراجعة الرسومات</h3>
+<ul><li>عدد المخارج ونوعها وفق <span dir="ltr" lang="en">RDS</span>.</li><li>الارتفاعات والمواقع.</li><li>التنسيق مع سرير الولادة ومعدات المولود.</li><li>مسارات المواسير داخل الجدران والأسقف.</li><li>الوصول للصيانة.</li><li>تحديد مناطق العزل والتحكم في شبكات الغازات.</li><li>مطابقة الرموز والتوصيلات لمواصفات المعدات.</li><li>التحقق من أن مواقع المخارج لا تتعارض مع النجارة أو الأثاث أو المعدات.</li></ul>
+<p><strong>المرجع:</strong> <span dir="ltr" lang="en">Birthing Unit</span>، الصفحات 12 و16–17.</p>
+</section>
+<section aria-labelledby="s1-18">
+<h2 id="s1-18"><a class="anchor" href="#s1-18" aria-hidden="true" tabindex="-1">#</a>1.18 السباكة والمياه — <span dir="ltr" lang="en">Plumbing &amp; Hydraulics</span></h2>
+<p>ينص دليل <span dir="ltr" lang="en">Birthing Unit</span> على أن درجة حرارة المياه الدافئة المتاحة للمريض داخل القسم يجب ألا تتجاوز <strong>43 درجة مئوية</strong>.</p>
+<p>ويشمل ذلك أحواض غسل اليدين الموجودة في المناطق التي يستطيع المرضى الوصول إليها.</p>
+<p>تتطلب غرف الولادة والتقييم حوض غسل يدين سريرياً (<span dir="ltr" lang="en">Clinical Scrub Basin</span>)، إضافة إلى أحواض غسل اليدين عند مداخل ومخارج الوحدة، ومحطات التمريض، والممرات المناسبة.</p>
+<p>كما يجب ألا تؤدي أحواض غسل اليدين إلى تقليل العرض الصافي المطلوب للممرات.</p>
+<h3 id="s1-18-review"><a class="anchor" href="#s1-18-review" aria-hidden="true" tabindex="-1">#</a>متطلبات المراجعة</h3>
+<ul><li>تحديد مواقع الأحواض وأبعادها.</li><li>توافقها مع مخططات الغرف القياسية.</li><li>تحديد درجات حرارة المياه وآلية التحكم بها.</li><li>مواقع الصرف والتغذية.</li><li>تنسيق الأحواض مع حركة المرضى والأسرة.</li><li>تفاصيل مقاومة تسرب المياه والعزل.</li><li>متطلبات مكافحة العدوى.</li><li>إمكانات الصيانة.</li></ul>
+<p><strong>المرجع:</strong> <span dir="ltr" lang="en">Birthing Unit</span>، الصفحتان 16–17.</p>
+</section>
+<section aria-labelledby="s1-19">
+<h2 id="s1-19"><a class="anchor" href="#s1-19" aria-hidden="true" tabindex="-1">#</a>1.19 مكافحة العدوى — <span dir="ltr" lang="en">Infection Prevention &amp; Control</span> (<span dir="ltr" lang="en">IPC</span>)</h2>
+<p>يجب أن يدعم التصميم الفصل بين الأنشطة النظيفة والملوثة، وسهولة تنظيف الأسطح، وتوفير غسل اليدين، ومعالجة النفايات بطريقة مناسبة.</p>
+<h3 id="s1-19-handwash"><a class="anchor" href="#s1-19-handwash" aria-hidden="true" tabindex="-1">#</a>أحواض غسل اليدين</h3>
+<p>يلزم وجود أحواض غسل سريرية في غرف الولادة والتقييم، ومواقع إضافية ضمن المناطق المشتركة بحسب متطلبات القسم.</p>
+<p>ويمكن إضافة معقمات اليدين الكحولية (<span dir="ltr" lang="en">Alcohol-Based Hand Rub</span>)، لكنها لا تحل محل أحواض غسل اليدين المطلوبة.</p>
+<h3 id="s1-19-isolation"><a class="anchor" href="#s1-19-isolation" aria-hidden="true" tabindex="-1">#</a>غرف العزل</h3>
+<p>يتطلب تخطيط غرف العزل دراسة:</p>
+<ul><li>مدخل الغرفة والـ<span dir="ltr" lang="en">Anteroom</span>.</li><li>الضغط السالب.</li><li>محكمة إغلاق الأبواب والتفاصيل.</li><li>إمكانية تنظيف التشطيبات.</li><li>العلاقة مع ممرات القسم.</li><li>حركة المرضى والموظفين.</li><li>متطلبات الخدمات الميكانيكية.</li></ul>
+<h3 id="s1-19-clinical-waste"><a class="anchor" href="#s1-19-clinical-waste" aria-hidden="true" tabindex="-1">#</a>النفايات السريرية</h3>
+<p>ينص الدليل على أن المشيمة (<span dir="ltr" lang="en">Placenta</span>) تعتبر من النفايات السريرية الملوثة، مع ضرورة توفير آلية مناسبة للتعامل معها وفق سياسة المستشفى.</p>
+<p>كما يذكر توفير تخزين بالتجميد لأغراض تسليمها للأسرة لأسباب ثقافية، وفق السياسة التشغيلية، ويشير إلى تجنب التخلص منها باستخدام أجهزة الطحن.</p>
+<p><strong>المرجع:</strong> <span dir="ltr" lang="en">Birthing Unit</span>، الصفحات 16–17؛ ويُستكمل التطبيق من <span dir="ltr" lang="en">DoH Part D – Infection Prevention &amp; Control</span>.</p>
+</section>
+<section aria-labelledby="s1-20">
+<h2 id="s1-20"><a class="anchor" href="#s1-20" aria-hidden="true" tabindex="-1">#</a>1.20 الأمن والتحكم بالدخول — <span dir="ltr" lang="en">Safety &amp; Security</span></h2>
+<p>يجب أن تكون جميع نقاط دخول قسم الولادة تحت التحكم المناسب من فريق التشغيل.</p>
+<p>ويشمل ذلك:</p>
+<ul><li>التحكم بالدخول عبر الاستقبال (<span dir="ltr" lang="en">Reception Access Control</span>).</li><li>أجهزة الاتصال المرئي في مدخل الخدمة خارج أوقات العمل (<span dir="ltr" lang="en">Video Intercom</span>).</li><li>وسائل الفتح عن بعد (<span dir="ltr" lang="en">Remote Access</span>).</li><li>قارئات البطاقات (<span dir="ltr" lang="en">Card Readers</span>).</li><li>حساسات حالة الباب (<span dir="ltr" lang="en">Door Contacts / Reed Switches</span>).</li><li>الأقفال الكهربائية أو المغناطيسية وفق التصميم المعتمد.</li><li>المراقبة بالكاميرات عند اعتمادها.</li><li>أزرار إنذار الاستغاثة للموظفين (<span dir="ltr" lang="en">Duress Alarms</span>).</li></ul>
+<h3 id="s1-20-infant-protection"><a class="anchor" href="#s1-20-infant-protection" aria-hidden="true" tabindex="-1">#</a>حماية المواليد</h3>
+<p>ينص الدليل على استخدام أنظمة التتبع أو الوسم الإلكتروني للمولود (<span dir="ltr" lang="en">Electronic Infant Tagging</span>) منذ الولادة، مع أجهزة استشعار عند نقاط الدخول والخروج المناسبة.</p>
+<p>يجب التنسيق بين متطلبات أمن المواليد ونظام التحكم بالدخول ونظام إنذار الحريق ومتطلبات الخروج الآمن.</p>
+<p><strong>المرجع:</strong> <span dir="ltr" lang="en">Birthing Unit</span>، الصفحات 13–14.</p>
+</section>
+<section aria-labelledby="s1-21">
+<h2 id="s1-21"><a class="anchor" href="#s1-21" aria-hidden="true" tabindex="-1">#</a>1.21 أنظمة استدعاء التمريض والطوارئ — <span dir="ltr" lang="en">Nurse Call &amp; Emergency Call</span></h2>
+<p>يتطلب القسم نظام استدعاء إلكترونياً قرب كل مكان سرير، إضافة إلى أنظمة طلب المساعدة في مناطق المرضى، بما يشمل غرف الولادة والفحص والحمامات والصالات.</p>
+<p>يجب أن تصل التنبيهات إلى محطات التمريض، وأن تكون قابلة للإدراك في مناطق الخدمة، مع آلية تصعيد عند عدم الاستجابة.</p>
+<p>ويتطلب ذلك مراجعة:</p>
+<ul><li>مواقع أزرار الاستدعاء.</li><li>الوصول من السرير ومن الحمام.</li><li>لوحات الإظهار والتنبيه.</li><li>الربط بين الأنظمة.</li><li>التنسيق مع الأثاث والتجهيزات.</li><li>متطلبات الكهرباء والاتصالات.</li></ul>
+<p><strong>المرجع:</strong> <span dir="ltr" lang="en">Birthing Unit</span>، الصفحة 15.</p>
+</section>
+<section aria-labelledby="s1-22">
+<h2 id="s1-22"><a class="anchor" href="#s1-22" aria-hidden="true" tabindex="-1">#</a>1.22 التجهيزات الطبية والتثبيت — <span dir="ltr" lang="en">Medical Equipment &amp; FF&amp;E</span></h2>
+<p>تشمل التجهيزات المرتبطة بالقسم:</p>
+<ul><li>سرير الولادة.</li><li>أجهزة مراقبة الأم والجنين (<span dir="ltr" lang="en">Cardiotocography – CTG</span>).</li><li>تجهيزات إنعاش المواليد.</li><li>عربات الإنعاش.</li><li>التجهيزات الطبية المتحركة.</li><li>الأحواض الطبية.</li><li>الأثاث السريري ومستلزمات التخزين.</li><li>التجهيزات المتعلقة بالغازات الطبية والاتصالات.</li></ul>
+<p>يجب تحديد مسؤولية توريد وتركيب كل عنصر وفق مجموعات التجهيز في دليل <span dir="ltr" lang="en">DoH</span>:</p>
+<p><strong><span dir="ltr" lang="en">Group 1</span>:</strong> يورده ويركبه المقاول.</p>
+<p><strong><span dir="ltr" lang="en">Group 2</span>:</strong> يورده المالك ويركبه المقاول.</p>
+<p><strong><span dir="ltr" lang="en">Group 3</span>:</strong> يورده ويركبه المالك.</p>
+<p>هذا التصنيف المرجعي لا يغني عن مصفوفة المسؤوليات التعاقدية المعتمدة في المشروع (<span dir="ltr" lang="en">Project Procurement &amp; Installation Responsibility Matrix</span>).</p>
+<p><strong>المرجع:</strong> <span dir="ltr" lang="en">Birthing Unit</span>، الصفحات 15 و17–18.</p>
+</section>
+<section aria-labelledby="s1-23">
+<h2 id="s1-23"><a class="anchor" href="#s1-23" aria-hidden="true" tabindex="-1">#</a>1.23 غرف العمليات القيصرية — <span dir="ltr" lang="en">Emergency Caesarean Operating Area</span></h2>
+<p>في حالة دمج غرفة العمليات القيصرية ضمن قسم الولادة، يجب توفير مكونات الوظيفة الجراحية اللازمة.</p>
+<h3 id="s1-23-components"><a class="anchor" href="#s1-23-components" aria-hidden="true" tabindex="-1">#</a>المكونات المرجعية</h3>
+<div class="table-wrap" role="region" tabindex="0" aria-label="المكون · المساحة في نموذج DoH"><table><thead><tr><th>المكون</th><th>المساحة في نموذج <span dir="ltr" lang="en">DoH</span></th></tr></thead><tbody>
+<tr><td>غرفة عازلة للدخول (<span dir="ltr" lang="en">Air Lock</span>)</td><td>6 م²</td></tr>
+<tr><td>غرفة العمليات (<span dir="ltr" lang="en">Operating Room</span>)</td><td>42 م²</td></tr>
+<tr><td>غرفة تحضير التخدير، اختيارية</td><td>15 م²</td></tr>
+<tr><td>منطقة إنعاش مولود مستقلة، اختيارية</td><td>6 م²</td></tr>
+<tr><td>منطقة الغسل والتحضير الجراحي</td><td>6 م²</td></tr>
+<tr><td>موضع تعافٍ / انتظار سرير</td><td>9 م²</td></tr>
+<tr><td>منطقة غسل اليدين <span dir="ltr" lang="en">Type A</span></td><td>1 م²</td></tr>
+<tr><td>غرفة تنظيف ما بعد الإجراءات</td><td>7 م²</td></tr>
+<tr><td>غرفتا تبديل ملابس الموظفين</td><td>6 م² لكل غرفة</td></tr>
+<tr><td>محطة تمريض / خدمات نظيفة</td><td>9 م²</td></tr>
+<tr><td>مخزن مستلزمات معقمة</td><td>12 م²</td></tr>
+</tbody></table></div>
+<p>يظهر النموذج الكامل في جدول <span dir="ltr" lang="en">DoH</span> بصافي مساحة قدره 125 م² وإجمالي 168.7 م²، وفق الخيارات المحددة في الجدول. ولا يجوز استخدام إجمالي الجدول دون التحقق من الفراغات الاختيارية والمكونات التي تدخل في حسابه.</p>
+<h3 id="s1-23-functional"><a class="anchor" href="#s1-23-functional" aria-hidden="true" tabindex="-1">#</a>المتطلبات الوظيفية</h3>
+<ul><li>وصول سريع من غرفة الولادة.</li><li>عدم استخدام منطقة العمليات كممر عبور.</li><li>توفير متطلبات الغسل والتحضير.</li><li>استيعاب إنعاش المولود، بما فيه حالات التوأم.</li><li>توفير موضع تعافٍ واحد على الأقل لكل غرفة عمليات ضمن النموذج.</li><li>الفصل والتحكم في المناطق الجراحية.</li><li>مطابقة غرفة العمليات لمكونات <span dir="ltr" lang="en">Operating Room</span> العامة.</li></ul>
+<h3 id="s1-23-transfer-time"><a class="anchor" href="#s1-23-transfer-time" aria-hidden="true" tabindex="-1">#</a>زمن النقل</h3>
+<p>يذكر الدليل هدفاً مثالياً لا يتجاوز ثلاث دقائق من غرفة الولادة إلى غرفة العمليات.</p>
+<p>تُراجع المسافة على أساس مسار نقل حقيقي، بما يشمل الممرات والأبواب والمصاعد وأوقات الانتظار.</p>
+<p>أما ضغط غرفة العمليات، ونظام التهوية، وتفاصيل الغسل الجراحي، والأسقف الطبية، والأجهزة الجراحية، فيجب استكمالها من <span dir="ltr" lang="en">FPU 350 – Operating Unit</span> و<span dir="ltr" lang="en">Part E</span> و<span dir="ltr" lang="en">Room Data Sheets</span>.</p>
+<p><strong>المرجع:</strong> <span dir="ltr" lang="en">Birthing Unit</span>، الصفحات 5 و8–9 و21–22.</p>
+</section>
+<section aria-labelledby="s1-24">
+<h2 id="s1-24"><a class="anchor" href="#s1-24" aria-hidden="true" tabindex="-1">#</a>1.24 الحريق والسلامة — <span dir="ltr" lang="en">Fire &amp; Life Safety</span></h2>
+<p>تتطلب مراجعة قسم الولادة ربط المتطلبات السريرية بالاشتراطات المعتمدة للحريق والسلامة.</p>
+<p>تشمل عناصر المراجعة:</p>
+<ul><li>مسارات الإخلاء (<span dir="ltr" lang="en">Means of Egress</span>).</li><li>مخارج الطوارئ.</li><li>تصنيف الجدران والأبواب المقاومة للحريق.</li><li>أبواب الممرات والمناطق المقيدة.</li><li>أنظمة الكشف والإنذار.</li><li>الربط بين الأبواب الكهربائية وأنظمة الحريق.</li><li>متطلبات الحماية من الحريق في فتحات الخدمات.</li><li>استراتيجية نقل المرضى أثناء الطوارئ.</li><li>توافق التجهيزات مع المخططات المعتمدة من الجهات المختصة.</li></ul>
+<p>لا يحدد ملف <span dir="ltr" lang="en">Birthing Unit</span> بصورة مستقلة جميع القيم الرقمية لهذه الاشتراطات، بما في ذلك تصنيفات مقاومة الحريق ومسافات الهروب وأعداد المخارج.</p>
+<p>تُستخرج القيم الملزمة من كود الحريق والسلامة المعمول به، واعتمادات الدفاع المدني، والمخططات المعتمدة، مع التحقق من الإصدار الساري وتاريخ الاعتماد.</p>
+</section>
+<section aria-labelledby="s1-25">
+<h2 id="s1-25"><a class="anchor" href="#s1-25" aria-hidden="true" tabindex="-1">#</a>1.25 التنسيق المعماري والهندسي — <span dir="ltr" lang="en">Architectural &amp; MEP Coordination</span></h2>
+<p>في مرحلة التنفيذ، يجب أن تكون الرسومات المعمارية متوافقة مع:</p>
+<ul><li>مخططات الإنشاء (<span dir="ltr" lang="en">Structural Drawings</span>).</li><li>مخططات التهوية والتكييف (<span dir="ltr" lang="en">HVAC Drawings</span>).</li><li>الكهرباء والإنارة (<span dir="ltr" lang="en">Electrical &amp; Lighting Drawings</span>).</li><li>المياه والصرف (<span dir="ltr" lang="en">Plumbing &amp; Drainage Drawings</span>).</li><li>شبكات الغازات الطبية (<span dir="ltr" lang="en">Medical Gas Drawings</span>).</li><li>أنظمة التيار الضعيف والاتصالات (<span dir="ltr" lang="en">ELV / ICT</span>).</li><li>مخططات المعدات الطبية (<span dir="ltr" lang="en">Medical Equipment Drawings</span>).</li><li>مخططات الحريق والسلامة (<span dir="ltr" lang="en">Fire &amp; Life Safety Drawings</span>).</li><li>جداول التشطيبات والأبواب والأسقف.</li><li>بطاقات بيانات الغرف (<span dir="ltr" lang="en">Room Data Sheets</span>).</li></ul>
+<p>وعند استخدام نمذجة معلومات البناء (<span dir="ltr" lang="en">Building Information Modelling – BIM</span>)، يجب مقارنة النماذج المنسقة بالرسومات المعتمدة، وليس اعتبار كشف التعارضات (<span dir="ltr" lang="en">Clash Detection</span>) بديلاً عن المراجعة التنظيمية والوظيفية.</p>
+</section>
+<section aria-labelledby="s1-26">
+<h2 id="s1-26"><a class="anchor" href="#s1-26" aria-hidden="true" tabindex="-1">#</a>1.26 مصفوفة مراجعة المتطلبات — <span dir="ltr" lang="en">Requirements Compliance Matrix, Rev. 01</span></h2>
+<p>تمثل هذه المصفوفة أول سجل موحد للمتطلبات القابلة للفحص في رسومات قسم الولادة.</p>
+<p><strong>الحالة الحالية لجميع البنود: <span dir="ltr" lang="en">Pending Drawing Review</span> — بانتظار استلام المخططات.</strong></p>
+<div class="table-wrap" role="region" tabindex="0" aria-label="ID · العنصر · متطلبات المراجعة · المصدر"><table><thead><tr><th dir="ltr"><span dir="ltr" lang="en">ID</span></th><th>العنصر</th><th>متطلبات المراجعة</th><th>المصدر</th></tr></thead><tbody>
+<tr><td dir="ltr"><span dir="ltr" lang="en">BU-001</span></td><td>النموذج السريري</td><td>توثيق <span dir="ltr" lang="en">LDR</span> أو <span dir="ltr" lang="en">LDRP</span></td><td>ص 4–5</td></tr>
+<tr><td dir="ltr"><span dir="ltr" lang="en">BU-002</span></td><td>عدد الغرف</td><td>مطابق لخطة الخدمات السريرية</td><td>ص 13</td></tr>
+<tr><td dir="ltr"><span dir="ltr" lang="en">BU-003</span></td><td>غرفة الولادة</td><td>مساحة مرجعية 30 م²</td><td>ص 20</td></tr>
+<tr><td dir="ltr"><span dir="ltr" lang="en">BU-004</span></td><td>غرفة التقييم</td><td>مساحة مرجعية 23 م²</td><td>ص 20</td></tr>
+<tr><td dir="ltr"><span dir="ltr" lang="en">BU-005</span></td><td>إشغال غرفة الولادة</td><td>مريضة واحدة لكل غرفة</td><td>ص 11</td></tr>
+<tr><td dir="ltr"><span dir="ltr" lang="en">BU-006</span></td><td>الولادات المتعددة</td><td>تجهيز غرفة واحدة عند وجود 3 غرف <span dir="ltr" lang="en">LDR</span> أو أكثر</td><td>ص 12</td></tr>
+<tr><td dir="ltr"><span dir="ltr" lang="en">BU-007</span></td><td>غرفة العزل</td><td>غرفة ضغط سلبي لكل 6 غرف ولادة وفق النص</td><td>ص 12 و17</td></tr>
+<tr><td dir="ltr"><span dir="ltr" lang="en">BU-008</span></td><td>الحمام الملحق</td><td>مرافق حمام ودش؛ تسوية تعارض وجود <span dir="ltr" lang="en">Bath</span></td><td>ص 7 و20</td></tr>
+<tr><td dir="ltr"><span dir="ltr" lang="en">BU-009</span></td><td>باب نقل الأسرة</td><td>فتحة صافية موصى بها 1,400 مم</td><td>ص 13</td></tr>
+<tr><td dir="ltr"><span dir="ltr" lang="en">BU-010</span></td><td>خصوصية الباب</td><td>عدم استخدام <span dir="ltr" lang="en">Door Viewing Panels</span> لغرف الولادة</td><td>ص 12</td></tr>
+<tr><td dir="ltr"><span dir="ltr" lang="en">BU-011</span></td><td>أرضيات القسم</td><td>غير منفذة للرطوبة وسهلة التنظيف</td><td>ص 14</td></tr>
+<tr><td dir="ltr"><span dir="ltr" lang="en">BU-012</span></td><td>الجدران</td><td>قابلة للتنظيف ومحميّة من اصطدام العربات</td><td>ص 14</td></tr>
+<tr><td dir="ltr"><span dir="ltr" lang="en">BU-013</span></td><td>الأسقف</td><td>محكمة وسهلة التنظيف</td><td>ص 14</td></tr>
+<tr><td dir="ltr"><span dir="ltr" lang="en">BU-014</span></td><td>الضوء الطبيعي</td><td>توفيره في جميع غرف الولادة</td><td>ص 12</td></tr>
+<tr><td dir="ltr"><span dir="ltr" lang="en">BU-015</span></td><td>تعتيم الغرف</td><td dir="ltr"><span dir="ltr" lang="en">Partial Blackout</span></td><td>ص 14</td></tr>
+<tr><td dir="ltr"><span dir="ltr" lang="en">BU-016</span></td><td>الإنارة السريرية</td><td><span dir="ltr" lang="en">Colour-Corrected</span> و<span dir="ltr" lang="en">Dimmable</span></td><td>ص 12</td></tr>
+<tr><td dir="ltr"><span dir="ltr" lang="en">BU-017</span></td><td>الصوتيات</td><td>خصوصية وتقليل الضوضاء</td><td>ص 12</td></tr>
+<tr><td dir="ltr"><span dir="ltr" lang="en">BU-018</span></td><td>حرارة الغرفة</td><td>20–23°<span dir="ltr" lang="en">C</span>، مع إمكانية الرفع إلى 25–27°<span dir="ltr" lang="en">C</span></td><td>ص 16</td></tr>
+<tr><td dir="ltr"><span dir="ltr" lang="en">BU-019</span></td><td>ضغط جناح الولادة</td><td>موجب بالنسبة للمناطق المجاورة، مع استثناء العزل</td><td>ص 16–17</td></tr>
+<tr><td dir="ltr"><span dir="ltr" lang="en">BU-020</span></td><td>الغازات الطبية</td><td><span dir="ltr" lang="en">Oxygen &amp; Suction</span> للأم والمولود</td><td>ص 16</td></tr>
+<tr><td dir="ltr"><span dir="ltr" lang="en">BU-021</span></td><td>المياه الساخنة</td><td>حد 43°<span dir="ltr" lang="en">C</span> في المناطق التي يصل إليها المرضى</td><td>ص 16</td></tr>
+<tr><td dir="ltr"><span dir="ltr" lang="en">BU-022</span></td><td>غسل اليدين</td><td>أحواض سريرية ومواقع عامة حسب النص</td><td>ص 17</td></tr>
+<tr><td dir="ltr"><span dir="ltr" lang="en">BU-023</span></td><td>مراقبة المواليد</td><td dir="ltr"><span dir="ltr" lang="en">Electronic Infant Tagging</span></td><td>ص 14</td></tr>
+<tr><td dir="ltr"><span dir="ltr" lang="en">BU-024</span></td><td>التحكم بالدخول</td><td dir="ltr"><span dir="ltr" lang="en">Access Control &amp; Video Intercom</span></td><td>ص 13–14</td></tr>
+<tr><td dir="ltr"><span dir="ltr" lang="en">BU-025</span></td><td dir="ltr"><span dir="ltr" lang="en">Nurse Call</span></td><td>في مناطق المرضى والحمامات</td><td>ص 15</td></tr>
+<tr><td dir="ltr"><span dir="ltr" lang="en">BU-026</span></td><td>زمن النقل للعمليات</td><td>هدف مثالي لا يتجاوز 3 دقائق</td><td>ص 8</td></tr>
+<tr><td dir="ltr"><span dir="ltr" lang="en">BU-027</span></td><td>العمليات القيصرية</td><td>المكونات والخدمات وفق نموذج التكامل</td><td>ص 8 و21–22</td></tr>
+<tr><td dir="ltr"><span dir="ltr" lang="en">BU-028</span></td><td>تخزين المشيمة</td><td>المعالجة والتخزين وفق سياسة المستشفى</td><td>ص 16</td></tr>
+<tr><td dir="ltr"><span dir="ltr" lang="en">BU-029</span></td><td>المساحات الخدمية</td><td>التحقق من <span dir="ltr" lang="en">SOA</span> والغرف المشتركة</td><td>ص 19–22</td></tr>
+<tr><td dir="ltr"><span dir="ltr" lang="en">BU-030</span></td><td>حريق وسلامة</td><td>مطابقة كود الحريق والمخططات المعتمدة</td><td>مرجع إضافي</td></tr>
+<tr><td dir="ltr"><span dir="ltr" lang="en">BU-031</span></td><td>ارتفاعات الأسقف</td><td>تحقق من <span dir="ltr" lang="en">RDS/RLS</span> والمواصفات</td><td>مرجع إضافي</td></tr>
+<tr><td dir="ltr"><span dir="ltr" lang="en">BU-032</span></td><td>مقاومة حريق الأبواب</td><td>التحقق من <span dir="ltr" lang="en">Fire Strategy</span> و<span dir="ltr" lang="en">Door Schedule</span></td><td>مرجع إضافي</td></tr>
+<tr><td dir="ltr"><span dir="ltr" lang="en">BU-033</span></td><td>معدلات تغيير الهواء</td><td>التحقق من <span dir="ltr" lang="en">DoH Part E</span></td><td>مرجع إضافي</td></tr>
+<tr><td dir="ltr"><span dir="ltr" lang="en">BU-034</span></td><td>العزل الصوتي العددي</td><td>التحقق من <span dir="ltr" lang="en">DoH Part G</span></td><td>مرجع إضافي</td></tr>
+</tbody></table></div>
+<p>تعتبر هذه المصفوفة سجل متطلبات أولياً قابلاً للتوسع عند مراجعة مخططات الغرف القياسية والوثائق الهندسية المكملة. ولا تعني إدراج بند فيها أن متطلباته الرقمية النهائية قد استُخرجت كلها.</p>
+</section>
+<section aria-labelledby="s1-27">
+<h2 id="s1-27"><a class="anchor" href="#s1-27" aria-hidden="true" tabindex="-1">#</a>1.27 آلية مراجعة مخططات التنفيذ — <span dir="ltr" lang="en">Construction Drawing Review</span></h2>
+<p>عند استلام وثائق المشروع، ستُستخدم المعلومات السابقة لمراجعة الرسومات بحسب تخصصاتها.</p>
+<p><strong><span dir="ltr" lang="en">Architectural Floor Plans</span> — المخططات المعمارية</strong></p>
+<p>المراجعة تشمل عدد الغرف والمساحات والأبعاد والمداخل والعلاقات ومسارات الحركة.</p>
+<p><strong><span dir="ltr" lang="en">Room Data Sheets &amp; Room Layout Sheets</span> — بطاقات بيانات الغرف ومخططات ترتيبها</strong></p>
+<p>المراجعة تشمل المعدات والتشطيبات والارتفاعات ونقاط الخدمات ومسافات الحركة.</p>
+<p><strong><span dir="ltr" lang="en">Door Schedule</span> — جدول الأبواب</strong></p>
+<p>المراجعة تشمل العرض الصافي والارتفاع وتصنيف الحريق ونوع الضلفة والحديديات وأجهزة التحكم بالدخول.</p>
+<p><strong><span dir="ltr" lang="en">Reflected Ceiling Plans</span> — مخططات الأسقف المنعكسة</strong></p>
+<p>المراجعة تشمل الارتفاعات والإنارة ومخارج الهواء والتجهيزات والأجهزة الطبية.</p>
+<p><strong><span dir="ltr" lang="en">Finishes Schedule</span> — جدول التشطيبات</strong></p>
+<p>المراجعة تشمل نوع المواد ومقاومة الرطوبة وقابلية التنظيف والمتانة ومتطلبات مكافحة العدوى.</p>
+<p><strong><span dir="ltr" lang="en">MEP &amp; Medical Equipment Coordination Drawings</span> — مخططات التنسيق الهندسي والمعدات الطبية</strong></p>
+<p>المراجعة تشمل الخدمات والفتحات والتثبيت والضغوط والغازات والأجهزة.</p>
+<p>ويُسجل أي تعارض أو نقص فعلي، عند ثبوته، في نموذج مراجعة المخططات (<span dir="ltr" lang="en">Drawing Review Comment Sheet</span>)، مع بيان رقم الرسم والإصدار والموقع والمرجع والملاحظة والإجراء المطلوب.</p>
+<p>أما البنود التي تحتاج إلى تفسير أو قرار تصميمي أو تنسيق بين التخصصات، فقد تستلزم طلب استفسار رسمي (<span dir="ltr" lang="en">Request for Information – RFI</span>) من الجهة المعنية، وفق التسلسل التعاقدي للمشروع.</p>
+<p>لا تُصدر ملاحظات مباشرة إلى المالك أو المقاول أو المصمم خارج قنوات الاعتماد والمراسلات المحددة في عقد المشروع.</p>
+</section>
+<section aria-labelledby="s1-28">
+<h2 id="s1-28"><a class="anchor" href="#s1-28" aria-hidden="true" tabindex="-1">#</a>1.28 نقاط تدقيق خاصة بالمصدر — <span dir="ltr" lang="en">Reference Verification Notes</span></h2>
+<p>أثناء مراجعة دليل <span dir="ltr" lang="en">Birthing Unit</span> ظهرت نقاط يجب الاحتفاظ بها في سجل التدقيق:</p>
+<p><strong><span dir="ltr" lang="en">RV-01</span> — تعارض الحمام مع حوض الاستحمام</strong></p>
+<p>متن الصفحة 7 يمنع <span dir="ltr" lang="en">Bath</span> في الحمام الملحق، بينما جداول <span dir="ltr" lang="en">SOA</span> تتضمن نماذج <span dir="ltr" lang="en">Bathroom</span> تحتوي عليه. يتطلب البند تفسيراً تنظيمياً قبل الاعتماد.</p>
+<p><strong><span dir="ltr" lang="en">RV-02</span> — اختلاف مجموع المساحة في نموذج الأربع غرف</strong></p>
+<p>جدول الصفحة 21 يعطي صافي 491.5 م² وإجمالي 633.5 م² رغم ذكر 35% للدوران الداخلي. يجب التحقق حسابياً من الإجمالي.</p>
+<p><strong><span dir="ltr" lang="en">RV-03</span> — نطاق تطبيق الضغط الموجب</strong></p>
+<p>لا يجوز تطبيق ضغط موجب على غرف العزل ذات الضغط السلبي. يجب الرجوع إلى خطة مناطق الضغط ونظام التكييف المعتمد.</p>
+<p><strong><span dir="ltr" lang="en">RV-04</span> — اعتماد إصدار الدليل</strong></p>
+<p>يستخدم هذا الفصل <span dir="ltr" lang="en">FPU 30</span> إصدار 2019 المرفوع للدراسة. يجب التحقق من كونه الإصدار النافذ والمقبول لدى الجهات المختصة للمشروع عند اعتماد التصميم أو التغييرات.</p>
+<p><strong><span dir="ltr" lang="en">RV-05</span> — المرجع الكامل للأبواب</strong></p>
+<p>لا يتضمن <span dir="ltr" lang="en">FPU 30</span> جدول جميع الأبواب بالمقاسات والتصنيفات. يجب استكمال المراجعة من <span dir="ltr" lang="en">Part C</span> و<span dir="ltr" lang="en">Standard Components</span> و<span dir="ltr" lang="en">Door Schedule</span> وكود الحريق.</p>
+</section>
+<section aria-labelledby="s1-29">
+<h2 id="s1-29"><a class="anchor" href="#s1-29" aria-hidden="true" tabindex="-1">#</a>1.29 خلاصة الفصل الأول — <span dir="ltr" lang="en">Technical Conclusion</span></h2>
+<p>يُظهر تحليل قسم الولادة أن المراجعة المعمارية أثناء التنفيذ يجب أن تتجاوز حدود المساحة الاسمية للغرفة.</p>
+<p>فغرفة ولادة بمساحة 30 م² قد تستوفي متطلب المساحة المرجعي، لكنها لا تُعد مكتملة التحقق قبل مراجعة توزيع المعدات، والأبواب، والعلاقات الوظيفية، والغازات الطبية، والإنارة، والتهوية، ومكافحة العدوى، ومتطلبات الوصول والصيانة.</p>
+<p>ويُعد الاتصال السريع بغرف العمليات، والتجهيز للحالات الطارئة، وتوفير غرف العزل، والتحكم بالدخول، وحماية حديثي الولادة، وتنسيق الخدمات الطبية والهندسية من أهم عناصر أداء القسم.</p>
+<p>وبذلك يشكل هذا الفصل قاعدة مرجعية أولية لمراجعة الرسومات المعمارية والتنفيذية الخاصة بقسم الولادة في منشأة من هذا النوع، مع بقاء الحكم النهائي على المطابقة مرتبطاً بوثائق التصميم المعتمدة والاشتراطات التنظيمية السارية.</p>
+</section>
+<section aria-labelledby="references">
+<h2 id="references"><a class="anchor" href="#references" aria-hidden="true" tabindex="-1">#</a>المراجع — <span dir="ltr" lang="en">References</span></h2>
+<ol><li dir="ltr"><span dir="ltr" lang="en">Abu Dhabi Department of Health</span> (<span dir="ltr" lang="en">DoH</span>), <span dir="ltr" lang="en">Health Facility Guidelines 2019, Part B, FPU 30 – Birthing Unit, pp. 2–23</span>.</li><li dir="ltr"><span dir="ltr" lang="en">DoH HFG 2019, Part B, FPU 250 – Maternity Unit</span>.</li><li dir="ltr"><span dir="ltr" lang="en">DoH HFG 2019, Part B, FPU 350 – Operating Unit</span>.</li><li dir="ltr"><span dir="ltr" lang="en">DoH HFG 2022, Part B, FPU 205 – Neonatal Intensive Care Unit</span>.</li><li dir="ltr"><span dir="ltr" lang="en">DoH HFG, Part A – Service Planning and Role Delineation Framework, including Appendices 4 and 6</span>.</li><li dir="ltr"><span dir="ltr" lang="en">DoH HFG, Part C – Access, Mobility &amp; Occupational Health and Safety</span>.</li><li dir="ltr"><span dir="ltr" lang="en">DoH HFG, Part D – Infection Prevention and Control</span>.</li><li dir="ltr"><span dir="ltr" lang="en">DoH HFG, Part E – Engineering Services</span>.</li><li dir="ltr"><span dir="ltr" lang="en">DoH HFG, Part G – Acoustics</span>.</li><li dir="ltr"><span dir="ltr" lang="en">Applicable UAE Fire and Life Safety requirements and project-approved authority documents</span>.</li></ol>
+<p dir="ltr"><strong><span dir="ltr" lang="en">Document Control</span></strong></p>
+<p dir="ltr"><span dir="ltr" lang="en">Case Study: CS-01 — Maternity &amp; Children's Hospital, Abu Dhabi</span> (<span dir="ltr" lang="en">DoH</span>)</p>
+<p dir="ltr"><span dir="ltr" lang="en">Document: Chapter 01 – Birthing Unit Architectural &amp; Technical Review</span></p>
+<p dir="ltr"><span dir="ltr" lang="en">Revision: 01</span></p>
+<p dir="ltr"><span dir="ltr" lang="en">Status: Published — Rev. 01</span></p>
+<p dir="ltr"><span dir="ltr" lang="en">Purpose: Independent educational case study</span></p>
+<p dir="ltr"><span dir="ltr" lang="en">Compliance Status: Pending Approved Drawing Review</span></p>
+</section>
+    <div class="pager">
+      <a href="index.html"><small>دراسة الحالة</small><span dir="ltr" lang="en">CS-01 — Maternity &amp; Children&#39;s Hospital, Abu Dhabi</span></a>
+      <div class="soon"><small>الفصل الثاني — قيد الإعداد</small><span dir="ltr" lang="en">Chapter 02 — In preparation</span></div>
+    </div>
+  </article>
+</div>
+
+<a class="to-top" href="#top" aria-label="العودة إلى الأعلى">↑</a>
+
+<div class="bottom" dir="ltr" lang="en">
+  <div class="ft">M. Amine Berchache — Senior Architect / BIM Coordinator</div>
+  <div class="ft">Case Study CS-01 &nbsp;·&nbsp; Chapter 01 — Rev. 01</div>
+</div>
+
+<script>
+// Theme toggle (remembered per browser)
+document.querySelector('.theme-toggle').addEventListener('click', function () {
+  var root = document.documentElement
+  var cur = root.dataset.theme || (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark')
+  var next = cur === 'light' ? 'dark' : 'light'
+  root.dataset.theme = next
+  try { localStorage.setItem('ha-theme', next) } catch (e) {}
+})
+
+// TOC: collapsed by default on small screens, closes after a jump
+var toc = document.querySelector('.toc')
+var small = matchMedia('(max-width: 980px)')
+toc.open = !small.matches
+small.addEventListener('change', function () { toc.open = !small.matches })
+toc.querySelector('summary').addEventListener('click', function (e) { if (!small.matches) e.preventDefault() })
+toc.addEventListener('click', function (e) { if (e.target.closest('a') && small.matches) toc.open = false })
+
+// Scrollspy: highlight the section currently under the nav
+var links = Array.prototype.slice.call(toc.querySelectorAll('a[href^="#"]'))
+var targets = links.map(function (a) { return document.getElementById(a.getAttribute('href').slice(1)) })
+var toTop = document.querySelector('.to-top')
+function spy () {
+  var idx = -1
+  for (var i = 0; i < targets.length; i++) if (targets[i] && targets[i].getBoundingClientRect().top < 140) idx = i
+  links.forEach(function (a, i) { a.classList.toggle('active', i === idx) })
+  toc.querySelectorAll('li.open').forEach(function (li) { li.classList.remove('open') })
+  if (idx >= 0) {
+    var li = links[idx].closest('ol').closest('li') || links[idx].parentNode
+    li.classList.add('open')
+    if (!small.matches) links[idx].scrollIntoView({ block: 'nearest' })
+  }
+  toTop.classList.toggle('show', scrollY > 800)
+}
+var ticking = false
+addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(function () { spy(); ticking = false }) } }, { passive: true })
+spy()
+</script>
+</body>
+</html>

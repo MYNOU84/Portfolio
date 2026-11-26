@@ -1,0 +1,10 @@
+/* Session 2 — case-study components (appended; existing rules unchanged) */
+.grid.cs-grid{grid-template-columns:repeat(3,1fr)}
+.session-title{font-family:'Playfair Display',serif;font-size:clamp(24px,3vw,34px);font-weight:300;color:var(--text);line-height:1.2;margin-bottom:8px}
+.session-title span{color:var(--gold2)}
+.session-desc{font-size:12px;color:var(--text2);max-width:680px;line-height:1.8;margin-bottom:28px}
+.session-break{border-top:1px solid var(--gold-line)}
+.more-link{display:inline-flex;align-items:center;gap:8px;margin-top:20px;font-size:9px;text-transform:uppercase;letter-spacing:0.18em;color:var(--gold);text-decoration:none}
+.more-link::after{content:'→';font-size:12px;transition:transform .2s}
+.more-link:hover::after{transform:translateX(4px)}
+@media(max-width:900px){.grid.cs-grid{grid-template-columns:1fr}}

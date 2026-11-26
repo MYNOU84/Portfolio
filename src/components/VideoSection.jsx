@@ -169,7 +169,7 @@ function VideoModal({ onClose, isAdmin }) {
         animate={{ opacity: 1, scale: 1, y: 0 }}
         exit={{ opacity: 0, scale: 0.95, y: 16 }}
         transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
-        className="relative w-full max-w-4xl bg-dark-grey border border-gold/25 shadow-[0_0_100px_rgba(201,152,44,0.10)] max-h-[90vh] flex flex-col"
+        className="relative w-full max-w-4xl bg-dark-grey border border-gold/25 shadow-[0_24px_80px_rgba(0,0,0,0.75)] max-h-[90vh] flex flex-col"
         onClick={e => e.stopPropagation()}
       >
         {/* Close */}

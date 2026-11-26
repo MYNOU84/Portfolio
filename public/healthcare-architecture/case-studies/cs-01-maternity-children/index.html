@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CS-01 — Maternity &amp; Children's Hospital, Abu Dhabi | Healthcare Architecture</title>
+<meta name="description" content="Case Study CS-01 — Maternity &amp; Children's Hospital, Abu Dhabi (DoH). Independent analytical study for educational purposes.">
+<script>try{var t=localStorage.getItem('ha-theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../series.css">
+<style>
+[lang="ar"]{font-family:'IBM Plex Sans Arabic','Segoe UI',Tahoma,sans-serif}
+.hero-ar{font-family:'Amiri','IBM Plex Sans Arabic',serif;font-size:clamp(22px,2.6vw,30px);color:var(--text2);line-height:1.5;margin:6px 0 18px;text-align:left}
+
+.wrap{max-width:1200px;margin:0 auto;padding:72px 80px}
+.sec-label{font-size:9px;text-transform:uppercase;letter-spacing:0.35em;color:var(--gold3);margin-bottom:22px;display:flex;align-items:center;gap:14px}
+.sec-label::after{content:'';flex:1;height:1px;background:var(--line2)}
+
+/* Chapter cards — ftb-rds card pattern, with a typographic panel instead of an image */
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line2)}
+.card{background:var(--bg2);text-decoration:none;display:flex;flex-direction:column;transition:background .25s;position:relative}
+a.card:hover{background:var(--bg3)}
+.card-ph{height:170px;background:var(--bg3);display:flex;align-items:flex-end;justify-content:space-between;padding:22px 24px;overflow:hidden}
+.card-ph .big{font-family:'Playfair Display',serif;font-size:96px;font-weight:300;line-height:.8;color:var(--gold-line)}
+a.card:hover .card-ph .big{color:var(--gold3)}
+.card-ph .ar{font-family:'Amiri',serif;font-size:22px;color:var(--text3)}
+.card-body{padding:22px 24px;flex:1;border-top:1px solid var(--gold-line);display:flex;flex-direction:column}
+.card-num{font-size:9px;text-transform:uppercase;letter-spacing:0.25em;color:var(--gold3);margin-bottom:8px}
+.card-title{font-family:'Playfair Display',serif;font-size:20px;font-weight:400;color:var(--text);margin-bottom:6px;line-height:1.25}
+.card-title-ar{font-family:'Amiri',serif;font-size:20px;color:var(--text2);margin-bottom:12px;line-height:1.5;text-align:left}
+.card-desc{font-size:11px;color:var(--text2);line-height:1.7;margin-bottom:16px}
+.card-tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px}
+.card-tag{font-size:8px;text-transform:uppercase;letter-spacing:0.1em;color:var(--gold3);border:1px solid var(--gold-line);padding:3px 8px;background:var(--gold-dim)}
+.card-cta{display:flex;align-items:center;gap:8px;font-size:9px;text-transform:uppercase;letter-spacing:0.18em;color:var(--gold);margin-top:auto}
+.card-cta::after{content:'→';font-size:12px;transition:transform .2s}
+a.card:hover .card-cta::after{transform:translateX(4px)}
+.card.soon{cursor:default}
+.card.soon>*{opacity:.45}
+.card.soon .card-cta{color:var(--text4)}
+.card.soon .card-cta::after{content:''}
+.soon-badge{position:absolute;top:12px;right:12px;font-size:8px;text-transform:uppercase;letter-spacing:0.12em;padding:4px 10px;background:var(--bg);border:1px solid var(--text4);color:var(--text3)}
+
+/* Episode list */
+.episodes{list-style:none;border-top:1px solid var(--line2)}
+.ep{display:grid;grid-template-columns:56px 56px 1fr 24px;align-items:center;gap:16px;padding:16px 8px;border-bottom:1px solid var(--line);text-decoration:none;color:var(--text);transition:background .2s}
+.ep:hover{background:var(--gold-dim)}
+.ep-n{font-size:9px;letter-spacing:0.2em;color:var(--gold3);text-transform:uppercase}
+.ep-sec{font-family:'Playfair Display',serif;font-size:18px;color:var(--gold2)}
+.ep-title{font-size:15px;line-height:1.6;color:var(--text);text-align:right}
+.ep-cta{color:var(--text4);transition:transform .2s,color .2s}
+.ep:hover .ep-cta{color:var(--gold);transform:translateX(4px)}
+.ep-note{font-size:11px;color:var(--text3);margin-top:16px}
+
+/* Cover image — full sheet, never cropped */
+.cover{max-width:1200px;margin:56px auto 0;padding:0 80px}
+.cover img,.storyboard img{display:block;width:100%;height:auto;border:1px solid var(--gold-line)}
+.storyboard{max-width:1200px;margin:1px auto 0;padding:0 80px;display:grid;gap:1px}
+.cover img,.storyboard img{cursor:zoom-in}
+
+/* Full-image viewer — opens on double-click */
+.lightbox{position:fixed;inset:0;z-index:200;background:rgba(5,5,5,.96);display:none;align-items:center;justify-content:center;padding:24px;cursor:zoom-out}
+.lightbox.open{display:flex}
+.lightbox img{max-width:100%;max-height:100%;object-fit:contain;border:1px solid var(--gold-line)}
+.lightbox-close{position:absolute;top:16px;right:20px;width:36px;height:36px;border:1px solid var(--gold-line);background:none;color:#F5F1E8;font-size:18px;cursor:pointer}
+
+@media(max-width:900px){.wrap{padding:56px 24px}.cover,.storyboard{padding:0 24px}.cover{margin-top:40px}}
+@media(max-width:600px){
+  .grid{grid-template-columns:1fr}
+  .ep{grid-template-columns:40px 1fr 18px;gap:10px}
+  .ep-sec{display:none}
+  .card-ph{height:130px}.card-ph .big{font-size:72px}
+}
+/* Session 2 — case-study components (appended; existing rules unchanged) */
+.grid.cs-grid{grid-template-columns:repeat(3,1fr)}
+.session-title{font-family:'Playfair Display',serif;font-size:clamp(24px,3vw,34px);font-weight:300;color:var(--text);line-height:1.2;margin-bottom:8px}
+.session-title span{color:var(--gold2)}
+.session-desc{font-size:12px;color:var(--text2);max-width:680px;line-height:1.8;margin-bottom:28px}
+.session-break{border-top:1px solid var(--gold-line)}
+.more-link{display:inline-flex;align-items:center;gap:8px;margin-top:20px;font-size:9px;text-transform:uppercase;letter-spacing:0.18em;color:var(--gold);text-decoration:none}
+.more-link::after{content:'→';font-size:12px;transition:transform .2s}
+.more-link:hover::after{transform:translateX(4px)}
+@media(max-width:900px){.grid.cs-grid{grid-template-columns:1fr}}
+/* CS-01 page */
+.disclaimer{margin-top:28px;max-width:860px;border:1px solid var(--gold-line);border-left:2px solid var(--gold);background:var(--bg2);padding:16px 20px;display:grid;gap:8px}
+.disclaimer .lbl{font-size:9px;text-transform:uppercase;letter-spacing:0.25em;color:var(--gold3)}
+.disclaimer p{font-size:12px;color:var(--text2);line-height:1.8}
+.disclaimer p[lang="ar"]{font-size:15px;text-align:right}
+.cs-eps .ep{grid-template-columns:84px 56px 1fr 24px}
+.figs{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line2)}
+.fig-ph{background:var(--bg2);margin:0}
+.fig-ph .frame{aspect-ratio:16/9;margin:14px;border:1px dashed var(--text4);display:flex;align-items:center;justify-content:center;font-size:9px;text-transform:uppercase;letter-spacing:0.25em;color:var(--text4)}
+.fig-ph figcaption{padding:0 14px 14px;font-size:11px;color:var(--text3);line-height:1.6}
+.fig-ph figcaption b{font-weight:500;color:var(--gold3);margin-right:6px}
+@media(max-width:900px){.figs{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.cs-eps .ep{grid-template-columns:64px 1fr 18px}.figs{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<nav class="top">
+  <a class="nav-logo" href="/">
+    <div class="nav-box">AB</div>
+    <div class="nav-txt">
+      <p>Berchache</p>
+      <p>Senior Architect</p>
+    </div>
+  </a>
+  <div class="nav-actions">
+    <button class="theme-toggle" type="button" aria-label="Toggle light / dark theme">◐</button>
+    <a class="nav-back" href="../index.html">← Case Studies</a>
+    <a class="nav-back" href="/">Portfolio</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-in">
+    <div class="breadcrumb">Healthcare Architecture &nbsp;/&nbsp; Session 2 &nbsp;/&nbsp; Case Study CS-01</div>
+    <h1>CS-01 —<br><span>Maternity &amp; Children's Hospital, Abu Dhabi</span></h1>
+    <div class="hero-sub">Jurisdiction: DoH Abu Dhabi &nbsp;·&nbsp; Chapters: 01 live &nbsp;·&nbsp; Status: Rev. 01</div>
+    <div class="rule"></div>
+    <div class="disclaimer" role="note">
+      <div class="lbl">Disclaimer</div>
+      <p lang="ar" dir="rtl">دراسة تحليلية مستقلة لأغراض تعليمية، غير مرتبطة بأي جهة مالكة أو استشارية، ولا تمثل التصميم المقدَّم في أي مسابقة.</p>
+      <p>Independent analytical study for educational purposes. Not affiliated with any owner or consultant, and does not represent any competition submission.</p>
+    </div>
+    <div class="stats">
+      <div><div class="stat-n">DoH</div><div class="stat-l">Jurisdiction · Abu Dhabi</div></div>
+      <div><div class="stat-n">01</div><div class="stat-l">Chapter live</div></div>
+      <div><div class="stat-n">29</div><div class="stat-l">Sections</div></div>
+      <div><div class="stat-n">Rev. 01</div><div class="stat-l">Status</div></div>
+    </div>
+  </div>
+</div>
+
+<main>
+<div class="wrap">
+  <div class="sec-label">Chapters</div>
+  <div class="grid">
+    <a class="card" href="chapter-01.html">
+      <div class="card-ph"><span class="big">01</span><span class="ar" lang="ar" dir="rtl">الفصل الأول</span></div>
+      <div class="card-body">
+        <div class="card-num">Chapter 01 &nbsp;·&nbsp; Rev. 01</div>
+        <div class="card-title">Birthing Unit</div>
+        <div class="card-tags"><span class="card-tag">DoH HFG</span><span class="card-tag">FPU 30</span></div>
+        <div class="card-cta">Read chapter</div>
+      </div>
+    </a>
+    <div class="card soon" aria-disabled="true">
+      <span class="soon-badge">In preparation</span>
+      <div class="card-ph"><span class="big">02</span><span class="ar" lang="ar" dir="rtl">الفصل الثاني</span></div>
+      <div class="card-body">
+        <div class="card-num">Chapter 02</div>
+        <div class="card-title">In preparation</div>
+        <div class="card-cta">In preparation</div>
+      </div>
+    </div>
+  </div>
+  <a class="more-link" href="../../chapter-01.html">Methodology — Session 1, Chapter 01</a>
+</div>
+
+<div class="wrap" style="padding-top:0">
+  <div class="sec-label">Episodes — Chapter 01</div>
+  <ol class="episodes cs-eps">
+<li><a class="ep" href="chapter-01.html#s1-1">
+      <span class="ep-n">CS01-E01</span>
+      <span class="ep-sec">1.1</span>
+      <span class="ep-title" lang="ar" dir="rtl">مقدمة وتعريف قسم الولادة</span>
+      <span class="ep-cta" aria-hidden="true">→</span>
+    </a></li>
+<li><a class="ep" href="chapter-01.html#s1-2">
+      <span class="ep-n">CS01-E02</span>
+      <span class="ep-sec">1.2</span>
+      <span class="ep-title" lang="ar" dir="rtl">الهدف الطبي والوظيفي للقسم</span>
+      <span class="ep-cta" aria-hidden="true">→</span>
+    </a></li>
+<li><a class="ep" href="chapter-01.html#s1-3">
+      <span class="ep-n">CS01-E03</span>
+      <span class="ep-sec">1.3</span>
+      <span class="ep-title" lang="ar" dir="rtl">نماذج الرعاية — <span dir="ltr" lang="en">Models of Care</span></span>
+      <span class="ep-cta" aria-hidden="true">→</span>
+    </a></li>
+<li><a class="ep" href="chapter-01.html#s1-4">
+      <span class="ep-n">CS01-E04</span>
+      <span class="ep-sec">1.4</span>
+      <span class="ep-title" lang="ar" dir="rtl">التخطيط الوظيفي للقسم — <span dir="ltr" lang="en">Functional Planning</span></span>
+      <span class="ep-cta" aria-hidden="true">→</span>
+    </a></li>
+<li><a class="ep" href="chapter-01.html#s1-5">
+      <span class="ep-n">CS01-E05</span>
+      <span class="ep-sec">1.5</span>
+      <span class="ep-title" lang="ar" dir="rtl">العلاقات الوظيفية — <span dir="ltr" lang="en">Functional Relationships</span></span>
+      <span class="ep-cta" aria-hidden="true">→</span>
+    </a></li>
+<li><a class="ep" href="chapter-01.html#s1-6">
+      <span class="ep-n">CS01-E06</span>
+      <span class="ep-sec">1.6</span>
+      <span class="ep-title" lang="ar" dir="rtl">حساب القدرة الاستيعابية — <span dir="ltr" lang="en">Birthing Room Capacity</span></span>
+      <span class="ep-cta" aria-hidden="true">→</span>
+    </a></li>
+<li><a class="ep" href="chapter-01.html#s1-7">
+      <span class="ep-n">CS01-E07</span>
+      <span class="ep-sec">1.7</span>
+      <span class="ep-title" lang="ar" dir="rtl">جدول المساحات الوظيفية — <span dir="ltr" lang="en">Schedule of Accommodation</span> (<span dir="ltr" lang="en">SOA</span>)</span>
+      <span class="ep-cta" aria-hidden="true">→</span>
+    </a></li>
+<li><a class="ep" href="chapter-01.html#s1-8">
+      <span class="ep-n">CS01-E08</span>
+      <span class="ep-sec">1.8</span>
+      <span class="ep-title" lang="ar" dir="rtl">المتطلبات المعمارية لغرف الولادة — <span dir="ltr" lang="en">Birthing Room Requirements</span></span>
+      <span class="ep-cta" aria-hidden="true">→</span>
+    </a></li>
+<li><a class="ep" href="chapter-01.html#s1-9">
+      <span class="ep-n">CS01-E09</span>
+      <span class="ep-sec">1.9</span>
+      <span class="ep-title" lang="ar" dir="rtl">الأبواب — <span dir="ltr" lang="en">Architectural Door Requirements</span></span>
+      <span class="ep-cta" aria-hidden="true">→</span>
+    </a></li>
+<li><a class="ep" href="chapter-01.html#s1-10">
+      <span class="ep-n">CS01-E10</span>
+      <span class="ep-sec">1.10</span>
+      <span class="ep-title" lang="ar" dir="rtl">الأرضيات — <span dir="ltr" lang="en">Flooring Requirements</span></span>
+      <span class="ep-cta" aria-hidden="true">→</span>
+    </a></li>
+<li><a class="ep" href="chapter-01.html#s1-11">
+      <span class="ep-n">CS01-E11</span>
+      <span class="ep-sec">1.11</span>
+      <span class="ep-title" lang="ar" dir="rtl">الجدران والتشطيبات الرأسية — <span dir="ltr" lang="en">Wall Finishes</span></span>
+      <span class="ep-cta" aria-hidden="true">→</span>
+    </a></li>
+<li><a class="ep" href="chapter-01.html#s1-12">
+      <span class="ep-n">CS01-E12</span>
+      <span class="ep-sec">1.12</span>
+      <span class="ep-title" lang="ar" dir="rtl">الأسقف — <span dir="ltr" lang="en">Ceiling Requirements</span></span>
+      <span class="ep-cta" aria-hidden="true">→</span>
+    </a></li>
+<li><a class="ep" href="chapter-01.html#s1-13">
+      <span class="ep-n">CS01-E13</span>
+      <span class="ep-sec">1.13</span>
+      <span class="ep-title" lang="ar" dir="rtl">النوافذ والخصوصية والإضاءة الطبيعية</span>
+      <span class="ep-cta" aria-hidden="true">→</span>
+    </a></li>
+<li><a class="ep" href="chapter-01.html#s1-14">
+      <span class="ep-n">CS01-E14</span>
+      <span class="ep-sec">1.14</span>
+      <span class="ep-title" lang="ar" dir="rtl">الإنارة — <span dir="ltr" lang="en">Lighting Requirements</span></span>
+      <span class="ep-cta" aria-hidden="true">→</span>
+    </a></li>
+<li><a class="ep" href="chapter-01.html#s1-15">
+      <span class="ep-n">CS01-E15</span>
+      <span class="ep-sec">1.15</span>
+      <span class="ep-title" lang="ar" dir="rtl">المتطلبات الصوتية — <span dir="ltr" lang="en">Acoustic Requirements</span></span>
+      <span class="ep-cta" aria-hidden="true">→</span>
+    </a></li>
+<li><a class="ep" href="chapter-01.html#s1-16">
+      <span class="ep-n">CS01-E16</span>
+      <span class="ep-sec">1.16</span>
+      <span class="ep-title" lang="ar" dir="rtl">التهوية والتكييف — <span dir="ltr" lang="en">HVAC Requirements</span></span>
+      <span class="ep-cta" aria-hidden="true">→</span>
+    </a></li>
+<li><a class="ep" href="chapter-01.html#s1-17">
+      <span class="ep-n">CS01-E17</span>
+      <span class="ep-sec">1.17</span>
+      <span class="ep-title" lang="ar" dir="rtl">الغازات الطبية — <span dir="ltr" lang="en">Medical Gases</span></span>
+      <span class="ep-cta" aria-hidden="true">→</span>
+    </a></li>
+<li><a class="ep" href="chapter-01.html#s1-18">
+      <span class="ep-n">CS01-E18</span>
+      <span class="ep-sec">1.18</span>
+      <span class="ep-title" lang="ar" dir="rtl">السباكة والمياه — <span dir="ltr" lang="en">Plumbing &amp; Hydraulics</span></span>
+      <span class="ep-cta" aria-hidden="true">→</span>
+    </a></li>
+<li><a class="ep" href="chapter-01.html#s1-19">
+      <span class="ep-n">CS01-E19</span>
+      <span class="ep-sec">1.19</span>
+      <span class="ep-title" lang="ar" dir="rtl">مكافحة العدوى — <span dir="ltr" lang="en">Infection Prevention &amp; Control</span> (<span dir="ltr" lang="en">IPC</span>)</span>
+      <span class="ep-cta" aria-hidden="true">→</span>
+    </a></li>
+<li><a class="ep" href="chapter-01.html#s1-20">
+      <span class="ep-n">CS01-E20</span>
+      <span class="ep-sec">1.20</span>
+      <span class="ep-title" lang="ar" dir="rtl">الأمن والتحكم بالدخول — <span dir="ltr" lang="en">Safety &amp; Security</span></span>
+      <span class="ep-cta" aria-hidden="true">→</span>
+    </a></li>
+<li><a class="ep" href="chapter-01.html#s1-21">
+      <span class="ep-n">CS01-E21</span>
+      <span class="ep-sec">1.21</span>
+      <span class="ep-title" lang="ar" dir="rtl">أنظمة استدعاء التمريض والطوارئ — <span dir="ltr" lang="en">Nurse Call &amp; Emergency Call</span></span>
+      <span class="ep-cta" aria-hidden="true">→</span>
+    </a></li>
+<li><a class="ep" href="chapter-01.html#s1-22">
+      <span class="ep-n">CS01-E22</span>
+      <span class="ep-sec">1.22</span>
+      <span class="ep-title" lang="ar" dir="rtl">التجهيزات الطبية والتثبيت — <span dir="ltr" lang="en">Medical Equipment &amp; FF&amp;E</span></span>
+      <span class="ep-cta" aria-hidden="true">→</span>
+    </a></li>
+<li><a class="ep" href="chapter-01.html#s1-23">
+      <span class="ep-n">CS01-E23</span>
+      <span class="ep-sec">1.23</span>
+      <span class="ep-title" lang="ar" dir="rtl">غرف العمليات القيصرية — <span dir="ltr" lang="en">Emergency Caesarean Operating Area</span></span>
+      <span class="ep-cta" aria-hidden="true">→</span>
+    </a></li>
+<li><a class="ep" href="chapter-01.html#s1-24">
+      <span class="ep-n">CS01-E24</span>
+      <span class="ep-sec">1.24</span>
+      <span class="ep-title" lang="ar" dir="rtl">الحريق والسلامة — <span dir="ltr" lang="en">Fire &amp; Life Safety</span></span>
+      <span class="ep-cta" aria-hidden="true">→</span>
+    </a></li>
+<li><a class="ep" href="chapter-01.html#s1-25">
+      <span class="ep-n">CS01-E25</span>
+      <span class="ep-sec">1.25</span>
+      <span class="ep-title" lang="ar" dir="rtl">التنسيق المعماري والهندسي — <span dir="ltr" lang="en">Architectural &amp; MEP Coordination</span></span>
+      <span class="ep-cta" aria-hidden="true">→</span>
+    </a></li>
+<li><a class="ep" href="chapter-01.html#s1-26">
+      <span class="ep-n">CS01-E26</span>
+      <span class="ep-sec">1.26</span>
+      <span class="ep-title" lang="ar" dir="rtl">مصفوفة مراجعة المتطلبات — <span dir="ltr" lang="en">Requirements Compliance Matrix, Rev. 01</span></span>
+      <span class="ep-cta" aria-hidden="true">→</span>
+    </a></li>
+<li><a class="ep" href="chapter-01.html#s1-27">
+      <span class="ep-n">CS01-E27</span>
+      <span class="ep-sec">1.27</span>
+      <span class="ep-title" lang="ar" dir="rtl">آلية مراجعة مخططات التنفيذ — <span dir="ltr" lang="en">Construction Drawing Review</span></span>
+      <span class="ep-cta" aria-hidden="true">→</span>
+    </a></li>
+<li><a class="ep" href="chapter-01.html#s1-28">
+      <span class="ep-n">CS01-E28</span>
+      <span class="ep-sec">1.28</span>
+      <span class="ep-title" lang="ar" dir="rtl">نقاط تدقيق خاصة بالمصدر — <span dir="ltr" lang="en">Reference Verification Notes</span></span>
+      <span class="ep-cta" aria-hidden="true">→</span>
+    </a></li>
+<li><a class="ep" href="chapter-01.html#s1-29">
+      <span class="ep-n">CS01-E29</span>
+      <span class="ep-sec">1.29</span>
+      <span class="ep-title" lang="ar" dir="rtl">خلاصة الفصل الأول — <span dir="ltr" lang="en">Technical Conclusion</span></span>
+      <span class="ep-cta" aria-hidden="true">→</span>
+    </a></li>
+  </ol>
+  <p class="ep-note">Each episode opens the matching section of Chapter 01.</p>
+</div>
+
+<div class="wrap" style="padding-top:0">
+  <div class="sec-label">Figures — Chapter 01</div>
+  <div class="figs">
+    <figure class="fig-ph" id="fig-s1-1">
+      <div class="frame">Image placeholder</div>
+      <figcaption><b>CS01-E01</b>Section 1.1 — placeholder, no image yet</figcaption>
+    </figure>
+    <figure class="fig-ph" id="fig-s1-2">
+      <div class="frame">Image placeholder</div>
+      <figcaption><b>CS01-E02</b>Section 1.2 — placeholder, no image yet</figcaption>
+    </figure>
+    <figure class="fig-ph" id="fig-s1-3">
+      <div class="frame">Image placeholder</div>
+      <figcaption><b>CS01-E03</b>Section 1.3 — placeholder, no image yet</figcaption>
+    </figure>
+    <figure class="fig-ph" id="fig-s1-4">
+      <div class="frame">Image placeholder</div>
+      <figcaption><b>CS01-E04</b>Section 1.4 — placeholder, no image yet</figcaption>
+    </figure>
+    <figure class="fig-ph" id="fig-s1-5">
+      <div class="frame">Image placeholder</div>
+      <figcaption><b>CS01-E05</b>Section 1.5 — placeholder, no image yet</figcaption>
+    </figure>
+    <figure class="fig-ph" id="fig-s1-6">
+      <div class="frame">Image placeholder</div>
+      <figcaption><b>CS01-E06</b>Section 1.6 — placeholder, no image yet</figcaption>
+    </figure>
+    <figure class="fig-ph" id="fig-s1-7">
+      <div class="frame">Image placeholder</div>
+      <figcaption><b>CS01-E07</b>Section 1.7 — placeholder, no image yet</figcaption>
+    </figure>
+    <figure class="fig-ph" id="fig-s1-8">
+      <div class="frame">Image placeholder</div>
+      <figcaption><b>CS01-E08</b>Section 1.8 — placeholder, no image yet</figcaption>
+    </figure>
+    <figure class="fig-ph" id="fig-s1-9">
+      <div class="frame">Image placeholder</div>
+      <figcaption><b>CS01-E09</b>Section 1.9 — placeholder, no image yet</figcaption>
+    </figure>
+    <figure class="fig-ph" id="fig-s1-10">
+      <div class="frame">Image placeholder</div>
+      <figcaption><b>CS01-E10</b>Section 1.10 — placeholder, no image yet</figcaption>
+    </figure>
+    <figure class="fig-ph" id="fig-s1-11">
+      <div class="frame">Image placeholder</div>
+      <figcaption><b>CS01-E11</b>Section 1.11 — placeholder, no image yet</figcaption>
+    </figure>
+    <figure class="fig-ph" id="fig-s1-12">
+      <div class="frame">Image placeholder</div>
+      <figcaption><b>CS01-E12</b>Section 1.12 — placeholder, no image yet</figcaption>
+    </figure>
+    <figure class="fig-ph" id="fig-s1-13">
+      <div class="frame">Image placeholder</div>
+      <figcaption><b>CS01-E13</b>Section 1.13 — placeholder, no image yet</figcaption>
+    </figure>
+    <figure class="fig-ph" id="fig-s1-14">
+      <div class="frame">Image placeholder</div>
+      <figcaption><b>CS01-E14</b>Section 1.14 — placeholder, no image yet</figcaption>
+    </figure>
+    <figure class="fig-ph" id="fig-s1-15">
+      <div class="frame">Image placeholder</div>
+      <figcaption><b>CS01-E15</b>Section 1.15 — placeholder, no image yet</figcaption>
+    </figure>
+    <figure class="fig-ph" id="fig-s1-16">
+      <div class="frame">Image placeholder</div>
+      <figcaption><b>CS01-E16</b>Section 1.16 — placeholder, no image yet</figcaption>
+    </figure>
+    <figure class="fig-ph" id="fig-s1-17">
+      <div class="frame">Image placeholder</div>
+      <figcaption><b>CS01-E17</b>Section 1.17 — placeholder, no image yet</figcaption>
+    </figure>
+    <figure class="fig-ph" id="fig-s1-18">
+      <div class="frame">Image placeholder</div>
+      <figcaption><b>CS01-E18</b>Section 1.18 — placeholder, no image yet</figcaption>
+    </figure>
+    <figure class="fig-ph" id="fig-s1-19">
+      <div class="frame">Image placeholder</div>
+      <figcaption><b>CS01-E19</b>Section 1.19 — placeholder, no image yet</figcaption>
+    </figure>
+    <figure class="fig-ph" id="fig-s1-20">
+      <div class="frame">Image placeholder</div>
+      <figcaption><b>CS01-E20</b>Section 1.20 — placeholder, no image yet</figcaption>
+    </figure>
+    <figure class="fig-ph" id="fig-s1-21">
+      <div class="frame">Image placeholder</div>
+      <figcaption><b>CS01-E21</b>Section 1.21 — placeholder, no image yet</figcaption>
+    </figure>
+    <figure class="fig-ph" id="fig-s1-22">
+      <div class="frame">Image placeholder</div>
+      <figcaption><b>CS01-E22</b>Section 1.22 — placeholder, no image yet</figcaption>
+    </figure>
+    <figure class="fig-ph" id="fig-s1-23">
+      <div class="frame">Image placeholder</div>
+      <figcaption><b>CS01-E23</b>Section 1.23 — placeholder, no image yet</figcaption>
+    </figure>
+    <figure class="fig-ph" id="fig-s1-24">
+      <div class="frame">Image placeholder</div>
+      <figcaption><b>CS01-E24</b>Section 1.24 — placeholder, no image yet</figcaption>
+    </figure>
+    <figure class="fig-ph" id="fig-s1-25">
+      <div class="frame">Image placeholder</div>
+      <figcaption><b>CS01-E25</b>Section 1.25 — placeholder, no image yet</figcaption>
+    </figure>
+    <figure class="fig-ph" id="fig-s1-26">
+      <div class="frame">Image placeholder</div>
+      <figcaption><b>CS01-E26</b>Section 1.26 — placeholder, no image yet</figcaption>
+    </figure>
+    <figure class="fig-ph" id="fig-s1-27">
+      <div class="frame">Image placeholder</div>
+      <figcaption><b>CS01-E27</b>Section 1.27 — placeholder, no image yet</figcaption>
+    </figure>
+    <figure class="fig-ph" id="fig-s1-28">
+      <div class="frame">Image placeholder</div>
+      <figcaption><b>CS01-E28</b>Section 1.28 — placeholder, no image yet</figcaption>
+    </figure>
+    <figure class="fig-ph" id="fig-s1-29">
+      <div class="frame">Image placeholder</div>
+      <figcaption><b>CS01-E29</b>Section 1.29 — placeholder, no image yet</figcaption>
+    </figure>
+  </div>
+  <p class="ep-note">Image slots are placeholders; figures will be added per episode.</p>
+</div>
+</main>
+
+<div class="bottom">
+  <div class="ft">M. Amine Berchache — Senior Architect / BIM Coordinator</div>
+  <div class="ft">Case Study CS-01 &nbsp;·&nbsp; Rev. 01</div>
+</div>
+
+<script>
+document.querySelector('.theme-toggle').addEventListener('click', function () {
+  var root = document.documentElement
+  var cur = root.dataset.theme || (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark')
+  var next = cur === 'light' ? 'dark' : 'light'
+  root.dataset.theme = next
+  try { localStorage.setItem('ha-theme', next) } catch (e) {}
+})
+</script>
+</body>
+</html>

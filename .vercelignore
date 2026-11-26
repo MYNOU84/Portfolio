@@ -1,0 +1,26 @@
+# Nothing in this list is uploaded to Vercel.
+# Vercel installs the packages and builds the site on its own servers, so it only
+# needs the source: src, public, index.html and the config files.
+
+node_modules
+dist
+
+# Local-only folders. These are why an upload was once several GB.
+_originals_full_size
+_not_published
+_backup_pre_homepage_20260914-160035
+_backup_audit_fixes_20260916
+_backup_mep_images_20260916
+_backup_mep_legend_20260916
+_backup_safa_film_20260918
+_rejected_homepage_20260915
+homepage-preview
+_probe_delete_test.txt
+
+# Notes and working documents, not part of the website
+docs
+*.md
+
+# Private source documents - never deploy
+private
+_private

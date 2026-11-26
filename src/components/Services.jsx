@@ -42,9 +42,10 @@ export default function Services() {
               transition={{ duration: 0.7, delay: 0.2 }}
               className="text-white-warm/60 leading-8 mb-10"
             >
-              Available for full-time, consulting, and BIM coordination roles worldwide.
-              Specialising in high-rise residential, healthcare, and mixed-use programs
-              with a track record across UAE and Algeria.
+              Architecture and BIM coordination for high-rise residential, healthcare and
+              mixed-use programmes — concept and detail design, ISO 19650 model coordination,
+              authority submission packages and construction-stage support, delivered across
+              the UAE and Algeria.
             </motion.p>
 
             <motion.div
@@ -59,7 +60,7 @@ export default function Services() {
               >
                 Get In Touch
               </button>
-              <a href="/cv/Berchache_Amine_CV_ATS_v5.pdf" download className="btn-outline text-center">
+              <a href="/cv/Berchache_Amine_CV_ATS_FINAL.pdf" download className="btn-outline text-center">
                 Download CV
               </a>
             </motion.div>

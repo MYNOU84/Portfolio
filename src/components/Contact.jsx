@@ -4,8 +4,9 @@ import { Mail, Phone, MapPin, ExternalLink, MessageCircle, Send } from 'lucide-r
 
 const CONTACT_INFO = [
   { icon: Mail,     label: 'Email',    value: 'berchache.mohamedamine@gmail.com', href: 'mailto:berchache.mohamedamine@gmail.com' },
-  { icon: Phone,    label: 'Phone',    value: '+971 55 314 6783',                 href: 'tel:+971553146783' },
-  { icon: MapPin,   label: 'Location', value: 'Dubai, UAE',                       href: null },
+  { icon: Phone,    label: 'Phone · UAE',     value: '+971 55 314 6783',                 href: 'tel:+971553146783' },
+  { icon: Phone,    label: 'Phone · Algeria', value: '+213 552 249 803',                 href: 'tel:+213552249803' },
+  { icon: MapPin,   label: 'Location', value: 'Algeria · Available for UAE',      href: null },
   { icon: ExternalLink, label: 'LinkedIn', value: 'linkedin.com/in/mohamed-al-amine-berchache', href: 'https://linkedin.com/in/mohamed-al-amine-berchache' },
 ]
 
@@ -65,8 +66,9 @@ export default function Contact() {
             transition={{ duration: 0.7, delay: 0.2 }}
           >
             <p className="text-white-warm/60 leading-8 mb-10">
-              Available for full-time, consulting, and BIM coordination roles worldwide.
-              Open to Senior Architect, Lead Architect, and BIM Manager positions across UAE and GCC.
+              Open to Senior Architect, Lead Architect and BIM Manager positions across the UAE
+              and the wider GCC, and to consulting engagements. Project enquiries and
+              collaborations are welcome.
             </p>
 
             <div className="space-y-6 mb-10">
@@ -137,10 +139,10 @@ export default function Contact() {
       <div className="mt-24 border-t border-white-warm/5 pt-10 max-w-7xl mx-auto px-6 lg:px-10">
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-grey-muted/50 text-xs tracking-wider">
-            © 2026 M. Amine Berchache — Senior Architect & BIM Coordinator
+            © 2026 M. Amine Berchache — Senior Technical Architect & BIM Coordinator
           </p>
           <p className="text-grey-muted/30 text-[10px] tracking-wider">
-            Dubai, UAE · ISO 19650 · Revit · Navisworks
+            Algeria · UAE · ISO 19650 · Revit · Navisworks
           </p>
         </div>
       </div>

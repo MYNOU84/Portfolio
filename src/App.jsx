@@ -4,6 +4,7 @@ import Navbar from './components/Navbar'
 import AdminPanel from './components/AdminPanel'
 import Hero from './components/Hero'
 import FeaturedCompetition from './components/FeaturedCompetition'
+import SoftwareProject from './components/SoftwareProject'
 import About from './components/About'
 import Experience from './components/Experience'
 import Portfolio from './components/Portfolio'
@@ -12,8 +13,11 @@ import Services from './components/Services'
 import CvDownload from './components/CvDownload'
 import Contact from './components/Contact'
 
-// SHA-256 hash of 'BIM2026!'
-const ADMIN_HASH = '98aadf56a9d1e6f710d87117d87de0baf0c395dd66a16f0a0706da2e13548447'
+/* SHA-256 of the admin passphrase. The passphrase itself is never stored here and
+   is not recoverable from this value. To change it, run `npm run admin:passphrase`
+   (hidden prompt; writes only the new digest here). This gate only hides the editing UI on this device --
+   it is not a server-side security boundary. */
+const ADMIN_HASH = 'acd61f3c5c96fcb430f6476b9b1291ba091024830c49b71b9fa851d7c3c76621'
 
 async function sha256(str) {
   const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str))
@@ -125,6 +129,7 @@ export default function App() {
           <About />
           <Experience />
           <Portfolio />
+          <SoftwareProject />
           <VideoSection isAdmin={authenticated} />
           <Services />
           {adminOpen && <CvDownload />}

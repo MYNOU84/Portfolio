@@ -401,7 +401,7 @@ function StaticPanel({
 }
 
 const EMPTY_FORM = () => ({
-  title: '', subtitle: '', category: FORM_CATEGORIES[2],
+  title: '', subtitle: '', category: FORM_CATEGORIES[0],
   location: '', year: String(new Date().getFullYear()),
   role: '', description: '', tags: '', files: []
 })
